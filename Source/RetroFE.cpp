@@ -158,7 +158,6 @@ bool RetroFE::DeInitialize()
 void RetroFE::Run()
 {
     int attractModeTime = 0;
-    bool attractMode = false;
     std::string firstCollection = "Main";
 
     Config.GetProperty("attractModeTime", attractModeTime);
@@ -298,21 +297,21 @@ void RetroFE::Run()
 
             InactiveKeyTime += deltaTime;
 
-            if(!AttractMode && InactiveKeyTime > attractModeTime)
+            if(!AttractMode && InactiveKeyTime > attractModeTime && attractModeTime > 0)
             {
                 AttractMode = true;
                 InactiveKeyTime = 0;
                 attractModeRandomTime = ((float)((1000+rand()) % 5000)) / 1000;
             }
 
-            if(attractMode)
+            if(AttractMode)
             {
                 page->SetScrolling(Page::ScrollDirectionForward);
 
                 if(InactiveKeyTime > attractModeRandomTime)
                 {
                     InactiveKeyTime = 0;
-                    attractMode = false;
+                    AttractMode = false;
                     page->SetScrolling(Page::ScrollDirectionIdle);
                 }
             }
