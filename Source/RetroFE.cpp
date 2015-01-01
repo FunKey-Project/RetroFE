@@ -27,8 +27,6 @@ RetroFE::RetroFE(CollectionDatabase &db, Configuration &c)
     , CollectionDB(db)
     , Input(Config)
     , KeyInputDisable(0)
-    , InactiveKeyTime(0)
-    , AttractMode(false)
     , CurrentTime(0)
     , VideoInst(NULL)
 {
@@ -159,7 +157,6 @@ void RetroFE::Run()
     bool running = true;
     Item *nextPageItem = NULL;
     bool adminMode = false;
-    float attractModeRandomTime = 0;
     bool selectActive = false;
     float frameCount = 0;
     float fpsStartTime = 0;
@@ -168,6 +165,7 @@ void RetroFE::Run()
     Config.GetProperty("attractModeTime", attractModeTime);
     Config.GetProperty("firstCollection", firstCollection);
 
+    Attract.SetIdleTime(static_cast<float>(attractModeTime));
     LoadPage(firstCollection);
 
     while (running)
@@ -287,26 +285,7 @@ void RetroFE::Run()
                 frameCount = 0;
             }
 
-            InactiveKeyTime += deltaTime;
-
-            if(!AttractMode && InactiveKeyTime > attractModeTime && attractModeTime > 0)
-            {
-                AttractMode = true;
-                InactiveKeyTime = 0;
-                attractModeRandomTime = ((float)((1000+rand()) % 5000)) / 1000;
-            }
-
-            if(AttractMode)
-            {
-                page->SetScrolling(Page::ScrollDirectionForward);
-
-                if(InactiveKeyTime > attractModeRandomTime)
-                {
-                    InactiveKeyTime = 0;
-                    AttractMode = false;
-                    page->SetScrolling(Page::ScrollDirectionIdle);
-                }
-            }
+            Attract.Update(deltaTime, *page);
 
             page->Update(deltaTime);
             Render();
@@ -353,8 +332,7 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
     {
         const Uint8 *keys = SDL_GetKeyboardState(NULL);
 
-        InactiveKeyTime = 0;
-        AttractMode = false;
+        Attract.Reset();
 
         if (keys[Input.GetScancode(UserInput::KeyCodePreviousItem)])
         {

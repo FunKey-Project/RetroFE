@@ -5,6 +5,7 @@
 
 #include "Collection/Item.h"
 #include "Control/UserInput.h"
+#include "Execute/AttractMode.h"
 #include "Graphics/FontCache.h"
 #include "Video/IVideo.h"
 #include <SDL2/SDL.h>
@@ -54,11 +55,10 @@ private:
     UserInput Input;
     std::list<Page *> PageChain;
     float KeyInputDisable;
-    float InactiveKeyTime;
-    bool AttractMode;
     float CurrentTime;
     Item *NextPageItem;
     FontCache FC;
     IVideo *VideoInst;
+    AttractMode Attract;
 
 };
