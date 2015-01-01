@@ -47,7 +47,7 @@ private:
     Page *LoadPage(std::string collectionName);
     RETROFE_STATE ProcessUserInput();
     void Update(float dt, bool scrollActive);
-
+    std::string GetLayout(std::string collectionName);
 
     Configuration &Config;
     CollectionDatabase &CollectionDB;

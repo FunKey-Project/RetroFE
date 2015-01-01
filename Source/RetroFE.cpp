@@ -458,14 +458,7 @@ Page *RetroFE::LoadPage(std::string collectionName)
     }
     else
     {
-        std::string layoutKeyName = "collections." + collectionName + ".layout";
-        std::string layoutName = "Default 16x9";
-
-        if(!Config.GetProperty(layoutKeyName, layoutName))
-        {
-            Config.GetProperty("layout", layoutName);
-        }
-
+        std::string layoutName = GetLayout(collectionName);
 
         if(PageChain.size() > 0)
         {
@@ -489,4 +482,17 @@ Page *RetroFE::LoadPage(std::string collectionName)
     }
 
     return page;
+}
+
+std::string RetroFE::GetLayout(std::string collectionName)
+{
+    std::string layoutKeyName = "collections." + collectionName + ".layout";
+    std::string layoutName = "Default 16x9";
+
+    if(!Config.GetProperty(layoutKeyName, layoutName))
+    {
+        Config.GetProperty("layout", layoutName);
+    }
+
+    return layoutName;
 }
