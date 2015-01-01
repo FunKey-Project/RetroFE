@@ -84,11 +84,7 @@ void Page::SetMenu(ScrollingList *s)
 {
     // todo: delete the old menu
     Menu = s;
-
-    if(Menu)
-    {
-        Menu->AddComponentForNotifications(this);
-    }
+    Menu->AddComponentForNotifications(this);
 }
 
 bool Page::AddComponent(Component *c)
@@ -118,7 +114,7 @@ bool Page::IsIdle()
 {
     bool idle = true;
 
-    if(Menu != NULL && !Menu->IsIdle())
+    if(!Menu->IsIdle())
     {
         idle = false;
     }
@@ -137,12 +133,7 @@ bool Page::IsIdle()
 
 bool Page::IsHidden()
 {
-    bool hidden = true;
-
-    if(Menu != NULL)
-    {
-        hidden = Menu->IsHidden();
-    }
+    bool hidden = Menu->IsHidden();
 
     for(unsigned int i = 0; hidden && i < NUM_LAYERS; ++i)
     {
@@ -199,12 +190,9 @@ Item *Page::GetSelectedItem()
 
 void Page::RemoveSelectedItem()
 {
-    if(Menu)
-    {
-        //todo: change method to RemoveItem() and pass in SelectedItem
-        Menu->RemoveSelectedItem();
-        SelectedItem = NULL;
-    }
+    //todo: change method to RemoveItem() and pass in SelectedItem
+    Menu->RemoveSelectedItem();
+    SelectedItem = NULL;
 
 }
 
@@ -215,11 +203,8 @@ void Page::Highlight()
 
     if(item)
     {
-        if(Menu)
-        {
-            Menu->TriggerHighlightEvent(item);
-            Menu->SetScrollActive(ScrollActive);
-        }
+        Menu->TriggerHighlightEvent(item);
+        Menu->SetScrollActive(ScrollActive);
 
         for(unsigned int i = 0; i < NUM_LAYERS; ++i)
         {
@@ -253,24 +238,19 @@ void Page::SetScrolling(ScrollDirection direction)
         ScrollActive = false;
         break;
     }
-    if(Menu)
-    {
-        Menu->SetScrollDirection(menuDirection);
-    }
+
+    Menu->SetScrollDirection(menuDirection);
 }
 
 void Page::PageScroll(ScrollDirection direction)
 {
-    if(Menu)
+    if(direction == ScrollDirectionForward)
     {
-        if(direction == ScrollDirectionForward)
-        {
-            Menu->PageDown();
-        }
-        if(direction == ScrollDirectionBack)
-        {
-            Menu->PageUp();
-        }
+        Menu->PageDown();
+    }
+    if(direction == ScrollDirectionBack)
+    {
+        Menu->PageUp();
     }
 }
 
@@ -279,20 +259,15 @@ void Page::SetItems(std::vector<Item *> *items)
 {
     std::vector<ComponentItemBinding *> *sprites = ComponentItemBindingBuilder::BuildCollectionItems(items);
 
-    if(Menu != NULL)
-    {
-        Menu->SetItems(sprites);
-    }
+    Menu->SetItems(sprites);
 }
 
 
 
 void Page::Update(float dt)
 {
-    if(Menu != NULL)
-    {
-        Menu->Update(dt);
-    }
+    Menu->Update(dt);
+
     if(SelectedItemChanged && !HasSoundedWhenActive && HighlightSoundChunk)
     {
         // skip the first sound being played (as it is part of the on-enter)
