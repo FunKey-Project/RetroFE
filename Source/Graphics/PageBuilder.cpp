@@ -25,7 +25,7 @@
 using namespace rapidxml;
 
 
-PageBuilder::PageBuilder(std::string layoutKey, std::string collection, Configuration *c, FontCache *fc)
+PageBuilder::PageBuilder(std::string layoutKey, std::string collection, Configuration &c, FontCache *fc)
     : LayoutKey(layoutKey)
     , Collection(collection)
     , Config(c)
@@ -100,10 +100,10 @@ Page *PageBuilder::BuildPage()
             {
                 //todo: reuse from ComponentBuilder. Not sure how since it relies on knowing the collection
                 std::string fontPropertyKey  = "layouts." + LayoutKey + ".font";
-                Config->SetProperty(fontPropertyKey, fontXml->value());
+                Config.SetProperty(fontPropertyKey, fontXml->value());
 
-                Font = Config->ConvertToAbsolutePath(
-                           Config->GetAbsolutePath() + "/Layouts/" + LayoutKey + "/",
+                Font = Config.ConvertToAbsolutePath(
+                           Config.GetAbsolutePath() + "/Layouts/" + LayoutKey + "/",
                            fontXml->value());
 
                 Logger::Write(Logger::ZONE_DEBUG, "Layout", "Layout font set to " + Font);
@@ -377,14 +377,14 @@ void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, 
         if(type && (tagName == "reloadableVideo" || tagName == "reloadableImage"))
         {
             std::string configImagePath = "collections." + Collection + ".media." + type->value();
-            if(!Config->GetPropertyAbsolutePath(configImagePath, reloadableImagePath))
+            if(!Config.GetPropertyAbsolutePath(configImagePath, reloadableImagePath))
             {
                 Logger::Write(Logger::ZONE_ERROR, "Layout", "Cannot process reloadable images because property \"" + configImagePath + "\" does not exist");
             }
 
             std::string configVideoPath = "collections." + Collection + ".media.video";
 
-            if(!Config->GetPropertyAbsolutePath(configVideoPath, reloadableVideoPath))
+            if(!Config.GetPropertyAbsolutePath(configVideoPath, reloadableVideoPath))
             {
                 Logger::Write(Logger::ZONE_WARNING, "Layout", "Could not find videos folder as \"" + configVideoPath + "\" does not exist");
             }

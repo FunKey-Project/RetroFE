@@ -5,7 +5,7 @@
 #include "../Database/Configuration.h"
 #include "../Utility/Log.h"
 
-UserInput::UserInput(Configuration *c)
+UserInput::UserInput(Configuration &c)
     : Config(c)
 {
 }
@@ -54,7 +54,7 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
 
     std::string configKey = "controls." + keyDescription;
 
-    if(!Config->GetProperty(configKey, description))
+    if(!Config.GetProperty(configKey, description))
     {
         Logger::Write(Logger::ZONE_ERROR, "Configuration", "Missing property " + configKey);
     }

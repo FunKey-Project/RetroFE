@@ -17,12 +17,11 @@ class Page;
 class RetroFE
 {
 public:
-    RetroFE(CollectionDatabase *db, Configuration *c);
+    RetroFE(CollectionDatabase &db, Configuration &c);
     virtual ~RetroFE();
     bool Initialize();
     bool DeInitialize();
     void Run();
-    Configuration *GetConfiguration();
     void FreeGraphicsMemory();
     void AllocateGraphicsMemory();
     void LaunchEnter();
@@ -50,8 +49,8 @@ private:
     void Update(float dt, bool scrollActive);
 
 
-    Configuration *Config;
-    CollectionDatabase *CollectionDB;
+    Configuration &Config;
+    CollectionDatabase &CollectionDB;
     UserInput Input;
     std::list<Page *> PageChain;
     float KeyInputDisable;

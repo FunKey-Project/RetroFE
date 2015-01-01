@@ -24,7 +24,7 @@ public:
         KeyCodeQuit
     };
 
-    UserInput(Configuration *c);
+    UserInput(Configuration &c);
     virtual ~UserInput();
     bool Initialize();
     SDL_Scancode GetScancode(KeyCode_E key);
@@ -34,5 +34,5 @@ private:
     bool MapKey(std::string keyDescription, KeyCode_E key);
     std::map<KeyCode_E, SDL_Scancode> KeyMap;
 
-    Configuration *Config;
+    Configuration &Config;
 };

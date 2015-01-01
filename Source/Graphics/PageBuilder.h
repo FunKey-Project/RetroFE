@@ -18,7 +18,7 @@ class Configuration;
 class PageBuilder
 {
 public:
-    PageBuilder(std::string layoutKey, std::string collection, Configuration *c, FontCache *fc);
+    PageBuilder(std::string layoutKey, std::string collection, Configuration &c, FontCache *fc);
     virtual ~PageBuilder();
     Page *BuildPage();
 
@@ -26,7 +26,7 @@ private:
     std::string LayoutKey;
     std::string LayoutPath;
     std::string Collection;
-    Configuration *Config;
+    Configuration &Config;
     float ScaleX;
     float ScaleY;
     int ScreenHeight;

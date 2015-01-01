@@ -31,7 +31,7 @@ public:
 
     };
 
-    ScrollingList(Configuration *c, float scaleX, float scaleY, Font *font, SDL_Color fontColor, std::string layoutKey, std::string CollectionName, std::string imageType);
+    ScrollingList(Configuration &c, float scaleX, float scaleY, Font *font, SDL_Color fontColor, std::string layoutKey, std::string CollectionName, std::string imageType);
     virtual ~ScrollingList();
     void AllocateTexture(ComponentItemBinding *s);
     void DeallocateTexture(ComponentItemBinding *s);
@@ -92,7 +92,7 @@ private:
     void UpdateOffset(float dt);
 
     std::string Collection;
-    Configuration *Config;
+    Configuration &Config;
     float ScaleX;
     float ScaleY;
     Font *FontInst;

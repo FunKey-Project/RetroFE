@@ -22,7 +22,7 @@
 
 
 //todo: remove coupling from configuration data (if possible)
-ScrollingList::ScrollingList(Configuration *c,
+ScrollingList::ScrollingList(Configuration &c,
                              float scaleX,
                              float scaleY,
                              Font *font,
@@ -403,7 +403,7 @@ void ScrollingList::AllocateTexture(ComponentItemBinding *s)
            t = new VideoComponent(videoPath, item->GetFullTitle(), ScaleX, ScaleY);
         }
         */
-        if(!t && Config->GetPropertyAbsolutePath(collectionKey, imagePath))
+        if(!t && Config.GetPropertyAbsolutePath(collectionKey, imagePath))
         {
             ImageBuilder imageBuild;
             t = imageBuild.CreateImage(imagePath, item->GetName(), ScaleX, ScaleY);

@@ -17,8 +17,8 @@
 #include <cstring>
 #endif
 
-Launcher::Launcher(RetroFE *p)
-    : Config(p->GetConfiguration())
+Launcher::Launcher(RetroFE &p, Configuration &c)
+    : Config(c)
     , RetroFEInst(p)
 {
 }
@@ -120,7 +120,7 @@ bool Launcher::ExecuteCommand(std::string executable, std::string args, std::str
     Logger::Write(Logger::ZONE_INFO, "Launcher", "     from within folder: " + currentDirectory);
 
     //todo: use delegation instead of depending on knowing the RetroFE class (tie to an interface)
-    RetroFEInst->LaunchEnter();
+    RetroFEInst.LaunchEnter();
 
 #ifdef WIN32
     STARTUPINFO startupInfo;
@@ -165,7 +165,7 @@ bool Launcher::ExecuteCommand(std::string executable, std::string args, std::str
     }
 
     Logger::Write(Logger::ZONE_INFO, "Launcher", "Completed");
-    RetroFEInst->LaunchExit();
+    RetroFEInst.LaunchExit();
 
     return retVal;
 }
@@ -175,7 +175,7 @@ bool Launcher::GetLauncherName(std::string &launcherName, std::string collection
     std::string launcherKey = "collections." + collection + ".launcher";
 
     // find the launcher for the particular item
-    if(!Config->GetProperty(launcherKey, launcherName))
+    if(!Config.GetProperty(launcherKey, launcherName))
     {
         std::stringstream ss;
 
@@ -208,7 +208,7 @@ bool Launcher::GetLauncherExecutable(std::string &executable, std::string &curre
 {
     std::string executableKey = "launchers." + launcherName + ".executable";
 
-    if(!Config->GetProperty(executableKey, executable))
+    if(!Config.GetProperty(executableKey, executable))
     {
         return false;
     }
@@ -216,7 +216,7 @@ bool Launcher::GetLauncherExecutable(std::string &executable, std::string &curre
     std::string currentDirectoryKey = "launchers." + launcherName + ".currentDirectory";
     currentDirectory = Utils::GetDirectory(executable);
 
-    Config->GetProperty(currentDirectoryKey, currentDirectory);
+    Config.GetProperty(currentDirectoryKey, currentDirectory);
 
     return true;
 }
@@ -225,7 +225,7 @@ bool Launcher::GetLauncherArgs(std::string &args, std::string launcherName)
 {
     std::string argsKey = "launchers." + launcherName + ".arguments";
 
-    if(!Config->GetProperty(argsKey, args))
+    if(!Config.GetProperty(argsKey, args))
     {
         Logger::Write(Logger::ZONE_ERROR, "Launcher", "No arguments specified for: " + argsKey);
 
@@ -238,7 +238,7 @@ bool Launcher::GetExtensions(std::string &extensions, std::string collection)
 {
     std::string extensionsKey = "collections." + collection + ".list.extensions";
 
-    if(!Config->GetProperty(extensionsKey, extensions))
+    if(!Config.GetProperty(extensionsKey, extensions))
     {
         Logger::Write(Logger::ZONE_ERROR, "Launcher", "No extensions specified for: " + extensionsKey);
         return false;
@@ -256,7 +256,7 @@ bool Launcher::GetCollectionDirectory(std::string &directory, std::string collec
     std::string itemsPathValue;
 
     // find the items path folder (i.e. ROM path)
-    if(!Config->GetPropertyAbsolutePath(itemsPathKey, itemsPathValue))
+    if(!Config.GetPropertyAbsolutePath(itemsPathKey, itemsPathValue))
     {
         directory = "";
     }

@@ -25,7 +25,7 @@
 
 Page *page = NULL;
 
-RetroFE::RetroFE(CollectionDatabase *db, Configuration *c)
+RetroFE::RetroFE(CollectionDatabase &db, Configuration &c)
     : Config(c)
     , CollectionDB(db)
     , Input(Config)
@@ -70,8 +70,8 @@ bool RetroFE::Initialize()
     bool videoEnable = true;
     int videoLoop = 0;
 
-    Config->GetProperty("videoEnable", videoEnable);
-    Config->GetProperty("videoLoop", videoLoop);
+    Config.GetProperty("videoEnable", videoEnable);
+    Config.GetProperty("videoLoop", videoLoop);
 
     VideoFactory::SetEnabled(videoEnable);
     VideoFactory::SetNumLoops(videoLoop);
@@ -155,20 +155,14 @@ bool RetroFE::DeInitialize()
     return retVal;
 }
 
-Configuration *RetroFE::GetConfiguration()
-{
-    return Config;
-}
-
-
 void RetroFE::Run()
 {
     int attractModeTime = 0;
     bool attractMode = false;
     std::string firstCollection = "Main";
 
-    Config->GetProperty("attractModeTime", attractModeTime);
-    Config->GetProperty("firstCollection", firstCollection);
+    Config.GetProperty("attractModeTime", attractModeTime);
+    Config.GetProperty("firstCollection", firstCollection);
 
     bool running = true;
     Item *nextPageItem = NULL;
@@ -190,7 +184,7 @@ void RetroFE::Run()
         float lastTime = 0;
         float deltaTime = 0;
         page = PageChain.back();
-        Launcher l(this);
+        Launcher l(*this, Config);
 
         if(!page)
         {
@@ -289,7 +283,7 @@ void RetroFE::Run()
             {
                 // don't print the first framerate, it's likely inaccurate
                 bool logFps = false;
-                Config->GetProperty("debug.logfps", logFps);
+                Config.GetProperty("debug.logfps", logFps);
 
                 if(fpsStartTime != 0 && logFps)
                 {
@@ -337,7 +331,7 @@ bool RetroFE::ItemSelected()
 
     if(item->IsLeaf())
     {
-        Launcher l(this);
+        Launcher l(*this, Config);
 
         l.Run(page->GetCollectionName(), item);
     }
@@ -356,7 +350,7 @@ bool RetroFE::Back(bool &exit)
     bool canGoBack = false;
 
     bool exitOnBack = false;
-    Config->GetProperty("exitOnFirstPageBack", exitOnBack);
+    Config.GetProperty("exitOnFirstPageBack", exitOnBack);
     exit = false;
 
     if(PageChain.size() > 1)
@@ -455,8 +449,8 @@ Page *RetroFE::LoadPage(std::string collectionName)
     std::vector<Item *> *collection = new std::vector<Item *>(); // the page will deallocate this once its done
     MenuParser mp;
 
-    mp.GetMenuItems(CollectionDB, collectionName, *collection);
-    CollectionDB->GetCollection(collectionName, *collection);
+    mp.GetMenuItems(&CollectionDB, collectionName, *collection);
+    CollectionDB.GetCollection(collectionName, *collection);
 
     //todo: handle this in a more esthetically pleasing way instead of crashing
     if(collection->size() == 0)
@@ -468,9 +462,9 @@ Page *RetroFE::LoadPage(std::string collectionName)
         std::string layoutKeyName = "collections." + collectionName + ".layout";
         std::string layoutName = "Default 16x9";
 
-        if(!Config->GetProperty(layoutKeyName, layoutName))
+        if(!Config.GetProperty(layoutKeyName, layoutName))
         {
-            Config->GetProperty("layout", layoutName);
+            Config.GetProperty("layout", layoutName);
         }
 
 

@@ -16,7 +16,7 @@ int SDL::WindowHeight = 0;
 bool SDL::Fullscreen = false;
 
 
-bool SDL::Initialize(Configuration *config)
+bool SDL::Initialize(Configuration &config)
 {
     bool retVal = true;
     std::string hString;
@@ -36,7 +36,7 @@ bool SDL::Initialize(Configuration *config)
         retVal = false;
     }
 
-    if(retVal && config->GetProperty("hideMouse", hideMouse))
+    if(retVal && config.GetProperty("hideMouse", hideMouse))
     {
         if(hideMouse)
         {
@@ -64,7 +64,7 @@ bool SDL::Initialize(Configuration *config)
         }
 
 
-        if(!config->GetProperty("horizontal", hString))
+        if(!config.GetProperty("horizontal", hString))
         {
             Logger::Write(Logger::ZONE_ERROR, "Configuration", "Missing property \"horizontal\"");
             retVal = false;
@@ -82,7 +82,7 @@ bool SDL::Initialize(Configuration *config)
                 }
             }
         }
-        else if(!config->GetProperty("horizontal", WindowWidth))
+        else if(!config.GetProperty("horizontal", WindowWidth))
         {
             Logger::Write(Logger::ZONE_ERROR, "Configuration", "Invalid property value for \"horizontal\"");
         }
@@ -91,7 +91,7 @@ bool SDL::Initialize(Configuration *config)
     // check for a few other necessary Configurations
     if(retVal)
     {
-        if(!config->GetProperty("vertical", hString))
+        if(!config.GetProperty("vertical", hString))
         {
             Logger::Write(Logger::ZONE_ERROR, "Configuration", "Missing property \"vertical\"");
             retVal = false;
@@ -109,13 +109,13 @@ bool SDL::Initialize(Configuration *config)
                 }
             }
         }
-        else if(!config->GetProperty("vertical", WindowHeight))
+        else if(!config.GetProperty("vertical", WindowHeight))
         {
             Logger::Write(Logger::ZONE_ERROR, "Configuration", "Invalid property value for \"vertical\"");
         }
     }
 
-    if(retVal && !config->GetProperty("fullscreen", Fullscreen))
+    if(retVal && !config.GetProperty("fullscreen", Fullscreen))
     {
         Logger::Write(Logger::ZONE_ERROR, "Configuration", "Missing property: \"fullscreen\"");
         retVal = false;

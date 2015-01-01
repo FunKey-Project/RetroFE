@@ -12,7 +12,7 @@ class RetroFE;
 class Launcher
 {
 public:
-    Launcher(RetroFE *p);
+    Launcher(RetroFE &p, Configuration &c);
     bool Run(std::string collection, Item *collectionItem);
 
 private:
@@ -35,6 +35,6 @@ private:
                                  std::string itemDirectory,
                                  std::string itemCollectionName);
 
-    Configuration *Config;
-    RetroFE *RetroFEInst;
+    Configuration &Config;
+    RetroFE &RetroFEInst;
 };

@@ -10,7 +10,7 @@ class Configuration;
 class SDL
 {
 public:
-    static bool Initialize(Configuration *config);
+    static bool Initialize(Configuration &config);
     static bool DeInitialize();
     static SDL_Renderer *GetRenderer();
     static SDL_mutex *GetMutex();

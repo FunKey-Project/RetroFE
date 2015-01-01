@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    RetroFE p(cdb, &config);
+    RetroFE p(*cdb, config);
 
     if(p.Initialize())
     {
