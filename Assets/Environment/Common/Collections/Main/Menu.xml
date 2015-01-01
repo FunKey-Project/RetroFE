@@ -1,0 +1,7 @@
+<menu>
+   <!-- This is the main menu. Mark which collections you would like to make visible -->
+   <item collection="Nintendo Entertainment System"/>
+   <item collection="NES and Arcade"/>
+   <item collection="Arcade"/>
+   <item collection="Main"/>
+</menu>

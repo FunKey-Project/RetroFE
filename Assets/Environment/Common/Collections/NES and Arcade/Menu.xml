@@ -1,0 +1,5 @@
+<menu>
+   <!-- This is the main menu. Mark which collections you would like to make visible -->
+   <item collection="Arcade" import="true"/>
+   <item collection="Nintendo Entertainment System" import="true"/>
+</menu>
