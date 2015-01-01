@@ -158,8 +158,6 @@ void RetroFE::Run()
     Item *nextPageItem = NULL;
     bool adminMode = false;
     bool selectActive = false;
-    float frameCount = 0;
-    float fpsStartTime = 0;
     RETROFE_STATE state = RETROFE_IDLE;
 
     Config.GetProperty("attractModeTime", attractModeTime);
@@ -264,25 +262,6 @@ void RetroFE::Run()
             if(sleepTime > 0)
             {
                 SDL_Delay(static_cast<unsigned int>(sleepTime));
-            }
-
-            ++frameCount;
-
-            if(CurrentTime - fpsStartTime > 1.0)
-            {
-                // don't print the first framerate, it's likely inaccurate
-                bool logFps = false;
-                Config.GetProperty("debug.logfps", logFps);
-
-                if(fpsStartTime != 0 && logFps)
-                {
-                    std::stringstream fpsstream;
-                    fpsstream << frameCount/(CurrentTime - fpsStartTime) << " FPS";
-                    Logger::Write(Logger::ZONE_DEBUG, "RetroFE", fpsstream.str());
-                }
-
-                fpsStartTime = CurrentTime;
-                frameCount = 0;
             }
 
             Attract.Update(deltaTime, *page);
