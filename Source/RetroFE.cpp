@@ -445,43 +445,43 @@ Page *RetroFE::LoadPage(std::string collectionName)
     Logger::Write(Logger::ZONE_INFO, "RetroFE", "Creating page for collection " + collectionName);
 
     Page *page = NULL;
+    
+    std::vector<Item *> *collection = GetCollection(collectionName);
+    std::string layoutName = GetLayout(collectionName);
+
+    if(PageChain.size() > 0)
+    {
+        Page *oldPage = PageChain.back();
+        oldPage->FreeGraphicsMemory();
+    }
+
+    PageBuilder pb(layoutName, collectionName, Config, &FC);
+    page = pb.BuildPage();
+    page->SetItems(collection);
+    page->Start();
+
+    if(page)
+    {
+        PageChain.push_back(page);
+    }
+
+    return page;
+}
+
+std::vector<Item *> *RetroFE::GetCollection(std::string collectionName)
+{
     std::vector<Item *> *collection = new std::vector<Item *>(); // the page will deallocate this once its done
     MenuParser mp;
 
     mp.GetMenuItems(&CollectionDB, collectionName, *collection);
     CollectionDB.GetCollection(collectionName, *collection);
 
-    //todo: handle this in a more esthetically pleasing way instead of crashing
     if(collection->size() == 0)
     {
         Logger::Write(Logger::ZONE_WARNING, "RetroFE", "No list items found for collection " + collectionName);
     }
-    else
-    {
-        std::string layoutName = GetLayout(collectionName);
 
-        if(PageChain.size() > 0)
-        {
-            Page *oldPage = PageChain.back();
-
-            if(oldPage)
-            {
-                oldPage->FreeGraphicsMemory();
-            }
-        }
-
-        PageBuilder pb(layoutName, collectionName, Config, &FC);
-        page = pb.BuildPage();
-        page->SetItems(collection);
-        page->Start();
-
-        if(page)
-        {
-            PageChain.push_back(page);
-        }
-    }
-
-    return page;
+    return collection;
 }
 
 std::string RetroFE::GetLayout(std::string collectionName)

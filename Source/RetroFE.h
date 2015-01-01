@@ -9,6 +9,7 @@
 #include "Video/IVideo.h"
 #include <SDL2/SDL.h>
 #include <list>
+#include <vector>
 
 class CollectionDatabase;
 class Configuration;
@@ -48,7 +49,7 @@ private:
     RETROFE_STATE ProcessUserInput();
     void Update(float dt, bool scrollActive);
     std::string GetLayout(std::string collectionName);
-
+     std::vector<Item *> *GetCollection(std::string collectionName);
     Configuration &Config;
     CollectionDatabase &CollectionDB;
     UserInput Input;
