@@ -42,11 +42,10 @@ private:
     };
 
     void Render();
-    bool ItemSelected();
     bool Back(bool &exit);
     void Quit();
     Page *LoadPage(std::string collectionName);
-    RETROFE_STATE ProcessUserInput();
+    RETROFE_STATE ProcessUserInput(Page *page);
     void Update(float dt, bool scrollActive);
     std::string GetLayout(std::string collectionName);
      std::vector<Item *> *GetCollection(std::string collectionName);

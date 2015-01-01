@@ -22,9 +22,6 @@
 #include <SDL2/SDL_syswm.h>
 #endif
 
-
-Page *page = NULL;
-
 RetroFE::RetroFE(CollectionDatabase &db, Configuration &c)
     : Config(c)
     , CollectionDB(db)
@@ -159,30 +156,25 @@ void RetroFE::Run()
 {
     int attractModeTime = 0;
     std::string firstCollection = "Main";
-
-    Config.GetProperty("attractModeTime", attractModeTime);
-    Config.GetProperty("firstCollection", firstCollection);
-
     bool running = true;
     Item *nextPageItem = NULL;
     bool adminMode = false;
     float attractModeRandomTime = 0;
     bool selectActive = false;
-
-    //todo: break up into helper methods
-    Logger::Write(Logger::ZONE_INFO, "RetroFE", "Loading first page");
-
-    page = LoadPage(firstCollection);
-
     float frameCount = 0;
     float fpsStartTime = 0;
     RETROFE_STATE state = RETROFE_IDLE;
+
+    Config.GetProperty("attractModeTime", attractModeTime);
+    Config.GetProperty("firstCollection", firstCollection);
+
+    LoadPage(firstCollection);
 
     while (running)
     {
         float lastTime = 0;
         float deltaTime = 0;
-        page = PageChain.back();
+        Page *page = PageChain.back();
         Launcher l(*this, Config);
 
         if(!page)
@@ -196,7 +188,7 @@ void RetroFE::Run()
         switch(state)
         {
         case RETROFE_IDLE:
-            state = ProcessUserInput();
+            state = ProcessUserInput(page);
             break;
 
         case RETROFE_NEXT_PAGE_REQUEST:
@@ -322,27 +314,6 @@ void RetroFE::Run()
     }
 }
 
-bool RetroFE::ItemSelected()
-{
-    Item *item = page->GetSelectedItem();
-
-    if(!item) return false;
-
-    if(item->IsLeaf())
-    {
-        Launcher l(*this, Config);
-
-        l.Run(page->GetCollectionName(), item);
-    }
-    else
-    {
-        NextPageItem = item;
-        LoadPage(page->GetCollectionName());
-        page->Stop();
-    }
-
-    return true;
-}
 
 bool RetroFE::Back(bool &exit)
 {
@@ -351,14 +322,16 @@ bool RetroFE::Back(bool &exit)
     bool exitOnBack = false;
     Config.GetProperty("exitOnFirstPageBack", exitOnBack);
     exit = false;
-
+    
     if(PageChain.size() > 1)
     {
+        Page *page = PageChain.back();
         page->Stop();
         canGoBack = true;
     }
     else if(PageChain.size() == 1 && exitOnBack)
     {
+        Page *page = PageChain.back();
         page->Stop();
         exit = true;
         canGoBack = true;
@@ -368,7 +341,7 @@ bool RetroFE::Back(bool &exit)
 }
 
 
-RetroFE::RETROFE_STATE RetroFE::ProcessUserInput()
+RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
 {
     SDL_Event e;
     bool exit = false;
