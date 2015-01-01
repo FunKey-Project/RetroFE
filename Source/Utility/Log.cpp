@@ -10,7 +10,7 @@ std::ofstream Logger::WriteFileStream;
 std::streambuf *Logger::CerrStream = NULL;
 std::streambuf *Logger::CoutStream = NULL;
 
-bool Logger::StartLogFile(std::string file)
+bool Logger::Initialize(std::string file)
 {
    WriteFileStream.open(file.c_str());
 
@@ -20,7 +20,7 @@ bool Logger::StartLogFile(std::string file)
    return WriteFileStream.is_open();
 }
 
-void Logger::CloseLogFile()
+void Logger::DeInitialize()
 {
    if(WriteFileStream.is_open())
    {

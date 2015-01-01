@@ -20,9 +20,9 @@ public:
       ZONE_ERROR
 
    };
-   static bool StartLogFile(std::string file);
+   static bool Initialize(std::string file);
    static void Write(Zone zone, std::string component, std::string message);
-   static void CloseLogFile();
+   static void DeInitialize();
 private:
 
    static std::streambuf *CerrStream;

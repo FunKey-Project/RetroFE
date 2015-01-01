@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
    // set the log file to write to
    std::string logFile = Configuration::GetAbsolutePath() + "/Log.txt";
 
-   if(!Logger::StartLogFile(logFile))
+   if(!Logger::Initialize(logFile))
    {
       Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not open \"" + logFile + "\" for writing");
    }
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
       p.DeInitialize();
    }
 
-   Logger::CloseLogFile();
+   Logger::DeInitialize();
 	return 0;
 }
 
