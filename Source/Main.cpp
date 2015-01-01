@@ -16,45 +16,13 @@
 #include <fstream>
 #include <dirent.h>
 
-#ifdef WIN32
-#include <windows.h>
-#else
-#include <sys/types.h>
-#include <unistd.h>
-#endif
-
 static bool ImportConfiguration(Configuration *c);
 
 int main(int argc, char *argv[])
 {
+   Configuration::Initialize();
+
    Configuration config;
-   const char *environment = std::getenv("RETROFE_PATH");
-   std::string environmentStr;
-   if (environment != NULL)
-   {
-      environmentStr = environment;
-      Configuration::SetAbsolutePath(environment);
-   }
-   else
-   {
-#ifdef WIN32
-      HMODULE hModule = GetModuleHandle(NULL);
-      CHAR exe[MAX_PATH];
-      GetModuleFileName(hModule, exe, MAX_PATH);
-      std::string sPath(exe);
-      sPath = Utils::GetDirectory(sPath);
-      sPath = Utils::GetParentDirectory(sPath);
-#else
-      char exepath[1024];
-      sprintf(exepath, "/proc/%d/exe", getpid());
-      readlink(exepath, exepath, sizeof(exepath));
-      std::string sPath(exepath);
-      sPath = Utils::GetDirectory(sPath);
-#endif
-
-
-      Configuration::SetAbsolutePath(sPath);
-   }
 
    // set the log file to write to
    std::string logFile = Configuration::GetAbsolutePath() + "/Log.txt";
@@ -71,22 +39,17 @@ int main(int argc, char *argv[])
    Logger::Write(Logger::ZONE_INFO, "RetroFE", "OS: Linux");
 #endif
 
-   if(environment)
-   {
-      Logger::Write(Logger::ZONE_INFO, "RetroFE", "Environment variable set: RetroFE_PATH=" + environmentStr);
-   }
-
    Logger::Write(Logger::ZONE_INFO, "RetroFE", "Absolute path: " + Configuration::GetAbsolutePath());
 
    if(!ImportConfiguration(&config))
    {
 	   return -1;
    }
-
    Logger::Write(Logger::ZONE_INFO, "RetroFE", "Imported configuration");
 
    std::string dbFile = (Configuration::GetAbsolutePath() + "/cache.db");
    std::ifstream infile(dbFile.c_str());
+
    DB db;
    if(!db.Initialize())
    {

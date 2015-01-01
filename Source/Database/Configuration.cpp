@@ -9,6 +9,13 @@
 #include <fstream>
 #include <sstream>
 
+#ifdef WIN32
+#include <windows.h>
+#else
+#include <sys/types.h>
+#include <unistd.h>
+#endif
+
 std::string Configuration::AbsolutePath;
 
 Configuration::Configuration()
@@ -18,6 +25,37 @@ Configuration::Configuration()
 
 Configuration::~Configuration()
 {
+}
+
+void Configuration::Initialize() 
+{
+   const char *environment = std::getenv("RETROFE_PATH");
+   std::string environmentStr;
+   if (environment != NULL)
+   {
+      environmentStr = environment;
+      Configuration::SetAbsolutePath(environment);
+   }
+   else
+   {
+#ifdef WIN32
+      HMODULE hModule = GetModuleHandle(NULL);
+      CHAR exe[MAX_PATH];
+      GetModuleFileName(hModule, exe, MAX_PATH);
+      std::string sPath(exe);
+      sPath = Utils::GetDirectory(sPath);
+      sPath = Utils::GetParentDirectory(sPath);
+#else
+      char exepath[1024];
+      sprintf(exepath, "/proc/%d/exe", getpid());
+      readlink(exepath, exepath, sizeof(exepath));
+      std::string sPath(exepath);
+      sPath = Utils::GetDirectory(sPath);
+#endif
+
+
+      Configuration::SetAbsolutePath(sPath);
+   }
 }
 
 bool Configuration::Import(std::string keyPrefix, std::string file)
