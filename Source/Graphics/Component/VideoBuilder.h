@@ -11,8 +11,8 @@
 class VideoBuilder
 {
 public:
-   VideoComponent * CreateVideo(std::string path, std::string name, float scaleX, float scaleY);
+    VideoComponent * CreateVideo(std::string path, std::string name, float scaleX, float scaleY);
 
 private:
-   VideoFactory Factory;
+    VideoFactory Factory;
 };

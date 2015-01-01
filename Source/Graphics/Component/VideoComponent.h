@@ -12,21 +12,27 @@
 class VideoComponent : public Component
 {
 public:
-	VideoComponent(IVideo *videoInst, std::string videoFile, float scaleX, float scaleY);
-	virtual ~VideoComponent();
-	void Update(float dt);
-	void Draw();
-   void FreeGraphicsMemory();
-   void AllocateGraphicsMemory();
-   void LaunchEnter() {FreeGraphicsMemory(); }
-   void LaunchExit() { AllocateGraphicsMemory(); }
+    VideoComponent(IVideo *videoInst, std::string videoFile, float scaleX, float scaleY);
+    virtual ~VideoComponent();
+    void Update(float dt);
+    void Draw();
+    void FreeGraphicsMemory();
+    void AllocateGraphicsMemory();
+    void LaunchEnter()
+    {
+        FreeGraphicsMemory();
+    }
+    void LaunchExit()
+    {
+        AllocateGraphicsMemory();
+    }
 
 private:
-   SDL_Texture *VideoTexture;
-   std::string VideoFile;
-   std::string Name;
-   IVideo *VideoInst;
-	float ScaleX;
-	float ScaleY;
-	bool IsPlaying;
+    SDL_Texture *VideoTexture;
+    std::string VideoFile;
+    std::string Name;
+    IVideo *VideoInst;
+    float ScaleX;
+    float ScaleY;
+    bool IsPlaying;
 };

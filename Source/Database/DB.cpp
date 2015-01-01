@@ -8,42 +8,42 @@
 #include <fstream>
 
 DB::DB(std::string dbFile)
-: Path(dbFile)
-, Handle(NULL)
+    : Path(dbFile)
+    , Handle(NULL)
 {
 }
 
 DB::~DB()
 {
-   DeInitialize();
+    DeInitialize();
 }
 
 bool DB::Initialize()
 {
-   bool retVal = false;
+    bool retVal = false;
 
-   if(sqlite3_open(Path.c_str(), &Handle) != 0)
-   {
-      std::stringstream ss;
-      ss << "Cannot open database: \"" << Path << "\"" << sqlite3_errmsg(Handle);
-      Logger::Write(Logger::ZONE_ERROR, "Database", ss.str());
-   }
-   else
-   {
-      Logger::Write(Logger::ZONE_INFO, "Database", "Opened database \"" + Path + "\"");
-      retVal = true;
-   }
+    if(sqlite3_open(Path.c_str(), &Handle) != 0)
+    {
+        std::stringstream ss;
+        ss << "Cannot open database: \"" << Path << "\"" << sqlite3_errmsg(Handle);
+        Logger::Write(Logger::ZONE_ERROR, "Database", ss.str());
+    }
+    else
+    {
+        Logger::Write(Logger::ZONE_INFO, "Database", "Opened database \"" + Path + "\"");
+        retVal = true;
+    }
 
-   return retVal;
+    return retVal;
 }
 
 
 void DB::DeInitialize()
 {
-   if(Handle != NULL)
-   {
-      sqlite3_close(Handle);
-      Handle = NULL;
-   }
+    if(Handle != NULL)
+    {
+        sqlite3_close(Handle);
+        Handle = NULL;
+    }
 }
 

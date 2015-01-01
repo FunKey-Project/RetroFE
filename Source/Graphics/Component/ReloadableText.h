@@ -12,37 +12,37 @@
 class ReloadableText : public Component
 {
 public:
-   ReloadableText(std::string type, Font *font, SDL_Color color, std::string layoutKey, std::string collectionName, float scaleX, float scaleY);
-   virtual ~ReloadableText();
-   void Update(float dt);
-   void Draw();
-   void FreeGraphicsMemory();
-   void AllocateGraphicsMemory();
-   void LaunchEnter();
-   void LaunchExit();
+    ReloadableText(std::string type, Font *font, SDL_Color color, std::string layoutKey, std::string collectionName, float scaleX, float scaleY);
+    virtual ~ReloadableText();
+    void Update(float dt);
+    void Draw();
+    void FreeGraphicsMemory();
+    void AllocateGraphicsMemory();
+    void LaunchEnter();
+    void LaunchExit();
 
 private:
-   enum TextType
-   {
-      TextTypeUnknown = 0,
-      TextTypeNumberButtons,
-      TextTypeNumberPlayers,
-      TextTypeYear,
-      TextTypeTitle,
-      TextTypeManufacturer,
-   };
+    enum TextType
+    {
+        TextTypeUnknown = 0,
+        TextTypeNumberButtons,
+        TextTypeNumberPlayers,
+        TextTypeYear,
+        TextTypeTitle,
+        TextTypeManufacturer,
+    };
 
-   void ReloadTexture();
+    void ReloadTexture();
 
-   Text *ImageInst;
-   TextType Type;
-   std::string LayoutKey;
-   std::string Collection;
-   bool ReloadRequested;
-   bool FirstLoad;
-   Font *FontInst;
-   SDL_Color FontColor;
+    Text *ImageInst;
+    TextType Type;
+    std::string LayoutKey;
+    std::string Collection;
+    bool ReloadRequested;
+    bool FirstLoad;
+    Font *FontInst;
+    SDL_Color FontColor;
 
-   float ScaleX;
-   float ScaleY;
+    float ScaleX;
+    float ScaleY;
 };

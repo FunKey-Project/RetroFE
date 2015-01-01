@@ -13,13 +13,13 @@ class CollectionInfo;
 class CollectionInfoBuilder
 {
 public:
-   CollectionInfoBuilder(Configuration *c);
-   virtual ~CollectionInfoBuilder();
-   bool LoadAllCollections();
-   void GetCollections(std::vector<CollectionInfo *> &keys);
+    CollectionInfoBuilder(Configuration *c);
+    virtual ~CollectionInfoBuilder();
+    bool LoadAllCollections();
+    void GetCollections(std::vector<CollectionInfo *> &keys);
 
 private:
-   bool ImportCollection(std::string name);
-   std::map<std::string, CollectionInfo *> InfoMap;
-   Configuration *Conf;
+    bool ImportCollection(std::string name);
+    std::map<std::string, CollectionInfo *> InfoMap;
+    Configuration *Conf;
 };

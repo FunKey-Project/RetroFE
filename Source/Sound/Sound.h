@@ -8,12 +8,12 @@
 class Sound
 {
 public:
-   Sound(std::string file);
-   virtual ~Sound();
-   void Play();
-   bool Allocate();
-   bool Free();
+    Sound(std::string file);
+    virtual ~Sound();
+    void Play();
+    bool Allocate();
+    bool Free();
 private:
-   std::string File;
-   Mix_Chunk *Chunk;
+    std::string File;
+    Mix_Chunk *Chunk;
 };

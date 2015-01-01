@@ -12,20 +12,20 @@
 class Logger
 {
 public:
-   enum Zone
-   {
-      ZONE_DEBUG,
-      ZONE_INFO,
-      ZONE_WARNING,
-      ZONE_ERROR
+    enum Zone
+    {
+        ZONE_DEBUG,
+        ZONE_INFO,
+        ZONE_WARNING,
+        ZONE_ERROR
 
-   };
-   static bool Initialize(std::string file);
-   static void Write(Zone zone, std::string component, std::string message);
-   static void DeInitialize();
+    };
+    static bool Initialize(std::string file);
+    static void Write(Zone zone, std::string component, std::string message);
+    static void DeInitialize();
 private:
 
-   static std::streambuf *CerrStream;
-   static std::streambuf *CoutStream;
-   static std::ofstream WriteFileStream;
+    static std::streambuf *CerrStream;
+    static std::streambuf *CoutStream;
+    static std::ofstream WriteFileStream;
 };

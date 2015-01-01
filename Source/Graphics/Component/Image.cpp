@@ -8,68 +8,68 @@
 #include <SDL2/SDL_image.h>
 
 Image::Image(std::string file, float scaleX, float scaleY)
-: Texture(NULL)
-, File(file)
-, ScaleX(scaleX)
-, ScaleY(scaleY)
+    : Texture(NULL)
+    , File(file)
+    , ScaleX(scaleX)
+    , ScaleY(scaleY)
 {
-   AllocateGraphicsMemory();
+    AllocateGraphicsMemory();
 }
 
 Image::~Image()
 {
-   FreeGraphicsMemory();
+    FreeGraphicsMemory();
 }
 
 void Image::FreeGraphicsMemory()
 {
-   Component::FreeGraphicsMemory();
+    Component::FreeGraphicsMemory();
 
-   SDL_LockMutex(SDL::GetMutex());
-   if (Texture != NULL)
-   {
-      SDL_DestroyTexture(Texture);
-      Texture = NULL;
-   }
-   SDL_UnlockMutex(SDL::GetMutex());
+    SDL_LockMutex(SDL::GetMutex());
+    if (Texture != NULL)
+    {
+        SDL_DestroyTexture(Texture);
+        Texture = NULL;
+    }
+    SDL_UnlockMutex(SDL::GetMutex());
 }
 
 void Image::AllocateGraphicsMemory()
 {
-   int width;
-   int height;
+    int width;
+    int height;
 
-   Component::AllocateGraphicsMemory();
+    Component::AllocateGraphicsMemory();
 
-   if(!Texture)
-   {
-      SDL_LockMutex(SDL::GetMutex());
-      Texture = IMG_LoadTexture(SDL::GetRenderer(), File.c_str());
+    if(!Texture)
+    {
+        SDL_LockMutex(SDL::GetMutex());
+        Texture = IMG_LoadTexture(SDL::GetRenderer(), File.c_str());
 
-      if (Texture != NULL)
-      {
-         SDL_SetTextureBlendMode(Texture, SDL_BLENDMODE_BLEND);
-         SDL_QueryTexture(Texture, NULL, NULL, &width, &height);
-         GetBaseViewInfo()->SetImageWidth(width * ScaleX);
-         GetBaseViewInfo()->SetImageHeight(height * ScaleY);
-      }
-      SDL_UnlockMutex(SDL::GetMutex());
+        if (Texture != NULL)
+        {
+            SDL_SetTextureBlendMode(Texture, SDL_BLENDMODE_BLEND);
+            SDL_QueryTexture(Texture, NULL, NULL, &width, &height);
+            GetBaseViewInfo()->SetImageWidth(width * ScaleX);
+            GetBaseViewInfo()->SetImageHeight(height * ScaleY);
+        }
+        SDL_UnlockMutex(SDL::GetMutex());
 
-   }
+    }
 }
 
 void Image::Draw()
 {
-   if(Texture)
-   {
-      ViewInfo *info = GetBaseViewInfo();
-      SDL_Rect rect;
+    if(Texture)
+    {
+        ViewInfo *info = GetBaseViewInfo();
+        SDL_Rect rect;
 
-      rect.x = static_cast<int>(info->GetXRelativeToOrigin());
-      rect.y = static_cast<int>(info->GetYRelativeToOrigin());
-      rect.h = static_cast<int>(info->GetHeight());
-      rect.w = static_cast<int>(info->GetWidth());
+        rect.x = static_cast<int>(info->GetXRelativeToOrigin());
+        rect.y = static_cast<int>(info->GetYRelativeToOrigin());
+        rect.h = static_cast<int>(info->GetHeight());
+        rect.w = static_cast<int>(info->GetWidth());
 
-      SDL::RenderCopy(Texture, static_cast<char>((info->GetTransparency() * 255)), NULL, &rect, info->GetAngle());
-   }
+        SDL::RenderCopy(Texture, static_cast<char>((info->GetTransparency() * 255)), NULL, &rect, info->GetAngle());
+    }
 }

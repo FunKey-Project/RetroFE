@@ -10,63 +10,63 @@
 
 //todo: memory leak when launching games
 FontCache::FontCache()
-: IsInitialized(false)
+    : IsInitialized(false)
 {
 }
 
 FontCache::~FontCache()
 {
-   DeInitialize();
+    DeInitialize();
 }
 
 void FontCache::DeInitialize()
 {
-   IsInitialized = false;
-   std::map<std::string, Font *>::iterator it = FontFaceMap.begin();
-   while(it != FontFaceMap.end())
-   {
-      delete it->second;
-      FontFaceMap.erase(it);
-      it = FontFaceMap.begin();
-   }
+    IsInitialized = false;
+    std::map<std::string, Font *>::iterator it = FontFaceMap.begin();
+    while(it != FontFaceMap.end())
+    {
+        delete it->second;
+        FontFaceMap.erase(it);
+        it = FontFaceMap.begin();
+    }
 
-   SDL_LockMutex(SDL::GetMutex());
-   TTF_Quit();
-   SDL_UnlockMutex(SDL::GetMutex());
+    SDL_LockMutex(SDL::GetMutex());
+    TTF_Quit();
+    SDL_UnlockMutex(SDL::GetMutex());
 }
 
 
 void FontCache::Initialize()
 {
-   //todo: make bool
-   TTF_Init();
-   IsInitialized = true;
+    //todo: make bool
+    TTF_Init();
+    IsInitialized = true;
 }
 Font *FontCache::GetFont(std::string fontPath)
 {
-   Font *t = NULL;
+    Font *t = NULL;
 
-   std::map<std::string, Font *>::iterator it = FontFaceMap.find(fontPath);
+    std::map<std::string, Font *>::iterator it = FontFaceMap.find(fontPath);
 
-   if(it != FontFaceMap.end())
-   {
-      t = it->second;
-   }
+    if(it != FontFaceMap.end())
+    {
+        t = it->second;
+    }
 
-   return t;
+    return t;
 }
 
 bool FontCache::LoadFont(std::string fontPath, SDL_Color color)
 {
-   std::map<std::string, Font *>::iterator it = FontFaceMap.find(fontPath);
+    std::map<std::string, Font *>::iterator it = FontFaceMap.find(fontPath);
 
-   if(it == FontFaceMap.end())
-   {
-      Font *f = new Font();
-      f->Initialize(fontPath, color);
-      FontFaceMap[fontPath] = f;
-   }
+    if(it == FontFaceMap.end())
+    {
+        Font *f = new Font();
+        f->Initialize(fontPath, color);
+        FontFaceMap[fontPath] = f;
+    }
 
-   return true;
+    return true;
 }
 

@@ -22,16 +22,16 @@
 
 std::string Version::GetString()
 {
-   std::stringstream version;
-   version << RETROFE_VERSION_MAJOR;
-   version << ".";
-   version << RETROFE_VERSION_MINOR;
-   version << ".";
-   version << RETROFE_VERSION_BUILD;
+    std::stringstream version;
+    version << RETROFE_VERSION_MAJOR;
+    version << ".";
+    version << RETROFE_VERSION_MINOR;
+    version << ".";
+    version << RETROFE_VERSION_BUILD;
 
 #ifdef RETROFE_VERSION_BETA
-   version << "-beta";
+    version << "-beta";
 #endif
 
-   return version.str();
+    return version.str();
 }

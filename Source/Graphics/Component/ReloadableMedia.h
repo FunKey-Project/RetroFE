@@ -14,25 +14,25 @@ class Image;
 class ReloadableMedia : public Component
 {
 public:
-	ReloadableMedia(std::string imagePath, std::string videoPath, bool isVideo, float scaleX, float scaleY);
-	virtual ~ReloadableMedia();
-   void Update(float dt);
-	void Draw();
-   void FreeGraphicsMemory();
-   void AllocateGraphicsMemory();
-   void LaunchEnter();
-   void LaunchExit();
+    ReloadableMedia(std::string imagePath, std::string videoPath, bool isVideo, float scaleX, float scaleY);
+    virtual ~ReloadableMedia();
+    void Update(float dt);
+    void Draw();
+    void FreeGraphicsMemory();
+    void AllocateGraphicsMemory();
+    void LaunchEnter();
+    void LaunchExit();
 
 private:
-	void ReloadTexture();
-	Component *LoadedComponent;
-   std::string ImagePath;
-   std::string VideoPath;
-   bool ReloadRequested;
-   bool FirstLoad;
-   IVideo *VideoInst;
+    void ReloadTexture();
+    Component *LoadedComponent;
+    std::string ImagePath;
+    std::string VideoPath;
+    bool ReloadRequested;
+    bool FirstLoad;
+    IVideo *VideoInst;
 
-	bool IsVideo;
-	float ScaleX;
-	float ScaleY;
+    bool IsVideo;
+    float ScaleX;
+    float ScaleY;
 };

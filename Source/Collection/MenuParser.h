@@ -10,8 +10,8 @@ class CollectionDatabase;
 class MenuParser
 {
 public:
-   MenuParser();
-   virtual ~MenuParser();
-   bool GetMenuItems(CollectionDatabase *cdb, std::string collectionName, std::vector<Item *> &items);
+    MenuParser();
+    virtual ~MenuParser();
+    bool GetMenuItems(CollectionDatabase *cdb, std::string collectionName, std::vector<Item *> &items);
 
 };

@@ -15,30 +15,30 @@ class Item;
 class CollectionDatabase
 {
 public:
-   CollectionDatabase(DB *db, Configuration *c);
-   virtual ~CollectionDatabase();
-   bool Initialize();
-   bool Import();
-   bool ResetDatabase();
+    CollectionDatabase(DB *db, Configuration *c);
+    virtual ~CollectionDatabase();
+    bool Initialize();
+    bool Import();
+    bool ResetDatabase();
 
 
-   bool GetCollection(std::string collectionName, std::vector<Item *> &list);
-   bool SetHidden(std::string collectionName, Item *item, bool hidden);
+    bool GetCollection(std::string collectionName, std::vector<Item *> &list);
+    bool SetHidden(std::string collectionName, Item *item, bool hidden);
 
 private:
-   unsigned long CalculateCollectionCrc32(CollectionInfo *info);
-   bool CollectionChanged(CollectionInfo *info, unsigned long crc32);
-   unsigned long CrcFile(std::string file, unsigned long crc);
+    unsigned long CalculateCollectionCrc32(CollectionInfo *info);
+    bool CollectionChanged(CollectionInfo *info, unsigned long crc32);
+    unsigned long CrcFile(std::string file, unsigned long crc);
 
 //   bool ImportMetadata(CollectionInfo *info);
-   bool ImportDirectory(CollectionInfo *info, unsigned long crc32);
-   bool ImportBasicList(CollectionInfo *info,
-            std::string file,
-            std::map<std::string, Item *> &list);
-   bool ImportHyperList(CollectionInfo *info,
-            std::string file,
-            std::map<std::string, Item *> &list);
-   std::map<std::string, Item *> *ImportHyperList(CollectionInfo *info);
-   Configuration *Config;
-   DB *DBInstance;
+    bool ImportDirectory(CollectionInfo *info, unsigned long crc32);
+    bool ImportBasicList(CollectionInfo *info,
+                         std::string file,
+                         std::map<std::string, Item *> &list);
+    bool ImportHyperList(CollectionInfo *info,
+                         std::string file,
+                         std::map<std::string, Item *> &list);
+    std::map<std::string, Item *> *ImportHyperList(CollectionInfo *info);
+    Configuration *Config;
+    DB *DBInstance;
 };

@@ -8,11 +8,11 @@ class IVideo;
 class VideoFactory
 {
 public:
-   IVideo *CreateVideo();
-   static void SetEnabled(bool enabled);
-   static void SetNumLoops(int numLoops);
+    IVideo *CreateVideo();
+    static void SetEnabled(bool enabled);
+    static void SetNumLoops(int numLoops);
 
 private:
-  static bool Enabled;
-  static int NumLoops;
+    static bool Enabled;
+    static int NumLoops;
 };

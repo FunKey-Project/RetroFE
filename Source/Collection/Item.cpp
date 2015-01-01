@@ -7,9 +7,9 @@
 #include <algorithm>
 
 Item::Item()
-: NumberPlayers(0)
-, NumberButtons(0)
-, Leaf(true)
+    : NumberPlayers(0)
+    , NumberButtons(0)
+    , Leaf(true)
 {
 }
 
@@ -19,142 +19,148 @@ Item::~Item()
 
 const std::string Item::GetFileName() const
 {
-   return Utils::GetFileName(FilePath);
+    return Utils::GetFileName(FilePath);
 }
 
 const std::string& Item::GetFilePath() const
 {
-   return FilePath;
+    return FilePath;
 }
 
 void Item::SetFilePath(const std::string& filepath)
 {
-   FilePath = filepath;
+    FilePath = filepath;
 }
 
 const std::string& Item::GetLauncher() const
 {
-   return Launcher;
+    return Launcher;
 }
 
 void Item::SetLauncher(const std::string& launcher)
 {
-   Launcher = launcher;
+    Launcher = launcher;
 }
 
 const std::string& Item::GetManufacturer() const
 {
-   return Manufacturer;
+    return Manufacturer;
 }
 
 void Item::SetManufacturer(const std::string& manufacturer)
 {
-   Manufacturer = manufacturer;
+    Manufacturer = manufacturer;
 }
 
 const std::string& Item::GetName() const
 {
-   return Name;
+    return Name;
 }
 
 void Item::SetName(const std::string& name)
 {
-   Name = name;
+    Name = name;
 }
 
 int Item::GetNumberButtons() const
 {
-   return NumberButtons;
+    return NumberButtons;
 }
 
 std::string Item::GetNumberButtonsString()
 {
-   std::stringstream ss;
-   ss << NumberButtons;
-   return ss.str();
+    std::stringstream ss;
+    ss << NumberButtons;
+    return ss.str();
 }
 
 
 void Item::SetNumberButtons(int numberbuttons)
 {
-   NumberButtons = numberbuttons;
+    NumberButtons = numberbuttons;
 }
 
 int Item::GetNumberPlayers() const
 {
-   return NumberPlayers;
+    return NumberPlayers;
 }
 
 std::string Item::GetNumberPlayersString()
 {
-   std::stringstream ss;
-   ss << NumberButtons;
-   return ss.str();
+    std::stringstream ss;
+    ss << NumberButtons;
+    return ss.str();
 }
 
 
 void Item::SetNumberPlayers(int numberplayers)
 {
-   NumberPlayers = numberplayers;
+    NumberPlayers = numberplayers;
 }
 
 const std::string& Item::GetTitle() const
 {
-   return Title;
+    return Title;
 }
 
 const std::string& Item::GetLCTitle() const
 {
-   return LCTitle;
+    return LCTitle;
 }
 
 void Item::SetTitle(const std::string& title)
 {
-   Title = title;
-   LCTitle = Title;
-   std::transform(LCTitle.begin(), LCTitle.end(), LCTitle.begin(), ::tolower);
+    Title = title;
+    LCTitle = Title;
+    std::transform(LCTitle.begin(), LCTitle.end(), LCTitle.begin(), ::tolower);
 }
 
 const std::string& Item::GetYear() const
 {
-   return Year;
+    return Year;
 }
 
 void Item::SetYear(const std::string& year)
 {
-   Year = year;
+    Year = year;
 }
 
 bool Item::IsLeaf() const
 {
-   return Leaf;
+    return Leaf;
 }
 
 void Item::SetIsLeaf(bool leaf)
 {
-   Leaf = leaf;
+    Leaf = leaf;
 }
 
 const std::string& Item::GetFullTitle() const
 {
-   return FullTitle;
+    return FullTitle;
 }
 
 void Item::SetFullTitle(const std::string& fulltitle)
 {
-   FullTitle = fulltitle;
+    FullTitle = fulltitle;
 }
 
 const std::string& Item::GetCloneOf() const
 {
-	return CloneOf;
+    return CloneOf;
 }
 
 void Item::SetCloneOf(const std::string& cloneOf)
 {
-	CloneOf = cloneOf;
+    CloneOf = cloneOf;
 }
 
-bool Item::operator<(const Item &rhs) { return LCTitle < rhs.LCTitle; }
-bool Item::operator>(const Item &rhs) { return LCTitle > rhs.LCTitle; }
+bool Item::operator<(const Item &rhs)
+{
+    return LCTitle < rhs.LCTitle;
+}
+bool Item::operator>(const Item &rhs)
+{
+    return LCTitle > rhs.LCTitle;
+}
 

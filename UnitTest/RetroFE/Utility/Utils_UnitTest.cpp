@@ -2,11 +2,11 @@
 #include "gmock/gmock.h"
 #include <Utility/Utils.h>
 
-class UtilsTest : public ::testing::Test 
+class UtilsTest : public ::testing::Test
 {
 };
 
-TEST_F(UtilsTest, ConvertsStringToInt) 
+TEST_F(UtilsTest, ConvertsStringToInt)
 {
-   ASSERT_EQ(5, Utils::ConvertInt("5"));
+    ASSERT_EQ(5, Utils::ConvertInt("5"));
 }

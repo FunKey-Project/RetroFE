@@ -10,17 +10,17 @@
 class FontCache
 {
 public:
-   void Initialize();
-   void DeInitialize();
-   FontCache();
-   bool LoadFont(std::string font, SDL_Color color);
-   Font *GetFont(std::string font);
+    void Initialize();
+    void DeInitialize();
+    FontCache();
+    bool LoadFont(std::string font, SDL_Color color);
+    Font *GetFont(std::string font);
 
-   virtual ~FontCache();
+    virtual ~FontCache();
 private:
-   bool IsInitialized;
+    bool IsInitialized;
 
-   std::map<std::string, Font *> FontFaceMap;
+    std::map<std::string, Font *> FontFaceMap;
 
 };
 

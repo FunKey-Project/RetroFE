@@ -11,145 +11,145 @@
 #include <sstream>
 
 Page::Page(std::string collectionName)
-: CollectionName(collectionName)
-, Menu(NULL)
-, Items(NULL)
-, ScrollActive(false)
-, SelectedItem(NULL)
-, SelectedItemChanged(false)
-, LoadSoundChunk(NULL)
-, UnloadSoundChunk(NULL)
-, HighlightSoundChunk(NULL)
-, SelectSoundChunk(NULL)
-, HasSoundedWhenActive(false)
-, FirstSoundPlayed(false)
+    : CollectionName(collectionName)
+    , Menu(NULL)
+    , Items(NULL)
+    , ScrollActive(false)
+    , SelectedItem(NULL)
+    , SelectedItemChanged(false)
+    , LoadSoundChunk(NULL)
+    , UnloadSoundChunk(NULL)
+    , HighlightSoundChunk(NULL)
+    , SelectSoundChunk(NULL)
+    , HasSoundedWhenActive(false)
+    , FirstSoundPlayed(false)
 {
 }
 
 Page::~Page()
 {
-   if(Menu)
-   {
-      Menu->RemoveComponentForNotifications(this);
-   }
+    if(Menu)
+    {
+        Menu->RemoveComponentForNotifications(this);
+    }
 
-   for(unsigned int i = 0; i < sizeof(LayerComponents)/sizeof(LayerComponents[0]); ++i)
-   {
-      for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-      {
-         delete *it;
-      }
+    for(unsigned int i = 0; i < sizeof(LayerComponents)/sizeof(LayerComponents[0]); ++i)
+    {
+        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
+        {
+            delete *it;
+        }
 
-      LayerComponents[i].clear();
-   }
+        LayerComponents[i].clear();
+    }
 
-   if(Menu)
-   {
-      delete Menu;
-   }
+    if(Menu)
+    {
+        delete Menu;
+    }
 
-   if(LoadSoundChunk)
-   {
-      delete LoadSoundChunk;
-      LoadSoundChunk = NULL;
-   }
+    if(LoadSoundChunk)
+    {
+        delete LoadSoundChunk;
+        LoadSoundChunk = NULL;
+    }
 
-   if(UnloadSoundChunk)
-   {
-      delete UnloadSoundChunk;
-      UnloadSoundChunk = NULL;
-   }
+    if(UnloadSoundChunk)
+    {
+        delete UnloadSoundChunk;
+        UnloadSoundChunk = NULL;
+    }
 
 
-   if(HighlightSoundChunk)
-   {
-      delete HighlightSoundChunk;
-      HighlightSoundChunk = NULL;
-   }
+    if(HighlightSoundChunk)
+    {
+        delete HighlightSoundChunk;
+        HighlightSoundChunk = NULL;
+    }
 
-   if(SelectSoundChunk)
-   {
-      delete SelectSoundChunk;
-      SelectSoundChunk = NULL;
-   }
+    if(SelectSoundChunk)
+    {
+        delete SelectSoundChunk;
+        SelectSoundChunk = NULL;
+    }
 }
 
 void Page::OnNewItemSelected(Item *item)
 {
-   SelectedItem = item;
-   SelectedItemChanged = true;
+    SelectedItem = item;
+    SelectedItemChanged = true;
 }
 
 void Page::SetMenu(ScrollingList *s)
 {
-   // todo: delete the old menu
-   Menu = s;
+    // todo: delete the old menu
+    Menu = s;
 
-   if(Menu)
-   {
-      Menu->AddComponentForNotifications(this);
-   }
+    if(Menu)
+    {
+        Menu->AddComponentForNotifications(this);
+    }
 }
 
 bool Page::AddComponent(Component *c)
 {
-   bool retVal = false;
+    bool retVal = false;
 
-   unsigned int layer = c->GetBaseViewInfo()->GetLayer();
+    unsigned int layer = c->GetBaseViewInfo()->GetLayer();
 
 
-   if(layer < NUM_LAYERS)
-   {
-      LayerComponents[layer].push_back(c);
+    if(layer < NUM_LAYERS)
+    {
+        LayerComponents[layer].push_back(c);
 
-      retVal = true;
-   }
-   else
-   {
-      std::stringstream ss;
-      ss << "Component layer too large Layer: " << layer;
-      Logger::Write(Logger::ZONE_ERROR, "Page", ss.str());
-   }
+        retVal = true;
+    }
+    else
+    {
+        std::stringstream ss;
+        ss << "Component layer too large Layer: " << layer;
+        Logger::Write(Logger::ZONE_ERROR, "Page", ss.str());
+    }
 
-   return retVal;
+    return retVal;
 }
 
 bool Page::IsIdle()
 {
-   bool idle = true;
+    bool idle = true;
 
-   if(Menu != NULL && !Menu->IsIdle())
-   {
-      idle = false;
-   }
+    if(Menu != NULL && !Menu->IsIdle())
+    {
+        idle = false;
+    }
 
-   for(unsigned int i = 0; i < NUM_LAYERS && idle; ++i)
-   {
-      for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end() && idle; ++it)
-      {
-         idle = (*it)->IsIdle();
-      }
-   }
+    for(unsigned int i = 0; i < NUM_LAYERS && idle; ++i)
+    {
+        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end() && idle; ++it)
+        {
+            idle = (*it)->IsIdle();
+        }
+    }
 
-   return idle;
+    return idle;
 }
 
 
 bool Page::IsHidden()
 {
-   bool hidden = true;
+    bool hidden = true;
 
     if(Menu != NULL)
     {
-      hidden = Menu->IsHidden();
+        hidden = Menu->IsHidden();
     }
 
     for(unsigned int i = 0; hidden && i < NUM_LAYERS; ++i)
     {
-       for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); hidden && it != LayerComponents[i].end(); ++it)
-       {
-          hidden = (*it)->IsHidden();
-       }
+        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); hidden && it != LayerComponents[i].end(); ++it)
+        {
+            hidden = (*it)->IsHidden();
+        }
     }
 
     return hidden;
@@ -157,250 +157,250 @@ bool Page::IsHidden()
 
 void Page::Start()
 {
-   Menu->TriggerEnterEvent();
+    Menu->TriggerEnterEvent();
 
-   if(LoadSoundChunk)
-   {
-      LoadSoundChunk->Play();
-   }
+    if(LoadSoundChunk)
+    {
+        LoadSoundChunk->Play();
+    }
 
-   for(unsigned int i = 0; i < NUM_LAYERS; ++i)
-   {
-      for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-      {
-         (*it)->TriggerEnterEvent();
-      }
-   }
+    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    {
+        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
+        {
+            (*it)->TriggerEnterEvent();
+        }
+    }
 }
 
 void Page::Stop()
 {
-   Menu->TriggerExitEvent();
+    Menu->TriggerExitEvent();
 
-   if(UnloadSoundChunk)
-   {
-      UnloadSoundChunk->Play();
-   }
+    if(UnloadSoundChunk)
+    {
+        UnloadSoundChunk->Play();
+    }
 
-   for(unsigned int i = 0; i < NUM_LAYERS; ++i)
-   {
-      for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-      {
-         (*it)->TriggerExitEvent();
-      }
-   }
+    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    {
+        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
+        {
+            (*it)->TriggerExitEvent();
+        }
+    }
 }
 
 
 Item *Page::GetSelectedItem()
 {
-   return SelectedItem;
+    return SelectedItem;
 }
 
 void Page::RemoveSelectedItem()
 {
-   if(Menu)
-   {
-      //todo: change method to RemoveItem() and pass in SelectedItem
-      Menu->RemoveSelectedItem();
-      SelectedItem = NULL;
-   }
+    if(Menu)
+    {
+        //todo: change method to RemoveItem() and pass in SelectedItem
+        Menu->RemoveSelectedItem();
+        SelectedItem = NULL;
+    }
 
 }
 
 
 void Page::Highlight()
 {
-   Item *item = SelectedItem;
+    Item *item = SelectedItem;
 
-   if(item)
-   {
-      if(Menu)
-      {
-         Menu->TriggerHighlightEvent(item);
-         Menu->SetScrollActive(ScrollActive);
-      }
+    if(item)
+    {
+        if(Menu)
+        {
+            Menu->TriggerHighlightEvent(item);
+            Menu->SetScrollActive(ScrollActive);
+        }
 
-      for(unsigned int i = 0; i < NUM_LAYERS; ++i)
-      {
-         for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-         {
-            (*it)->TriggerHighlightEvent(item);
-            (*it)->SetScrollActive(ScrollActive);
-         }
-      }
-   }
+        for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+        {
+            for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
+            {
+                (*it)->TriggerHighlightEvent(item);
+                (*it)->SetScrollActive(ScrollActive);
+            }
+        }
+    }
 }
 
 
 void Page::SetScrolling(ScrollDirection direction)
 {
-   ScrollingList::ScrollDirection menuDirection;
+    ScrollingList::ScrollDirection menuDirection;
 
-   switch(direction)
-   {
-   case ScrollDirectionForward:
-      menuDirection = ScrollingList::ScrollDirectionForward;
-      ScrollActive = true;
-      break;
-   case ScrollDirectionBack:
-      menuDirection = ScrollingList::ScrollDirectionBack;
-      ScrollActive = true;
-      break;
-   case ScrollDirectionIdle:
-   default:
-      menuDirection = ScrollingList::ScrollDirectionIdle;
-      ScrollActive = false;
-      break;
-   }
-   if(Menu)
-   {
-      Menu->SetScrollDirection(menuDirection);
-   }
+    switch(direction)
+    {
+    case ScrollDirectionForward:
+        menuDirection = ScrollingList::ScrollDirectionForward;
+        ScrollActive = true;
+        break;
+    case ScrollDirectionBack:
+        menuDirection = ScrollingList::ScrollDirectionBack;
+        ScrollActive = true;
+        break;
+    case ScrollDirectionIdle:
+    default:
+        menuDirection = ScrollingList::ScrollDirectionIdle;
+        ScrollActive = false;
+        break;
+    }
+    if(Menu)
+    {
+        Menu->SetScrollDirection(menuDirection);
+    }
 }
 
 void Page::PageScroll(ScrollDirection direction)
 {
-   if(Menu)
-   {
-      if(direction == ScrollDirectionForward)
-      {
-         Menu->PageDown();
-      }
-      if(direction == ScrollDirectionBack)
-      {
-         Menu->PageUp();
-      }
-   }
+    if(Menu)
+    {
+        if(direction == ScrollDirectionForward)
+        {
+            Menu->PageDown();
+        }
+        if(direction == ScrollDirectionBack)
+        {
+            Menu->PageUp();
+        }
+    }
 }
 
 
 void Page::SetItems(std::vector<Item *> *items)
 {
-   std::vector<ComponentItemBinding *> *sprites = ComponentItemBindingBuilder::BuildCollectionItems(items);
+    std::vector<ComponentItemBinding *> *sprites = ComponentItemBindingBuilder::BuildCollectionItems(items);
 
-   if(Menu != NULL)
-   {
-      Menu->SetItems(sprites);
-   }
+    if(Menu != NULL)
+    {
+        Menu->SetItems(sprites);
+    }
 }
 
 
 
 void Page::Update(float dt)
 {
-   if(Menu != NULL)
-   {
-      Menu->Update(dt);
-   }
-   if(SelectedItemChanged && !HasSoundedWhenActive && HighlightSoundChunk)
-   {
-      // skip the first sound being played (as it is part of the on-enter)
-      if(FirstSoundPlayed)
-      {
-         HighlightSoundChunk->Play();
-         HasSoundedWhenActive = true;
-      }
-      FirstSoundPlayed = true;
-   }
+    if(Menu != NULL)
+    {
+        Menu->Update(dt);
+    }
+    if(SelectedItemChanged && !HasSoundedWhenActive && HighlightSoundChunk)
+    {
+        // skip the first sound being played (as it is part of the on-enter)
+        if(FirstSoundPlayed)
+        {
+            HighlightSoundChunk->Play();
+            HasSoundedWhenActive = true;
+        }
+        FirstSoundPlayed = true;
+    }
 
-   if(SelectedItemChanged && !ScrollActive)
-   {
-      Highlight();
-      SelectedItemChanged = false;
-      HasSoundedWhenActive = false;
-   }
+    if(SelectedItemChanged && !ScrollActive)
+    {
+        Highlight();
+        SelectedItemChanged = false;
+        HasSoundedWhenActive = false;
+    }
 
-   for(unsigned int i = 0; i < NUM_LAYERS; ++i)
-   {
-      for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-      {
-         (*it)->Update(dt);
-      }
-   }
+    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    {
+        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
+        {
+            (*it)->Update(dt);
+        }
+    }
 }
 
 void Page::Draw()
 {
-   for(unsigned int i = 0; i < NUM_LAYERS; ++i)
-   {
-      for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-      {
-         (*it)->Draw();
-      }
+    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    {
+        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
+        {
+            (*it)->Draw();
+        }
 
-      Menu->Draw(i);
-   }
+        Menu->Draw(i);
+    }
 }
 
 const std::string& Page::GetCollectionName() const
 {
-   return CollectionName;
+    return CollectionName;
 }
 
 void Page::FreeGraphicsMemory()
 {
-   Logger::Write(Logger::ZONE_DEBUG, "Page", "Free");
-   Menu->FreeGraphicsMemory();
+    Logger::Write(Logger::ZONE_DEBUG, "Page", "Free");
+    Menu->FreeGraphicsMemory();
 
-   if(LoadSoundChunk) LoadSoundChunk->Free();
-   if(UnloadSoundChunk) UnloadSoundChunk->Free();
-   if(HighlightSoundChunk) HighlightSoundChunk->Free();
-   if(SelectSoundChunk) SelectSoundChunk->Free();
+    if(LoadSoundChunk) LoadSoundChunk->Free();
+    if(UnloadSoundChunk) UnloadSoundChunk->Free();
+    if(HighlightSoundChunk) HighlightSoundChunk->Free();
+    if(SelectSoundChunk) SelectSoundChunk->Free();
 
-   for(unsigned int i = 0; i < NUM_LAYERS; ++i)
-   {
-      for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-      {
-         (*it)->FreeGraphicsMemory();
-      }
-   }
+    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    {
+        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
+        {
+            (*it)->FreeGraphicsMemory();
+        }
+    }
 }
 
 void Page::AllocateGraphicsMemory()
 {
-   FirstSoundPlayed = false;
-   Logger::Write(Logger::ZONE_DEBUG, "Page", "Allocating graphics memory");
-   Menu->AllocateGraphicsMemory();
+    FirstSoundPlayed = false;
+    Logger::Write(Logger::ZONE_DEBUG, "Page", "Allocating graphics memory");
+    Menu->AllocateGraphicsMemory();
 
-   if(LoadSoundChunk) LoadSoundChunk->Allocate();
-   if(UnloadSoundChunk) UnloadSoundChunk->Allocate();
-   if(HighlightSoundChunk) HighlightSoundChunk->Allocate();
-   if(SelectSoundChunk) SelectSoundChunk->Allocate();
+    if(LoadSoundChunk) LoadSoundChunk->Allocate();
+    if(UnloadSoundChunk) UnloadSoundChunk->Allocate();
+    if(HighlightSoundChunk) HighlightSoundChunk->Allocate();
+    if(SelectSoundChunk) SelectSoundChunk->Allocate();
 
-   for(unsigned int i = 0; i < NUM_LAYERS; ++i)
-   {
-      for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-      {
-         (*it)->AllocateGraphicsMemory();
-      }
-   }
-   Logger::Write(Logger::ZONE_DEBUG, "Page", "Allocate graphics memory complete");
+    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    {
+        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
+        {
+            (*it)->AllocateGraphicsMemory();
+        }
+    }
+    Logger::Write(Logger::ZONE_DEBUG, "Page", "Allocate graphics memory complete");
 }
 
 void Page::LaunchEnter()
 {
-   Menu->LaunchEnter();
+    Menu->LaunchEnter();
 
-   for(unsigned int i = 0; i < NUM_LAYERS; ++i)
-   {
-      for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-      {
-         (*it)->LaunchEnter();
-      }
-   }
+    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    {
+        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
+        {
+            (*it)->LaunchEnter();
+        }
+    }
 }
 
 void Page::LaunchExit()
 {
-   Menu->LaunchExit();
+    Menu->LaunchExit();
 
-   for(unsigned int i = 0; i < NUM_LAYERS; ++i)
-   {
-      for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-      {
-         (*it)->LaunchExit();
-      }
-   }
+    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    {
+        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
+        {
+            (*it)->LaunchExit();
+        }
+    }
 }
 

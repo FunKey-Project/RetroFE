@@ -10,27 +10,27 @@
 
 VideoComponent * VideoBuilder::CreateVideo(std::string path, std::string name, float scaleX, float scaleY)
 {
-   VideoComponent *component = NULL;
-   std::vector<std::string> extensions;
+    VideoComponent *component = NULL;
+    std::vector<std::string> extensions;
 
-   extensions.push_back("mp4");
-   extensions.push_back("MP4");
-   extensions.push_back("avi");
-   extensions.push_back("AVI");
+    extensions.push_back("mp4");
+    extensions.push_back("MP4");
+    extensions.push_back("avi");
+    extensions.push_back("AVI");
 
-   std::string prefix = path + "/" + name;
-   std::string file;
+    std::string prefix = path + "/" + name;
+    std::string file;
 
-   if(Utils::FindMatchingFile(prefix, extensions, file))
-   {
-      IVideo *video = Factory.CreateVideo();
+    if(Utils::FindMatchingFile(prefix, extensions, file))
+    {
+        IVideo *video = Factory.CreateVideo();
 
-      if(video)
-      {
-         component = new VideoComponent(video, file, scaleX, scaleY);
-      }
-   }
+        if(video)
+        {
+            component = new VideoComponent(video, file, scaleX, scaleY);
+        }
+    }
 
-   return component;
+    return component;
 }
 

@@ -10,33 +10,33 @@
 class Font
 {
 public:
-   struct GlyphInfo
-   {
-      int MinX;
-      int MaxX;
-      int MinY;
-      int MaxY;
-      int Advance;
-      SDL_Rect Rect;
-   };
+    struct GlyphInfo
+    {
+        int MinX;
+        int MaxX;
+        int MinY;
+        int MaxY;
+        int Advance;
+        SDL_Rect Rect;
+    };
 
-   Font();
-   virtual ~Font();
-   bool Initialize(std::string fontPath, SDL_Color color);
-   void DeInitialize();
-   SDL_Texture *GetTexture();
-   bool GetRect(unsigned int charCode, GlyphInfo &glyph);
+    Font();
+    virtual ~Font();
+    bool Initialize(std::string fontPath, SDL_Color color);
+    void DeInitialize();
+    SDL_Texture *GetTexture();
+    bool GetRect(unsigned int charCode, GlyphInfo &glyph);
 
 
 private:
-   struct GlyphInfoBuild
-   {
-      Font::GlyphInfo Glyph;
-      SDL_Surface *Surface;
-   };
+    struct GlyphInfoBuild
+    {
+        Font::GlyphInfo Glyph;
+        SDL_Surface *Surface;
+    };
 
-   std::map<unsigned int, GlyphInfoBuild *> Atlas;
-   SDL_Texture *Texture;
+    std::map<unsigned int, GlyphInfoBuild *> Atlas;
+    SDL_Texture *Texture;
 };
 
 

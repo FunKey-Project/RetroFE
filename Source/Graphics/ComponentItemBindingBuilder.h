@@ -12,7 +12,7 @@ class ComponentItemBinding;
 class ComponentItemBindingBuilder
 {
 public:
-   ComponentItemBindingBuilder();
-   virtual ~ComponentItemBindingBuilder();
-   static std::vector<ComponentItemBinding *> *BuildCollectionItems(std::vector<Item *> *infoList);
+    ComponentItemBindingBuilder();
+    virtual ~ComponentItemBindingBuilder();
+    static std::vector<ComponentItemBinding *> *BuildCollectionItems(std::vector<Item *> *infoList);
 };

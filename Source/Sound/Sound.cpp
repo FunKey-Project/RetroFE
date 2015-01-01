@@ -6,49 +6,49 @@
 #include "../Utility/Log.h"
 
 Sound::Sound(std::string file)
-: File(file)
-, Chunk(NULL)
+    : File(file)
+    , Chunk(NULL)
 {
-   if(!Allocate())
-   {
-      Logger::Write(Logger::ZONE_ERROR, "Sound", "Cannot load " + File);
-   }
+    if(!Allocate())
+    {
+        Logger::Write(Logger::ZONE_ERROR, "Sound", "Cannot load " + File);
+    }
 }
 
 Sound::~Sound()
 {
-   if(Chunk)
-   {
-      Mix_FreeChunk(Chunk);
-      Chunk = NULL;
-   }
+    if(Chunk)
+    {
+        Mix_FreeChunk(Chunk);
+        Chunk = NULL;
+    }
 }
 
 void Sound::Play()
 {
-   if(Chunk)
-   {
-      (void)Mix_PlayChannel(-1, Chunk, 0);
-   }
+    if(Chunk)
+    {
+        (void)Mix_PlayChannel(-1, Chunk, 0);
+    }
 }
 
 bool Sound::Free()
 {
-   if(Chunk)
-   {
-      Mix_FreeChunk(Chunk);
-      Chunk = NULL;
-   }
+    if(Chunk)
+    {
+        Mix_FreeChunk(Chunk);
+        Chunk = NULL;
+    }
 
-   return true;
+    return true;
 }
 
 bool Sound::Allocate()
 {
-   if(!Chunk)
-   {
-      Chunk = Mix_LoadWAV(File.c_str());
-   }
+    if(!Chunk)
+    {
+        Chunk = Mix_LoadWAV(File.c_str());
+    }
 
-   return (Chunk != NULL);
+    return (Chunk != NULL);
 }

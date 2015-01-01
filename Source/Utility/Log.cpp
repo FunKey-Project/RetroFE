@@ -12,53 +12,53 @@ std::streambuf *Logger::CoutStream = NULL;
 
 bool Logger::Initialize(std::string file)
 {
-   WriteFileStream.open(file.c_str());
+    WriteFileStream.open(file.c_str());
 
-   CerrStream = std::cerr.rdbuf(WriteFileStream.rdbuf());
-   CoutStream = std::cout.rdbuf(WriteFileStream.rdbuf());
+    CerrStream = std::cerr.rdbuf(WriteFileStream.rdbuf());
+    CoutStream = std::cout.rdbuf(WriteFileStream.rdbuf());
 
-   return WriteFileStream.is_open();
+    return WriteFileStream.is_open();
 }
 
 void Logger::DeInitialize()
 {
-   if(WriteFileStream.is_open())
-   {
-      WriteFileStream.close();
+    if(WriteFileStream.is_open())
+    {
+        WriteFileStream.close();
 
-   }
+    }
 
-   std::cerr.rdbuf(CerrStream);
-   std::cout.rdbuf(CoutStream);
+    std::cerr.rdbuf(CerrStream);
+    std::cout.rdbuf(CoutStream);
 }
 
 
 void Logger::Write(Zone zone, std::string component, std::string message)
 {
-   std::string zoneStr;
+    std::string zoneStr;
 
-   switch(zone)
-   {
-   case ZONE_INFO:
-         zoneStr = "INFO";
-         break;
-   case ZONE_DEBUG:
-         zoneStr = "DEBUG";
-         break;
-   case ZONE_WARNING:
-         zoneStr = "WARNING";
-         break;
-   case ZONE_ERROR:
-         zoneStr = "ERROR";
-         break;
-   }
-   std::time_t rawtime = std::time(NULL);
-   struct tm* timeinfo = std::localtime(&rawtime);
+    switch(zone)
+    {
+    case ZONE_INFO:
+        zoneStr = "INFO";
+        break;
+    case ZONE_DEBUG:
+        zoneStr = "DEBUG";
+        break;
+    case ZONE_WARNING:
+        zoneStr = "WARNING";
+        break;
+    case ZONE_ERROR:
+        zoneStr = "ERROR";
+        break;
+    }
+    std::time_t rawtime = std::time(NULL);
+    struct tm* timeinfo = std::localtime(&rawtime);
 
-   static char timeStr[60];
-   std::strftime(timeStr, sizeof(timeStr), "%Y-%m-%d %H:%M:%S", timeinfo);
+    static char timeStr[60];
+    std::strftime(timeStr, sizeof(timeStr), "%Y-%m-%d %H:%M:%S", timeinfo);
 
-   std::stringstream ss;
-   ss << "[" << timeStr << "] [" << zoneStr << "] [" << component << "] " << message << std::endl;
-   std::cout << ss.str();
+    std::stringstream ss;
+    ss << "[" << timeStr << "] [" << zoneStr << "] [" << component << "] " << message << std::endl;
+    std::cout << ss.str();
 }

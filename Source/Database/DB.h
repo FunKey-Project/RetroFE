@@ -8,14 +8,17 @@
 class DB
 {
 public:
-   DB(std::string dbFile);
-   bool Initialize();
-   void DeInitialize();
-   virtual ~DB();
-   sqlite3 *GetHandle() { return Handle; }
+    DB(std::string dbFile);
+    bool Initialize();
+    void DeInitialize();
+    virtual ~DB();
+    sqlite3 *GetHandle()
+    {
+        return Handle;
+    }
 
 private:
-   sqlite3 *Handle;
-   std::string Path;
+    sqlite3 *Handle;
+    std::string Path;
 };
 

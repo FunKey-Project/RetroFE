@@ -10,24 +10,24 @@ int VideoFactory::NumLoops = 0;
 
 IVideo *VideoFactory::CreateVideo()
 {
-   IVideo *instance = NULL;
+    IVideo *instance = NULL;
 
-   if(Enabled)
-   {
-      instance = new GStreamerVideo();
-      instance->Initialize();
-      ((GStreamerVideo *)(instance))->SetNumLoops(NumLoops);
-   }
+    if(Enabled)
+    {
+        instance = new GStreamerVideo();
+        instance->Initialize();
+        ((GStreamerVideo *)(instance))->SetNumLoops(NumLoops);
+    }
 
-   return instance;
+    return instance;
 }
 
 void VideoFactory::SetEnabled(bool enabled)
 {
-   Enabled = enabled;
+    Enabled = enabled;
 }
 
 void VideoFactory::SetNumLoops(int numLoops)
 {
-   NumLoops = numLoops;
+    NumLoops = numLoops;
 }

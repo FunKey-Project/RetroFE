@@ -10,15 +10,15 @@
 class Image : public Component
 {
 public:
-   Image(std::string file, float scaleX, float scaleY);
-   virtual ~Image();
-   void FreeGraphicsMemory();
-   void AllocateGraphicsMemory();
-	void Draw();
+    Image(std::string file, float scaleX, float scaleY);
+    virtual ~Image();
+    void FreeGraphicsMemory();
+    void AllocateGraphicsMemory();
+    void Draw();
 
 protected:
-   SDL_Texture *Texture;
-	std::string File;
-	float ScaleX;
-	float ScaleY;
+    SDL_Texture *Texture;
+    std::string File;
+    float ScaleX;
+    float ScaleY;
 };

@@ -11,5 +11,5 @@
 class ImageBuilder
 {
 public:
-   Image * CreateImage(std::string path, std::string name, float scaleX, float scaleY);
+    Image * CreateImage(std::string path, std::string name, float scaleX, float scaleY);
 };
