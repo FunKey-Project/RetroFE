@@ -23,7 +23,7 @@
 #include <zlib.h>
 #include <exception>
 
-CollectionDatabase::CollectionDatabase(DB *db, Configuration *c)
+CollectionDatabase::CollectionDatabase(DB &db, Configuration &c)
     : Config(c)
     , DBInstance(db)
 {
@@ -39,7 +39,7 @@ bool CollectionDatabase::ResetDatabase()
     bool retVal = true;
     int rc;
     char *error = NULL;
-    sqlite3 *handle = DBInstance->GetHandle();
+    sqlite3 *handle = DBInstance.GetHandle();
 
     Logger::Write(Logger::ZONE_INFO, "Database", "Erasing");
 
@@ -65,7 +65,7 @@ bool CollectionDatabase::Initialize()
 {
     int rc;
     char *error = NULL;
-    sqlite3 *handle = DBInstance->GetHandle();
+    sqlite3 *handle = DBInstance.GetHandle();
 
     std::string sql;
     sql.append("CREATE TABLE IF NOT EXISTS CollectionItems(");
@@ -229,7 +229,7 @@ bool CollectionDatabase::CollectionChanged(CollectionInfo *info, unsigned long c
 {
     bool retVal = true;
 
-    sqlite3 *handle = DBInstance->GetHandle();
+    sqlite3 *handle = DBInstance.GetHandle();
     int rc;
     sqlite3_stmt *stmt;
 
@@ -255,7 +255,7 @@ bool CollectionDatabase::SetHidden(std::string collectionName, Item *item, bool 
 {
     bool retVal = true;
     char *error = NULL;
-    sqlite3 *handle = DBInstance->GetHandle();
+    sqlite3 *handle = DBInstance.GetHandle();
     std::string mode = (hidden) ? "hidden":"visible";
     int isHidden = (hidden)?1:0;
 
@@ -290,7 +290,7 @@ bool CollectionDatabase::ImportDirectory(CollectionInfo *info, unsigned long crc
     std::map<std::string, Item *> metaList;
     bool retVal = true;
     char *error = NULL;
-    sqlite3 *handle = DBInstance->GetHandle();
+    sqlite3 *handle = DBInstance.GetHandle();
     std::string includeFile = Configuration::GetAbsolutePath() + "/Collections/" + info->GetName() + "/Include.txt";
     std::string excludeFile = Configuration::GetAbsolutePath() + "/Collections/" + info->GetName() + "/Exclude.txt";
     std::string includeHyperListFile = Configuration::GetAbsolutePath() + "/Collections/" + info->GetName() + "/Include.xml";
@@ -652,15 +652,15 @@ bool CollectionDatabase::GetCollection(std::string collectionName, std::vector<I
 {
     bool retVal = true;
 
-    sqlite3 *handle = DBInstance->GetHandle();
+    sqlite3 *handle = DBInstance.GetHandle();
     int rc;
     sqlite3_stmt *stmt;
 
     bool showParenthesis = true;
     bool showSquareBrackets = true;
 
-    (void)Config->GetProperty("showParenthesis", showParenthesis);
-    (void)Config->GetProperty("showSquareBrackets", showSquareBrackets);
+    (void)Config.GetProperty("showParenthesis", showParenthesis);
+    (void)Config.GetProperty("showSquareBrackets", showSquareBrackets);
 
     //todo: program crashes if this query fails
     sqlite3_prepare_v2(handle,
@@ -731,7 +731,7 @@ bool CollectionDatabase::GetCollection(std::string collectionName, std::vector<I
         item->SetCloneOf(cloneOf);
 
         //std::cout << "loading " << title << std::endl;
-        if(Config->GetProperty("collections." + collectionName + ".launcher", launcher))
+        if(Config.GetProperty("collections." + collectionName + ".launcher", launcher))
         {
             item->SetLauncher(launcher);
         }

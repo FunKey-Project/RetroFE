@@ -13,7 +13,7 @@ class CollectionInfo;
 class CollectionInfoBuilder
 {
 public:
-    CollectionInfoBuilder(Configuration *c);
+    CollectionInfoBuilder(Configuration &c);
     virtual ~CollectionInfoBuilder();
     bool LoadAllCollections();
     void GetCollections(std::vector<CollectionInfo *> &keys);
@@ -21,5 +21,5 @@ public:
 private:
     bool ImportCollection(std::string name);
     std::map<std::string, CollectionInfo *> InfoMap;
-    Configuration *Conf;
+    Configuration &Conf;
 };

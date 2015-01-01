@@ -12,7 +12,7 @@
 #include <sqlite3.h>
 
 
-MamelistMetadata::MamelistMetadata(DB *dbInstance)
+MamelistMetadata::MamelistMetadata(DB &dbInstance)
     : DBInstance(dbInstance)
 {
 }
@@ -27,7 +27,7 @@ bool MamelistMetadata::Import(std::string filename, std::string collection)
     rapidxml::xml_document<> doc;
     rapidxml::xml_node<> * rootNode;
     char *error = NULL;
-    sqlite3 *handle = DBInstance->GetHandle();
+    sqlite3 *handle = DBInstance.GetHandle();
 
     std::ifstream f(filename.c_str());
 

@@ -5,7 +5,7 @@
 #include <sstream>
 #include <vector>
 
-CollectionInfoBuilder::CollectionInfoBuilder(Configuration *c)
+CollectionInfoBuilder::CollectionInfoBuilder(Configuration &c)
     : Conf(c)
 {
 }
@@ -26,7 +26,7 @@ bool CollectionInfoBuilder::LoadAllCollections()
 {
     std::vector<std::string> collections;
 
-    Conf->GetChildKeyCrumbs("collections", collections);
+    Conf.GetChildKeyCrumbs("collections", collections);
 
     if(collections.size() == 0)
     {
@@ -92,22 +92,22 @@ bool CollectionInfoBuilder::ImportCollection(std::string name)
     std::string metadataType;
     std::string metadataPath;
 
-    if(!Conf->GetPropertyAbsolutePath(listItemsPathKey, listItemsPath))
+    if(!Conf.GetPropertyAbsolutePath(listItemsPathKey, listItemsPath))
     {
         Logger::Write(Logger::ZONE_INFO, "Collections", "Property \"" + listItemsPathKey + "\" does not exist. Assuming \"" + name + "\" is a menu");
         return false;
     }
 
-    if(!Conf->GetProperty(extensionsKey, extensions))
+    if(!Conf.GetProperty(extensionsKey, extensions))
     {
         Logger::Write(Logger::ZONE_INFO, "Collections", "Property \"" + extensionsKey + "\" does not exist. Assuming \"" + name + "\" is a menu");
         return false;
     }
 
-    (void)Conf->GetProperty(metadataTypeKey, metadataType);
-    (void)Conf->GetProperty(metadataPathKey, metadataPath);
+    (void)Conf.GetProperty(metadataTypeKey, metadataType);
+    (void)Conf.GetProperty(metadataPathKey, metadataPath);
 
-    if(!Conf->GetProperty(launcherKey, launcherName))
+    if(!Conf.GetProperty(launcherKey, launcherName))
     {
         std::stringstream ss;
         ss        << "Warning: launcher property  \""

@@ -177,7 +177,7 @@ CollectionDatabase *InitializeCollectionDatabase(DB &db, Configuration &config)
     std::string dbFile = (Configuration::GetAbsolutePath() + "/cache.db");
     std::ifstream infile(dbFile.c_str());
 
-    cdb = new CollectionDatabase(&db, &config);
+    cdb = new CollectionDatabase(db, config);
 
     if(!cdb->Initialize())
     {

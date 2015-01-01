@@ -10,9 +10,9 @@ class DB;
 class MamelistMetadata : Metadata
 {
 public:
-    MamelistMetadata(DB *dbInstance);
+    MamelistMetadata(DB &dbInstance);
     virtual ~MamelistMetadata();
     bool Import(std::string file, std::string collectionName);
 private:
-    DB *DBInstance;
+    DB &DBInstance;
 };

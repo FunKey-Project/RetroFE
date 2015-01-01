@@ -15,7 +15,7 @@ class Item;
 class CollectionDatabase
 {
 public:
-    CollectionDatabase(DB *db, Configuration *c);
+    CollectionDatabase(DB &db, Configuration &c);
     virtual ~CollectionDatabase();
     bool Initialize();
     bool Import();
@@ -39,6 +39,6 @@ private:
                          std::string file,
                          std::map<std::string, Item *> &list);
     std::map<std::string, Item *> *ImportHyperList(CollectionInfo *info);
-    Configuration *Config;
-    DB *DBInstance;
+    Configuration &Config;
+    DB &DBInstance;
 };
