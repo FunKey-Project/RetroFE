@@ -84,12 +84,6 @@ void Text::Draw()
             rect.h = static_cast<int>(h);
             rect.w = static_cast<int>(w);
             rect.y = static_cast<int>(yOrigin);
-            /*
-            std::stringstream ss;
-            ss << " cx:" << charRect.x << " cy:" << charRect.y << " cw:" << charRect.w << " ch:" << charRect.h;
-            ss << " x:" << rect.x << " y:" << rect.y << " w:" << rect.w << " h:" << rect.h;
-            Logger::Write(Logger::ZONE_DEBUG, "Text", ss.str());
-             */
 
             SDL_LockMutex(SDL::GetMutex());
             SDL_SetTextureColorMod(t, FontColor.r, FontColor.g, FontColor.b);

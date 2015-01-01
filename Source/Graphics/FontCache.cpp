@@ -10,7 +10,6 @@
 
 //todo: memory leak when launching games
 FontCache::FontCache()
-    : IsInitialized(false)
 {
 }
 
@@ -21,7 +20,6 @@ FontCache::~FontCache()
 
 void FontCache::DeInitialize()
 {
-    IsInitialized = false;
     std::map<std::string, Font *>::iterator it = FontFaceMap.begin();
     while(it != FontFaceMap.end())
     {
@@ -40,7 +38,6 @@ void FontCache::Initialize()
 {
     //todo: make bool
     TTF_Init();
-    IsInitialized = true;
 }
 Font *FontCache::GetFont(std::string fontPath)
 {

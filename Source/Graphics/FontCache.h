@@ -18,8 +18,6 @@ public:
 
     virtual ~FontCache();
 private:
-    bool IsInitialized;
-
     std::map<std::string, Font *> FontFaceMap;
 
 };
