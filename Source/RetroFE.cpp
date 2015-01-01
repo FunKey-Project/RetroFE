@@ -457,11 +457,16 @@ Page *RetroFE::LoadPage(std::string collectionName)
 
     PageBuilder pb(layoutName, collectionName, Config, &FC);
     page = pb.BuildPage();
-    page->SetItems(collection);
-    page->Start();
 
-    if(page)
+    if(!page) 
     {
+        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not create page for " + collectionName);
+    }
+    else
+    {
+        page->SetItems(collection);
+        page->Start();
+
         PageChain.push_back(page);
     }
 
