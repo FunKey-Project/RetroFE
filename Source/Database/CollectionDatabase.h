@@ -17,9 +17,9 @@ class CollectionDatabase
 public:
    CollectionDatabase(DB *db, Configuration *c);
    virtual ~CollectionDatabase();
+   bool Initialize();
    bool Import();
    bool ResetDatabase();
-   bool CheckDatabase();
 
 
    bool GetCollection(std::string collectionName, std::vector<Item *> &list);

@@ -8,7 +8,7 @@
 class DB
 {
 public:
-   DB();
+   DB(std::string dbFile);
    bool Initialize();
    void DeInitialize();
    virtual ~DB();

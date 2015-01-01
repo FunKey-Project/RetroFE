@@ -58,14 +58,11 @@ bool CollectionDatabase::ResetDatabase()
       retVal = false;
    }
 
-  //CheckDatabase();
-
    return retVal;
 }
 
-bool CollectionDatabase::CheckDatabase()
+bool CollectionDatabase::Initialize()
 {
-   bool retVal = true;
    int rc;
    char *error = NULL;
    sqlite3 *handle = DBInstance->GetHandle();
@@ -101,10 +98,10 @@ bool CollectionDatabase::CheckDatabase()
       ss << "Unable to create Configurations table. Error: " << error;
       Logger::Write(Logger::ZONE_ERROR, "Database", ss.str());
 
-      retVal = false;
+      return false;
    }
 
-   return retVal;
+   return true;
 }
 
 

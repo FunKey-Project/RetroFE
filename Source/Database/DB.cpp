@@ -2,14 +2,13 @@
  * file 'LICENSE.txt', which is part of this source code package.
  */
 #include "DB.h"
-#include "Configuration.h"
 #include "../Utility/Log.h"
 
 #include <sstream>
 #include <fstream>
 
-DB::DB()
-: Path(Configuration::GetAbsolutePath() + "/cache.db")
+DB::DB(std::string dbFile)
+: Path(dbFile)
 , Handle(NULL)
 {
 }

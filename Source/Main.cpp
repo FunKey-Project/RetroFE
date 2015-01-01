@@ -17,6 +17,8 @@
 #include <dirent.h>
 
 static bool ImportConfiguration(Configuration *c);
+static bool StartLogging();
+CollectionDatabase *InitializeCollectionDatabase(DB &db, Configuration &config);
 
 int main(int argc, char *argv[])
 {
@@ -24,55 +26,39 @@ int main(int argc, char *argv[])
 
    Configuration config;
 
-   // set the log file to write to
-   std::string logFile = Configuration::GetAbsolutePath() + "/Log.txt";
-
-   if(!Logger::Initialize(logFile))
-   {
-      Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not open \"" + logFile + "\" for writing");
+   if(!StartLogging()) {
+      return -1;
    }
-
-   Logger::Write(Logger::ZONE_INFO, "RetroFE", "Version " + Version::GetString() + " starting");
-#ifdef WIN32
-   Logger::Write(Logger::ZONE_INFO, "RetroFE", "OS: Windows");
-#else
-   Logger::Write(Logger::ZONE_INFO, "RetroFE", "OS: Linux");
-#endif
-
-   Logger::Write(Logger::ZONE_INFO, "RetroFE", "Absolute path: " + Configuration::GetAbsolutePath());
 
    if(!ImportConfiguration(&config))
    {
 	   return -1;
    }
-   Logger::Write(Logger::ZONE_INFO, "RetroFE", "Imported configuration");
 
-   std::string dbFile = (Configuration::GetAbsolutePath() + "/cache.db");
-   std::ifstream infile(dbFile.c_str());
+   DB db(Configuration::GetAbsolutePath() + "/cache.db");
 
-   DB db;
    if(!db.Initialize())
    {
 	   return -1;
    }
+   
 
-   CollectionDatabase cdb(&db, &config);
-
-   cdb.CheckDatabase();
-
-   if(cdb.Import())
-   {
-      RetroFE p(&cdb, &config);
-
-      if(p.Initialize())
-      {
-         p.Run();
-      }
-
-      p.DeInitialize();
+   CollectionDatabase *cdb = InitializeCollectionDatabase(db, config);
+   if(!cdb) {
+      return -1;
    }
 
+   RetroFE p(cdb, &config);
+
+   if(p.Initialize())
+   {
+      p.Run();
+   }
+
+   p.DeInitialize();
+
    Logger::DeInitialize();
+
 	return 0;
 }
 
@@ -89,8 +75,6 @@ bool ImportConfiguration(Configuration *c)
       Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + configPath + "/Settings.conf\"");
       return false;
    }
-
-
 
    if(!c->Import("controls", configPath + "/Controls.conf"))
    {
@@ -157,5 +141,52 @@ bool ImportConfiguration(Configuration *c)
       }
    }
 
+   Logger::Write(Logger::ZONE_INFO, "RetroFE", "Imported configuration");
+
    return true;
+}
+
+bool StartLogging() 
+{
+   std::string logFile = Configuration::GetAbsolutePath() + "/Log.txt";
+
+   if(!Logger::Initialize(logFile))
+   {
+      Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not open \"" + logFile + "\" for writing");
+      return false;
+   }
+
+   Logger::Write(Logger::ZONE_INFO, "RetroFE", "Version " + Version::GetString() + " starting");
+
+#ifdef WIN32
+   Logger::Write(Logger::ZONE_INFO, "RetroFE", "OS: Windows");
+#else
+   Logger::Write(Logger::ZONE_INFO, "RetroFE", "OS: Linux");
+#endif
+
+   Logger::Write(Logger::ZONE_INFO, "RetroFE", "Absolute path: " + Configuration::GetAbsolutePath());
+
+   return true;
+}
+
+CollectionDatabase *InitializeCollectionDatabase(DB &db, Configuration &config) 
+{
+   CollectionDatabase *cdb = NULL;
+   std::string dbFile = (Configuration::GetAbsolutePath() + "/cache.db");
+   std::ifstream infile(dbFile.c_str());
+
+   cdb = new CollectionDatabase(&db, &config);
+
+   if(!cdb->Initialize()) 
+   {
+      delete cdb;
+      cdb = NULL;
+   }
+   else if(!cdb->Import())
+   {
+      delete cdb;
+      cdb = NULL;
+   }
+
+   return cdb;
 }
