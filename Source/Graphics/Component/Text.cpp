@@ -36,6 +36,8 @@ void Text::AllocateGraphicsMemory()
 
 void Text::Draw()
 {
+    Component::Draw();
+
     SDL_Texture *t = FontInst->GetTexture();
 
     ViewInfo *info = GetBaseViewInfo();
@@ -89,7 +91,7 @@ void Text::Draw()
             SDL_SetTextureColorMod(t, FontColor.r, FontColor.g, FontColor.b);
             SDL_UnlockMutex(SDL::GetMutex());
 
-            SDL::RenderCopy(t, static_cast<char>(info->GetTransparency() * 255), &charRect, &rect, info->GetAngle());
+            SDL::RenderCopy(t, static_cast<char>(info->GetAlpha() * 255), &charRect, &rect, info->GetAngle());
             rect.x += static_cast<int>(glyph.Advance * scale);
         }
     }

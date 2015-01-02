@@ -5,10 +5,10 @@
 #include "../Graphics/Page.h"
 
 AttractMode::AttractMode()
-: IsActive(false)
-, ElapsedTime(0)
-, ActiveTime(0)
-, IdleTime(0)
+    : IsActive(false)
+    , ElapsedTime(0)
+    , ActiveTime(0)
+    , IdleTime(0)
 {
 }
 

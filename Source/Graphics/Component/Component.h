@@ -5,6 +5,7 @@
 
 #include <vector>
 
+#include "../../SDL.h"
 #include "../MenuNotifierInterface.h"
 #include "../ViewInfo.h"
 #include "../Animate/Tween.h"
@@ -53,7 +54,7 @@ public:
     }
     virtual void Update(float dt);
 
-    virtual void Draw() = 0;
+    virtual void Draw();
 
     ViewInfo *GetBaseViewInfo()
     {
@@ -119,4 +120,6 @@ private:
     Tween *TweenInst;
     Item *SelectedItem;
     bool ScrollActive;
+    SDL_Texture *BackgroundTexture;
+
 };

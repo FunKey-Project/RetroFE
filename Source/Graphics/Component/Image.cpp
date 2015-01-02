@@ -60,6 +60,8 @@ void Image::AllocateGraphicsMemory()
 
 void Image::Draw()
 {
+    Component::Draw();
+
     if(Texture)
     {
         ViewInfo *info = GetBaseViewInfo();
@@ -70,6 +72,6 @@ void Image::Draw()
         rect.h = static_cast<int>(info->GetHeight());
         rect.w = static_cast<int>(info->GetWidth());
 
-        SDL::RenderCopy(Texture, static_cast<char>((info->GetTransparency() * 255)), NULL, &rect, info->GetAngle());
+        SDL::RenderCopy(Texture, static_cast<char>((info->GetAlpha() * 255)), NULL, &rect, info->GetAngle());
     }
 }

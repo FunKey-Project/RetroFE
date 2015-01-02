@@ -523,9 +523,11 @@ void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info)
     xml_attribute<> *minWidth = FindRecursiveAttribute(componentXml, "minWidth");
     xml_attribute<> *maxHeight = FindRecursiveAttribute(componentXml, "maxHeight");
     xml_attribute<> *maxWidth = FindRecursiveAttribute(componentXml, "maxWidth");
-    xml_attribute<> *transparency = FindRecursiveAttribute(componentXml, "transparency");
+    xml_attribute<> *alpha = FindRecursiveAttribute(componentXml, "alpha");
     xml_attribute<> *angle = FindRecursiveAttribute(componentXml, "angle");
     xml_attribute<> *layer = FindRecursiveAttribute(componentXml, "layer");
+    xml_attribute<> *backgroundColor = FindRecursiveAttribute(componentXml, "backgroundColor");
+    xml_attribute<> *backgroundAlpha = FindRecursiveAttribute(componentXml, "backgroundAlpha");
 
     info->SetX(GetHorizontalAlignment(x, 0));
     info->SetY(GetVerticalAlignment(y, 0));
@@ -552,18 +554,37 @@ void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info)
         info->SetWidth(GetHorizontalAlignment(width, -1));
     }
     info->SetFontSize(GetVerticalAlignment(fontSize, -1));
-    /*
-    std::stringstream ss;
-    ss << "font size is \"" << info->GetFontSize() << "\"";
-    Logger::Write(Logger::ZONE_ERROR, "Layout", ss.str());
-    */
     info->SetMinHeight(GetVerticalAlignment(minHeight, 0));
     info->SetMinWidth(GetHorizontalAlignment(minWidth, 0));
     info->SetMaxHeight(GetVerticalAlignment(maxHeight, FLT_MAX));
     info->SetMaxWidth(GetVerticalAlignment(maxWidth, FLT_MAX));
-    info->SetTransparency( transparency ? Utils::ConvertFloat(transparency->value()) : 1);
+    info->SetAlpha( alpha ? Utils::ConvertFloat(alpha->value()) : 1);
     info->SetAngle( angle ? Utils::ConvertFloat(angle->value()) : 0);
     info->SetLayer( layer ? Utils::ConvertInt(layer->value()) : 0);
+
+    if(backgroundColor)
+    {
+        std::stringstream ss(backgroundColor->value());
+        int num;
+        ss >> std::hex >> num;
+        int red = num / 0x10000;
+        int green = (num / 0x100) % 0x100;
+        int blue = num % 0x100;
+
+        info->SetBackgroundRed(static_cast<float>(red)/255);
+        info->SetBackgroundGreen(static_cast<float>(green)/255);
+        info->SetBackgroundBlue(static_cast<float>(blue)/255);
+    }
+
+    if(backgroundAlpha)
+    {
+        std::stringstream ss(backgroundAlpha->value());
+        int num;
+        ss >> std::hex >> num;
+
+        info->SetBackgroundAlpha(static_cast<float>(num)/255);
+    }
+
 }
 
 

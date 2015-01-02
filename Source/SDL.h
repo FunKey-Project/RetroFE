@@ -15,7 +15,7 @@ public:
     static SDL_Renderer *GetRenderer();
     static SDL_mutex *GetMutex();
     static SDL_Window *GetWindow();
-    static bool RenderCopy(SDL_Texture *texture, unsigned char transparency, SDL_Rect *src, SDL_Rect *dest, double angle);
+    static bool RenderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, SDL_Rect *dest, double angle);
     static int GetWindowWidth()
     {
         return WindowWidth;

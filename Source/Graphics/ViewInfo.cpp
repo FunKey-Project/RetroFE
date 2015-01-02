@@ -23,8 +23,12 @@ ViewInfo::ViewInfo()
     , ImageHeight(0)
     , FontSize(-1)
     , Angle(0)
-    , Transparency(1)
+    , Alpha(1)
     , Layer(0)
+    , BackgroundRed(0)
+    , BackgroundGreen(0)
+    , BackgroundBlue(0)
+    , BackgroundAlpha(0)
 {
 }
 
@@ -201,14 +205,14 @@ void ViewInfo::SetMinWidth(float minwidth)
     MinWidth = minwidth;
 }
 
-float ViewInfo::GetTransparency() const
+float ViewInfo::GetAlpha() const
 {
-    return Transparency;
+    return Alpha;
 }
 
-void ViewInfo::SetTransparency(float transparency)
+void ViewInfo::SetAlpha(float alpha)
 {
-    Transparency = transparency;
+    Alpha = alpha;
 }
 
 float ViewInfo::GetX() const
@@ -297,4 +301,44 @@ float ViewInfo::GetFontSize() const
 void ViewInfo::SetFontSize(float fontSize)
 {
     FontSize = fontSize;
+}
+
+
+float ViewInfo::GetBackgroundRed()
+{
+    return BackgroundRed;
+}
+
+void ViewInfo::SetBackgroundRed(float value)
+{
+    BackgroundRed = value;
+}
+
+float ViewInfo::GetBackgroundGreen()
+{
+    return BackgroundGreen;
+}
+
+void ViewInfo::SetBackgroundGreen(float value)
+{
+    BackgroundGreen = value;
+}
+float ViewInfo::GetBackgroundBlue()
+{
+    return BackgroundBlue;
+}
+
+void ViewInfo::SetBackgroundBlue(float value)
+{
+    BackgroundBlue = value;
+}
+
+float ViewInfo::GetBackgroundAlpha()
+{
+    return BackgroundAlpha;
+}
+
+void ViewInfo::SetBackgroundAlpha(float value)
+{
+    BackgroundAlpha = value;
 }

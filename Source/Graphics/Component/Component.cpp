@@ -5,6 +5,7 @@
 #include "../Animate/Tween.h"
 #include "../../Graphics/ViewInfo.h"
 #include "../../Utility/Log.h"
+#include "../../SDL.h"
 
 Component::Component()
 {
@@ -15,8 +16,8 @@ Component::Component()
     OnHighlightExitTweens = NULL;
     SelectedItem = NULL;
     NewItemSelectedSinceEnter = false;
+    BackgroundTexture = NULL;
     FreeGraphicsMemory();
-
 }
 
 Component::~Component()
@@ -34,11 +35,27 @@ void Component::FreeGraphicsMemory()
     CurrentTweens = NULL;
     CurrentTweenIndex = 0;
     CurrentTweenComplete = false;
-    ElapsedTweenTime =0;
+    ElapsedTweenTime = 0;
     ScrollActive = false;
+
+    if(BackgroundTexture)
+    {
+        SDL_DestroyTexture(BackgroundTexture);
+        BackgroundTexture = NULL;
+    }
 }
 void Component::AllocateGraphicsMemory()
 {
+    if(!BackgroundTexture)
+    {
+        // make a 4x4 pixel wide surface to be stretched during rendering, make it a white background so we can use
+        // color  later
+        SDL_Surface *surface = SDL_CreateRGBSurface(0, 4, 4, 32, 0, 0, 0, 0);
+        SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 255, 255, 255));
+        BackgroundTexture = SDL_CreateTextureFromSurface(SDL::GetRenderer(), surface);
+        SDL_FreeSurface(surface);
+        SDL_SetTextureBlendMode(BackgroundTexture, SDL_BLENDMODE_BLEND);
+    }
 }
 
 void Component::TriggerEnterEvent()
@@ -71,8 +88,6 @@ bool Component::IsWaiting()
 {
     return (CurrentAnimationState == HIGHLIGHT_WAIT);
 }
-
-
 
 void Component::Update(float dt)
 {
@@ -184,6 +199,22 @@ void Component::Update(float dt)
     CurrentTweenComplete = Animate(IsIdle());
 }
 
+void Component::Draw()
+{
+    ViewInfo *info = GetBaseViewInfo();
+    SDL_Rect rect;
+    rect.h = static_cast<int>(info->GetHeight());
+    rect.w = static_cast<int>(info->GetWidth());
+    rect.x = static_cast<int>(info->GetXRelativeToOrigin());
+    rect.y = static_cast<int>(info->GetYRelativeToOrigin());
+
+    SDL_SetTextureColorMod(BackgroundTexture,
+                           static_cast<char>(info->GetBackgroundRed()*255),
+                           static_cast<char>(info->GetBackgroundGreen()*255),
+                           static_cast<char>(info->GetBackgroundBlue()*255));
+
+    SDL::RenderCopy(BackgroundTexture, static_cast<char>(info->GetBackgroundAlpha()*255), NULL, &rect, info->GetAngle());
+}
 
 bool Component::Animate(bool loop)
 {
@@ -236,8 +267,8 @@ bool Component::Animate(bool loop)
                 GetBaseViewInfo()->SetAngle(value);
                 break;
 
-            case TWEEN_PROPERTY_TRANSPARENCY:
-                GetBaseViewInfo()->SetTransparency(value);
+            case TWEEN_PROPERTY_ALPHA:
+                GetBaseViewInfo()->SetAlpha(value);
                 break;
 
             case TWEEN_PROPERTY_X_ORIGIN:

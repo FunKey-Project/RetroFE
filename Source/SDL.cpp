@@ -230,8 +230,7 @@ SDL_Window* SDL::GetWindow()
     return Window;
 }
 
-
-bool SDL::RenderCopy(SDL_Texture *texture, unsigned char transparency, SDL_Rect *src, SDL_Rect *dest, double angle)
+bool SDL::RenderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, SDL_Rect *dest, double angle)
 {
     SDL_Rect rotateRect;
     rotateRect.w = dest->w;
@@ -248,7 +247,7 @@ bool SDL::RenderCopy(SDL_Texture *texture, unsigned char transparency, SDL_Rect 
         rotateRect.y = dest->y;
     }
 
-    SDL_SetTextureAlphaMod(texture, transparency);
+    SDL_SetTextureAlphaMod(texture, alpha);
     SDL_RenderCopyEx(GetRenderer(), texture, src, &rotateRect, angle, NULL, SDL_FLIP_NONE);
 
     return true;

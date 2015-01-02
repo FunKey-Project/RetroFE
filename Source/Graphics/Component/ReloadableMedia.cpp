@@ -162,6 +162,8 @@ void ReloadableMedia::Draw()
 {
     ViewInfo *info = GetBaseViewInfo();
 
+    Component::Draw();
+
     if(LoadedComponent)
     {
         info->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());

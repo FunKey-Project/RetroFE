@@ -65,7 +65,7 @@ ScrollingList::~ScrollingList()
 
         while(it != SpriteList->end())
         {
-            if(*it != NULL) 
+            if(*it != NULL)
             {
                 DeallocateTexture(*it);
                 if((*it)->GetCollectionItem())
@@ -77,7 +77,7 @@ ScrollingList::~ScrollingList()
             }
 
             SpriteList->erase(it);
-                        
+
             it = SpriteList->begin();
         }
 
@@ -329,7 +329,7 @@ void ScrollingList::Update(float dt)
                 spriteViewInfo->SetYOffset(Tween::AnimateSingle(LINEAR, currentViewInfo->GetYOffset(), nextViewInfo->GetYOffset(), scrollPeriod, CurrentAnimateTime));
                 spriteViewInfo->SetHeight(Tween::AnimateSingle(LINEAR, currentViewInfo->GetHeight(), nextViewInfo->GetHeight(), scrollPeriod, CurrentAnimateTime));
                 spriteViewInfo->SetWidth(Tween::AnimateSingle(LINEAR, currentViewInfo->GetWidth(), nextViewInfo->GetWidth(), scrollPeriod, CurrentAnimateTime));
-                spriteViewInfo->SetTransparency(Tween::AnimateSingle(LINEAR, currentViewInfo->GetTransparency(), nextViewInfo->GetTransparency(), scrollPeriod, CurrentAnimateTime));
+                spriteViewInfo->SetAlpha(Tween::AnimateSingle(LINEAR, currentViewInfo->GetAlpha(), nextViewInfo->GetAlpha(), scrollPeriod, CurrentAnimateTime));
                 spriteViewInfo->SetAngle(Tween::AnimateSingle(LINEAR, currentViewInfo->GetAngle(), nextViewInfo->GetAngle(), scrollPeriod, CurrentAnimateTime));
                 spriteViewInfo->SetFontSize(Tween::AnimateSingle(LINEAR, currentViewInfo->GetFontSize(), nextViewInfo->GetFontSize(), scrollPeriod, CurrentAnimateTime));
                 c->Update(dt);

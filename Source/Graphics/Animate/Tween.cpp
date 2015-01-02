@@ -34,7 +34,7 @@ bool Tween::GetTweenProperty(std::string name, TweenProperty &property)
         TweenPropertyMap["x"] = TWEEN_PROPERTY_X;
         TweenPropertyMap["y"] = TWEEN_PROPERTY_Y;
         TweenPropertyMap["angle"] = TWEEN_PROPERTY_ANGLE;
-        TweenPropertyMap["transparency"] = TWEEN_PROPERTY_TRANSPARENCY;
+        TweenPropertyMap["alpha"] = TWEEN_PROPERTY_ALPHA;
         TweenPropertyMap["width"] = TWEEN_PROPERTY_WIDTH;
         TweenPropertyMap["height"] = TWEEN_PROPERTY_HEIGHT;
         TweenPropertyMap["xorigin"] = TWEEN_PROPERTY_X_ORIGIN;

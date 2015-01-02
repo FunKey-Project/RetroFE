@@ -79,6 +79,6 @@ void VideoComponent::Draw()
 
     if(texture)
     {
-        SDL::RenderCopy(texture, static_cast<int>(info->GetTransparency() * 255), NULL, &rect, info->GetAngle());
+        SDL::RenderCopy(texture, static_cast<int>(info->GetAlpha() * 255), NULL, &rect, info->GetAngle());
     }
 }

@@ -35,8 +35,8 @@ public:
     void SetMinHeight(float minheight);
     float GetMinWidth() const;
     void SetMinWidth(float minwidth);
-    float GetTransparency() const;
-    void SetTransparency(float transparency);
+    float GetAlpha() const;
+    void SetAlpha(float alpha);
     float GetX() const;
     void SetX(float x);
     float GetXOffset() const;
@@ -53,6 +53,15 @@ public:
     float GetRawXOrigin();
     float GetRawWidth();
     float GetRawHeight();
+
+    float GetBackgroundRed();
+    void SetBackgroundRed(float value);
+    float GetBackgroundGreen();
+    void SetBackgroundGreen(float value);
+    float GetBackgroundBlue();
+    void SetBackgroundBlue(float value);
+    float GetBackgroundAlpha();
+    void SetBackgroundAlpha(float value);
 
     void SetHeight(float height);
     void SetWidth(float width);
@@ -82,8 +91,12 @@ private:
     float ImageHeight;
     float FontSize;
     float Angle;
-    float Transparency;
+    float Alpha;
     unsigned int Layer;
     float HorizontalScale;
     float VerticalScale;
+    float BackgroundRed;
+    float BackgroundGreen;
+    float BackgroundBlue;
+    float BackgroundAlpha;
 };

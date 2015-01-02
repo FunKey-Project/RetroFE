@@ -49,7 +49,7 @@ private:
     RETROFE_STATE ProcessUserInput(Page *page);
     void Update(float dt, bool scrollActive);
     std::string GetLayout(std::string collectionName);
-     std::vector<Item *> *GetCollection(std::string collectionName);
+    std::vector<Item *> *GetCollection(std::string collectionName);
     Configuration &Config;
     CollectionDatabase &CollectionDB;
     UserInput Input;

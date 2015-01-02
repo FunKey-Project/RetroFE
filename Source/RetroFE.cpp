@@ -279,7 +279,7 @@ bool RetroFE::Back(bool &exit)
     bool exitOnBack = false;
     Config.GetProperty("exitOnFirstPageBack", exitOnBack);
     exit = false;
-    
+
     if(PageChain.size() > 1)
     {
         Page *page = PageChain.back();
@@ -374,7 +374,7 @@ Page *RetroFE::LoadPage(std::string collectionName)
     Logger::Write(Logger::ZONE_INFO, "RetroFE", "Creating page for collection " + collectionName);
 
     Page *page = NULL;
-    
+
     std::vector<Item *> *collection = GetCollection(collectionName);
     std::string layoutName = GetLayout(collectionName);
 
@@ -387,7 +387,7 @@ Page *RetroFE::LoadPage(std::string collectionName)
     PageBuilder pb(layoutName, collectionName, Config, &FC);
     page = pb.BuildPage();
 
-    if(!page) 
+    if(!page)
     {
         Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not create page for " + collectionName);
     }

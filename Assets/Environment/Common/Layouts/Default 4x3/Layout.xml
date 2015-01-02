@@ -10,20 +10,20 @@
    <menu imageType="title" algorithm="easeincircular" x="center" y="center" xOrigin="center" yOrigin="center" speed="0.05" acceleration="0.05" height="25">
    <!-- todo: the menu does not support the standard onEnter onExit, onHighlightEnter onHighlightExit tags like the rest of the system does. -->
    
-      <item xOffset="-100" yOffset="-120" layer="1" fontSize="5" height="15"  transparency="0"  />
-      <item xOffset="-250" yOffset="-80"  layer="2" fontSize="7" height="20"  transparency="0.1"/>
-      <item xOffset="-400" yOffset="0"  layer="3" fontSize="10" height="30"  transparency="0.25"/>
-      <item xOffset="-300" yOffset="133" layer="4" fontSize="20" height="60" transparency="0.5"/>
-      <item xOffset="0" yOffset="175" layer="5" fontSize="40" height="150"  transparency="1" selected="true" />
-      <item xOffset="300" yOffset="133"  layer="4" fontSize="20" height="60" transparency="0.5"/>
-      <item xOffset="400" yOffset="0"   layer="3" fontSize="10" height="30"  transparency="0.25"/>
-      <item xOffset="250" yOffset="-80" layer="2" fontSize="7" height="15"  transparency="0.1"/>
-      <item xOffset="100" yOffset="-120" layer="1" fontSize="5" height="0"  transparency="0"/>
+      <item xOffset="-100" yOffset="-120" layer="1" fontSize="5" height="15" alpha="0"  />
+      <item xOffset="-250" yOffset="-80"  layer="2" fontSize="7" height="20" alpha="0.1"/>
+      <item xOffset="-400" yOffset="0"  layer="3" fontSize="10" height="30" alpha="0.25"/>
+      <item xOffset="-300" yOffset="133" layer="4" fontSize="20" height="60" alpha="0.5"/>
+      <item xOffset="0" yOffset="175" layer="5" fontSize="40" height="150" alpha="1" selected="true" />
+      <item xOffset="300" yOffset="133"  layer="4" fontSize="20" height="60" alpha="0.5"/>
+      <item xOffset="400" yOffset="0"   layer="3" fontSize="10" height="30" alpha="0.25"/>
+      <item xOffset="250" yOffset="-80" layer="2" fontSize="7" height="15" alpha="0.1"/>
+      <item xOffset="100" yOffset="-120" layer="1" fontSize="5" height="0" alpha="0"/>
    </menu>
    
-   <image x="center" y="center" height="stretch" width="stretch" xOrigin="center" yOrigin="center" src="background.png" layer="0" transparency="0.5"/>
+   <image x="center" y="center" height="stretch" width="stretch" xOrigin="center" yOrigin="center" src="background.png" layer="0" alpha="0.5"/>
    
-   <image x="30" y="20" height="50" src="logo.png" layer="1" transparency="0.3">
+   <image x="30" y="20" height="50" src="logo.png" layer="1" alpha="0.3">
       <onEnter>
          <set duration=".5">
             <animate type="y" from="top" to="20" algorithm="easeinquadratic"/>
@@ -59,24 +59,24 @@
          <set duration=".2">
             <animate type="y" from="bottom" to="100" algorithm="easeinoutquadratic"/>
             <animate type="width" from="0" to="200" algorithm="easeoutquadratic"/>
-            <animate type="transparency" from="0" to="0.5" algorithm="easeinquadratic"/>
+            <animate type="alpha" from="0" to="0.5" algorithm="easeinquadratic"/>
          </set>
          <set duration=".2">
             <animate type="y" from="100" to="130" algorithm="easeinoutquadratic"/>
             <animate type="width" from="200" to="320" algorithm="easeoutquadratic"/>
-            <animate type="transparency" from=".5" to="0.75" algorithm="easeinquadratic"/>
+            <animate type="alpha" from=".5" to="0.75" algorithm="easeinquadratic"/>
          </set>
       </onHighlightEnter>
       <onHighlightExit>
          <set duration=".2">
             <animate type="y" to="100" from="130" algorithm="easeinoutquadratic"/>
             <animate type="width" to="200" from="320" algorithm="easeoutquadratic"/>
-            <animate type="transparency" from=".75" to="0.5" algorithm="easeinquadratic"/>
+            <animate type="alpha" from=".75" to="0.5" algorithm="easeinquadratic"/>
          </set>
          <set duration=".2">
             <animate type="y" to="bottom" from="100" algorithm="easeinoutquadratic"/>
             <animate type="width" to="0" from="200" algorithm="easeoutquadratic"/>
-            <animate type="transparency" to="0.5" from="0" algorithm="easeinquadratic"/>
+            <animate type="alpha" to="0.5" from="0" algorithm="easeinquadratic"/>
          </set>
       </onHighlightExit>
 

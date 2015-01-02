@@ -18,5 +18,5 @@ private:
     float ElapsedTime;
     float ActiveTime;
     float IdleTime;
-    
+
 };
