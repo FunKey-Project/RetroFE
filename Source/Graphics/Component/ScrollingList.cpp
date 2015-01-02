@@ -67,8 +67,6 @@ ScrollingList::~ScrollingList()
         {
             if(*it != NULL) 
             {
-    Logger::Write(Logger::ZONE_DEBUG, "ScrollingList", "Free");
-                
                 DeallocateTexture(*it);
                 if((*it)->GetCollectionItem())
                 {
