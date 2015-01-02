@@ -160,6 +160,11 @@ bool SDL::Initialize(Configuration &config)
         }
     }
 
+    if(SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1") != SDL_TRUE)
+    {
+            Logger::Write(Logger::ZONE_ERROR, "SDL", "Improve scale quality. Continuing with low-quality settings.");
+    }
+
     if(retVal)
     {
         Mutex = SDL_CreateMutex();
