@@ -49,6 +49,7 @@ void RetroFE::Render()
     {
         page->Draw();
     }
+    Logger::Write(Logger::ZONE_ERROR, "Component", "DRAW");
 
     SDL_RenderPresent(SDL::GetRenderer());
     SDL_UnlockMutex(SDL::GetMutex());

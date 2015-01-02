@@ -4,6 +4,7 @@
 #include "PageBuilder.h"
 #include "Page.h"
 #include "ViewInfo.h"
+#include "Component/Container.h"
 #include "Component/Image.h"
 #include "Component/Text.h"
 #include "Component/ReloadableText.h"
@@ -284,71 +285,80 @@ float PageBuilder::GetVerticalAlignment(xml_attribute<> *attribute, float valueI
 
 bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
 {
-    bool retVal = true;
     xml_node<> *menuXml = layout->first_node("menu");
+
     if(!menuXml)
     {
         Logger::Write(Logger::ZONE_ERROR, "Layout", "Missing menu tag");
-        retVal = false;
+        return false;
     }
-    else if(menuXml)
+
+    ScrollingList *scrollingList = BuildCustomMenu(menuXml);
+    page->SetMenu(scrollingList);
+
+    for(xml_node<> *componentXml = layout->first_node("container"); componentXml; componentXml = componentXml->next_sibling("container"))
     {
-        ScrollingList *scrollingList = BuildCustomMenu(menuXml);
-        page->SetMenu(scrollingList);
-
-        for(xml_node<> *componentXml = layout->first_node("image"); componentXml; componentXml = componentXml->next_sibling("image"))
-        {
-            xml_attribute<> *src = componentXml->first_attribute("src");
-
-            if (!src)
-            {
-                Logger::Write(Logger::ZONE_ERROR, "Layout", "Image component in layout does not specify a source image file");
-            }
-            else
-            {
-                std::string imagePath;
-                imagePath = Configuration::ConvertToAbsolutePath(LayoutPath, imagePath);
-
-                imagePath.append("/");
-                imagePath.append(src->value());
-
-
-
-                Image *c = new Image(imagePath, ScaleX, ScaleY);
-                ViewInfo *v = c->GetBaseViewInfo();
-                BuildViewInfo(componentXml, v);
-                LoadTweens(c, componentXml);
-                page->AddComponent(c);
-            }
-        }
-
-        for(xml_node<> *componentXml = layout->first_node("text"); componentXml; componentXml = componentXml->next_sibling("text"))
-        {
-            xml_attribute<> *value = componentXml->first_attribute("value");
-
-            if (!value)
-            {
-                Logger::Write(Logger::ZONE_WARNING, "Layout", "Text component in layout does not specify a value");
-            }
-            else
-            {
-                FC->LoadFont(Font, FontColor);
-                Text *c = new Text(value->value(), FC->GetFont(Font), FontColor, ScaleX, ScaleY);
-                ViewInfo *v = c->GetBaseViewInfo();
-
-                BuildViewInfo(componentXml, v);
-
-                LoadTweens(c, componentXml);
-                page->AddComponent(c);
-            }
-        }
-
-        LoadReloadableImages(layout, "reloadableImage", page);
-        LoadReloadableImages(layout, "reloadableVideo", page);
-        LoadReloadableImages(layout, "reloadableText", page);
+        Container *c = new Container();
+        ViewInfo *v = c->GetBaseViewInfo();
+        BuildViewInfo(componentXml, v);
+        LoadTweens(c, componentXml);
+        page->AddComponent(c);
     }
 
-    return retVal;
+
+    for(xml_node<> *componentXml = layout->first_node("image"); componentXml; componentXml = componentXml->next_sibling("image"))
+    {
+        xml_attribute<> *src = componentXml->first_attribute("src");
+
+        if (!src)
+        {
+            Logger::Write(Logger::ZONE_ERROR, "Layout", "Image component in layout does not specify a source image file");
+        }
+        else
+        {
+            std::string imagePath;
+            imagePath = Configuration::ConvertToAbsolutePath(LayoutPath, imagePath);
+
+            imagePath.append("/");
+            imagePath.append(src->value());
+
+
+
+            Image *c = new Image(imagePath, ScaleX, ScaleY);
+            ViewInfo *v = c->GetBaseViewInfo();
+            BuildViewInfo(componentXml, v);
+            LoadTweens(c, componentXml);
+            page->AddComponent(c);
+        }
+    }
+
+
+    for(xml_node<> *componentXml = layout->first_node("text"); componentXml; componentXml = componentXml->next_sibling("text"))
+    {
+        xml_attribute<> *value = componentXml->first_attribute("value");
+
+        if (!value)
+        {
+            Logger::Write(Logger::ZONE_WARNING, "Layout", "Text component in layout does not specify a value");
+        }
+        else
+        {
+            FC->LoadFont(Font, FontColor);
+            Text *c = new Text(value->value(), FC->GetFont(Font), FontColor, ScaleX, ScaleY);
+            ViewInfo *v = c->GetBaseViewInfo();
+
+            BuildViewInfo(componentXml, v);
+
+            LoadTweens(c, componentXml);
+            page->AddComponent(c);
+        }
+    }
+
+    LoadReloadableImages(layout, "reloadableImage", page);
+    LoadReloadableImages(layout, "reloadableVideo", page);
+    LoadReloadableImages(layout, "reloadableText", page);
+
+    return true;
 }
 
 void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, Page *page)

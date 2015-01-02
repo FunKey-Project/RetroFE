@@ -40,7 +40,10 @@ void Component::FreeGraphicsMemory()
 
     if(BackgroundTexture)
     {
+        SDL_LockMutex(SDL::GetMutex());
         SDL_DestroyTexture(BackgroundTexture);
+        SDL_UnlockMutex(SDL::GetMutex());
+
         BackgroundTexture = NULL;
     }
 }
@@ -52,7 +55,11 @@ void Component::AllocateGraphicsMemory()
         // color  later
         SDL_Surface *surface = SDL_CreateRGBSurface(0, 4, 4, 32, 0, 0, 0, 0);
         SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 255, 255, 255));
+
+        SDL_LockMutex(SDL::GetMutex());
         BackgroundTexture = SDL_CreateTextureFromSurface(SDL::GetRenderer(), surface);
+        SDL_UnlockMutex(SDL::GetMutex());
+
         SDL_FreeSurface(surface);
         SDL_SetTextureBlendMode(BackgroundTexture, SDL_BLENDMODE_BLEND);
     }
@@ -201,19 +208,24 @@ void Component::Update(float dt)
 
 void Component::Draw()
 {
-    ViewInfo *info = GetBaseViewInfo();
-    SDL_Rect rect;
-    rect.h = static_cast<int>(info->GetHeight());
-    rect.w = static_cast<int>(info->GetWidth());
-    rect.x = static_cast<int>(info->GetXRelativeToOrigin());
-    rect.y = static_cast<int>(info->GetYRelativeToOrigin());
 
-    SDL_SetTextureColorMod(BackgroundTexture,
-                           static_cast<char>(info->GetBackgroundRed()*255),
-                           static_cast<char>(info->GetBackgroundGreen()*255),
-                           static_cast<char>(info->GetBackgroundBlue()*255));
+    if(BackgroundTexture)
+    {
+        ViewInfo *info = GetBaseViewInfo();
+        SDL_Rect rect;
+        rect.h = static_cast<int>(info->GetHeight());
+        rect.w = static_cast<int>(info->GetWidth());
+        rect.x = static_cast<int>(info->GetXRelativeToOrigin());
+        rect.y = static_cast<int>(info->GetYRelativeToOrigin());
 
-    SDL::RenderCopy(BackgroundTexture, static_cast<char>(info->GetBackgroundAlpha()*255), NULL, &rect, info->GetAngle());
+
+        SDL_SetTextureColorMod(BackgroundTexture,
+                               static_cast<char>(info->GetBackgroundRed()*255),
+                               static_cast<char>(info->GetBackgroundGreen()*255),
+                               static_cast<char>(info->GetBackgroundBlue()*255));
+
+        SDL::RenderCopy(BackgroundTexture, static_cast<char>(info->GetBackgroundAlpha()*255), NULL, &rect, info->GetAngle());
+    }
 }
 
 bool Component::Animate(bool loop)
