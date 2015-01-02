@@ -88,15 +88,14 @@ bool SDL::Initialize(Configuration &config)
         }
     }
 
-    // check for a few other necessary Configurations
     if(retVal)
     {
-        if(!config.GetProperty("vertical", hString))
+        if(!config.GetProperty("vertical", vString))
         {
             Logger::Write(Logger::ZONE_ERROR, "Configuration", "Missing property \"vertical\"");
             retVal = false;
         }
-        else if(hString == "stretch")
+        else if(vString == "stretch")
         {
             // Get current display mode of all displays.
             for(int i = 0; i < SDL_GetNumVideoDisplays(); ++i)
