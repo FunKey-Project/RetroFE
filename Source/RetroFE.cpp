@@ -157,7 +157,6 @@ void RetroFE::Run()
     bool running = true;
     Item *nextPageItem = NULL;
     bool adminMode = false;
-    bool selectActive = false;
     RETROFE_STATE state = RETROFE_IDLE;
 
     Config.GetProperty("attractModeTime", attractModeTime);

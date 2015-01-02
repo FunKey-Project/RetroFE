@@ -59,6 +59,33 @@ ScrollingList::ScrollingList(Configuration &c,
 
 ScrollingList::~ScrollingList()
 {
+    if(SpriteList)
+    {
+        std::vector<ComponentItemBinding *>::iterator it  = SpriteList->begin();
+
+        while(it != SpriteList->end())
+        {
+            if(*it != NULL) 
+            {
+    Logger::Write(Logger::ZONE_DEBUG, "ScrollingList", "Free");
+                
+                DeallocateTexture(*it);
+                if((*it)->GetCollectionItem())
+                {
+                    delete (*it)->GetCollectionItem();
+                }
+
+                delete *it;
+            }
+
+            SpriteList->erase(it);
+                        
+            it = SpriteList->begin();
+        }
+
+        delete SpriteList;
+        SpriteList = NULL;
+    }
 }
 
 void ScrollingList::SetItems(std::vector<ComponentItemBinding *> *spriteList)
