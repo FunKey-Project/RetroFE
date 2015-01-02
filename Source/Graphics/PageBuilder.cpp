@@ -22,6 +22,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <vector>
+#include <map>
 
 using namespace rapidxml;
 
@@ -473,7 +474,7 @@ ScrollingList * PageBuilder::BuildCustomMenu(xml_node<> *menuXml)
 
     std::vector<ViewInfo *> *points = new std::vector<ViewInfo *>();
 
-    int i = 0;
+    /*
     for(xml_node<> *componentXml = menuXml->first_node("item"); componentXml; componentXml = componentXml->next_sibling("item"))
     {
         ViewInfo *viewInfo = new ViewInfo();
@@ -490,13 +491,124 @@ ScrollingList * PageBuilder::BuildCustomMenu(xml_node<> *menuXml)
 
         i++;
     }
+    */
 
+    int selectedIndex = 0;
+    std::map<int, xml_node<> *> overrideItems;
+
+    xml_node<> *itemDefaults = menuXml->first_node("itemDefaults");
+
+    for(xml_node<> *componentXml = menuXml->first_node("item"); componentXml; componentXml = componentXml->next_sibling("item"))
+    {
+        xml_attribute<> *xmlIndex = componentXml->first_attribute("index"); 
+        if(xmlIndex)
+        {
+            int index = 0;
+            std::string strIndex(xmlIndex->value());
+            if(strIndex == "end") 
+            {
+                index = -2;
+            }
+            else if(strIndex == "last") 
+            {
+                index = -3;
+            }
+            else if(strIndex == "start") 
+            {
+                index = -1;
+           }
+            else
+            {
+                index = Utils::ConvertInt(xmlIndex->value());
+            }
+
+            overrideItems[index] = componentXml;
+
+            xml_attribute<> *xmlSelectedIndex = componentXml->first_attribute("selected");
+
+            if(xmlSelectedIndex)
+            {
+                selectedIndex = index + 1; // add one to account for the "hidden menu item
+            }
+        }
+    }
+
+    float height = 0;
+    int index = 0;
+    bool end = false;
+
+    //menu start
+    if(overrideItems.find(-1) != overrideItems.end())
+    {
+        ViewInfo *viewInfo = new ViewInfo();
+        xml_node<> *component = overrideItems[-1];
+        BuildViewInfo(component, viewInfo, itemDefaults);
+        viewInfo->SetY(v->GetY() + (float)height);
+        points->push_back(viewInfo);
+    }
+    while(!end)
+    {
+        ViewInfo *viewInfo = new ViewInfo();
+        xml_node<> *component = itemDefaults;
+
+        if(overrideItems.find(index) != overrideItems.end())
+        {
+            component = overrideItems[index];
+        }
+
+        xml_attribute<> *itemSpacing = component->first_attribute("spacing");
+        BuildViewInfo(component, viewInfo, itemDefaults);
+        float nextHeight = height + (viewInfo->GetHeight() + ((itemSpacing) ? Utils::ConvertInt(itemSpacing->value()) : 0));
+
+        if(nextHeight >= v->GetHeight())
+        {
+            end = true;
+            // last item to render?
+            if(overrideItems.find(-3) != overrideItems.end())
+            {
+                component = overrideItems[-3];
+                BuildViewInfo(component, viewInfo, itemDefaults);
+                itemSpacing = component->first_attribute("spacing");
+                nextHeight = height + (viewInfo->GetHeight() + ((itemSpacing) ? Utils::ConvertInt(itemSpacing->value()) : 0));
+            }
+        }
+
+        height = nextHeight;
+        viewInfo->SetY(v->GetY() + (float)height);
+        points->push_back(viewInfo);
+        index++;
+    }
+
+    //menu end 
+    if(overrideItems.find(-2) != overrideItems.end())
+    {
+        ViewInfo *viewInfo = new ViewInfo();
+        xml_node<> *component = overrideItems[-2];
+        BuildViewInfo(component, viewInfo, itemDefaults);
+        viewInfo->SetY(v->GetY() + (float)height);
+        points->push_back(viewInfo);
+    }
+
+    menu->SetSelectedIndex(selectedIndex);
     menu->SetPoints(points);
 
 
     return menu;
 }
 
+xml_attribute<> *PageBuilder::FindAttribute(xml_node<> *componentXml, std::string attribute, xml_node<> *defaultXml = NULL)
+{
+    if(!defaultXml) { return FindRecursiveAttribute(componentXml, attribute); }
+
+    xml_attribute<> *attributeXml = componentXml->first_attribute(attribute.c_str());
+
+    if(!attributeXml)
+    {
+        attributeXml = defaultXml->first_attribute(attribute.c_str());
+    }
+
+    return attributeXml;
+ }
 
 xml_attribute<> *PageBuilder::FindRecursiveAttribute(xml_node<> *componentXml, std::string attribute)
 {
@@ -518,26 +630,26 @@ xml_attribute<> *PageBuilder::FindRecursiveAttribute(xml_node<> *componentXml, s
     return attributeXml;
 }
 
-void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info)
+void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info, xml_node<> *defaultXml)
 {
-    xml_attribute<> *x = FindRecursiveAttribute(componentXml, "x");
-    xml_attribute<> *y = FindRecursiveAttribute(componentXml, "y");
-    xml_attribute<> *xOffset = FindRecursiveAttribute(componentXml, "xOffset");
-    xml_attribute<> *yOffset = FindRecursiveAttribute(componentXml, "yOffset");
-    xml_attribute<> *xOrigin = FindRecursiveAttribute(componentXml, "xOrigin");
-    xml_attribute<> *yOrigin = FindRecursiveAttribute(componentXml, "yOrigin");
-    xml_attribute<> *height = FindRecursiveAttribute(componentXml, "height");
-    xml_attribute<> *width = FindRecursiveAttribute(componentXml, "width");
-    xml_attribute<> *fontSize = FindRecursiveAttribute(componentXml, "fontSize");
-    xml_attribute<> *minHeight = FindRecursiveAttribute(componentXml, "minHeight");
-    xml_attribute<> *minWidth = FindRecursiveAttribute(componentXml, "minWidth");
-    xml_attribute<> *maxHeight = FindRecursiveAttribute(componentXml, "maxHeight");
-    xml_attribute<> *maxWidth = FindRecursiveAttribute(componentXml, "maxWidth");
-    xml_attribute<> *alpha = FindRecursiveAttribute(componentXml, "alpha");
-    xml_attribute<> *angle = FindRecursiveAttribute(componentXml, "angle");
-    xml_attribute<> *layer = FindRecursiveAttribute(componentXml, "layer");
-    xml_attribute<> *backgroundColor = FindRecursiveAttribute(componentXml, "backgroundColor");
-    xml_attribute<> *backgroundAlpha = FindRecursiveAttribute(componentXml, "backgroundAlpha");
+    xml_attribute<> *x = FindAttribute(componentXml, "x", defaultXml);
+    xml_attribute<> *y = FindAttribute(componentXml, "y", defaultXml);
+    xml_attribute<> *xOffset = FindAttribute(componentXml, "xOffset", defaultXml);
+    xml_attribute<> *yOffset = FindAttribute(componentXml, "yOffset", defaultXml);
+    xml_attribute<> *xOrigin = FindAttribute(componentXml, "xOrigin", defaultXml);
+    xml_attribute<> *yOrigin = FindAttribute(componentXml, "yOrigin", defaultXml);
+    xml_attribute<> *height = FindAttribute(componentXml, "height", defaultXml);
+    xml_attribute<> *width = FindAttribute(componentXml, "width", defaultXml);
+    xml_attribute<> *fontSize = FindAttribute(componentXml, "fontSize", defaultXml);
+    xml_attribute<> *minHeight = FindAttribute(componentXml, "minHeight", defaultXml);
+    xml_attribute<> *minWidth = FindAttribute(componentXml, "minWidth", defaultXml);
+    xml_attribute<> *maxHeight = FindAttribute(componentXml, "maxHeight", defaultXml);
+    xml_attribute<> *maxWidth = FindAttribute(componentXml, "maxWidth", defaultXml);
+    xml_attribute<> *alpha = FindAttribute(componentXml, "alpha", defaultXml);
+    xml_attribute<> *angle = FindAttribute(componentXml, "angle", defaultXml);
+    xml_attribute<> *layer = FindAttribute(componentXml, "layer", defaultXml);
+    xml_attribute<> *backgroundColor = FindAttribute(componentXml, "backgroundColor", defaultXml);
+    xml_attribute<> *backgroundAlpha = FindAttribute(componentXml, "backgroundAlpha", defaultXml);
 
     info->SetX(GetHorizontalAlignment(x, 0));
     info->SetY(GetVerticalAlignment(y, 0));

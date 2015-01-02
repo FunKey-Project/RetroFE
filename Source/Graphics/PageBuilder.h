@@ -38,11 +38,12 @@ private:
 
     float GetVerticalAlignment(rapidxml::xml_attribute<> *attribute, float valueIfNull);
     float GetHorizontalAlignment(rapidxml::xml_attribute<> *attribute, float valueIfNull);
-    void BuildViewInfo(rapidxml::xml_node<> *componentXml, ViewInfo *info);
+    void BuildViewInfo(rapidxml::xml_node<> *componentXml, ViewInfo *info, rapidxml::xml_node<> *defaultXml = NULL);
     bool BuildComponents(rapidxml::xml_node<> *layout, Page *page);
     void LoadTweens(Component *c, rapidxml::xml_node<> *componentXml);
     ScrollingList * BuildCustomMenu(rapidxml::xml_node<> *menuXml);
     rapidxml::xml_attribute<> *FindRecursiveAttribute(rapidxml::xml_node<> *componentXml, std::string attribute);
+    rapidxml::xml_attribute<> *FindAttribute(rapidxml::xml_node<> *componentXml, std::string attribute, rapidxml::xml_node<> *defaultXml);
 
     void GetTweenSets(rapidxml::xml_node<> *node, std::vector<std::vector<Tween *> *> *tweenSets);
     void GetTweenSet(rapidxml::xml_node<> *node, std::vector<Tween *> &tweens);
