@@ -41,8 +41,12 @@ private:
     void BuildViewInfo(rapidxml::xml_node<> *componentXml, ViewInfo *info, rapidxml::xml_node<> *defaultXml = NULL);
     bool BuildComponents(rapidxml::xml_node<> *layout, Page *page);
     void LoadTweens(Component *c, rapidxml::xml_node<> *componentXml);
-    ScrollingList * BuildCustomMenu(rapidxml::xml_node<> *menuXml);
-    rapidxml::xml_attribute<> *FindRecursiveAttribute(rapidxml::xml_node<> *componentXml, std::string attribute);
+    ScrollingList * BuildMenu(rapidxml::xml_node<> *menuXml);
+    void BuildCustomMenu(ScrollingList *menu, rapidxml::xml_node<> *menuXml, rapidxml::xml_node<> *itemDefaults);
+    void BuildVerticalMenu(ScrollingList *menu, rapidxml::xml_node<> *menuXml, rapidxml::xml_node<> *itemDefaults);
+
+    int ParseMenuPosition(std::string strIndex);
+
     rapidxml::xml_attribute<> *FindAttribute(rapidxml::xml_node<> *componentXml, std::string attribute, rapidxml::xml_node<> *defaultXml);
 
     void GetTweenSets(rapidxml::xml_node<> *node, std::vector<std::vector<Tween *> *> *tweenSets);
@@ -51,10 +55,17 @@ private:
 
     void LoadLayoutXml();
     void LoadAnimations(std::string keyPrefix, Component &component, ViewInfo *defaults);
-    std::vector<ViewInfo *> *BuildTweenPoints(std::string iteratorPrefix, ViewInfo *defaults);
+    std::vector<ViewInfo *> * BuildTweenPoints(std::string iteratorPrefix, ViewInfo *defaults);
     Component * LoadComponent(std::string keyPrefix);
     ScrollingList * LoadMenu();
+    ViewInfo * CreateMenuItemInfo(rapidxml::xml_node<> *component, rapidxml::xml_node<> *defaults, float y);
 
     void LoadListItems(std::string keyPrefix, std::vector<ViewInfo *> *tweenPointList, ViewInfo *defaults, int &selectedItemIndex);
     void UpdateViewInfoFromTag(std::string keyPrefix, ViewInfo *p, ViewInfo *defaults);
+
+    static const int MENU_FIRST = 0;   // first visible item in the list
+    static const int MENU_LAST = -3;   // last visible item in the list
+    static const int MENU_START = -1;  // first item transitions here after it scrolls "off the menu/screen"
+    static const int MENU_END = -2;    // last item transitions here after it scrolls "off the menu/screen"
+    static const int MENU_CENTER = -4; 
 };

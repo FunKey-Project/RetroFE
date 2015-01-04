@@ -26,7 +26,7 @@
 
 using namespace rapidxml;
 
-
+//todo: this file is starting to become a god class of building. Consider splitting into sub-builders
 PageBuilder::PageBuilder(std::string layoutKey, std::string collection, Configuration &c, FontCache *fc)
     : LayoutKey(layoutKey)
     , Collection(collection)
@@ -294,7 +294,7 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
         return false;
     }
 
-    ScrollingList *scrollingList = BuildCustomMenu(menuXml);
+    ScrollingList *scrollingList = BuildMenu(menuXml);
     page->SetMenu(scrollingList);
 
     for(xml_node<> *componentXml = layout->first_node("container"); componentXml; componentXml = componentXml->next_sibling("container"))
@@ -454,31 +454,63 @@ void PageBuilder::LoadTweens(Component *c, xml_node<> *componentXml)
 }
 
 
-ScrollingList * PageBuilder::BuildCustomMenu(xml_node<> *menuXml)
+ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
 {
     ScrollingList *menu = NULL;
-    std::string imageType="null";
-
+    std::string menuType = "vertical";
+    std::string imageType = "null";
+    std::map<int, xml_node<> *> overrideItems;
+    xml_node<> *itemDefaults = menuXml->first_node("itemDefaults");
     xml_attribute<> *imageTypeXml = menuXml->first_attribute("imageType");
+    xml_attribute<> *menuTypeXml = menuXml->first_attribute("type");
+
+    if(menuTypeXml)
+    {
+        menuType = menuTypeXml->value();
+    }
+
+    // ensure <menu> has an <itemDefaults> tag
+    if(!itemDefaults) 
+    {
+        Logger::Write(Logger::ZONE_WARNING, "Layout", "Menu tag is missing <itemDefaults> tag.");
+    }
 
     if(imageTypeXml)
     {
         imageType = imageTypeXml->value();
     }
 
+    // on default, text will be rendered to the menu. Preload it into cache.
     FC->LoadFont(Font, FontColor);
+
     menu = new ScrollingList(Config, ScaleX, ScaleY, FC->GetFont(Font), FontColor, LayoutKey, Collection, imageType);
 
     ViewInfo *v = menu->GetBaseViewInfo();
     BuildViewInfo(menuXml, v);
 
+    if(menuType == "custom") 
+    {
+        BuildCustomMenu(menu, menuXml, itemDefaults);
+    }
+    else
+    {
+        BuildVerticalMenu(menu, menuXml, itemDefaults);
+    }
+
+    return menu;
+}
+
+
+void PageBuilder::BuildCustomMenu(ScrollingList *menu, xml_node<> *menuXml, xml_node<> *itemDefaults)
+{
     std::vector<ViewInfo *> *points = new std::vector<ViewInfo *>();
 
-    /*
+    int i = 0;
+
     for(xml_node<> *componentXml = menuXml->first_node("item"); componentXml; componentXml = componentXml->next_sibling("item"))
     {
         ViewInfo *viewInfo = new ViewInfo();
-        BuildViewInfo(componentXml, viewInfo);
+        BuildViewInfo(componentXml, viewInfo, itemDefaults);
 
         points->push_back(viewInfo);
 
@@ -491,59 +523,50 @@ ScrollingList * PageBuilder::BuildCustomMenu(xml_node<> *menuXml)
 
         i++;
     }
-    */
 
-    int selectedIndex = 0;
+    menu->SetPoints(points);
+}
+
+void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xml_node<> *itemDefaults)
+{
+    std::vector<ViewInfo *> *points = new std::vector<ViewInfo *>();
+
+    int selectedIndex = MENU_FIRST;
     std::map<int, xml_node<> *> overrideItems;
 
-    xml_node<> *itemDefaults = menuXml->first_node("itemDefaults");
-
+    // By default the menu will automatically determine the offsets for your list items. 
+    // We can override individual menu points to have unique characteristics (i.e. make the first item opaque or 
+    // make the selected item a different color).
     for(xml_node<> *componentXml = menuXml->first_node("item"); componentXml; componentXml = componentXml->next_sibling("item"))
     {
         xml_attribute<> *xmlIndex = componentXml->first_attribute("index"); 
+
         if(xmlIndex)
         {
-            int index = 0;
-            std::string strIndex(xmlIndex->value());
-            if(strIndex == "end") 
-            {
-                index = -2;
-            }
-            else if(strIndex == "last") 
-            {
-                index = -3;
-            }
-            else if(strIndex == "start") 
-            {
-                index = -1;
-           }
-            else
-            {
-                index = Utils::ConvertInt(xmlIndex->value());
-            }
+            int itemIndex = ParseMenuPosition(xmlIndex->value());
+            overrideItems[itemIndex] = componentXml;
 
-            overrideItems[index] = componentXml;
-
+            // check to see if the item specified is the selected index
             xml_attribute<> *xmlSelectedIndex = componentXml->first_attribute("selected");
 
             if(xmlSelectedIndex)
             {
-                selectedIndex = index + 1; // add one to account for the "hidden menu item
+                selectedIndex = itemIndex;
             }
         }
     }
 
-    float height = 0;
-    int index = 0;
     bool end = false;
 
     //menu start
-    if(overrideItems.find(-1) != overrideItems.end())
+    
+    float height = 0;
+    int index = 0;
+
+    if(overrideItems.find(MENU_START) != overrideItems.end())
     {
-        ViewInfo *viewInfo = new ViewInfo();
-        xml_node<> *component = overrideItems[-1];
-        BuildViewInfo(component, viewInfo, itemDefaults);
-        viewInfo->SetY(v->GetY() + (float)height);
+        xml_node<> *component = overrideItems[MENU_START];
+        ViewInfo *viewInfo = CreateMenuItemInfo(component, itemDefaults, menu->GetBaseViewInfo()->GetY() + height);
         points->push_back(viewInfo);
     }
     while(!end)
@@ -551,84 +574,106 @@ ScrollingList * PageBuilder::BuildCustomMenu(xml_node<> *menuXml)
         ViewInfo *viewInfo = new ViewInfo();
         xml_node<> *component = itemDefaults;
 
+        // uss overridden item setting if specified by layout for the given index
         if(overrideItems.find(index) != overrideItems.end())
         {
             component = overrideItems[index];
         }
 
-        xml_attribute<> *itemSpacing = component->first_attribute("spacing");
+        // calculate the total height of our menu items if we can load any additional items
         BuildViewInfo(component, viewInfo, itemDefaults);
-        float nextHeight = height + (viewInfo->GetHeight() + ((itemSpacing) ? Utils::ConvertInt(itemSpacing->value()) : 0));
+        xml_attribute<> *itemSpacingXml = component->first_attribute("spacing");
+        int itemSpacing = itemSpacingXml ? Utils::ConvertInt(itemSpacingXml->value()) : 0;
+        float nextHeight = height + viewInfo->GetHeight() + itemSpacing;
 
-        if(nextHeight >= v->GetHeight())
+        if(nextHeight >= menu->GetBaseViewInfo()->GetHeight())
         {
             end = true;
-            // last item to render?
-            if(overrideItems.find(-3) != overrideItems.end())
-            {
-                component = overrideItems[-3];
-                BuildViewInfo(component, viewInfo, itemDefaults);
-                itemSpacing = component->first_attribute("spacing");
-                nextHeight = height + (viewInfo->GetHeight() + ((itemSpacing) ? Utils::ConvertInt(itemSpacing->value()) : 0));
-            }
         }
 
+        // we have reached the last menuitem 
+        if(end && overrideItems.find(MENU_LAST) != overrideItems.end())
+        {
+            component = overrideItems[MENU_LAST];
+                
+            BuildViewInfo(component, viewInfo, itemDefaults);
+            xml_attribute<> *itemSpacingXml = component->first_attribute("spacing");
+            int itemSpacing = itemSpacingXml ? Utils::ConvertInt(itemSpacingXml->value()) : 0;
+            nextHeight = height + viewInfo->GetHeight() + itemSpacing;
+        }
+         
         height = nextHeight;
-        viewInfo->SetY(v->GetY() + (float)height);
+        viewInfo->SetY(menu->GetBaseViewInfo()->GetY() + (float)height);
         points->push_back(viewInfo);
         index++;
     }
 
     //menu end 
-    if(overrideItems.find(-2) != overrideItems.end())
+    if(overrideItems.find(MENU_END) != overrideItems.end())
     {
-        ViewInfo *viewInfo = new ViewInfo();
-        xml_node<> *component = overrideItems[-2];
-        BuildViewInfo(component, viewInfo, itemDefaults);
-        viewInfo->SetY(v->GetY() + (float)height);
+        xml_node<> *component = overrideItems[MENU_END];
+        ViewInfo *viewInfo = CreateMenuItemInfo(component, itemDefaults, menu->GetBaseViewInfo()->GetY() + height);
         points->push_back(viewInfo);
     }
 
-    menu->SetSelectedIndex(selectedIndex);
+    if(selectedIndex >= ((int)points->size()-2))
+    {
+        //todo: print debug statements when out of range
+        selectedIndex = 1;
+    }
+    else 
+    {
+        menu->SetSelectedIndex(selectedIndex+1);
+    }
+
     menu->SetPoints(points);
+}
 
+ViewInfo *PageBuilder::CreateMenuItemInfo(xml_node<> *component, xml_node<> *defaults, float y)
+{
+        ViewInfo *viewInfo = new ViewInfo();
+        BuildViewInfo(component, viewInfo, defaults);
+        viewInfo->SetY(y);
+        return viewInfo;
+}
 
-    return menu;
+int PageBuilder::ParseMenuPosition(std::string strIndex) 
+{
+    int index = MENU_FIRST;
+
+    if(strIndex == "end") {
+        index = MENU_END;
+    }
+    else if(strIndex == "last") 
+    {
+        index = MENU_LAST;
+    }
+    else if(strIndex == "start") 
+    {
+        index = MENU_START;
+    }
+    else if(strIndex == "first") 
+    {
+        index = MENU_FIRST;
+    }
+    else
+    {
+        index = Utils::ConvertInt(strIndex);
+    }
+    return index;
 }
 
 xml_attribute<> *PageBuilder::FindAttribute(xml_node<> *componentXml, std::string attribute, xml_node<> *defaultXml = NULL)
 {
-    if(!defaultXml) { return FindRecursiveAttribute(componentXml, attribute); }
-
     xml_attribute<> *attributeXml = componentXml->first_attribute(attribute.c_str());
 
-    if(!attributeXml)
+    if(!attributeXml && defaultXml)
     {
         attributeXml = defaultXml->first_attribute(attribute.c_str());
     }
 
     return attributeXml;
  }
-
-xml_attribute<> *PageBuilder::FindRecursiveAttribute(xml_node<> *componentXml, std::string attribute)
-{
-
-    xml_attribute<> *attributeXml = NULL;
-    xml_node<> *parent = componentXml->parent();
-
-    // root xml node height and width attributes are to define the layout size itself, not the elements
-    if(parent && parent->parent())
-    {
-        attributeXml = componentXml->first_attribute(attribute.c_str());
-
-        if(!attributeXml)
-        {
-            attributeXml = FindRecursiveAttribute(parent, attribute);
-        }
-    }
-
-    return attributeXml;
-}
 
 void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info, xml_node<> *defaultXml)
 {
