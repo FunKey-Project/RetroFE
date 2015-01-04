@@ -67,5 +67,5 @@ private:
     static const int MENU_LAST = -3;   // last visible item in the list
     static const int MENU_START = -1;  // first item transitions here after it scrolls "off the menu/screen"
     static const int MENU_END = -2;    // last item transitions here after it scrolls "off the menu/screen"
-    static const int MENU_CENTER = -4; 
+    static const int MENU_CENTER = -4;
 };

@@ -1,6 +1,19 @@
-/* This file is subject to the terms and conditions defined in
- * file 'LICENSE.txt', which is part of this source code package.
+/* This file is part of RetroFE.
+ *
+ * RetroFE is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RetroFE is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "PageBuilder.h"
 #include "Page.h"
 #include "ViewInfo.h"
@@ -470,7 +483,7 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
     }
 
     // ensure <menu> has an <itemDefaults> tag
-    if(!itemDefaults) 
+    if(!itemDefaults)
     {
         Logger::Write(Logger::ZONE_WARNING, "Layout", "Menu tag is missing <itemDefaults> tag.");
     }
@@ -488,7 +501,7 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
     ViewInfo *v = menu->GetBaseViewInfo();
     BuildViewInfo(menuXml, v);
 
-    if(menuType == "custom") 
+    if(menuType == "custom")
     {
         BuildCustomMenu(menu, menuXml, itemDefaults);
     }
@@ -534,12 +547,12 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
     int selectedIndex = MENU_FIRST;
     std::map<int, xml_node<> *> overrideItems;
 
-    // By default the menu will automatically determine the offsets for your list items. 
-    // We can override individual menu points to have unique characteristics (i.e. make the first item opaque or 
+    // By default the menu will automatically determine the offsets for your list items.
+    // We can override individual menu points to have unique characteristics (i.e. make the first item opaque or
     // make the selected item a different color).
     for(xml_node<> *componentXml = menuXml->first_node("item"); componentXml; componentXml = componentXml->next_sibling("item"))
     {
-        xml_attribute<> *xmlIndex = componentXml->first_attribute("index"); 
+        xml_attribute<> *xmlIndex = componentXml->first_attribute("index");
 
         if(xmlIndex)
         {
@@ -559,7 +572,7 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
     bool end = false;
 
     //menu start
-    
+
     float height = 0;
     int index = 0;
 
@@ -591,24 +604,24 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
             end = true;
         }
 
-        // we have reached the last menuitem 
+        // we have reached the last menuitem
         if(end && overrideItems.find(MENU_LAST) != overrideItems.end())
         {
             component = overrideItems[MENU_LAST];
-                
+
             BuildViewInfo(component, viewInfo, itemDefaults);
             xml_attribute<> *itemSpacingXml = component->first_attribute("spacing");
             int itemSpacing = itemSpacingXml ? Utils::ConvertInt(itemSpacingXml->value()) : 0;
             nextHeight = height + viewInfo->GetHeight() + itemSpacing;
         }
-         
+
         height = nextHeight;
         viewInfo->SetY(menu->GetBaseViewInfo()->GetY() + (float)height);
         points->push_back(viewInfo);
         index++;
     }
 
-    //menu end 
+    //menu end
     if(overrideItems.find(MENU_END) != overrideItems.end())
     {
         xml_node<> *component = overrideItems[MENU_END];
@@ -621,7 +634,7 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
         //todo: print debug statements when out of range
         selectedIndex = 1;
     }
-    else 
+    else
     {
         menu->SetSelectedIndex(selectedIndex+1);
     }
@@ -631,28 +644,29 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
 
 ViewInfo *PageBuilder::CreateMenuItemInfo(xml_node<> *component, xml_node<> *defaults, float y)
 {
-        ViewInfo *viewInfo = new ViewInfo();
-        BuildViewInfo(component, viewInfo, defaults);
-        viewInfo->SetY(y);
-        return viewInfo;
+    ViewInfo *viewInfo = new ViewInfo();
+    BuildViewInfo(component, viewInfo, defaults);
+    viewInfo->SetY(y);
+    return viewInfo;
 }
 
-int PageBuilder::ParseMenuPosition(std::string strIndex) 
+int PageBuilder::ParseMenuPosition(std::string strIndex)
 {
     int index = MENU_FIRST;
 
-    if(strIndex == "end") {
+    if(strIndex == "end")
+    {
         index = MENU_END;
     }
-    else if(strIndex == "last") 
+    else if(strIndex == "last")
     {
         index = MENU_LAST;
     }
-    else if(strIndex == "start") 
+    else if(strIndex == "start")
     {
         index = MENU_START;
     }
-    else if(strIndex == "first") 
+    else if(strIndex == "first")
     {
         index = MENU_FIRST;
     }
@@ -673,7 +687,7 @@ xml_attribute<> *PageBuilder::FindAttribute(xml_node<> *componentXml, std::strin
     }
 
     return attributeXml;
- }
+}
 
 void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info, xml_node<> *defaultXml)
 {
