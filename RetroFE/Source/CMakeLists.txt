@@ -180,12 +180,3 @@ if(MSVC)
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /MP /WX")
 	set_target_properties(RetroFE PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
 endif()
-
-
-set(RETROFE_OUTPUT_PATH "../Build/Artifacts/RetroFE")
-
-add_custom_command(TARGET RetroFE POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E make_directory "../Build/Artifacts/RetroFE" )    
-
-add_custom_command(TARGET RetroFE POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy_directory "../Assets/Environment/Common" "${RETROFE_OUTPUT_PATH}" )
