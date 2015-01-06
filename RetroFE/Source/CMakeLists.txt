@@ -184,45 +184,38 @@ endif()
 
 set(RETROFE_OUTPUT_PATH "../Build/Artifacts/RetroFE")
 
-
-ADD_CUSTOM_COMMAND(TARGET RetroFE POST_BUILD
+add_custom_command(TARGET RetroFE POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E make_directory "../Build/Artifacts/RetroFE" )    
 
-ADD_CUSTOM_COMMAND(TARGET RetroFE POST_BUILD
+add_custom_command(TARGET RetroFE POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy_directory "../Assets/Environment/Common" "${RETROFE_OUTPUT_PATH}" )    
 
 if(WIN32)
-set(RETROFE_OUTPUT_CORE_PATH "${RETROFE_OUTPUT_PATH}/Core")
-    file(GLOB CORE_FILES
-	    "${GSTREAMER_ROOT}/lib/*.dll"
-	    "${GSTREAMER_ROOT}/lib/gstreamer-1.0/*.dll"
-	    "${GSTREAMER_ROOT}/bin/*.dll"
-	    "${SDL2_ROOT}/lib/x86/*.dll" 
-	    "${SDL2_IMAGE_ROOT}/lib/x86/*.dll"
-	    "${SDL2_TTF_ROOT}/lib/x86/*.dll"
-	    "${SDL2_MIXER_ROOT}/lib/x86/*.dll"
-	)
+	set(RETROFE_OUTPUT_CORE_PATH "${RETROFE_OUTPUT_PATH}/Core")
 
-	ADD_CUSTOM_COMMAND(TARGET RetroFE POST_BUILD
+	add_custom_command(TARGET RetroFE POST_BUILD
 		    COMMAND ${CMAKE_COMMAND} -E make_directory "${RETROFE_OUTPUT_CORE_PATH}" )    
-
-	ADD_CUSTOM_COMMAND(TARGET RetroFE POST_BUILD
-		    COMMAND ${CMAKE_COMMAND} -E copy_directory "../Assets/Environment/Windows" "${RETROFE_OUTPUT_PATH}" )    
-
+			
+			
+	set(RETROFE_OUTPUT_LIBRARY_PATH "${RETROFE_OUTPUT_PATH}/Libraries")
+		file(GLOB CORE_FILES
+			"${GSTREAMER_ROOT}/lib/*.dll"
+			"${GSTREAMER_ROOT}/lib/gstreamer-1.0/*.dll"
+			"${GSTREAMER_ROOT}/bin/*.dll"
+			"${SDL2_ROOT}/lib/x86/*.dll" 
+			"${SDL2_IMAGE_ROOT}/lib/x86/*.dll"
+			"${SDL2_TTF_ROOT}/lib/x86/*.dll"
+			"${SDL2_MIXER_ROOT}/lib/x86/*.dll"
+		)
+			
+	add_custom_target(RetroFELibraries)
+	
+	add_custom_command(TARGET RetroFELibraries POST_BUILD
+		    COMMAND ${CMAKE_COMMAND} -E make_directory "${RETROFE_OUTPUT_LIBRARY_PATH}" )    
 
 	foreach(CORE_FILE ${CORE_FILES})    
-		ADD_CUSTOM_COMMAND(TARGET RetroFE POST_BUILD
-	    	COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CORE_FILE}" "${RETROFE_OUTPUT_CORE_PATH}" )    
+		ADD_CUSTOM_COMMAND(TARGET RetroFELibraries POST_BUILD
+	    	COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CORE_FILE}" "${RETROFE_OUTPUT_LIBRARY_PATH}" )    
 	endforeach()
-    
-	ADD_CUSTOM_COMMAND(TARGET RetroFE POST_BUILD
-		    COMMAND ${CMAKE_COMMAND} -E copy "../Build/Debug/RetroFE.exe" "${RETROFE_OUTPUT_CORE_PATH}" )    
-
-else()
-	ADD_CUSTOM_COMMAND(TARGET RetroFE POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy_directory "../Assets/Environment/Linux" "${RETROFE_OUTPUT_PATH}" )    
-
-	ADD_CUSTOM_COMMAND(TARGET RetroFE POST_BUILD
-		    COMMAND ${CMAKE_COMMAND} -E copy "../Build/RetroFE" "${RETROFE_OUTPUT_PATH}" )    
 endif()
 
