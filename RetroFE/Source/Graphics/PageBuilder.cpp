@@ -39,6 +39,12 @@
 
 using namespace rapidxml;
 
+static const int MENU_FIRST = 0;   // first visible item in the list
+static const int MENU_LAST = -3;   // last visible item in the list
+static const int MENU_START = -1;  // first item transitions here after it scrolls "off the menu/screen"
+static const int MENU_END = -2;    // last item transitions here after it scrolls "off the menu/screen"
+static const int MENU_CENTER = -4;
+    
 //todo: this file is starting to become a god class of building. Consider splitting into sub-builders
 PageBuilder::PageBuilder(std::string layoutKey, std::string collection, Configuration &c, FontCache *fc)
     : LayoutKey(layoutKey)
