@@ -15,6 +15,7 @@
  */
 #include "AttractMode.h"
 #include "../Graphics/Page.h"
+#include <cstdlib>
 
 AttractMode::AttractMode()
     : IsActive(false)
