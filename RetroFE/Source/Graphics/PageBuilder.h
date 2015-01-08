@@ -62,10 +62,4 @@ private:
 
     void LoadListItems(std::string keyPrefix, std::vector<ViewInfo *> *tweenPointList, ViewInfo *defaults, int &selectedItemIndex);
     void UpdateViewInfoFromTag(std::string keyPrefix, ViewInfo *p, ViewInfo *defaults);
-
-    const int MENU_FIRST = 0;   // first visible item in the list
-    const int MENU_LAST = -3;   // last visible item in the list
-    const int MENU_START = -1;  // first item transitions here after it scrolls "off the menu/screen"
-    const int MENU_END = -2;    // last item transitions here after it scrolls "off the menu/screen"
-    const int MENU_CENTER = -4;
 };
