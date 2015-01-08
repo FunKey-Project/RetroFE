@@ -160,8 +160,8 @@ bool CollectionDatabase::Import()
         //std::cout << "Importing collection metadata for " << info->GetFullTitle() << " (collections." << info->GetName() << ")" <<  std::endl;
         //ImportMetadata(info);
     }
-    Logger::Write(Logger::ZONE_INFO, "Database", "COMPLETE");
-    Sleep(1000);
+    Logger::Write(Logger::ZONE_INFO, "Database", "Updating complete");
+
     return retVal;
 }
 
