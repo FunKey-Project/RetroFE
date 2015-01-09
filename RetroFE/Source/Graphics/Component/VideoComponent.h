@@ -28,7 +28,6 @@ public:
     }
 
 private:
-    SDL_Texture *VideoTexture;
     std::string VideoFile;
     std::string Name;
     IVideo *VideoInst;

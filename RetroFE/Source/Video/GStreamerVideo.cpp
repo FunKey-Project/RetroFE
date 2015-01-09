@@ -229,7 +229,7 @@ bool GStreamerVideo::Play(std::string file)
         }
 
 
-        g_object_set(G_OBJECT(VideoSink), "sync", TRUE, "qos", TRUE, NULL);
+        g_object_set(G_OBJECT(VideoSink), "sync", TRUE, "qos", FALSE, NULL);
 
         GstPad *videoSinkPad = gst_ghost_pad_new("sink", videoConvertSinkPad);
         if(!videoSinkPad)

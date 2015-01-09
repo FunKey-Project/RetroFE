@@ -21,8 +21,7 @@
 #include "../../SDL.h"
 
 VideoComponent::VideoComponent(IVideo *videoInst, std::string videoFile, float scaleX, float scaleY)
-    : VideoTexture(NULL)
-    , VideoFile(videoFile)
+    : VideoFile(videoFile)
     , VideoInst(videoInst)
     , ScaleX(scaleX)
     , ScaleY(scaleY)
@@ -66,13 +65,6 @@ void VideoComponent::FreeGraphicsMemory()
 {
     VideoInst->Stop();
     IsPlaying = false;
-
-    if (VideoTexture != NULL)
-    {
-        SDL_LockMutex(SDL::GetMutex());
-        SDL_DestroyTexture(VideoTexture);
-        SDL_UnlockMutex(SDL::GetMutex());
-    }
 
     Component::FreeGraphicsMemory();
 }
