@@ -25,7 +25,7 @@ IVideo *VideoFactory::Instance = NULL;
 IVideo *VideoFactory::CreateVideo()
 {
 
-    if(Enabled)
+    if(Enabled && !Instance)
     {
         Instance = new GStreamerVideo();
         Instance->Initialize();

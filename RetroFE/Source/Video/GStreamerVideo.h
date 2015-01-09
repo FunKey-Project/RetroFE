@@ -42,6 +42,7 @@ private:
     gint Width;
     char *VideoBuffer;
     gsize VideoBufferSize;
+    gsize MaxVideoBufferSize;
     bool FrameReady;
     bool IsPlaying;
     static bool Initialized;

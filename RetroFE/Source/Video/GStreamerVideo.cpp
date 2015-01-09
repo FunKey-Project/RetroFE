@@ -50,6 +50,7 @@ GStreamerVideo::GStreamerVideo()
     , Width(0)
     , VideoBuffer(NULL)
     , VideoBufferSize(0)
+    , MaxVideoBufferSize(0)
     , FrameReady(false)
     , IsPlaying(false)
     , PlayCount(0)
@@ -65,7 +66,11 @@ GStreamerVideo::~GStreamerVideo()
         delete[] VideoBuffer;
         VideoBuffer = NULL;
         VideoBufferSize = 0;
+        MaxVideoBufferSize = 0;
     }
+
+    SDL_DestroyTexture(Texture);
+    Texture = NULL;
 
     FreeElements();
 }
@@ -99,8 +104,14 @@ void GStreamerVideo::ProcessNewBuffer (GstElement *fakesink, GstBuffer *buf, Gst
 
         if(video->Height && video->Width)
         {
+            if(video->Texture && video->VideoBufferSize != map.size)
+            {
+                SDL_DestroyTexture(video->Texture);
+                video->Texture = NULL;
+            }
+
             // keep the largest video buffer allocated to avoid the penalty of reallocating and deallocating
-            if(!video->VideoBuffer || video->VideoBufferSize < map.size) 
+            if(!video->VideoBuffer || video->MaxVideoBufferSize < map.size) 
             {
                 if(video->VideoBuffer)
                 {
@@ -108,8 +119,10 @@ void GStreamerVideo::ProcessNewBuffer (GstElement *fakesink, GstBuffer *buf, Gst
                 }
 
                 video->VideoBuffer = new char[map.size];
-                video->VideoBufferSize = map.size;
+                video->MaxVideoBufferSize = map.size;
             }
+
+            video->VideoBufferSize = map.size;
 
             memcpy(video->VideoBuffer, map.data, map.size);
             gst_buffer_unmap(buf, &map);
@@ -164,13 +177,6 @@ bool GStreamerVideo::Stop()
 
    // FreeElements();
 
-    IsPlaying = false;
-
-    if(Texture)
-    {
-        SDL_DestroyTexture(Texture);
-        Texture = NULL;
-    }
     IsPlaying = false;
     Height = 0;
     Width = 0;
