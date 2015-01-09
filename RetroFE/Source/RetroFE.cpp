@@ -41,7 +41,6 @@ RetroFE::RetroFE(CollectionDatabase &db, Configuration &c)
     , Input(Config)
     , KeyInputDisable(0)
     , CurrentTime(0)
-    , VideoInst(NULL)
 {
 }
 
@@ -83,8 +82,6 @@ bool RetroFE::Initialize()
 
     VideoFactory::SetEnabled(videoEnable);
     VideoFactory::SetNumLoops(videoLoop);
-    VideoFactory vf;
-    VideoInst = vf.CreateVideo();
 
     return true;
 }
@@ -151,12 +148,6 @@ bool RetroFE::DeInitialize()
         Page *page = PageChain.back();
         delete page;
         PageChain.pop_back();
-    }
-
-    if(VideoInst)
-    {
-        delete VideoInst;
-        VideoInst = NULL;
     }
 
     //todo: handle video deallocation

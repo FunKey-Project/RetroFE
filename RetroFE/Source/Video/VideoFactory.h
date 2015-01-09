@@ -15,4 +15,5 @@ public:
 private:
     static bool Enabled;
     static int NumLoops;
+    static IVideo *Instance;
 };

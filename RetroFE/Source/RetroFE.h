@@ -58,7 +58,6 @@ private:
     float CurrentTime;
     Item *NextPageItem;
     FontCache FC;
-    IVideo *VideoInst;
     AttractMode Attract;
 
 };

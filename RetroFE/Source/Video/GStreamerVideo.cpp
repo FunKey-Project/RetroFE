@@ -49,6 +49,7 @@ GStreamerVideo::GStreamerVideo()
     , Height(0)
     , Width(0)
     , VideoBuffer(NULL)
+    , VideoBufferSize(0)
     , FrameReady(false)
     , IsPlaying(false)
     , PlayCount(0)
@@ -58,6 +59,15 @@ GStreamerVideo::GStreamerVideo()
 GStreamerVideo::~GStreamerVideo()
 {
     Stop();
+
+    if(VideoBuffer)
+    {
+        delete[] VideoBuffer;
+        VideoBuffer = NULL;
+        VideoBufferSize = 0;
+    }
+
+    FreeElements();
 }
 
 void GStreamerVideo::SetNumLoops(int n)
@@ -89,10 +99,18 @@ void GStreamerVideo::ProcessNewBuffer (GstElement *fakesink, GstBuffer *buf, Gst
 
         if(video->Height && video->Width)
         {
-            if(!video->VideoBuffer)
+            // keep the largest video buffer allocated to avoid the penalty of reallocating and deallocating
+            if(!video->VideoBuffer || video->VideoBufferSize < map.size) 
             {
+                if(video->VideoBuffer)
+                {
+                    delete[] video->VideoBuffer;
+                }
+
                 video->VideoBuffer = new char[map.size];
+                video->VideoBufferSize = map.size;
             }
+
             memcpy(video->VideoBuffer, map.data, map.size);
             gst_buffer_unmap(buf, &map);
             video->FrameReady = true;
@@ -108,8 +126,11 @@ bool GStreamerVideo::Initialize()
 
     std::string path = Configuration::GetAbsolutePath() + "/Core";
     gst_init(NULL, NULL);
+
+#ifdef WIN32
     GstRegistry *registry = gst_registry_get();
     gst_registry_scan_path(registry, path.c_str());
+#endif
 
     Initialized = true;
 
@@ -141,7 +162,7 @@ bool GStreamerVideo::Stop()
         (void)gst_element_set_state(Playbin, GST_STATE_NULL);
     }
 
-    FreeElements();
+   // FreeElements();
 
     IsPlaying = false;
 
@@ -155,11 +176,6 @@ bool GStreamerVideo::Stop()
     Width = 0;
     FrameReady = false;
 
-    if(VideoBuffer)
-    {
-        delete VideoBuffer;
-        VideoBuffer = NULL;
-    }
     return true;
 }
 
@@ -184,67 +200,67 @@ bool GStreamerVideo::Play(std::string file)
         Configuration::ConvertToAbsolutePath(Configuration::GetAbsolutePath(), file);
         file = uriFile;
 
-        //    Pipeline = gst_pipeline_new("pipeline");
-        Playbin = gst_element_factory_make("playbin", "player");
-        VideoBin = gst_bin_new("SinkBin");
-        VideoSink  = gst_element_factory_make("fakesink", "video_sink");
-        VideoConvert  = gst_element_factory_make("capsfilter", "video_convert");
-        VideoConvertCaps = gst_caps_from_string("video/x-raw,format=(string)YUY2");
-        Height = 0;
-        Width = 0;
         if(!Playbin)
         {
-            Logger::Write(Logger::ZONE_DEBUG, "Video", "Could not create playbin");
-            FreeElements();
-            return false;
-        }
-        if(!VideoSink)
-        {
-            Logger::Write(Logger::ZONE_DEBUG, "Video", "Could not create video sink");
-            FreeElements();
-            return false;
-        }
-        if(!VideoConvert)
-        {
-            Logger::Write(Logger::ZONE_DEBUG, "Video", "Could not create video converter");
-            FreeElements();
-            return false;
-        }
-        if(!VideoConvertCaps)
-        {
-            Logger::Write(Logger::ZONE_DEBUG, "Video", "Could not create video caps");
-            FreeElements();
-            return false;
-        }
+            Playbin = gst_element_factory_make("playbin", "player");
+            VideoBin = gst_bin_new("SinkBin");
+            VideoSink  = gst_element_factory_make("fakesink", "video_sink");
+            VideoConvert  = gst_element_factory_make("capsfilter", "video_convert");
+            VideoConvertCaps = gst_caps_from_string("video/x-raw,format=(string)YUY2");
+            Height = 0;
+            Width = 0;
+            if(!Playbin)
+            {
+                Logger::Write(Logger::ZONE_DEBUG, "Video", "Could not create playbin");
+                FreeElements();
+                return false;
+            }
+            if(!VideoSink)
+            {
+                Logger::Write(Logger::ZONE_DEBUG, "Video", "Could not create video sink");
+                FreeElements();
+                return false;
+            }
+            if(!VideoConvert)
+            {
+                Logger::Write(Logger::ZONE_DEBUG, "Video", "Could not create video converter");
+                FreeElements();
+                return false;
+            }
+            if(!VideoConvertCaps)
+            {
+                Logger::Write(Logger::ZONE_DEBUG, "Video", "Could not create video caps");
+                FreeElements();
+                return false;
+            }
 
-        gst_bin_add_many(GST_BIN(VideoBin), VideoConvert, VideoSink, NULL);
-        gst_element_link_filtered(VideoConvert, VideoSink, VideoConvertCaps);
-        GstPad *videoConvertSinkPad = gst_element_get_static_pad(VideoConvert, "sink");
+            gst_bin_add_many(GST_BIN(VideoBin), VideoConvert, VideoSink, NULL);
+            gst_element_link_filtered(VideoConvert, VideoSink, VideoConvertCaps);
+            GstPad *videoConvertSinkPad = gst_element_get_static_pad(VideoConvert, "sink");
 
-        if(!videoConvertSinkPad)
-        {
-            Logger::Write(Logger::ZONE_DEBUG, "Video", "Could not get video convert sink pad");
-            FreeElements();
-            return false;
-        }
+            if(!videoConvertSinkPad)
+            {
+                Logger::Write(Logger::ZONE_DEBUG, "Video", "Could not get video convert sink pad");
+                FreeElements();
+                return false;
+            }
 
+            g_object_set(G_OBJECT(VideoSink), "sync", TRUE, "qos", FALSE, NULL);
 
-        g_object_set(G_OBJECT(VideoSink), "sync", TRUE, "qos", FALSE, NULL);
+            GstPad *videoSinkPad = gst_ghost_pad_new("sink", videoConvertSinkPad);
+            if(!videoSinkPad)
+            {
+                Logger::Write(Logger::ZONE_DEBUG, "Video", "Could not get video bin sink pad");
+                FreeElements();
+                gst_object_unref(videoConvertSinkPad);
+                videoConvertSinkPad = NULL;
+                return false;
+            }
 
-        GstPad *videoSinkPad = gst_ghost_pad_new("sink", videoConvertSinkPad);
-        if(!videoSinkPad)
-        {
-            Logger::Write(Logger::ZONE_DEBUG, "Video", "Could not get video bin sink pad");
-            FreeElements();
+            gst_element_add_pad(VideoBin, videoSinkPad);
             gst_object_unref(videoConvertSinkPad);
             videoConvertSinkPad = NULL;
-            return false;
         }
-
-        gst_element_add_pad(VideoBin, videoSinkPad);
-        gst_object_unref(videoConvertSinkPad);
-        videoConvertSinkPad = NULL;
-
         g_object_set(G_OBJECT(Playbin), "uri", file.c_str(), "video-sink", VideoBin, NULL);
 
         IsPlaying = true;
@@ -337,8 +353,6 @@ void GStreamerVideo::Update(float dt)
         {
             if(GST_MESSAGE_TYPE(msg) == GST_MESSAGE_EOS)
             {
-                Logger::Write(Logger::ZONE_ERROR, "Video", "EOS!");
-
                 PlayCount++;
 
                 //todo: nesting hazard

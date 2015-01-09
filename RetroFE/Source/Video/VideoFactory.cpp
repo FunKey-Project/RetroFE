@@ -20,19 +20,19 @@
 
 bool VideoFactory::Enabled = true;
 int VideoFactory::NumLoops = 0;
+IVideo *VideoFactory::Instance = NULL;
 
 IVideo *VideoFactory::CreateVideo()
 {
-    IVideo *instance = NULL;
 
     if(Enabled)
     {
-        instance = new GStreamerVideo();
-        instance->Initialize();
-        ((GStreamerVideo *)(instance))->SetNumLoops(NumLoops);
+        Instance = new GStreamerVideo();
+        Instance->Initialize();
+        ((GStreamerVideo *)(Instance))->SetNumLoops(NumLoops);
     }
 
-    return instance;
+    return Instance;
 }
 
 void VideoFactory::SetEnabled(bool enabled)
