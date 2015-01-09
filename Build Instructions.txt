@@ -4,19 +4,31 @@ Install Python 2.7
 Install sphinx with python
 Install visual studio 2012
 Install cmake
-Install git
+Install tortoisehg
 Install 7zip
 Install gstreamer and gstreamer-devel (x86, not 64 bit!) from http://gstreamer.freedesktop/org/data/pkg/windows/1.4.0
 
 To build:
-1. Run "Source/SetupEnvironment.bat" to setup necessary variables and paths to compile in visual studio
+1. Run "RetroFE/Source/SetupEnvironment.bat" to setup necessary variables and paths to compile in visual studio
 2. Generate your visual studio solution files with running:
+   cd RetroFE
    cmake Source -BBuild -DGSTREAMER_ROOT=c:/gstreamer/1.0/x86 -DVERSION_MAJOR=0 -DVERSION_MINOR=0 -DVERSION_BUILD=0
 3. Compile your environment:
    cd Build
    msbuild RetroFE.sln
 
-Runnable environment is stored in Build/Artifacts/RetroFE
+To package:
+Create a Artifacts/RetroFE folder
+Copy Package/Environment/Common/* to Artifacts/RetroFE
+Copy Package/Environment/Windows/* to Artifacts/RetroFE
+Find all libaries to include, copy them to Artifacts/RetroFE/Core
+Copy Build/Debug/RetroFE.exe to Artifacts/RetroFE/Core
+
+Build Configuration/Configuration.sln
+copy Configuration.exe to Artifacts/RetroFE
+
+Build documentation and copy to Artifacts/RetroFE/Documentation
+
 
 Linux Setup
 ===============================
@@ -26,9 +38,16 @@ sudo apt-get install git g++ cmake zlib1g-dev libsdl2-2.0 libsdl2-mixer-2.0 libs
                 libsdl2-dev libsdl2-mixer-dev libsdl2-image-dev libsdl2-ttf-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
                 libgstreamer-plugins-good1.0-dev zlib1g-dev libglib2.0-0 libglib2.0-dev sqlite3
 
-To Build:
+To build:
+   cd RetroFE
    cmake Source -BBuild -DVERSION_MAJOR=0 -DVERSION_MINOR=0 -DVERSION_BUILD=0
    cd Build
    make
 
-Runnable environment is stored in Build/Artifacts/RetroFE
+To package:
+Create a Artifacts/RetroFE folder
+Copy Package/Environment/Common/* to Artifacts/RetroFE
+Copy Package/Environment/Linux/* to Artifacts/RetroFE
+Copy Build/RetroFE binary to Artifacts/RetroFE
+
+Build documentation and copy to Artifacts/RetroFE/Documentation
