@@ -18,7 +18,6 @@
 #include "Database/CollectionDatabase.h"
 #include "Collection/CollectionInfoBuilder.h"
 #include "Collection/CollectionInfo.h"
-#include "Database/DB.h"
 #include "Database/MamelistMetadata.h"
 #include "Execute/Launcher.h"
 #include "Utility/Log.h"
@@ -49,26 +48,9 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    DB db(Configuration::GetAbsolutePath() + "/cache.db");
+    RetroFE p(config);
 
-    if(!db.Initialize())
-    {
-        return -1;
-    }
-
-
-    CollectionDatabase *cdb = InitializeCollectionDatabase(db, config);
-    if(!cdb)
-    {
-        return -1;
-    }
-
-    RetroFE p(*cdb, config);
-
-    if(p.Initialize())
-    {
-        p.Run();
-    }
+    p.Run();
 
     p.DeInitialize();
 
@@ -184,24 +166,3 @@ bool StartLogging()
     return true;
 }
 
-CollectionDatabase *InitializeCollectionDatabase(DB &db, Configuration &config)
-{
-    CollectionDatabase *cdb = NULL;
-    std::string dbFile = (Configuration::GetAbsolutePath() + "/cache.db");
-    std::ifstream infile(dbFile.c_str());
-
-    cdb = new CollectionDatabase(db, config);
-
-    if(!cdb->Initialize())
-    {
-        delete cdb;
-        cdb = NULL;
-    }
-    else if(!cdb->Import())
-    {
-        delete cdb;
-        cdb = NULL;
-    }
-
-    return cdb;
-}

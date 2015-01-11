@@ -5,6 +5,7 @@
 
 #include "Collection/Item.h"
 #include "Control/UserInput.h"
+#include "Database/DB.h"
 #include "Execute/AttractMode.h"
 #include "Graphics/FontCache.h"
 #include "Video/IVideo.h"
@@ -19,9 +20,8 @@ class Page;
 class RetroFE
 {
 public:
-    RetroFE(CollectionDatabase &db, Configuration &c);
+    RetroFE(Configuration &c);
     virtual ~RetroFE();
-    bool Initialize();
     bool DeInitialize();
     void Run();
     void FreeGraphicsMemory();
@@ -29,6 +29,10 @@ public:
     void LaunchEnter();
     void LaunchExit();
 private:
+    bool Initialized;
+    SDL_Thread *InitializeThread;
+    static int Initialize(void *context);
+
     enum RETROFE_STATE
     {
         RETROFE_IDLE,
@@ -43,15 +47,19 @@ private:
     };
 
     void Render();
+    CollectionDatabase *InitializeCollectionDatabase(DB &db, Configuration &config);
     bool Back(bool &exit);
     void Quit();
+    void WaitToInitialize();
     Page *LoadPage(std::string collectionName);
+    Page *LoadSplashPage();
     RETROFE_STATE ProcessUserInput(Page *page);
     void Update(float dt, bool scrollActive);
     std::string GetLayout(std::string collectionName);
     std::vector<Item *> *GetCollection(std::string collectionName);
     Configuration &Config;
-    CollectionDatabase &CollectionDB;
+    DB *Db;
+    CollectionDatabase *CollectionDB;
     UserInput Input;
     std::list<Page *> PageChain;
     float KeyInputDisable;

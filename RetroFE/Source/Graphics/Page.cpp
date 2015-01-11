@@ -97,7 +97,11 @@ void Page::SetMenu(ScrollingList *s)
 {
     // todo: delete the old menu
     Menu = s;
-    Menu->AddComponentForNotifications(this);
+    
+    if(Menu)
+    {
+        Menu->AddComponentForNotifications(this);
+    }
 }
 
 bool Page::AddComponent(Component *c)
@@ -127,7 +131,7 @@ bool Page::IsIdle()
 {
     bool idle = true;
 
-    if(!Menu->IsIdle())
+    if(Menu && !Menu->IsIdle())
     {
         idle = false;
     }
@@ -146,7 +150,7 @@ bool Page::IsIdle()
 
 bool Page::IsHidden()
 {
-    bool hidden = Menu->IsHidden();
+    bool hidden = (!Menu || Menu->IsHidden());
 
     for(unsigned int i = 0; hidden && i < NUM_LAYERS; ++i)
     {
@@ -161,7 +165,10 @@ bool Page::IsHidden()
 
 void Page::Start()
 {
-    Menu->TriggerEnterEvent();
+    if(Menu)
+    {
+        Menu->TriggerEnterEvent();
+    }
 
     if(LoadSoundChunk)
     {
@@ -179,8 +186,10 @@ void Page::Start()
 
 void Page::Stop()
 {
-    Menu->TriggerExitEvent();
-
+    if(Menu)
+    {
+        Menu->TriggerExitEvent();
+    }
     if(UnloadSoundChunk)
     {
         UnloadSoundChunk->Play();
@@ -204,7 +213,10 @@ Item *Page::GetSelectedItem()
 void Page::RemoveSelectedItem()
 {
     //todo: change method to RemoveItem() and pass in SelectedItem
-    Menu->RemoveSelectedItem();
+    if(Menu)
+    {
+        Menu->RemoveSelectedItem();
+    }
     SelectedItem = NULL;
 
 }
@@ -216,8 +228,11 @@ void Page::Highlight()
 
     if(item)
     {
-        Menu->TriggerHighlightEvent(item);
-        Menu->SetScrollActive(ScrollActive);
+        if(Menu)
+        {
+            Menu->TriggerHighlightEvent(item);
+            Menu->SetScrollActive(ScrollActive);
+        }
 
         for(unsigned int i = 0; i < NUM_LAYERS; ++i)
         {
@@ -252,18 +267,24 @@ void Page::SetScrolling(ScrollDirection direction)
         break;
     }
 
-    Menu->SetScrollDirection(menuDirection);
+    if(Menu)
+    {
+        Menu->SetScrollDirection(menuDirection);
+    }
 }
 
 void Page::PageScroll(ScrollDirection direction)
 {
-    if(direction == ScrollDirectionForward)
+    if(Menu)
     {
-        Menu->PageDown();
-    }
-    if(direction == ScrollDirectionBack)
-    {
-        Menu->PageUp();
+        if(direction == ScrollDirectionForward)
+        {
+            Menu->PageDown();
+        }
+        if(direction == ScrollDirectionBack)
+        {
+            Menu->PageUp();
+        }
     }
 }
 
@@ -271,16 +292,20 @@ void Page::PageScroll(ScrollDirection direction)
 void Page::SetItems(std::vector<Item *> *items)
 {
     std::vector<ComponentItemBinding *> *sprites = ComponentItemBindingBuilder::BuildCollectionItems(items);
-
-    Menu->SetItems(sprites);
+    if(Menu) 
+    {
+        Menu->SetItems(sprites);
+    }
 }
 
 
 
 void Page::Update(float dt)
 {
-    Menu->Update(dt);
-
+    if(Menu)
+    {
+        Menu->Update(dt);
+    }
     if(SelectedItemChanged && !HasSoundedWhenActive && HighlightSoundChunk)
     {
         // skip the first sound being played (as it is part of the on-enter)
@@ -317,7 +342,10 @@ void Page::Draw()
             (*it)->Draw();
         }
 
-        Menu->Draw(i);
+        if(Menu)
+        {
+            Menu->Draw(i);
+        }
     }
 }
 
@@ -329,7 +357,10 @@ const std::string& Page::GetCollectionName() const
 void Page::FreeGraphicsMemory()
 {
     Logger::Write(Logger::ZONE_DEBUG, "Page", "Free");
-    Menu->FreeGraphicsMemory();
+    if(Menu)
+    {
+        Menu->FreeGraphicsMemory();
+    }
 
     if(LoadSoundChunk) LoadSoundChunk->Free();
     if(UnloadSoundChunk) UnloadSoundChunk->Free();
@@ -349,7 +380,10 @@ void Page::AllocateGraphicsMemory()
 {
     FirstSoundPlayed = false;
     Logger::Write(Logger::ZONE_DEBUG, "Page", "Allocating graphics memory");
-    Menu->AllocateGraphicsMemory();
+    if(Menu)
+    {
+        Menu->AllocateGraphicsMemory();
+    }
 
     if(LoadSoundChunk) LoadSoundChunk->Allocate();
     if(UnloadSoundChunk) UnloadSoundChunk->Allocate();
@@ -368,7 +402,10 @@ void Page::AllocateGraphicsMemory()
 
 void Page::LaunchEnter()
 {
-    Menu->LaunchEnter();
+    if(Menu)
+    {
+        Menu->LaunchEnter();
+    }
 
     for(unsigned int i = 0; i < NUM_LAYERS; ++i)
     {
@@ -381,7 +418,10 @@ void Page::LaunchEnter()
 
 void Page::LaunchExit()
 {
-    Menu->LaunchExit();
+    if(Menu)
+    {
+        Menu->LaunchExit();
+    }
 
     for(unsigned int i = 0; i < NUM_LAYERS; ++i)
     {

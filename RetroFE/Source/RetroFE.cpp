@@ -33,11 +33,15 @@
 #ifdef WIN32
 #include <Windows.h>
 #include <SDL2/SDL_syswm.h>
+#include <SDL2/SDL_thread.h>
 #endif
 
-RetroFE::RetroFE(CollectionDatabase &db, Configuration &c)
-    : Config(c)
-    , CollectionDB(db)
+RetroFE::RetroFE(Configuration &c)
+    : Initialized(false)
+    , InitializeThread(NULL)
+    , Config(c)
+    , Db(NULL)
+    , CollectionDB(NULL)
     , Input(Config)
     , KeyInputDisable(0)
     , CurrentTime(0)
@@ -49,41 +53,88 @@ RetroFE::~RetroFE()
     DeInitialize();
 }
 
+CollectionDatabase *RetroFE::InitializeCollectionDatabase(DB &db, Configuration &config)
+{
+    CollectionDatabase *cdb = NULL;
+
+    std::string dbFile = (Configuration::GetAbsolutePath() + "/cache.db");
+    std::ifstream infile(dbFile.c_str());
+
+    cdb = new CollectionDatabase(db, config);
+
+    if(!cdb->Initialize())
+    {
+        delete cdb;
+        cdb = NULL;
+    }
+    else if(!cdb->Import())
+    {
+        delete cdb;
+        cdb = NULL;
+    }
+
+    return cdb;
+}
+
 void RetroFE::Render()
 {
     SDL_LockMutex(SDL::GetMutex());
     SDL_SetRenderDrawColor(SDL::GetRenderer(), 0x0, 0x0, 0x00, 0xFF);
     SDL_RenderClear(SDL::GetRenderer());
 
-    Page *page = PageChain.back();
-
-    if(page)
+    if(PageChain.size() > 0) 
     {
-        page->Draw();
-    }
+        Page *page = PageChain.back();
 
+        if(page)
+        {
+            page->Draw();
+        }
+    }
     SDL_RenderPresent(SDL::GetRenderer());
     SDL_UnlockMutex(SDL::GetMutex());
 }
 
-bool RetroFE::Initialize()
+int RetroFE::Initialize(void *context)
 {
+    int retVal = 0;
+    RetroFE *instance = static_cast<RetroFE *>(context);
+
     Logger::Write(Logger::ZONE_INFO, "RetroFE", "Initializing");
-
-    if(!Input.Initialize()) return false;
-    if(!SDL::Initialize(Config)) return false;
-    FC.Initialize();
-
     bool videoEnable = true;
     int videoLoop = 0;
 
-    Config.GetProperty("videoEnable", videoEnable);
-    Config.GetProperty("videoLoop", videoLoop);
+    if(!instance->Input.Initialize()) return -1;
+
+    instance->Db = new DB(Configuration::GetAbsolutePath() + "/cache.db");
+
+    if(!instance->Db->Initialize())
+    {
+        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize database");
+        return -1;
+    }
+
+
+    instance->CollectionDB = instance->InitializeCollectionDatabase(*instance->Db, instance->Config);
+
+    if(!instance->CollectionDB)
+    {
+        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize CollectionDB!");
+        delete instance->Db;
+        return -1;
+    }
+
+
+    instance->FC.Initialize();
+
+    instance->Config.GetProperty("videoEnable", videoEnable);
+    instance->Config.GetProperty("videoLoop", videoLoop);
 
     VideoFactory::SetEnabled(videoEnable);
     VideoFactory::SetNumLoops(videoLoop);
 
-    return true;
+    instance->Initialized = true;
+    return 0;
 }
 
 void RetroFE::LaunchEnter()
@@ -149,32 +200,59 @@ bool RetroFE::DeInitialize()
         delete page;
         PageChain.pop_back();
     }
+    if(Db)
+    {
+        delete Db;
+        Db = NULL;
+    }
 
+    if(CollectionDB)
+    {
+        delete CollectionDB;
+        Db = NULL;
+    }
+    Initialized = false;
     //todo: handle video deallocation
     return retVal;
 }
 
 void RetroFE::Run()
 {
+    if(!SDL::Initialize(Config)) return;
+
+    InitializeThread = SDL_CreateThread(Initialize, "RetroFEInit", (void *)this);
+
+    if(!InitializeThread)
+    {
+        Logger::Write(Logger::ZONE_INFO, "RetroFE", "Could not initialize RetroFE");
+        return;
+    }
+
     int attractModeTime = 0;
     std::string firstCollection = "Main";
     bool running = true;
     Item *nextPageItem = NULL;
     bool adminMode = false;
-    RETROFE_STATE state = RETROFE_IDLE;
+    RETROFE_STATE state = RETROFE_NEW;
 
     Config.GetProperty("attractModeTime", attractModeTime);
     Config.GetProperty("firstCollection", firstCollection);
 
     Attract.SetIdleTime(static_cast<float>(attractModeTime));
-    LoadPage(firstCollection);
+
+    int initializeStatus = 0;
+
+    // load the initial splash screen, unload it once it is complete
+    Page * page = LoadSplashPage();
+    bool splashMode = true;
+
+    Launcher l(*this, Config);
 
     while (running)
     {
         float lastTime = 0;
         float deltaTime = 0;
-        Page *page = PageChain.back();
-        Launcher l(*this, Config);
+        page = PageChain.back();
 
         if(!page)
         {
@@ -182,12 +260,22 @@ void RetroFE::Run()
             running = false;
             break;
         }
-
         // todo: This could be transformed to use the state design pattern.
         switch(state)
         {
         case RETROFE_IDLE:
-            state = ProcessUserInput(page);
+            if(page && !splashMode)
+            {
+                state = ProcessUserInput(page);
+            }
+
+            if(Initialized && splashMode)
+            {
+                SDL_WaitThread(InitializeThread, &initializeStatus);
+                state = RETROFE_BACK_WAIT;
+                page->Stop();
+            }
+
             break;
 
         case RETROFE_NEXT_PAGE_REQUEST:
@@ -219,7 +307,8 @@ void RetroFE::Run()
                 PageChain.pop_back();
                 delete page;
 
-                page = PageChain.back();
+                page = (splashMode) ? LoadPage(firstCollection) : PageChain.back();
+                splashMode = false;
                 CurrentTime = (float)SDL_GetTicks() / 1000;
 
                 page->AllocateGraphicsMemory();
@@ -267,12 +356,16 @@ void RetroFE::Run()
                 SDL_Delay(static_cast<unsigned int>(sleepTime));
             }
 
-            Attract.Update(deltaTime, *page);
+            if(page)
+            {
+                Attract.Update(deltaTime, *page);
+                page->Update(deltaTime);
+            }
 
-            page->Update(deltaTime);
             Render();
         }
     }
+
 }
 
 
@@ -372,6 +465,30 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
 }
 
 
+void RetroFE::WaitToInitialize()
+{
+    Logger::Write(Logger::ZONE_INFO, "RetroFE", "Loading splash screen");
+
+    PageBuilder pb("splash", "", Config, &FC);
+    Page * page = pb.BuildPage();
+
+    while(!Initialized)
+    {
+    SDL_SetRenderDrawColor(SDL::GetRenderer(), 0x0, 0x0, 0x00, 0xFF);
+    SDL_RenderClear(SDL::GetRenderer());
+//    image->Draw();
+    //todo: decouple page from a collection
+    page->Draw();
+    SDL_RenderPresent(SDL::GetRenderer());
+
+        SDL_Delay(2000);
+    }
+
+    int status = 0;
+    delete page;    
+    SDL_WaitThread(InitializeThread, &status);
+}
+
 
 Page *RetroFE::LoadPage(std::string collectionName)
 {
@@ -405,14 +522,27 @@ Page *RetroFE::LoadPage(std::string collectionName)
 
     return page;
 }
+Page *RetroFE::LoadSplashPage()
+{
+    PageBuilder pb("splash", "", Config, &FC);
+    std::vector<Item *> *coll = new std::vector<Item *>();
+    Page * page = pb.BuildPage();
+    page->SetItems(coll);
+    page->Start();
+    PageChain.push_back(page);
+
+    return page;
+}
+
 
 std::vector<Item *> *RetroFE::GetCollection(std::string collectionName)
 {
-    std::vector<Item *> *collection = new std::vector<Item *>(); // the page will deallocate this once its done
+    // the page will deallocate this once its done
+    std::vector<Item *> *collection = new std::vector<Item *>(); 
     MenuParser mp;
 
-    mp.GetMenuItems(&CollectionDB, collectionName, *collection);
-    CollectionDB.GetCollection(collectionName, *collection);
+    mp.GetMenuItems(CollectionDB, collectionName, *collection);
+    CollectionDB->GetCollection(collectionName, *collection);
 
     if(collection->size() == 0)
     {

@@ -229,6 +229,8 @@ Page *PageBuilder::BuildPage()
         Logger::Write(Logger::ZONE_DEBUG, "Layout", "Created page");
     }
 
+    Logger::Write(Logger::ZONE_INFO, "Layout", "Initialized");
+
     return page;
 }
 
@@ -307,14 +309,12 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
 {
     xml_node<> *menuXml = layout->first_node("menu");
 
-    if(!menuXml)
+    if(menuXml)
     {
-        Logger::Write(Logger::ZONE_ERROR, "Layout", "Missing menu tag");
-        return false;
+        ScrollingList *scrollingList = BuildMenu(menuXml);
+        page->SetMenu(scrollingList);
     }
 
-    ScrollingList *scrollingList = BuildMenu(menuXml);
-    page->SetMenu(scrollingList);
 
     for(xml_node<> *componentXml = layout->first_node("container"); componentXml; componentXml = componentXml->next_sibling("container"))
     {
