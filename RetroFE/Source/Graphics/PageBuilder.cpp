@@ -765,11 +765,7 @@ void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info, xml_no
 
     if(backgroundAlpha)
     {
-        std::stringstream ss(backgroundAlpha->value());
-        int num;
-        ss >> std::hex >> num;
-
-        info->SetBackgroundAlpha(static_cast<float>(num)/255);
+        info->SetBackgroundAlpha( alpha ? Utils::ConvertFloat(backgroundAlpha->value()) : 1);
     }
 
 }
