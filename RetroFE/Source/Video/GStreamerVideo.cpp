@@ -104,12 +104,6 @@ void GStreamerVideo::ProcessNewBuffer (GstElement *fakesink, GstBuffer *buf, Gst
 
         if(video->Height && video->Width)
         {
-            if(video->Texture && video->VideoBufferSize != map.size)
-            {
-                SDL_DestroyTexture(video->Texture);
-                video->Texture = NULL;
-            }
-
             // keep the largest video buffer allocated to avoid the penalty of reallocating and deallocating
             if(!video->VideoBuffer || video->MaxVideoBufferSize < map.size) 
             {
@@ -174,6 +168,13 @@ bool GStreamerVideo::Stop()
     {
         (void)gst_element_set_state(Playbin, GST_STATE_NULL);
     }
+
+    if(Texture) 
+    {
+        SDL_DestroyTexture(Texture);
+        Texture = NULL;
+    }
+
 
    // FreeElements();
 
