@@ -363,7 +363,7 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
         }
         else
         {
-            FC->LoadFont(Font, FontColor);
+            FC->LoadFont(Font);
             Text *c = new Text(value->value(), FC->GetFont(Font), FontColor, ScaleX, ScaleY);
             ViewInfo *v = c->GetBaseViewInfo();
 
@@ -427,7 +427,7 @@ void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, 
         {
             if(type)
             {
-                FC->LoadFont(Font, FontColor);
+                FC->LoadFont(Font);
                 c = new ReloadableText(type->value(), FC->GetFont(Font), FontColor, LayoutKey, Collection, ScaleX, ScaleY);
             }
         }
@@ -500,7 +500,7 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
     }
 
     // on default, text will be rendered to the menu. Preload it into cache.
-    FC->LoadFont(Font, FontColor);
+    FC->LoadFont(Font);
 
     menu = new ScrollingList(Config, ScaleX, ScaleY, FC->GetFont(Font), FontColor, LayoutKey, Collection, imageType);
 

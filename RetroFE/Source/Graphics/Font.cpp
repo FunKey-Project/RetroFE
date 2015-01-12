@@ -50,7 +50,7 @@ bool Font::GetRect(unsigned int charCode, GlyphInfo &glyph)
     return false;
 }
 
-bool Font::Initialize(std::string fontPath, SDL_Color color)
+bool Font::Initialize(std::string fontPath)
 {
     TTF_Font *font = TTF_OpenFont(fontPath.c_str(), 128);
 
@@ -70,6 +70,11 @@ bool Font::Initialize(std::string fontPath, SDL_Color color)
         GlyphInfoBuild *info = new GlyphInfoBuild;
         memset(info, sizeof(GlyphInfoBuild), 0);
 
+        SDL_Color color;
+        color.r = 255;
+        color.g = 255;
+        color.b = 255;
+        color.a = 255;
         info->Surface = TTF_RenderGlyph_Blended(font, i, color);
         TTF_GlyphMetrics(font, i, &info->Glyph.MinX, &info->Glyph.MaxX, &info->Glyph.MinY, &info->Glyph.MaxY, &info->Glyph.Advance);
 
@@ -114,7 +119,9 @@ bool Font::Initialize(std::string fontPath, SDL_Color color)
     bmask = 0x00ff0000;
     amask = 0xff000000;
 #endif
+
     SDL_Surface *atlasSurface = SDL_CreateRGBSurface(0, atlasWidth, atlasHeight, 24, rmask, gmask, bmask, amask);
+    SDL_FillRect(atlasSurface, NULL, SDL_MapRGB(atlasSurface->format, 0, 0, 0));
 
     std::map<unsigned int, GlyphInfoBuild *>::iterator it;
     for(it = Atlas.begin(); it != Atlas.end(); it++)
@@ -126,7 +133,7 @@ bool Font::Initialize(std::string fontPath, SDL_Color color)
     }
 
     SDL_LockMutex(SDL::GetMutex());
-    SDL_SetColorKey(atlasSurface, SDL_TRUE, SDL_MapRGB(atlasSurface->format, 0, 0, 0));
+    SDL_SetColorKey(atlasSurface, SDL_TRUE, SDL_MapRGB(atlasSurface->format, 0x00, 0x00, 0x00));
     Texture = SDL_CreateTextureFromSurface(SDL::GetRenderer(), atlasSurface);
     SDL_FreeSurface(atlasSurface);
     SDL_UnlockMutex(SDL::GetMutex());

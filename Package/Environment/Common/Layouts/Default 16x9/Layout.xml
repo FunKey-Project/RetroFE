@@ -1,15 +1,12 @@
-<layout width="1920" height="1080" font="Lato-Black.ttf" fontColor="ecf0f1">
+<layout width="1920" height="1080" font="Roboto-Bold.ttf" fontColor="c0842b">
    <sound type="load" src="load.wav" /> 
    <sound type="unload" src="unload.wav" />
    <sound type="highlight" src="highlight.wav" />
    <sound type="select" src="select.wav" />
 
    <!-- background -->
-   <container backgroundColor="000000" backgroundAlpha="FF" x="0" y="0" height="stretch" width="stretch" layer="0" alpha="0.3" />
+   <container backgroundColor="C0392B" backgroundAlpha="1.0" x="0" y="0" height="stretch" width="stretch" layer="0"/>
    
-   <!-- border for menu  -->
-   <container backgroundColor="c0392b" backgroundAlpha="99" x="center" y="0" height="stretch" width="center" layer="1" alpha="0.3" />   
-
    <menu orientation="horizontal" algorithm="easeincircular" xOffset="500" y="0" width="center" height="stretch" speed="0.05" acceleration="0.05" layer="3">
     <itemDefaults spacing="10" x="center" height="30" font-size="30" alpha="0.5" xOffset="20" yOrigin="center" />
     <item index="start" height="0" spacing="0" alpha="0"/>
