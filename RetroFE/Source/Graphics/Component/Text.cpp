@@ -101,6 +101,7 @@ void Text::Draw()
             rect.y = static_cast<int>(yOrigin);
 
             SDL_LockMutex(SDL::GetMutex());
+            SDL_SetTextureBlendMode(t, SDL_BLENDMODE_ADD);
             SDL_SetTextureColorMod(t, FontColor.r, FontColor.g, FontColor.b);
             SDL_UnlockMutex(SDL::GetMutex());
 
