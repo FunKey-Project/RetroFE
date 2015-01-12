@@ -105,26 +105,30 @@ void ScrollingList::SetItems(std::vector<ComponentItemBinding *> *spriteList)
     FirstSpriteIndex = 0;
 
     // loop the scroll points if there are not enough
-    unsigned int originalSize = SpriteList->size();
 
-    while(ScrollPoints && ScrollPoints->size()+4 > SpriteList->size())
+    if(SpriteList)
     {
-        for(unsigned int i = 0; i < originalSize; ++i)
+        unsigned int originalSize = SpriteList->size();
+
+        while(ScrollPoints && ScrollPoints->size()+4 > SpriteList->size() && SpriteList->size() > 0)
         {
-            Item *newItem = new Item();
-            Item *originalItem = SpriteList->at(i)->GetCollectionItem();
+            for(unsigned int i = 0; i < originalSize; ++i)
+            {
+                Item *newItem = new Item();
+                Item *originalItem = SpriteList->at(i)->GetCollectionItem();
 
-            *newItem = *originalItem;
-            ComponentItemBinding *newSprite = new ComponentItemBinding(newItem);
-            SpriteList->push_back(newSprite);
+                *newItem = *originalItem;
+                ComponentItemBinding *newSprite = new ComponentItemBinding(newItem);
+                SpriteList->push_back(newSprite);
+            }
         }
-    }
-    for(unsigned int i = 0; SpriteList && ScrollPoints && i < SelectedSpriteListIndex; ++i)
-    {
-        CircularDecrement(FirstSpriteIndex, SpriteList);
-    }
+        for(unsigned int i = 0; ScrollPoints && i < SelectedSpriteListIndex; ++i)
+        {
+            CircularDecrement(FirstSpriteIndex, SpriteList);
+        }
 
-    IsScrollChangedComplete = true;
+        IsScrollChangedComplete = true;
+    }
 }
 
 void ScrollingList::SetPoints(std::vector<ViewInfo *> *scrollPoints)
@@ -313,7 +317,7 @@ void ScrollingList::Update(float dt)
         unsigned int numIterations = (ScrollPoints->size() > SpriteList->size()) ? SpriteList->size() : ScrollPoints->size();
         unsigned int start = (ScrollPoints->size() > SpriteList->size()) ? SelectedSpriteListIndex : 0;
 
-        for(unsigned int i = start; i < start+numIterations; i++)
+        for(unsigned int i = start; i < start+numIterations && spriteIndex < SpriteList->size(); i++)
         {
             ComponentItemBinding *s = SpriteList->at(spriteIndex);
             unsigned int nextI = GetNextTween(i, ScrollPoints);

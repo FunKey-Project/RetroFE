@@ -136,6 +136,7 @@ bool Font::Initialize(std::string fontPath)
 
     Texture = SDL_CreateTextureFromSurface(SDL::GetRenderer(), atlasSurface);
     SDL_FreeSurface(atlasSurface);
+    SDL_SetTextureBlendMode(Texture, SDL_BLENDMODE_ADD);
     SDL_UnlockMutex(SDL::GetMutex());
 
     TTF_CloseFont(font);
