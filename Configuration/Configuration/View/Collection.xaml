@@ -125,6 +125,7 @@
                 <Button Grid.Row="6" Grid.Column="2" Content="Browse" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=Data.BrowseFolderCommand}" CommandParameter="Snap" />
             </Grid>
         </GroupBox>
+        <!--
         <GroupBox Header="Submenus">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
@@ -157,5 +158,6 @@
 
             </StackPanel>
         </GroupBox>
+        -->
     </StackPanel>
 </UserControl>
