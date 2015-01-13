@@ -334,6 +334,7 @@ void ScrollingList::Update(float dt)
                 currentViewInfo->SetImageWidth(c->GetBaseViewInfo()->GetImageWidth());
                 nextViewInfo->SetImageHeight(c->GetBaseViewInfo()->GetImageHeight());
                 nextViewInfo->SetImageWidth(c->GetBaseViewInfo()->GetImageWidth());
+                nextViewInfo->SetBackgroundAlpha(c->GetBaseViewInfo()->GetBackgroundAlpha());
 
                 //todo: 30 is a magic number
                 ViewInfo *spriteViewInfo = c->GetBaseViewInfo();
@@ -349,6 +350,7 @@ void ScrollingList::Update(float dt)
                 spriteViewInfo->SetAlpha(Tween::AnimateSingle(LINEAR, currentViewInfo->GetAlpha(), nextViewInfo->GetAlpha(), scrollPeriod, CurrentAnimateTime));
                 spriteViewInfo->SetAngle(Tween::AnimateSingle(LINEAR, currentViewInfo->GetAngle(), nextViewInfo->GetAngle(), scrollPeriod, CurrentAnimateTime));
                 spriteViewInfo->SetFontSize(Tween::AnimateSingle(LINEAR, currentViewInfo->GetFontSize(), nextViewInfo->GetFontSize(), scrollPeriod, CurrentAnimateTime));
+                spriteViewInfo->SetBackgroundAlpha(Tween::AnimateSingle(LINEAR, currentViewInfo->GetBackgroundAlpha(), nextViewInfo->GetBackgroundAlpha(), scrollPeriod, CurrentAnimateTime));
                 c->Update(dt);
 
             }

@@ -55,6 +55,7 @@ bool Tween::GetTweenProperty(std::string name, TweenProperty &property)
         TweenPropertyMap["xoffset"] = TWEEN_PROPERTY_X_OFFSET;
         TweenPropertyMap["yoffset"] = TWEEN_PROPERTY_Y_OFFSET;
         TweenPropertyMap["fontSize"] = TWEEN_PROPERTY_FONT_SIZE;
+        TweenPropertyMap["backgroundalpha"] = TWEEN_PROPERTY_BACKGROUND_ALPHA;
     }
 
     std::transform(name.begin(), name.end(), name.begin(), ::tolower);

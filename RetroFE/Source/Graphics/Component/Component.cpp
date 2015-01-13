@@ -314,6 +314,10 @@ bool Component::Animate(bool loop)
             case TWEEN_PROPERTY_FONT_SIZE:
                 GetBaseViewInfo()->SetFontSize(value);
                 break;
+
+            case TWEEN_PROPERTY_BACKGROUND_ALPHA:
+                GetBaseViewInfo()->SetBackgroundAlpha(value);
+                break;
             }
         }
 
