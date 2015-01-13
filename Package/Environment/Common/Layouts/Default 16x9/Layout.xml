@@ -32,6 +32,19 @@
    </image>   
 
    
+   <container backgroundColor="FFFFFF" backgroundAlpha="0.3" x="480" y="160" xOrigin="center" height="500" width="660" layer="4">
+      <onEnter>
+         <set duration=".4">
+            <animate type="backgroundAlpha" from="0" to="0.3" algorithm="easeinquadratic"/>
+         </set>
+      </onEnter>
+      <onExit>
+         <set duration=".2">
+            <animate type="backgroundAlpha" from="0.3" to="0" algorithm="easeinquadratic"/>
+         </set>
+      </onExit>
+   </container>
+
    <!-- video (or snapshot if video doesn't exist)-->
    <reloadableVideo imageType="snap" x="480" y="170" xOrigin="center" height="480" width="640" layer="5">
       <onHighlightEnter>
@@ -44,11 +57,8 @@
             <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
          </set>
       </onHighlightExit>
-
    </reloadableVideo>
    
-
-   <!-- boxart -->
    <reloadableImage type="box" x="480" y="750" xOrigin="center" height="240" layer="4">
       <onHighlightEnter>
          <set duration=".4">
