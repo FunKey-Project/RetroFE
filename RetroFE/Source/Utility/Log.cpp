@@ -74,4 +74,5 @@ void Logger::Write(Zone zone, std::string component, std::string message)
     std::stringstream ss;
     ss << "[" << timeStr << "] [" << zoneStr << "] [" << component << "] " << message << std::endl;
     std::cout << ss.str();
+    std::cout.flush();
 }
