@@ -33,6 +33,7 @@ private:
     int ScreenWidth;
     SDL_Color FontColor;
     std::string Font;
+    int FontSize;
     FontCache *FC; //todo: don't need Font itself, just need cache instances
     void LoadReloadableImages(rapidxml::xml_node<> *layout, std::string tagName, Page *page);
 

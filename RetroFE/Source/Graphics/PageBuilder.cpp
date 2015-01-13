@@ -54,12 +54,13 @@ PageBuilder::PageBuilder(std::string layoutKey, std::string collection, Configur
     , ScaleY(1)
     , ScreenHeight(0)
     , ScreenWidth(0)
+    , FontSize(24)
     , FC(fc)
 {
     ScreenWidth = SDL::GetWindowWidth();
     ScreenHeight = SDL::GetWindowHeight();
     FontColor.a = 255;
-    FontColor.r = 255;
+    FontColor.r = 0;
     FontColor.g = 0;
     FontColor.b = 0;
 }
@@ -110,6 +111,8 @@ Page *PageBuilder::BuildPage()
             xml_attribute<> *layoutHeightXml = root->first_attribute("height");
             xml_attribute<> *fontXml = root->first_attribute("font");
             xml_attribute<> *fontColorXml = root->first_attribute("fontColor");
+            xml_attribute<> *fontSizeXml = root->first_attribute("loadFontSize");
+
             int layoutHeight;
             int layoutWidth;
             if(!layoutWidthXml || !layoutHeightXml)
@@ -119,7 +122,6 @@ Page *PageBuilder::BuildPage()
             }
             if(fontXml)
             {
-                //todo: reuse from ComponentBuilder. Not sure how since it relies on knowing the collection
                 std::string fontPropertyKey  = "layouts." + LayoutKey + ".font";
                 Config.SetProperty(fontPropertyKey, fontXml->value());
 
@@ -143,6 +145,11 @@ Page *PageBuilder::BuildPage()
                 FontColor.g = intColor & 0xFF;
                 intColor >>= 8;
                 FontColor.r = intColor & 0xFF;
+            }
+
+            if(fontSizeXml)
+            {
+                FontSize = Utils::ConvertInt(fontSizeXml->value());
             }
 
             layoutWidth = Utils::ConvertInt(layoutWidthXml->value());
@@ -363,7 +370,7 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
         }
         else
         {
-            FC->LoadFont(Font, FontColor);
+            FC->LoadFont(Font, FontSize, FontColor);
             Text *c = new Text(value->value(), FC->GetFont(Font), FontColor, ScaleX, ScaleY);
             ViewInfo *v = c->GetBaseViewInfo();
 
@@ -427,7 +434,7 @@ void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, 
         {
             if(type)
             {
-                FC->LoadFont(Font, FontColor);
+                FC->LoadFont(Font, FontSize, FontColor);
                 c = new ReloadableText(type->value(), FC->GetFont(Font), FontColor, LayoutKey, Collection, ScaleX, ScaleY);
             }
         }
@@ -500,7 +507,7 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
     }
 
     // on default, text will be rendered to the menu. Preload it into cache.
-    FC->LoadFont(Font, FontColor);
+    FC->LoadFont(Font, FontSize, FontColor);
 
     menu = new ScrollingList(Config, ScaleX, ScaleY, FC->GetFont(Font), FontColor, LayoutKey, Collection, imageType);
 
@@ -765,7 +772,7 @@ void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info, xml_no
 
     if(backgroundAlpha)
     {
-        info->SetBackgroundAlpha( alpha ? Utils::ConvertFloat(backgroundAlpha->value()) : 1);
+        info->SetBackgroundAlpha( backgroundAlpha ? Utils::ConvertFloat(backgroundAlpha->value()) : 1);
     }
 
 }

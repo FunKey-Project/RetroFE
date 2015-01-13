@@ -13,7 +13,7 @@ public:
     void Initialize();
     void DeInitialize();
     FontCache();
-    bool LoadFont(std::string font, SDL_Color color);
+    bool LoadFont(std::string font, int fontSize, SDL_Color color);
     Font *GetFont(std::string font);
 
     virtual ~FontCache();

@@ -100,11 +100,6 @@ void Text::Draw()
             rect.w = static_cast<int>(w);
             rect.y = static_cast<int>(yOrigin);
 
-            SDL_LockMutex(SDL::GetMutex());
-            SDL_SetTextureBlendMode(t, SDL_BLENDMODE_ADD);
-            SDL_SetTextureColorMod(t, FontColor.r, FontColor.g, FontColor.b);
-            SDL_UnlockMutex(SDL::GetMutex());
-
             SDL::RenderCopy(t, static_cast<char>(info->GetAlpha() * 255), &charRect, &rect, info->GetAngle());
             rect.x += static_cast<int>(glyph.Advance * scale);
         }

@@ -50,46 +50,9 @@ bool Font::GetRect(unsigned int charCode, GlyphInfo &glyph)
     return false;
 }
 
-void SetSurfaceAlpha (SDL_Surface *surface, Uint8 alpha)
+bool Font::Initialize(std::string fontPath, int fontSize, SDL_Color color)
 {
-    SDL_PixelFormat* fmt = surface->format;
-
-    // If surface has no alpha channel, just set the surface alpha.
-    if( fmt->Amask == 0 ) {
-        SDL_SetSurfaceAlphaMod( surface, alpha );
-    }
-    // Else change the alpha of each pixel.
-    else {
-        unsigned bpp = fmt->BytesPerPixel;
-        // Scaling factor to clamp alpha to [0, alpha].
-        float scale = alpha / 255.0f;
-
-        SDL_LockSurface(surface);
-
-        for (int y = 0; y < surface->h; ++y) 
-        for (int x = 0; x < surface->w; ++x) {
-            // Get a pointer to the current pixel.
-            Uint32* pixel_ptr = (Uint32 *)( 
-                    (Uint8 *)surface->pixels
-                    + y * surface->pitch
-                    + x * bpp
-                    );
-
-            // Get the old pixel components.
-            Uint8 r, g, b, a;
-            SDL_GetRGBA( *pixel_ptr, fmt, &r, &g, &b, &a );
-
-            // Set the pixel with the new alpha.
-            *pixel_ptr = SDL_MapRGBA( fmt, r, g, b, (Uint8)(scale * a) );
-        }   
-
-        SDL_UnlockSurface(surface);
-    }       
-}       
-
-bool Font::Initialize(std::string fontPath, SDL_Color color)
-{
-    TTF_Font *font = TTF_OpenFont(fontPath.c_str(), 128);
+    TTF_Font *font = TTF_OpenFont(fontPath.c_str(), fontSize);
 
     if (!font)
     {

@@ -1,7 +1,11 @@
-<layout width="1920" height="1080" font="Age.otf" fontColor="ecf0f1">
+<layout width="1920" height="1080">
+   <sound type="load" src="load.wav" /> 
+   <sound type="unload" src="unload.wav" />
+   <sound type="highlight" src="highlight.wav" />
+   <sound type="select" src="select.wav" />
    
    <!-- border for menu  -->
-   <container backgroundColor="c0392b" backgroundAlpha="99" x="0" y="0" height="stretch" width="stretch" layer="0" alpha="0.3" />   
+   <container backgroundColor="C0392B" backgroundAlpha="1.0" x="0" y="0" height="stretch" width="stretch" layer="0" />   
    
    <!-- logo -->
    <image x="center" y="center" height="150" xOrigin="center" yOrigin="center" src="logo.png" layer="1" alpha="1">

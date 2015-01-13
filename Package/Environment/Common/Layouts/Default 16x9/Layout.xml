@@ -1,4 +1,4 @@
-<layout width="1920" height="1080" font="Roboto-Bold.ttf" fontColor="c0842b">
+<layout width="1920" height="1080" font="Age.otf" loadFontSize="32" fontColor="eeeeee">
    <sound type="load" src="load.wav" /> 
    <sound type="unload" src="unload.wav" />
    <sound type="highlight" src="highlight.wav" />
@@ -7,13 +7,13 @@
    <!-- background -->
    <container backgroundColor="C0392B" backgroundAlpha="1.0" x="0" y="0" height="stretch" width="stretch" layer="0"/>
    
-   <menu orientation="horizontal" algorithm="easeincircular" xOffset="500" y="0" width="center" height="stretch" speed="0.05" acceleration="0.05" layer="3">
-    <itemDefaults spacing="10" x="center" height="30" font-size="30" alpha="0.5" xOffset="20" yOrigin="center" />
+   <!-- menu -->
+   <menu orientation="horizontal" algorithm="easeincircular" xOffset="500" y="10" width="center" height="1040" speed="0.05" acceleration="0.05">
+    <itemDefaults spacing="10" x="center" height="35" fontSize="35" alpha="0.5" xOffset="20" yOrigin="center"  layer="3"/>
     <item index="start" height="0" spacing="0" alpha="0"/>
-    <item index="2" spacing="0" height="50" fontSize="50" alpha="1" selected="true"/>
+    <item index="2" spacing="0" height="60" fontSize="60" alpha="1" selected="true"/>
     <item index="end" height="0" spacing="0" alpha="0"/>
    </menu>
-   
    
    <!-- logo -->
    <image x="30" y="20" height="80" src="logo.png" layer="1" alpha="0.3">
@@ -30,12 +30,9 @@
          </set>
       </onExit>
    </image>   
-   
-
 
    
    <!-- video (or snapshot if video doesn't exist)-->
-   
    <reloadableVideo imageType="snap" x="480" y="170" xOrigin="center" height="480" width="640" layer="5">
       <onHighlightEnter>
          <set duration=".4">
@@ -52,7 +49,6 @@
    
 
    <!-- boxart -->
-   <!--
    <reloadableImage type="box" x="480" y="750" xOrigin="center" height="240" layer="4">
       <onHighlightEnter>
          <set duration=".4">
@@ -66,34 +62,13 @@
       </onHighlightExit>
 
    </reloadableImage>
-   -->
    
 <!--   
-   <reloadableText type="title" x="0" y="bottom" xOffset="20" yOrigin="center" yOffset="-175" height="150" width="stretch" layer="1" fontSize="50">
-      <onHighlightEnter>
-         <set duration=".2">
-            <animate type="x" from="right" to="0" algorithm="easeinquadratic"/>
-            <animate type="xOrigin" from="right" to="left" algorithm="easeinquadratic"/>
-         </set>
-      </onHighlightEnter>
-      <onHighlightExit>
-         <set duration=".2">
-            <animate type="x" from="0" to="left" algorithm="easeinquadratic"/>
-            <animate type="xOrigin" from="left" to="right" algorithm="easeinquadratic"/>
-         </set>
-      </onHighlightExit>
-   </reloadableText>
-
-   <reloadableText type="manufacturer" x="left" y="bottom" xOrigin="left" yOrigin="bottom" xOffset="10" yOffset="-10" fontSize="20" layer="0">
-   </reloadableText>
-
-   <reloadableText type="year" x="left" y="bottom" xOrigin="left" yOrigin="bottom" xOffset="10" yOffset="-30" fontSize="20" layer="0">
-   </reloadableText>
-   <reloadableText type="numberPlayers" x="left" y="bottom" xOrigin="left" yOrigin="bottom" xOffset="10" yOffset="-70" fontSize="20" layer="0">
-   </reloadableText>
-
-   <reloadableText type="numberButtons" x="left" y="bottom" xOrigin="left" yOrigin="bottom" xOffset="10" yOffset="-90" fontSize="20" layer="0">
-   </reloadableText>
+   <reloadableText type="title" x="0" y="bottom" xOffset="20" yOrigin="center" yOffset="-175" height="150" width="stretch" layer="1" fontSize="50" />
+   <reloadableText type="manufacturer" x="left" y="bottom" xOrigin="left" yOrigin="bottom" xOffset="10" yOffset="-10" fontSize="20" layer="0" />
+   <reloadableText type="year" x="left" y="bottom" xOrigin="left" yOrigin="bottom" xOffset="10" yOffset="-30" fontSize="20" layer="0" />
+   <reloadableText type="numberPlayers" x="left" y="bottom" xOrigin="left" yOrigin="bottom" xOffset="10" yOffset="-70" fontSize="20" layer="0" />
+   <reloadableText type="numberButtons" x="left" y="bottom" xOrigin="left" yOrigin="bottom" xOffset="10" yOffset="-90" fontSize="20" layer="0" />
    -->
  </layout>
 
