@@ -50,8 +50,44 @@ bool Font::GetRect(unsigned int charCode, GlyphInfo &glyph)
     return false;
 }
 
+void SetSurfaceAlpha (SDL_Surface *surface, Uint8 alpha)
+{
+    SDL_PixelFormat* fmt = surface->format;
 
-bool Font::Initialize(std::string fontPath)
+    // If surface has no alpha channel, just set the surface alpha.
+    if( fmt->Amask == 0 ) {
+        SDL_SetSurfaceAlphaMod( surface, alpha );
+    }
+    // Else change the alpha of each pixel.
+    else {
+        unsigned bpp = fmt->BytesPerPixel;
+        // Scaling factor to clamp alpha to [0, alpha].
+        float scale = alpha / 255.0f;
+
+        SDL_LockSurface(surface);
+
+        for (int y = 0; y < surface->h; ++y) 
+        for (int x = 0; x < surface->w; ++x) {
+            // Get a pointer to the current pixel.
+            Uint32* pixel_ptr = (Uint32 *)( 
+                    (Uint8 *)surface->pixels
+                    + y * surface->pitch
+                    + x * bpp
+                    );
+
+            // Get the old pixel components.
+            Uint8 r, g, b, a;
+            SDL_GetRGBA( *pixel_ptr, fmt, &r, &g, &b, &a );
+
+            // Set the pixel with the new alpha.
+            *pixel_ptr = SDL_MapRGBA( fmt, r, g, b, (Uint8)(scale * a) );
+        }   
+
+        SDL_UnlockSurface(surface);
+    }       
+}       
+
+bool Font::Initialize(std::string fontPath, SDL_Color color)
 {
     TTF_Font *font = TTF_OpenFont(fontPath.c_str(), 128);
 
@@ -71,10 +107,6 @@ bool Font::Initialize(std::string fontPath)
         GlyphInfoBuild *info = new GlyphInfoBuild;
         memset(info, sizeof(GlyphInfoBuild), 0);
 
-        SDL_Color color;
-        color.r = 255;
-        color.g = 255;
-        color.b = 255;
         color.a = 255;
         info->Surface = TTF_RenderGlyph_Blended(font, i, color);
         TTF_GlyphMetrics(font, i, &info->Glyph.MinX, &info->Glyph.MaxX, &info->Glyph.MinY, &info->Glyph.MaxY, &info->Glyph.Advance);
@@ -121,8 +153,7 @@ bool Font::Initialize(std::string fontPath)
     amask = 0xff000000;
 #endif
 
-    SDL_Surface *atlasSurface = SDL_CreateRGBSurface(0, atlasWidth, atlasHeight, 24, rmask, gmask, bmask, amask);
-
+    SDL_Surface *atlasSurface = SDL_CreateRGBSurface(0, atlasWidth, atlasHeight, 32, rmask, gmask, bmask, amask);
     std::map<unsigned int, GlyphInfoBuild *>::iterator it;
     for(it = Atlas.begin(); it != Atlas.end(); it++)
     {
@@ -131,12 +162,10 @@ bool Font::Initialize(std::string fontPath)
         SDL_FreeSurface(info->Surface);
         info->Surface = NULL;
     }
-
     SDL_LockMutex(SDL::GetMutex());
 
     Texture = SDL_CreateTextureFromSurface(SDL::GetRenderer(), atlasSurface);
     SDL_FreeSurface(atlasSurface);
-    SDL_SetTextureBlendMode(Texture, SDL_BLENDMODE_ADD);
     SDL_UnlockMutex(SDL::GetMutex());
 
     TTF_CloseFont(font);

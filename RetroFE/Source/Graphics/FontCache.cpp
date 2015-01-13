@@ -66,14 +66,14 @@ Font *FontCache::GetFont(std::string fontPath)
     return t;
 }
 
-bool FontCache::LoadFont(std::string fontPath)
+bool FontCache::LoadFont(std::string fontPath, SDL_Color color)
 {
     std::map<std::string, Font *>::iterator it = FontFaceMap.find(fontPath);
 
     if(it == FontFaceMap.end())
     {
         Font *f = new Font();
-        f->Initialize(fontPath);
+        f->Initialize(fontPath, color);
         FontFaceMap[fontPath] = f;
     }
 

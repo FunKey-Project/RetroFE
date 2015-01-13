@@ -22,7 +22,7 @@ public:
 
     Font();
     virtual ~Font();
-    bool Initialize(std::string fontPath);
+    bool Initialize(std::string fontPath, SDL_Color color);
     void DeInitialize();
     SDL_Texture *GetTexture();
     bool GetRect(unsigned int charCode, GlyphInfo &glyph);
