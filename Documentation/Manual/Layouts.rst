@@ -27,8 +27,9 @@ Attribute                        Description
 ===========================      =====================================================================================================================================
 width                            The virtual width to use for this layout. This will be scaled automatically by the frontend if the screen resolution is different.
 height                           The virtual height to use for this layout. This will be scaled automatically by the frontend if the screen resolution is different. 
-font                             Location of the font (relative to the layout folder)
-fontColor                        RGB color of the font (in hex)
+font                             Location of the font (relative to the layout folder). TTF is only supported.
+fontColor                        RGB color of the font (in hex, i.e. "336699")
+loadFontSize                     The size of the font to load. Lower font sizes is more blurred, Higher font sizes are a little more pixelated. 24 is an ideal value.
 ===========================      =====================================================================================================================================
 
 The following example uses a layout that is setup for 1024x768 pixels (4:3 aspect ratio). The frontend will handle layout scaling if your monitor runs at a larger resolution
@@ -58,9 +59,12 @@ A component is a graphical item to be displayed on your screen (i.e. a menu, ima
 Top Level Components             Description
 ===========================      ===========================================================================
 <menu>                           Menu for layout (can only contain one menu per layout)
+<container>                      An empty container block (typically used for creating colored blocks)
 <image>                          Display a single image (i.e. a background image)
 <reloadableImage>                An image that is reloaded with one for a particular selected item
 <reloadableVideo>                Display a video for the selected item
+<reloadableText>                 Display text for the selected item
+<text>                           Display custom text
 ===========================      ===========================================================================
 
 Component attributes
@@ -77,7 +81,7 @@ xOffset                          Relative X offset of how many pixels to shift t
 yOffset                          Relative Y offset of how many pixels to shift the object from y (y + yOffset)
 xOrigin                          X offset on image to use as the pin point for placement
 yOrigin                          Y offset on image to use as the pin point for placement
-transparency                     0 = 0% visible, 0.5=50% visible, 1=100% visible
+alpha                            0 = 0% visible, 0.5=50% visible, 1=100% visible
 angle                            Angle to rotate image, in degrees
 width                            Width of the component. Image will be scaled appropriately if not specified.
 height                           Height of the component. Image will be scaled appropriately if not specified.
@@ -85,7 +89,9 @@ minWidth                         Minimum width to allow the image to be (if scal
 minHeight                        Minimum height to allow the image to be (if scaling is needed)
 maxWidth                         Maximum width to allow the image to be (if scaling is needed)
 maxHeight                        Maximum height to allow the image to be (if scaling is needed)
-fontSize						 Size of font to display component is rendering text
+fontSize						             Size of font to display component is rendering text
+backgroundColor                  Fill the component with a background color
+backgroundAalpha                 Background color transparency: 0 = 0% visible, 0.5=50% visible, 1=100% visible
 ===========================      ================================================================================
 
 (As a reminder, all examples shown below must be inside a <layout> tag)
@@ -443,6 +449,29 @@ If you do not want to display an image component if the video does not exist, si
 
    <reloadableVideo x="center" y="center" height="200" />
 
+Reloadable Text
+##############################
+
+Displays textual info for the currently selected item
+
+Component attributes
+====================
+
+See below for a list of supported attributes (in addition to the standard component attributes listed above).
+
+===========================      =====================================================================================================================================================================
+Attribute                        Description
+===========================      =====================================================================================================================================================================
+type                             Valid values are: numberButtons, numberPlayers, year, title, manufacturer
+===========================      =====================================================================================================================================================================
+
+Example to display the manufacturer and title for the selected game
+.. code-block:: xml
+
+   <reloadableText type="manufacturer"  x="0" y="0" fontSize="20" height="30"/>
+   <reloadableText type="title"  0="0" y="60" fontSize="20" height="30"/>
+
+   
 Rendering Text
 ##############################
 
@@ -470,19 +499,47 @@ Menu
 
 The menu supports animations just like every other component. There can be only one menu per layout.
 
-See below for a list of supported attributes (in addition to the standard component attributes listed above).
-
-
-
-menu <item> tag
+Component attributes
 ====================
 
+See below for a list of supported attributes (in addition to the standard component attributes listed above).
+
+===========================      =====================================================================================================================================================================
+Attribute                        Description
+===========================      =====================================================================================================================================================================
+type                             set to "custom" if you desire to pick individual points (absolute points). Use this mode when doing a showcase, wheel, etc...
+===========================      =====================================================================================================================================================================
+
+
+menu <itemDefaults> tag
+=========================
+  Specifies the default values for each item. 
+
+   <menu orientation="horizontal" algorithm="easeincircular" xOffset="500" y="10" width="center" height="1040" speed="0.05" acceleration="0.05">
+    
+menu <itemDefaults> tag
+===============================
+Item defaults define the normal properties of each menu item on a page. All component attributes can be used in here along with the following attributes:
+
+===========================      =====================================================================================================================================================================
+Attribute                        Description
+===========================      =====================================================================================================================================================================
+spacing                          Pixel spacing between each menu item (ignored when using the menu in custom mode)
+index                            Specify a options for a particular menu item when in list mode (first=first visible item, last=last visible item, start= first - 1, end - last + 1)
+===========================      =====================================================================================================================================================================
+    
+
+    
+menu <item> tag in custom mode
+===============================
+
 Each menu <item> tag represents a point on where to display a scrolling list item in the menu. When scrolling, the items themselves will scroll/move from one item point to another.
-If an attribute in <item> is not specified, it will use the attribute specified in the <menu tag>.
+If an attribute in <item> is not specified, it will use the attribute specified in the <itemDefaults> tag.
 
 .. code-block:: xml
 
-   <menu x="center" y="20" fontColor="FFCC00">
+   <menu type="custom">
+      <itemDefaults x="center" y="20" fontColor="FFCC00" layer="3"/>
       <item xOrigin="center" yOrigin="20" />
       <item xOrigin="center" yOrigin="40" />
       <item xOrigin="center" yOrigin="60" />
@@ -491,7 +548,22 @@ If an attribute in <item> is not specified, it will use the attribute specified 
       <item xOrigin="center" yOrigin="120" />
    </menu>
 
+menu <item> tag in list mode (default)
+=========================================
 
+Each menu <item> tag represents an offset relative to the predefined menu x,y location. When scrolling, the items themselves will scroll/move from one item point to another.
+If an attribute in <item> is not specified, it will use the attribute specified in the <itemDefaults> tag.
+
+.. code-block:: xml
+
+   <menu orientation="horizontal" algorithm="easeincircular" xOffset="500" y="10" width="center" height="1040" speed="0.05" acceleration="0.05">
+    <itemDefaults spacing="10" x="center" height="35" fontSize="35" alpha="0.5" xOffset="20" yOrigin="center"  layer="3"/>
+    <item index="start" height="0" spacing="0" alpha="0"/>
+    <item index="2" spacing="0" height="60" fontSize="60" alpha="1" selected="true"/>
+    <item index="end" height="0" spacing="0" alpha="0"/>
+   </menu>
+
+   
 Animating the menu and list items
 ==================================
 Not only can the entire menu have an animation performed, the menu item at a particular point can also be animated. See below:
