@@ -3,5 +3,9 @@
    <item collection="Nintendo Entertainment System"/>
    <item collection="NES and Arcade"/>
    <item collection="Arcade"/>
+
+   <!-- You could go as many layers deep as you would like. For instance, you could infinitely go into the main menu -->
+   <!--
    <item collection="Main"/>
+   -->
 </menu>
