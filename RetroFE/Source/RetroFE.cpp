@@ -524,7 +524,7 @@ Page *RetroFE::LoadPage(std::string collectionName)
 }
 Page *RetroFE::LoadSplashPage()
 {
-    PageBuilder pb("splash", "", Config, &FC);
+    PageBuilder pb("Splash", "", Config, &FC);
     std::vector<Item *> *coll = new std::vector<Item *>();
     Page * page = pb.BuildPage();
     page->SetItems(coll);
