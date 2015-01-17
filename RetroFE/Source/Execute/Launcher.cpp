@@ -265,18 +265,11 @@ bool Launcher::GetExtensions(std::string &extensions, std::string collection)
 
 bool Launcher::GetCollectionDirectory(std::string &directory, std::string collection)
 {
-    std::string itemsPathKey = "collections." + collection + ".list.path";
     std::string itemsPathValue;
-
+    
     // find the items path folder (i.e. ROM path)
-    if(!Config.GetPropertyAbsolutePath(itemsPathKey, itemsPathValue))
-    {
-        directory = "";
-    }
-    else
-    {
-        directory += itemsPathValue + "/";
-    }
+    Config.GetCollectionAbsolutePath(collection, itemsPathValue);
+    directory += itemsPathValue + "/";
 
     return true;
 }

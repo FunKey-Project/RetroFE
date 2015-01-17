@@ -107,18 +107,8 @@ bool CollectionInfoBuilder::ImportCollection(std::string name)
     std::string metadataType;
     std::string metadataPath;
 
-    if(!Conf.GetPropertyAbsolutePath(listItemsPathKey, listItemsPath))
-    {
-        Logger::Write(Logger::ZONE_INFO, "Collections", "Property \"" + listItemsPathKey + "\" does not exist. Assuming \"" + name + "\" is a menu");
-        return false;
-    }
-
-    if(!Conf.GetProperty(extensionsKey, extensions))
-    {
-        Logger::Write(Logger::ZONE_INFO, "Collections", "Property \"" + extensionsKey + "\" does not exist. Assuming \"" + name + "\" is a menu");
-        return false;
-    }
-
+    Conf.GetCollectionAbsolutePath(name, listItemsPath);
+    (void)Conf.GetProperty(extensionsKey, extensions);
     (void)Conf.GetProperty(metadataTypeKey, metadataType);
     (void)Conf.GetProperty(metadataPathKey, metadataPath);
 

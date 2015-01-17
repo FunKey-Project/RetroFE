@@ -410,30 +410,13 @@ void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, 
             Logger::Write(Logger::ZONE_ERROR, "Layout", "Image component in layout does not specify a source image file");
         }
 
-        Logger::Write(Logger::ZONE_INFO, "Layout", " INFO TEST!!");
         if(type && (tagName == "reloadableVideo" || tagName == "reloadableImage"))
         {
             std::string configImagePath = "collections." + Collection + ".media." + type->value();
 
-            if(!Config.GetPropertyAbsolutePath(configImagePath, reloadableImagePath))
-            {
-                std::string baseMediaPath;
-                Config.GetPropertyAbsolutePath("baseMediaPath", baseMediaPath);
-                
-                reloadableImagePath = baseMediaPath + "/" + Collection + "/" + Utils::UppercaseFirst(Utils::ToLower(type->value()));
-                Logger::Write(Logger::ZONE_INFO, "Layout", "Collection config has not overridden " + configImagePath + ". Using the default path \"" + reloadableImagePath + "\" instead");
-            }
+            Config.GetMediaPropertyAbsolutePath(Collection, type->value(), reloadableImagePath);
 
-            std::string configVideoPath = "collections." + Collection + ".media.video";
-
-            if(!Config.GetPropertyAbsolutePath(configVideoPath, reloadableVideoPath))
-            {
-                std::string baseMediaPath;
-                Config.GetPropertyAbsolutePath("baseMediaPath", baseMediaPath);
-                reloadableVideoPath = baseMediaPath + "/" + Collection + "/Video";
-                Logger::Write(Logger::ZONE_INFO, "Layout", "Collection config has not overridden " + configVideoPath + ". Using the default path \"" + reloadableVideoPath + "\" instead");
-
-            }
+            Config.GetMediaPropertyAbsolutePath(Collection, "video", reloadableVideoPath);
         }
 
 

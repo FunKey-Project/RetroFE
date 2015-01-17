@@ -340,6 +340,22 @@ void Configuration::GetMediaPropertyAbsolutePath(std::string collectionName, std
     }
 }
 
+void Configuration::GetCollectionAbsolutePath(std::string collectionName, std::string &value)
+{
+    std::string key = "collections" + collectionName + ".list.path";
+
+    if(!GetPropertyAbsolutePath(key, value))
+    {
+        std::string baseItemPath;
+        if(!GetPropertyAbsolutePath("baseItemPath", baseItemPath))
+        {
+            baseItemPath = "Assets";
+        }
+
+        value = baseItemPath + "/" + collectionName;
+    }
+}
+
 
 void Configuration::SetAbsolutePath(std::string absolutePath)
 {
