@@ -29,6 +29,7 @@ public:
     bool PropertyExists(std::string key);
     bool PropertyPrefixExists(std::string key);
     bool GetPropertyAbsolutePath(std::string key, std::string &value);
+    void GetMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, std::string &value);
     bool IsVerbose() const;
     void SetVerbose(bool verbose);
     std::string Translate(std::string str);

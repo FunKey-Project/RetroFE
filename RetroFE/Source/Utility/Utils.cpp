@@ -43,6 +43,17 @@ std::string Utils::ToLower(std::string str)
     return str;
 }
 
+std::string Utils::UppercaseFirst(std::string str)
+{
+    if(str.length() > 0)
+    {
+        std::locale loc;
+        str[0] = std::tolower(str[0], loc);
+    }
+
+    return str;
+}
+
 bool Utils::FindMatchingFile(std::string prefix, std::vector<std::string> &extensions, std::string &file)
 {
     for(unsigned int i = 0; i < extensions.size(); ++i)

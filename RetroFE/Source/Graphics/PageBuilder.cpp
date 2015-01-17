@@ -401,7 +401,6 @@ void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, 
             type = componentXml->first_attribute("imageType");
         }
 
-
         if(!type && tagName == "reloadableVideo")
         {
             Logger::Write(Logger::ZONE_WARNING, "Layout", "<reloadableImage> component in layout does not specify an imageType for when the video does not exist");
@@ -411,19 +410,29 @@ void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, 
             Logger::Write(Logger::ZONE_ERROR, "Layout", "Image component in layout does not specify a source image file");
         }
 
+        Logger::Write(Logger::ZONE_INFO, "Layout", " INFO TEST!!");
         if(type && (tagName == "reloadableVideo" || tagName == "reloadableImage"))
         {
             std::string configImagePath = "collections." + Collection + ".media." + type->value();
+
             if(!Config.GetPropertyAbsolutePath(configImagePath, reloadableImagePath))
             {
-                Logger::Write(Logger::ZONE_ERROR, "Layout", "Cannot process reloadable images because property \"" + configImagePath + "\" does not exist");
+                std::string baseMediaPath;
+                Config.GetPropertyAbsolutePath("baseMediaPath", baseMediaPath);
+                
+                reloadableImagePath = baseMediaPath + "/" + Collection + "/" + Utils::UppercaseFirst(Utils::ToLower(type->value()));
+                Logger::Write(Logger::ZONE_INFO, "Layout", "Collection config has not overridden " + configImagePath + ". Using the default path \"" + reloadableImagePath + "\" instead");
             }
 
             std::string configVideoPath = "collections." + Collection + ".media.video";
 
             if(!Config.GetPropertyAbsolutePath(configVideoPath, reloadableVideoPath))
             {
-                Logger::Write(Logger::ZONE_WARNING, "Layout", "Could not find videos folder as \"" + configVideoPath + "\" does not exist");
+                std::string baseMediaPath;
+                Config.GetPropertyAbsolutePath("baseMediaPath", baseMediaPath);
+                reloadableVideoPath = baseMediaPath + "/" + Collection + "/Video";
+                Logger::Write(Logger::ZONE_INFO, "Layout", "Collection config has not overridden " + configVideoPath + ". Using the default path \"" + reloadableVideoPath + "\" instead");
+
             }
         }
 

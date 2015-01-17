@@ -324,6 +324,23 @@ bool Configuration::GetPropertyAbsolutePath(std::string key, std::string &value)
     return retVal;
 }
 
+void Configuration::GetMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, std::string &value)
+{
+    std::string key = "media." + collectionName + "." + mediaType;
+
+    if(!GetPropertyAbsolutePath(key, value))
+    {
+        std::string baseMediaPath;
+        if(!GetPropertyAbsolutePath("baseMediaPath", baseMediaPath))
+        {
+            baseMediaPath = "Media";
+        }
+
+        value = baseMediaPath + "/" + collectionName + "/" + Utils::UppercaseFirst(Utils::ToLower(mediaType));
+    }
+}
+
+
 void Configuration::SetAbsolutePath(std::string absolutePath)
 {
     AbsolutePath = absolutePath;

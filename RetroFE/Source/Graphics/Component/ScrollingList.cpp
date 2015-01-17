@@ -433,7 +433,6 @@ void ScrollingList::AllocateTexture(ComponentItemBinding *s)
         //todo: will create a runtime fault if not of the right type
         //todo: remove coupling from knowing the collection name
 
-        std::string collectionKey ="collections." + CollectionName + ".media." + ImageType;
         std::string videoKey ="collections." + CollectionName + ".media.video";
         std::string imagePath;
         std::string videoPath;
@@ -447,9 +446,11 @@ void ScrollingList::AllocateTexture(ComponentItemBinding *s)
            t = new VideoComponent(videoPath, item->GetFullTitle(), ScaleX, ScaleY);
         }
         */
-        if(!t && Config.GetPropertyAbsolutePath(collectionKey, imagePath))
+        if(!t)
         {
+
             ImageBuilder imageBuild;
+            Config.GetMediaPropertyAbsolutePath(CollectionName, ImageType, imagePath);
             t = imageBuild.CreateImage(imagePath, item->GetName(), ScaleX, ScaleY);
 
             if(!t && item->GetTitle() != item->GetFullTitle())
