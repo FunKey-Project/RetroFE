@@ -19,7 +19,8 @@ public:
 
     // gets the global configuration
     bool Import(std::string keyPrefix, std::string file);
-
+    void SetCurrentCollection(std::string collection);
+    std::string GetCurrentCollection();
     bool GetProperty(std::string key, std::string &value);
     bool GetProperty(std::string key, int &value);
     bool GetProperty(std::string key, bool &value);
@@ -30,7 +31,7 @@ public:
     bool GetPropertyAbsolutePath(std::string key, std::string &value);
     bool IsVerbose() const;
     void SetVerbose(bool verbose);
-    bool IsRequiredPropertiesSet();
+    std::string Translate(std::string str);
 
 private:
     bool ParseLine(std::string keyPrefix, std::string line, int lineCount);
@@ -40,5 +41,7 @@ private:
     bool Verbose;
 
     static std::string AbsolutePath;
+    std::string CurrentCollection;
     PropertiesType Properties;
+
 };

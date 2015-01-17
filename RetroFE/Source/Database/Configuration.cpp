@@ -70,6 +70,16 @@ void Configuration::Initialize()
     }
 }
 
+void Configuration::SetCurrentCollection(std::string collection)
+{
+    CurrentCollection = collection;
+}
+
+std::string Configuration::GetCurrentCollection()
+{
+    return CurrentCollection;
+}
+
 bool Configuration::Import(std::string keyPrefix, std::string file)
 {
     bool retVal = true;
@@ -133,7 +143,6 @@ bool Configuration::ParseLine(std::string keyPrefix, std::string line, int lineC
         value = line.substr(position + delimiter.length(), line.length());
         value = TrimEnds(value);
 
-
         Properties.insert(PropertiesPair(key, value));
 
         std::stringstream ss;
@@ -171,6 +180,7 @@ std::string Configuration::TrimEnds(std::string str)
 bool Configuration::GetProperty(std::string key, std::string &value)
 {
     bool retVal = false;
+
     if(Properties.find(key) != Properties.end())
     {
         value = Properties[key];
@@ -182,6 +192,7 @@ bool Configuration::GetProperty(std::string key, std::string &value)
         Logger::Write(Logger::ZONE_DEBUG, "Configuration", "Missing property " + key);
     }
 
+    value = Translate(value);
 
     return retVal;
 }
@@ -210,15 +221,6 @@ bool Configuration::GetProperty(std::string key, bool &value)
 
     if(retVal)
     {
-        std::stringstream ss;
-        ss << strValue;
-
-        for(unsigned int i=0; i < strValue.length(); ++i)
-        {
-            std::locale loc;
-            strValue[i] = std::tolower(strValue[i], loc);
-        }
-
         if(!strValue.compare("yes") || !strValue.compare("true"))
         {
             value = true;
@@ -342,4 +344,41 @@ void Configuration::SetVerbose(bool verbose)
     this->Verbose = verbose;
 }
 
+std::string Configuration::Translate(std::string str)
+{
+    std::string translated;
+    std::size_t startIndex = 0;
+
+    while(str.find("%") != std::string::npos) 
+    {
+        std::size_t startIndex = str.find("%");
+        std::string var = str.substr(startIndex + 1);
+
+        // copy everything before the first %
+        translated += str.substr(0, startIndex);
+
+        str = var; // discard the old unprocessed data up until the first %
+
+        std::size_t endIndex = var.find("%");
+        var = var.substr(0, endIndex);
+        str = str.substr(endIndex + 1);
+
+        std::string result;
+
+        if(var == "collectionName") 
+        {
+            result = GetCurrentCollection();
+        }
+        else
+        {
+            GetProperty(var, result);
+        }
+
+        translated += result;
+    }
+
+    //copy the remaining string
+    translated += str;
+    return translated;
+}
 

@@ -21,6 +21,8 @@
 #include <sstream>
 #include <fstream>
 #include <dirent.h>
+#include <locale>
+
 
 Utils::Utils()
 {
@@ -30,6 +32,16 @@ Utils::~Utils()
 {
 }
 
+std::string Utils::ToLower(std::string str)
+{
+    for(unsigned int i=0; i < str.length(); ++i)
+    {
+        std::locale loc;
+        str[i] = std::tolower(str[i], loc);
+    }
+
+    return str;
+}
 
 bool Utils::FindMatchingFile(std::string prefix, std::vector<std::string> &extensions, std::string &file)
 {

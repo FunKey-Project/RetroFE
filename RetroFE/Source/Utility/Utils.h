@@ -19,6 +19,7 @@ public:
     static std::string GetParentDirectory(std::string filePath);
     static std::string GetFileName(std::string filePath);
     static bool FindMatchingFile(std::string prefix, std::vector<std::string> &extensions, std::string &file);
+    static std::string ToLower(std::string str);
 private:
     Utils();
     virtual ~Utils();

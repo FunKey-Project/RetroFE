@@ -34,6 +34,7 @@ CollectionDatabase *InitializeCollectionDatabase(DB &db, Configuration &config);
 
 int main(int argc, char *argv[])
 {
+
     Configuration::Initialize();
 
     Configuration config;
