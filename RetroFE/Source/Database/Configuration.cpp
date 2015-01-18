@@ -177,7 +177,7 @@ std::string Configuration::TrimEnds(std::string str)
     return str;
 }
 
-bool Configuration::GetProperty(std::string key, std::string &value)
+bool Configuration::GetRawProperty(std::string key, std::string &value)
 {
     bool retVal = false;
 
@@ -192,7 +192,28 @@ bool Configuration::GetProperty(std::string key, std::string &value)
         Logger::Write(Logger::ZONE_DEBUG, "Configuration", "Missing property " + key);
     }
 
-    value = Translate(value);
+    return retVal;
+}
+bool Configuration::GetProperty(std::string key, std::string &value)
+{
+    bool retVal = GetRawProperty(key, value);
+
+    std::string baseMediaPath;
+    std::string baseItemPath;
+    std::string collectionName;
+
+    GetRawProperty("baseMediaPath", baseMediaPath);
+    GetRawProperty("baseItemPath", baseItemPath);
+    collectionName = GetCurrentCollection();
+    
+    Logger::Write(Logger::ZONE_INFO, "Configuration", "PROPERTY " + key + "  BEFORE " + value);
+
+    value = Utils::Replace(value, "%BASE_MEDIA_PATH%", baseMediaPath);
+    value = Utils::Replace(value, "%BASE_ITEM_PATH%", baseItemPath);
+    value = Utils::Replace(value, "%COLLECTION_NAME%", collectionName);
+
+    Logger::Write(Logger::ZONE_INFO, "Configuration", "PROPERTY "+ key + " AFTER " + value);
+
 
     return retVal;
 }
@@ -342,7 +363,7 @@ void Configuration::GetMediaPropertyAbsolutePath(std::string collectionName, std
 
 void Configuration::GetCollectionAbsolutePath(std::string collectionName, std::string &value)
 {
-    std::string key = "collections" + collectionName + ".list.path";
+    std::string key = "collections." + collectionName + ".list.path";
 
     if(!GetPropertyAbsolutePath(key, value))
     {
@@ -376,42 +397,3 @@ void Configuration::SetVerbose(bool verbose)
 {
     this->Verbose = verbose;
 }
-
-std::string Configuration::Translate(std::string str)
-{
-    std::string translated;
-    std::size_t startIndex = 0;
-
-    while(str.find("%") != std::string::npos) 
-    {
-        std::size_t startIndex = str.find("%");
-        std::string var = str.substr(startIndex + 1);
-
-        // copy everything before the first %
-        translated += str.substr(0, startIndex);
-
-        str = var; // discard the old unprocessed data up until the first %
-
-        std::size_t endIndex = var.find("%");
-        var = var.substr(0, endIndex);
-        str = str.substr(endIndex + 1);
-
-        std::string result;
-
-        if(var == "collectionName") 
-        {
-            result = GetCurrentCollection();
-        }
-        else
-        {
-            GetProperty(var, result);
-        }
-
-        translated += result;
-    }
-
-    //copy the remaining string
-    translated += str;
-    return translated;
-}
-

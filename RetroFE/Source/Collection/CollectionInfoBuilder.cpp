@@ -59,6 +59,8 @@ bool CollectionInfoBuilder::LoadAllCollections()
         //       I remove this conditional check.
         if(*it != "Main")
         {
+            std::string oldCollection = Conf.GetCurrentCollection();
+            Conf.SetCurrentCollection(*it);
             if(ImportCollection(*it))
             {
                 Logger::Write(Logger::ZONE_INFO, "Collections", "Adding collection " + *it);
@@ -69,6 +71,7 @@ bool CollectionInfoBuilder::LoadAllCollections()
                 // ImportCollection() will print out an error to the log file.
                 retVal = false;
             }
+            Conf.SetCurrentCollection(oldCollection);
         }
     }
 

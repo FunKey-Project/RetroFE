@@ -33,9 +33,9 @@ public:
     void GetCollectionAbsolutePath(std::string collectionName, std::string &value);
     bool IsVerbose() const;
     void SetVerbose(bool verbose);
-    std::string Translate(std::string str);
 
 private:
+    bool GetRawProperty(std::string key, std::string &value);
     bool ParseLine(std::string keyPrefix, std::string line, int lineCount);
     std::string TrimEnds(std::string str);
     typedef std::map<std::string, std::string> PropertiesType;
