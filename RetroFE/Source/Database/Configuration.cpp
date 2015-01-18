@@ -210,7 +210,7 @@ bool Configuration::GetProperty(std::string key, std::string &value)
 
     value = Utils::Replace(value, "%BASE_MEDIA_PATH%", baseMediaPath);
     value = Utils::Replace(value, "%BASE_ITEM_PATH%", baseItemPath);
-    value = Utils::Replace(value, "%COLLECTION_NAME%", collectionName);
+    value = Utils::Replace(value, "%ITEM_COLLECTION_NAME%", collectionName);
 
     Logger::Write(Logger::ZONE_INFO, "Configuration", "PROPERTY "+ key + " AFTER " + value);
 
