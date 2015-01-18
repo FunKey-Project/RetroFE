@@ -206,15 +206,9 @@ bool Configuration::GetProperty(std::string key, std::string &value)
     GetRawProperty("baseItemPath", baseItemPath);
     collectionName = GetCurrentCollection();
     
-    Logger::Write(Logger::ZONE_INFO, "Configuration", "PROPERTY " + key + "  BEFORE " + value);
-
     value = Utils::Replace(value, "%BASE_MEDIA_PATH%", baseMediaPath);
     value = Utils::Replace(value, "%BASE_ITEM_PATH%", baseItemPath);
     value = Utils::Replace(value, "%ITEM_COLLECTION_NAME%", collectionName);
-
-    Logger::Write(Logger::ZONE_INFO, "Configuration", "PROPERTY "+ key + " AFTER " + value);
-
-
     return retVal;
 }
 
