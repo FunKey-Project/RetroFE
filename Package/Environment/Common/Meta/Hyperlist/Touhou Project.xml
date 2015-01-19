@@ -1,0 +1,249 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>Touhou Project</listname>
+		<lastlistupdate>07/17/2013</lastlistupdate>
+		<listversion>1.0 (Ongoing)</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="10.5th - Scarlet Weather Rhapsody" index="true" image="1">
+		<description>10.5th - Scarlet Weather Rhapsody</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tasogare Frontier / Team Shanghai Alice</manufacturer>
+		<year>2008</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="10th - Mountain of Faith" index="" image="">
+		<description>10th - Mountain of Faith</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team Shanghai Alice</manufacturer>
+		<year>2007</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="11th - Subterranean Animism" index="" image="">
+		<description>11th - Subterranean Animism</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team Shanghai Alice</manufacturer>
+		<year>2008</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="12.3th - Unthinkable Natural Law" index="" image="">
+		<description>12.3th - Unthinkable Natural Law</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tasogare Frontier / Team Shanghai Alice</manufacturer>
+		<year>2009</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="12.5th - Double Spoiler" index="" image="">
+		<description>12.5th - Double Spoiler</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team Shanghai Alice</manufacturer>
+		<year>2010</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="12.8th - Great Fairy Wars" index="" image="">
+		<description>12.8th - Great Fairy Wars</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team Shanghai Alice</manufacturer>
+		<year>2010</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="12th - Undefined Fantastic Object" index="" image="">
+		<description>12th - Undefined Fantastic Object</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team Shanghai Alice</manufacturer>
+		<year>2009</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="13.5th - Hopeless Masquerade" index="" image="">
+		<description>13.5th - Hopeless Masquerade</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team Shanghai Alice</manufacturer>
+		<year>2013</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="13th - Ten Desires" index="" image="">
+		<description>13th - Ten Desires</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team Shanghai Alice</manufacturer>
+		<year>2011</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="1th - Highly Responsive to Prayers" index="" image="">
+		<description>1th - Highly Responsive to Prayers</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ZUN</manufacturer>
+		<year>1996</year>
+		<genre>Breakout</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="2th - The Story of Eastern Wonderland" index="true" image="2">
+		<description>2th - The Story of Eastern Wonderland</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ZUN</manufacturer>
+		<year>1997</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="3th - Phantasmagoria of Dim Dream" index="true" image="3">
+		<description>3th - Phantasmagoria of Dim Dream</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ZUN</manufacturer>
+		<year>1997</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="4th - Lotus Land Story" index="true" image="4">
+		<description>4th - Lotus Land Story</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ZUN</manufacturer>
+		<year>1998</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="5th - Mystic Square" index="true" image="5">
+		<description>5th - Mystic Square</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ZUN</manufacturer>
+		<year>1998</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="6th - The Embodiment of Scarlet Devil" index="true" image="6">
+		<description>6th - The Embodiment of Scarlet Devil</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team Shanghai Alice</manufacturer>
+		<year>2002</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="7.5th - Immaterial and Missing Power" index="true" image="7">
+		<description>7.5th - Immaterial and Missing Power</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tasogare Frontier / Team Shanghai Alice</manufacturer>
+		<year>2004</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="7th - Perfect Cherry Blossom" index="" image="">
+		<description>7th - Perfect Cherry Blossom</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team Shanghai Alice</manufacturer>
+		<year>2003</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="8th - Imperishable Night" index="true" image="8">
+		<description>8th - Imperishable Night</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team Shanghai Alice</manufacturer>
+		<year>2004</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="9.5th - Shoot the Bullet" index="true" image="9">
+		<description>9.5th - Shoot the Bullet</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team Shanghai Alice</manufacturer>
+		<year>2005</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="9th - Phantasmagoria of Flower View" index="" image="">
+		<description>9th - Phantasmagoria of Flower View</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team Shanghai Alice</manufacturer>
+		<year>2005</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Banshiryuu" index="true" image="b">
+		<description>Banshiryuu</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Syunsatsu Sare Do / Amusement Makers</manufacturer>
+		<year>2008</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kioh Gyoku" index="true" image="k">
+		<description>Kioh Gyoku</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Amusement Makers</manufacturer>
+		<year>2001</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Samidare" index="true" image="s">
+		<description>Samidare</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>P.N.B / RebRank / Amusement Makers</manufacturer>
+		<year>2002</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shuusou Gyoku" index="" image="">
+		<description>Shuusou Gyoku</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>P.B.G / Amusement Makers</manufacturer>
+		<year>2000</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

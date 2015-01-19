@@ -1,0 +1,489 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>Bally Astrocade</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.0</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="280 Zzzap+Dodgem (USA)" index="true" image="2">
+		<description>280 Zzzap+Dodgem (USA)</description>
+		<cloneof></cloneof>
+		<crc>e4d285e5</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1978</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Amazing Maze+Tic Tac Toe (USA)" index="true" image="a">
+		<description>Amazing Maze+Tic Tac Toe (USA)</description>
+		<cloneof></cloneof>
+		<crc>cd57c485</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1979</year>
+		<genre>Multiplay</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Artillery Duel (USA)" index="" image="">
+		<description>Artillery Duel (USA)</description>
+		<cloneof></cloneof>
+		<crc>4f372019</crc>
+		<manufacturer>Astrocade</manufacturer>
+		<year>1982</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Astro Battle (USA)" index="" image="">
+		<description>Astro Battle (USA)</description>
+		<cloneof></cloneof>
+		<crc>1a050094</crc>
+		<manufacturer>Astrovision</manufacturer>
+		<year>1979</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bally Basic (USA)" index="true" image="b">
+		<description>Bally Basic (USA)</description>
+		<cloneof></cloneof>
+		<crc>70514687</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1978</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bally Pin (USA)" index="" image="">
+		<description>Bally Pin (USA)</description>
+		<cloneof></cloneof>
+		<crc>fb652bac</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1979</year>
+		<genre>Pinball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Biorhythm (USA)" index="" image="">
+		<description>Biorhythm (USA)</description>
+		<cloneof></cloneof>
+		<crc>fc4bd27c</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1981</year>
+		<genre>Rhythm</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Blackjack+Poker+Acey-Deucy (USA)" index="" image="">
+		<description>Blackjack+Poker+Acey-Deucy (USA)</description>
+		<cloneof></cloneof>
+		<crc>78d45a11</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1979</year>
+		<genre>Casino</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Blast Droids (USA)" index="" image="">
+		<description>Blast Droids (USA)</description>
+		<cloneof></cloneof>
+		<crc>79fe386b</crc>
+		<manufacturer>Esoterica</manufacturer>
+		<year>1983</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bowling (USA)" index="" image="">
+		<description>Bowling (USA)</description>
+		<cloneof></cloneof>
+		<crc>1f8bc8ba</crc>
+		<manufacturer>New Image Software</manufacturer>
+		<year>1985</year>
+		<genre>Sports/Bowling</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Brickyard+Clowns (USA)" index="" image="">
+		<description>Brickyard+Clowns (USA)</description>
+		<cloneof></cloneof>
+		<crc>28f9e502</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1978</year>
+		<genre>Breakout</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Candyman (USA)" index="true" image="c">
+		<description>Candyman (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>L&amp;M Software</manufacturer>
+		<year>1981</year>
+		<genre>Maze</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Checkers+Backgammon (USA)" index="" image="">
+		<description>Checkers+Backgammon (USA)</description>
+		<cloneof></cloneof>
+		<crc>757bab8f</crc>
+		<manufacturer>New Image Software</manufacturer>
+		<year>1985</year>
+		<genre>Board Games</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Claim Jumpers (USA)" index="" image="">
+		<description>Claim Jumpers (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>L&amp;M Software</manufacturer>
+		<year>1981</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Coloring Book (USA)" index="" image="">
+		<description>Coloring Book (USA)</description>
+		<cloneof></cloneof>
+		<crc>14f36aba</crc>
+		<manufacturer>Bally Midway &amp; Astrovision</manufacturer>
+		<year>1985</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Conan The Barbarian (USA)" index="" image="">
+		<description>Conan The Barbarian (USA)</description>
+		<cloneof></cloneof>
+		<crc>8a6adbfe</crc>
+		<manufacturer>Dave Carson Software</manufacturer>
+		<year>1985</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cosmic Raiders (USA)" index="" image="">
+		<description>Cosmic Raiders (USA)</description>
+		<cloneof></cloneof>
+		<crc>2a77b3fb</crc>
+		<manufacturer>Astrocade</manufacturer>
+		<year>1983</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dog Patch (USA)" index="true" image="d">
+		<description>Dog Patch (USA)</description>
+		<cloneof></cloneof>
+		<crc>77bed6ba</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1980</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Football (USA)" index="true" image="f">
+		<description>Football (USA)</description>
+		<cloneof></cloneof>
+		<crc>fc8998a9</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1978</year>
+		<genre>Sports/Football</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Galactic Invasion (USA)" index="true" image="g">
+		<description>Galactic Invasion (USA)</description>
+		<cloneof></cloneof>
+		<crc>ba558eb7</crc>
+		<manufacturer>Astrovision</manufacturer>
+		<year>1981</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Galaxian (USA)" index="" image="">
+		<description>Galaxian (USA)</description>
+		<cloneof></cloneof>
+		<crc>d75e9672</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1981</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Grand Prix+Demolition Derby (USA)" index="" image="">
+		<description>Grand Prix+Demolition Derby (USA)</description>
+		<cloneof></cloneof>
+		<crc>7b3b7b70</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1981</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gunfight+Checkmate+Calculator+Scribbling (USA)" index="" image="">
+		<description>Gunfight+Checkmate+Calculator+Scribbling (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1977</year>
+		<genre>Multiplay</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="I.C.B.M. Attack (USA)" index="true" image="i">
+		<description>I.C.B.M. Attack (USA)</description>
+		<cloneof></cloneof>
+		<crc>bc2b6fe3</crc>
+		<manufacturer>Spectre Systems</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Incredible Wizard (USA)" index="" image="">
+		<description>Incredible Wizard (USA)</description>
+		<cloneof></cloneof>
+		<crc>1395b130</crc>
+		<manufacturer>Astrovision</manufacturer>
+		<year>1982</year>
+		<genre>Maze</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Letter Match+Spell &apos;N Score+Crosswords (USA)" index="true" image="l">
+		<description>Letter Match+Spell &apos;N Score+Crosswords (USA)</description>
+		<cloneof></cloneof>
+		<crc>2cf68f93</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1978</year>
+		<genre>Tabletop</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Life (USA)" index="" image="">
+		<description>Life (USA)</description>
+		<cloneof></cloneof>
+		<crc>752d13fd</crc>
+		<manufacturer>New Image Software</manufacturer>
+		<year>1985</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Machine Language Manager (USA)" index="true" image="m">
+		<description>Machine Language Manager (USA)</description>
+		<cloneof></cloneof>
+		<crc>5393f920</crc>
+		<manufacturer>Bit Fiddlers</manufacturer>
+		<year>1982</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mazeman (USA)" index="" image="">
+		<description>Mazeman (USA)</description>
+		<cloneof></cloneof>
+		<crc>565a644c</crc>
+		<manufacturer>Dave Carson Software</manufacturer>
+		<year>1984</year>
+		<genre>Maze</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ms CandyMan (USA)" index="" image="">
+		<description>Ms. CandyMan (USA)</description>
+		<cloneof></cloneof>
+		<crc>14e93a41</crc>
+		<manufacturer>L&amp;M Software</manufacturer>
+		<year>1977</year>
+		<genre>Maze</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Muncher (USA)" index="" image="">
+		<description>Muncher (USA)</description>
+		<cloneof></cloneof>
+		<crc>e4726657</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1983</year>
+		<genre>Maze</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Music Maker (USA)" index="" image="">
+		<description>Music Maker (USA)</description>
+		<cloneof></cloneof>
+		<crc>b242ef84</crc>
+		<manufacturer>Bally Midway &amp; Astrovision</manufacturer>
+		<year>1985</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pirates Chase (USA)" index="true" image="p">
+		<description>Pirates Chase (USA)</description>
+		<cloneof></cloneof>
+		<crc>7b1b206a</crc>
+		<manufacturer>Astrocade</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Red Baron+Panzer Attack (USA)" index="true" image="r">
+		<description>Red Baron+Panzer Attack (USA)</description>
+		<cloneof></cloneof>
+		<crc>a1c7e129</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1978</year>
+		<genre>Multiplay</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Road Toad (USA)" index="" image="">
+		<description>Road Toad (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Esoterica</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sea Devil (USA)" index="true" image="s">
+		<description>Sea Devil (USA)</description>
+		<cloneof></cloneof>
+		<crc>960b6f86</crc>
+		<manufacturer>L&amp;M Software</manufacturer>
+		<year>1983</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Seawolf+Missile (USA)" index="" image="">
+		<description>Seawolf+Missile (USA)</description>
+		<cloneof></cloneof>
+		<crc>ee3489ea</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1978</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sloshed (USA)" index="" image="">
+		<description>Sloshed (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>New Image</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sneaky Snake (USA)" index="" image="">
+		<description>Sneaky Snake (USA)</description>
+		<cloneof></cloneof>
+		<crc>3e9f4f0d</crc>
+		<manufacturer>New Image Software</manufacturer>
+		<year>1983</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Soccer (USA)" index="" image="">
+		<description>Soccer (USA)</description>
+		<cloneof></cloneof>
+		<crc>56d28b62</crc>
+		<manufacturer>ABC Hobbycraft</manufacturer>
+		<year>1985</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Solar Conqueror (USA)" index="" image="">
+		<description>Solar Conqueror (USA)</description>
+		<cloneof></cloneof>
+		<crc>d15ce025</crc>
+		<manufacturer>Astrovision</manufacturer>
+		<year>1983</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Space Fortress (USA)" index="" image="">
+		<description>Space Fortress (USA)</description>
+		<cloneof></cloneof>
+		<crc>519cc707</crc>
+		<manufacturer>Astrovision</manufacturer>
+		<year>1981</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Space Invaders (USA)" index="" image="">
+		<description>Space Invaders (USA)</description>
+		<cloneof></cloneof>
+		<crc>52964c1f</crc>
+		<manufacturer>Astrovision</manufacturer>
+		<year>1979</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Speed Math+Bingo Math (USA)" index="" image="">
+		<description>Speed Math+Bingo Math (USA)</description>
+		<cloneof></cloneof>
+		<crc>7d30312a</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1978</year>
+		<genre>Multiplay</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Star Battle (USA)" index="" image="">
+		<description>Star Battle (USA)</description>
+		<cloneof></cloneof>
+		<crc>ce15563b</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1979</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Slope (USA)" index="" image="">
+		<description>Super Slope (USA)</description>
+		<cloneof></cloneof>
+		<crc>df6b2304</crc>
+		<manufacturer>Esoterica</manufacturer>
+		<year>1982</year>
+		<genre>Sports/Skiing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tornado Baseball+Tennis+Hockey+Handball (USA)" index="true" image="t">
+		<description>Tornado Baseball+Tennis+Hockey+Handball (USA)</description>
+		<cloneof></cloneof>
+		<crc>5be548cc</crc>
+		<manufacturer>Bally Midway</manufacturer>
+		<year>1978</year>
+		<genre>Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Treasure Cove (USA)" index="" image="">
+		<description>Treasure Cove (USA)</description>
+		<cloneof></cloneof>
+		<crc>1447f854</crc>
+		<manufacturer>Spectre Systems</manufacturer>
+		<year>1983</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

@@ -1,0 +1,1749 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>Sega Naomi</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.2 Ongoing (Demul 5.6)  </listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="18wheels" index="true" image="1">
+		<description>18 Wheeler Deluxe (Rev A) (JPN)</description>
+		<cloneof>18wheelr</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="18wheelr" index="" image="">
+		<description>18 Wheeler Deluxe (Rev A) (JPN)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="18whlrur" index="" image="">
+		<description>18 Wheeler Deluxe (Upright)</description>
+		<cloneof>18wheelr</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="alpilota" index="true" image="a">
+		<description>Airline Pilots (Rev A)</description>
+		<cloneof>alpiltdx</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Flying</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="alpiltdx" index="" image="">
+		<description>Airline Pilots Deluxe (Rev B)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Flying</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ausfache" index="" image="">
+		<description>Akatsuki Bk Ausf Achse</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Subtle Style</manufacturer>
+		<year>2008</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="alienfnta" index="" image="">
+		<description>Alien Front (Rev A)</description>
+		<cloneof>alienfnt</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="alienfnt" index="" image="">
+		<description>Alien Front (Rev T)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="azumanga" index="" image="">
+		<description>Azumanga Daioh Puzzle Bobble (GDL-0018)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Moss (Taito license)</manufacturer>
+		<year>2002</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="beachspi" index="true" image="b">
+		<description>Beach Spikers (GDS-0014)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Sports/Volleyball</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="bdrdown" index="" image="">
+		<description>Border Down (Rev A) (GDL-0023A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>G-Rev</manufacturer>
+		<year>2004</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="cspike" index="true" image="c">
+		<description>Cannon Spike (USA, EXP, KOR, AUS) / Gun Spike (JPN)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Psikyo / Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="cvs2gd" index="" image="">
+		<description>Capcom Vs. SNK 2 Millionaire Fighting 2001 (Rev A) (GDL-0007A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom / SNK</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="cvsgd" index="" image="">
+		<description>Capcom Vs. SNK Millenium Fight 2000 Pro (GDL-0004)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom / SNK</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="capsnka" index="" image="">
+		<description>Capcom Vs. SNK Millennium Fight 2000 (000804 JPN, USA, EXP, KOR, AUS) (Rev A)</description>
+		<cloneof>capsnk</cloneof>
+		<crc></crc>
+		<manufacturer>Capcom / SNK</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="capsnk" index="" image="">
+		<description>Capcom Vs. SNK Millennium Fight 2000 (000904 JPN, USA, EXP, KOR, AUS) (Rev C)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom / SNK</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="cfield" index="" image="">
+		<description>Chaos Field (GDL-0025)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Able</manufacturer>
+		<year>2004</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="cleoftp" index="" image="">
+		<description>Cleopatra Fortune Plus (GDL-0012)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Altron</manufacturer>
+		<year>2002</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="clubkrte" index="" image="">
+		<description>Club Kart: European Session 2001</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="clubkrtd" index="" image="">
+		<description>Club Kart: European Session 2002 (Rev. D)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="clubk2k3" index="" image="">
+		<description>Club Kart: European Session 2003</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2003</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="confmiss" index="" image="">
+		<description>Confidential Mission (GDS-0001)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Gun</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="csmasho" index="" image="">
+		<description>Cosmic Smash (JPN, USA, EXP, KOR, AUS) (original)</description>
+		<cloneof>csmash</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Tennis</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="csmash" index="" image="">
+		<description>Cosmic Smash (Rev A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Tennis</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="crackndj" index="" image="">
+		<description>Crackin&apos; DJ</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Rhythm</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="crzytaxi" index="" image="">
+		<description>Crazy Taxi (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="doa2" index="true" image="d">
+		<description>Dead or Alive 2 (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tecmo</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="doa2m" index="" image="">
+		<description>Dead or Alive 2 Millennium (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof>doa2</cloneof>
+		<crc></crc>
+		<manufacturer>Tecmo</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="deathcox" index="" image="">
+		<description>Death Crimson OX (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ecole</manufacturer>
+		<year>2000</year>
+		<genre>Gun</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="shangril" index="" image="">
+		<description>Dengen Tenshi Taisen Janshi Shangri-la (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Marvelous Ent.</manufacturer>
+		<year>1999</year>
+		<genre>Mahjong</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="derbyoc" index="" image="">
+		<description>Derby Owners Club (JPN, USA, EXP, KOR, AUS) (Rev B)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Sports/Horse Racing</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="derbyo2k" index="" image="">
+		<description>Derby Owners Club 2000</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Horse Racing</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="derbyoc2" index="" image="">
+		<description>Derby Owners Club II (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Horse Racing</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="drbyocwc" index="" image="">
+		<description>Derby Owners Club World Edition (JPN, USA, EXP, KOR, AUS) (Rev C)</description>
+		<cloneof>derbyocw</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Horse Racing</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="derbyocw" index="" image="">
+		<description>Derby Owners Club World Edition (JPN, USA, EXP, KOR, AUS) (Rev D)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Horse Racing</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="starseek" index="" image="">
+		<description>Doki Doki Idol Star Seeker (GDL-0005)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>G-Rev</manufacturer>
+		<year>2001</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="dygolf" index="" image="">
+		<description>Dynamic Golf (JPN) / Virtua Golf (Rev A) (GDS-0009A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Golf</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="dybb99" index="" image="">
+		<description>Dynamite Baseball &apos;99 (JPN) / World Series &apos;99 (USA, EXP, KOR, AUS) (Rev B)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Sports/Baseball</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="dybbnao" index="" image="">
+		<description>Dynamite Baseball NAOMI (JPN)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1998</year>
+		<genre>Sports/Baseball</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="asndynmt" index="" image="">
+		<description>Dynamite Deka Ex - Asian Dynamite</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2007</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="f355" index="true" image="f">
+		<description>Ferrari F355 Challenge</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="f355twin" index="" image="">
+		<description>Ferrari F355 Challenge (Twin)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="f355twn2" index="" image="">
+		<description>Ferrari F355 Challenge 2 (Twin)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ggram2" index="true" image="g">
+		<description>Giant Gram (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="gram2000" index="" image="">
+		<description>Giant Gram 2000 (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="gwing2" index="" image="">
+		<description>Giga Wing 2 (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Takumi / Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ggx" index="" image="">
+		<description>Guilty Gear X (JPN)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Arc System Works</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ggxxrl" index="" image="">
+		<description>Guilty Gear XX #Reload (Rev A) (GDL-0019A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Arc System Works</manufacturer>
+		<year>2003</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ggxx" index="" image="">
+		<description>Guilty Gear XX (GDL-0011)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Arc System Works</manufacturer>
+		<year>2002</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ggxxac" index="" image="">
+		<description>Guilty Gear XX Accent Core (GDL-0041)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Arc System Works</manufacturer>
+		<year>2006</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ggxxsla" index="" image="">
+		<description>Guilty Gear XX Slash (Rev A) (GDL-0033A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Arc System Works</manufacturer>
+		<year>2005</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="gunsur2" index="" image="">
+		<description>Gun Survivor 2: Bio Hazard Code Veronica</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom / Namco</manufacturer>
+		<year>2001</year>
+		<genre>Gun</genre>
+		<rating>AAMA - Red (Animated Violence Strong)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="hmgeo" index="true" image="h">
+		<description>Heavy Metal Geomatrix (JPN, USA, EUR, ASI, AUS) (Rev A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2001</year>
+		<genre>Action</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="hotd2" index="" image="">
+		<description>House of the Dead 2</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Gun</genre>
+		<rating>AAMA - Red (Animated Violence Strong)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="hotd2o" index="" image="">
+		<description>House of the Dead 2 (original)</description>
+		<cloneof>hotd2</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Gun</genre>
+		<rating>AAMA - Red (Animated Violence Strong)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="hotd2p" index="" image="">
+		<description>House of the Dead 2 (prototype)</description>
+		<cloneof>hotd2</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Gun</genre>
+		<rating>AAMA - Red (Animated Violence Strong)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="suchie3" index="true" image="i">
+		<description>Idol Janshi Suchie-Pai 3 (JPN)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Jaleco</manufacturer>
+		<year>1999</year>
+		<genre>Mahjong</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ikaruga" index="" image="">
+		<description>Ikaruga (GDL-0010)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Treasure</manufacturer>
+		<year>2001</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="illvelo" index="" image="">
+		<description>Illvelo (Illmatic Envelope)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Milestone</manufacturer>
+		<year>2008</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="initdv2e" index="" image="">
+		<description>Initial D Arcade Stage Ver. 2 (Export) (GDS-0027)</description>
+		<cloneof>initdv2j</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="initdv2jo" index="" image="">
+		<description>Initial D Arcade Stage Ver. 2 (Japan) (GDS-0026)</description>
+		<cloneof>initdv2j</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="initdv2j" index="" image="">
+		<description>Initial D Arcade Stage Ver. 2 (Japan) (Rev. B) (GDS-0026B)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="initdv3e" index="" image="">
+		<description>Initial D Arcade Stage Ver. 3 (Export) (GDS-0033)</description>
+		<cloneof>initdv3j</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2004</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="initdv3jb" index="" image="">
+		<description>Initial D Arcade Stage Ver. 3 (Japan) (Rev. B) (GDS-0032B)</description>
+		<cloneof>initdv3j</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2004</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="initdv3j" index="" image="">
+		<description>Initial D Arcade Stage Ver. 3 (Japan) (Rev. C) (GDS-0032C)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2004</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="initdexp" index="" image="">
+		<description>Initial D: Arcade Stage (Export) (GDS-0025)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="initd" index="" image="">
+		<description>Initial D: Arcade Stage (Rev B) (JPN) (GDS-0020B)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="inunoos" index="" image="">
+		<description>Inu No Osanpo / Dog Walking (Rev A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Miscellaneous</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="jambo" index="true" image="j">
+		<description>Jambo! Safari (JPN, USA, EXP, KOR, AUS) (Rev A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="jingystm" index="" image="">
+		<description>Jingi Storm - The Arcade (GDL-0037)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atrativa Japan</manufacturer>
+		<year>2005</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="karous" index="true" image="k">
+		<description>Karous (GDL-0040)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Milestone</manufacturer>
+		<year>2006</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kick4csh" index="" image="">
+		<description>Kick &apos;4&apos; Cash</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2004</year>
+		<genre>Sports/Soccer</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kingrt66" index="" image="">
+		<description>King of Route 66</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kurucham" index="" image="">
+		<description>Kurukuru Chameleon (GDL-0034)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Able</manufacturer>
+		<year>2006</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="keyboard" index="true" image="l">
+		<description>La Keyboardxyu (GDS-0017)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Quiz</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="lupinsho" index="" image="">
+		<description>Lupin The Third - The Shooting (GDS-0018)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Gun</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="luptype" index="" image="">
+		<description>Lupin The Third - The Typing (Rev A) (GDS-0021A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Miscellaneous</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mamonoro" index="true" image="m">
+		<description>Mamonoro</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>G.rev / Gulti</manufacturer>
+		<year>2008</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mvsc2" index="" image="">
+		<description>Marvel vs. Capcom 2 (JPN, USA, EUR, ASI, AUS) (Rev A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mok" index="" image="">
+		<description>Maze of the Kings, The (GDS-0022)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Gun</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="meltybld" index="" image="">
+		<description>Melty Blood Act Cadenza Ver A (Rev C) (GDL-0028C)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ecole Software</manufacturer>
+		<year>2005</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="meltyb" index="" image="">
+		<description>Melty Blood Act Cadenza Ver B (GDL-0039)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ecole Software</manufacturer>
+		<year>2006</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="meltyba" index="" image="">
+		<description>Melty Blood Act Cadenza Ver B (Rev A) (GDL-0039A)</description>
+		<cloneof>meltyb</cloneof>
+		<crc></crc>
+		<manufacturer>Ecole Software</manufacturer>
+		<year>2006</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mbaa" index="" image="">
+		<description>Melty Blood Actress Again</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Type-Moon/Ecole</manufacturer>
+		<year>2008</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mbaaa" index="" image="">
+		<description>Melty Blood Actress Again (Ver. A)</description>
+		<cloneof>mbaa</cloneof>
+		<crc></crc>
+		<manufacturer>Type-Moon/Ecole</manufacturer>
+		<year>2008</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="gundmct" index="" image="">
+		<description>Mobile Suit Gundam: Federation vs. Zeon (2001-02-08)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Banpresto</manufacturer>
+		<year>2001</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="gundmgd" index="" image="">
+		<description>Mobile Suit Gundam: Federation Vs. Zeon (GDL-0001)</description>
+		<cloneof>gundmxgd</cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2001</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="gundmxgd" index="" image="">
+		<description>Mobile Suit Gundam: Federation Vs. Zeon DX (GDL-0006)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2001</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="moeru" index="" image="">
+		<description>Moeru Casinyo (JPN) / Burning Casino (GDL-0013)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Altron</manufacturer>
+		<year>2002</year>
+		<genre>Casino</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="monkeyba" index="" image="">
+		<description>Monkey Ball (GDS-0008)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="chocomk" index="" image="">
+		<description>Musapey&apos;s Choco Marker (Rev A) (GDL-0014A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ecole Software</manufacturer>
+		<year>2002</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mtkob2" index="" image="">
+		<description>Mushiking The King Of Beetles 2k3 2nd</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2003</year>
+		<genre>Card Battle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mushi2ea" index="" image="">
+		<description>Mushiking The King Of Beetles II (Ver. 1)</description>
+		<cloneof>mushik2e</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2004</year>
+		<genre>Card Battle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mushik2e" index="" image="">
+		<description>Mushiking The King Of Beetles II (Ver. 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2004</year>
+		<genre>Card Battle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="takoron" index="true" image="n">
+		<description>Noukone Puzzle Takoron (GDL-0042)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Compile</manufacturer>
+		<year>2006</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="oinori" index="true" image="o">
+		<description>Oinori-daimyoujin Matsuri (Rev.A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2003</year>
+		<genre>Miscellaneous</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="otrigger" index="" image="">
+		<description>OutTrigger (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Action</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pokasuka" index="true" image="p">
+		<description>Pokasuka Ghost</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2007</year>
+		<genre>Action</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vtennisg" index="" image="">
+		<description>Power Smash (JPN) / Virtua Tennis (GDS-0011)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Sports/Tennis</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vtennis" index="" image="">
+		<description>Power Smash (JPN) / Virtua Tennis (USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Sports/Tennis</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vtenis2c" index="" image="">
+		<description>Power Smash 2 (JPN) / Virtua Tennis 2 (Cartridge)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Tennis</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vtennis2" index="" image="">
+		<description>Power Smash 2 (JPN) / Virtua Tennis 2 (Rev A) (GDS-0015A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Tennis</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pstone" index="" image="">
+		<description>Power Stone (JPN, USA, EUR, ASI, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pstone2" index="" image="">
+		<description>Power Stone 2 (JPN, USA, EUR, ASI, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pjustic" index="" image="">
+		<description>Project Justice (USA, EXP, KOR, AUS) / Moero Justice Gakuen (JPN) (Rev A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="psyvar2" index="" image="">
+		<description>Psyvariar 2 - The Will To Fabricate (GDL-0024)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>G-Rev</manufacturer>
+		<year>2003</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="puyoda" index="" image="">
+		<description>Puyo Puyo Da!</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Compile</manufacturer>
+		<year>1999</year>
+		<genre>Rhythm</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="puyofev" index="" image="">
+		<description>Puyo Puyo Fever (GDS-0031)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2003</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="qmegamis" index="true" image="q">
+		<description>Quiz Ah Megamisama (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Quiz</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="quizqgd" index="" image="">
+		<description>Quiz Keitai Q mode (GDL-0017)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Amedio (Taito license)</manufacturer>
+		<year>2002</year>
+		<genre>Quiz</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="radirgy" index="true" image="r">
+		<description>Radirgy (GDL-0032)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Milestone</manufacturer>
+		<year>2005</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="radirgyn" index="" image="">
+		<description>Radirgy Noir</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Milestone</manufacturer>
+		<year>2009</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ringout" index="" image="">
+		<description>Ringout 4x4</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="samba" index="true" image="s">
+		<description>Samba De Amigo (JPN) (Rev B)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Rhythm</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="samba2k" index="" image="">
+		<description>Samba de Amigo ver. 2000</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Rhythm</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="smarinef" index="" image="">
+		<description>Sega Marine Fishing</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Fishing</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sstrkfgt" index="" image="">
+		<description>Sega Strike Fighter (Rev A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Wow Entertainment</manufacturer>
+		<year>2000</year>
+		<genre>Flying</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sgtetris" index="" image="">
+		<description>Sega Tetris</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="senkoo" index="" image="">
+		<description>Senko No Ronde (GDL-0030)</description>
+		<cloneof>senko</cloneof>
+		<crc></crc>
+		<manufacturer>G-Rev</manufacturer>
+		<year>2005</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="senko" index="" image="">
+		<description>Senko No Ronde NEW ver. (Rev A) (GDL-0030A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>G-Rev</manufacturer>
+		<year>2005</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="senkosp" index="" image="">
+		<description>Senko No Ronde Special (GDL-0038)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>G-Rev</manufacturer>
+		<year>2005</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="shaktamb" index="" image="">
+		<description>Shakatto Tambourine Cho Powerup Chu (GDS-0016)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Rhythm</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="shikgam2" index="" image="">
+		<description>Shikigami No Shiro II (JPN) / The Castle of Shikigami II (GDL-0021)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Alfa System</manufacturer>
+		<year>2003</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="toukon4" index="" image="">
+		<description>Shin Nihon Pro Wrestling Toukon Retsuden 4 Arcade Edition</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom / Namco</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sl2007" index="" image="">
+		<description>Shooting Love 2007</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Triangle Service</manufacturer>
+		<year>2007</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="shootopl" index="" image="">
+		<description>Shootout Pool</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Pool and Dart</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="shootpl" index="" image="">
+		<description>Shootout Pool (JPN, USA, KOR, AUS) / Shootout Pool Prize (EXP)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Pool and Dart</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="shootplm" index="" image="">
+		<description>Shootout Pool Medal</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Pool and Dart</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="slashout" index="" image="">
+		<description>Slashout (GDS-0004)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="slasho" index="" image="">
+		<description>Slashout (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="soulsurf" index="" image="">
+		<description>Soul Surfer (Rev A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Sports/Surfing</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="spawn" index="" image="">
+		<description>Spawn - In the Demon&apos;s Hand (JPN, USA, EUR, ASI, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>1999</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="spkrbtl" index="" image="">
+		<description>Spikers Battle (GDS-0005)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sprtjam" index="" image="">
+		<description>Sports Jam (GDS-0003)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Sports</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sfz3ugd" index="" image="">
+		<description>Street Fighter Zero 3 Upper (GDL-0002)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="smlg99" index="" image="">
+		<description>Super Major League &apos;99</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Sports/Baseball</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ss2005" index="" image="">
+		<description>Super Shanghai 2005 (GDL-0031)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Starfish</manufacturer>
+		<year>2005</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ss2005a" index="" image="">
+		<description>Super Shanghai 2005 (Rev A) (GDL-0031A)</description>
+		<cloneof>ss2005</cloneof>
+		<crc></crc>
+		<manufacturer>Starfish</manufacturer>
+		<year>2005</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="tetkiwam" index="true" image="t">
+		<description>Tetris Kiwamemichi (GDL-0020)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Success</manufacturer>
+		<year>2004</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="tduno2" index="" image="">
+		<description>Touch de Uno! 2</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Tabletop</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="zunou" index="" image="">
+		<description>Touch de Zunou</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2006</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="toyfight" index="" image="">
+		<description>Toy Fighter</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="trgheart" index="" image="">
+		<description>Trigger Heart Exelica (Rev A) (GDL-0036A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Warashi</manufacturer>
+		<year>2005</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="trizeal" index="" image="">
+		<description>Trizeal (GDL-0026)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Taito</manufacturer>
+		<year>2004</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="totd" index="" image="">
+		<description>Typing of the Dead, The (JPN, USA, EXP, KOR, AUS) (Rev A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Miscellaneous</genre>
+		<rating>AAMA - Red (Animated Violence Strong)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="undefeat" index="true" image="u">
+		<description>Under Defeat (GDL-0035)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>G-Rev</manufacturer>
+		<year>2005</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="usagui" index="" image="">
+		<description>Usagi - Yamashiro Mahjong Hen (GDL-0022)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Warashi / Taito / Mahjong Kobo</manufacturer>
+		<year>2003</year>
+		<genre>Mahjong</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="usagiym" index="" image="">
+		<description>Usagi - Yamashiro Mahjong Hen (GDL-0022)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Warashi / Taito / Mahjong Kobo</manufacturer>
+		<year>2003</year>
+		<genre>Mahjong</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vathlete" index="true" image="v">
+		<description>Virtua Athlete (JPN) / Virtua Athletics (GDS-0019)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Sports/Track &amp; Field</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vf4cart" index="" image="">
+		<description>Virtua Fighter 4 (Cartridge)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vf4" index="" image="">
+		<description>Virtua Fighter 4 (GDS-0012)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vf4b" index="" image="">
+		<description>Virtua Fighter 4 (Rev B) (GDS-0012B)</description>
+		<cloneof>vf4</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vf4c" index="" image="">
+		<description>Virtua Fighter 4 (Rev C) (GDS-0012C)</description>
+		<cloneof>vf4</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vf4evoct" index="" image="">
+		<description>Virtua Fighter 4 Evolution (Cartridge)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vf4evoa" index="" image="">
+		<description>Virtua Fighter 4 Evolution (Rev A) (GDS-0024A)</description>
+		<cloneof>vf4evo</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vf4evo" index="" image="">
+		<description>Virtua Fighter 4 Evolution (Rev B) (GDS-0024B)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vf4tuneda" index="" image="">
+		<description>Virtua Fighter 4 Final Tuned (Rev A) (GDS-0036A)</description>
+		<cloneof>vf4tuned</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2004</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vf4tunedd" index="" image="">
+		<description>Virtua Fighter 4 Final Tuned (Rev D) (GDS-0036D)</description>
+		<cloneof>vf4tuned</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2004</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vf4tuned" index="" image="">
+		<description>Virtua Fighter 4 Final Tuned (Rev F) (GDS-0036F)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2004</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="virnba" index="" image="">
+		<description>Virtua NBA (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Basketball</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="virnbao" index="" image="">
+		<description>Virtua NBA (JPN, USA, EXP, KOR, AUS) (original)</description>
+		<cloneof>virnba</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Basketball</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="virnbap" index="" image="">
+		<description>Virtua NBA (prototype)</description>
+		<cloneof>virnba</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Basketball</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vs2_2k" index="" image="">
+		<description>Virtua Striker 2 Ver. 2000 (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Sports/Soccer</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vstrik3cb" index="" image="">
+		<description>Virtua Striker 3 (Cart, rev. B) (USA, EXP, KOR, AUS)</description>
+		<cloneof>vstrik3c</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Soccer</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vstrik3c" index="" image="">
+		<description>Virtua Striker 3 (Cart, rev. C) (USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Soccer</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vstrik3" index="" image="">
+		<description>Virtua Striker 3 (GDS-0006)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Soccer</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vonot" index="" image="">
+		<description>Virtual On Oratorio Tangram M.S.B.S. ver5.66 2000 Edition</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="wrungp" index="true" image="w">
+		<description>Wave Runner GP</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2003</year>
+		<genre>Water</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="wldrider" index="" image="">
+		<description>Wild Riders (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="wldkicks" index="" image="">
+		<description>World Kicks</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom/Namco</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Soccer</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="wsbbgd" index="" image="">
+		<description>World Series Baseball / Super Major League (JPN) (GDS-0010)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Baseball</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="wwfroyal" index="" image="">
+		<description>WWF Royal Rumble (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="zerogu2" index="true" image="z">
+		<description>Zero Gunner 2</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Psikyo</manufacturer>
+		<year>2001</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="zombrvn" index="" image="">
+		<description>Zombie Revenge (JPN, USA, EXP, KOR, AUS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>AAMA - Red (Animated Violence Strong)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

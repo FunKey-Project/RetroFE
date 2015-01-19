@@ -380,7 +380,7 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
             page->AddComponent(c);
         }
     }
-
+    
     for(xml_node<> *componentXml = layout->first_node("statusText"); componentXml; componentXml = componentXml->next_sibling("statusText"))
     {
         FC->LoadFont(Font, FontSize, FontColor);

@@ -2,16 +2,14 @@
  * file 'LICENSE.txt', which is part of this source code package.
  */
 #pragma once
-#include "Item.h"
-#include <vector>
 
-class CollectionDatabase;
+class CollectionInfo;
 
 class MenuParser
 {
 public:
     MenuParser();
     virtual ~MenuParser();
-    bool GetMenuItems(CollectionDatabase *cdb, std::string collectionName, std::vector<Item *> &items);
+    bool GetMenuItems(CollectionInfo *cdb);
 
 };

@@ -1,0 +1,759 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>Atari Lynx</listname>
+		<lastlistupdate>10/27/2011</lastlistupdate>
+		<listversion>1.1 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="A.P.B. - All Points Bulletin (USA, Europe)" index="true" image="a">
+		<description>A.P.B. - All Points Bulletin (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>F6FB48FB</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1991</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Awesome Golf (USA, Europe)" index="" image="">
+		<description>Awesome Golf (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>0483CD2A</crc>
+		<manufacturer>Hand Made Software, Ltd.</manufacturer>
+		<year>1991</year>
+		<genre>Golf/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Basketbrawl (USA, Europe)" index="true" image="b">
+		<description>Basketbrawl (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>D0EE9038</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1992</year>
+		<genre>Basketball/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Batman Returns (USA, Europe)" index="" image="">
+		<description>Batman Returns (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>277F82C2</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Battle Wheels (USA, Europe)" index="" image="">
+		<description>Battle Wheels (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>779FAECE</crc>
+		<manufacturer>Beyond Games</manufacturer>
+		<year>1992</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Battlezone 2000 (USA, Europe)" index="" image="">
+		<description>Battlezone 2000 (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>30FEE726</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bill &amp; Ted&apos;s Excellent Adventure (USA, Europe)" index="" image="">
+		<description>Bill &amp; Ted&apos;s Excellent Adventure (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>143A313E</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1989</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Block Out (USA, Europe)" index="" image="">
+		<description>Block Out (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>3CD75DF3</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1991</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Blue Lightning (USA, Europe)" index="" image="">
+		<description>Blue Lightning (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>DAF587B1</crc>
+		<manufacturer>Epyx</manufacturer>
+		<year>1989</year>
+		<genre>Flying</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bubble Trouble (USA, Europe)" index="" image="">
+		<description>Bubble Trouble (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>333DAECE</crc>
+		<manufacturer>Telegames, Inc.</manufacturer>
+		<year>1991</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="California Games (USA, Europe)" index="true" image="c">
+		<description>California Games (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>A08F0B59</crc>
+		<manufacturer>Epyx</manufacturer>
+		<year>1989</year>
+		<genre>Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Checkered Flag (USA, Europe)" index="" image="">
+		<description>Checkered Flag (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>19C5A7A5</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1991</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chip&apos;s Challenge (USA, Europe)" index="" image="">
+		<description>Chip&apos;s Challenge (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>6A5F53ED</crc>
+		<manufacturer>Epyx</manufacturer>
+		<year>1989</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Crystal Mines II (USA, Europe)" index="" image="">
+		<description>Crystal Mines II (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>A1973918</crc>
+		<manufacturer>Color Dreams</manufacturer>
+		<year>1990</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Desert Strike - Return to the Gulf (USA, Europe)" index="true" image="d">
+		<description>Desert Strike - Return to the Gulf (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>B9AC1FE5</crc>
+		<manufacturer>Telegames, Inc.</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dinolympics (USA, Europe)" index="" image="">
+		<description>Dinolympics (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>50386CFA</crc>
+		<manufacturer>Imagitec Design, Inc.</manufacturer>
+		<year>1992</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dirty Larry - Renegade Cop (USA, Europe)" index="" image="">
+		<description>Dirty Larry - Renegade Cop (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>D565FBB7</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1992</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Double Dragon (USA, Europe)" index="" image="">
+		<description>Double Dragon (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>FBFC0F05</crc>
+		<manufacturer>Telegames, Inc.</manufacturer>
+		<year>1993</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dracula the Undead (USA, Europe)" index="" image="">
+		<description>Dracula the Undead (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>33BB74C7</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1991</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Electrocop (USA, Europe)" index="true" image="e">
+		<description>Electrocop (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>BD97116B</crc>
+		<manufacturer>Epyx</manufacturer>
+		<year>1989</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="European Soccer Challenge (USA, Europe)" index="" image="">
+		<description>European Soccer Challenge (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>F83397F9</crc>
+		<manufacturer>Telegames, Inc.</manufacturer>
+		<year>1993</year>
+		<genre>Soccer/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fat Bobby (USA, Europe)" index="true" image="f">
+		<description>Fat Bobby (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>9034EE27</crc>
+		<manufacturer>Telegames, Inc.</manufacturer>
+		<year>1997</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fidelity Ultimate Chess Challenge, The (USA, Europe)" index="" image="">
+		<description>Fidelity Ultimate Chess Challenge, The (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>7E4B5945</crc>
+		<manufacturer>Telegames, Inc.</manufacturer>
+		<year>1992</year>
+		<genre>Board Games</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gates of Zendocon, The (USA, Europe)" index="true" image="g">
+		<description>Gates of Zendocon, The (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>494CC568</crc>
+		<manufacturer>Epyx</manufacturer>
+		<year>1993</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gauntlet - The Third Encounter (USA, Europe)" index="" image="">
+		<description>Gauntlet - The Third Encounter (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>7F0EC7AD</crc>
+		<manufacturer>Epyx</manufacturer>
+		<year>1990</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gordo 106 - The Mutated Lab Monkey (USA, Europe)" index="" image="">
+		<description>Gordo 106 - The Mutated Lab Monkey (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>D20A85FC</crc>
+		<manufacturer>Epyx</manufacturer>
+		<year>1991</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hard Drivin&apos; (USA, Europe)" index="true" image="h">
+		<description>Hard Drivin&apos; (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>6DF63834</crc>
+		<manufacturer>NuFX</manufacturer>
+		<year>1991</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hockey (USA, Europe)" index="" image="">
+		<description>Hockey (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>E8B45707</crc>
+		<manufacturer>Alpine Studios</manufacturer>
+		<year>1992</year>
+		<genre>Hockey/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hydra (USA, Europe)" index="" image="">
+		<description>Hydra (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>E3041C6C</crc>
+		<manufacturer>NuFX</manufacturer>
+		<year>1992</year>
+		<genre>Water</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ishido - The Way of Stones (USA, Europe)" index="true" image="i">
+		<description>Ishido - The Way of Stones (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>D80E7D52</crc>
+		<manufacturer>California Dreams</manufacturer>
+		<year>1991</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Jimmy Connors&apos; Tennis (USA, Europe)" index="true" image="j">
+		<description>Jimmy Connors&apos; Tennis (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>2455B6CF</crc>
+		<manufacturer>HandMade Software</manufacturer>
+		<year>1993</year>
+		<genre>Sports/Tennis</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Joust (USA, Europe)" index="" image="">
+		<description>Joust (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>F4AE42A1</crc>
+		<manufacturer>Shadowsoft</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Klax (USA, Europe)" index="true" image="k">
+		<description>Klax (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>A53649F1</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1990</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Krazy Ace - Miniature Golf (USA, Europe)" index="" image="">
+		<description>Krazy Ace - Miniature Golf (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>BED5BA2B</crc>
+		<manufacturer>Telegames</manufacturer>
+		<year>1993</year>
+		<genre>Golf/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kung Food (USA, Europe)" index="" image="">
+		<description>Kung Food (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>CD1BD405</crc>
+		<manufacturer>Lore Games</manufacturer>
+		<year>1992</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Lemmings (USA, Europe)" index="true" image="l">
+		<description>Lemmings (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>39B9B8CC</crc>
+		<manufacturer>DMA Design Limited</manufacturer>
+		<year>1993</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Lexis (USA, Europe)" index="" image="">
+		<description>Lexis (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>0271B6E9</crc>
+		<manufacturer>Shadowsoft</manufacturer>
+		<year>1999</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Lynx Casino (USA, Europe)" index="" image="">
+		<description>Lynx Casino (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>1091A268</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1992</year>
+		<genre>Casino</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Malibu Bikini Volleyball (USA, Europe)" index="true" image="m">
+		<description>Malibu Bikini Volleyball (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>ABA6DA3D</crc>
+		<manufacturer>HandMade Software</manufacturer>
+		<year>1993</year>
+		<genre>Sports/Volleyball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ms. Pac-Man (USA, Europe)" index="" image="">
+		<description>Ms. Pac-Man (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>7DE3783A</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NFL Football (USA, Europe)" index="true" image="n">
+		<description>NFL Football (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>006FD398</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1992</year>
+		<genre>Football/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ninja Gaiden (USA, Europe)" index="" image="">
+		<description>Ninja Gaiden (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>22D47D51</crc>
+		<manufacturer>Tecmo</manufacturer>
+		<year>1991</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ninja Gaiden III - The Ancient Ship of Doom (USA, Europe)" index="" image="">
+		<description>Ninja Gaiden III - The Ancient Ship of Doom (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>F3E3F811</crc>
+		<manufacturer>Tecmo</manufacturer>
+		<year>1993</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pac-Land (USA, Europe)" index="true" image="p">
+		<description>Pac-Land (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>AA50DD22</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1991</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Paperboy (USA, Europe)" index="" image="">
+		<description>Paperboy (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>4CDFBD57</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pinball Jam (USA, Europe)" index="" image="">
+		<description>Pinball Jam (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>14D38CA7</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1992</year>
+		<genre>Pinball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pit Fighter - The Ultimate Competition (USA, Europe)" index="" image="">
+		<description>Pit Fighter - The Ultimate Competition (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>2393135F</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1992</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Power Factor (USA, Europe)" index="" image="">
+		<description>Power Factor (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>99C42034</crc>
+		<manufacturer>HandMade Software</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Qix (USA, Europe)" index="true" image="q">
+		<description>Qix (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>B9881423</crc>
+		<manufacturer>Knight Technologies</manufacturer>
+		<year>1991</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Raiden (USA) (v3.0)" index="true" image="r">
+		<description>Raiden (USA) (v3.0)</description>
+		<cloneof></cloneof>
+		<crc>BCD10C3A</crc>
+		<manufacturer>Fabtek</manufacturer>
+		<year>1997</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rampage (USA, Europe)" index="" image="">
+		<description>Rampage (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>B10B7C8E</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rampart (USA, Europe)" index="" image="">
+		<description>Rampart (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>139F301D</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="RoadBlasters (USA, Europe)" index="" image="">
+		<description>RoadBlasters (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>6867E80C</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1990</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Robo-Squash (USA, Europe)" index="" image="">
+		<description>Robo-Squash (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>D1DFF2B2</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1990</year>
+		<genre>Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Robotron 2084 (USA, Europe)" index="" image="">
+		<description>Robotron 2084 (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>7A6049B5</crc>
+		<manufacturer>Shadowsoft</manufacturer>
+		<year>1991</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rygar - Legendary Warrior (USA, Europe)" index="" image="">
+		<description>Rygar - Legendary Warrior (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>67E5BDBA</crc>
+		<manufacturer>Tecmo</manufacturer>
+		<year>1990</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="S.T.U.N. Runner (USA, Europe)" index="true" image="s">
+		<description>S.T.U.N. Runner (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>8595C40B</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1991</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Scrapyard Dog (USA, Europe)" index="" image="">
+		<description>Scrapyard Dog (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>BE166F3B</crc>
+		<manufacturer>Creative Software Designs</manufacturer>
+		<year>1991</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shadow of the Beast (USA, Europe)" index="" image="">
+		<description>Shadow of the Beast (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>EB78BAA3</crc>
+		<manufacturer>Digital Developments</manufacturer>
+		<year>1992</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shanghai (USA, Europe)" index="" image="">
+		<description>Shanghai (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>192BCD04</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1990</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Steel Talons (USA, Europe)" index="" image="">
+		<description>Steel Talons (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>5B2308ED</crc>
+		<manufacturer>NuFX</manufacturer>
+		<year>1992</year>
+		<genre>Flying</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Asteroids, Missile Command (USA, Europe)" index="" image="">
+		<description>Super Asteroids, Missile Command (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>2DA7E2A8</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1995</year>
+		<genre>Shoot-&apos;Em-Up/Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Off-Road (USA, Europe)" index="" image="">
+		<description>Super Off-Road (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>690CAEB0</crc>
+		<manufacturer>Telegames</manufacturer>
+		<year>1993</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Skweek (USA, Europe)" index="" image="">
+		<description>Super Skweek (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>DFA61571</crc>
+		<manufacturer>Loriciel</manufacturer>
+		<year>1991</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Switchblade II (USA, Europe)" index="" image="">
+		<description>Switchblade II (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>13657705</crc>
+		<manufacturer>Gremlin Graphics</manufacturer>
+		<year>1992</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Todd&apos;s Adventures in Slime World (USA, Europe)" index="true" image="t">
+		<description>Todd&apos;s Adventures in Slime World (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>AE267E29</crc>
+		<manufacturer>Epyx</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Toki (USA, Europe)" index="" image="">
+		<description>Toki (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>156A4A4C</crc>
+		<manufacturer>Tad</manufacturer>
+		<year>1992</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tournament Cyberball (USA, Europe)" index="" image="">
+		<description>Tournament Cyberball (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>0590A9E3</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1991</year>
+		<genre>Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Turbo Sub (USA, Europe)" index="" image="">
+		<description>Turbo Sub (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>A4B924D6</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1991</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Viking Child (USA, Europe)" index="true" image="v">
+		<description>Viking Child (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>8D56828B</crc>
+		<manufacturer>Imagitec Design</manufacturer>
+		<year>1991</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Warbirds (USA, Europe)" index="true" image="w">
+		<description>Warbirds (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>B946BA49</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1991</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="World Class Soccer (USA, Europe)" index="" image="">
+		<description>World Class Soccer (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>91233794</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1992</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Xenophobe (USA, Europe)" index="true" image="x">
+		<description>Xenophobe (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>9BED736D</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Xybots (USA, Europe)" index="" image="">
+		<description>Xybots (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>89E2A595</crc>
+		<manufacturer>Tengen</manufacturer>
+		<year>1991</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Zarlor Mercenary (USA, Europe)" index="true" image="z">
+		<description>Zarlor Mercenary (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>CB27199D</crc>
+		<manufacturer>Epyx</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

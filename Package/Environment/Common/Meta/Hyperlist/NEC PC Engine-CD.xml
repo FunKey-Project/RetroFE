@@ -1,0 +1,1189 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>NEC PC Engine-CD</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.2 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="Advanced Variable Geo (Japan)" index="true" image="a">
+		<description>Advanced Variable Geo (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>TGL</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ai Chou Aniki (Japan)" index="" image="">
+		<description>Ai Chou Aniki (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Masaya</manufacturer>
+		<year>1995</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Akumajou Dracula X - Chi no Rondo (Japan)" index="" image="">
+		<description>Akumajou Dracula X - Chi no Rondo (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Konami</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Asuka 120% Maxima Burning Fest (Japan)" index="" image="">
+		<description>Asuka 120% Maxima Burning Fest (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Fill-in-Cafe</manufacturer>
+		<year>1995</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Avenger (Japan)" index="" image="">
+		<description>Avenger (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nihon Telenet</manufacturer>
+		<year>1990</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Baby Jo the Super Hero (Japan)" index="true" image="b">
+		<description>Baby Jo the Super Hero (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Microworld</manufacturer>
+		<year>1992</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bakushou Yoshimoto Shinkigeki (Japan)" index="" image="">
+		<description>Bakushou Yoshimoto Shinkigeki (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Battle Field &apos;94 in Tokyo Dome (Japan)" index="" image="">
+		<description>Battle Field &apos;94 in Tokyo Dome (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Fujicom</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bazaru Degozaru no Game Degozaru (Japan)" index="" image="">
+		<description>Bazaru Degozaru no Game Degozaru (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC HomeElectronics</manufacturer>
+		<year>1996</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bomberman - Panic Bomber (Japan)" index="" image="">
+		<description>Bomberman - Panic Bomber (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson Soft</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bonanza Bros (Japan)" index="" image="">
+		<description>Bonanza Bros (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Avenue</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Browning (Japan)" index="" image="">
+		<description>Browning (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Telenet Japan</manufacturer>
+		<year>1991</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Builderland - The Story of Melba (Japan)" index="" image="">
+		<description>Builderland - The Story of Melba (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Loricel</manufacturer>
+		<year>1991</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cardangels (Japan)" index="true" image="c">
+		<description>Cardangels (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Fujicom</manufacturer>
+		<year>1994</year>
+		<genre>Casino</genre>
+		<rating>HSRS - 17 (17+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chiki Chiki Boys (Japan)" index="" image="">
+		<description>Chiki Chiki Boys (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Avenue</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chou Aniki - Super Big Brothers (Japan)" index="" image="">
+		<description>Chou Aniki: Super Big Brothers (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NCS</manufacturer>
+		<year>1992</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Choujikuu Yousai Macross 2036 (Japan)" index="" image="">
+		<description>Choujikuu Yousai Macross 2036 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NCS</manufacturer>
+		<year>1992</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Color Wars (Japan)" index="" image="">
+		<description>Color Wars (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Coconuts Japan</manufacturer>
+		<year>1992</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Daisenpuu Custom (Japan)" index="true" image="d">
+		<description>Daisenpuu Custom (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Avenue</manufacturer>
+		<year>1991</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Davis Cup Tennis, The (Japan)" index="" image="">
+		<description>Davis Cup Tennis, The (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Microworld</manufacturer>
+		<year>1992</year>
+		<genre>Sports/Tennis</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dekoboko Densetsu - Hashiru Wagamanma (Japan)" index="" image="">
+		<description>Dekoboko Densetsu - Hashiru Wagamanma (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nihon Telenet</manufacturer>
+		<year>1990</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Doraemon - Nobita no Dorabian Night (Japan)" index="" image="">
+		<description>Doraemon - Nobita no Dorabian Night (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Double Dragon 2 - The Revenge (Japan)" index="" image="">
+		<description>Double Dragon 2 - The Revenge (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Naxat Soft</manufacturer>
+		<year>1993</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Download 2 (Japan)" index="" image="">
+		<description>Download 2 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Avenue</manufacturer>
+		<year>1991</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Downtown Nekketsu Koushinkyoku - Soreyuke Daiundoukai (Japan)" index="" image="">
+		<description>Downtown Nekketsu Koushinkyoku - Soreyuke Daiundoukai (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Naxat Soft</manufacturer>
+		<year>1992</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dragon Ball Z - Idainaru Son Gokuu Densetsu (Japan)" index="" image="">
+		<description>Dragon Ball Z - Idainaru Son Gokuu Densetsu (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="F1 Circus Special - Pole to Win (Japan)" index="true" image="f">
+		<description>F1 Circus Special - Pole to Win (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nihon Bussan</manufacturer>
+		<year>1992</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Faceball (Japan)" index="" image="">
+		<description>Faceball (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Riverhill Soft</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Faussete Amour (Japan)" index="" image="">
+		<description>Faussete Amour (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Naxat Soft</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fiend Hunter (Japan)" index="" image="">
+		<description>Fiend Hunter (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Right Stuff</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fire Pro Jyoshi - Shoumu Choujyo Taisen - Zenjo vs JWP (Japan)" index="" image="">
+		<description>Fire Pro Jyoshi - Shoumu Choujyo Taisen - Zenjo vs JWP (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Human Entertainment</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Flash Hiders (Japan)" index="" image="">
+		<description>Flash Hiders (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Right Stuff</manufacturer>
+		<year>1993</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gain Ground SX (Japan)" index="true" image="g">
+		<description>Gain Ground SX (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Avenue</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Galaxy Keiji Gayvan (Japan)" index="" image="">
+		<description>Galaxy Keiji Gayvan (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Intec</manufacturer>
+		<year>1993</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Garou Densetsu 2 - Aratanaru Tatakai (Japan)" index="" image="">
+		<description>Garou Densetsu 2 - Aratanaru Tatakai (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Garou Densetsu Special (Japan)" index="" image="">
+		<description>Garou Densetsu Special (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gate of Thunder (Japan)" index="" image="">
+		<description>Gate of Thunder (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1992</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Genocide (Japan)" index="" image="">
+		<description>Genocide (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Braingrey</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ginga Fukei Densetsu - Sapphire (Japan)" index="" image="">
+		<description>Ginga Fukei Densetsu - Sapphire (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1995</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="God Panic - Shijou Saikyou Gundan (Japan)" index="" image="">
+		<description>God Panic - Shijou Saikyou Gundan (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Teichiku Records</manufacturer>
+		<year>1992</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Golden Axe (Japan)" index="" image="">
+		<description>Golden Axe (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nihon Telenet</manufacturer>
+		<year>1990</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="GoTzenDiener (Japan)" index="" image="">
+		<description>GoTzenDiener (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC HomeElectronics</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gradius 2 - Gofer no Yabou (Japan)" index="" image="">
+		<description>Gradius 2 - Gofer no Yabou (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Konami</manufacturer>
+		<year>1992</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hawk F-123 (Japan)" index="true" image="h">
+		<description>Hawk F-123 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Pack-In-Video</manufacturer>
+		<year>1992</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hellfire S - The Another Story (Japan)" index="" image="">
+		<description>Hellfire S - The Another Story (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Avenue</manufacturer>
+		<year>1991</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hihou Densetsu - Chris no Bouken (Japan)" index="" image="">
+		<description>Hihou Densetsu - Chris no Bouken (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Pack-In-Video</manufacturer>
+		<year>1991</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Horror Story (Japan)" index="" image="">
+		<description>Horror Story (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Avenue</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Human Sports Festival (Japan)" index="" image="">
+		<description>Human Sports Festival (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Human Entertainment</manufacturer>
+		<year>1992</year>
+		<genre>Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hyper Dyne SideArms Special (Japan)" index="" image="">
+		<description>Hyper Dyne SideArms Special (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Interchannel</manufacturer>
+		<year>1989</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hyper Wars (Japan)" index="" image="">
+		<description>Hyper Wars (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1994</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Iga Ninden Gaiou (Japan)" index="true" image="i">
+		<description>Iga Ninden Gaiou (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nihon Bussan</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Image Fight 2 - Operation Deepstriker (Japan)" index="" image="">
+		<description>Image Fight 2 - Operation Deepstriker (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Irem</manufacturer>
+		<year>1992</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="J League Tremendous Soccer &apos;94 (Japan)" index="true" image="j">
+		<description>J League Tremendous Soccer &apos;94 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC HomeElectronics</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Jim Power - In Mutant Planet (Japan)" index="" image="">
+		<description>Jim Power - In Mutant Planet (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Microworld</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Juuouki (Japan)" index="" image="">
+		<description>Juuouki (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kaizou Choujin Shubibinman 3 - Ikai no Princess (Japan)" index="true" image="k">
+		<description>Kaizou Choujin Shubibinman 3 - Ikai no Princess (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NCS</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kakutou Haou Densetsu Algunos (Japan)" index="" image="">
+		<description>Kakutou Haou Densetsu Algunos (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Intec</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kaze Kiri - Ninja Action (Japan)" index="" image="">
+		<description>Kaze Kiri - Ninja Action (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Naxat Soft</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kiaidan 00 (Japan)" index="" image="">
+		<description>Kiaidan 00 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nihon Telenet</manufacturer>
+		<year>1992</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kick Boxing, The (Japan)" index="" image="">
+		<description>Kick Boxing, The (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Microworld</manufacturer>
+		<year>1992</year>
+		<genre>Sports/Boxing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="L-Dis (Japan)" index="true" image="l">
+		<description>L-Dis (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NCS</manufacturer>
+		<year>1991</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Legion (Japan)" index="" image="">
+		<description>Legion (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nihon Telenet</manufacturer>
+		<year>1990</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Lemmings (Japan)" index="" image="">
+		<description>Lemmings (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sunsoft</manufacturer>
+		<year>1992</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mad Stalker - Full Metal Force (Japan)" index="true" image="m">
+		<description>Mad Stalker - Full Metal Force (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC HomeElectronics</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Manhole, The (Japan)" index="" image="">
+		<description>Manhole, The (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sunsoft</manufacturer>
+		<year>1991</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Martial Champion (Japan)" index="" image="">
+		<description>Martial Champion (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Konami</manufacturer>
+		<year>1993</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Metamor Jupiter (Japan)" index="" image="">
+		<description>Metamor Jupiter (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC HomeElectronics</manufacturer>
+		<year>1993</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mine Sweeper (Japan)" index="" image="">
+		<description>Mine Sweeper (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Pack-In-Video</manufacturer>
+		<year>1992</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mirai Shounen Conan (Japan)" index="" image="">
+		<description>Mirai Shounen Conan (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nihon Telenet</manufacturer>
+		<year>1992</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Motoroader MC (Japan)" index="" image="">
+		<description>Motoroader MC (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NCS</manufacturer>
+		<year>1992</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Motteke Tamago (Japan) (Translated)" index="" image="">
+		<description>Motteke Tamago (Japan) (Translated)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Naxat Soft</manufacturer>
+		<year>1993</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mugen Senshi Valis - Legend of a Fantasm Soldier (Japan)" index="" image="">
+		<description>Mugen Senshi Valis - Legend of a Fantasm Soldier (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nihon Telenet</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mystic Formula (Japan)" index="" image="">
+		<description>Mystic Formula (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Micro Cabin</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Nekketsu Koukou Dodgeball Bu - Soccer Hen (Japan)" index="true" image="n">
+		<description>Nekketsu Koukou Dodgeball Bu - Soccer Hen (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Naxat Soft</manufacturer>
+		<year>1991</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Nexzr (Japan)" index="" image="">
+		<description>Nexzr (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Naxat Soft</manufacturer>
+		<year>1992</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pop&apos;n Magic (Japan)" index="true" image="p">
+		<description>Pop&apos;n Magic (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nihon Telenet</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Popful Mail (Japan)" index="" image="">
+		<description>Popful Mail (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC HomeElectronics</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Populous - The Promised Lands (Japan)" index="" image="">
+		<description>Populous - The Promised Lands (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1991</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Psychic Storm (Japan)" index="" image="">
+		<description>Psychic Storm (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nihon Telenet</manufacturer>
+		<year>1992</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Puyo Puyo CD (Japan)" index="" image="">
+		<description>Puyo Puyo CD (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Avenue</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Puyo Puyo CD Tsuu (Japan)" index="" image="">
+		<description>Puyo Puyo CD Tsuu (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Interchannel</manufacturer>
+		<year>1996</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="R-Type Complete (Japan)" index="true" image="r">
+		<description>R-Type Complete (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Irem</manufacturer>
+		<year>1991</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rainbow Islands (Japan)" index="" image="">
+		<description>Rainbow Islands (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Avenue</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ranma ½ - Datou, Ganso Musabetsu Kakutou-Ryuu! (Japan)" index="" image="">
+		<description>Ranma ½: Datou, Ganso Musabetsu Kakutou-Ryuu! (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NCS</manufacturer>
+		<year>1992</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ranma ½ - Ni Bun no Ichi (Japan)" index="" image="">
+		<description>Ranma ½: Ni Bun no Ichi (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NCS</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rayxanber II (Japan)" index="" image="">
+		<description>Rayxanber II (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>DataWest</manufacturer>
+		<year>1991</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rayxanber III (Japan)" index="" image="">
+		<description>Rayxanber III (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>DataWest</manufacturer>
+		<year>1992</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Renny Blaster (Japan)" index="" image="">
+		<description>Renny Blaster (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Avenue</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Road Spirits (Japan)" index="" image="">
+		<description>Road Spirits (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Pack-In-Video</manufacturer>
+		<year>1991</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ryuuko no Ken (Japan)" index="" image="">
+		<description>Ryuuko no Ken (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Seirei Senshi Spriggan (Japan)" index="true" image="s">
+		<description>Seirei Senshi Spriggan (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Naxat Soft</manufacturer>
+		<year>1991</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shanghai II (Japan)" index="" image="">
+		<description>Shanghai II (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1990</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shanghai III - Dragon&apos;s Eye (Japan)" index="" image="">
+		<description>Shanghai III: Dragon&apos;s Eye (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ASK Kodansha</manufacturer>
+		<year>1992</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Slime World (Japan)" index="" image="">
+		<description>Slime World (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Microworld</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Space Fantasy Zone (Japan)" index="" image="">
+		<description>Space Fantasy Zone (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1991</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Space Invaders - The Original Game (Japan)" index="" image="">
+		<description>Space Invaders - The Original Game (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Avenue</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Spriggan Mark 2 - Re-Terraform Project (Japan)" index="" image="">
+		<description>Spriggan Mark 2 - Re-Terraform Project (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Naxat Soft</manufacturer>
+		<year>1992</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Star Mobile (Japan)" index="" image="">
+		<description>Star Mobile (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Naxat Soft</manufacturer>
+		<year>1992</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Star Parodia (Japan)" index="" image="">
+		<description>Star Parodia (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1992</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Steam Heart&apos;s (Japan)" index="" image="">
+		<description>Steam Heart&apos;s (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>TGL</manufacturer>
+		<year>1996</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Strider Hiryuu (Japan)" index="" image="">
+		<description>Strider Hiryuu (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Avenue</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Summer Carnival &apos;93 - Nexzr Special (Japan)" index="" image="">
+		<description>Summer Carnival &apos;93 - Nexzr Special (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Naxat Soft</manufacturer>
+		<year>1993</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Albatross (Japan)" index="" image="">
+		<description>Super Albatross (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nihon Telenet</manufacturer>
+		<year>1989</year>
+		<genre>Sports/Golf</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Darius (Japan)" index="" image="">
+		<description>Super Darius (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Avenue</manufacturer>
+		<year>1990</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Darius 2 (Japan)" index="" image="">
+		<description>Super Darius 2 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Avenue</manufacturer>
+		<year>1993</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Raiden (Japan)" index="" image="">
+		<description>Super Raiden (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1992</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sylphia (Japan)" index="" image="">
+		<description>Sylphia (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tonkin House</manufacturer>
+		<year>1993</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tecmo World Cup Super Soccer (Japan)" index="true" image="t">
+		<description>Tecmo World Cup Super Soccer (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Media Rings</manufacturer>
+		<year>1992</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tenchi wo Kurau (Japan)" index="" image="">
+		<description>Tenchi wo Kurau (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Travel Epuru (Japan)" index="" image="">
+		<description>Travel Epuru (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nihon Telenet</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="TV Show, The (Japan)" index="" image="">
+		<description>TV Show, The (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Right Stuff</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Valis IV (Japan)" index="true" image="v">
+		<description>Valis IV (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nihon Telenet</manufacturer>
+		<year>1991</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Where in the World is Carmen Sandiego (Japan)" index="true" image="w">
+		<description>Where in the World is Carmen Sandiego (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Pack-In-Video</manufacturer>
+		<year>1990</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="World Heroes 2 (Japan)" index="" image="">
+		<description>World Heroes 2 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Xak III - The Eternal Recurrence (Japan) (Translated)" index="true" image="x">
+		<description>Xak III - The Eternal Recurrence (Japan) (Translated)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Interchannel</manufacturer>
+		<year>1994</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ys IV - Dawn of Ys (Japan) (Translated)" index="true" image="y">
+		<description>Ys IV - Dawn of Ys (Japan) (Translated)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1993</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Yuu Yuu Hakusho - Anshoubu!! Ankoku Bujutsukai (Japan)" index="" image="">
+		<description>Yuu Yuu Hakusho - Anshoubu!! Ankoku Bujutsukai (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Banpresto</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Zero Wing (Japan)" index="true" image="z">
+		<description>Zero Wing (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Naxat Soft</manufacturer>
+		<year>1992</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

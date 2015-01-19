@@ -14,6 +14,7 @@
  * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "CollectionInfo.h"
+#include "Item.h"
 #include "../Database/Configuration.h"
 #include <sstream>
 
@@ -32,6 +33,14 @@ CollectionInfo::CollectionInfo(std::string name,
 
 CollectionInfo::~CollectionInfo()
 {
+    std::vector<Item *>::iterator it = Items.begin();
+    
+    while(it != Items.end())
+    {
+        delete *it;
+        Items.erase(it);
+        it = Items.begin();
+    }
 }
 
 std::string CollectionInfo::GetName() const
@@ -73,6 +82,10 @@ void CollectionInfo::GetExtensions(std::vector<std::string> &extensions)
     {
         extensions.push_back(token);
     }
+}
+std::vector<Item *> *CollectionInfo::GetItems()
+{
+    return &Items;
 }
 
 

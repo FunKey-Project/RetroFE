@@ -15,8 +15,8 @@
  */
 #include "ComponentItemBindingBuilder.h"
 #include "ComponentItemBinding.h"
-#include "../Database/CollectionDatabase.h"
 #include "../Collection/Item.h"
+#include "../Utility/Log.h"
 
 ComponentItemBindingBuilder::ComponentItemBindingBuilder()
 {

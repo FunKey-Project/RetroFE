@@ -1,0 +1,359 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>AAE</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.0 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="asteroid" index="true" image="a">
+		<description>Asteroids</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1979</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="astdelux" index="" image="">
+		<description>Asteroids Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1980</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="barrier" index="true" image="b">
+		<description>Barrier</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Vectorbeam</manufacturer>
+		<year>1979</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="bzone" index="" image="">
+		<description>Battle Zone</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1980</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="bwidow" index="" image="">
+		<description>Black Widow</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cinematronics</manufacturer>
+		<year>1981</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="boxingb" index="" image="">
+		<description>Boxing Bugs</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cinematronics</manufacturer>
+		<year>1981</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="demon" index="true" image="d">
+		<description>Demon</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Rock-ola</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="elim2" index="true" image="e">
+		<description>Eliminator</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gremlin</manufacturer>
+		<year>1981</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="gravitar" index="true" image="g">
+		<description>Gravitar</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="lunarbat" index="true" image="l">
+		<description>Lunar Battle</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="llander" index="" image="">
+		<description>Lunar Lander</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1979</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mhavoc" index="true" image="m">
+		<description>Major Havoc</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1983</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="meteorts" index="" image="">
+		<description>Meteorites</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="omegrace" index="true" image="o">
+		<description>Omega Race</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Midway</manufacturer>
+		<year>1981</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="quantum" index="true" image="q">
+		<description>Quantum</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1982</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="redbaron" index="true" image="r">
+		<description>Red Baron</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1980</year>
+		<genre>Flying</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ripoff" index="" image="">
+		<description>Ripoff</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cinematronics</manufacturer>
+		<year>1980</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="solarq" index="true" image="s">
+		<description>Solar Quest</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cinematronics</manufacturer>
+		<year>1981</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="spacduel" index="" image="">
+		<description>Space Duel</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1980</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="spacfury" index="" image="">
+		<description>Space Fury</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1981</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="spacewar" index="" image="">
+		<description>Space Wars</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cinematronics</manufacturer>
+		<year>1977</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="speedfrk" index="" image="">
+		<description>Speed Freak</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Vectorbeam</manufacturer>
+		<year>1979</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="starcas" index="" image="">
+		<description>Star Castle</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cinematronics</manufacturer>
+		<year>1980</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="starhawk" index="" image="">
+		<description>Star Hawk</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cinematronics</manufacturer>
+		<year>1979</year>
+		<genre>Flying</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="startrek" index="" image="">
+		<description>Star Trek</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1982</year>
+		<genre>Flying</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="starwars" index="" image="">
+		<description>Star Wars</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1983</year>
+		<genre>Flying</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sundance" index="" image="">
+		<description>Sundance</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cinematronics</manufacturer>
+		<year>1979</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="tacscan" index="true" image="t">
+		<description>Tac/Scan</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1982</year>
+		<genre>Flying</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="tailg" index="" image="">
+		<description>Tailgunner</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cinematronics</manufacturer>
+		<year>1979</year>
+		<genre>Flying</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="tempest" index="" image="">
+		<description>Tempest</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1980</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vbreak" index="true" image="v">
+		<description>Vector Breakout</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Clay Cowgill</manufacturer>
+		<year>1999</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vortex" index="" image="">
+		<description>Vortex</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1981</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="wotw" index="true" image="w">
+		<description>War of the Worlds</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cinematronics</manufacturer>
+		<year>1981</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="warrior" index="" image="">
+		<description>Warrior</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Vectorbeam</manufacturer>
+		<year>1979</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="zektor" index="true" image="z">
+		<description>Zektor</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

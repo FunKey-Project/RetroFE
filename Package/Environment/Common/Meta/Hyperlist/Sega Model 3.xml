@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>Sega Model 3</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.0</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="von2" index="true" image="c">
+		<description>Cyber Troopers Virtual-On Oratorio Tangram</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1998</year>
+		<genre>Action</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="von254g" index="" image="">
+		<description>Cyber Troopers Virtual-On Oratorio Tangram (Ver. 5.4g) </description>
+		<cloneof>von2</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1998</year>
+		<genre>Action</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="daytona2" index="true" image="d">
+		<description>Daytona USA 2: Battle on the Edge</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1998</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="dayto2pe" index="" image="">
+		<description>Daytona USA 2: Power Edition</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1998</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="dirtdvls" index="" image="">
+		<description>Dirt Devils</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1998</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="dirtdvlsa" index="" image="">
+		<description>Dirt Devils (Alternate)</description>
+		<cloneof>dirtdvls</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1998</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="fvipers2" index="true" image="f">
+		<description>Fighting Vipers 2</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1998</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Life Like Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="lemans24" index="true" image="l">
+		<description>Le Mans 24</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1997</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="lostwsga" index="" image="">
+		<description>Lost World, The: Jurassic Park</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1997</year>
+		<genre>Gun</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="scud" index="true" image="s">
+		<description>Scud Race (Australia)</description>
+		<cloneof>scudp</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1996</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="scuda" index="" image="">
+		<description>Scud Race (Export)</description>
+		<cloneof>scudp</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1996</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="scudj" index="" image="">
+		<description>Scud Race (Japan)</description>
+		<cloneof>scudp</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1996</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="scudp" index="" image="">
+		<description>Scud Race Plus</description>
+		<cloneof>scud</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1997</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="srally2" index="" image="">
+		<description>Sega Rally 2</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1998</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="spikeout" index="" image="">
+		<description>Spikeout</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1998</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="spikeofe" index="" image="">
+		<description>Spikeout Final Edition</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="swtrilgy" index="" image="">
+		<description>Star Wars Trilogy Arcade (Rev. A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1998</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vf3" index="true" image="v">
+		<description>Virtua Fighter 3</description>
+		<cloneof>vf3a</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1996</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Life Like Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vf3a" index="" image="">
+		<description>Virtua Fighter 3 (Rev. A)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1996</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Life Like Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vs29815" index="" image="">
+		<description>Virtua Striker 2 &apos;98 (Step 1.5)</description>
+		<cloneof>vs298</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1998</year>
+		<genre>Sports/Soccer</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vs298" index="" image="">
+		<description>Virtua Striker 2 &apos;98 (Step 2.0)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1998</year>
+		<genre>Sports/Soccer</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vs215" index="" image="">
+		<description>Virtua Striker 2 (Step 1.5)</description>
+		<cloneof>vs2</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1997</year>
+		<genre>Sports/Soccer</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vs2" index="" image="">
+		<description>Virtua Striker 2 (Step 2.0)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1997</year>
+		<genre>Sports/Soccer</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

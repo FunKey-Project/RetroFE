@@ -17,6 +17,7 @@
 #include "Page.h"
 #include "ComponentItemBinding.h"
 #include "Component/Component.h"
+#include "../Collection/CollectionInfo.h"
 #include "Component/Text.h"
 #include "../Utility/Log.h"
 #include "Component/ScrollingList.h"
@@ -298,9 +299,9 @@ void Page::PageScroll(ScrollDirection direction)
 }
 
 
-void Page::SetItems(std::vector<Item *> *items)
+void Page::SetCollection(CollectionInfo *collection)
 {
-    std::vector<ComponentItemBinding *> *sprites = ComponentItemBindingBuilder::BuildCollectionItems(items);
+    std::vector<ComponentItemBinding *> *sprites = ComponentItemBindingBuilder::BuildCollectionItems(collection->GetItems());
     if(Menu) 
     {
         Menu->SetItems(sprites);

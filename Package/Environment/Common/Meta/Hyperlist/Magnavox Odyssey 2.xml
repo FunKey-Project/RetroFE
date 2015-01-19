@@ -1,0 +1,999 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>Magnavox Odyssey 2</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.0 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="4 in 1 Row (Europe)" index="true" image="4">
+		<description>4 in 1 Row (Europe)</description>
+		<cloneof></cloneof>
+		<crc>3BFEF56B</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1982</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Alien Invaders - Plus (USA, Europe)" index="true" image="a">
+		<description>Alien Invaders - Plus (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>71AE8533</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1980</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Alpine Skiing (USA, Europe)" index="" image="">
+		<description>Alpine Skiing (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>4663C4B6</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Sports/Skiing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Amok (USA) (Unl)" index="" image="">
+		<description>Amok (USA) (Unl)</description>
+		<cloneof></cloneof>
+		<crc>45EF459C</crc>
+		<manufacturer>John Dondzilla</manufacturer>
+		<year>1998</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Armored Encounter + Sub Chase (USA, Europe)" index="" image="">
+		<description>Armored Encounter + Sub Chase (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>5AE57A8C</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Atlantis (USA, Europe)" index="" image="">
+		<description>Atlantis (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>A7344D1F</crc>
+		<manufacturer>Imagic</manufacturer>
+		<year>1983</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Attack of the Timelord (USA)" index="" image="">
+		<description>Attack of the Timelord (USA)</description>
+		<cloneof></cloneof>
+		<crc>FC5A7F08</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Backgammon (Europe)" index="true" image="b">
+		<description>Backgammon (Europe)</description>
+		<cloneof></cloneof>
+		<crc>9D2C45DC</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1982</year>
+		<genre>Board Games</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Baseball (USA, Europe)" index="" image="">
+		<description>Baseball (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>B07748E7</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Sports/Baseball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Blobbers, The (Europe)" index="" image="">
+		<description>Blobbers, The (Europe)</description>
+		<cloneof></cloneof>
+		<crc>9D72D4E9</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Blockout + Breakdown (USA, Europe)" index="" image="">
+		<description>Blockout + Breakdown (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>FB83171E</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1980</year>
+		<genre>Breakout</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bowling + Basketball (USA, Europe)" index="" image="">
+		<description>Bowling + Basketball (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>084EE035</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Calculator! (USA) (Unl)" index="true" image="c">
+		<description>Calculator! (USA) (Unl)</description>
+		<cloneof></cloneof>
+		<crc>ECCD03BE</crc>
+		<manufacturer>Pakrat</manufacturer>
+		<year>2008</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Casino Slot Machine (USA, Europe)" index="" image="">
+		<description>Casino Slot Machine (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>BB6E7135</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Casino</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Catch the Ball + Noughts and Crosses (Europe)" index="" image="">
+		<description>Catch the Ball + Noughts and Crosses (Europe)</description>
+		<cloneof></cloneof>
+		<crc>A57E1724</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1979</year>
+		<genre>Compilation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chess (Europe)" index="" image="">
+		<description>Chess (Europe)</description>
+		<cloneof></cloneof>
+		<crc>77066338</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1982</year>
+		<genre>Board Games</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chez Maxime (France)" index="" image="">
+		<description>Chez Maxime (France)</description>
+		<cloneof></cloneof>
+		<crc>0F46CF66</crc>
+		<manufacturer>Jopac</manufacturer>
+		<year>1983</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chinese Logic (Europe)" index="" image="">
+		<description>Chinese Logic (Europe)</description>
+		<cloneof></cloneof>
+		<crc>11EDF25B</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1980</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Clay Pigeon (Brazil)" index="" image="">
+		<description>Clay Pigeon (Brazil)</description>
+		<cloneof></cloneof>
+		<crc>FD179F6D</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Computer Golf (USA)" index="" image="">
+		<description>Computer Golf (USA)</description>
+		<cloneof></cloneof>
+		<crc>0F870806</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Sports/Golf</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Computer Intro (USA)" index="" image="">
+		<description>Computer Intro (USA)</description>
+		<cloneof></cloneof>
+		<crc>95EFA98B</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Conquest of the World (USA, Europe)" index="" image="">
+		<description>Conquest of the World (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>AFC093FD</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1981</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cosmic Conflict (USA)" index="" image="">
+		<description>Cosmic Conflict (USA)</description>
+		<cloneof></cloneof>
+		<crc>C049E79E</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Demon Attack (USA, Europe)" index="true" image="d">
+		<description>Demon Attack (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>9BFC3E01</crc>
+		<manufacturer>Imagic</manufacturer>
+		<year>1983</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Depth Charge + Marksman (Europe)" index="" image="">
+		<description>Depth Charge + Marksman (Europe)</description>
+		<cloneof></cloneof>
+		<crc>2DCB77F0</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1979</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dynasty (USA)" index="" image="">
+		<description>Dynasty (USA)</description>
+		<cloneof></cloneof>
+		<crc>DC30AD3D</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Electronic Table Soccer (USA, Europe)" index="true" image="e">
+		<description>Electronic Table Soccer (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>89C6DE2C</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1980</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Exojet (France)" index="" image="">
+		<description>Exojet (France)</description>
+		<cloneof></cloneof>
+		<crc>CFCA6F39</crc>
+		<manufacturer>Jopac</manufacturer>
+		<year>1980</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Football (USA, Europe)" index="true" image="f">
+		<description>Football (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>F9084AA3</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Sports/Football</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Freedom Fighters (USA, Europe)" index="" image="">
+		<description>Freedom Fighters (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>54736B74</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Frogger (Europe)" index="" image="">
+		<description>Frogger (Europe)</description>
+		<cloneof></cloneof>
+		<crc>D0BC4EE6</crc>
+		<manufacturer>Parker Bros.</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Great Wall Street Fortune Hunt, The (USA, Europe)" index="true" image="g">
+		<description>Great Wall Street Fortune Hunt, The (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>881CEAE4</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1978</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hockey + Soccer (USA, Europe)" index="true" image="h">
+		<description>Hockey + Soccer (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>39989464</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Sports/Hockey</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="I&apos;ve Got Your Number (USA, Europe)" index="true" image="i">
+		<description>I&apos;ve Got Your Number (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>1C8368E7</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Interpol (Europe) (Proto)" index="" image="">
+		<description>Interpol (Europe) (Proto)</description>
+		<cloneof></cloneof>
+		<crc>FDF0028F</crc>
+		<manufacturer>GST Video</manufacturer>
+		<year>2000</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Invaders from Hyperspace (USA)" index="" image="">
+		<description>Invaders from Hyperspace (USA)</description>
+		<cloneof></cloneof>
+		<crc>AD7A9A11</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1979</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="J.G. Munchkin (USA, Brazil) (Unl)" index="true" image="j">
+		<description>J.G. Munchkin (USA, Brazil) (Unl)</description>
+		<cloneof></cloneof>
+		<crc>5F663FFC</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1980</year>
+		<genre>Maze</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="K.C. Munchkin (USA)" index="true" image="k">
+		<description>K.C. Munchkin (USA)</description>
+		<cloneof></cloneof>
+		<crc>7108E058</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1981</year>
+		<genre>Maze</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="K.C.&apos;s Krazy Chase (USA, Europe)" index="" image="">
+		<description>K.C.&apos;s Krazy Chase (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>A6909A8B</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1982</year>
+		<genre>Maze</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Keyboard Creations (USA)" index="" image="">
+		<description>Keyboard Creations (USA)</description>
+		<cloneof></cloneof>
+		<crc>688FAD11</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1978</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kill The Attacking Aliens (Europe)" index="" image="">
+		<description>Kill The Attacking Aliens (Europe)</description>
+		<cloneof></cloneof>
+		<crc>4E2CC6D3</crc>
+		<manufacturer>Soeren Gurst</manufacturer>
+		<year>2003</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Killer Bees (USA)" index="" image="">
+		<description>Killer Bees (USA)</description>
+		<cloneof></cloneof>
+		<crc>B096654E</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1978</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kinder im Verkehr 1 (Germany)" index="" image="">
+		<description>Kinder im Verkehr 1 (Germany)</description>
+		<cloneof></cloneof>
+		<crc>9C9DDDF9</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1982</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kinder im Verkehr 2 (Germany)" index="" image="">
+		<description>Kinder im Verkehr 2 (Germany)</description>
+		<cloneof></cloneof>
+		<crc>69893F7F</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1982</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Labyrinth Game, A + Supermind (Europe)" index="true" image="l">
+		<description>Labyrinth Game, A + Supermind (Europe)</description>
+		<cloneof></cloneof>
+		<crc>D158EEBA</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1981</year>
+		<genre>Maze</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Las Vegas Blackjack (USA, Europe)" index="" image="">
+		<description>Las Vegas Blackjack (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>6F66B1F7</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Casino</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Le Tresor Englouti (France)" index="" image="">
+		<description>Le Tresor Englouti (France)</description>
+		<cloneof></cloneof>
+		<crc>B2F0F0B4</crc>
+		<manufacturer>Jopac</manufacturer>
+		<year>1984</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Loony Balloon (Europe) (Proto)" index="" image="">
+		<description>Loony Balloon (Europe) (Proto)</description>
+		<cloneof></cloneof>
+		<crc>CA23F40C</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Martian Threat (Europe) (Proto)" index="true" image="m">
+		<description>Martian Threat (Europe) (Proto)</description>
+		<cloneof></cloneof>
+		<crc>39E31BF0</crc>
+		<manufacturer>GST Video</manufacturer>
+		<year>2008</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Matchmaker + Logix + Buzzword (USA)" index="" image="">
+		<description>Matchmaker + Logix + Buzzword (USA)</description>
+		<cloneof></cloneof>
+		<crc>BBF276A0</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Math-A-Magic + Echo (USA, Europe)" index="" image="">
+		<description>Math-A-Magic + Echo (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>DC5AFAA2</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Compilation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mission Impossible + Programmed Trip (Brazil) (Proto)" index="" image="">
+		<description>Mission Impossible + Programmed Trip (Brazil) (Proto)</description>
+		<cloneof></cloneof>
+		<crc>655FDF57</crc>
+		<manufacturer>Ectron</manufacturer>
+		<year>2004</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Monkeyshines (USA, Europe)" index="" image="">
+		<description>Monkeyshines (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>FEE664F3</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1981</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Morse (Europe)" index="" image="">
+		<description>Morse (Europe)</description>
+		<cloneof></cloneof>
+		<crc>2122012C</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1982</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Moto-Crash (France)" index="" image="">
+		<description>Moto-Crash (France)</description>
+		<cloneof></cloneof>
+		<crc>A767508B</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1983</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mousing Cat, The (Europe)" index="" image="">
+		<description>Mousing Cat, The (Europe)</description>
+		<cloneof></cloneof>
+		<crc>F390BFEC</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mr. Roboto! (USA) (Unl)" index="" image="">
+		<description>Mr. Roboto! (USA) (Unl)</description>
+		<cloneof></cloneof>
+		<crc>A030B990</crc>
+		<manufacturer>Pakrat</manufacturer>
+		<year>2007</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Musician (Europe)" index="" image="">
+		<description>Musician (Europe)</description>
+		<cloneof></cloneof>
+		<crc>AFB23F89</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1981</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Neutron Star (Europe) (Proto)" index="true" image="n">
+		<description>Neutron Star (Europe) (Proto)</description>
+		<cloneof></cloneof>
+		<crc>D03EFA86</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Nightfighter (Europe) (Proto)" index="" image="">
+		<description>Nightfighter (Europe) (Proto)</description>
+		<cloneof></cloneof>
+		<crc>7BE6F1EF</crc>
+		<manufacturer>GST Video</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Nightmare (Europe)" index="" image="">
+		<description>Nightmare (Europe)</description>
+		<cloneof></cloneof>
+		<crc>313547EB</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Nimble Numbers Ned (USA)" index="" image="">
+		<description>Nimble Numbers Ned (USA)</description>
+		<cloneof></cloneof>
+		<crc>CF2F8E7A</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1978</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Out of this World + Helicopter Rescue (USA)" index="true" image="o">
+		<description>Out of this World + Helicopter Rescue (USA)</description>
+		<cloneof></cloneof>
+		<crc>0C2E4811</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1979</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="P.T. Barnum&apos;s Acrobats (USA)" index="true" image="p">
+		<description>P.T. Barnum&apos;s Acrobats (USA)</description>
+		<cloneof></cloneof>
+		<crc>874F36A4</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1978</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pachinko (USA, Europe)" index="" image="">
+		<description>Pachinko (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>239DF97D</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1980</year>
+		<genre>Casino</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pairs + Space Rendezvous + Logic (Europe)" index="" image="">
+		<description>Pairs + Space Rendezvous + Logic (Europe)</description>
+		<cloneof></cloneof>
+		<crc>A69C2C93</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1978</year>
+		<genre>Compilation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pick Axe Pete (USA, Europe)" index="" image="">
+		<description>Pick Axe Pete (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>D62814A3</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pinball (USA) (Proto)" index="" image="">
+		<description>Pinball (USA) (Proto)</description>
+		<cloneof></cloneof>
+		<crc>6EF2471A</crc>
+		<manufacturer>CGE Services</manufacturer>
+		<year>2000</year>
+		<genre>Pinball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Planet Lander (USA) (Unl)" index="" image="">
+		<description>Planet Lander (USA) (Unl)</description>
+		<cloneof></cloneof>
+		<crc>6CB1DE16</crc>
+		<manufacturer>Ted Follery</manufacturer>
+		<year>2004</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Playtag (Europe) (Proto)" index="" image="">
+		<description>Playtag (Europe) (Proto)</description>
+		<cloneof></cloneof>
+		<crc>88D7CE72</crc>
+		<manufacturer>CCC</manufacturer>
+		<year>2009</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pocket Billiards (USA, Europe)" index="" image="">
+		<description>Pocket Billiards (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>24D53E2C</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Sports/Pool and Dart</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pong (2003) (USA) (Unl)" index="" image="">
+		<description>Pong (2003) (USA) (Unl)</description>
+		<cloneof></cloneof>
+		<crc>245D3533</crc>
+		<manufacturer>Pakrat</manufacturer>
+		<year>2003</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pong (2004) (USA) (Unl)" index="" image="">
+		<description>Pong (2004) (USA) (Unl)</description>
+		<cloneof></cloneof>
+		<crc>C06A3880</crc>
+		<manufacturer>Pakrat</manufacturer>
+		<year>2004</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Popeye (Europe)" index="" image="">
+		<description>Popeye (Europe)</description>
+		<cloneof></cloneof>
+		<crc>5216771A</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1978</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Power Lords (USA)" index="" image="">
+		<description>Power Lords (USA)</description>
+		<cloneof></cloneof>
+		<crc>40AE062D</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Puzzle Piece Panic! (USA) (Proto)" index="" image="">
+		<description>Puzzle Piece Panic! (USA) (Proto)</description>
+		<cloneof></cloneof>
+		<crc>798E10BB</crc>
+		<manufacturer>Ted Foolery</manufacturer>
+		<year>2007</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Q-Bert (Europe)" index="true" image="q">
+		<description>Q-Bert (Europe)</description>
+		<cloneof></cloneof>
+		<crc>202F2749</crc>
+		<manufacturer>Parker Bros.</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Quest for the Rings (USA, Europe)" index="" image="">
+		<description>Quest for the Rings (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>9451BE1E</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1981</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Red Baron (Europe) (Proto)" index="true" image="r">
+		<description>Red Baron (Europe) (Proto)</description>
+		<cloneof></cloneof>
+		<crc>1EEB88F5</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1983</year>
+		<genre>Flying</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Robot City (Europe) (Proto)" index="" image="">
+		<description>Robot City (Europe) (Proto)</description>
+		<cloneof></cloneof>
+		<crc>EF9E9C3B</crc>
+		<manufacturer>GST Video</manufacturer>
+		<year>2009</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Route 66 (Europe) (Proto)" index="" image="">
+		<description>Route 66 (Europe) (Proto)</description>
+		<cloneof></cloneof>
+		<crc>ABE9B016</crc>
+		<manufacturer>Humanoid Games</manufacturer>
+		<year>2007</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Secret of the Pharaohs (Europe)" index="true" image="s">
+		<description>Secret of the Pharaohs (Europe)</description>
+		<cloneof></cloneof>
+		<crc>7394E82C</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1981</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shark Hunter (Europe) (Proto)" index="" image="">
+		<description>Shark Hunter (Europe) (Proto)</description>
+		<cloneof></cloneof>
+		<crc>DF36683F</crc>
+		<manufacturer>GST Video</manufacturer>
+		<year>2006</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Showdown in 2100 A.D. (USA)" index="" image="">
+		<description>Showdown in 2100 A.D. (USA)</description>
+		<cloneof></cloneof>
+		<crc>9487C920</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sid the Spellbinder (USA)" index="" image="">
+		<description>Sid the Spellbinder (USA)</description>
+		<cloneof></cloneof>
+		<crc>1B9F2F16</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1978</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Smithereens (USA)" index="" image="">
+		<description>Smithereens (USA)</description>
+		<cloneof></cloneof>
+		<crc>67069924</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1982</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Speedway + Spin-out + Crypto-logic (USA, Europe)" index="" image="">
+		<description>Speedway + Spin-out + Crypto-logic (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>4EDA4917</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Compilation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Spider-Man (Europe) (Proto)" index="" image="">
+		<description>Spider-Man (Europe) (Proto)</description>
+		<cloneof></cloneof>
+		<crc>35ACE4E8</crc>
+		<manufacturer>Parker Bros.</manufacturer>
+		<year>2006</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Bee (Europe)" index="" image="">
+		<description>Super Bee (Europe)</description>
+		<cloneof></cloneof>
+		<crc>9585D511</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Cobra (Europe)" index="" image="">
+		<description>Super Cobra (Europe)</description>
+		<cloneof></cloneof>
+		<crc>95936B07</crc>
+		<manufacturer>Parker Bros.</manufacturer>
+		<year>1983</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Syracuse (France)" index="" image="">
+		<description>Syracuse (France)</description>
+		<cloneof></cloneof>
+		<crc>280D08F4</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1980</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Take the Money and Run (USA, Europe)" index="true" image="t">
+		<description>Take the Money and Run (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>11FF50AD</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1978</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Thunderball (USA, Europe)" index="" image="">
+		<description>Thunderball (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>2C9D1715</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1979</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Turtles (USA)" index="" image="">
+		<description>Turtles (USA)</description>
+		<cloneof></cloneof>
+		<crc>9E42E766</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tutankham (Europe) (Proto)" index="" image="">
+		<description>Tutankham (Europe) (Proto)</description>
+		<cloneof></cloneof>
+		<crc>0009965B</crc>
+		<manufacturer>Parker Bros.</manufacturer>
+		<year>2007</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Type &amp; Tell (USA)" index="" image="">
+		<description>Type &amp; Tell (USA)</description>
+		<cloneof></cloneof>
+		<crc>B936BD78</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1982</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="UFO (USA)" index="true" image="u">
+		<description>UFO (USA)</description>
+		<cloneof></cloneof>
+		<crc>2B1E9E19</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1981</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Volleyball (USA, Europe)" index="true" image="v">
+		<description>Volleyball (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>D3B09FEC</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1980</year>
+		<genre>Sports/Volleyball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="War of Nerves (USA, Europe)" index="true" image="w">
+		<description>War of Nerves (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>58FA6766</crc>
+		<manufacturer>Magnavox</manufacturer>
+		<year>1979</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

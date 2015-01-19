@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 
+class CollectionInfo;
 class Component;
 class Configuration;
 class ScrollingList;
@@ -29,7 +30,7 @@ public:
     Page(std::string collectionName, Configuration &c);
     virtual ~Page();
     virtual void OnNewItemSelected(Item *);
-    void SetItems(std::vector<Item *> *items);
+    void SetCollection(CollectionInfo *collection);
     void SetMenu(ScrollingList *s);
     void SetLoadSound(Sound *chunk)
     {

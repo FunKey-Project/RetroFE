@@ -1,0 +1,619 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>Sega ST-V</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.0 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="astrass" index="true" image="a">
+		<description>Astra SuperStars (J 980514 V1.002)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sunsoft</manufacturer>
+		<year>1998</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="bakubaku" index="true" image="b">
+		<description>Baku Baku Animal (J 950407 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1995</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="batmanfr" index="" image="">
+		<description>Batman Forever (JUE 960507 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>1996</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="colmns97" index="true" image="c">
+		<description>Columns &apos;97 (JET 961209 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1996</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="cotton2" index="" image="">
+		<description>Cotton 2 (JUET 970902 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Success</manufacturer>
+		<year>1997</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="cottonbm" index="" image="">
+		<description>Cotton Boomerang (JUET 980709 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Success</manufacturer>
+		<year>1998</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="critcrsh" index="" image="">
+		<description>Critter Crusher (EA 951204 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1995</year>
+		<genre>Miscellaneous</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sanjeon" index="true" image="d">
+		<description>DaeJeon! SanJeon SuJeon (AJTUE 990412 V1.000)</description>
+		<cloneof>sasissu</cloneof>
+		<crc></crc>
+		<manufacturer>Sega / Deniam</manufacturer>
+		<year>1999</year>
+		<genre>Mini-Games</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="danchih" index="" image="">
+		<description>Danchi de Hanafuda (J 990607 V1.400)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Altron (Tecmo license)</manufacturer>
+		<year>1999</year>
+		<genre>Tabletop</genre>
+		<rating>AAMA - Yellow (Sexual Content Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="danchiq" index="" image="">
+		<description>Danchi de Quiz Okusan Yontaku Desuyo! (J 001128 V1.200)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Altron</manufacturer>
+		<year>2000</year>
+		<genre>Quiz</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="decathlto" index="" image="">
+		<description>Decathlete (JUET 960424 V1.000)</description>
+		<cloneof>decathlt</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1996</year>
+		<genre>Sports/Track &amp; Field</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="decathlt" index="" image="">
+		<description>Decathlete (JUET 960709 V1.001)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1996</year>
+		<genre>Sports/Track &amp; Field</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="diehard" index="" image="">
+		<description>Die Hard Arcade (UET 960515 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1996</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>AAMA - Yellow (Life Like Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="dnmtdeka" index="" image="">
+		<description>Dynamite Deka (J 960515 V1.000)</description>
+		<cloneof>diehard</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1996</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>AAMA - Yellow (Life Like Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ejihon" index="true" image="e">
+		<description>Ejihon Tantei Jimusyo (J 950613 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1995</year>
+		<genre>Miscellaneous</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="finlarch" index="true" image="f">
+		<description>Final Arch (J 950714 V1.001)</description>
+		<cloneof>smleague</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Baseball</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ffreveng" index="" image="">
+		<description>Final Fight Revenge (JUET 990714 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="findlove" index="" image="">
+		<description>Find Love (J 971212 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Daiki / FCF</manufacturer>
+		<year>1997</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Yellow (Sexual Content Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="fhboxers" index="" image="">
+		<description>Funky Head Boxers (JUETBKAL 951218 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Boxing</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="gaxeduel" index="true" image="g">
+		<description>Golden Axe - The Duel (JUETL 950117 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="grdforce" index="" image="">
+		<description>Guardian Force (JUET 980318 V0.105)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Success</manufacturer>
+		<year>1998</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="hanagumi" index="true" image="h">
+		<description>Hanagumi Taisen Columns - Sakura Wars (J 971007 V1.010)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1997</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="introdon" index="true" image="k">
+		<description>Karaoke Quiz Intro Don Don! (J 960213 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sunsoft / Success</manufacturer>
+		<year>1996</year>
+		<genre>Quiz</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="magzun" index="true" image="m">
+		<description>Magical Zunou Power (J 961031 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1996</year>
+		<genre>Miscellaneous</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="maruchan" index="" image="">
+		<description>Maru-Chan de Goo! (J 971216 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega / Toyosuisan</manufacturer>
+		<year>1997</year>
+		<genre>Mini-Games</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mausuke" index="" image="">
+		<description>Mausuke no Ojama the World (J 960314 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Data East</manufacturer>
+		<year>1996</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="micrombc" index="" image="">
+		<description>Microman Battle Charge (J 990326 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Casino</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="nclubv3" index="true" image="n">
+		<description>Name Club Ver.3 (J 970723 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1997</year>
+		<genre>Miscellaneous</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="othellos" index="true" image="o">
+		<description>Othello Shiyouyo (J 980423 V1.002)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Success</manufacturer>
+		<year>1998</year>
+		<genre>Tabletop</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pblbeach" index="true" image="p">
+		<description>Pebble Beach - The Great Shot (JUE 950913 V0.990)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>T&amp;E Soft</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Golf</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="groovef" index="" image="">
+		<description>Power Instinct 3 - Groove On Fight (J 970416 V1.001)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atlus</manufacturer>
+		<year>1998</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="prikura" index="" image="">
+		<description>Princess Clara Daisakusen (J 960910 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atlus</manufacturer>
+		<year>1996</year>
+		<genre>Maze</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pclub2" index="" image="">
+		<description>Print Club 2 (U 970921 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atlus</manufacturer>
+		<year>1997</year>
+		<genre>Miscellaneous</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pclub2v3" index="" image="">
+		<description>Print Club 2 Vol. 3 (U 990310 V1.000)</description>
+		<cloneof>pclub2</cloneof>
+		<crc></crc>
+		<manufacturer>Atlus</manufacturer>
+		<year>1999</year>
+		<genre>Miscellaneous</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pclubpok" index="" image="">
+		<description>Print Club Pokemon B (U 991126 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atlus</manufacturer>
+		<year>1999</year>
+		<genre>Miscellaneous</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kiwames" index="" image="">
+		<description>Pro Mahjong Kiwame S (J 951020 V1.208)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Athena</manufacturer>
+		<year>1995</year>
+		<genre>Mahjong</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="puyosun" index="" image="">
+		<description>Puyo Puyo Sun (J 961115 V0.001)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Compile</manufacturer>
+		<year>1996</year>
+		<genre>Tabletop</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="thuntk" index="" image="">
+		<description>Puzzle &amp; Action: BoMulEul Chajara (JUET 970125 V2.00K)</description>
+		<cloneof>sandor</cloneof>
+		<crc></crc>
+		<manufacturer>Sega / Deniam</manufacturer>
+		<year>1997</year>
+		<genre>Mini-Games</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sandor" index="" image="">
+		<description>Puzzle &amp; Action: Sando-R (J 951114 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1995</year>
+		<genre>Mini-Games</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="thunt" index="" image="">
+		<description>Puzzle &amp; Action: Treasure Hunt (JUET 970901 V2.00E)</description>
+		<cloneof>sandor</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1997</year>
+		<genre>Mini-Games</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="rsgun" index="true" image="r">
+		<description>Radiant Silvergun (JUET 980523 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Treasure</manufacturer>
+		<year>1998</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="seabass" index="true" image="s">
+		<description>Sea Bass Fishing (JUET 971110 V0.001)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>A wave inc. (Able license)</manufacturer>
+		<year>1997</year>
+		<genre>Sports/Fishing</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="shanhigw" index="" image="">
+		<description>Shanghai - The Great Wall / Shanghai Triple Threat (JUE 950623 V1.005)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sunsoft / Activision</manufacturer>
+		<year>1995</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="shienryu" index="" image="">
+		<description>Shienryu (JUET 961226 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Warashi</manufacturer>
+		<year>1997</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sokyugrt" index="" image="">
+		<description>Soukyugurentai / Terra Diver (JUET 960821 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Raizing / Eighting</manufacturer>
+		<year>1996</year>
+		<genre>Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sfish2j" index="" image="">
+		<description>Sport Fishing 2 (J 951201 V1.100)</description>
+		<cloneof>sfish2</cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Fishing</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sfish2" index="" image="">
+		<description>Sport Fishing 2 (UET 951106 V1.10e)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Fishing</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sss" index="" image="">
+		<description>Steep Slope Sliders (JUET 981110 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom / Cave / Victor</manufacturer>
+		<year>1998</year>
+		<genre>Sports/Snowboarding</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="stress" index="" image="">
+		<description>Stress Busters (J 981020 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1998</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="suikoenb" index="" image="">
+		<description>Suikoenbu / Outlaws of the Lost Dynasty (JUETL 950314 V2.001)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Data East</manufacturer>
+		<year>1995</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="smleague" index="" image="">
+		<description>Super Major League (U 960108 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Baseball</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sasissu" index="true" image="t">
+		<description>Taisen Tanto-R Sashissu!! (J 980216 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1998</year>
+		<genre>Mini-Games</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="techbowl" index="" image="">
+		<description>Technical Bowling (J 971212 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1997</year>
+		<genre>Sports/Bowling</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="twcup98" index="" image="">
+		<description>Tecmo World Cup &apos;98 (JUET 980410 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tecmo</manufacturer>
+		<year>1998</year>
+		<genre>Sports/Soccer</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="elandore" index="" image="">
+		<description>Touryuu Densetsu Elan-Doree / Elan Doree - Legend of Dragoon (JUET 980922 V1.006)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sai-Mate</manufacturer>
+		<year>1998</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Life Like Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vfkids" index="true" image="v">
+		<description>Virtua Fighter Kids (JUET 960319 V0.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1996</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Life Like Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vfremix" index="" image="">
+		<description>Virtua Fighter Remix (JUETBKAL 950428 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1995</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Life Like Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vmahjong" index="" image="">
+		<description>Virtual Mahjong (J 961214 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Micronet</manufacturer>
+		<year>1997</year>
+		<genre>Mahjong</genre>
+		<rating>AAMA - Yellow (Sexual Content Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="myfairld" index="" image="">
+		<description>Virtual Mahjong 2 - My Fair Lady (J 980608 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Micronet</manufacturer>
+		<year>1998</year>
+		<genre>Mahjong</genre>
+		<rating>AAMA - Yellow (Sexual Content Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="winterht" index="true" image="w">
+		<description>Winter Heat (JUET 971012 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1997</year>
+		<genre>Sports/Skiing</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="znpwfv" index="true" image="z">
+		<description>Zen Nippon Pro-Wrestling Featuring Virtua (J 971123 V1.000)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1997</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>AAMA - Yellow (Life Like Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

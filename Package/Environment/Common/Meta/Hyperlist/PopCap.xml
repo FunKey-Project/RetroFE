@@ -1,0 +1,829 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>PopCap</listname>
+		<lastlistupdate>11/06/2013</lastlistupdate>
+		<listversion>1.0 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="Alchemy Deluxe" index="true" image="a">
+		<description>Alchemy Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2001</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Alice Greenfingers" index="" image="">
+		<description>Alice Greenfingers</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Arcade Lab</manufacturer>
+		<year>2007</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Amazing Adventures Around The World" index="" image="">
+		<description>Amazing Adventures Around The World</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>SpinTop Games</manufacturer>
+		<year>2009</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Amazing Adventures Riddle of the Two Knights" index="" image="">
+		<description>Amazing Adventures Riddle of the Two Knights</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>SpinTop Games</manufacturer>
+		<year>2012</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Amazing Adventures The Caribbean Secret" index="" image="">
+		<description>Amazing Adventures The Caribbean Secret</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>SpinTop Games</manufacturer>
+		<year>2010</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Amazing Adventures The Forgotten Dynasty" index="" image="">
+		<description>Amazing Adventures The Forgotten Dynasty</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>SpinTop Games</manufacturer>
+		<year>2011</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Amazing Adventures The Lost Tomb" index="" image="">
+		<description>Amazing Adventures The Lost Tomb</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>SpinTop Games</manufacturer>
+		<year>2008</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="AstroPop Deluxe" index="" image="">
+		<description>AstroPop Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2004</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Atomica Deluxe" index="" image="">
+		<description>Atomica Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2002</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Banana Bugs" index="true" image="b">
+		<description>Banana Bugs</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2010</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Battleship" index="" image="">
+		<description>Battleship</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2012</year>
+		<genre>Board Games</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bejeweled 2 Deluxe" index="" image="">
+		<description>Bejeweled 2 Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2004</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bejeweled 3" index="" image="">
+		<description>Bejeweled 3</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2010</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bejeweled Blitz" index="" image="">
+		<description>Bejeweled Blitz</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2010</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bejeweled Deluxe" index="" image="">
+		<description>Bejeweled Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2001</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bejeweled Twist" index="" image="">
+		<description>Bejeweled Twist</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2008</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Big Kahuna Reef" index="" image="">
+		<description>Big Kahuna Reef</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Reflexive Entertainment, Inc.</manufacturer>
+		<year>2004</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Big Money Deluxe" index="" image="">
+		<description>Big Money Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2002</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bonnie&apos;s Bookstore Deluxe" index="" image="">
+		<description>Bonnie&apos;s Bookstore Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>New Crayon Games</manufacturer>
+		<year>2005</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bookworm Adventures Deluxe" index="" image="">
+		<description>Bookworm Adventures Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2006</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bookworm Adventures Volume 2" index="" image="">
+		<description>Bookworm Adventures Volume 2</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2009</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bookworm Deluxe" index="" image="">
+		<description>Bookworm Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2003</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cake Mania" index="true" image="c">
+		<description>Cake Mania</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sandlot Games</manufacturer>
+		<year>2006</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chuzzle Deluxe" index="" image="">
+		<description>Chuzzle Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2005</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cosmic Bugs" index="" image="">
+		<description>Cosmic Bugs</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Retro64, Inc.</manufacturer>
+		<year>2005</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Diner Dash 2" index="true" image="d">
+		<description>Diner Dash 2</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Play First, Inc.</manufacturer>
+		<year>2006</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dynomite Deluxe" index="" image="">
+		<description>Dynomite Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2002</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Escape Rosecliff Island" index="true" image="e">
+		<description>Escape Rosecliff Island</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>SpinTop Games</manufacturer>
+		<year>2009</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Escape The Emerald Star" index="" image="">
+		<description>Escape The Emerald Star</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>SpinTop Games</manufacturer>
+		<year>2011</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Escape Whisper Valley" index="" image="">
+		<description>Escape Whisper Valley</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>SpinTop Games</manufacturer>
+		<year>2010</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Family Feud" index="true" image="f">
+		<description>Family Feud</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>iWin, Inc.</manufacturer>
+		<year>2005</year>
+		<genre>Game Show</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Feeding Frenzy 2 Deluxe" index="" image="">
+		<description>Feeding Frenzy 2 Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2006</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Feeding Frenzy Deluxe" index="" image="">
+		<description>Feeding Frenzy Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2004</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Game of Life, The" index="true" image="g">
+		<description>Game of Life, The</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2012</year>
+		<genre>Board Games</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gyromancer" index="" image="">
+		<description>Gyromancer</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games / Square Enix</manufacturer>
+		<year>2009</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hammer Heads Deluxe" index="true" image="h">
+		<description>Hammer Heads Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2006</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Heavy Weapon Deluxe" index="" image="">
+		<description>Heavy Weapon Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2005</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hidden Identity - Chicago Blackout" index="" image="">
+		<description>Hidden Identity - Chicago Blackout</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Spin Top Games</manufacturer>
+		<year>2010</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Iggle Pop Deluxe" index="true" image="i">
+		<description>Iggle Pop Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2006</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Insaniquarium Deluxe" index="" image="">
+		<description>Insaniquarium Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2004</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Magic Match" index="true" image="m">
+		<description>Magic Match</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Codeminion</manufacturer>
+		<year>2005</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mahjong Escape Ancient China" index="" image="">
+		<description>Mahjong Escape Ancient China</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Jolly Bear Games</manufacturer>
+		<year>2007</year>
+		<genre>Mahjong</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mahjong Escape Ancient Japan" index="" image="">
+		<description>Mahjong Escape Ancient Japan</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Jolly Bear Games</manufacturer>
+		<year>2006</year>
+		<genre>Mahjong</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Monopoly" index="" image="">
+		<description>Monopoly</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sperasoft, Inc.</manufacturer>
+		<year>2012</year>
+		<genre>Board Games</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mummy Maze Deluxe" index="" image="">
+		<description>Mummy Maze Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2002</year>
+		<genre>Board Games</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mystery Case Files - Huntsville" index="" image="">
+		<description>Mystery Case Files - Huntsville</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Big Fish Games</manufacturer>
+		<year>2005</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mystery PI - Lost In Los Angeles" index="" image="">
+		<description>Mystery PI - Lost In Los Angeles</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Spin Top Games</manufacturer>
+		<year>2009</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mystery PI - Stolen In San Francisco" index="" image="">
+		<description>Mystery PI - Stolen In San Francisco</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Spin Top Games</manufacturer>
+		<year>2010</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mystery PI - The Curious Case of Counterfeit Cove" index="" image="">
+		<description>Mystery PI - The Curious Case of Counterfeit Cove</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>SpinTop Games</manufacturer>
+		<year>2011</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mystery PI - The London Caper" index="" image="">
+		<description>Mystery PI - The London Caper</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>SpinTop Games</manufacturer>
+		<year>2010</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mystery PI - The Lottery Ticket" index="" image="">
+		<description>Mystery PI - The Lottery Ticket</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Playtime Media, Inc.</manufacturer>
+		<year>2007</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mystery PI - The New York Fortune" index="" image="">
+		<description>Mystery PI - The New York Fortune</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>SpinTop Games</manufacturer>
+		<year>2008</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mystery PI - The Vegas Heist" index="" image="">
+		<description>Mystery PI - The Vegas Heist</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>SpinTop Games</manufacturer>
+		<year>2008</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mystery Solitaire" index="" image="">
+		<description>Mystery Solitaire</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>SpinTop Games</manufacturer>
+		<year>2006</year>
+		<genre>Board Games</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NingPo MahJong Deluxe" index="true" image="n">
+		<description>NingPo MahJong Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2002</year>
+		<genre>Mahjong</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Noah&apos;s Ark Deluxe" index="" image="">
+		<description>Noah&apos;s Ark Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2002</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Peggle Deluxe" index="true" image="p">
+		<description>Peggle Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2007</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Peggle Nights Deluxe" index="" image="">
+		<description>Peggle Nights Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2008</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Peggle World of Warcraft Edition" index="" image="">
+		<description>Peggle World of Warcraft Edition</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2008</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pixelus Deluxe" index="" image="">
+		<description>Pixelus Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2004</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pizza Frenzy" index="" image="">
+		<description>Pizza Frenzy</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2005</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Plants vs Zombies" index="" image="">
+		<description>Plants vs Zombies</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2009</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Plants vs Zombies - Game of the Year Edition" index="" image="">
+		<description>Plants vs Zombies - Game of the Year Edition</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2011</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Platypus" index="" image="">
+		<description>Platypus</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Squashy Software</manufacturer>
+		<year>2005</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="QBeez 2" index="true" image="q">
+		<description>QBeez 2</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Skunk Studios</manufacturer>
+		<year>2006</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Risk" index="true" image="r">
+		<description>Risk</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2012</year>
+		<genre>Board Games</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rocket Mania Deluxe" index="" image="">
+		<description>Rocket Mania Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2003</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Scrabble" index="true" image="s">
+		<description>Scrabble</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2013</year>
+		<genre>Board Games</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Seven Seas Deluxe" index="" image="">
+		<description>Seven Seas Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2005</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Collapse 3" index="" image="">
+		<description>Super Collapse 3</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>GameHouse</manufacturer>
+		<year>2006</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Talismania Deluxe" index="true" image="t">
+		<description>Talismania Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2006</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="TipTop Deluxe" index="" image="">
+		<description>TipTop Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2002</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tradewinds Legends" index="" image="">
+		<description>Tradewinds Legends</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sandlot Games</manufacturer>
+		<year>2005</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Typer Shark Deluxe" index="" image="">
+		<description>Typer Shark Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2003</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Vacation Quest - Australia" index="true" image="v">
+		<description>Vacation Quest - Australia</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2011</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Vacation Quest - The Hawaiian Islands" index="" image="">
+		<description>Vacation Quest - The Hawaiian Islands</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2007</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Venice Deluxe" index="" image="">
+		<description>Venice Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2007</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Water Bugs" index="true" image="w">
+		<description>Water Bugs</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2008</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wizard&apos;s Pen, The" index="" image="">
+		<description>Wizard&apos;s Pen, The</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2008</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Word Harmony Deluxe" index="" image="">
+		<description>Word Harmony Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2006</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Zuma Deluxe" index="true" image="z">
+		<description>Zuma Deluxe</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2003</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Zuma&apos;s Revenge" index="" image="">
+		<description>Zuma&apos;s Revenge</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>PopCap Games</manufacturer>
+		<year>2009</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>
