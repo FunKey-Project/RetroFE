@@ -1,0 +1,3479 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>Sega Dreamcast</listname>
+		<lastlistupdate>12/02/2012</lastlistupdate>
+		<listversion>1.5 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="102 Dalmatians - Puppies to the Rescue (USA)" index="true" image="1">
+		<description>102 Dalmatians - Puppies to the Rescue (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Eidos Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Platform</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="18 Wheeler - American Pro Trucker (USA)" index="" image="">
+		<description>18 Wheeler - American Pro Trucker (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="4 Wheel Thunder (USA)" index="true" image="4">
+		<description>4 Wheel Thunder (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Midway</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="4x4 Evolution (USA)" index="" image="">
+		<description>4x4 Evolution (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gathering</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="90 Minutes - Sega Championship Football (Europe)" index="true" image="9">
+		<description>90 Minutes - Sega Championship Football (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Soccer/Sports</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Advanced Daisenryaku 2001 (Japan)" index="true" image="a">
+		<description>Advanced Daisenryaku 2001 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="AeroWings (USA)" index="" image="">
+		<description>AeroWings (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Crave</manufacturer>
+		<year>1999</year>
+		<genre>Flying</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="AeroWings 2 - Air Strike (USA)" index="" image="">
+		<description>AeroWings 2 - Air Strike (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Crave</manufacturer>
+		<year>2000</year>
+		<genre>Flying</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="AirForce Delta (USA)" index="" image="">
+		<description>AirForce Delta (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Konami</manufacturer>
+		<year>1999</year>
+		<genre>Flying</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Alien Front Online (USA)" index="" image="">
+		<description>Alien Front Online (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Alone in the Dark - The New Nightmare (USA) (Disc 1)" index="" image="">
+		<description>Alone in the Dark - The New Nightmare (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Alone in the Dark - The New Nightmare (USA) (Disc 2)" index="" image="">
+		<description>Alone in the Dark - The New Nightmare (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Aqua GT (Europe)" index="" image="">
+		<description>Aqua GT (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Take-Two Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Armada (USA)" index="" image="">
+		<description>Armada (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Metro3D</manufacturer>
+		<year>1999</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Army Men - Sarge&apos;s Heroes (USA)" index="" image="">
+		<description>Army Men - Sarge&apos;s Heroes (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Midway</manufacturer>
+		<year>2000</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Atari Anniversary Edition (USA)" index="" image="">
+		<description>Atari Anniversary Edition (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>2001</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="BANG! Gunship Elite (USA)" index="true" image="b">
+		<description>BANG! Gunship Elite (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Red Storm Entertainment</manufacturer>
+		<year>2000</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bangai-O (USA)" index="" image="">
+		<description>Bangai-O (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Conspiracy Entertainment</manufacturer>
+		<year>2001</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Blue Stinger (USA)" index="" image="">
+		<description>Blue Stinger (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Boku no Tennis Jinsei (Japan)" index="" image="">
+		<description>Boku no Tennis Jinsei (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Bimboosoft</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Tennis</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bomberman Online (USA)" index="" image="">
+		<description>Bomberman Online (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Border Down (Japan)" index="" image="">
+		<description>Border Down (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>G.Rev</manufacturer>
+		<year>2003</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bust-A-Move 4 (USA)" index="" image="">
+		<description>Bust-A-Move 4 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>2000</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Buzz Lightyear of Star Command (USA)" index="" image="">
+		<description>Buzz Lightyear of Star Command (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Activision</manufacturer>
+		<year>2000</year>
+		<genre>Platform</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Caesars Palace 2000 - Millennium Gold Edition (USA)" index="true" image="c">
+		<description>Caesars Palace 2000 - Millennium Gold Edition (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Interplay</manufacturer>
+		<year>2000</year>
+		<genre>Casino</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cannon Spike (USA)" index="" image="">
+		<description>Cannon Spike (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Capcom vs. SNK (USA)" index="" image="">
+		<description>Capcom vs. SNK (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Capcom vs. SNK - Millennium Fight 2000 Pro (Japan)" index="" image="">
+		<description>Capcom vs. SNK - Millennium Fight 2000 Pro (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Capcom vs. SNK 2 - Millionaire Fighting 2001 (Japan)" index="" image="">
+		<description>Capcom vs. SNK 2 - Millionaire Fighting 2001 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Capcom vs. SNK 2 Fan Disc (Japan)" index="" image="">
+		<description>Capcom vs. SNK 2 Fan Disc (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>1991</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Carrier (USA)" index="" image="">
+		<description>Carrier (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Jaleco Entertainment</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Castle Shikigami 2 (Japan)" index="" image="">
+		<description>Castle Shikigami 2 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Media Quest</manufacturer>
+		<year>2004</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Centipede (USA)" index="" image="">
+		<description>Centipede (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hasbro Interactive</manufacturer>
+		<year>1999</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Championship Surfer (USA)" index="" image="">
+		<description>Championship Surfer (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mattel</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Surfing</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chaos Field (Japan)" index="" image="">
+		<description>Chaos Field (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>MileStone Inc.</manufacturer>
+		<year>2004</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Charge &apos;N Blast (USA)" index="" image="">
+		<description>Charge &apos;N Blast (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Xicat Interactive</manufacturer>
+		<year>2001</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chicken Run (USA)" index="" image="">
+		<description>Chicken Run (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Eidos Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chu Chu Rocket! (USA)" index="" image="">
+		<description>Chu Chu Rocket! (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cleopatra Fortune (Japan)" index="" image="">
+		<description>Cleopatra Fortune (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Altron</manufacturer>
+		<year>2001</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Coaster Works (USA)" index="" image="">
+		<description>Coaster Works (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Xicat Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Confidential Mission (USA)" index="" image="">
+		<description>Confidential Mission (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Gun</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Conflict Zone - Modern War Strategy (USA)" index="" image="">
+		<description>Conflict Zone - Modern War Strategy (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2001</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cool Cool Toon (Japan)" index="" image="">
+		<description>Cool Cool Toon (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Rhythm</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cosmic Smash (Japan)" index="" image="">
+		<description>Cosmic Smash (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Crazy Taxi (USA)" index="" image="">
+		<description>Crazy Taxi (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Crazy Taxi 2 (USA)" index="" image="">
+		<description>Crazy Taxi 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Driving</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="D2 (USA) (Disc 1)" index="true" image="d">
+		<description>D2 (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="D2 (USA) (Disc 2)" index="" image="">
+		<description>D2 (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="D2 (USA) (Disc 3)" index="" image="">
+		<description>D2 (USA) (Disc 3)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="D2 (USA) (Disc 4)" index="" image="">
+		<description>D2 (USA) (Disc 4)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dance Dance Revolution 2nd Mix (Japan)" index="" image="">
+		<description>Dance Dance Revolution 2nd Mix (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Konami</manufacturer>
+		<year>2000</year>
+		<genre>Rhythm</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dance Dance Revolution Club Mix (Japan)" index="" image="">
+		<description>Dance Dance Revolution Club Mix (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Konami</manufacturer>
+		<year>2000</year>
+		<genre>Rhythm</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dave Mirra Freestyle BMX (USA)" index="" image="">
+		<description>Dave Mirra Freestyle BMX (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>2000</year>
+		<genre>Biking/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Daytona USA (USA)" index="" image="">
+		<description>Daytona USA (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dead or Alive 2 (USA)" index="" image="">
+		<description>Dead or Alive 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tecmo</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dead or Alive 2 - Limited Edition (Japan)" index="" image="">
+		<description>Dead or Alive 2 - Limited Edition (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tecmo</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Death Crimson OX (USA)" index="" image="">
+		<description>Death Crimson OX (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy Studios</manufacturer>
+		<year>2001</year>
+		<genre>Gun</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Deep Fighter (USA) (Disc 1)" index="" image="">
+		<description>Deep Fighter (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2000</year>
+		<genre>Simulation</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Deep Fighter (USA) (Disc 2)" index="" image="">
+		<description>Deep Fighter (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2000</year>
+		<genre>Simulation</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Demolition Racer - No Exit (USA)" index="" image="">
+		<description>Demolition Racer - No Exit (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dino Crisis (USA)" index="" image="">
+		<description>Dino Crisis (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Disney&apos;s Dinosaur (USA)" index="" image="">
+		<description>Disney&apos;s Dinosaur (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Disney&apos;s Donald Duck - Goin&apos; Quackers (USA)" index="" image="">
+		<description>Disney&apos;s Donald Duck - Goin&apos; Quackers (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2000</year>
+		<genre>Platform</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Draconus - Cult of the Wyrm (USA)" index="" image="">
+		<description>Draconus - Cult of the Wyrm (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Crave</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dragon Riders - Chronicles of Pern (USA)" index="" image="">
+		<description>Dragon Riders - Chronicles of Pern (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ducati World Racing Challenge (USA)" index="" image="">
+		<description>Ducati World Racing Challenge (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>2001</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="DUX (Japan)" index="" image="">
+		<description>DUX (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>HUCAST</manufacturer>
+		<year>2009</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dynamite Cop! (USA)" index="" image="">
+		<description>Dynamite Cop! (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ecco the Dolphin - Defender of the Future (USA)" index="true" image="e">
+		<description>Ecco the Dolphin - Defender of the Future (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ECW Anarchy Rulz (USA)" index="" image="">
+		<description>ECW Anarchy Rulz (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ECW Hardcore Revolution (USA)" index="" image="">
+		<description>ECW Hardcore Revolution (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="EGG - Elemental Gimmick Gear (USA)" index="" image="">
+		<description>EGG - Elemental Gimmick Gear (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Vatical Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ESPN International Track &amp; Field (USA)" index="" image="">
+		<description>ESPN International Track &amp; Field (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Konami</manufacturer>
+		<year>2000</year>
+		<genre>Olympic/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ESPN NBA 2Night (USA)" index="" image="">
+		<description>ESPN NBA 2Night (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Konami</manufacturer>
+		<year>2000</year>
+		<genre>Basketball/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="European Super League (Europe)" index="" image="">
+		<description>European Super League (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Virgin Interactive</manufacturer>
+		<year>2001</year>
+		<genre>Soccer/Sports</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Evil Dead - Hail to the King (USA)" index="" image="">
+		<description>Evil Dead - Hail to the King (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>THQ</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Evil Twin - Cyprien&apos;s Chronicles (Europe)" index="" image="">
+		<description>Evil Twin - Cyprien&apos;s Chronicles (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2002</year>
+		<genre>Platform</genre>
+		<rating>PEGI - 12 (Everyone 12+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Evolution - The World of Sacred Device (USA)" index="" image="">
+		<description>Evolution - The World of Sacred Device (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2000</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Evolution 2 - Far Off Promise (USA)" index="" image="">
+		<description>Evolution 2 - Far Off Promise (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2000</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Exhibition of Speed (Europe)" index="" image="">
+		<description>Exhibition of Speed (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Titus Software</manufacturer>
+		<year>2001</year>
+		<genre>Driving</genre>
+		<rating>PEGI - 12 (Everyone 12+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Expendable (USA)" index="" image="">
+		<description>Expendable (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>1999</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="F1 Racing Championship (Europe)" index="true" image="f">
+		<description>F1 Racing Championship (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2001</year>
+		<genre>Driving</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="F1 World Grand Prix (USA)" index="" image="">
+		<description>F1 World Grand Prix (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="F1 World Grand Prix II (Europe)" index="" image="">
+		<description>F1 World Grand Prix II (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Video System</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="F355 Challenge - Passione Rossa (USA)" index="" image="">
+		<description>F355 Challenge - Passione Rossa (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fast Striker (Japan)" index="" image="">
+		<description>Fast Striker (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NG:DEV.TEAM</manufacturer>
+		<year>2010</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fatal Fury - Mark of the Wolves (USA)" index="" image="">
+		<description>Fatal Fury - Mark of the Wolves (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Agetec Inc.</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fighting Force 2 (USA)" index="" image="">
+		<description>Fighting Force 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Eidos Interactive</manufacturer>
+		<year>1999</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fighting Vipers 2 (Europe)" index="" image="">
+		<description>Fighting Vipers 2 (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>PEGI - 12 (Everyone 12+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Flag to Flag (USA)" index="" image="">
+		<description>Flag to Flag (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Floigan Bros. - Episode 1 (USA)" index="" image="">
+		<description>Floigan Bros. - Episode 1 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Frogger 2 - Swampy&apos;s Revenge (USA)" index="" image="">
+		<description>Frogger 2 - Swampy&apos;s Revenge (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hasbro Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fur Fighters (USA)" index="" image="">
+		<description>Fur Fighters (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>2000</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gauntlet Legends (USA)" index="true" image="g">
+		<description>Gauntlet Legends (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Midway</manufacturer>
+		<year>2000</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Get!! Colonies (Japan)" index="" image="">
+		<description>Get!! Colonies (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Puzzle</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Giant Gram - All-Japan Pro Wrestling 2 (Japan)" index="" image="">
+		<description>Giant Gram - All-Japan Pro Wrestling 2 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Giant Gram 2000 - All-Japan Pro Wrestling 3 (Japan)" index="" image="">
+		<description>Giant Gram 2000 - All-Japan Pro Wrestling 3 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Giant Killers (Europe)" index="" image="">
+		<description>Giant Killers (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>AAA</manufacturer>
+		<year>2001</year>
+		<genre>Soccer/Sports</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Giga Wing (USA)" index="" image="">
+		<description>Giga Wing (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Giga Wing 2 (USA)" index="" image="">
+		<description>Giga Wing 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2001</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Grand Theft Auto 2 (USA)" index="" image="">
+		<description>Grand Theft Auto 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Rockstar Games</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Grandia II (USA) (Disc 1)" index="" image="">
+		<description>Grandia II (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2000</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Grandia II (USA) (Disc 2)" index="" image="">
+		<description>Grandia II (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2000</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Grinch, The (USA)" index="" image="">
+		<description>Grinch, The (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Konami</manufacturer>
+		<year>2000</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Guilty Gear X (Japan)" index="" image="">
+		<description>Guilty Gear X (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy Studios</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gunbird 2 (USA)" index="" image="">
+		<description>Gunbird 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gundam Side Story 0079 - Rise from the Ashes (USA)" index="" image="">
+		<description>Gundam Side Story 0079 - Rise from the Ashes (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2000</year>
+		<genre>Simulation</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="GunLord (World)" index="" image="">
+		<description>GunLord (World)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NG:Dev.Team</manufacturer>
+		<year>2012</year>
+		<genre>Platform</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Headhunter (Europe) (Disc 1)" index="true" image="h">
+		<description>Headhunter (Europe) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>PEGI - 16 (Everyone 16+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Headhunter (Europe) (Disc 2)" index="" image="">
+		<description>Headhunter (Europe) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>PEGI - 16 (Everyone 16+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Heavy Metal - Geomatrix (USA)" index="" image="">
+		<description>Heavy Metal - Geomatrix (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2001</year>
+		<genre>Action</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hello Kitty - Lovely Fruit Park (Japan)" index="" image="">
+		<description>Hello Kitty - Lovely Fruit Park (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hello Kitty - Waku Waku Cookies (Japan)" index="" image="">
+		<description>Hello Kitty - Waku Waku Cookies (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Quiz</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hello Kitty no Magical Block (Japan)" index="" image="">
+		<description>Hello Kitty no Magical Block (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hidden &amp; Dangerous (USA)" index="" image="">
+		<description>Hidden &amp; Dangerous (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>TalonSoft</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="House of the Dead 2, The (USA)" index="" image="">
+		<description>House of the Dead 2, The (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Gun</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hoyle Casino (USA)" index="" image="">
+		<description>Hoyle Casino (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>2000</year>
+		<genre>Casino</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hydro Thunder (USA)" index="" image="">
+		<description>Hydro Thunder (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Midway</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ikaruga (Japan)" index="true" image="i">
+		<description>Ikaruga (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ESP Software</manufacturer>
+		<year>2002</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Illbleed (USA)" index="" image="">
+		<description>Illbleed (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>AIA</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Incoming (USA)" index="" image="">
+		<description>Incoming (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Interplay</manufacturer>
+		<year>1998</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Industrial Spy - Operation Espionage (USA)" index="" image="">
+		<description>Industrial Spy - Operation Espionage (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>UFO Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Iron Aces (USA)" index="" image="">
+		<description>Iron Aces (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Xicat Interactive</manufacturer>
+		<year>2001</year>
+		<genre>Flying</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="J-League Spectacle Soccer (Japan)" index="true" image="j">
+		<description>J-League Spectacle Soccer (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Soccer/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Jeremy McGrath Supercross 2000 (USA)" index="" image="">
+		<description>Jeremy McGrath Supercross 2000 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>1999</year>
+		<genre>Motorcycle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Jet Grind Radio (USA)" index="" image="">
+		<description>Jet Grind Radio (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Jimmy White&apos;s 2 - Cueball (Europe)" index="" image="">
+		<description>Jimmy White&apos;s 2 - Cueball (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Virgin Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Pool and Dart</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Jojo&apos;s Bizarre Adventure (USA)" index="" image="">
+		<description>Jojo&apos;s Bizarre Adventure (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="KAO the Kangaroo (USA)" index="true" image="k">
+		<description>KAO the Kangaroo (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Titus Software</manufacturer>
+		<year>2001</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Karous (Japan)" index="" image="">
+		<description>Karous (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>MileStone Inc.</manufacturer>
+		<year>2007</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="King of Fighters &apos;99 Evolution, The (USA)" index="" image="">
+		<description>King of Fighters &apos;99 Evolution, The (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Agetec Inc.</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="King of Fighters 2000 (Japan)" index="" image="">
+		<description>King of Fighters 2000 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Playmore</manufacturer>
+		<year>2002</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="King of Fighters 2001 (Japan)" index="" image="">
+		<description>King of Fighters 2001 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Playmore</manufacturer>
+		<year>2002</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="King of Fighters 2002 (Japan)" index="" image="">
+		<description>King of Fighters 2002 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Playmore</manufacturer>
+		<year>2003</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="King of Fighters Dream Match 1999, The (USA)" index="" image="">
+		<description>King of Fighters Dream Match 1999, The (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="KISS Psycho Circus - The Nightmare Child (USA)" index="" image="">
+		<description>KISS Psycho Circus - The Nightmare Child (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gathering</manufacturer>
+		<year>2000</year>
+		<genre>Action</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="L.O.L. - Lack of Love (Japan)" index="true" image="l">
+		<description>L.O.L. - Lack of Love (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ASCII Entertainment</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Last Blade 2 - Heart of the Samurai, The (USA)" index="" image="">
+		<description>Last Blade 2 - Heart of the Samurai, The (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Agetec Inc.</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Last Hope (Japan)" index="" image="">
+		<description>Last Hope (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NG:DEV.TEAM</manufacturer>
+		<year>2007</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Last Hope - Pink Bullets (Europe)" index="" image="">
+		<description>Last Hope - Pink Bullets (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NG:DEV.TEAM</manufacturer>
+		<year>2009</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Legacy of Kain - Soul Reaver (USA)" index="" image="">
+		<description>Legacy of Kain - Soul Reaver (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Eidos Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Looney Tunes - Space Race (USA)" index="" image="">
+		<description>Looney Tunes - Space Race (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Macross M3 (Japan)" index="true" image="m">
+		<description>Macross M3 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Shoeisha</manufacturer>
+		<year>2001</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Magforce Racing (USA)" index="" image="">
+		<description>Magforce Racing (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Crave</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Maken X (USA)" index="" image="">
+		<description>Maken X (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atlus Co.</manufacturer>
+		<year>1999</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mars Matrix (USA)" index="" image="">
+		<description>Mars Matrix (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2001</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Marvel vs. Capcom (USA)" index="" image="">
+		<description>Marvel vs. Capcom (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Marvel vs. Capcom 2 (USA)" index="" image="">
+		<description>Marvel vs. Capcom 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mat Hoffman&apos;s Pro BMX (USA)" index="" image="">
+		<description>Mat Hoffman&apos;s Pro BMX (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Activision</manufacturer>
+		<year>2001</year>
+		<genre>Biking/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Max Steel (USA)" index="" image="">
+		<description>Max Steel (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mattel</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Maximum Pool (USA)" index="" image="">
+		<description>Maximum Pool (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>2000</year>
+		<genre>Pool and Dart</genre>
+		<rating>ESRB - E10+ (Everyone 10+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="MDK 2 (USA)" index="" image="">
+		<description>MDK 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Interplay</manufacturer>
+		<year>2000</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Metropolis Street Racer (USA)" index="" image="">
+		<description>Metropolis Street Racer (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Midway&apos;s Greatest Arcade Hits Volume 1 (USA)" index="" image="">
+		<description>Midway&apos;s Greatest Arcade Hits Volume 1 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Midway</manufacturer>
+		<year>2000</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Midway&apos;s Greatest Arcade Hits Volume 2 (USA)" index="" image="">
+		<description>Midway&apos;s Greatest Arcade Hits Volume 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Midway</manufacturer>
+		<year>2000</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Moho (Europe)" index="" image="">
+		<description>Moho (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Take-Two Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Action</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Monaco Grand Prix (USA)" index="" image="">
+		<description>Monaco Grand Prix (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mortal Kombat Gold (USA)" index="" image="">
+		<description>Mortal Kombat Gold (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Midway</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mr. Driller (USA)" index="" image="">
+		<description>Mr. Driller (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Namco</manufacturer>
+		<year>2000</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ms. Pac-Man Maze Madness (USA)" index="" image="">
+		<description>Ms. Pac-Man Maze Madness (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Namco</manufacturer>
+		<year>2000</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="MTV Sports - Skateboarding Featuring Andy McDonald (USA)" index="" image="">
+		<description>MTV Sports - Skateboarding Featuring Andy McDonald (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>THQ</manufacturer>
+		<year>2000</year>
+		<genre>Skateboarding/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Musapey&apos;s Choco Marker (Japan)" index="" image="">
+		<description>Musapey&apos;s Choco Marker (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ecole</manufacturer>
+		<year>2002</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Namco Museum (USA)" index="true" image="n">
+		<description>Namco Museum (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Namco</manufacturer>
+		<year>2000</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NBA 2K (USA)" index="" image="">
+		<description>NBA 2K (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Basketball/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NBA 2K1 (USA)" index="" image="">
+		<description>NBA 2K1 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Basketball/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NBA 2K2 (USA)" index="" image="">
+		<description>NBA 2K2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Basketball/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NBA Hoopz (USA)" index="" image="">
+		<description>NBA Hoopz (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Midway</manufacturer>
+		<year>2001</year>
+		<genre>Basketball/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NBA Showtime - NBA on NBC (USA)" index="" image="">
+		<description>NBA Showtime - NBA on NBC (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Midway</manufacturer>
+		<year>1999</year>
+		<genre>Basketball/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NCAA College Football 2K2 (USA)" index="" image="">
+		<description>NCAA College Football 2K2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Football/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Neo Golden Logres (Japan)" index="" image="">
+		<description>Neo Golden Logres (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Success</manufacturer>
+		<year>2000</year>
+		<genre>Pinball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Netto de Tennis (Japan)" index="" image="">
+		<description>Netto de Tennis (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Tennis</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="New Japan Pro Wrestling - Toukon Retsuden 4 (Japan)" index="" image="">
+		<description>New Japan Pro Wrestling - Toukon Retsuden 4 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tomy Corporation</manufacturer>
+		<year>1999</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Next Tetris - On-line Edition, The (USA)" index="" image="">
+		<description>Next Tetris - On-line Edition, The (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Crave</manufacturer>
+		<year>2000</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NFL 2K (USA)" index="" image="">
+		<description>NFL 2K (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Football/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NFL 2K1 (USA)" index="" image="">
+		<description>NFL 2K1 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Football/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NFL 2K2 (USA)" index="" image="">
+		<description>NFL 2K2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Football/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NFL Blitz 2000 (USA)" index="" image="">
+		<description>NFL Blitz 2000 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Midway</manufacturer>
+		<year>1999</year>
+		<genre>Football/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NFL Blitz 2001 (USA)" index="" image="">
+		<description>NFL Blitz 2001 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Midway</manufacturer>
+		<year>2000</year>
+		<genre>Football/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NFL QB Club 2001 (USA)" index="" image="">
+		<description>NFL QB Club 2001 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>2000</year>
+		<genre>Football/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NFL Quarterback Club 2000 (USA)" index="" image="">
+		<description>NFL Quarterback Club 2000 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>1999</year>
+		<genre>Football/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NHL 2K (USA)" index="" image="">
+		<description>NHL 2K (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Hockey/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NHL 2K2 (USA)" index="" image="">
+		<description>NHL 2K2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Hockey/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Nightmare Creatures II (USA)" index="" image="">
+		<description>Nightmare Creatures II (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Konami</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Omikron - The Nomad Soul (USA)" index="true" image="o">
+		<description>Omikron - The Nomad Soul (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Eidos Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ooga Booga (USA)" index="" image="">
+		<description>Ooga Booga (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Outtrigger (USA)" index="" image="">
+		<description>Outtrigger (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pen Pen TriIcelon (USA)" index="true" image="p">
+		<description>Pen Pen TriIcelon (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>1999</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Phantasy Star Online (USA)" index="" image="">
+		<description>Phantasy Star Online (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Phantasy Star Online Ver. 2 (USA)" index="" image="">
+		<description>Phantasy Star Online Ver. 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Planet Ring (Europe)" index="" image="">
+		<description>Planet Ring (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Puzzle</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Plasma Sword - Nightmare of Bilstein (USA)" index="" image="">
+		<description>Plasma Sword - Nightmare of Bilstein (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Plus Plum (Japan)" index="" image="">
+		<description>Plus Plum (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Takuhiro</manufacturer>
+		<year>1999</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="POD - Speedzone (USA)" index="" image="">
+		<description>POD - Speedzone (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Power Stone (USA)" index="" image="">
+		<description>Power Stone (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Power Stone 2 (USA)" index="" image="">
+		<description>Power Stone 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Prince of Persia - Arabian Nights (USA)" index="" image="">
+		<description>Prince of Persia - Arabian Nights (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mattel</manufacturer>
+		<year>2000</year>
+		<genre>Platform</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pro Pinball Trilogy (Europe)" index="" image="">
+		<description>Pro Pinball Trilogy (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Empire Interactive</manufacturer>
+		<year>2001</year>
+		<genre>Pool and Dart</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Project Justice (USA)" index="" image="">
+		<description>Project Justice (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Psychic Force 2012 (USA)" index="" image="">
+		<description>Psychic Force 2012 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Psyvariar 2 - The Will to Fabricate (Japan)" index="" image="">
+		<description>Psyvariar 2 - The Will to Fabricate (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Success</manufacturer>
+		<year>2004</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Puyo Puyo 4 (Japan)" index="" image="">
+		<description>Puyo Puyo 4 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Puyo Puyo Da! (Japan)" index="" image="">
+		<description>Puyo Puyo Da! (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Compile</manufacturer>
+		<year>1999</year>
+		<genre>Rhythm</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Puyo Puyo Fever (Japan)" index="" image="">
+		<description>Puyo Puyo Fever (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2004</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Q-Bert (USA)" index="true" image="q">
+		<description>Q-Bert (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hasbro Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Quake III Arena (USA)" index="" image="">
+		<description>Quake III Arena (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Radirgy (Japan)" index="true" image="r">
+		<description>Radirgy (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>MileStone Inc.</manufacturer>
+		<year>2006</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Railroad Tycoon II - Gold Edition (USA)" index="" image="">
+		<description>Railroad Tycoon II - Gold Edition (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gathering</manufacturer>
+		<year>2000</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rainbow Cotton (Japan)" index="" image="">
+		<description>Rainbow Cotton (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Success</manufacturer>
+		<year>2000</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rayman 2 - The Great Escape (USA)" index="" image="">
+		<description>Rayman 2 - The Great Escape (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2000</year>
+		<genre>Platform</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Razor Freestyle Scooter (USA)" index="" image="">
+		<description>Razor Freestyle Scooter (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Crave</manufacturer>
+		<year>2001</year>
+		<genre>Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Re-Volt (USA)" index="" image="">
+		<description>Re-Volt (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ready 2 Rumble Boxing (USA)" index="" image="">
+		<description>Ready 2 Rumble Boxing (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Midway</manufacturer>
+		<year>1999</year>
+		<genre>Boxing/Sports</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ready 2 Rumble Boxing - Round 2 (USA)" index="" image="">
+		<description>Ready 2 Rumble Boxing - Round 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Midway</manufacturer>
+		<year>2000</year>
+		<genre>Boxing/Sports</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Record of Lodoss War (USA)" index="" image="">
+		<description>Record of Lodoss War (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Conspiracy Entertainment</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Red Dog - Superior Firepower (USA)" index="" image="">
+		<description>Red Dog - Superior Firepower (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Crave</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Reel Fishing - Wild (USA)" index="" image="">
+		<description>Reel Fishing - Wild (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Natsume</manufacturer>
+		<year>2001</year>
+		<genre>Fishing/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Resident Evil 2 (USA) (Disc 1)" index="" image="">
+		<description>Resident Evil 2 (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Resident Evil 2 (USA) (Disc 2)" index="" image="">
+		<description>Resident Evil 2 (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Resident Evil 3 - Nemesis (USA)" index="" image="">
+		<description>Resident Evil 3 - Nemesis (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Resident Evil Code - Veronica (USA) (Disc 1)" index="" image="">
+		<description>Resident Evil Code - Veronica (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Resident Evil Code - Veronica (USA) (Disc 2)" index="" image="">
+		<description>Resident Evil Code - Veronica (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rez (Europe)" index="" image="">
+		<description>Rez (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Shooter</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ring - Terror&apos;s Realm, The (USA)" index="" image="">
+		<description>Ring - Terror&apos;s Realm, The (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rippin&apos; Riders (USA)" index="" image="">
+		<description>Rippin&apos; Riders (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Snowboarding/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Roadsters (USA)" index="" image="">
+		<description>Roadsters (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Titus Software</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Samba de Amigo (USA)" index="true" image="s">
+		<description>Samba de Amigo (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Rhythm</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Samba de Amigo ver. 2000 (Japan)" index="" image="">
+		<description>Samba de Amigo ver. 2000 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Rhythm</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="San Francisco Rush 2049 (USA)" index="" image="">
+		<description>San Francisco Rush 2049 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Midway</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sega Bass Fishing (USA)" index="" image="">
+		<description>Sega Bass Fishing (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Fishing/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sega Bass Fishing 2 (USA)" index="" image="">
+		<description>Sega Bass Fishing 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Fishing/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sega GT (USA)" index="" image="">
+		<description>Sega GT (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sega Marine Fishing (USA)" index="" image="">
+		<description>Sega Marine Fishing (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Fishing/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sega Rally Championship 2 (USA)" index="" image="">
+		<description>Sega Rally Championship 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sega Smash Pack Volume 1 (USA)" index="" image="">
+		<description>Sega Smash Pack Volume 1 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sega Swirl (USA)" index="" image="">
+		<description>Sega Swirl (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sega Tetris (Japan)" index="" image="">
+		<description>Sega Tetris (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sega Worldwide Soccer 2000 (Europe)" index="" image="">
+		<description>Sega Worldwide Soccer 2000 (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Soccer/Sports</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sega Worldwide Soccer 2000 Euro Edition (Europe)" index="" image="">
+		<description>Sega Worldwide Soccer 2000 Euro Edition (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Soccer/Sports</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Seventh Cross Evolution (USA)" index="" image="">
+		<description>Seventh Cross Evolution (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>UFO Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shadow Man (USA)" index="" image="">
+		<description>Shadow Man (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>1999</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shenmue (USA) (Disc 1)" index="" image="">
+		<description>Shenmue (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shenmue (USA) (Disc 2)" index="" image="">
+		<description>Shenmue (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shenmue (USA) (Disc 3)" index="" image="">
+		<description>Shenmue (USA) (Disc 3)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shenmue II (Europe) (Disc 1)" index="" image="">
+		<description>Shenmue II (Europe) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>PEGI - 12 (Everyone 12+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shenmue II (Europe) (Disc 2)" index="" image="">
+		<description>Shenmue II (Europe) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>PEGI - 12 (Everyone 12+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shenmue II (Europe) (Disc 3)" index="" image="">
+		<description>Shenmue II (Europe) (Disc 3)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>PEGI - 12 (Everyone 12+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Silent Scope (USA)" index="" image="">
+		<description>Silent Scope (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Konami</manufacturer>
+		<year>2000</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Silver (USA)" index="" image="">
+		<description>Silver (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>2000</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Skies of Arcadia (USA) (Disc 1)" index="" image="">
+		<description>Skies of Arcadia (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Skies of Arcadia (USA) (Disc 2)" index="" image="">
+		<description>Skies of Arcadia (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Slave Zero (USA)" index="" image="">
+		<description>Slave Zero (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>1999</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sno-Cross Championship Racing (USA)" index="" image="">
+		<description>Sno-Cross Championship Racing (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Crave</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Soldier of Fortune (USA)" index="" image="">
+		<description>Soldier of Fortune (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Crave</manufacturer>
+		<year>2001</year>
+		<genre>Action</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sonic Adventure (USA)" index="" image="">
+		<description>Sonic Adventure (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Platform</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sonic Adventure 2 (USA)" index="" image="">
+		<description>Sonic Adventure 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Platform</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sonic Adventure International (Japan)" index="" image="">
+		<description>Sonic Adventure International (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Platform</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sonic Shuffle (USA)" index="" image="">
+		<description>Sonic Shuffle (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Soul Calibur (USA)" index="" image="">
+		<description>Soul Calibur (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Namco</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Soul Fighter (USA)" index="" image="">
+		<description>Soul Fighter (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mindscape Inc.</manufacturer>
+		<year>1999</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="South Park - Chef&apos;s Luv Shack (USA)" index="" image="">
+		<description>South Park - Chef&apos;s Luv Shack (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>1999</year>
+		<genre>Game Show</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="South Park Rally (USA)" index="" image="">
+		<description>South Park Rally (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Space Channel 5 (USA)" index="" image="">
+		<description>Space Channel 5 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Rhythm</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Space Channel 5 Part 2 (Japan)" index="" image="">
+		<description>Space Channel 5 Part 2 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2002</year>
+		<genre>Rhythm</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Spawn - In the Demon&apos;s Hand (USA)" index="" image="">
+		<description>Spawn - In the Demon&apos;s Hand (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Spec Ops II - Omega Squad (USA)" index="" image="">
+		<description>Spec Ops II - Omega Squad (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ripcord Games</manufacturer>
+		<year>2000</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Speed Devils (USA)" index="" image="">
+		<description>Speed Devils (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Speed Devils Online Racing (USA)" index="" image="">
+		<description>Speed Devils Online Racing (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Spider-Man (USA)" index="" image="">
+		<description>Spider-Man (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Activision</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Spirit of Speed 1937 (USA)" index="" image="">
+		<description>Spirit of Speed 1937 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>LJN Ltd.</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sports Jam (USA)" index="" image="">
+		<description>Sports Jam (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Agetec Inc.</manufacturer>
+		<year>2001</year>
+		<genre>Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Star Wars - Demolition (USA)" index="" image="">
+		<description>Star Wars - Demolition (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>LucasArts</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Star Wars - Episode I Racer (USA)" index="" image="">
+		<description>Star Wars - Episode I Racer (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>LucasArts</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Star Wars Episode I - Jedi Power Battles (USA)" index="" image="">
+		<description>Star Wars Episode I - Jedi Power Battles (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>LucasArts</manufacturer>
+		<year>2000</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="StarLancer (USA)" index="" image="">
+		<description>StarLancer (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Crave</manufacturer>
+		<year>2000</year>
+		<genre>Simulation</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Street Fighter Alpha 3 (USA)" index="" image="">
+		<description>Street Fighter Alpha 3 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Street Fighter III - 3rd Strike (USA)" index="" image="">
+		<description>Street Fighter III - 3rd Strike (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Street Fighter III - Double Impact (USA)" index="" image="">
+		<description>Street Fighter III - Double Impact (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Striker Pro 2000 (USA)" index="" image="">
+		<description>Striker Pro 2000 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>2000</year>
+		<genre>Soccer/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Stunt GP (Europe)" index="" image="">
+		<description>Stunt GP (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>EON Digital Entertainment</manufacturer>
+		<year>2001</year>
+		<genre>Driving</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Stupid Invaders (USA) (Disc 1)" index="" image="">
+		<description>Stupid Invaders (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Stupid Invaders (USA) (Disc 2)" index="" image="">
+		<description>Stupid Invaders (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Euro Soccer 2000 (Japan)" index="" image="">
+		<description>Super Euro Soccer 2000 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Imagineer</manufacturer>
+		<year>2000</year>
+		<genre>Soccer/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Magnetic Neo (USA)" index="" image="">
+		<description>Super Magnetic Neo (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Crave</manufacturer>
+		<year>2000</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Puzzle Fighter 2 X (Japan)" index="" image="">
+		<description>Super Puzzle Fighter 2 X (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2001</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Runabout - San Francisco Edition (USA)" index="" image="">
+		<description>Super Runabout - San Francisco Edition (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Interplay</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Street Fighter 2 X (Japan)" index="" image="">
+		<description>Super Street Fighter 2 X (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Surf Rocket Racers (USA)" index="" image="">
+		<description>Surf Rocket Racers (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Crave</manufacturer>
+		<year>2001</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Suzuki Alstare Extreme Racing (USA)" index="" image="">
+		<description>Suzuki Alstare Extreme Racing (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sword of the Berserk - Guts&apos; Rage (USA)" index="" image="">
+		<description>Sword of the Berserk - Guts&apos; Rage (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Eidos Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sydney 2000 (USA)" index="" image="">
+		<description>Sydney 2000 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Eidos Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Olympic/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tech Romancer (USA)" index="true" image="t">
+		<description>Tech Romancer (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tee Off (USA)" index="" image="">
+		<description>Tee Off (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>1999</year>
+		<genre>Golf/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tennis 2K2 (USA)" index="" image="">
+		<description>Tennis 2K2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Sports/Tennis</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Test Drive 6 (USA)" index="" image="">
+		<description>Test Drive 6 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Test Drive Le Mans (USA)" index="" image="">
+		<description>Test Drive Le Mans (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Test Drive V-Rally (USA)" index="" image="">
+		<description>Test Drive V-Rally (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tetris 4D (Japan)" index="" image="">
+		<description>Tetris 4D (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Bullet Proof Software</manufacturer>
+		<year>1998</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Time Stalkers (USA)" index="" image="">
+		<description>Time Stalkers (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="TNN Motorsports Hardcore Heat (USA)" index="" image="">
+		<description>TNN Motorsports Hardcore Heat (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ASC Games</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tokyo Xtreme Racer (USA)" index="" image="">
+		<description>Tokyo Xtreme Racer (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Crave</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tokyo Xtreme Racer 2 (USA)" index="" image="">
+		<description>Tokyo Xtreme Racer 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Crave</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tom Clancy&apos;s Rainbow Six (USA)" index="" image="">
+		<description>Tom Clancy&apos;s Rainbow Six (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Majesco Games</manufacturer>
+		<year>2000</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tom Clancy&apos;s Rainbow Six - Rogue Spear (USA)" index="" image="">
+		<description>Tom Clancy&apos;s Rainbow Six - Rogue Spear (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Red Storm Entertainment</manufacturer>
+		<year>2000</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tomb Raider - Chronicles (USA)" index="" image="">
+		<description>Tomb Raider - Chronicles (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Eidos Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tomb Raider - The Last Revelation (USA)" index="" image="">
+		<description>Tomb Raider - The Last Revelation (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Eidos Interactive</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tony Hawk&apos;s Pro Skater (USA)" index="" image="">
+		<description>Tony Hawk&apos;s Pro Skater (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Crave</manufacturer>
+		<year>2000</year>
+		<genre>Skateboarding/Sports</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tony Hawk&apos;s Pro Skater 2 (USA)" index="" image="">
+		<description>Tony Hawk&apos;s Pro Skater 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Activision</manufacturer>
+		<year>2000</year>
+		<genre>Skateboarding/Sports</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Toy Commander (USA)" index="" image="">
+		<description>Toy Commander (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Toy Racer (Europe)" index="" image="">
+		<description>Toy Racer (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Toy Story 2 - Buzz Lightyear to the Rescue! (USA)" index="" image="">
+		<description>Toy Story 2 - Buzz Lightyear to the Rescue! (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Activision</manufacturer>
+		<year>2000</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="TrickStyle (USA)" index="" image="">
+		<description>TrickStyle (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>1999</year>
+		<genre>Skateboarding/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Trigger Heart Exelica (Japan)" index="" image="">
+		<description>Trigger Heart Exelica (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Warashi</manufacturer>
+		<year>2007</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Trizeal (Japan)" index="" image="">
+		<description>Trizeal (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Triangle Service</manufacturer>
+		<year>2005</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Twinkle Star Sprites (Japan)" index="" image="">
+		<description>Twinkle Star Sprites (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Typing of the Dead, The (USA)" index="" image="">
+		<description>Typing of the Dead, The (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Action</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="UEFA Dream Soccer (Europe)" index="true" image="u">
+		<description>UEFA Dream Soccer (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Soccer/Sports</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="UEFA Striker (Europe)" index="" image="">
+		<description>UEFA Striker (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>2000</year>
+		<genre>Soccer/Sports</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ultimate Fighting Championship (USA)" index="" image="">
+		<description>Ultimate Fighting Championship (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Crave</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Under Defeat (Japan)" index="" image="">
+		<description>Under Defeat (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Grev Ltd.</manufacturer>
+		<year>2006</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Unreal Tournament (USA)" index="" image="">
+		<description>Unreal Tournament (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>2001</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Urban Chaos (USA)" index="" image="">
+		<description>Urban Chaos (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Eidos Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Vampire Chronicle for Matching Service (Japan)" index="true" image="v">
+		<description>Vampire Chronicle for Matching Service (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Vanishing Point (USA)" index="" image="">
+		<description>Vanishing Point (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Vigilante 8 - 2nd Offense (USA)" index="" image="">
+		<description>Vigilante 8 - 2nd Offense (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Activision</manufacturer>
+		<year>1999</year>
+		<genre>Driving</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Virtua Athlete 2000 (USA)" index="" image="">
+		<description>Virtua Athlete 2000 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Agetec Inc.</manufacturer>
+		<year>2001</year>
+		<genre>Olympic/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Virtua Cop 2 (Japan)" index="" image="">
+		<description>Virtua Cop 2 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Gun</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Virtua Fighter 3tb (USA)" index="" image="">
+		<description>Virtua Fighter 3tb (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Virtua Striker 2 (USA)" index="" image="">
+		<description>Virtua Striker 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Soccer/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Virtua Tennis (USA)" index="" image="">
+		<description>Virtua Tennis (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Tennis</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Virtual On - Oratorio Tangram (USA)" index="" image="">
+		<description>Virtual On - Oratorio Tangram (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Activision</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wacky Races (USA)" index="true" image="w">
+		<description>Wacky Races (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Walt Disney World Quest - Magical Racing Tour (USA)" index="" image="">
+		<description>Walt Disney World Quest - Magical Racing Tour (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Eidos Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wetrix+ (USA)" index="" image="">
+		<description>Wetrix+ (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Xicat Interactive</manufacturer>
+		<year>1999</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Who Wants to Be a Millionaire (Europe)" index="" image="">
+		<description>Who Wants to Be a Millionaire (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Eidos Interactive</manufacturer>
+		<year>2000</year>
+		<genre>Game Show</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Who Wants to Beat Up a Millionaire (USA)" index="" image="">
+		<description>Who Wants to Beat Up a Millionaire (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Berkeley</manufacturer>
+		<year>2000</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wild Metal (USA)" index="" image="">
+		<description>Wild Metal (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Rockstar Games</manufacturer>
+		<year>2000</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="World Series Baseball 2K1 (USA)" index="" image="">
+		<description>World Series Baseball 2K1 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2000</year>
+		<genre>Baseball/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="World Series Baseball 2K2 (USA)" index="" image="">
+		<description>World Series Baseball 2K2 (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Baseball/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Worms Armageddon (USA)" index="" image="">
+		<description>Worms Armageddon (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hasbro Interactive</manufacturer>
+		<year>1999</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Worms World Party (USA)" index="" image="">
+		<description>Worms World Party (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Titus Software</manufacturer>
+		<year>2001</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="WWF Attitude (USA)" index="" image="">
+		<description>WWF Attitude (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acclaim</manufacturer>
+		<year>1999</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="WWF Royal Rumble (USA)" index="" image="">
+		<description>WWF Royal Rumble (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>THQ</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Xtreme Sports (USA)" index="true" image="x">
+		<description>Xtreme Sports (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>2000</year>
+		<genre>Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Yu Suzuki Game Works Vol. 1 (Japan)" index="true" image="y">
+		<description>Yu Suzuki Game Works Vol. 1 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2001</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Zero Gunner 2 (Japan)" index="true" image="z">
+		<description>Zero Gunner 2 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Psikyo</manufacturer>
+		<year>2001</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Zombie Revenge (USA)" index="" image="">
+		<description>Zombie Revenge (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1999</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Zusar Vasar (Japan)" index="" image="">
+		<description>Zusar Vasar (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Real Vision</manufacturer>
+		<year>2000</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>Amstrad GX4000</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.0 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="Barbarian 2 (Europe)" index="true" image="b">
+		<description>Barbarian 2 (Europe)</description>
+		<cloneof></cloneof>
+		<crc>07e0045e</crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Batman the Movie (Europe)" index="" image="">
+		<description>Batman the Movie (Europe)</description>
+		<cloneof></cloneof>
+		<crc>e039fa68</crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Burnin&apos; Rubber (Europe)" index="" image="">
+		<description>Burnin&apos; Rubber (Europe)</description>
+		<cloneof></cloneof>
+		<crc>3130af05</crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1990</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Copter 271 (Europe)" index="true" image="c">
+		<description>Copter 271 (Europe)</description>
+		<cloneof></cloneof>
+		<crc>c60f0297</crc>
+		<manufacturer>Loriciel</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Crazy Cars 2 (Europe)" index="" image="">
+		<description>Crazy Cars 2 (Europe)</description>
+		<cloneof></cloneof>
+		<crc>abf053e2</crc>
+		<manufacturer>Titus</manufacturer>
+		<year>1990</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dick Tracy (Europe)" index="true" image="d">
+		<description>Dick Tracy (Europe)</description>
+		<cloneof></cloneof>
+		<crc>016139d8</crc>
+		<manufacturer>Titus</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Enforcer (Europe)" index="true" image="e">
+		<description>Enforcer (Europe)</description>
+		<cloneof></cloneof>
+		<crc>74ec2eaf</crc>
+		<manufacturer>Trojan</manufacturer>
+		<year>1990</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fire and Forget 2 (Europe)" index="true" image="f">
+		<description>Fire and Forget 2 (Europe)</description>
+		<cloneof></cloneof>
+		<crc>e5a01687</crc>
+		<manufacturer>Titus</manufacturer>
+		<year>1990</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Klax (Europe)" index="true" image="k">
+		<description>Klax (Europe)</description>
+		<cloneof></cloneof>
+		<crc>fa33b29c</crc>
+		<manufacturer>Domark</manufacturer>
+		<year>1990</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mystical (Europe)" index="true" image="m">
+		<description>Mystical (Europe)</description>
+		<cloneof></cloneof>
+		<crc>94d44c07</crc>
+		<manufacturer>Infogrames</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Navy Seals (Europe)" index="true" image="n">
+		<description>Navy Seals (Europe)</description>
+		<cloneof></cloneof>
+		<crc>de3a4ff6</crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="No Exit (Europe)" index="" image="">
+		<description>No Exit (Europe)</description>
+		<cloneof></cloneof>
+		<crc>de25ee9d</crc>
+		<manufacturer>Tomahawk</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Operation Thunderbolt (Europe)" index="true" image="o">
+		<description>Operation Thunderbolt (Europe)</description>
+		<cloneof></cloneof>
+		<crc>ab7cc2f4</crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pang (Europe)" index="true" image="p">
+		<description>Pang (Europe)</description>
+		<cloneof></cloneof>
+		<crc>87632953</crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Panza Kick Boxing (Europe)" index="" image="">
+		<description>Panza Kick Boxing (Europe)</description>
+		<cloneof></cloneof>
+		<crc>8dacbeee</crc>
+		<manufacturer>Titus</manufacturer>
+		<year>1990</year>
+		<genre>Boxing/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Plotting (Europe)" index="" image="">
+		<description>Plotting (Europe)</description>
+		<cloneof></cloneof>
+		<crc>625d92d6</crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1990</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pro Tennis Tour (Europe)" index="" image="">
+		<description>Pro Tennis Tour (Europe)</description>
+		<cloneof></cloneof>
+		<crc>6a647a82</crc>
+		<manufacturer>Ubisoft</manufacturer>
+		<year>1990</year>
+		<genre>Sports/Tennis</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Robocop 2 (Europe)" index="true" image="r">
+		<description>Robocop 2 (Europe)</description>
+		<cloneof></cloneof>
+		<crc>0ba0dc98</crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Skeet Shoot (Europe)" index="true" image="s">
+		<description>Skeet Shoot (Europe)</description>
+		<cloneof></cloneof>
+		<crc>d6b2d425</crc>
+		<manufacturer>Trojan</manufacturer>
+		<year>1990</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Pinball Magic (Europe)" index="" image="">
+		<description>Super Pinball Magic (Europe)</description>
+		<cloneof></cloneof>
+		<crc>e826ab81</crc>
+		<manufacturer>Loricel</manufacturer>
+		<year>1991</year>
+		<genre>Pinball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Switchblade (Europe)" index="" image="">
+		<description>Switchblade (Europe)</description>
+		<cloneof></cloneof>
+		<crc>29e71f0c</crc>
+		<manufacturer>Gremlin</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tennis Cup 2 (Europe)" index="true" image="t">
+		<description>Tennis Cup 2 (Europe)</description>
+		<cloneof></cloneof>
+		<crc>a5625f6c</crc>
+		<manufacturer>Loriciel</manufacturer>
+		<year>1990</year>
+		<genre>Sports/Tennis</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tin Tin on the Moon (Europe)" index="" image="">
+		<description>Tin Tin on the Moon (Europe)</description>
+		<cloneof></cloneof>
+		<crc>a6b5094d</crc>
+		<manufacturer>Titus</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wild Streets (Europe)" index="true" image="w">
+		<description>Wild Streets (Europe)</description>
+		<cloneof></cloneof>
+		<crc>946c80b4</crc>
+		<manufacturer>Titus</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="World Of Sports (Europe)" index="" image="">
+		<description>World Of Sports (Europe)</description>
+		<cloneof></cloneof>
+		<crc>541f78ae</crc>
+		<manufacturer>Epyx</manufacturer>
+		<year>1990</year>
+		<genre>Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

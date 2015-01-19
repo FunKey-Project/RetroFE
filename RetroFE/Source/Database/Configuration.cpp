@@ -391,3 +391,13 @@ void Configuration::SetVerbose(bool verbose)
 {
     this->Verbose = verbose;
 }
+
+void Configuration::SetStatus(std::string status)
+{
+    Status = status;
+}
+
+std::string Configuration::GetStatus()
+{
+    return Status;
+}

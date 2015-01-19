@@ -15,10 +15,10 @@
  */
 
 #include "MenuParser.h"
+#include "CollectionInfo.h"
 #include "Item.h"
 #include "../Utility/Log.h"
 #include "../Database/Configuration.h"
-#include "../Database/CollectionDatabase.h"
 #include "../Database/DB.h"
 #include <algorithm>
 #include <rapidxml.hpp>
@@ -39,11 +39,11 @@ MenuParser::~MenuParser()
 }
 
 //todo: clean up this method, too much nesting
-bool MenuParser::GetMenuItems(CollectionDatabase *cdb, std::string collectionName, std::vector<Item *> &items)
+bool MenuParser::GetMenuItems(CollectionInfo *collection)
 {
     bool retVal = false;
     //todo: magic string
-    std::string menuFilename = Configuration::GetAbsolutePath() + "/Collections/" + collectionName + "/Menu.xml";
+    std::string menuFilename = Configuration::GetAbsolutePath() + "/Collections/" + collection->GetName() + "/Menu.xml";
     rapidxml::xml_document<> doc;
     rapidxml::xml_node<> * rootNode;
 
@@ -93,18 +93,23 @@ bool MenuParser::GetMenuItems(CollectionDatabase *cdb, std::string collectionNam
                         item->SetFullTitle(title);
                         item->SetName(collectionAttribute->value());
                         item->SetIsLeaf(false);
-                        items.push_back(item);
+                        collection->GetItems()->push_back(item);
+
                     }
                     else
                     {
                         std::string collectionName = collectionAttribute->value();
                         Logger::Write(Logger::ZONE_INFO, "Menu", "Loading collection into menu: " + collectionName);
-                        cdb->GetCollection(collectionAttribute->value(), items);
+
+                        //todo: unsupported option with this refactor
+                        // need to append the collection
                     }
                 }
             }
 
-            std::sort( items.begin(), items.end(), VectorSort);
+            // todo: sorting should occur within the collection itself, not externally
+            std::vector<Item *> *items = collection->GetItems();
+            std::sort( items->begin(), items->end(), VectorSort);
 
             retVal = true;
         }

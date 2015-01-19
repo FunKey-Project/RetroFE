@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>Entex Adventure Vision</listname>
+		<lastlistupdate>10/10/2013</lastlistupdate>
+		<listversion>1.0 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="Defender (USA, Europe)" index="true" image="d">
+		<description>Defender (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>3e280096</crc>
+		<manufacturer>Entex Industries</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Space Force (USA, Europe)" index="true" image="s">
+		<description>Space Force (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>c70d4028</crc>
+		<manufacturer>Entex Industries</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Cobra (USA, Europe)" index="" image="">
+		<description>Super Cobra (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>b6045c9e</crc>
+		<manufacturer>Entex Industries</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Turtles (USA, Europe)" index="true" image="t">
+		<description>Turtles (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>33a23eba</crc>
+		<manufacturer>Entex Industries</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

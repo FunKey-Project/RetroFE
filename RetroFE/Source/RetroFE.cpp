@@ -15,7 +15,8 @@
  */
 
 #include "RetroFE.h"
-#include "Database/CollectionDatabase.h"
+#include "Collection/CollectionInfoBuilder.h"
+#include "Collection/CollectionInfo.h"
 #include "Database/Configuration.h"
 #include "Collection/Item.h"
 #include "Execute/Launcher.h"
@@ -41,7 +42,6 @@ RetroFE::RetroFE(Configuration &c)
     , InitializeThread(NULL)
     , Config(c)
     , Db(NULL)
-    , CollectionDB(NULL)
     , Input(Config)
     , KeyInputDisable(0)
     , CurrentTime(0)
@@ -51,29 +51,6 @@ RetroFE::RetroFE(Configuration &c)
 RetroFE::~RetroFE()
 {
     DeInitialize();
-}
-
-CollectionDatabase *RetroFE::InitializeCollectionDatabase(DB &db, Configuration &config)
-{
-    CollectionDatabase *cdb = NULL;
-
-    std::string dbFile = (Configuration::GetAbsolutePath() + "/cache.db");
-    std::ifstream infile(dbFile.c_str());
-
-    cdb = new CollectionDatabase(db, config);
-
-    if(!cdb->Initialize())
-    {
-        delete cdb;
-        cdb = NULL;
-    }
-    else if(!cdb->Import())
-    {
-        delete cdb;
-        cdb = NULL;
-    }
-
-    return cdb;
 }
 
 void RetroFE::Render()
@@ -114,18 +91,13 @@ int RetroFE::Initialize(void *context)
         return -1;
     }
 
+    instance->MetaDb = new MetadataDatabase(*(instance->Db), instance->Config);
 
-    instance->CollectionDB = instance->InitializeCollectionDatabase(*instance->Db, instance->Config);
-
-    if(!instance->CollectionDB)
+    if(!instance->MetaDb->Initialize())
     {
-        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize CollectionDB!");
-        delete instance->Db;
+        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize meta database");
         return -1;
     }
-
-
-    instance->FC.Initialize();
 
     instance->Config.GetProperty("videoEnable", videoEnable);
     instance->Config.GetProperty("videoLoop", videoLoop);
@@ -200,17 +172,18 @@ bool RetroFE::DeInitialize()
         delete page;
         PageChain.pop_back();
     }
+    if(MetaDb)
+    {
+        delete MetaDb;
+        MetaDb = NULL;
+    }
+
     if(Db)
     {
         delete Db;
         Db = NULL;
     }
 
-    if(CollectionDB)
-    {
-        delete CollectionDB;
-        Db = NULL;
-    }
     Initialized = false;
     //todo: handle video deallocation
     return retVal;
@@ -219,6 +192,8 @@ bool RetroFE::DeInitialize()
 void RetroFE::Run()
 {
     if(!SDL::Initialize(Config)) return;
+
+    FC.Initialize();
 
     InitializeThread = SDL_CreateThread(Initialize, "RetroFEInit", (void *)this);
 
@@ -464,7 +439,6 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
     return state;
 }
 
-
 void RetroFE::WaitToInitialize()
 {
     Logger::Write(Logger::ZONE_INFO, "RetroFE", "Loading splash screen");
@@ -474,14 +448,11 @@ void RetroFE::WaitToInitialize()
 
     while(!Initialized)
     {
-    SDL_SetRenderDrawColor(SDL::GetRenderer(), 0x0, 0x0, 0x00, 0xFF);
-    SDL_RenderClear(SDL::GetRenderer());
-//    image->Draw();
-    //todo: decouple page from a collection
-    page->Draw();
-    SDL_RenderPresent(SDL::GetRenderer());
+        SDL_SetRenderDrawColor(SDL::GetRenderer(), 0x0, 0x0, 0x00, 0xFF);
+        SDL_RenderClear(SDL::GetRenderer());
 
-        SDL_Delay(2000);
+        page->Draw();
+        SDL_RenderPresent(SDL::GetRenderer());
     }
 
     int status = 0;
@@ -496,7 +467,8 @@ Page *RetroFE::LoadPage(std::string collectionName)
 
     Page *page = NULL;
 
-    std::vector<Item *> *collection = GetCollection(collectionName);
+    Config.SetCurrentCollection(collectionName);
+    CollectionInfo *collection = GetCollection(collectionName);
     std::string layoutName = GetLayout(collectionName);
 
     if(PageChain.size() > 0)
@@ -514,8 +486,7 @@ Page *RetroFE::LoadPage(std::string collectionName)
     }
     else
     {
-        Config.SetCurrentCollection(collectionName);
-        page->SetItems(collection);
+        page->SetCollection(collection);
         page->Start();
 
         PageChain.push_back(page);
@@ -526,10 +497,9 @@ Page *RetroFE::LoadPage(std::string collectionName)
 Page *RetroFE::LoadSplashPage()
 {
     PageBuilder pb("Splash", "", Config, &FC);
-    std::vector<Item *> *coll = new std::vector<Item *>();
     Page * page = pb.BuildPage();
     Config.SetCurrentCollection("");
-    page->SetItems(coll);
+    page->SetCollection(new CollectionInfo("", "", "", "", ""));
     page->Start();
     PageChain.push_back(page);
 
@@ -537,16 +507,16 @@ Page *RetroFE::LoadSplashPage()
 }
 
 
-std::vector<Item *> *RetroFE::GetCollection(std::string collectionName)
+CollectionInfo *RetroFE::GetCollection(std::string collectionName)
 {
     // the page will deallocate this once its done
-    std::vector<Item *> *collection = new std::vector<Item *>(); 
     MenuParser mp;
 
-    mp.GetMenuItems(CollectionDB, collectionName, *collection);
-    CollectionDB->GetCollection(collectionName, *collection);
+    CollectionInfoBuilder cib(Config, *MetaDb);
+    CollectionInfo *collection = cib.BuildCollection(collectionName);
+    mp.GetMenuItems(collection);
 
-    if(collection->size() == 0)
+    if(collection->GetItems()->size() == 0)
     {
         Logger::Write(Logger::ZONE_WARNING, "RetroFE", "No list items found for collection " + collectionName);
     }

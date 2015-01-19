@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>Philips VG 5000</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.0 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="Backgammon (France)" index="true" image="b">
+		<description>Backgammon (France)</description>
+		<cloneof></cloneof>
+		<crc>872A59E3</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Tabletop</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bris de Glace (France)" index="" image="">
+		<description>Bris de Glace (France)</description>
+		<cloneof></cloneof>
+		<crc>CEDF71DF</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Citadelle (France)" index="true" image="c">
+		<description>Citadelle (France)</description>
+		<cloneof></cloneof>
+		<crc>8694CD4D</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Divertissements (France)" index="true" image="d">
+		<description>Divertissements (France)</description>
+		<cloneof></cloneof>
+		<crc>9D8C8C0C</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Casino</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Football (France)" index="true" image="f">
+		<description>Football (France)</description>
+		<cloneof></cloneof>
+		<crc>C9E5B007</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Glouton (France)" index="true" image="g">
+		<description>Glouton (France)</description>
+		<cloneof></cloneof>
+		<crc>D24B1C63</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Maze</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Helicoptere (France)" index="true" image="h">
+		<description>Helicoptere (France)</description>
+		<cloneof></cloneof>
+		<crc>6E8DE416</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Jeu de Tarot (France)" index="true" image="j">
+		<description>Jeu de Tarot (France)</description>
+		<cloneof></cloneof>
+		<crc>9D1B8A7F</crc>
+		<manufacturer>Nice Ideas</manufacturer>
+		<year>1985</year>
+		<genre>Tabletop</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="L&apos;Abeille (France)" index="true" image="l">
+		<description>L&apos;Abeille (France)</description>
+		<cloneof></cloneof>
+		<crc>9C35675C</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="La Carotte Malicieuse (France)" index="" image="">
+		<description>La Carotte Malicieuse (France)</description>
+		<cloneof></cloneof>
+		<crc>A0D50BB6</crc>
+		<manufacturer>VIFI Nathan</manufacturer>
+		<year>1985</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="La Moto Infernale (France)" index="" image="">
+		<description>La Moto Infernale (France)</description>
+		<cloneof></cloneof>
+		<crc>3555EF7D</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Motorcycle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Le Fou Volant (France)" index="" image="">
+		<description>Le Fou Volant (France)</description>
+		<cloneof></cloneof>
+		<crc>594FFA6D</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Flying</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Le Monstre (France)" index="" image="">
+		<description>Le Monstre (France)</description>
+		<cloneof></cloneof>
+		<crc>14268E03</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Micro Jeux - Cocktail de Jeux (France)" index="true" image="m">
+		<description>Micro Jeux - Cocktail de Jeux (France)</description>
+		<cloneof></cloneof>
+		<crc>45007084</crc>
+		<manufacturer>VIFI Nathan</manufacturer>
+		<year>1985</year>
+		<genre>Compilation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mission Omega (France)" index="" image="">
+		<description>Mission Omega (France)</description>
+		<cloneof></cloneof>
+		<crc>55EC8890</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Monkey Academy (France)" index="" image="">
+		<description>Monkey Academy (France)</description>
+		<cloneof></cloneof>
+		<crc>964503F5</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Simulateur de Vol (France)" index="true" image="s">
+		<description>Simulateur de Vol (France)</description>
+		<cloneof></cloneof>
+		<crc>D93775F6</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Flying</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Staroc (France)" index="" image="">
+		<description>Staroc (France)</description>
+		<cloneof></cloneof>
+		<crc>99ABB5E0</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tortues (France)" index="true" image="t">
+		<description>Tortues (France)</description>
+		<cloneof></cloneof>
+		<crc>832FE1B6</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Maze</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="US Rallye (France)" index="true" image="u">
+		<description>US Rallye (France)</description>
+		<cloneof></cloneof>
+		<crc>0AF5F00C</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Viking (France)" index="true" image="v">
+		<description>Viking (France)</description>
+		<cloneof></cloneof>
+		<crc>EF0206C3</crc>
+		<manufacturer>Philips</manufacturer>
+		<year>1984</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

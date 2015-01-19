@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>RCA Studio II</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.0 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="TV Arcade I - Space War (USA)" index="true" image="t">
+		<description>TV Arcade I - Space War (USA)</description>
+		<cloneof></cloneof>
+		<crc>B4879A92</crc>
+		<manufacturer>RCA</manufacturer>
+		<year>1977</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="TV Arcade III - Tennis + Squash (USA)" index="" image="">
+		<description>TV Arcade III - Tennis + Squash (USA)</description>
+		<cloneof></cloneof>
+		<crc>A0F4180E</crc>
+		<manufacturer>RCA</manufacturer>
+		<year>1977</year>
+		<genre>Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="TV Arcade IV - Baseball (USA)" index="" image="">
+		<description>TV Arcade IV - Baseball (USA)</description>
+		<cloneof></cloneof>
+		<crc>E196C7FC</crc>
+		<manufacturer>RCA</manufacturer>
+		<year>1977</year>
+		<genre>Sports/Baseball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="TV Arcade V - Speedway + Tag (USA)" index="" image="">
+		<description>TV Arcade V - Speedway + Tag (USA)</description>
+		<cloneof></cloneof>
+		<crc>C7C904AA</crc>
+		<manufacturer>RCA</manufacturer>
+		<year>1977</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="TV Casino I - Blackjack (USA)" index="" image="">
+		<description>TV Casino I - Blackjack (USA)</description>
+		<cloneof></cloneof>
+		<crc>7D4ADF90</crc>
+		<manufacturer>RCA</manufacturer>
+		<year>1977</year>
+		<genre>Casino</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

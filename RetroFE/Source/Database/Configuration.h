@@ -16,7 +16,8 @@ public:
     static void SetAbsolutePath(std::string absolutePath);
     static std::string GetAbsolutePath();
     static std::string ConvertToAbsolutePath(std::string prefix, std::string path);
-
+    void SetStatus(std::string status);
+    std::string GetStatus();
     // gets the global configuration
     bool Import(std::string keyPrefix, std::string file);
     void SetCurrentCollection(std::string collection);
@@ -45,5 +46,6 @@ private:
     static std::string AbsolutePath;
     std::string CurrentCollection;
     PropertiesType Properties;
+    std::string Status;
 
 };

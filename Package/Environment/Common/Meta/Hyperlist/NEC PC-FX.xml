@@ -1,0 +1,629 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>NEC PC-FX</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.0 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="Aa! Megami Sama (Japan) (Disc 1)" index="true" image="a">
+		<description>Aa! Megami Sama (Japan) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Home Electronics</manufacturer>
+		<year>1997</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Aa! Megami Sama (Japan) (Disc 2)" index="" image="">
+		<description>Aa! Megami Sama (Japan) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Home Electronics</manufacturer>
+		<year>1997</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Akazukin Chacha (Japan)" index="" image="">
+		<description>Akazukin Chacha (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Home Electronics</manufacturer>
+		<year>1996</year>
+		<genre>Board Games</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="All Japan Womans Pro Wrestling - Queen Of Queens (Japan) (Disc 1)" index="" image="">
+		<description>All Japan Womans Pro Wrestling - Queen Of Queens (Japan) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Home Electronics</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="All Japan Womans Pro Wrestling - Queen Of Queens (Japan) (Disc 2)" index="" image="">
+		<description>All Japan Womans Pro Wrestling - Queen Of Queens (Japan) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Home Electronics</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Angelique Special (Japan)" index="" image="">
+		<description>Angelique Special (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Koei</manufacturer>
+		<year>1995</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Angelique Special 2 (Japan)" index="" image="">
+		<description>Angelique Special 2 (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Koei</manufacturer>
+		<year>1996</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Angelique Tenkuu No Requim (Japan)" index="" image="">
+		<description>Angelique Tenkuu No Requim (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Koei</manufacturer>
+		<year>1998</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Aruberea&apos;s Maiden (Japan)" index="" image="">
+		<description>Aruberea&apos;s Maiden (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Home Electronics</manufacturer>
+		<year>1997</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Battle Heat (Japan)" index="true" image="b">
+		<description>Battle Heat (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Blue Breaker (Japan)" index="" image="">
+		<description>Blue Breaker (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hunex</manufacturer>
+		<year>1996</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Blue Chicago Blues (Japan) (Disc 1)" index="" image="">
+		<description>Blue Chicago Blues (Japan) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Riverhill Soft</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Blue Chicago Blues (Japan) (Disc 2)" index="" image="">
+		<description>Blue Chicago Blues (Japan) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Riverhill Soft</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Boundary Gate - Daughter Of Kingdom (Japan)" index="" image="">
+		<description>Boundary Gate - Daughter Of Kingdom (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Pack-In-Video</manufacturer>
+		<year>1997</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Can Can Bunny Extra DX (Japan)" index="true" image="c">
+		<description>Can Can Bunny Extra DX (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Kid</manufacturer>
+		<year>1996</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - AD (Adult)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chip Chan Kick (Japan)" index="" image="">
+		<description>Chip Chan Kick (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Home Electronics</manufacturer>
+		<year>1996</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Comic Road (Japan)" index="" image="">
+		<description>Comic Road (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cocktail Soft</manufacturer>
+		<year>1997</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cutey Honey FX (Japan)" index="" image="">
+		<description>Cutey Honey FX (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>DataWest</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Der Langrisser FX (Japan)" index="true" image="d">
+		<description>Der Langrisser FX (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NCS</manufacturer>
+		<year>1996</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Doukyusei II (Japan)" index="" image="">
+		<description>Doukyusei II (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Interchannel</manufacturer>
+		<year>1996</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - AD (Adult)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dragon Knight IV (Japan)" index="" image="">
+		<description>Dragon Knight IV (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Avenue</manufacturer>
+		<year>1997</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - AD (Adult)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Farland Story FX (Japan)" index="true" image="f">
+		<description>Farland Story FX (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1996</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fire Woman Matoi-Gumi (Japan)" index="" image="">
+		<description>Fire Woman Matoi-Gumi (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tokuma Shoten Intermedia</manufacturer>
+		<year>1996</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="First Kiss Monogatari (Japan)" index="" image="">
+		<description>First Kiss Monogatari (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hunex</manufacturer>
+		<year>1997</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fushigi No Kuni No Angelique (Japan)" index="" image="">
+		<description>Fushigi No Kuni No Angelique (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Koei</manufacturer>
+		<year>1996</year>
+		<genre>Board Games</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ginga Ojousama Densetsu Yuna FX (Japan)" index="true" image="g">
+		<description>Ginga Ojousama Densetsu Yuna FX (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson Soft</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kishin Douji Zenki Vajura Fight FX (Japan)" index="true" image="k">
+		<description>Kishin Douji Zenki Vajura Fight FX (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson Soft</manufacturer>
+		<year>1995</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kokuu Hyouryuu Nirgends (Japan)" index="" image="">
+		<description>Kokuu Hyouryuu Nirgends (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Micro Cabin</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Konpeki No Kantai (Japan)" index="" image="">
+		<description>Konpeki No Kantai (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Micro Cabin</manufacturer>
+		<year>1995</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Last Imperial Prince (Japan) (Disc 1)" index="true" image="l">
+		<description>Last Imperial Prince (Japan) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nihon Application</manufacturer>
+		<year>1997</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Last Imperial Prince (Japan) (Disc 2)" index="" image="">
+		<description>Last Imperial Prince (Japan) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nihon Application</manufacturer>
+		<year>1997</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Lunatic Dawn (Japan)" index="" image="">
+		<description>Lunatic Dawn (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Artdink</manufacturer>
+		<year>1995</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mahjong Goku Tenjiku (Japan)" index="true" image="m">
+		<description>Mahjong Goku Tenjiku (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Chat Noir</manufacturer>
+		<year>1995</year>
+		<genre>Mahjong</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Makeruna! Makendou Z (Japan)" index="" image="">
+		<description>Makeruna! Makendou Z (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Fill-In Cafe</manufacturer>
+		<year>1998</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Megami Paradise II (Japan)" index="" image="">
+		<description>Megami Paradise II (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Home Electronics</manufacturer>
+		<year>1996</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Minimum Nanonic (Japan)" index="" image="">
+		<description>Minimum Nanonic (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1997</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Miraculum The Last Revelation (Japan)" index="" image="">
+		<description>Miraculum The Last Revelation (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>RayForce</manufacturer>
+		<year>1996</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ojousama Sousamou (Japan)" index="true" image="o">
+		<description>Ojousama Sousamou (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pachio-Kun FX - Maboroshi no Shima Daikessen (Japan)" index="true" image="p">
+		<description>Pachio-Kun FX - Maboroshi no Shima Daikessen (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1995</year>
+		<genre>Casino</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pia Carrot He Youkoso (Japan) (Translated En)" index="" image="">
+		<description>Pia Carrot He Youkoso (Japan) (Translated En)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cocktail Soft</manufacturer>
+		<year>1997</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - AD (Adult)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Power Dolls FX (Japan)" index="" image="">
+		<description>Power Dolls FX (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Kogado Studio</manufacturer>
+		<year>1996</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Return To Zork (Japan)" index="true" image="r">
+		<description>Return To Zork (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Datawest</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ruruli Ra Rura (Japan) (Translated En)" index="" image="">
+		<description>Ruruli Ra Rura (Japan) (Translated En)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1998</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shanghai The Great Wall (Japan)" index="true" image="s">
+		<description>Shanghai The Great Wall (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Activision</manufacturer>
+		<year>1996</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sotsugyou II - Neo Generation FX (Japan)" index="" image="">
+		<description>Sotsugyou II - Neo Generation FX (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Riverhill Soft</manufacturer>
+		<year>1994</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sotsugyou R - Graduation Real (Japan)" index="" image="">
+		<description>Sotsugyou R - Graduation Real (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1998</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sparkling Feather (Japan)" index="" image="">
+		<description>Sparkling Feather (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>HuneX</manufacturer>
+		<year>1997</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Power League FX (Japan)" index="" image="">
+		<description>Super Power League FX (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1996</year>
+		<genre>Sports/Baseball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Real Mahjong P.V. FX (Japan)" index="" image="">
+		<description>Super Real Mahjong P.V. FX (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Naxat Soft</manufacturer>
+		<year>1996</year>
+		<genre>Mahjong</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Team Innocent (Japan)" index="true" image="t">
+		<description>Team Innocent (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson Soft</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tekipaki Working Love FX (Japan)" index="" image="">
+		<description>Tekipaki Working Love FX (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Home Electronics</manufacturer>
+		<year>1998</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tenchi Muyo FX (Japan) (Disc 1)" index="" image="">
+		<description>Tenchi Muyo FX (Japan) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Micro Cabin</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tenchi Muyo FX (Japan) (Disc 2)" index="" image="">
+		<description>Tenchi Muyo FX (Japan) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Micro Cabin</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tengai Makyu Karakuri Kakutouden (Japan)" index="" image="">
+		<description>Tengai Makyu Karakuri Kakutouden (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Hudson Soft</manufacturer>
+		<year>1995</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tokimeki Card Paradise - Koi no Royal Straight Flush (Japan)" index="" image="">
+		<description>Tokimeki Card Paradise - Koi no Royal Straight Flush (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sonnet</manufacturer>
+		<year>1996</year>
+		<genre>Board Games</genre>
+		<rating>HSRS - AD (Adult)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tonari No Princess Rolfee (Japan)" index="" image="">
+		<description>Tonari No Princess Rolfee (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Home Electronics</manufacturer>
+		<year>1997</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tyoushin Heiki Zeroigar (Japan)" index="" image="">
+		<description>Tyoushin Heiki Zeroigar (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Interchannel</manufacturer>
+		<year>1997</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Voice Paradise (Japan) (Disc 1)" index="true" image="v">
+		<description>Voice Paradise (Japan) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ask Koudansha</manufacturer>
+		<year>1996</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Voice Paradise (Japan) (Disc 2)" index="" image="">
+		<description>Voice Paradise (Japan) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ask Koudansha</manufacturer>
+		<year>1996</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wakusei-Koukitai Little Cats (Japan)" index="true" image="w">
+		<description>Wakusei-Koukitai Little Cats (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NEC Home Electronics</manufacturer>
+		<year>1996</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Zoku Hatukoi Monogatari (Japan) (Disc 1)" index="true" image="z">
+		<description>Zoku Hatukoi Monogatari (Japan) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tokuma Shoten Intermedia</manufacturer>
+		<year>1996</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Zoku Hatukoi Monogatari (Japan) (Disc 2)" index="" image="">
+		<description>Zoku Hatukoi Monogatari (Japan) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tokuma Shoten Intermedia</manufacturer>
+		<year>1996</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

@@ -1,0 +1,589 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>OpenBOR</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.0 (Ongoing)</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="A Tale of Vengeance" index="true" image="a">
+		<description>A Tale of Vengeance</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>AlexDC22</manufacturer>
+		<year>2008</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Art of Fighting - Beats of Rage Remix III" index="" image="">
+		<description>Art of Fighting: Beats of Rage Remix III</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mr.Q® / King Herb</manufacturer>
+		<year>2009</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Asterix and Caesars Challenge" index="" image="">
+		<description>Asterix and Caesars Challenge</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Belavi</manufacturer>
+		<year>2005</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Balance of Power" index="true" image="b">
+		<description>Balance of Power</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>LBF</manufacturer>
+		<year>2007</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bare Knuckle VACUUM" index="" image="">
+		<description>Bare Knuckle VACUUM</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Volcanic</manufacturer>
+		<year>2010</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Battle Toads" index="" image="">
+		<description>Battle Toads</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>bWWd</manufacturer>
+		<year>2006</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Beats of Rage" index="" image="">
+		<description>Beats of Rage</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Senile Team</manufacturer>
+		<year>2003</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Beats of Rage Remix - Rhythm of Destruction" index="" image="">
+		<description>Beats of Rage Remix: Rhythm of Destruction</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mr.Q® / King Herb</manufacturer>
+		<year>2004</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Captain Commando and the Avengers" index="true" image="c">
+		<description>Captain Commando and the Avengers</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gabo-Hanzo®</manufacturer>
+		<year>2008</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chrono Killer" index="" image="">
+		<description>Chrono Killer</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>CybersoulX</manufacturer>
+		<year>2009</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Code Name - Sailor V" index="" image="">
+		<description>Code Name: Sailor V</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Kungpow12345</manufacturer>
+		<year>2009</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Contra - Locked &apos;N Loaded" index="" image="">
+		<description>Contra: Locked &apos;N Loaded</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Bloodbane</manufacturer>
+		<year>2010</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Crime Buster" index="" image="">
+		<description>Crime Buster</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Bloodbane</manufacturer>
+		<year>2007</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dante Must Kill" index="true" image="d">
+		<description>Dante Must Kill</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Masterderico</manufacturer>
+		<year>2004</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Double Dragon Extreme" index="" image="">
+		<description>Double Dragon Extreme</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mr.Q®</manufacturer>
+		<year>2005</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Double Dragon Gaiden" index="" image="">
+		<description>Double Dragon Gaiden</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gabo-Hanzo®</manufacturer>
+		<year>2009</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Double Dragon Genesis Final Cut" index="" image="">
+		<description>Double Dragon Genesis Final Cut</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>LeeBrother</manufacturer>
+		<year>2010</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Double Dragon SNK Final Edition" index="" image="">
+		<description>Double Dragon SNK Final Edition</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>kmilloz</manufacturer>
+		<year>2010</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Double Dragon Zero" index="" image="">
+		<description>Double Dragon Zero</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ikaruga</manufacturer>
+		<year>2009</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ed Edd n Eddy - Nightmare on Ed Street" index="true" image="e">
+		<description>Ed Edd n Eddy: Nightmare on Ed Street</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>KungPow12345</manufacturer>
+		<year>2005</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fatal Fury ReBout" index="true" image="f">
+		<description>Fatal Fury ReBout</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>[SEEP]</manufacturer>
+		<year>2007</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Final Fight Apocalypse - 2nd Edition" index="" image="">
+		<description>Final Fight Apocalypse: 2nd Edition</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mr.Q®</manufacturer>
+		<year>2006</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Final Fight - Last Round" index="" image="">
+		<description>Final Fight: Last Round</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mr.Q®</manufacturer>
+		<year>2005</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fists of Legendary Heroes" index="" image="">
+		<description>Fists of Legendary Heroes</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Zamuel</manufacturer>
+		<year>2010</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Garou - Rage of the Wolves" index="true" image="g">
+		<description>Garou: Rage of the Wolves</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer></manufacturer>
+		<year>2010</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Golden Axe Myth" index="" image="">
+		<description>Golden Axe: Myth</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Bariton Marchetto</manufacturer>
+		<year>2011</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Golden Axe - Remake" index="" image="">
+		<description>Golden Axe: Remake</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Utunnels</manufacturer>
+		<year>2007</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Guilty Gear - The Crusades" index="" image="">
+		<description>Guilty Gear: The Crusades</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ShinZombie</manufacturer>
+		<year>2006</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hatchet Ninjaz" index="true" image="h">
+		<description>Hatchet Ninjaz</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Vision</manufacturer>
+		<year>2004</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hyper Final Fight 2" index="" image="">
+		<description>Hyper Final Fight 2</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mr.Q®</manufacturer>
+		<year>2004</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hyper Final Fight 3 - Return of the Black" index="" image="">
+		<description>Hyper Final Fight 3: Return of the Black</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Shin Kazahara</manufacturer>
+		<year>2010</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Jennifer" index="true" image="j">
+		<description>Jennifer</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Masterderico</manufacturer>
+		<year>2010</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - 17 (17+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Joe and Mac - Caveman Ninja" index="" image="">
+		<description>Joe and Mac: Caveman Ninja</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>BonusJZ</manufacturer>
+		<year>2004</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Knights &amp; Dragons - Final Cut" index="true" image="k">
+		<description>Knights &amp; Dragons: Final Cut</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Pierwolf </manufacturer>
+		<year>2010</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Maplevania" index="true" image="m">
+		<description>Maplevania</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NickyP</manufacturer>
+		<year>2009</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Marvel Super Heroes" index="" image="">
+		<description>Marvel Super Heroes</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>bWWd</manufacturer>
+		<year>2008</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mega Sonic" index="" image="">
+		<description>Mega Sonic</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>CyberSoulX</manufacturer>
+		<year>2006</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="MegaMan - War of the Past" index="" image="">
+		<description>MegaMan: War of the Past</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>DCSteve</manufacturer>
+		<year>2005</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="MegaMan - Xtreme Legend" index="" image="">
+		<description>MegaMan: Xtreme Legend</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Xenox</manufacturer>
+		<year>2006</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mortal Kombat Outworld Assassins" index="" image="">
+		<description>Mortal Kombat Outworld Assassins</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Maggas</manufacturer>
+		<year>2010</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mortal Kombat Unlimited" index="" image="">
+		<description>Mortal Kombat Unlimited</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Maggas</manufacturer>
+		<year>2009</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Night Slashers X" index="true" image="n">
+		<description>Night Slashers X</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>BonusJZ</manufacturer>
+		<year>2009</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rage of the Streets" index="true" image="r">
+		<description>Rage of the Streets</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>AxelBlazeAdam</manufacturer>
+		<year>2005</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Return of the Double Dragon" index="" image="">
+		<description>Return of the Double Dragon</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mr.Q®</manufacturer>
+		<year>2007</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rhythm of Destruction 2 - Green Edition" index="" image="">
+		<description>Rhythm of Destruction 2: Green Edition</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mr.Q® / King Herb</manufacturer>
+		<year>2006</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rhythm of Destruction 2 - Red Edition" index="" image="">
+		<description>Rhythm of Destruction 2: Red Edition</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mr.Q® / King Herb</manufacturer>
+		<year>2005</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rocket Viper" index="" image="">
+		<description>Rocket Viper</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Volcanic</manufacturer>
+		<year>2010</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sailor Moon" index="true" image="s">
+		<description>Sailor Moon</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>KungPow Productions</manufacturer>
+		<year>2006</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shiva &amp; Lisa 3" index="" image="">
+		<description>Shiva &amp; Lisa 3</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Masterderico Productions</manufacturer>
+		<year>2009</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Skull Kingz Remake" index="" image="">
+		<description>Skull Kingz Remake</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Skull Kingz</manufacturer>
+		<year>2010</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Splatterhouse 1 - Deception of the Mask" index="" image="">
+		<description>Splatterhouse 1: Deception of the Mask</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cuchara</manufacturer>
+		<year>2008</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Splatterhouse 2 - Journey Through Hell" index="" image="">
+		<description>Splatterhouse 2: Journey Through Hell</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cuchara</manufacturer>
+		<year>2008</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Splatterhouse 3 - Back to Light" index="" image="">
+		<description>Splatterhouse 3: Back to Light</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cuchara</manufacturer>
+		<year>2008</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Street Fighter - Beats of Rage Remix II" index="" image="">
+		<description>Street Fighter: Beats of Rage Remix II</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mr.Q® / King Herb</manufacturer>
+		<year>2005</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Strider X" index="" image="">
+		<description>Strider X</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>VisioN</manufacturer>
+		<year>2006</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Fightin&apos; Spirit" index="" image="">
+		<description>Super Fightin&apos; Spirit</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>bWWd</manufacturer>
+		<year>2010</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Valdivia City Ransom" index="true" image="v">
+		<description>Valdivia City Ransom</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Miracle Kidz</manufacturer>
+		<year>2009</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="X-Men" index="true" image="x">
+		<description>X-Men</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>VicViper / KungPow</manufacturer>
+		<year>2005</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

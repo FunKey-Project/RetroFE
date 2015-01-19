@@ -1,0 +1,2079 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>ScummVM</listname>
+		<lastlistupdate>11/02/2013</lastlistupdate>
+		<listversion>1.3 Ongoing (1.6.0)</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="toltecs" index="true" image="3">
+		<description>3 Skulls of the Toltecs (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Revistonic</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="t7g" index="true" image="7">
+		<description>7th Guest, The (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Trilobyte</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="baseball" index="true" image="b">
+		<description>Backyard Baseball (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1992</year>
+		<genre>Sports/Baseball</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="baseball2001" index="" image="">
+		<description>Backyard Baseball 2001 (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>2000</year>
+		<genre>Sports/Baseball</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="baseball2003" index="" image="">
+		<description>Backyard Baseball 2003 (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>2002</year>
+		<genre>Sports/Baseball</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="football" index="" image="">
+		<description>Backyard Football (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Sports/Football</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="bargon" index="" image="">
+		<description>Bargon Attack (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Coktel Vision</manufacturer>
+		<year>1992</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="brstorm" index="" image="">
+		<description>Bear Stormin&apos; (DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sky" index="" image="">
+		<description>Beneath a Steel Sky (CD VGA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Revolution Software</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="bra" index="" image="">
+		<description>Big Red Adventure, The (DOS, Multilanguage)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Dynabyte</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="thinker1-win" index="" image="">
+		<description>Big Thinkers First Grade (Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1997</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="thinkerk-us" index="" image="">
+		<description>Big Thinkers Kindergarten (Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1997</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="woodruff-gb" index="" image="">
+		<description>Bizarre Adventures of Woodruff and the Schnibble of Azimuth, The (CD DOS, Multilanguage)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Coktel Vision</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="bc" index="" image="">
+		<description>Black Cauldron, The (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1986</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="blueforce-cd" index="" image="">
+		<description>Blue Force (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tsunami Media</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Blues123time" index="" image="">
+		<description>Blue&apos;s 123 Time Activities (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="BluesABCTime" index="" image="">
+		<description>Blue&apos;s ABC Time Activities (Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1998</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="arttime" index="" image="">
+		<description>Blue&apos;s Art Time Activities (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>2000</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="BluesBirthday" index="" image="">
+		<description>Blue&apos;s Birthday Adventure - Red (Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="BluesBirthday-1" index="" image="">
+		<description>Blue&apos;s Birthday Adventure - Yellow (Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="readtime" index="" image="">
+		<description>Blue&apos;s Reading Time Activities (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>2000</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="BluesTreasureHunt" index="" image="">
+		<description>Blue&apos;s Treasure Hunt (CD Windows) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="BluesTreasureHunt-win" index="" image="">
+		<description>Blue&apos;s Treasure Hunt (CD Windows) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sword1" index="" image="">
+		<description>Broken Sword I - The Shadows of the Templars (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Revolution Software</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sword2" index="" image="">
+		<description>Broken Sword II - The Smoking Mirror (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Revolution Software</manufacturer>
+		<year>1997</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="tucker" index="" image="">
+		<description>Bud Tucker in Double Trouble (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Merit Studios</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="castlebrain" index="true" image="c">
+		<description>Castle of Dr. Brain (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1991</year>
+		<genre>Educational</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="iceman" index="" image="">
+		<description>Codename - ICEMAN (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra</manufacturer>
+		<year>1989</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="camelot" index="" image="">
+		<description>Conquests of Camelot - King Arthur, Quest for the Grail (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1989</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="longbow" index="" image="">
+		<description>Conquests of the Longbow - The Legend of Robin Hood (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1991</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="cruise" index="" image="">
+		<description>Cruise for a Corpse (VGA DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Delphine Software International</manufacturer>
+		<year>1991</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="comi" index="" image="">
+		<description>Curse of Monkey Island, The (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>LucasArts</manufacturer>
+		<year>1997</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="darby-win" index="true" image="d">
+		<description>Darby the Dragon (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Broderbund Software</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="tentacle" index="" image="">
+		<description>Day of the Tentacle (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>LucasArts</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="dig" index="" image="">
+		<description>Dig, The (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>LucasArts</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="dw-cd" index="" image="">
+		<description>Discworld 1 (CD DOS v2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Teeny Weeny Games/Perfect 10 Productions (CD DOS v2)</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="dw2-gb" index="" image="">
+		<description>Discworld 2 - Missing presumed...!? (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Perfect Entertainment</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="draci" index="" image="">
+		<description>Dragon History (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>NoSense</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="drascula" index="" image="">
+		<description>Drascula - The Vampire Strikes Back (CD DOS, Multilanguage)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Alcachofa Soft</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="dreamweb-cd" index="" image="">
+		<description>Dreamweb (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Empire Interactive</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ecoquest-cd" index="true" image="e">
+		<description>EcoQuest 1 - The Search for Cetus (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>1991</year>
+		<genre>Educational</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ecoquest2" index="" image="">
+		<description>EcoQuest 2 - Lost Secret of the Rainforest (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>1993</year>
+		<genre>Educational</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="elvira1" index="" image="">
+		<description>Elvira 1 - Mistress of the Dark (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Horrorsoft</manufacturer>
+		<year>1990</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="elvira2" index="" image="">
+		<description>Elvira 2 - The Jaws of Cerberus (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Horrorsoft</manufacturer>
+		<year>1992</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="eob" index="" image="">
+		<description>Eye of the Beholder (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Westwood Studios</manufacturer>
+		<year>1990</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="eob2" index="" image="">
+		<description>Eye of the Beholder II - The Legend of Darkmoon (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Westwood Studios</manufacturer>
+		<year>1991</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="fascination" index="true" image="f">
+		<description>Fascination (CD DOS, Multilanguage)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Coktel Vision</manufacturer>
+		<year>1991</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="fbear-win" index="" image="">
+		<description>Fatty Bear&apos;s Birthday Surprise (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1992</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="fbpack" index="" image="">
+		<description>Fatty Bear&apos;s Fun Pack (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1994</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="feeble-win" index="" image="">
+		<description>Feeble Files, The (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Adventure Soft</manufacturer>
+		<year>1997</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="queen" index="" image="">
+		<description>Flight of the Amazon Queen (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Interactive Binary Illusions</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="maze-us" index="" image="">
+		<description>Freddi Fish &amp; Luther&apos;s Maze Madness (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Action</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="water-win-us" index="" image="">
+		<description>Freddi Fish &amp; Luther&apos;s Water Worries (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Action</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="freddi-win" index="" image="">
+		<description>Freddi Fish 1 - The Case of the Missing Kelp Seeds (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1994</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="freddi2-win" index="" image="">
+		<description>Freddi Fish 2 - The Case of the Haunted Schoolhouse (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1996</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="freddi3-win" index="" image="">
+		<description>Freddi Fish 3 - The Case of the Stolen Conch Shell (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1998</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="freddi4-win" index="" image="">
+		<description>Freddi Fish 4 - The Case of the Hogfish Rustlers of Briny Gulch (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="freddicove" index="" image="">
+		<description>Freddi Fish 5 - The Case of the Creature of Coral Cove (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>2001</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="freddypharkas-cd" index="" image="">
+		<description>Freddy Pharkas - Frontier Pharmacist (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Al Lowe, Josh Mandel</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ft" index="" image="">
+		<description>Full Throttle (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>LucasArts</manufacturer>
+		<year>1995</year>
+		<genre>Driving</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="fw-cd-us" index="" image="">
+		<description>Future Wars (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Delphine Software</manufacturer>
+		<year>1986</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="geisha" index="true" image="g">
+		<description>Geisha (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Coktel Vision</manufacturer>
+		<year>1990</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="gob1cd-us" index="" image="">
+		<description>Gobliiins 1 (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Coktel Vision</manufacturer>
+		<year>1991</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="gob2cd-us" index="" image="">
+		<description>Gobliins 2 (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Coktel Vision</manufacturer>
+		<year>1992</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="gob3cd" index="" image="">
+		<description>Goblins Quest 3 (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Coktel Vision</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="goldrush" index="" image="">
+		<description>Gold Rush! (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1988</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="gregory-win" index="" image="">
+		<description>Gregory and the Hot Air Balloon (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Broderbund Software</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="qfg1" index="true" image="h">
+		<description>Hero&apos;s Quest - So You Want To Be A Hero (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>1989</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="hopkins-win" index="" image="">
+		<description>Hopkins FBI (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Kult</manufacturer>
+		<year>1998</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="hoyle1" index="" image="">
+		<description>Hoyle Official Book Of Games - Volume 1 (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>1989</year>
+		<genre>Casino</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="hoyle2" index="" image="">
+		<description>Hoyle Official Book Of Games - Volume 2 (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>1990</year>
+		<genre>Casino</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="hoyle3" index="" image="">
+		<description>Hoyle Official Book Of Games - Volume 3 (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>1992</year>
+		<genre>Casino</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="hugo1" index="" image="">
+		<description>Hugo 1 - Hugo&apos;s House of Horrors (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gray Design Associates</manufacturer>
+		<year>1990</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="hugo2" index="" image="">
+		<description>Hugo 2 - Whodunit (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gray Design Associates</manufacturer>
+		<year>1991</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="hugo3" index="" image="">
+		<description>Hugo 3 - Jungle of Doom (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gray Design Associates</manufacturer>
+		<year>1992</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ihnm" index="true" image="i">
+		<description>I Have No Mouth and I Must Scream (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>The Dreamers Guild</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="atlantis-fm" index="" image="">
+		<description>Indiana Jones and the Fate of Atlantis (FM Towns)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>LucasArts</manufacturer>
+		<year>1992</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="indy3-fm" index="" image="">
+		<description>Indiana Jones and the Last Crusade (FM Towns)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Lucasfilm Games</manufacturer>
+		<year>1989</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ite-cd" index="" image="">
+		<description>Inherit the Earth - Quest for the Orb (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>The Dreamers Guild</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="islandbrain" index="" image="">
+		<description>Island of Dr. Brain, The (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra</manufacturer>
+		<year>1992</year>
+		<genre>Educational</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="jones-cd" index="true" image="j">
+		<description>Jones In The Fast Lane (CD Dos)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra</manufacturer>
+		<year>1990</year>
+		<genre>Simulation</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pegasus-mac" index="" image="">
+		<description>Journeyman Project, The - Pegasus Prime (CD Mac)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Presto Studios</manufacturer>
+		<year>1997</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kq1sci" index="true" image="k">
+		<description>King&apos;s Quest 1 - Quest for the Crown (Floppy DOS VGA Remake)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1990</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kq1" index="" image="">
+		<description>King&apos;s Quest 1 - Quest for the Crown (Floppy DOS)</description>
+		<cloneof>kq1sci</cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1983</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kq2" index="" image="">
+		<description>King&apos;s Quest 2 - Romancing the Throne (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1985</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kq3" index="" image="">
+		<description>King&apos;s Quest 3 - To Heir is Human (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1986</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kq4sci" index="" image="">
+		<description>King&apos;s Quest 4 - The Perils of Rosella (Floppy DOS, SCI)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>1988</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kq5-cd" index="" image="">
+		<description>King&apos;s Quest 5 - Absence Makes the Heart go Yonder (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra</manufacturer>
+		<year>1990</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kq6-cd-win" index="" image="">
+		<description>King&apos;s Quest 6 - Heir Today, Gone Tomorrow (CD DOS, Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>1992</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="lol-cd" index="true" image="l">
+		<description>Lands of Lore - The Throne of Chaos (CD DOS, Multilanguage)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Westwood Studios</manufacturer>
+		<year>1993</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="laurabow" index="" image="">
+		<description>Laura Bow 1 - The Colonel&apos;s Bequest (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1989</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="laurabow2-cd" index="" image="">
+		<description>Laura Bow 2 - The Dagger of Amon-Ra (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1992</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="lgop2" index="" image="">
+		<description>Leather Goddesses of Phobos 2 (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infocom</manufacturer>
+		<year>1986</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kyra1-cd" index="" image="">
+		<description>Legend of Kyrandia, The (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Westwood Software</manufacturer>
+		<year>1992</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kyra3" index="" image="">
+		<description>Legend of Kyrandia, The - Book Three - Malcolm&apos;s Revenge (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Westwood Software</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kyra2-cd" index="" image="">
+		<description>Legend of Kyrandia, The - Book Two - The Hand of Fate (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Westwood Software</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="lsl1sci" index="" image="">
+		<description>Leisure Suit Larry 1 - In the Land of the Lounge Lizards (Floppy DOS VGA Remake)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1991</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="lsl1" index="" image="">
+		<description>Leisure Suit Larry 1 - In the Land of the Lounge Lizards (Floppy DOS)</description>
+		<cloneof>lsl1sci</cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1987</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="lsl2" index="" image="">
+		<description>Leisure Suit Larry 2 - Goes Looking for Love (in Several Wrong Places) (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1988</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="lsl3" index="" image="">
+		<description>Leisure Suit Larry 3 - Passionate Patti in Pursuit of the Pulsating Pectorals (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>1989</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="lsl5" index="" image="">
+		<description>Leisure Suit Larry 5 - Passionate Patti Does a Little Undercover Work (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>1991</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="lsl6-cd" index="" image="">
+		<description>Leisure Suit Larry 6 - Shape Up or Slip Out! (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="airport-win" index="" image="">
+		<description>Let&apos;s Explore the Airport with Buzzy (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1995</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="farm-win" index="" image="">
+		<description>Let&apos;s Explore the Farm with Buzzy (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1996</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="jungle-win" index="" image="">
+		<description>Let&apos;s Explore the Jungle with Buzzy (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1995</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="tortoise-win" index="" image="">
+		<description>Living Books - Aesop&apos;s Fables - The Tortoise And The Hare (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Broderbund Software</manufacturer>
+		<year>1993</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="arthurcomp-win" index="" image="">
+		<description>Living Books - Arthur&apos;s Computer Adventure (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Broderbund Software</manufacturer>
+		<year>1997</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="arthur-win" index="" image="">
+		<description>Living Books - Arthur&apos;s Teacher Trouble (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Broderbund Software</manufacturer>
+		<year>1993</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="seussabc-win" index="" image="">
+		<description>Living Books - Dr. Seuss ABC (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Broderbund Software</manufacturer>
+		<year>1995</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="greeneggs-win" index="" image="">
+		<description>Living Books - Green Eggs and Ham (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Broderbund Software</manufacturer>
+		<year>1996</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="harryhh-win" index="" image="">
+		<description>Living Books - Harry and the Haunted House (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Broderbund Software</manufacturer>
+		<year>1994</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="grandma-win" index="" image="">
+		<description>Living Books - Just Grandma and Me (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Broderbund Software</manufacturer>
+		<year>1992</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="lilmonster-win" index="" image="">
+		<description>Living Books - Little Monster at School (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Broderbund Software</manufacturer>
+		<year>1994</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ruff-win" index="" image="">
+		<description>Living Books - Ruff&apos;s Bone (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Broderbund Software</manufacturer>
+		<year>1994</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sheila-win" index="" image="">
+		<description>Living Books - Sheila Rae, The Brave (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Broderbund Software</manufacturer>
+		<year>1996</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="stellaluna-win" index="" image="">
+		<description>Living Books - Stellaluna (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Broderbund Software</manufacturer>
+		<year>1996</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="bearfight-win" index="" image="">
+		<description>Living Books - The Berenstain Bears Get in a Fight (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Broderbund Software</manufacturer>
+		<year>1995</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="beardark-win" index="" image="">
+		<description>Living Books - The Berenstain Bears in the Dark (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Broderbund Software</manufacturer>
+		<year>1996</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="newkid-win" index="" image="">
+		<description>Living Books - The New Kid on the Block (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Broderbund Software</manufacturer>
+		<year>1993</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="loom-vga" index="" image="">
+		<description>Loom (CD DOS VGA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Lucasfilm Games</manufacturer>
+		<year>1992</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="loom-fm" index="" image="">
+		<description>Loom (CD FM Towns)</description>
+		<cloneof>loom-vga</cloneof>
+		<crc></crc>
+		<manufacturer>Lucasfilm Games</manufacturer>
+		<year>1991</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="loom-ega" index="" image="">
+		<description>Loom (Floppy DOS EGA)</description>
+		<cloneof>loom-vga</cloneof>
+		<crc></crc>
+		<manufacturer>Lucasfilm Games</manufacturer>
+		<year>1990</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="lit-us" index="" image="">
+		<description>Lost in Time (CD DOS, Multilanguage)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Coktel Vision</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="lure" index="" image="">
+		<description>Lure of the Temptress (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Revolution Software</manufacturer>
+		<year>1992</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="babayaga-win" index="true" image="m">
+		<description>Magic Tales - Baba Yaga and the Magic Geese (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Animation Magic</manufacturer>
+		<year>1995</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="imoking-win" index="" image="">
+		<description>Magic Tales - Imo and The King (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Animation Magic</manufacturer>
+		<year>1995</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="liam-win" index="" image="">
+		<description>Magic Tales - Liam Finds a Story (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Animation Magic</manufacturer>
+		<year>1996</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sleepingcub-win" index="" image="">
+		<description>Magic Tales - Sleeping Cub&apos;s Test of Courage (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Animation Magic</manufacturer>
+		<year>1996</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="littlesamurai-win" index="" image="">
+		<description>Magic Tales - The Little Samurai (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Animation Magic</manufacturer>
+		<year>1995</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="princess-win" index="" image="">
+		<description>Magic Tales - The Princess and the Crab (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Animation Magic</manufacturer>
+		<year>1996</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="manhole-cd" index="" image="">
+		<description>Manhole, The - Enhanced (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cyan Worlds</manufacturer>
+		<year>1988</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mh1" index="" image="">
+		<description>Manhunter 1 - New York (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Evryware</manufacturer>
+		<year>1988</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mh2" index="" image="">
+		<description>Manhunter 2 - San Francisco (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Evryware</manufacturer>
+		<year>1989</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="maniac-v1" index="" image="">
+		<description>Maniac Mansion (Floppy DOS v1)</description>
+		<cloneof>maniac-v2</cloneof>
+		<crc></crc>
+		<manufacturer>Lucasfilm Games</manufacturer>
+		<year>1987</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="maniac-v2" index="" image="">
+		<description>Maniac Mansion (Floppy DOS v2 Enhanced)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Lucasfilm Games</manufacturer>
+		<year>1987</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mickey" index="" image="">
+		<description>Mickey&apos;s Space Adventure (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1986</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="fairytales" index="" image="">
+		<description>Mixed Up Fairy Tales (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1991</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mixedup" index="" image="">
+		<description>Mixed Up Mother Goose (Floppy DOS, 1987)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1987</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mothergoose256" index="" image="">
+		<description>Mixed Up Mother Goose (Floppy DOS, 1990)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1990</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="monkey2" index="" image="">
+		<description>Monkey Island 2 - LeChuck&apos;s Revenge (Floppy DOS VGA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>LucasArts</manufacturer>
+		<year>1991</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E10+ (Everyone 10+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="nippon" index="true" image="n">
+		<description>Nippon Safes Inc. (Floppy DOS, Multilanguage)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Dynabyte</manufacturer>
+		<year>1992</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="littlered-gb" index="true" image="o">
+		<description>Once Upon A Time - Little Red Riding Hood (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Coktel Vision</manufacturer>
+		<year>1991</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pjgames-us" index="true" image="p">
+		<description>Pajama Sam - Games to Play on Any Day (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>2001</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pajama-us" index="" image="">
+		<description>Pajama Sam 1 - No Need to Hide When It&apos;s Dark Outside (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1996</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pajama2-win-us" index="" image="">
+		<description>Pajama Sam 2 - Thunder and Lightning Aren&apos;t so Frightening (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1998</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pajama3-us" index="" image="">
+		<description>Pajama Sam 3 - You Are What You Eat From Your Head to Your Feet (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>2000</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="lost-us" index="" image="">
+		<description>Pajama Sam&apos;s Lost And Found (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Action</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="SamsFunShop-us" index="" image="">
+		<description>Pajama Sam&apos;s One-Stop Fun-Shop (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>2000</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="socks-win" index="" image="">
+		<description>Pajama Sam&apos;s Sock Works (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Action</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pepper" index="" image="">
+		<description>Pepper&apos;s Adventures In Time (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pn" index="" image="">
+		<description>Personal Nightmare (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Horrorsoft</manufacturer>
+		<year>1989</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="playtoons1" index="" image="">
+		<description>Playtoons 1 - Uncle Archibald (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Coktel Vision</manufacturer>
+		<year>1994</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="playtoons2" index="" image="">
+		<description>Playtoons 2 - Case of the Counterfeit Collaborator (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Coktel Vision</manufacturer>
+		<year>1994</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="playtoons3" index="" image="">
+		<description>Playtoons 3 - Secret of the Castle (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Coktel Vision</manufacturer>
+		<year>1994</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="playtoons4" index="" image="">
+		<description>Playtoons 4 - The Mandarine Prince (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Coktel Vision</manufacturer>
+		<year>1994</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pq1sci" index="" image="">
+		<description>Police Quest 1 - In Pursuit of the Death Angel (Floppy DOS VGA Remake)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1992</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pq1" index="" image="">
+		<description>Police Quest 1 - In Pursuit of the Death Angel (Floppy DOS)</description>
+		<cloneof>pq1sci</cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1987</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pq2" index="" image="">
+		<description>Police Quest 2 - The Vengeance (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1988</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="pq3" index="" image="">
+		<description>Police Quest 3 - The Kindred (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1991</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="activity-win" index="" image="">
+		<description>Putt-Putt and Fatty Bear&apos;s Activity Pack (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1993</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="balloon" index="" image="">
+		<description>Putt-Putt and Pep&apos;s Balloon-O-Rama (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Action</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="dog-win" index="" image="">
+		<description>Putt-Putt and Pep&apos;s Dog on a Stick (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Action</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="puttrace-us" index="" image="">
+		<description>Putt-Putt Enters the Race (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="puttmoon-win" index="" image="">
+		<description>Putt-Putt Goes to the Moon (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1993</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="puttcircus" index="" image="">
+		<description>Putt-Putt Joins the Circus (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>2000</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="puttputt-win" index="" image="">
+		<description>Putt-Putt Joins the Parade (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1993</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="puttzoo-win" index="" image="">
+		<description>Putt-Putt Saves the Zoo (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1995</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="PuttTime-win" index="" image="">
+		<description>Putt-Putt Travels Through Time (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1997</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="funpack" index="" image="">
+		<description>Putt-Putt&apos;s Fun Pack (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1993</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="qfg1vga" index="true" image="q">
+		<description>Quest for Glory 1 - So You Want to be a Hero (Floppy DOS VGA Remake)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra</manufacturer>
+		<year>1989</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="qfg2" index="" image="">
+		<description>Quest for Glory 2 - Trial by Fire (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra</manufacturer>
+		<year>1990</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="qfg3" index="" image="">
+		<description>Quest for Glory 3 - The Wages of War (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra</manufacturer>
+		<year>1992</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="rtz-cd" index="true" image="r">
+		<description>Return to Zork (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infocom</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ringworld-cd" index="" image="">
+		<description>Ringworld - Revenge of the Patriarch (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tsunami</manufacturer>
+		<year>1992</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="rodney" index="" image="">
+		<description>Rodney&apos;s Funscreen (Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Activision</manufacturer>
+		<year>1992</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="samnmax" index="true" image="s">
+		<description>Sam &amp; Max Hit the Road (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>LucasArts</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="monkey" index="" image="">
+		<description>Secret of Monkey Island, The (CD DOS VGA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Lucasfilm Games</manufacturer>
+		<year>1990</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E10+ (Everyone 10+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="simon1-cd-win" index="" image="">
+		<description>Simon the Sorcerer 1 (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Adventure Soft</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="simon2-cd-win" index="" image="">
+		<description>Simon the Sorcerer 2 (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Adventure Soft</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="dimp-win" index="" image="">
+		<description>Simon the Sorcerer&apos;s Puzzle Pack - D.I.M.P. (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Adventure Soft</manufacturer>
+		<year>1998</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="jumble-win" index="" image="">
+		<description>Simon the Sorcerer&apos;s Puzzle Pack - Jumble (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Adventure Soft</manufacturer>
+		<year>1998</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="puzzle-win" index="" image="">
+		<description>Simon the Sorcerer&apos;s Puzzle Pack - NoPatience (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Adventure Soft</manufacturer>
+		<year>1998</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="swampy-win" index="" image="">
+		<description>Simon the Sorcerer&apos;s Puzzle Pack - Swampy Adventures (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Adventure Soft</manufacturer>
+		<year>1998</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="slater" index="" image="">
+		<description>Slater &amp; Charlie Go Camping (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1993</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="soltys" index="" image="">
+		<description>Soltys (DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>L.K. Avalon</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sq1sci" index="" image="">
+		<description>Space Quest 1 - Roger Wilco in The Sarien Encounter (Floppy DOS VGA Remake)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra</manufacturer>
+		<year>1991</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sq1" index="" image="">
+		<description>Space Quest 1 - The Sarien Encounter (Floppy DOS)</description>
+		<cloneof>sq1sci</cloneof>
+		<crc></crc>
+		<manufacturer>Sierra</manufacturer>
+		<year>1986</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sq2" index="" image="">
+		<description>Space Quest 2 - Vohaul&apos;s Revenge (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra</manufacturer>
+		<year>1987</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sq3" index="" image="">
+		<description>Space Quest 3 - The Pirates of Pestulon (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra</manufacturer>
+		<year>1989</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sq4-cd" index="" image="">
+		<description>Space Quest 4 - Roger Wilco and the Time Rippers (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra</manufacturer>
+		<year>1991</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sq5" index="" image="">
+		<description>Space Quest 5 - The Next Mutation (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Dynamix</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="spyfox" index="" image="">
+		<description>SPY Fox 1 - Dry Cereal (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1997</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="spyfox2" index="" image="">
+		<description>SPY Fox 2 - Some Assembly Required (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="spyozon-us" index="" image="">
+		<description>SPY Fox 3 - Operation Ozone (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>2001</year>
+		<genre>Educational</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="chase-us" index="" image="">
+		<description>SPY Fox in Cheese Chase (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mustard-us" index="" image="">
+		<description>SPY Fox in Hold the Mustard (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1999</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - EC (Early Childhood)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="teenagent" index="true" image="t">
+		<description>Teen Agent (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Metropolis Software House</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="tony-win" index="" image="">
+		<description>Tony Tough and the Night of the Roasted Moths (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Prograph</manufacturer>
+		<year>2002</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="toon" index="" image="">
+		<description>Toonstruck (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Burst Studios</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="touche" index="" image="">
+		<description>Touche - The Adventures of the Fifth Musketeer (CD DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Clipper Software</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="troll" index="" image="">
+		<description>Troll&apos;s Tale (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1983</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="urban-us" index="true" image="u">
+		<description>Urban Runner (CD Windows)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Coktel Vision</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="waxworks" index="true" image="w">
+		<description>Waxworks (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Horrorsoft</manufacturer>
+		<year>1992</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ween-us" index="" image="">
+		<description>Ween - The Prophecy (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Coktel Vision</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="winnie" index="" image="">
+		<description>Winnie the Pooh in the Hundred Acre Wood (Floppy DOS)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sierra On-Line</manufacturer>
+		<year>1986</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="zak-v2" index="true" image="z">
+		<description>Zak McKracken and the Alien Mindbenders (Floppy DOS v2)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Lucasfilm Games</manufacturer>
+		<year>1988</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="zak-fm" index="" image="">
+		<description>Zak McKracken and the Alien Mindbenders (FM Towns)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Lucasfilm Games</manufacturer>
+		<year>1988</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

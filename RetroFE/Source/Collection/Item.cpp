@@ -20,9 +20,7 @@
 #include <algorithm>
 
 Item::Item()
-    : NumberPlayers(0)
-    , NumberButtons(0)
-    , Leaf(true)
+    : Leaf(true)
 {
 }
 
@@ -75,38 +73,23 @@ void Item::SetName(const std::string& name)
     Name = name;
 }
 
-int Item::GetNumberButtons() const
+std::string Item::GetNumberButtons() const
 {
     return NumberButtons;
 }
 
-std::string Item::GetNumberButtonsString()
-{
-    std::stringstream ss;
-    ss << NumberButtons;
-    return ss.str();
-}
 
-
-void Item::SetNumberButtons(int numberbuttons)
+void Item::SetNumberButtons(std::string numberbuttons)
 {
     NumberButtons = numberbuttons;
 }
 
-int Item::GetNumberPlayers() const
+std::string Item::GetNumberPlayers() const
 {
     return NumberPlayers;
 }
 
-std::string Item::GetNumberPlayersString()
-{
-    std::stringstream ss;
-    ss << NumberButtons;
-    return ss.str();
-}
-
-
-void Item::SetNumberPlayers(int numberplayers)
+void Item::SetNumberPlayers(std::string  numberplayers)
 {
     NumberPlayers = numberplayers;
 }
