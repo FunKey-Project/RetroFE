@@ -13,7 +13,7 @@
 #include <list>
 #include <vector>
 
-class CollectionDatabase;
+class CollectionInfo;
 class Configuration;
 class Page;
 
@@ -47,7 +47,6 @@ private:
     };
 
     void Render();
-    CollectionDatabase *InitializeCollectionDatabase(DB &db, Configuration &config);
     bool Back(bool &exit);
     void Quit();
     void WaitToInitialize();
@@ -56,10 +55,9 @@ private:
     RETROFE_STATE ProcessUserInput(Page *page);
     void Update(float dt, bool scrollActive);
     std::string GetLayout(std::string collectionName);
-    std::vector<Item *> *GetCollection(std::string collectionName);
+    CollectionInfo *GetCollection(std::string collectionName);
     Configuration &Config;
     DB *Db;
-    CollectionDatabase *CollectionDB;
     UserInput Input;
     std::list<Page *> PageChain;
     float KeyInputDisable;

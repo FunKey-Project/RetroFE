@@ -16,8 +16,6 @@
 
 #include "Database/Configuration.h"
 #include "Database/CollectionDatabase.h"
-#include "Collection/CollectionInfoBuilder.h"
-#include "Collection/CollectionInfo.h"
 #include "Database/MamelistMetadata.h"
 #include "Execute/Launcher.h"
 #include "Utility/Log.h"
@@ -30,7 +28,6 @@
 
 static bool ImportConfiguration(Configuration *c);
 static bool StartLogging();
-CollectionDatabase *InitializeCollectionDatabase(DB &db, Configuration &config);
 
 int main(int argc, char *argv[])
 {

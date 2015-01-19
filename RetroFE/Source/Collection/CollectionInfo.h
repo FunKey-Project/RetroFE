@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 
+class Item;
+
 class CollectionInfo
 {
 public:
@@ -17,6 +19,7 @@ public:
     std::string GetMetadataType() const;
     std::string GetMetadataPath() const;
     std::string GetExtensions() const;
+    std::vector<Item *> *GetItems();
     void GetExtensions(std::vector<std::string> &extensions);
 
 private:
@@ -25,4 +28,5 @@ private:
     std::string Extensions;
     std::string MetadataType;
     std::string MetadataPath;
+    std::vector<Item *> Items;
 };

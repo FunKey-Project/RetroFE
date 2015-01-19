@@ -15,86 +15,28 @@
  */
 #include "CollectionInfoBuilder.h"
 #include "CollectionInfo.h"
+#include "Item.h"
 #include "../Database/Configuration.h"
+#include "../Database/MetadataDatabase.h"
+#include "../Database/DB.h"
 #include "../Utility/Log.h"
+#include "../Utility/Utils.h"
+#include <dirent.h>
 #include <sstream>
 #include <vector>
 
-CollectionInfoBuilder::CollectionInfoBuilder(Configuration &c)
+CollectionInfoBuilder::CollectionInfoBuilder(Configuration &c, DB &db)
     : Conf(c)
+    , MetaDB(db, c)
 {
 }
 
 CollectionInfoBuilder::~CollectionInfoBuilder()
 {
-    std::map<std::string, CollectionInfo *>::iterator it = InfoMap.begin();
-
-    for(it == InfoMap.begin(); it != InfoMap.end(); ++it)
-    {
-        delete it->second;
-    }
-
-    InfoMap.clear();
 }
 
-bool CollectionInfoBuilder::LoadAllCollections()
+CollectionInfo *CollectionInfoBuilder::BuildCollection(std::string name)
 {
-    std::vector<std::string> collections;
-
-    Conf.GetChildKeyCrumbs("collections", collections);
-
-    if(collections.size() == 0)
-    {
-        Logger::Write(Logger::ZONE_ERROR, "Collections", "No collections were found. Please configure Settings.conf");
-        return false;
-    }
-
-    bool retVal = true;
-    std::vector<std::string>::iterator it;
-
-    for(it = collections.begin(); it != collections.end(); ++it)
-    {
-        // todo: There is nothing that should really stop us from creating a collection
-        //       in the main folder. I just need to find some time to look at the impacts if
-        //       I remove this conditional check.
-        if(*it != "Main")
-        {
-            std::string oldCollection = Conf.GetCurrentCollection();
-            Conf.SetCurrentCollection(*it);
-            if(ImportCollection(*it))
-            {
-                Logger::Write(Logger::ZONE_INFO, "Collections", "Adding collection " + *it);
-            }
-            else
-            {
-                // Continue processing the rest of the collections if an error occurs during import.
-                // ImportCollection() will print out an error to the log file.
-                retVal = false;
-            }
-            Conf.SetCurrentCollection(oldCollection);
-        }
-    }
-
-    return retVal;
-}
-
-void CollectionInfoBuilder::GetCollections(std::vector<CollectionInfo *> &collections)
-{
-    std::map<std::string, CollectionInfo *>::iterator InfoMapIt;
-
-    for(InfoMapIt = InfoMap.begin(); InfoMapIt != InfoMap.end(); ++InfoMapIt)
-    {
-        collections.push_back(InfoMapIt->second);
-    }
-}
-
-bool CollectionInfoBuilder::ImportCollection(std::string name)
-{
-    // create a new instance if one does not exist
-    if(InfoMap.find(name) != InfoMap.end())
-    {
-        return true;
-    }
     std::string listItemsPathKey = "collections." + name + ".list.path";
     std::string listFilterKey = "collections." + name + ".list.filter";
     std::string extensionsKey = "collections." + name + ".list.extensions";
@@ -128,7 +70,87 @@ bool CollectionInfoBuilder::ImportCollection(std::string name)
         Logger::Write(Logger::ZONE_WARNING, "Collections", ss.str());
     }
 
-    InfoMap[name] = new CollectionInfo(name, listItemsPath, extensions, metadataType, metadataPath);
+    CollectionInfo *collection = new CollectionInfo(name, listItemsPath, extensions, metadataType, metadataPath);
+    std::vector<Item *> *list = collection->GetItems();
 
-    return (InfoMap[name] != NULL);
+    ImportDirectory(collection);
+
+    return collection;
+}
+
+bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
+{
+    DIR *dp;
+    struct dirent *dirp;
+    std::string path = info->GetListPath();
+    std::map<std::string, Item *> includeFilter;
+    std::map<std::string, Item *> excludeFilter;
+    bool retVal = true;
+    std::string includeFile = Configuration::GetAbsolutePath() + "/Collections/" + info->GetName() + "/Include.txt";
+    std::string excludeFile = Configuration::GetAbsolutePath() + "/Collections/" + info->GetName() + "/Exclude.txt";
+    std::string launcher;
+    
+    (void)Conf.GetProperty("collections." + info->GetName() + ".launcher", launcher);
+
+    dp = opendir(path.c_str());
+    std::vector<std::string> extensions;
+    info->GetExtensions(extensions);
+    std::vector<std::string>::iterator extensionsIt;
+
+    if(dp == NULL)
+    {
+        Logger::Write(Logger::ZONE_ERROR, "CollectionInfoBuilder", "Could not read directory \"" + path + "\"");
+        //todo: store into a database
+    }
+    else
+    {
+        while((dirp = readdir(dp)) != NULL)
+        {
+            std::string file = dirp->d_name;
+
+            Utils::NormalizeBackSlashes(file);
+            size_t position = file.find_last_of(".");
+            std::string basename = (std::string::npos == position)? file : file.substr(0, position);
+
+            if((includeFilter.size() == 0 || includeFilter.find(basename) != includeFilter.end()) &&
+                    (excludeFilter.size() == 0 || excludeFilter.find(basename) == excludeFilter.end()))
+            {
+                for(extensionsIt = extensions.begin(); extensionsIt != extensions.end(); ++extensionsIt)
+                {
+                    std::string comparator = "." + *extensionsIt;
+                    int start = file.length() - comparator.length() + 1;
+
+                    if(start >= 0)
+                    {
+                        if(file.compare(start, comparator.length(), *extensionsIt) == 0)
+                        {
+                            Item *i = new Item();
+                            i->SetName(basename);
+                            i->SetFullTitle(basename);
+                            i->SetTitle(basename);
+                            i->SetLauncher(launcher);
+                            info->GetItems()->push_back(i);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    MetaDB.UpdateMetadata(info);
+
+    while(includeFilter.size() > 0)
+    {
+        std::map<std::string, Item *>::iterator it = includeFilter.begin();
+        delete it->second;
+        includeFilter.erase(it);
+    }
+    while(excludeFilter.size() > 0)
+    {
+        std::map<std::string, Item *>::iterator it = excludeFilter.begin();
+        delete it->second;
+        excludeFilter.erase(it);
+    }
+
+    return true;
 }
