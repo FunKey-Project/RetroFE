@@ -9,7 +9,9 @@
 #include <string>
 
 class Component;
+class Configuration;
 class ScrollingList;
+class Text;
 class Item;
 class Sound;
 
@@ -24,7 +26,7 @@ public:
 
     };
 
-    Page(std::string collectionName);
+    Page(std::string collectionName, Configuration &c);
     virtual ~Page();
     virtual void OnNewItemSelected(Item *);
     void SetItems(std::vector<Item *> *items);
@@ -55,6 +57,7 @@ public:
     void RemoveSelectedItem();
     bool IsIdle();
     bool IsHidden();
+    void SetStatusTextComponent(Text *t);
     void Update(float dt);
     void Draw();
     void FreeGraphicsMemory();
@@ -66,12 +69,14 @@ public:
 private:
     void Highlight();
     std::string CollectionName;
+    Configuration &Config;
     ScrollingList *Menu;
     static const unsigned int NUM_LAYERS = 8;
     std::vector<Component *> LayerComponents[NUM_LAYERS];
     std::vector<Item *> *Items;
     bool ScrollActive;
     Item *SelectedItem;
+    Text *TextStatusComponent;
     bool SelectedItemChanged;
     Sound *LoadSoundChunk;
     Sound *UnloadSoundChunk;

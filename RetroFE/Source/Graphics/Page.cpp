@@ -17,18 +17,21 @@
 #include "Page.h"
 #include "ComponentItemBinding.h"
 #include "Component/Component.h"
+#include "Component/Text.h"
 #include "../Utility/Log.h"
 #include "Component/ScrollingList.h"
 #include "../Sound/Sound.h"
 #include "ComponentItemBindingBuilder.h"
 #include <sstream>
 
-Page::Page(std::string collectionName)
+Page::Page(std::string collectionName, Configuration &config)
     : CollectionName(collectionName)
+    , Config(config)
     , Menu(NULL)
     , Items(NULL)
     , ScrollActive(false)
     , SelectedItem(NULL)
+    , TextStatusComponent(NULL)
     , SelectedItemChanged(false)
     , LoadSoundChunk(NULL)
     , UnloadSoundChunk(NULL)
@@ -102,6 +105,12 @@ void Page::SetMenu(ScrollingList *s)
     {
         Menu->AddComponentForNotifications(this);
     }
+}
+
+
+void Page::SetStatusTextComponent(Text *t)
+{
+    TextStatusComponent = t;
 }
 
 bool Page::AddComponent(Component *c)
@@ -322,6 +331,11 @@ void Page::Update(float dt)
         Highlight();
         SelectedItemChanged = false;
         HasSoundedWhenActive = false;
+    }
+
+    if(TextStatusComponent)
+    {
+        TextStatusComponent->SetText(Config.GetStatus());
     }
 
     for(unsigned int i = 0; i < NUM_LAYERS; ++i)

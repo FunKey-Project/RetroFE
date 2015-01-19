@@ -56,7 +56,9 @@ bool Font::Initialize(std::string fontPath, int fontSize, SDL_Color color)
 
     if (!font)
     {
-        Logger::Write(Logger::ZONE_ERROR, "FontCache", "TTF_OpenFont failed");
+        std::stringstream ss;
+        ss << "Could not open font: " << TTF_GetError();
+        Logger::Write(Logger::ZONE_ERROR, "FontCache", ss.str());
         return false;
     }
 

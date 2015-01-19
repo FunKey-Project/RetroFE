@@ -168,7 +168,7 @@ Page *PageBuilder::BuildPage()
             ss << layoutWidth << "x" << layoutHeight << " (scale " << ScaleX << "x" << ScaleY << ")";
             Logger::Write(Logger::ZONE_DEBUG, "Layout", "Layout resolution " + ss.str());
 
-            page = new Page(Collection);
+            page = new Page(Collection, Config);
 
             // load sounds
             for(xml_node<> *sound = root->first_node("sound"); sound; sound = sound->next_sibling("sound"))
@@ -380,6 +380,20 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
             page->AddComponent(c);
         }
     }
+
+    for(xml_node<> *componentXml = layout->first_node("statusText"); componentXml; componentXml = componentXml->next_sibling("statusText"))
+    {
+        FC->LoadFont(Font, FontSize, FontColor);
+        Text *c = new Text("", FC->GetFont(Font), FontColor, ScaleX, ScaleY);
+        ViewInfo *v = c->GetBaseViewInfo();
+
+        BuildViewInfo(componentXml, v);
+
+        LoadTweens(c, componentXml);
+        page->AddComponent(c);
+        page->SetStatusTextComponent(c);
+    }
+
 
     LoadReloadableImages(layout, "reloadableImage", page);
     LoadReloadableImages(layout, "reloadableVideo", page);

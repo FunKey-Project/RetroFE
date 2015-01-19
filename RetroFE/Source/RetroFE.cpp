@@ -57,6 +57,7 @@ CollectionDatabase *RetroFE::InitializeCollectionDatabase(DB &db, Configuration 
 {
     CollectionDatabase *cdb = NULL;
 
+    config.SetStatus("Initializing database");
     std::string dbFile = (Configuration::GetAbsolutePath() + "/cache.db");
     std::ifstream infile(dbFile.c_str());
 
@@ -123,9 +124,6 @@ int RetroFE::Initialize(void *context)
         delete instance->Db;
         return -1;
     }
-
-
-    instance->FC.Initialize();
 
     instance->Config.GetProperty("videoEnable", videoEnable);
     instance->Config.GetProperty("videoLoop", videoLoop);
@@ -219,6 +217,8 @@ bool RetroFE::DeInitialize()
 void RetroFE::Run()
 {
     if(!SDL::Initialize(Config)) return;
+
+    FC.Initialize();
 
     InitializeThread = SDL_CreateThread(Initialize, "RetroFEInit", (void *)this);
 
@@ -464,7 +464,6 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
     return state;
 }
 
-
 void RetroFE::WaitToInitialize()
 {
     Logger::Write(Logger::ZONE_INFO, "RetroFE", "Loading splash screen");
@@ -474,14 +473,11 @@ void RetroFE::WaitToInitialize()
 
     while(!Initialized)
     {
-    SDL_SetRenderDrawColor(SDL::GetRenderer(), 0x0, 0x0, 0x00, 0xFF);
-    SDL_RenderClear(SDL::GetRenderer());
-//    image->Draw();
-    //todo: decouple page from a collection
-    page->Draw();
-    SDL_RenderPresent(SDL::GetRenderer());
+        SDL_SetRenderDrawColor(SDL::GetRenderer(), 0x0, 0x0, 0x00, 0xFF);
+        SDL_RenderClear(SDL::GetRenderer());
 
-        SDL_Delay(2000);
+        page->Draw();
+        SDL_RenderPresent(SDL::GetRenderer());
     }
 
     int status = 0;
@@ -528,6 +524,7 @@ Page *RetroFE::LoadSplashPage()
     PageBuilder pb("Splash", "", Config, &FC);
     std::vector<Item *> *coll = new std::vector<Item *>();
     Page * page = pb.BuildPage();
+//    page->SetStatusText("foobar");
     Config.SetCurrentCollection("");
     page->SetItems(coll);
     page->Start();

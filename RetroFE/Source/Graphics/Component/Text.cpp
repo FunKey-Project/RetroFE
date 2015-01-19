@@ -35,7 +35,6 @@ Text::~Text()
     FreeGraphicsMemory();
 }
 
-
 void Text::FreeGraphicsMemory()
 {
     Component::FreeGraphicsMemory();
@@ -45,6 +44,11 @@ void Text::AllocateGraphicsMemory()
 {
     //todo: make the font blend color a parameter that is passed in
     Component::AllocateGraphicsMemory();
+}
+
+void Text::SetText(std::string text) 
+{
+    TextData = text;
 }
 
 void Text::Draw()
