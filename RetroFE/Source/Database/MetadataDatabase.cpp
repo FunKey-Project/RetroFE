@@ -110,7 +110,7 @@ bool MetadataDatabase::ImportDirectory()
 {
     DIR *dp;
     struct dirent *dirp;
-    std::string metaPath = "Meta";
+    std::string metaPath = "Meta/Hyperlist";
     dp = opendir(metaPath.c_str());
 
     while((dirp = readdir(dp)) != NULL)
@@ -120,26 +120,16 @@ bool MetadataDatabase::ImportDirectory()
 
             std::string basename = dirp->d_name;
 
-            //  if(basename.length() > 0)
+            std::string extension = basename.substr(basename.find_last_of("."), basename.size()-1);
+            basename = basename.substr(0, basename.find_last_of("."));
+            std::string collectionName = basename.substr(0, basename.find_first_of("."));
+
+                
+            if(extension == ".xml")
             {
-                std::string extension = basename.substr(basename.find_last_of("."), basename.size()-1);
-                basename = basename.substr(0, basename.find_last_of("."));
-                std::string collectionName = basename.substr(0, basename.find_first_of("."));
-
-                
-                std::string type = "";
-                
-                if(collectionName.length() < basename.length())
-                {
-                    type = basename.substr(collectionName.length() + 1, basename.size());
-                }
-
-                if(type == "hyperlist" && extension == ".xml")
-                {
-                    std::string importFile = Configuration::GetAbsolutePath() + "/" + metaPath + "/" + dirp->d_name;
-                    Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing hyperlist: " + importFile);
-                    ImportHyperList(importFile, collectionName);
-                }
+                std::string importFile = Configuration::GetAbsolutePath() + "/" + metaPath + "/" + dirp->d_name;
+                Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing hyperlist: " + importFile);
+                ImportHyperList(importFile, collectionName);
             }
         }
     }
