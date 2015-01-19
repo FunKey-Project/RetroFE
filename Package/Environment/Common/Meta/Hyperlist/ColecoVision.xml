@@ -1,0 +1,1409 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>ColecoVision</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.0 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="2010 - The Graphic Action Game (USA, Europe)" index="true" image="2">
+		<description>2010 - The Graphic Action Game (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>C575A831</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Alcazar - The Forgotten Fortress (USA)" index="true" image="a">
+		<description>Alcazar - The Forgotten Fortress (USA)</description>
+		<cloneof></cloneof>
+		<crc>52B61431</crc>
+		<manufacturer>Telegames, Inc.</manufacturer>
+		<year>1985</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Alphabet Zoo (USA)" index="" image="">
+		<description>Alphabet Zoo (USA)</description>
+		<cloneof></cloneof>
+		<crc>4FFB4E8C</crc>
+		<manufacturer>Spinnaker Software</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Amazing Bumpman (USA)" index="" image="">
+		<description>Amazing Bumpman (USA)</description>
+		<cloneof></cloneof>
+		<crc>78A738AF</crc>
+		<manufacturer>Telegames, Inc.</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Antarctic Adventure (USA, Europe)" index="" image="">
+		<description>Antarctic Adventure (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>275C800E</crc>
+		<manufacturer>Konami</manufacturer>
+		<year>1984</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Aquattack (USA)" index="" image="">
+		<description>Aquattack (USA)</description>
+		<cloneof></cloneof>
+		<crc>275A7013</crc>
+		<manufacturer>Toshiba EMI</manufacturer>
+		<year>1984</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Artillery Duel (USA)" index="" image="">
+		<description>Artillery Duel (USA)</description>
+		<cloneof></cloneof>
+		<crc>ADFA09E2</crc>
+		<manufacturer>Xonox</manufacturer>
+		<year>1983</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="BC&apos;s Quest for Tires (USA, Europe)" index="true" image="b">
+		<description>BC&apos;s Quest for Tires (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>4359A3E5</crc>
+		<manufacturer>Artech Studios</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="BC&apos;s Quest for Tires II - Grog&apos;s Revenge (USA, Europe)" index="" image="">
+		<description>BC&apos;s Quest for Tires II - Grog&apos;s Revenge (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>D464E5E4</crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Beamrider (USA)" index="" image="">
+		<description>Beamrider (USA)</description>
+		<cloneof></cloneof>
+		<crc>2E8E9D42</crc>
+		<manufacturer>Activision</manufacturer>
+		<year>1983</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Blockade Runner (USA)" index="" image="">
+		<description>Blockade Runner (USA)</description>
+		<cloneof></cloneof>
+		<crc>DA29C284</crc>
+		<manufacturer>Interphase</manufacturer>
+		<year>1984</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Boulder Dash (USA)" index="" image="">
+		<description>Boulder Dash (USA)</description>
+		<cloneof></cloneof>
+		<crc>1796DE5E</crc>
+		<manufacturer>Micro Fun</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Brain Strainers (USA, Europe)" index="" image="">
+		<description>Brain Strainers (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>829C967D</crc>
+		<manufacturer>Carousel Software Inc.</manufacturer>
+		<year>1984</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Buck Rogers - Planet Of Zoom (USA, Europe)" index="" image="">
+		<description>Buck Rogers - Planet Of Zoom (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>1BAF661E</crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1983</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bump &apos;N&apos; Jump (USA, Europe)" index="" image="">
+		<description>Bump &apos;N&apos; Jump (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>002B22D4</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="BurgerTime (USA, Europe)" index="" image="">
+		<description>BurgerTime (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>91346341</crc>
+		<manufacturer>Interceptor</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cabbage Patch Kids - Adventures in the Park (USA, Europe)" index="true" image="c">
+		<description>Cabbage Patch Kids - Adventures in the Park (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>BEACBFF5</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cabbage Patch Kids Picture Show (USA, Europe)" index="" image="">
+		<description>Cabbage Patch Kids Picture Show (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>51DEB762</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Campaign &apos;84 (USA)" index="" image="">
+		<description>Campaign &apos;84 (USA)</description>
+		<cloneof></cloneof>
+		<crc>72ACEAC7</crc>
+		<manufacturer>Sunrise Software Inc.</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Carnival (USA, Europe)" index="" image="">
+		<description>Carnival (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>32BFF3F3</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Centipede (USA)" index="" image="">
+		<description>Centipede (USA)</description>
+		<cloneof></cloneof>
+		<crc>17EDBFD4</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1983</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Choplifter (USA, Europe)" index="" image="">
+		<description>Choplifter (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>E7A1FF9F</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chuck Norris - Super Kicks (USA)" index="" image="">
+		<description>Chuck Norris - Super Kicks (USA)</description>
+		<cloneof></cloneof>
+		<crc>73E96E53</crc>
+		<manufacturer>Xonox</manufacturer>
+		<year>1983</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Congo Bongo (USA, Europe)" index="" image="">
+		<description>Congo Bongo (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>DDAFB16F</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cosmic Avenger (USA, Europe)" index="" image="">
+		<description>Cosmic Avenger (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>14D6CED6</crc>
+		<manufacturer>Universal</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cosmic Crisis (USA)" index="" image="">
+		<description>Cosmic Crisis (USA)</description>
+		<cloneof></cloneof>
+		<crc>7C2C7C41</crc>
+		<manufacturer>Telegames, Inc.</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dam Busters, The (USA, Europe)" index="true" image="d">
+		<description>Dam Busters, The (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>C75FAD5A</crc>
+		<manufacturer>Sydney Development Corp.</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dance Fantasy (USA)" index="" image="">
+		<description>Dance Fantasy (USA)</description>
+		<cloneof></cloneof>
+		<crc>2509EF63</crc>
+		<manufacturer>Fisher-Price</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Decathlon (USA)" index="" image="">
+		<description>Decathlon (USA)</description>
+		<cloneof></cloneof>
+		<crc>614BB621</crc>
+		<manufacturer>Activision, Inc.</manufacturer>
+		<year>1984</year>
+		<genre>Sports/Olympic</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Defender (USA)" index="" image="">
+		<description>Defender (USA)</description>
+		<cloneof></cloneof>
+		<crc>FFD16997</crc>
+		<manufacturer>Williams Electronics Inc.</manufacturer>
+		<year>1983</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Destructor (USA, Europe)" index="" image="">
+		<description>Destructor (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>56C358A6</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Donkey Kong (USA, Europe)" index="" image="">
+		<description>Donkey Kong (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>3C77198C</crc>
+		<manufacturer>Nintendo Co., Ltd.</manufacturer>
+		<year>1983</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Donkey Kong Jr (USA, Europe)" index="" image="">
+		<description>Donkey Kong Jr (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>FD11508D</crc>
+		<manufacturer>Nintendo Co., Ltd.</manufacturer>
+		<year>1983</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dr. Seuss&apos;s Fix-Up The Mix-Up Puzzler (USA, Europe)" index="" image="">
+		<description>Dr. Seuss&apos;s Fix-Up The Mix-Up Puzzler (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>109699E2</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="DragonFire (USA)" index="" image="">
+		<description>DragonFire (USA)</description>
+		<cloneof></cloneof>
+		<crc>DCB8F9E8</crc>
+		<manufacturer>Imagic</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dukes of Hazzard, The (USA, Europe)" index="" image="">
+		<description>Dukes of Hazzard, The (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>4025AC94</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Evolution (USA)" index="true" image="e">
+		<description>Evolution (USA)</description>
+		<cloneof></cloneof>
+		<crc>DFF01CF7</crc>
+		<manufacturer>Coleco (Canada) Limited</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Facemaker (USA)" index="true" image="f">
+		<description>Facemaker (USA)</description>
+		<cloneof></cloneof>
+		<crc>989E4993</crc>
+		<manufacturer>Spinnaker Software Corporation</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fathom (USA)" index="" image="">
+		<description>Fathom (USA)</description>
+		<cloneof></cloneof>
+		<crc>9EB58823</crc>
+		<manufacturer>Imagic</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Flipper Slipper (USA)" index="" image="">
+		<description>Flipper Slipper (USA)</description>
+		<cloneof></cloneof>
+		<crc>7E97A22E</crc>
+		<manufacturer>Spectravision</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fortune Builder (USA, Europe)" index="" image="">
+		<description>Fortune Builder (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>65BBBCB4</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fraction Fever (USA)" index="" image="">
+		<description>Fraction Fever (USA)</description>
+		<cloneof></cloneof>
+		<crc>E9DF779A</crc>
+		<manufacturer>Spinnaker Software</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Frantic Freddy (USA)" index="" image="">
+		<description>Frantic Freddy (USA)</description>
+		<cloneof></cloneof>
+		<crc>8615C6E8</crc>
+		<manufacturer>Spectravision</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Frenzy! (USA, Europe)" index="" image="">
+		<description>Frenzy! (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>0522EBDD</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Frogger (USA)" index="" image="">
+		<description>Frogger (USA)</description>
+		<cloneof></cloneof>
+		<crc>20502339</crc>
+		<manufacturer>Konami Industry Co. Ltd.</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Frogger II - ThreeDeep! (USA)" index="" image="">
+		<description>Frogger II - ThreeDeep! (USA)</description>
+		<cloneof></cloneof>
+		<crc>04405423</crc>
+		<manufacturer>Parker Brothers</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="From Out Of The Jungle - Tarzan (USA)" index="" image="">
+		<description>From Out Of The Jungle - Tarzan (USA)</description>
+		<cloneof></cloneof>
+		<crc>EFF35A70</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Frontline (USA, Europe)" index="" image="">
+		<description>Frontline (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>9C551386</crc>
+		<manufacturer>Taito Corporation</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Galaxian (USA)" index="true" image="g">
+		<description>Galaxian (USA)</description>
+		<cloneof></cloneof>
+		<crc>FE1D0B6A</crc>
+		<manufacturer>Namco Limited</manufacturer>
+		<year>1983</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gateway to Apshai (USA)" index="" image="">
+		<description>Gateway to Apshai (USA)</description>
+		<cloneof></cloneof>
+		<crc>0726B64D</crc>
+		<manufacturer>Epyx, Inc.</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gorf (USA, Europe)" index="" image="">
+		<description>Gorf (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>FF46BECC</crc>
+		<manufacturer>Bally Midway Manufacturing Co.</manufacturer>
+		<year>1983</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gust Buster (USA)" index="" image="">
+		<description>Gust Buster (USA)</description>
+		<cloneof></cloneof>
+		<crc>F2CAC67C</crc>
+		<manufacturer>Sunrise Software Inc.</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gyruss (USA)" index="" image="">
+		<description>Gyruss (USA)</description>
+		<cloneof></cloneof>
+		<crc>B4EF0F1F</crc>
+		<manufacturer>Konami Industry Co. Ltd.</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="H.E.R.O (USA)" index="true" image="h">
+		<description>H.E.R.O (USA)</description>
+		<cloneof></cloneof>
+		<crc>685AB9B5</crc>
+		<manufacturer>Activision, Inc.</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Heist, The (USA)" index="" image="">
+		<description>Heist, The (USA)</description>
+		<cloneof></cloneof>
+		<crc>C9C27F92</crc>
+		<manufacturer>Livesay Computer Games, Inc.</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Illusions (USA, Europe)" index="true" image="i">
+		<description>Illusions (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>2787516D</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Its Only Rock &apos;N&apos; Roll (USA)" index="" image="">
+		<description>Its Only Rock &apos;N&apos; Roll (USA)</description>
+		<cloneof></cloneof>
+		<crc>CC43EBF7</crc>
+		<manufacturer>K-Tel International Ltd.</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="James Bond (USA)" index="true" image="j">
+		<description>James Bond (USA)</description>
+		<cloneof></cloneof>
+		<crc>3004A253</crc>
+		<manufacturer>Parker Brothers</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Juke Box (USA)" index="" image="">
+		<description>Juke Box (USA)</description>
+		<cloneof></cloneof>
+		<crc>EE5A1ED0</crc>
+		<manufacturer>Spinnaker Software</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Jumpman Junior (USA)" index="" image="">
+		<description>Jumpman Junior (USA)</description>
+		<cloneof></cloneof>
+		<crc>060C69E8</crc>
+		<manufacturer>Epyx</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Jungle Hunt (USA)" index="" image="">
+		<description>Jungle Hunt (USA)</description>
+		<cloneof></cloneof>
+		<crc>E8858484</crc>
+		<manufacturer>Taito Corporation</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ken Uston&apos;s Blackjack-Poker (USA, Europe)" index="true" image="k">
+		<description>Ken Uston&apos;s Blackjack-Poker (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>8C7B7803</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1982</year>
+		<genre>Casino</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Keystone Kapers (USA)" index="" image="">
+		<description>Keystone Kapers (USA)</description>
+		<cloneof></cloneof>
+		<crc>FAD8D414</crc>
+		<manufacturer>Activision, Inc.</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Lady Bug (USA, Europe)" index="true" image="l">
+		<description>Lady Bug (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>2C3097B8</crc>
+		<manufacturer>Universal Co., Ltd.</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Learning With Leeper (USA)" index="" image="">
+		<description>Learning With Leeper (USA)</description>
+		<cloneof></cloneof>
+		<crc>1641044F</crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Linking Logic (USA)" index="" image="">
+		<description>Linking Logic (USA)</description>
+		<cloneof></cloneof>
+		<crc>B46635A5</crc>
+		<manufacturer>Fisher Price</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Logic Levels (USA)" index="" image="">
+		<description>Logic Levels (USA)</description>
+		<cloneof></cloneof>
+		<crc>C28D7062</crc>
+		<manufacturer>Fisher-Price</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Looping (USA, Europe)" index="" image="">
+		<description>Looping (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>6A2D637B</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="M.A.S.H (Europe)" index="true" image="m">
+		<description>M.A.S.H (Europe)</description>
+		<cloneof></cloneof>
+		<crc>FC95B302</crc>
+		<manufacturer>Fox Interactive</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Memory Manor (USA)" index="" image="">
+		<description>Memory Manor (USA)</description>
+		<cloneof></cloneof>
+		<crc>88808CFA</crc>
+		<manufacturer>Fisher-Price</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Meteoric Shower (USA)" index="" image="">
+		<description>Meteoric Shower (USA)</description>
+		<cloneof></cloneof>
+		<crc>3BEFFC06</crc>
+		<manufacturer>Bit Corp.</manufacturer>
+		<year>1986</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Miner 2049er (USA)" index="" image="">
+		<description>Miner 2049er (USA)</description>
+		<cloneof></cloneof>
+		<crc>71D1BD4D</crc>
+		<manufacturer>Big Five Software</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Monkey Academy (USA, Europe)" index="" image="">
+		<description>Monkey Academy (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>26FD822A</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Montezuma&apos;s Revenge (USA)" index="" image="">
+		<description>Montezuma&apos;s Revenge (USA)</description>
+		<cloneof></cloneof>
+		<crc>0BD9D073</crc>
+		<manufacturer>Parker Bros</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Moonsweeper (USA)" index="" image="">
+		<description>Moonsweeper (USA)</description>
+		<cloneof></cloneof>
+		<crc>C521BCAD</crc>
+		<manufacturer>Imagic</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Motocross Racer (USA)" index="" image="">
+		<description>Motocross Racer (USA)</description>
+		<cloneof></cloneof>
+		<crc>935EBE62</crc>
+		<manufacturer>Xonox</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mountain King (USA)" index="" image="">
+		<description>Mountain King (USA)</description>
+		<cloneof></cloneof>
+		<crc>D8D73246</crc>
+		<manufacturer>Sunrise Software Inc.</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mousetrap (USA, Europe)" index="" image="">
+		<description>Mousetrap (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>07E0E4A1</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mr Do!&apos;s Castle (USA)" index="" image="">
+		<description>Mr Do!&apos;s Castle (USA)</description>
+		<cloneof></cloneof>
+		<crc>EF7E9562</crc>
+		<manufacturer>Parker Bros</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mr. Do! (USA, Europe)" index="" image="">
+		<description>Mr. Do! (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>461AB6AD</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Nova Blast (USA)" index="true" image="n">
+		<description>Nova Blast (USA)</description>
+		<cloneof></cloneof>
+		<crc>EA06F585</crc>
+		<manufacturer>Imagic</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Oil&apos;s Well (USA)" index="true" image="o">
+		<description>Oil&apos;s Well (USA)</description>
+		<cloneof></cloneof>
+		<crc>ADD10242</crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Omega Race (USA, Europe)" index="" image="">
+		<description>Omega Race (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>9921ECB5</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="One on One (USA)" index="" image="">
+		<description>One on One (USA)</description>
+		<cloneof></cloneof>
+		<crc>17C77C3A</crc>
+		<manufacturer>Micro Fun</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pepper II (USA, Europe)" index="true" image="p">
+		<description>Pepper II (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>53B85E20</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pitfall II - Lost Caverns (USA)" index="" image="">
+		<description>Pitfall II - Lost Caverns (USA)</description>
+		<cloneof></cloneof>
+		<crc>851A455F</crc>
+		<manufacturer>Activision</manufacturer>
+		<year>1984</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pitfall! (USA)" index="" image="">
+		<description>Pitfall! (USA)</description>
+		<cloneof></cloneof>
+		<crc>D4F180DF</crc>
+		<manufacturer>Activision</manufacturer>
+		<year>1983</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pitstop (USA)" index="" image="">
+		<description>Pitstop (USA)</description>
+		<cloneof></cloneof>
+		<crc>1E455299</crc>
+		<manufacturer>Epyx</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Popeye (USA)" index="" image="">
+		<description>Popeye (USA)</description>
+		<cloneof></cloneof>
+		<crc>3EF1D0EE</crc>
+		<manufacturer>Parker Bros</manufacturer>
+		<year>1983</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Q-bert (USA)" index="true" image="q">
+		<description>Q-bert (USA)</description>
+		<cloneof></cloneof>
+		<crc>532F61BA</crc>
+		<manufacturer>D. Gottlieb &amp; Co.</manufacturer>
+		<year>1983</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Q-bert II (USA)" index="" image="">
+		<description>Q-bert II (USA)</description>
+		<cloneof></cloneof>
+		<crc>E45496D3</crc>
+		<manufacturer>D. Gottlieb &amp; Co</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Quest for Quintana Roo (USA)" index="" image="">
+		<description>Quest for Quintana Roo (USA)</description>
+		<cloneof></cloneof>
+		<crc>2D32B1F0</crc>
+		<manufacturer>Sunrise Software Inc.</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="River Raid (USA)" index="true" image="r">
+		<description>River Raid (USA)</description>
+		<cloneof></cloneof>
+		<crc>FE897F9C</crc>
+		<manufacturer>Activision</manufacturer>
+		<year>1984</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Robin Hood (USA)" index="" image="">
+		<description>Robin Hood (USA)</description>
+		<cloneof></cloneof>
+		<crc>0EB45D6E</crc>
+		<manufacturer>Xonox</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Roc &apos;N Rope (USA, Europe)" index="" image="">
+		<description>Roc &apos;N Rope (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>3CACA004</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rock &apos;N&apos; Bolt (USA)" index="" image="">
+		<description>Rock &apos;N&apos; Bolt (USA)</description>
+		<cloneof></cloneof>
+		<crc>522B59B9</crc>
+		<manufacturer>Telegames, Inc.</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rocky Super-Action Boxing (USA, Europe)" index="" image="">
+		<description>Rocky Super-Action Boxing (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>046F4B70</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1983</year>
+		<genre>Sports/Boxing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rolloverture (USA)" index="" image="">
+		<description>Rolloverture (USA)</description>
+		<cloneof></cloneof>
+		<crc>E4585C0A</crc>
+		<manufacturer>Sunrise Software Inc.</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sammy Lightfoot (USA)" index="true" image="s">
+		<description>Sammy Lightfoot (USA)</description>
+		<cloneof></cloneof>
+		<crc>3563286B</crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sector Alpha (USA)" index="" image="">
+		<description>Sector Alpha (USA)</description>
+		<cloneof></cloneof>
+		<crc>5E3C66F4</crc>
+		<manufacturer>Spectravision</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sewer Sam (USA)" index="" image="">
+		<description>Sewer Sam (USA)</description>
+		<cloneof></cloneof>
+		<crc>74057241</crc>
+		<manufacturer>Interphase</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sir Lancelot (USA)" index="" image="">
+		<description>Sir Lancelot (USA)</description>
+		<cloneof></cloneof>
+		<crc>DD76775D</crc>
+		<manufacturer>Xonox</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Skiing (USA)" index="" image="">
+		<description>Skiing (USA)</description>
+		<cloneof></cloneof>
+		<crc>C5C80FB4</crc>
+		<manufacturer>Telegames, Inc.</manufacturer>
+		<year>1986</year>
+		<genre>Sports/Skiing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Slither (USA)" index="" image="">
+		<description>Slither (USA)</description>
+		<cloneof></cloneof>
+		<crc>53D2651C</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Slurpy (USA)" index="" image="">
+		<description>Slurpy (USA)</description>
+		<cloneof></cloneof>
+		<crc>27F5C0AD</crc>
+		<manufacturer>Xonox</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Smurf Paint &apos;n Play Workshop (USA, Europe)" index="" image="">
+		<description>Smurf Paint &apos;n Play Workshop (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>176EB9C3</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Smurf Rescue (USA, Europe)" index="" image="">
+		<description>Smurf Rescue (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>42850379</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Space Fury (USA, Europe)" index="" image="">
+		<description>Space Fury (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>DF8DE30F</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Space Panic (USA, Europe)" index="" image="">
+		<description>Space Panic (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>5BDF2997</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Spectron (USA)" index="" image="">
+		<description>Spectron (USA)</description>
+		<cloneof></cloneof>
+		<crc>3564E134</crc>
+		<manufacturer>Spectravision</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Spy Hunter (USA, Europe)" index="" image="">
+		<description>Spy Hunter (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>36478923</crc>
+		<manufacturer>Bally/Midway</manufacturer>
+		<year>1984</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Squish &apos;Em Sam! (USA)" index="" image="">
+		<description>Squish &apos;Em Sam! (USA)</description>
+		<cloneof></cloneof>
+		<crc>6C82E0CC</crc>
+		<manufacturer>Interphase</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Star Trek (USA, Europe)" index="" image="">
+		<description>Star Trek (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>AFF42AA9</crc>
+		<manufacturer>SEGA Enterprises Ltd.</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Star Wars (USA)" index="" image="">
+		<description>Star Wars (USA)</description>
+		<cloneof></cloneof>
+		<crc>0E75B3BF</crc>
+		<manufacturer>Atari Inc.</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Strike It! (USA)" index="" image="">
+		<description>Strike It! (USA)</description>
+		<cloneof></cloneof>
+		<crc>D247A1C8</crc>
+		<manufacturer>Telegames, Inc.</manufacturer>
+		<year>1986</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Subroc (USA, Europe)" index="" image="">
+		<description>Subroc (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>509267F8</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Action Baseball (USA, Europe)" index="" image="">
+		<description>Super Action Baseball (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>43F03C6F</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1983</year>
+		<genre>Sports/Baseball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Action Football (USA, Europe)" index="" image="">
+		<description>Super Action Football (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>62619DC0</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Sports/Football</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Action Soccer (USA, Europe)" index="" image="">
+		<description>Super Action Soccer (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>ACAC69DD</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Cobra (USA)" index="" image="">
+		<description>Super Cobra (USA)</description>
+		<cloneof></cloneof>
+		<crc>6CB5CB8F</crc>
+		<manufacturer>Parker Bros</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Cross Force (USA)" index="" image="">
+		<description>Super Cross Force (USA)</description>
+		<cloneof></cloneof>
+		<crc>6C4ED807</crc>
+		<manufacturer>Spectravision</manufacturer>
+		<year>1986</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tank Wars (USA)" index="true" image="t">
+		<description>Tank Wars (USA)</description>
+		<cloneof></cloneof>
+		<crc>1EDF2E7D</crc>
+		<manufacturer>Telegames, Inc.</manufacturer>
+		<year>1986</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tapper (USA, Europe)" index="" image="">
+		<description>Tapper (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>8AFD7DB2</crc>
+		<manufacturer>Bally/Midway</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Telly Turtle (USA, Europe)" index="" image="">
+		<description>Telly Turtle (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>C8BC1950</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Threshold (USA)" index="" image="">
+		<description>Threshold (USA)</description>
+		<cloneof></cloneof>
+		<crc>1593F7DF</crc>
+		<manufacturer>Sierra Entertainment</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Time Pilot (USA, Europe)" index="" image="">
+		<description>Time Pilot (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>B3A1EACB</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tomarc the Barbarian (USA)" index="" image="">
+		<description>Tomarc the Barbarian (USA)</description>
+		<cloneof></cloneof>
+		<crc>1E14397E</crc>
+		<manufacturer>Xonox</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tournament Tennis (USA)" index="" image="">
+		<description>Tournament Tennis (USA)</description>
+		<cloneof></cloneof>
+		<crc>C168FE06</crc>
+		<manufacturer>Imagic</manufacturer>
+		<year>1984</year>
+		<genre>Sports/Tennis</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Turbo (USA, Europe)" index="" image="">
+		<description>Turbo (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>6CA80B63</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tutankham (USA)" index="" image="">
+		<description>Tutankham (USA)</description>
+		<cloneof></cloneof>
+		<crc>F80D1770</crc>
+		<manufacturer>Parker Bros</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Up &apos;N Down (USA)" index="true" image="u">
+		<description>Up &apos;N Down (USA)</description>
+		<cloneof></cloneof>
+		<crc>FDD52CA0</crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Venture (USA, Europe)" index="true" image="v">
+		<description>Venture (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>8E5A4AA3</crc>
+		<manufacturer>Exidy</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Victory (USA, Europe)" index="" image="">
+		<description>Victory (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>5F20BF49</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="War Games (USA, Europe)" index="true" image="w">
+		<description>War Games (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>6E0150C1</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="War Room (USA)" index="" image="">
+		<description>War Room (USA)</description>
+		<cloneof></cloneof>
+		<crc>077A8DFA</crc>
+		<manufacturer>Probe 2000</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wing War (USA)" index="" image="">
+		<description>Wing War (USA)</description>
+		<cloneof></cloneof>
+		<crc>04EEEF44</crc>
+		<manufacturer>Imagic</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wizard of Id&apos;s Wizmath (USA)" index="" image="">
+		<description>Wizard of Id&apos;s Wizmath (USA)</description>
+		<cloneof></cloneof>
+		<crc>B9BA2BB6</crc>
+		<manufacturer>Sierravision</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Word Feud (USA)" index="" image="">
+		<description>Word Feud (USA)</description>
+		<cloneof></cloneof>
+		<crc>9F49BED8</crc>
+		<manufacturer>Xonox</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Zaxxon (USA, Europe)" index="true" image="z">
+		<description>Zaxxon (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>8CB0891A</crc>
+		<manufacturer>Coleco</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Zenji (USA)" index="" image="">
+		<description>Zenji (USA)</description>
+		<cloneof></cloneof>
+		<crc>6E523E50</crc>
+		<manufacturer>Activision</manufacturer>
+		<year>1984</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

@@ -1,0 +1,409 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>SNK Neo Geo Pocket Color</listname>
+		<lastlistupdate>10/25/2011</lastlistupdate>
+		<listversion>1.2 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="Baseball Stars Color (World) (En,Ja)" index="true" image="b">
+		<description>Baseball Stars Color (World) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>FFA7E88D</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Baseball/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Biomotor Unitron (USA, Europe)" index="" image="">
+		<description>Biomotor Unitron (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>3807DF4F</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bust-A-Move Pocket (USA)" index="" image="">
+		<description>Bust-A-Move Pocket (USA)</description>
+		<cloneof></cloneof>
+		<crc>85FE6AE3</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cool Boarders Pocket (Japan, Europe) (En,Ja)" index="true" image="c">
+		<description>Cool Boarders Pocket (Japan, Europe) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>833F9C22</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Snowboarding/Sports</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Crush Roller (World) (En,Ja)" index="" image="">
+		<description>Crush Roller (World) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>6200C65E</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dark Arms - Beast Buster 1999 (World) (En,Ja)" index="true" image="d">
+		<description>Dark Arms - Beast Buster 1999 (World) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>6F353F34</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dive Alert - Becky&apos;s Version (USA, Europe)" index="" image="">
+		<description>Dive Alert - Becky&apos;s Version (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>83DB5772</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dive Alert - Matt&apos;s Version (USA, Europe)" index="" image="">
+		<description>Dive Alert - Matt&apos;s Version (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>EF75081B</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dynamite Slugger (Japan, Europe) (En,Ja)" index="" image="">
+		<description>Dynamite Slugger (Japan, Europe) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>7F1779CD</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Baseball/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Evolution - Eternal Dungeons (Europe)" index="true" image="e">
+		<description>Evolution - Eternal Dungeons (Europe)</description>
+		<cloneof></cloneof>
+		<crc>BE47E531</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Role-Playing</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fantastic Night Dreams Cotton (Europe)" index="true" image="f">
+		<description>Fantastic Night Dreams Cotton (Europe)</description>
+		<cloneof></cloneof>
+		<crc>1BF412F5</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Faselei! (Europe)" index="" image="">
+		<description>Faselei! (Europe)</description>
+		<cloneof></cloneof>
+		<crc>E705E30E</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Strategy</genre>
+		<rating>PEGI - 12 (Everyone 12+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fatal Fury F-Contact (World) (En,Ja)" index="" image="">
+		<description>Fatal Fury F-Contact (World) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>A9119B5A</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="King of Fighters R-2 (World) (En,Ja)" index="true" image="k">
+		<description>King of Fighters R-2 (World) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>47E490A2</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Last Blade, The - Beyond the Destiny (Europe)" index="true" image="l">
+		<description>Last Blade, The - Beyond the Destiny (Europe)</description>
+		<cloneof></cloneof>
+		<crc>94FCFD1E</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Magical Drop Pocket (USA, Europe)" index="true" image="m">
+		<description>Magical Drop Pocket (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>72184DE7</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Metal Slug - 1st Mission (World) (En,Ja)" index="" image="">
+		<description>Metal Slug - 1st Mission (World) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>4FF91807</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Metal Slug - 2nd Mission (World) (En,Ja)" index="" image="">
+		<description>Metal Slug - 2nd Mission (World) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>AC549144</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Neo 21 - Real Casino Series (World)" index="true" image="n">
+		<description>Neo 21 - Real Casino Series (World)</description>
+		<cloneof></cloneof>
+		<crc>0A2A2F28</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Casino</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Neo Baccarat - Real Casino Series (World)" index="" image="">
+		<description>Neo Baccarat - Real Casino Series (World)</description>
+		<cloneof></cloneof>
+		<crc>22AAB454</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Casino</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Neo Cherry Master Color - Real Casino Series (World) (En,Ja)" index="" image="">
+		<description>Neo Cherry Master Color - Real Casino Series (World) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>A6DCA584</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Casino</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Neo Dragon&apos;s Wild - Real Casino Series (World) (En,Ja) (v1.13)" index="" image="">
+		<description>Neo Dragon&apos;s Wild - Real Casino Series (World) (En,Ja) (v1.13)</description>
+		<cloneof></cloneof>
+		<crc>5D028C99</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Casino</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Neo Geo Cup &apos;98 Plus (World) (En,Ja)" index="" image="">
+		<description>Neo Geo Cup &apos;98 Plus (World) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>C0DA4FE9</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1998</year>
+		<genre>Soccer/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Neo Mystery Bonus - Real Casino Series (World) (En,Ja)" index="" image="">
+		<description>Neo Mystery Bonus - Real Casino Series (World) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>E79DC5B3</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Casino</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Neo Turf Masters (World) (En,Ja)" index="" image="">
+		<description>Neo Turf Masters (World) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>317A66D2</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Golf/Sports</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pac-Man (World) (En,Ja)" index="true" image="p">
+		<description>Pac-Man (World) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>21E8CC15</crc>
+		<manufacturer>Namco</manufacturer>
+		<year>1999</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Picture Puzzle (USA, Europe)" index="" image="">
+		<description>Picture Puzzle (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>67E6DC56</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pocket Reversi (Europe)" index="" image="">
+		<description>Pocket Reversi (Europe)</description>
+		<cloneof></cloneof>
+		<crc>20F09880</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Board Games</genre>
+		<rating>PEGI - 3 (Everyone 3+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pocket Tennis Color - Pocket Sports Series (World) (En,Ja)" index="" image="">
+		<description>Pocket Tennis Color - Pocket Sports Series (World) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>D8590B96</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Sports/Tennis</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Puyo Pop (World) (En,Ja) (v1.06)" index="" image="">
+		<description>Puyo Pop (World) (En,Ja) (v1.06)</description>
+		<cloneof></cloneof>
+		<crc>5C649D1E</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Puzzle Bobble Mini (Japan, Europe) (v1.10)" index="" image="">
+		<description>Puzzle Bobble Mini (Japan, Europe) (v1.10)</description>
+		<cloneof></cloneof>
+		<crc>E69EAE3E</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Puzzle Link (Europe)" index="" image="">
+		<description>Puzzle Link (Europe)</description>
+		<cloneof></cloneof>
+		<crc>FE95938C</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Puzzle Link 2 (USA, Europe)" index="" image="">
+		<description>Puzzle Link 2 (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>E2A09BB7</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Samurai Shodown! 2 - Pocket Fighting Series (World) (En,Ja)" index="true" image="s">
+		<description>Samurai Shodown! 2 - Pocket Fighting Series (World) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>4F7FB156</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shanghai Mini (World) (En,Ja)" index="" image="">
+		<description>Shanghai Mini (World) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>90732D53</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="SNK Gals&apos; Fighters (USA, Europe)" index="" image="">
+		<description>SNK Gals&apos; Fighters (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>B02C2BE7</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>2000</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="SNK vs. Capcom - Card Fighters&apos; Clash - Capcom Version (USA, Europe)" index="" image="">
+		<description>SNK vs. Capcom - Card Fighters&apos; Clash - Capcom Version (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>80CE137B</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Card Battle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="SNK vs. Capcom - Card Fighters&apos; Clash - SNK Version (USA, Europe)" index="" image="">
+		<description>SNK vs. Capcom - Card Fighters&apos; Clash - SNK Version (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>94B63A97</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Card Battle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="SNK vs. Capcom - The Match of the Millennium (World) (En,Ja)" index="" image="">
+		<description>SNK vs. Capcom - The Match of the Millennium (World) (En,Ja)</description>
+		<cloneof></cloneof>
+		<crc>B173030A</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sonic the Hedgehog - Pocket Adventure (World)" index="" image="">
+		<description>Sonic the Hedgehog - Pocket Adventure (World)</description>
+		<cloneof></cloneof>
+		<crc>356F0849</crc>
+		<manufacturer>SNK</manufacturer>
+		<year>1999</year>
+		<genre>Platform</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

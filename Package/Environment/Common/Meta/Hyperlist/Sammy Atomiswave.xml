@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>Sammy Atomiswave</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.1 Ongoing (Demul 5.6)</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="anmlbskt" index="true" image="a">
+		<description>Animal Basket</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy/Moss</manufacturer>
+		<year>2005</year>
+		<genre>Sports</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="demofist" index="true" image="d">
+		<description>Demolish Fist</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy/Dimps</manufacturer>
+		<year>2003</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="dirtypig" index="" image="">
+		<description>Dirty Pigskin Football</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy</manufacturer>
+		<year>2004</year>
+		<genre>Football/Sports</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="dolphin" index="" image="">
+		<description>Dolphin Blue</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy</manufacturer>
+		<year>2003</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="xtrmhunt" index="true" image="e">
+		<description>Extreme Hunting</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy</manufacturer>
+		<year>2005</year>
+		<genre>Gun</genre>
+		<rating>AAMA - Yellow (Life Like Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="xtrmhnt2" index="" image="">
+		<description>Extreme Hunting 2</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>2006</year>
+		<genre>Gun</genre>
+		<rating>AAMA - Yellow (Life Like Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ftspeed" index="true" image="f">
+		<description>Faster Than Speed</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy</manufacturer>
+		<year>2004</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="fotns" index="" image="">
+		<description>Fist of the North Star (Hokuto No Ken)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega/ARC System Works</manufacturer>
+		<year>2005</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ggisuka" index="true" image="g">
+		<description>Guilty Gear Isuka</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy/ARC System Works</manufacturer>
+		<year>2004</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ggx15" index="" image="">
+		<description>Guilty Gear X Ver. 1.5</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy/Arc System Works</manufacturer>
+		<year>2003</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kofnw" index="true" image="k">
+		<description>King of Fighters NeoWave, The</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy/SNK Playmore</manufacturer>
+		<year>2004</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kofxi" index="" image="">
+		<description>King of Fighters XI, The</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega/SNK Playmore</manufacturer>
+		<year>2005</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="kov7sprt" index="" image="">
+		<description>Knights Of Valour: The Seven Spirits</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy/IGS</manufacturer>
+		<year>2004</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="maxspeed" index="true" image="m">
+		<description>Maximum Speed</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy</manufacturer>
+		<year>2002</year>
+		<genre>Driving</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="mslug6" index="" image="">
+		<description>Metal Slug 6</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega/SNK Playmore</manufacturer>
+		<year>2006</year>
+		<genre>Platform</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ngbc" index="true" image="n">
+		<description>Neo-Geo Battle Coliseum</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy/SNK Playmore</manufacturer>
+		<year>2005</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="rangrmsn" index="true" image="r">
+		<description>Ranger Mission</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy</manufacturer>
+		<year>2004</year>
+		<genre>Gun</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="rumblef2" index="" image="">
+		<description>Rumble Fish 2, The</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy/Dimps</manufacturer>
+		<year>2004</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="rumblef" index="" image="">
+		<description>Rumble Fish, The</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy/Dimps</manufacturer>
+		<year>2004</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="salmankt" index="true" image="s">
+		<description>Salary Man Kintaro</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy</manufacturer>
+		<year>2004</year>
+		<genre>Adventure</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="samsptk" index="" image="">
+		<description>Samurai Shodown VI</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy/SNK Playmore</manufacturer>
+		<year>2005</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="sprtshot" index="" image="">
+		<description>Sports Shooting USA</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy</manufacturer>
+		<year>2003</year>
+		<genre>Gun</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="vfurlong" index="true" image="v">
+		<description>Victory Furlong Horse Racing</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sammy</manufacturer>
+		<year>2005</year>
+		<genre>Sports/Horse Racing</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

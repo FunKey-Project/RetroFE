@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>GCE Vectrex</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.0 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="Armor..Attack (World)" index="true" image="a">
+		<description>Armor..Attack (World)</description>
+		<cloneof></cloneof>
+		<crc>B7510971</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bedlam (USA, Europe)" index="true" image="b">
+		<description>Bedlam (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>A2FA649B</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Berzerk (World)" index="" image="">
+		<description>Berzerk (World)</description>
+		<cloneof></cloneof>
+		<crc>EAFE2455</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Blitz! - Action Football (USA, Europe)" index="" image="">
+		<description>Blitz! - Action Football (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>0F11CE0C</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1982</year>
+		<genre>Sports/Football</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Clean Sweep (World)" index="true" image="c">
+		<description>Clean Sweep (World)</description>
+		<cloneof></cloneof>
+		<crc>F1B1DE78</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cosmic Chasm (World)" index="" image="">
+		<description>Cosmic Chasm (World)</description>
+		<cloneof></cloneof>
+		<crc>6C1AFA52</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fortress of Narzod (USA, Europe)" index="true" image="f">
+		<description>Fortress of Narzod (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>13A35C8A</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Heads-Up - Action Soccer (USA)" index="true" image="h">
+		<description>Heads-Up - Action Soccer (USA)</description>
+		<cloneof></cloneof>
+		<crc>E61A7DE3</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1983</year>
+		<genre>Sports/Soccer</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="HyperChase - Auto Race (World)" index="" image="">
+		<description>HyperChase - Auto Race (World)</description>
+		<cloneof></cloneof>
+		<crc>4BB13472</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mine Storm (World)" index="true" image="m">
+		<description>Mine Storm (World)</description>
+		<cloneof></cloneof>
+		<crc>6D509566</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mine Storm II (USA) (Rev 2)" index="" image="">
+		<description>Mine Storm II (USA) (Rev 2)</description>
+		<cloneof></cloneof>
+		<crc>F5B3B374</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Polar Rescue (USA)" index="true" image="p">
+		<description>Polar Rescue (USA)</description>
+		<cloneof></cloneof>
+		<crc>A7471784</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1983</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pole Position (USA)" index="" image="">
+		<description>Pole Position (USA)</description>
+		<cloneof></cloneof>
+		<crc>A00ED3D6</crc>
+		<manufacturer>Namco</manufacturer>
+		<year>1983</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rip Off (World)" index="true" image="r">
+		<description>Rip Off (World)</description>
+		<cloneof></cloneof>
+		<crc>34A98132</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Scramble (USA, Europe)" index="true" image="s">
+		<description>Scramble (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>707C8FFE</crc>
+		<manufacturer>Konami</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Solar Quest (World)" index="" image="">
+		<description>Solar Quest (World)</description>
+		<cloneof></cloneof>
+		<crc>5C4611C8</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Space Wars (World)" index="" image="">
+		<description>Space Wars (World)</description>
+		<cloneof></cloneof>
+		<crc>A3BE5AFF</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Spike (USA, Europe)" index="" image="">
+		<description>Spike (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>62A61843</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Spin ball (USA)" index="" image="">
+		<description>Spin ball (USA)</description>
+		<cloneof></cloneof>
+		<crc>02F41733</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1983</year>
+		<genre>Pinball</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Star Castle (USA)" index="" image="">
+		<description>Star Castle (USA)</description>
+		<cloneof></cloneof>
+		<crc>C9039623</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Star Trek - The Motion Picture (USA)" index="" image="">
+		<description>Star Trek - The Motion Picture (USA)</description>
+		<cloneof></cloneof>
+		<crc>3768D8C3</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1982</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="StarHawk (World)" index="" image="">
+		<description>StarHawk (World)</description>
+		<cloneof></cloneof>
+		<crc>4DE1F06B</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1982</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="WebWars (USA)" index="true" image="w">
+		<description>WebWars (USA)</description>
+		<cloneof></cloneof>
+		<crc>2EE20103</crc>
+		<manufacturer>GCE</manufacturer>
+		<year>1983</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

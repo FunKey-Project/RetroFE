@@ -19,12 +19,10 @@ public:
     void SetManufacturer(const std::string& manufacturer);
     const std::string& GetName() const;
     void SetName(const std::string& name);
-    int GetNumberButtons() const;
-    std::string GetNumberButtonsString();
-    void SetNumberButtons(int numberbuttons);
-    void SetNumberPlayers(int numberplayers);
-    int GetNumberPlayers() const;
-    std::string GetNumberPlayersString();
+    void SetNumberButtons(std::string numberbuttons);
+    std::string GetNumberButtons() const;
+    void SetNumberPlayers(std::string numberplayers);
+    std::string GetNumberPlayers() const;
     const std::string& GetTitle() const;
     const std::string& GetLCTitle() const;
     void SetTitle(const std::string& title);
@@ -49,8 +47,8 @@ private:
     std::string Year;
     std::string Manufacturer;
     std::string CloneOf;
-    int NumberPlayers;
-    int NumberButtons;
+    std::string NumberPlayers;
+    std::string NumberButtons;
     bool Leaf;
 };
 

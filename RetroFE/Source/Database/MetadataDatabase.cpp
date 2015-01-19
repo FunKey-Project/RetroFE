@@ -18,7 +18,6 @@
 #include "../Collection/Item.h"
 #include "../Utility/Log.h"
 #include "../Utility/Utils.h"
-#include "MamelistMetadata.h"
 #include "Configuration.h"
 #include "DB.h"
 #include <algorithm>
@@ -83,8 +82,8 @@ bool MetadataDatabase::Initialize()
     sql.append("year TEXT NOT NULL DEFAULT '',");
     sql.append("manufacturer TEXT NOT NULL DEFAULT '',");
     sql.append("cloneOf TEXT NOT NULL DEFAULT '',");
-    sql.append("players INTEGER,");
-    sql.append("buttons INTEGER);");
+    sql.append("players TEXT NOT NULL DEFAULT '',");
+    sql.append("buttons TEXT NOT NULL DEFAULT '');");
     sql.append("CREATE UNIQUE INDEX IF NOT EXISTS MetaUniqueId ON Meta(collectionName, name);");
 
     rc = sqlite3_exec(handle, sql.c_str(), NULL, 0, &error);
@@ -110,8 +109,10 @@ bool MetadataDatabase::ImportDirectory()
 {
     DIR *dp;
     struct dirent *dirp;
-    std::string metaPath = "Meta/Hyperlist";
-    dp = opendir(metaPath.c_str());
+    std::string hyperListPath = "Meta/Hyperlist";
+    std::string mameListPath = "Meta/Mamelist";
+
+    dp = opendir(hyperListPath.c_str());
 
     while((dirp = readdir(dp)) != NULL)
     {
@@ -127,12 +128,38 @@ bool MetadataDatabase::ImportDirectory()
                 
             if(extension == ".xml")
             {
-                std::string importFile = Configuration::GetAbsolutePath() + "/" + metaPath + "/" + dirp->d_name;
+                std::string importFile = Configuration::GetAbsolutePath() + "/" + hyperListPath + "/" + dirp->d_name;
                 Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing hyperlist: " + importFile);
+                Config.SetStatus("Scraping data from " + importFile);
                 ImportHyperList(importFile, collectionName);
             }
         }
     }
+
+    dp = opendir(mameListPath.c_str());
+
+    while((dirp = readdir(dp)) != NULL)
+    {
+        if (dirp->d_type != DT_DIR && std::string(dirp->d_name) != "." && std::string(dirp->d_name) != "..")
+        {
+
+            std::string basename = dirp->d_name;
+
+            std::string extension = basename.substr(basename.find_last_of("."), basename.size()-1);
+            basename = basename.substr(0, basename.find_last_of("."));
+            std::string collectionName = basename.substr(0, basename.find_first_of("."));
+
+                
+            if(extension == ".xml")
+            {
+                std::string importFile = Configuration::GetAbsolutePath() + "/" + mameListPath + "/" + dirp->d_name;
+                Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing mamelist: " + importFile);
+                Config.SetStatus("Scraping data from " + importFile);
+                ImportMameList(importFile, collectionName);
+            }
+        }
+    }
+
 
     return true;
 }
@@ -175,8 +202,8 @@ void MetadataDatabase::InjectMetadata(CollectionInfo *collection)
         std::string fullTitle = (char *)sqlite3_column_text(stmt, 1);
         std::string year = (char *)sqlite3_column_text(stmt, 2);
         std::string manufacturer = (char *)sqlite3_column_text(stmt, 3);
-        int numberPlayers = (int)sqlite3_column_int(stmt, 4);
-        int numberButtons = (int)sqlite3_column_int(stmt, 5);
+        std::string numberPlayers = (char *)sqlite3_column_text(stmt, 4);
+        std::string numberButtons = (char *)sqlite3_column_text(stmt, 5);
         std::string cloneOf = (char *)sqlite3_column_text(stmt, 6);
         std::string launcher;
         std::string title = fullTitle;
@@ -341,4 +368,88 @@ bool MetadataDatabase::ImportHyperList(std::string hyperlistFile, std::string co
 
     return retVal;
 }
+
+bool MetadataDatabase::ImportMameList(std::string filename, std::string collectionName)
+{
+    bool retVal = true;
+    rapidxml::xml_document<> doc;
+    rapidxml::xml_node<> * rootNode;
+    char *error = NULL;
+    sqlite3 *handle = DBInstance.GetHandle();
+
+    Logger::Write(Logger::ZONE_INFO, "Mamelist", "Importing mamelist file \"" + filename + "\" (this will take a while)");
+    std::ifstream file(filename.c_str());
+
+    std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+
+    buffer.push_back('\0');
+
+    doc.parse<0>(&buffer[0]);
+
+    rootNode = doc.first_node("mame");
+
+    sqlite3_exec(handle, "BEGIN IMMEDIATE TRANSACTION;", NULL, NULL, &error);
+    for (rapidxml::xml_node<> * game = rootNode->first_node("game"); game; game = game->next_sibling())
+    {
+        rapidxml::xml_attribute<> *nameNode = game->first_attribute("name");
+        rapidxml::xml_attribute<> *cloneOfXml = game->first_attribute("cloneof");
+
+        if(nameNode != NULL)
+        {
+            std::string name = nameNode->value();
+            rapidxml::xml_node<> *descriptionNode = game->first_node("description");
+            rapidxml::xml_node<> *yearNode = game->first_node("year");
+            rapidxml::xml_node<> *manufacturerNode = game->first_node("manufacturer");
+            rapidxml::xml_node<> *inputNode = game->first_node("input");
+
+            std::string description = (descriptionNode == NULL) ? nameNode->value() : descriptionNode->value();
+            std::string year = (yearNode == NULL) ? "" : yearNode->value();
+            std::string manufacturer = (manufacturerNode == NULL) ? "" : manufacturerNode->value();
+            std::string cloneOf = (cloneOfXml == NULL) ? "" : cloneOfXml->value();
+            std::string players;
+            std::string buttons;
+
+            if(inputNode != NULL)
+            {
+                rapidxml::xml_attribute<> *playersAttribute = inputNode->first_attribute("players");
+                rapidxml::xml_attribute<> *buttonsAttribute = inputNode->first_attribute("buttons");
+
+                if(playersAttribute)
+                {
+                    players = playersAttribute->value();
+                }
+
+                if(buttonsAttribute)
+                {
+                    buttons = buttonsAttribute->value();
+                }
+
+            }
+
+            sqlite3_stmt *stmt;
+
+            sqlite3_prepare_v2(handle,
+                    "INSERT OR REPLACE INTO Meta (name, title, year, manufacturer, players, buttons, cloneOf, collectionName) VALUES (?,?,?,?,?,?,?,?)",
+                    -1, &stmt, 0);
+
+
+            sqlite3_bind_text(stmt, 1, name.c_str(), -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 2, description.c_str(), -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 3, year.c_str(), -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 4, manufacturer.c_str(), -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 5, players.c_str(), -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 6, buttons.c_str(), -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 7, cloneOf.c_str(), -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 8, collectionName.c_str(), -1, SQLITE_TRANSIENT);
+
+            sqlite3_step(stmt);
+            sqlite3_finalize(stmt);
+        }
+    }
+
+    sqlite3_exec(handle, "COMMIT TRANSACTION;", NULL, NULL, &error);
+
+    return retVal;
+}
+
 

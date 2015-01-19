@@ -498,7 +498,6 @@ Page *RetroFE::LoadSplashPage()
 {
     PageBuilder pb("Splash", "", Config, &FC);
     Page * page = pb.BuildPage();
-//    page->SetStatusText("foobar");
     Config.SetCurrentCollection("");
     page->SetCollection(new CollectionInfo("", "", "", "", ""));
     page->Start();

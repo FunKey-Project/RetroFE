@@ -1,0 +1,469 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>Zinc</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.2 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="63" index="true" image="a">
+		<description>Aqua Rush</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Namco</manufacturer>
+		<year>1999</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="22" index="true" image="b">
+		<description>Battle Arena Toshinden 2</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom / Takara</manufacturer>
+		<year>1995</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="27" index="" image="">
+		<description>Beastorizer</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Eighting / Raizing</manufacturer>
+		<year>1997</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Red (Animated Violence Strong)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="28" index="" image="">
+		<description>Bloody Roar 2</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Eighting / Raizing</manufacturer>
+		<year>1998</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Red (Animated Violence Strong)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="29" index="" image="">
+		<description>Brave Blade</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Eighting / Raizing</manufacturer>
+		<year>2000</year>
+		<genre>Flying/Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="67" index="true" image="c">
+		<description>Cool Boarders Arcade Jam</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tecmo</manufacturer>
+		<year>1998</year>
+		<genre>Sports</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="39" index="true" image="d">
+		<description>Dancing Eyes</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Namco</manufacturer>
+		<year>1996</year>
+		<genre>Mature/Maze</genre>
+		<rating>AAMA - Yellow (Sexual Content Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="68" index="" image="">
+		<description>Dead Or Alive   </description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sega</manufacturer>
+		<year>1996</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Red (Animated Violence Strong)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="52" index="" image="">
+		<description>Dunk Mania</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Namco</manufacturer>
+		<year>1995</year>
+		<genre>Basketball/Sports</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="60" index="true" image="e">
+		<description>Ehrgeiz</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Square / Namco</manufacturer>
+		<year>1998</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="36" index="true" image="f">
+		<description>Fighters Impact A</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Taito</manufacturer>
+		<year>1997</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="59" index="" image="">
+		<description>Fighting Layer</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Arika / Namco</manufacturer>
+		<year>1998</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="37" index="true" image="g">
+		<description>G-Darius</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Taito</manufacturer>
+		<year>1997</year>
+		<genre>Flying/Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="65" index="" image="">
+		<description>Gallop Racer 3</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tecmo</manufacturer>
+		<year>1999</year>
+		<genre>Horse Racing/Sports</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="71" index="true" image="h">
+		<description>Heaven&apos;s Gate</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Atlus / Racdym</manufacturer>
+		<year>1996</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="56" index="" image="">
+		<description>Hyper Athlete</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Konami</manufacturer>
+		<year>1996</year>
+		<genre>Sports/Track &amp; Field</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="42" index="true" image="k">
+		<description>Kosodate Quiz My Angel 3</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Namco</manufacturer>
+		<year>1998</year>
+		<genre>Quiz</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="33" index="true" image="m">
+		<description>Magical Date EX</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Taito</manufacturer>
+		<year>1997</year>
+		<genre>Mini-Games</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="70" index="" image="">
+		<description>Monster Farm Jump</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tecmo</manufacturer>
+		<year>2001</year>
+		<genre>Platform</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="62" index="" image="">
+		<description>Mr. Driller</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Namco</manufacturer>
+		<year>1999</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="64" index="true" image="p">
+		<description>Paca Paca Passion</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Produce / Namco</manufacturer>
+		<year>1999</year>
+		<genre>Rhythm</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="13" index="" image="">
+		<description>Plasma Sword</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>1998</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="57" index="" image="">
+		<description>Powerful Baseball &apos;96</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Konami</manufacturer>
+		<year>1996</year>
+		<genre>Baseball/Sports</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="54" index="" image="">
+		<description>Prime Goal EX</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Namco</manufacturer>
+		<year>1996</year>
+		<genre>Soccer/Sports</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="31" index="" image="">
+		<description>Psychic Force</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Taito</manufacturer>
+		<year>1995</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="35" index="true" image="r">
+		<description>Raystorm</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Taito</manufacturer>
+		<year>1996</year>
+		<genre>Flying/Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="17" index="" image="">
+		<description>Rival Schools</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>1997</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Red (Life Like Violence Strong)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="66" index="true" image="s">
+		<description>Shanghai Matekibuyuu</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sunsoft / Activision</manufacturer>
+		<year>1998</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="25" index="" image="">
+		<description>Sonic Wings Limited</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Video System Co.</manufacturer>
+		<year>1996</year>
+		<genre>Flying/Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="51" index="" image="">
+		<description>Soul Edge Ver. II</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Namco</manufacturer>
+		<year>1996</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="1" index="" image="">
+		<description>Star Gladiator</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>1996</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="41" index="" image="">
+		<description>Star Sweep</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Axela/Namco</manufacturer>
+		<year>1997</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="2" index="" image="">
+		<description>Street Fighter EX</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom / Arika</manufacturer>
+		<year>1996</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Red (Life Like Violence Strong)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="8" index="" image="">
+		<description>Street Fighter EX 2</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom / Arika</manufacturer>
+		<year>1998</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Red (Life Like Violence Strong)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="10" index="" image="">
+		<description>Street Fighter EX 2 Plus</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom / Arika</manufacturer>
+		<year>1999</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Red (Life Like Violence Strong)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="5" index="" image="">
+		<description>Street Fighter EX Plus</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom / Arika</manufacturer>
+		<year>1997</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Red (Life Like Violence Strong)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="19" index="" image="">
+		<description>Strider 2</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>1999</year>
+		<genre>Platform</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="58" index="" image="">
+		<description>Susume! Taisen Puzzle-Dama</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Konami</manufacturer>
+		<year>1996</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="21" index="true" image="t">
+		<description>Tech Romancer</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>1998</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="45" index="" image="">
+		<description>Tekken</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Namco</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Animated Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="48" index="" image="">
+		<description>Tekken 2</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Namco</manufacturer>
+		<year>1995</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Life Like Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="61" index="" image="">
+		<description>Tekken 3</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Namco</manufacturer>
+		<year>1996</year>
+		<genre>Fighter</genre>
+		<rating>AAMA - Yellow (Life Like Violence Mild)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="24" index="" image="">
+		<description>Tetris The Grand Master</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Arika / Capcom</manufacturer>
+		<year>1998</year>
+		<genre>Puzzle</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="69" index="" image="">
+		<description>Tondemo Crisis</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Tecmo</manufacturer>
+		<year>1999</year>
+		<genre>Mini-Games</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="55" index="true" image="w">
+		<description>Wedding Rhapsody</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Konami</manufacturer>
+		<year>1997</year>
+		<genre>Quiz</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="40" index="true" image="x">
+		<description>Xevious 3D/G</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Namco</manufacturer>
+		<year>1995</year>
+		<genre>Flying/Shooter</genre>
+		<rating>AAMA - Green (Suitable For All Ages)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

@@ -22,6 +22,7 @@ public:
 
     void InjectMetadata(CollectionInfo *collection);
     bool ImportHyperList(std::string hyperlistFile, std::string collectionName);
+    bool ImportMameList(std::string filename, std::string collectionName);
 
 private:
     bool ImportDirectory();

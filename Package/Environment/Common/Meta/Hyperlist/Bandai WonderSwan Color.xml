@@ -1,0 +1,949 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>Bandai WonderSwan Color</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>2.0</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="Alchemist Marie &amp; Elie - Futari no Atelier (Japan)" index="true" image="a">
+		<description>Alchemist Marie &amp; Elie - Futari no Atelier</description>
+		<cloneof></cloneof>
+		<crc>B18CDC0D</crc>
+		<manufacturer>Gust Corporation</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Another Heaven - Memory of those Days (Japan)" index="" image="">
+		<description>Another Heaven - Memory of those Days</description>
+		<cloneof></cloneof>
+		<crc>D7A0AB74</crc>
+		<manufacturer>Omega Mikotto</manufacturer>
+		<year>2000</year>
+		<genre>Adventure</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Arc the Lad - Kishin Fukkatsu (Japan)" index="" image="">
+		<description>Arc the Lad - Kishin Fukkatsu</description>
+		<cloneof></cloneof>
+		<crc>E2317345</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2002</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Battle Spirit - Digimon Frontier (Japan)" index="true" image="b">
+		<description>Battle Spirit - Digimon Frontier</description>
+		<cloneof></cloneof>
+		<crc>8BA49DAB</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2002</year>
+		<genre>Fighter</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Blue Wing Blitz (Japan)" index="" image="">
+		<description>Blue Wing Blitz</description>
+		<cloneof></cloneof>
+		<crc>99027238</crc>
+		<manufacturer>Square</manufacturer>
+		<year>2001</year>
+		<genre>Strategy</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dark Eyes - Battle Gate (Japan)" index="true" image="d">
+		<description>Dark Eyes - Battle Gate</description>
+		<cloneof></cloneof>
+		<crc>12AE932C</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dicing Knight. (Japan)" index="" image="">
+		<description>Dicing Knight.</description>
+		<cloneof></cloneof>
+		<crc>D28DC930</crc>
+		<manufacturer>Qute</manufacturer>
+		<year>2004</year>
+		<genre>Action/Adventure/Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Digimon - Anode Tamer &amp; Cathode Tamer (Asia)" index="" image="">
+		<description>Digimon - Anode Tamer &amp; Cathode Tamer</description>
+		<cloneof></cloneof>
+		<crc>77689273</crc>
+		<manufacturer>Banda1</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Digimon Adventure 02 - D1 Tamers (Japan)" index="" image="">
+		<description>Digimon Adventure 02 - D1 Tamers</description>
+		<cloneof></cloneof>
+		<crc>4D28637E</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2000</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Digimon Tamers - Battle Spirit (Japan) (En,Ja)" index="" image="">
+		<description>Digimon Tamers - Battle Spirit</description>
+		<cloneof></cloneof>
+		<crc>C927BFCB</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Digimon Tamers - Battle Spirit Ver. 1.5 (Japan)" index="" image="">
+		<description>Digimon Tamers - Battle Spirit Ver. 1.5</description>
+		<cloneof></cloneof>
+		<crc>6CAAD4A2</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2002</year>
+		<genre>Fighter</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Digimon Tamers - Brave Tamer (Japan)" index="" image="">
+		<description>Digimon Tamers - Brave Tamer</description>
+		<cloneof></cloneof>
+		<crc>F1F4D41F</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Digimon Tamers - Digimon Medley (Japan)" index="" image="">
+		<description>Digimon Tamers - Digimon Medley</description>
+		<cloneof></cloneof>
+		<crc>FA92418D</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Digital Monster - D-Project (Japan)" index="" image="">
+		<description>Digital Monster - D-Project</description>
+		<cloneof></cloneof>
+		<crc>FAAEFBCB</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2002</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Digital Monster Card Game - Ver. WonderSwan Color (Japan)" index="" image="">
+		<description>Digital Monster Card Game - Ver. WonderSwan Color</description>
+		<cloneof></cloneof>
+		<crc>603CB5E6</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2002</year>
+		<genre>Card Battle</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dokodemo Hamster 3 - Odekake Saffron (Japan)" index="" image="">
+		<description>Dokodemo Hamster 3 - Odekake Saffron</description>
+		<cloneof></cloneof>
+		<crc>93E19F13</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2000</year>
+		<genre>Simulation</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dragon Ball (Japan)" index="" image="">
+		<description>Dragon Ball</description>
+		<cloneof></cloneof>
+		<crc>067238D1</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2003</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Final Fantasy (Japan)" index="true" image="f">
+		<description>Final Fantasy</description>
+		<cloneof></cloneof>
+		<crc>B7243E88</crc>
+		<manufacturer>Square</manufacturer>
+		<year>2000</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Final Fantasy II (Japan)" index="" image="">
+		<description>Final Fantasy II</description>
+		<cloneof></cloneof>
+		<crc>F09E752F</crc>
+		<manufacturer>Square</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Final Fantasy IV (Japan)" index="" image="">
+		<description>Final Fantasy IV</description>
+		<cloneof></cloneof>
+		<crc>F699D6D1</crc>
+		<manufacturer>Square</manufacturer>
+		<year>2002</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - E10+ (Everyone 10+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Final Lap Special - GT &amp; Formula Machine (Japan)" index="" image="">
+		<description>Final Lap Special - GT &amp; Formula Machine</description>
+		<cloneof></cloneof>
+		<crc>B07E6A56</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2001</year>
+		<genre>Driving</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Flash Koibito-kun (Japan)" index="" image="">
+		<description>Flash Koibito-kun</description>
+		<cloneof></cloneof>
+		<crc>69D8D433</crc>
+		<manufacturer>Koubunsha</manufacturer>
+		<year>2000</year>
+		<genre>Puzzle</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="From TV Animation One Piece - Chopper no Daibouken (Japan)" index="" image="">
+		<description>From TV Animation One Piece - Chopper no Daibouken</description>
+		<cloneof></cloneof>
+		<crc>8E120B5A</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2003</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="From TV Animation One Piece - Grand Battle Swan Colosseum (Japan)" index="" image="">
+		<description>From TV Animation One Piece - Grand Battle Swan Colosseum</description>
+		<cloneof></cloneof>
+		<crc>F8A1DD2B</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2002</year>
+		<genre>Fighter</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="From TV Animation One Piece - Niji no Shima Densetsu (Japan)" index="" image="">
+		<description>From TV Animation One Piece - Niji no Shima Densetsu</description>
+		<cloneof></cloneof>
+		<crc>427056C4</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2001</year>
+		<genre>Action/Adventure</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="From TV Animation One Piece - Treasure Wars (Japan)" index="" image="">
+		<description>From TV Animation One Piece - Treasure Wars</description>
+		<cloneof></cloneof>
+		<crc>205503C3</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2002</year>
+		<genre>Board Games</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="From TV Animation One Piece - Treasure Wars 2 - Buggy Land e Youkoso (Japan)" index="" image="">
+		<description>From TV Animation One Piece - Treasure Wars 2 - Buggy Land e Youkoso</description>
+		<cloneof></cloneof>
+		<crc>0D1048F0</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2002</year>
+		<genre>Board Games</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Front Mission (Japan)" index="" image="">
+		<description>Front Mission</description>
+		<cloneof></cloneof>
+		<crc>2F9E2560</crc>
+		<manufacturer>Square</manufacturer>
+		<year>2002</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - E10+ (Everyone 10+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gekitou! Crash Gear Turbo - Gear Champion League (Japan)" index="true" image="g">
+		<description>Gekitou! Crash Gear Turbo - Gear Champion League</description>
+		<cloneof></cloneof>
+		<crc>8A8B827C</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2002</year>
+		<genre>Action</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gensou Maden Saiyuuki Retribution - Hi no Ataru Basho de (Japan)" index="" image="">
+		<description>Gensou Maden Saiyuuki Retribution - Hi no Ataru Basho de</description>
+		<cloneof></cloneof>
+		<crc>446E2581</crc>
+		<manufacturer>Mubik</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Golden Axe (Japan)" index="" image="">
+		<description>Golden Axe</description>
+		<cloneof></cloneof>
+		<crc>BC944A98</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2002</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gransta Chronicle (Japan)" index="" image="">
+		<description>Gransta Chronicle</description>
+		<cloneof></cloneof>
+		<crc>AF24F95C</crc>
+		<manufacturer>Omega Micott</manufacturer>
+		<year>2002</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Guilty Gear Petit (Japan)" index="" image="">
+		<description>Guilty Gear Petit</description>
+		<cloneof></cloneof>
+		<crc>9750BC2A</crc>
+		<manufacturer>Sammy</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Guilty Gear Petit 2 (Japan)" index="" image="">
+		<description>Guilty Gear Petit 2</description>
+		<cloneof></cloneof>
+		<crc>D7A12BD5</crc>
+		<manufacturer>Sammy</manufacturer>
+		<year>2001</year>
+		<genre>Fighter</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="GunPey EX (Japan)" index="" image="">
+		<description>GunPey EX</description>
+		<cloneof></cloneof>
+		<crc>0C9CB12C</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2000</year>
+		<genre>Puzzle</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hanjuku Hero - Ah, Sekai yo Hanjuku Nare...!! (Japan)" index="true" image="h">
+		<description>Hanjuku Hero - Ah, Sekai yo Hanjuku Nare...!!</description>
+		<cloneof></cloneof>
+		<crc>31E09BED</crc>
+		<manufacturer>Square</manufacturer>
+		<year>2002</year>
+		<genre>Strategy</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hataraku Chocobo (Japan)" index="" image="">
+		<description>Hataraku Chocobo</description>
+		<cloneof></cloneof>
+		<crc>7A29E9A6</crc>
+		<manufacturer>Square</manufacturer>
+		<year>2000</year>
+		<genre>Simulation</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hunter X Hunter - Greed Island (Japan)" index="" image="">
+		<description>Hunter X Hunter - Greed Island</description>
+		<cloneof></cloneof>
+		<crc>A487B7A8</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2003</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hunter X Hunter - Michibikareshi Mono (Japan)" index="" image="">
+		<description>Hunter X Hunter - Michibikareshi Mono</description>
+		<cloneof></cloneof>
+		<crc>9402BCA9</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hunter X Hunter - Sorezore no Ketsui (Japan)" index="" image="">
+		<description>Hunter X Hunter - Sorezore no Ketsui</description>
+		<cloneof></cloneof>
+		<crc>D0B20C5A</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Inuyasha - Fuuun Emaki (Japan)" index="true" image="i">
+		<description>Inuyasha - Fuuun Emaki</description>
+		<cloneof></cloneof>
+		<crc>3FF5791F</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2002</year>
+		<genre>Adventure</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Inuyasha - Kagome no Sengoku Nikki (Japan)" index="" image="">
+		<description>Inuyasha - Kagome no Sengoku Nikki</description>
+		<cloneof></cloneof>
+		<crc>0C23D551</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Inuyasha - Kagome no Yume Nikki (Japan)" index="" image="">
+		<description>Inuyasha - Kagome no Yume Nikki</description>
+		<cloneof></cloneof>
+		<crc>44453234</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2002</year>
+		<genre>Adventure</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Judgement Silversword - Rebirth Edition (Japan) (Rev 4321)" index="true" image="j">
+		<description>Judgement Silversword - Rebirth Edition</description>
+		<cloneof></cloneof>
+		<crc>60191872</crc>
+		<manufacturer>Qute</manufacturer>
+		<year>2004</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kidou Senshi Gundam - Giren no Yabou - Tokubetsu Hen - Aoki Hoshi no Hasha (Japan)" index="true" image="k">
+		<description>Kidou Senshi Gundam - Giren no Yabou - Tokubetsu Hen - Aoki Hoshi no Hasha</description>
+		<cloneof></cloneof>
+		<crc>D4061551</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2003</year>
+		<genre>Strategy</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kidou Senshi Gundam Seed (Japan)" index="" image="">
+		<description>Kidou Senshi Gundam Seed</description>
+		<cloneof></cloneof>
+		<crc>BCE15137</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2003</year>
+		<genre>Action</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kidou Senshi Gundam Vol. 1 - Side 7 (Japan)" index="" image="">
+		<description>Kidou Senshi Gundam Vol. 1 - Side 7</description>
+		<cloneof></cloneof>
+		<crc>08C0247B</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing/Strategy</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kidou Senshi Gundam Vol. 2 - Jaburo (Japan)" index="" image="">
+		<description>Kidou Senshi Gundam Vol. 2 - Jaburo</description>
+		<cloneof></cloneof>
+		<crc>39A1391A</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing/Strategy</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kidou Senshi Gundam Vol. 3 - A Baoa Qu (Japan)" index="" image="">
+		<description>Kidou Senshi Gundam Vol. 3 - A Baoa Qu</description>
+		<cloneof></cloneof>
+		<crc>A9F5BF54</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2002</year>
+		<genre>Role-Playing/Strategy</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kinnikuman IIsei - Choujin Seisenshi (Japan)" index="" image="">
+		<description>Kinnikuman IIsei - Choujin Seisenshi</description>
+		<cloneof></cloneof>
+		<crc>6142FD9D</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2003</year>
+		<genre>Fighter</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kinnikuman IIsei - Dream Tag Match (Japan)" index="" image="">
+		<description>Kinnikuman IIsei - Dream Tag Match</description>
+		<cloneof></cloneof>
+		<crc>462F9275</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2002</year>
+		<genre>Fighter</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kurupara! (Japan)" index="" image="">
+		<description>Kurupara!</description>
+		<cloneof></cloneof>
+		<crc>274719F5</crc>
+		<manufacturer>Tom Create</manufacturer>
+		<year>2001</year>
+		<genre>Puzzle</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Last Alive (Japan)" index="true" image="l">
+		<description>Last Alive</description>
+		<cloneof></cloneof>
+		<crc>DA4479BF</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Makai Toushi Sa-Ga (Japan)" index="true" image="m">
+		<description>Makai Toushi Sa-Ga</description>
+		<cloneof></cloneof>
+		<crc>1B6F5F30</crc>
+		<manufacturer>Square</manufacturer>
+		<year>2002</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Meitantei Conan - Yuugure no Koujo (Japan)" index="" image="">
+		<description>Meitantei Conan - Yuugure no Koujo</description>
+		<cloneof></cloneof>
+		<crc>9F6E3F8D</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Memories Off - Festa (Japan)" index="" image="">
+		<description>Memories Off - Festa</description>
+		<cloneof></cloneof>
+		<crc>8E123373</crc>
+		<manufacturer>Kid</manufacturer>
+		<year>2001</year>
+		<genre>Mahjong</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mikeneko Holmes - Ghost Panic (Japan)" index="" image="">
+		<description>Mikeneko Holmes - Ghost Panic</description>
+		<cloneof></cloneof>
+		<crc>D75EFFC2</crc>
+		<manufacturer>Kobunsha</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mr. Driller (Japan)" index="" image="">
+		<description>Mr. Driller</description>
+		<cloneof></cloneof>
+		<crc>5555D95C</crc>
+		<manufacturer>Namco</manufacturer>
+		<year>2001</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Namco Super Wars (Japan)" index="true" image="n">
+		<description>Namco Super Wars</description>
+		<cloneof></cloneof>
+		<crc>8CE4652F</crc>
+		<manufacturer>Namco</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing/Strategy</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Naruto - Konoha Ninpouchou (Japan)" index="" image="">
+		<description>Naruto - Konoha Ninpouchou</description>
+		<cloneof></cloneof>
+		<crc>71556E6A</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2003</year>
+		<genre>Adventure</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pocket no Naka no Doraemon (Japan)" index="true" image="p">
+		<description>Pocket no Naka no Doraemon</description>
+		<cloneof></cloneof>
+		<crc>2B61BB2B</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2001</year>
+		<genre>Adventure</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Raku Jongg (Japan)" index="true" image="r">
+		<description>Raku Jongg</description>
+		<cloneof></cloneof>
+		<crc>FE4FF701</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2001</year>
+		<genre>Mahjong/Puzzle</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rhyme Rider Kerorican (Japan)" index="" image="">
+		<description>Rhyme Rider Kerorican</description>
+		<cloneof></cloneof>
+		<crc>60706555</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2000</year>
+		<genre>Rhythm</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Riviera - Yakusoku no Chi Riviera (Japan)" index="" image="">
+		<description>Riviera - Yakusoku no Chi Riviera</description>
+		<cloneof></cloneof>
+		<crc>2460B45A</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2002</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rockman EXE - N1 Battle (Japan)" index="" image="">
+		<description>Rockman EXE - N1 Battle</description>
+		<cloneof></cloneof>
+		<crc>1F10CA75</crc>
+		<manufacturer>Capcom</manufacturer>
+		<year>2003</year>
+		<genre>Simulation</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rockman EXE WS (Japan)" index="" image="">
+		<description>Rockman EXE WS</description>
+		<cloneof></cloneof>
+		<crc>658C4B98</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>2003</year>
+		<genre>Platform</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Romancing Sa-Ga (Japan)" index="" image="">
+		<description>Romancing Sa-Ga</description>
+		<cloneof></cloneof>
+		<crc>9C98D97D</crc>
+		<manufacturer>Square</manufacturer>
+		<year>2001</year>
+		<genre>Role-Playing</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="RUN=DIM - Return to Earth (Japan)" index="" image="">
+		<description>RUN=DIM - Return to Earth</description>
+		<cloneof></cloneof>
+		<crc>15C4552E</crc>
+		<manufacturer>Digital Dream</manufacturer>
+		<year>2002</year>
+		<genre>Shooter</genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Saint Seiya - Ougon Densetsu Hen - Perfect Edition (Japan)" index="true" image="s">
+		<description>Saint Seiya - Ougon Densetsu Hen - Perfect Edition (Japan)</description>
+		<cloneof></cloneof>
+		<crc>6E8A792D</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="SD Gundam - Operation U.C. (Japan)" index="" image="">
+		<description>SD Gundam - Operation U.C. (Japan)</description>
+		<cloneof></cloneof>
+		<crc>F0ACDA5C</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="SD Gundam Eiyuuden - Kishi Densetsu (Japan)" index="" image="">
+		<description>SD Gundam Eiyuuden - Kishi Densetsu (Japan)</description>
+		<cloneof></cloneof>
+		<crc>C60E5162</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="SD Gundam Eiyuuden - Musha Densetsu (Japan)" index="" image="">
+		<description>SD Gundam Eiyuuden - Musha Densetsu (Japan)</description>
+		<cloneof></cloneof>
+		<crc>18ECFFB8</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="SD Gundam G-Generation - Gather Beat 2 (Japan)" index="" image="">
+		<description>SD Gundam G-Generation - Gather Beat 2 (Japan)</description>
+		<cloneof></cloneof>
+		<crc>4D21A347</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="SD Gundam G-Generation - Mono-Eye Gundams (Japan)" index="" image="">
+		<description>SD Gundam G-Generation - Mono-Eye Gundams (Japan)</description>
+		<cloneof></cloneof>
+		<crc>6ACA1F04</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Senkaiden Ni - TV Animation Senkaiden Houshin Engi Yori (Japan)" index="" image="">
+		<description>Senkaiden Ni - TV Animation Senkaiden Houshin Engi Yori (Japan)</description>
+		<cloneof></cloneof>
+		<crc>9F35D00F</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shaman King - Asu e no Ishi (Japan)" index="" image="">
+		<description>Shaman King - Asu e no Ishi (Japan)</description>
+		<cloneof></cloneof>
+		<crc>6C029674</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shaman King - Asu e no Ishi (Japan) (v1.1)" index="" image="">
+		<description>Shaman King - Asu e no Ishi (Japan) (v1.1)</description>
+		<cloneof></cloneof>
+		<crc>34908CB4</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sorobang (Japan)" index="" image="">
+		<description>Sorobang (Japan)</description>
+		<cloneof></cloneof>
+		<crc>0E467D97</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Star Hearts - Hoshi to Daichi no Shisha (Japan)" index="" image="">
+		<description>Star Hearts - Hoshi to Daichi no Shisha (Japan)</description>
+		<cloneof></cloneof>
+		<crc>138D1018</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Star Hearts - Hoshi to Daichi no Shisha - Taikenban (Japan)" index="" image="">
+		<description>Star Hearts - Hoshi to Daichi no Shisha - Taikenban (Japan)</description>
+		<cloneof></cloneof>
+		<crc>9874E9A2</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Robot Taisen Compact 3 (Japan) (v1.5)" index="" image="">
+		<description>Super Robot Taisen Compact 3 (Japan) (v1.5)</description>
+		<cloneof></cloneof>
+		<crc>6918C824</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Robot Taisen Compact 3 (Japan) (v1.6)" index="" image="">
+		<description>Super Robot Taisen Compact 3 (Japan) (v1.6)</description>
+		<cloneof></cloneof>
+		<crc>188CA644</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Robot Taisen Compact for WonderSwan Color (Japan)" index="" image="">
+		<description>Super Robot Taisen Compact for WonderSwan Color (Japan)</description>
+		<cloneof></cloneof>
+		<crc>16E0D929</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Terrors 2 (Japan)" index="true" image="t">
+		<description>Terrors 2 (Japan)</description>
+		<cloneof></cloneof>
+		<crc>9BD8F08C</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tetris (Japan)" index="" image="">
+		<description>Tetris (Japan)</description>
+		<cloneof></cloneof>
+		<crc>7B0CAEA9</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tonpuusou (Japan)" index="" image="">
+		<description>Tonpuusou (Japan)</description>
+		<cloneof></cloneof>
+		<crc>47659B2C</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Uchuu Senkan Yamato (Japan)" index="true" image="u">
+		<description>Uchuu Senkan Yamato (Japan)</description>
+		<cloneof></cloneof>
+		<crc>5793BDDA</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ultraman - Hikari no Kuni no Shisha (Japan)" index="" image="">
+		<description>Ultraman - Hikari no Kuni no Shisha (Japan)</description>
+		<cloneof></cloneof>
+		<crc>DE2208AB</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wild Card (Japan)" index="true" image="w">
+		<description>Wild Card (Japan)</description>
+		<cloneof></cloneof>
+		<crc>D9401F0A</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="With You - Mitsumete Itai (Japan)" index="" image="">
+		<description>With You - Mitsumete Itai (Japan)</description>
+		<cloneof></cloneof>
+		<crc>E14E9D36</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wizardry Scenario 1 - Proving Grounds of the Mad Overlord (Japan)" index="" image="">
+		<description>Wizardry Scenario 1 - Proving Grounds of the Mad Overlord (Japan)</description>
+		<cloneof></cloneof>
+		<crc>15E55706</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wonder Classic (Japan)" index="" image="">
+		<description>Wonder Classic (Japan)</description>
+		<cloneof></cloneof>
+		<crc>12F10B27</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="X - Card of Fate (Japan)" index="true" image="x">
+		<description>X - Card of Fate (Japan)</description>
+		<cloneof></cloneof>
+		<crc>66B617D5</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="XI Little (Japan)" index="" image="">
+		<description>XI Little (Japan)</description>
+		<cloneof></cloneof>
+		<crc>25E2BA75</crc>
+		<manufacturer></manufacturer>
+		<year></year>
+		<genre></genre>
+		<rating>Other - NR (Not Rated)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

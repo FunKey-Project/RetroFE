@@ -1,0 +1,949 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>NEC TurboGrafx-16</listname>
+		<lastlistupdate>10/27/2011</lastlistupdate>
+		<listversion>1.1 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="Aero Blasters (USA)" index="true" image="a">
+		<description>Aero Blasters (USA)</description>
+		<cloneof></cloneof>
+		<crc>b03e0b32</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1990</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Air Zonk (USA)" index="" image="">
+		<description>Air Zonk (USA)</description>
+		<cloneof></cloneof>
+		<crc>933d5bcc</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1992</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Alien Crush (USA)" index="" image="">
+		<description>Alien Crush (USA)</description>
+		<cloneof></cloneof>
+		<crc>ea488494</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1989</year>
+		<genre>Pinball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ballistix (USA)" index="true" image="b">
+		<description>Ballistix (USA)</description>
+		<cloneof></cloneof>
+		<crc>420fa189</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1992</year>
+		<genre>Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Battle Royale (USA)" index="" image="">
+		<description>Battle Royale (USA)</description>
+		<cloneof></cloneof>
+		<crc>e70b01af</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1990</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Blazing Lazers (USA)" index="" image="">
+		<description>Blazing Lazers (USA)</description>
+		<cloneof></cloneof>
+		<crc>b4a1b0f6</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bloody Wolf (USA)" index="" image="">
+		<description>Bloody Wolf (USA)</description>
+		<cloneof></cloneof>
+		<crc>37baf6bc</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1990</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bomberman &apos;93 (USA)" index="" image="">
+		<description>Bomberman &apos;93 (USA)</description>
+		<cloneof></cloneof>
+		<crc>56171c1c</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bomberman (USA)" index="" image="">
+		<description>Bomberman (USA)</description>
+		<cloneof></cloneof>
+		<crc>5f6f3c2a</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1990</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bonk III - Bonk&apos;s Big Adventure (USA)" index="" image="">
+		<description>Bonk III - Bonk&apos;s Big Adventure (USA)</description>
+		<cloneof></cloneof>
+		<crc>5a3f76d8</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1993</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bonk&apos;s Adventure (USA)" index="" image="">
+		<description>Bonk&apos;s Adventure (USA)</description>
+		<cloneof></cloneof>
+		<crc>599ead9b</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bonk&apos;s Revenge (USA)" index="" image="">
+		<description>Bonk&apos;s Revenge (USA)</description>
+		<cloneof></cloneof>
+		<crc>14250f9a</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1991</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Boxyboy (USA)" index="" image="">
+		<description>Boxyboy (USA)</description>
+		<cloneof></cloneof>
+		<crc>605be213</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bravoman (USA)" index="" image="">
+		<description>Bravoman (USA)</description>
+		<cloneof></cloneof>
+		<crc>cca08b02</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1990</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cadash (USA)" index="true" image="c">
+		<description>Cadash (USA)</description>
+		<cloneof></cloneof>
+		<crc>bb0b3aef</crc>
+		<manufacturer>Working Designs</manufacturer>
+		<year>1991</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Champions Forever Boxing (USA)" index="" image="">
+		<description>Champions Forever Boxing (USA)</description>
+		<cloneof></cloneof>
+		<crc>15ee889a</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1991</year>
+		<genre>Boxing/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chew Man Fu (USA)" index="" image="">
+		<description>Chew Man Fu (USA)</description>
+		<cloneof></cloneof>
+		<crc>8cd13e9a</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="China Warrior (USA)" index="" image="">
+		<description>China Warrior (USA)</description>
+		<cloneof></cloneof>
+		<crc>a2ee361d</crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1989</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cratermaze (USA)" index="" image="">
+		<description>Cratermaze (USA)</description>
+		<cloneof></cloneof>
+		<crc>9033e83a</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cyber Core (USA)" index="" image="">
+		<description>Cyber Core (USA)</description>
+		<cloneof></cloneof>
+		<crc>4cfb6e3e</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Darkwing Duck (USA)" index="true" image="d">
+		<description>Darkwing Duck (USA)</description>
+		<cloneof></cloneof>
+		<crc>4ac97606</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1992</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Davis Cup Tennis (USA)" index="" image="">
+		<description>Davis Cup Tennis (USA)</description>
+		<cloneof></cloneof>
+		<crc>9edab596</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1991</year>
+		<genre>Sports/Tennis</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dead Moon (USA)" index="" image="">
+		<description>Dead Moon (USA)</description>
+		<cloneof></cloneof>
+		<crc>f5d98b0b</crc>
+		<manufacturer>NTurbo Technologies, Inc.</manufacturer>
+		<year>1992</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Deep Blue (USA)" index="" image="">
+		<description>Deep Blue (USA)</description>
+		<cloneof></cloneof>
+		<crc>16b40b44</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Devil&apos;s Crush - Naxat Pinball (USA)" index="" image="">
+		<description>Devil&apos;s Crush - Naxat Pinball (USA)</description>
+		<cloneof></cloneof>
+		<crc>157b4492</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Pinball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Double Dungeons - W (USA)" index="" image="">
+		<description>Double Dungeons - W (USA)</description>
+		<cloneof></cloneof>
+		<crc>4a1a8c60</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dragon Spirit (USA)" index="" image="">
+		<description>Dragon Spirit (USA)</description>
+		<cloneof></cloneof>
+		<crc>086f148c</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dragon&apos;s Curse (USA)" index="" image="">
+		<description>Dragon&apos;s Curse (USA)</description>
+		<cloneof></cloneof>
+		<crc>7d2c4b09</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1991</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Drop.Off (USA)" index="" image="">
+		<description>Drop.Off (USA)</description>
+		<cloneof></cloneof>
+		<crc>fea27b32</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dungeon Explorer (USA)" index="" image="">
+		<description>Dungeon Explorer (USA)</description>
+		<cloneof></cloneof>
+		<crc>4ff01515</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Falcon (USA)" index="true" image="f">
+		<description>Falcon (USA)</description>
+		<cloneof></cloneof>
+		<crc>0bc0a12b</crc>
+		<manufacturer>Spectrum Holobyte</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fantasy Zone (USA)" index="" image="">
+		<description>Fantasy Zone (USA)</description>
+		<cloneof></cloneof>
+		<crc>e8c3573d</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Final Lap Twin (USA)" index="" image="">
+		<description>Final Lap Twin (USA)</description>
+		<cloneof></cloneof>
+		<crc>26408ea3</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Galaga &apos;90 (USA)" index="true" image="g">
+		<description>Galaga &apos;90 (USA)</description>
+		<cloneof></cloneof>
+		<crc>2909dec6</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ghost Manor (USA)" index="" image="">
+		<description>Ghost Manor (USA)</description>
+		<cloneof></cloneof>
+		<crc>2db4c1fd</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gunboat (USA)" index="" image="">
+		<description>Gunboat (USA)</description>
+		<cloneof></cloneof>
+		<crc>f370b58e</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hit the Ice - VHL the Official Video Hockey League (USA)" index="true" image="h">
+		<description>Hit the Ice - VHL the Official Video Hockey League (USA)</description>
+		<cloneof></cloneof>
+		<crc>8b29c3aa</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1992</year>
+		<genre>Ice Hockey/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Impossamole (USA)" index="true" image="i">
+		<description>Impossamole (USA)</description>
+		<cloneof></cloneof>
+		<crc>e2470f5f</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1991</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="J.J. &amp; Jeff (USA)" index="true" image="j">
+		<description>J.J. &amp; Jeff (USA)</description>
+		<cloneof></cloneof>
+		<crc>e01c5127</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1990</year>
+		<genre>Platform</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Jack Nicklaus&apos; Turbo Golf (USA)" index="" image="">
+		<description>Jack Nicklaus&apos; Turbo Golf (USA)</description>
+		<cloneof></cloneof>
+		<crc>83384572</crc>
+		<manufacturer>Accolade</manufacturer>
+		<year>1990</year>
+		<genre>Golf/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Jackie Chan&apos;s Action Kung Fu (USA)" index="" image="">
+		<description>Jackie Chan&apos;s Action Kung Fu (USA)</description>
+		<cloneof></cloneof>
+		<crc>9d2f6193</crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1992</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Keith Courage in Alpha Zones (USA)" index="true" image="k">
+		<description>Keith Courage in Alpha Zones (USA)</description>
+		<cloneof></cloneof>
+		<crc>474d7a72</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="King of Casino (USA)" index="" image="">
+		<description>King of Casino (USA)</description>
+		<cloneof></cloneof>
+		<crc>2f2e2240</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Casino</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Klax (USA)" index="" image="">
+		<description>Klax (USA)</description>
+		<cloneof></cloneof>
+		<crc>0f1b59b4</crc>
+		<manufacturer>Tengen</manufacturer>
+		<year>1990</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Legend of Hero Tonma (USA)" index="true" image="l">
+		<description>Legend of Hero Tonma (USA)</description>
+		<cloneof></cloneof>
+		<crc>3c131486</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Legendary Axe II, The (USA)" index="" image="">
+		<description>Legendary Axe II, The (USA)</description>
+		<cloneof></cloneof>
+		<crc>220ebf91</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Legendary Axe, The (USA)" index="" image="">
+		<description>Legendary Axe, The (USA)</description>
+		<cloneof></cloneof>
+		<crc>2d211007</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Magical Chase (USA)" index="true" image="m">
+		<description>Magical Chase (USA)</description>
+		<cloneof></cloneof>
+		<crc>95cd2979</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Military Madness (USA)" index="" image="">
+		<description>Military Madness (USA)</description>
+		<cloneof></cloneof>
+		<crc>93f316f7</crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1989</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Moto Roader (USA)" index="" image="">
+		<description>Moto Roader (USA)</description>
+		<cloneof></cloneof>
+		<crc>e2b0d544</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Neutopia (USA)" index="true" image="n">
+		<description>Neutopia (USA)</description>
+		<cloneof></cloneof>
+		<crc>a9a94e1b</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Neutopia II (USA)" index="" image="">
+		<description>Neutopia II (USA)</description>
+		<cloneof></cloneof>
+		<crc>c4ed4307</crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1991</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="New Adventure Island (USA)" index="" image="">
+		<description>New Adventure Island (USA)</description>
+		<cloneof></cloneof>
+		<crc>756a1802</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1992</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Night Creatures (USA)" index="" image="">
+		<description>Night Creatures (USA)</description>
+		<cloneof></cloneof>
+		<crc>c159761b</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1991</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ninja Spirit (USA)" index="" image="">
+		<description>Ninja Spirit (USA)</description>
+		<cloneof></cloneof>
+		<crc>de8af1c1</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Order of the Griffon (USA)" index="true" image="o">
+		<description>Order of the Griffon (USA)</description>
+		<cloneof></cloneof>
+		<crc>fae0fc60</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1992</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ordyne (USA)" index="" image="">
+		<description>Ordyne (USA)</description>
+		<cloneof></cloneof>
+		<crc>e7bf2a74</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pac-Land (USA)" index="true" image="p">
+		<description>Pac-Land (USA)</description>
+		<cloneof></cloneof>
+		<crc>d6e30ccd</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Panza Kick Boxing (USA)" index="" image="">
+		<description>Panza Kick Boxing (USA)</description>
+		<cloneof></cloneof>
+		<crc>a980e0e9</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1991</year>
+		<genre>Boxing/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Parasol Stars - The Story of Bubble Bobble III (USA)" index="" image="">
+		<description>Parasol Stars - The Story of Bubble Bobble III (USA)</description>
+		<cloneof></cloneof>
+		<crc>e6458212</crc>
+		<manufacturer>Working Designs</manufacturer>
+		<year>1991</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Power Golf (USA)" index="" image="">
+		<description>Power Golf (USA)</description>
+		<cloneof></cloneof>
+		<crc>ed1d3843</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Golf/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Psychosis (USA)" index="" image="">
+		<description>Psychosis (USA)</description>
+		<cloneof></cloneof>
+		<crc>6cc10824</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="R-Type (USA)" index="true" image="r">
+		<description>R-Type (USA)</description>
+		<cloneof></cloneof>
+		<crc>91ce5156</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Raiden (USA)" index="" image="">
+		<description>Raiden (USA)</description>
+		<cloneof></cloneof>
+		<crc>bc59c31e</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1991</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Samurai-Ghost (USA)" index="true" image="s">
+		<description>Samurai-Ghost (USA)</description>
+		<cloneof></cloneof>
+		<crc>77a924b7</crc>
+		<manufacturer>Namco</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shockman (USA)" index="" image="">
+		<description>Shockman (USA)</description>
+		<cloneof></cloneof>
+		<crc>2774462c</crc>
+		<manufacturer>NCS</manufacturer>
+		<year>1991</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="SideArms - Hyper Dyne (USA)" index="" image="">
+		<description>SideArms - Hyper Dyne (USA)</description>
+		<cloneof></cloneof>
+		<crc>d1993c9f</crc>
+		<manufacturer>Radiance</manufacturer>
+		<year>1989</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Silent Debuggers (USA)" index="" image="">
+		<description>Silent Debuggers (USA)</description>
+		<cloneof></cloneof>
+		<crc>fa7e5d66</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1991</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sinistron (USA)" index="" image="">
+		<description>Sinistron (USA)</description>
+		<cloneof></cloneof>
+		<crc>4f6e2dbd</crc>
+		<manufacturer>IGS</manufacturer>
+		<year>1991</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Soldier Blade (USA)" index="" image="">
+		<description>Soldier Blade (USA)</description>
+		<cloneof></cloneof>
+		<crc>4bb68b13</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1992</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Somer Assault (USA)" index="" image="">
+		<description>Somer Assault (USA)</description>
+		<cloneof></cloneof>
+		<crc>8fcaf2e9</crc>
+		<manufacturer>Atlus Co.</manufacturer>
+		<year>1992</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sonic Spike - World Championship Beach Volleyball (USA)" index="" image="">
+		<description>Sonic Spike - World Championship Beach Volleyball (USA)</description>
+		<cloneof></cloneof>
+		<crc>f74e5eb3</crc>
+		<manufacturer>IGS</manufacturer>
+		<year>1990</year>
+		<genre>Sports/Volleyball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Space Harrier (USA)" index="" image="">
+		<description>Space Harrier (USA)</description>
+		<cloneof></cloneof>
+		<crc>43b05eb8</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1988</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Splatterhouse (USA)" index="" image="">
+		<description>Splatterhouse (USA)</description>
+		<cloneof></cloneof>
+		<crc>d00ca74f</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Star Soldier (USA)" index="" image="">
+		<description>Super Star Soldier (USA)</description>
+		<cloneof></cloneof>
+		<crc>db29486f</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1991</year>
+		<genre>Shoot-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Volleyball (USA)" index="" image="">
+		<description>Super Volleyball (USA)</description>
+		<cloneof></cloneof>
+		<crc>245040b3</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Sports/Volleyball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Taito Chase H.Q. (USA)" index="true" image="t">
+		<description>Taito Chase H.Q. (USA)</description>
+		<cloneof></cloneof>
+		<crc>9298254c</crc>
+		<manufacturer>Taito Corporation</manufacturer>
+		<year>1992</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Takin&apos; It to the Hoop (USA)" index="" image="">
+		<description>Takin&apos; It to the Hoop (USA)</description>
+		<cloneof></cloneof>
+		<crc>e9d51797</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Basketball/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="TaleSpin (USA)" index="" image="">
+		<description>TaleSpin (USA)</description>
+		<cloneof></cloneof>
+		<crc>bae9cecc</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1991</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tiger Road (USA)" index="" image="">
+		<description>Tiger Road (USA)</description>
+		<cloneof></cloneof>
+		<crc>985d492d</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Time Cruise (USA)" index="" image="">
+		<description>Time Cruise (USA)</description>
+		<cloneof></cloneof>
+		<crc>02c39660</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1992</year>
+		<genre>Board Games</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Timeball (USA)" index="" image="">
+		<description>Timeball (USA)</description>
+		<cloneof></cloneof>
+		<crc>5d395019</crc>
+		<manufacturer>Turbo Technologies, Inc.</manufacturer>
+		<year>1990</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tricky Kick (USA)" index="" image="">
+		<description>Tricky Kick (USA)</description>
+		<cloneof></cloneof>
+		<crc>48e6fd34</crc>
+		<manufacturer>IGS</manufacturer>
+		<year>1990</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Turrican (USA)" index="" image="">
+		<description>Turrican (USA)</description>
+		<cloneof></cloneof>
+		<crc>eb045edf</crc>
+		<manufacturer>Ballistic</manufacturer>
+		<year>1991</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="TV Sports Basketball (USA)" index="" image="">
+		<description>TV Sports Basketball (USA)</description>
+		<cloneof></cloneof>
+		<crc>ea54d653</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1991</year>
+		<genre>Basketball/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="TV Sports Football (USA)" index="" image="">
+		<description>TV Sports Football (USA)</description>
+		<cloneof></cloneof>
+		<crc>5e25b557</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Football/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="TV Sports Hockey (USA)" index="" image="">
+		<description>TV Sports Hockey (USA)</description>
+		<cloneof></cloneof>
+		<crc>97fe5bcf</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1991</year>
+		<genre>Ice Hockey/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Veigues - Tactical Gladiator (USA)" index="true" image="v">
+		<description>Veigues - Tactical Gladiator (USA)</description>
+		<cloneof></cloneof>
+		<crc>99d14fb7</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1990</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Victory Run (USA)" index="" image="">
+		<description>Victory Run (USA)</description>
+		<cloneof></cloneof>
+		<crc>85cbd045</crc>
+		<manufacturer>Hudson</manufacturer>
+		<year>1991</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Vigilante (USA)" index="" image="">
+		<description>Vigilante (USA)</description>
+		<cloneof></cloneof>
+		<crc>79d49a0d</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="World Class Baseball (USA)" index="true" image="w">
+		<description>World Class Baseball (USA)</description>
+		<cloneof></cloneof>
+		<crc>4186d0c0</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Baseball/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="World Court Tennis (USA)" index="" image="">
+		<description>World Court Tennis (USA)</description>
+		<cloneof></cloneof>
+		<crc>a4457df0</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1989</year>
+		<genre>Sports/Tennis</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="World Sports Competition (USA)" index="" image="">
+		<description>World Sports Competition (USA)</description>
+		<cloneof></cloneof>
+		<crc>4b93f0ac</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1993</year>
+		<genre>Olympic/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Yo, Bro (USA)" index="true" image="y">
+		<description>Yo, Bro (USA)</description>
+		<cloneof></cloneof>
+		<crc>3ca7db48</crc>
+		<manufacturer>NEC</manufacturer>
+		<year>1991</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

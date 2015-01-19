@@ -1,0 +1,2169 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>Panasonic 3DO</listname>
+		<lastlistupdate>08/28/2012</lastlistupdate>
+		<listversion>1.2 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="20th Century Video Almanac (USA)" index="true" image="2">
+		<description>20th Century Video Almanac (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Software Toolworks</manufacturer>
+		<year>1993</year>
+		<genre>Multimedia</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="3D Atlas (USA)" index="true" image="3">
+		<description>3D Atlas (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1994</year>
+		<genre>Multimedia</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Alfred Hitchcock Presents (Japan)" index="true" image="a">
+		<description>Alfred Hitchcock Presents (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Dentsu</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Alone in the Dark (USA)" index="" image="">
+		<description>Alone in the Dark (USA)</description>
+		<cloneof></cloneof>
+		<crc>ed655828</crc>
+		<manufacturer>Interplay</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Alone in the Dark 2 (USA)" index="" image="">
+		<description>Alone in the Dark 2 (USA)</description>
+		<cloneof></cloneof>
+		<crc>d830cf4e</crc>
+		<manufacturer>Interplay</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Armageddon (Korea)" index="" image="">
+		<description>Armageddon (Korea)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>LG</manufacturer>
+		<year>1996</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="AutoBahn Tokio (Japan)" index="" image="">
+		<description>AutoBahn Tokio (Japan)</description>
+		<cloneof></cloneof>
+		<crc>212d3d55</crc>
+		<manufacturer>Sanai</manufacturer>
+		<year>1995</year>
+		<genre>Driving</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ballz - The Director&apos;s Cut (USA)" index="true" image="b">
+		<description>Ballz - The Director&apos;s Cut (USA)</description>
+		<cloneof></cloneof>
+		<crc>d1bc9ed4</crc>
+		<manufacturer>PF Magic</manufacturer>
+		<year>1995</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Battle Blues (Korea)" index="" image="">
+		<description>Battle Blues (Korea)</description>
+		<cloneof></cloneof>
+		<crc>f52de62d</crc>
+		<manufacturer>LG</manufacturer>
+		<year>1996</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Battle Chess (USA)" index="" image="">
+		<description>Battle Chess (USA)</description>
+		<cloneof></cloneof>
+		<crc>dc331956</crc>
+		<manufacturer>Interplay</manufacturer>
+		<year>1993</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Battle Pinball (Japan)" index="" image="">
+		<description>Battle Pinball (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Nippon Data Works</manufacturer>
+		<year>1994</year>
+		<genre>Pinball</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="BattleSport (USA)" index="" image="">
+		<description>BattleSport (USA)</description>
+		<cloneof></cloneof>
+		<crc>3bd90d77</crc>
+		<manufacturer>3DO</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="BC Racers (USA, Europe)" index="" image="">
+		<description>BC Racers (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>eab50bc5</crc>
+		<manufacturer>Goldstar</manufacturer>
+		<year>1995</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Belzerion (Japan)" index="" image="">
+		<description>Belzerion (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Human</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bishoujo Senshi Sailor Moon S (Japan)" index="" image="">
+		<description>Bishoujo Senshi Sailor Moon S (Japan)</description>
+		<cloneof></cloneof>
+		<crc>1ef1c71c</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>1995</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Blade Force (USA)" index="" image="">
+		<description>Blade Force (USA)</description>
+		<cloneof></cloneof>
+		<crc>5c38f5d3</crc>
+		<manufacturer>3DO</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Brain Dead 13 Starring Fritz (USA) (Disc 1)" index="" image="">
+		<description>Brain Dead 13 Starring Fritz (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc>6826e0bf</crc>
+		<manufacturer>ReadySoft</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Brain Dead 13 Starring Fritz (USA) (Disc 2)" index="" image="">
+		<description>Brain Dead 13 Starring Fritz (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc>5306ccb0</crc>
+		<manufacturer>ReadySoft</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Burning Soldier (USA)" index="" image="">
+		<description>Burning Soldier (USA)</description>
+		<cloneof></cloneof>
+		<crc>ea7e4c12</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bust-A-Move (USA)" index="" image="">
+		<description>Bust-A-Move (USA)</description>
+		<cloneof></cloneof>
+		<crc>4135a549</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1995</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cannon Fodder (USA)" index="true" image="c">
+		<description>Cannon Fodder (USA)</description>
+		<cloneof></cloneof>
+		<crc>3dea1827</crc>
+		<manufacturer>Sensible Soft</manufacturer>
+		<year>1994</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Captain Quazar (USA)" index="" image="">
+		<description>Captain Quazar (USA)</description>
+		<cloneof></cloneof>
+		<crc>978f6a57</crc>
+		<manufacturer>3DO</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Carrier - Fortress at Sea (USA)" index="" image="">
+		<description>Carrier - Fortress at Sea (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1995</year>
+		<genre>Multimedia</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Casper (USA)" index="" image="">
+		<description>Casper (USA)</description>
+		<cloneof></cloneof>
+		<crc>d60080cc</crc>
+		<manufacturer>Interplay</manufacturer>
+		<year>1996</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Club 3DO - Station Invasion (USA)" index="" image="">
+		<description>Club 3DO - Station Invasion (USA)</description>
+		<cloneof></cloneof>
+		<crc>5cfc6c68</crc>
+		<manufacturer>3DO</manufacturer>
+		<year>1994</year>
+		<genre>Party</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Corpse Killer (USA)" index="" image="">
+		<description>Corpse Killer (USA)</description>
+		<cloneof></cloneof>
+		<crc>4fca11f1</crc>
+		<manufacturer>DigitalPictures</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cowboy Casino - Interactive Poker (USA)" index="" image="">
+		<description>Cowboy Casino - Interactive Poker (USA)</description>
+		<cloneof></cloneof>
+		<crc>2a91935a</crc>
+		<manufacturer>IntelliPlay</manufacturer>
+		<year>1994</year>
+		<genre>Casino</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Crash &apos;n Burn (USA)" index="" image="">
+		<description>Crash &apos;n Burn (USA)</description>
+		<cloneof></cloneof>
+		<crc>53b6d801</crc>
+		<manufacturer>Crystal Dynamics</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Crayon Shin-chan - Puzzle Daimaou no Nazo (Japan)" index="" image="">
+		<description>Crayon Shin-chan - Puzzle Daimaou no Nazo (Japan)</description>
+		<cloneof></cloneof>
+		<crc>c0e0870a</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>1995</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Creature Shock (USA) (Disc 1)" index="" image="">
+		<description>Creature Shock (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc>cf134301</crc>
+		<manufacturer>Virgin</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Creature Shock (USA) (Disc 2)" index="" image="">
+		<description>Creature Shock (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc>fbf20add</crc>
+		<manufacturer>Virgin</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Crime Patrol (USA)" index="" image="">
+		<description>Crime Patrol (USA)</description>
+		<cloneof></cloneof>
+		<crc>38a2e26e</crc>
+		<manufacturer>American Lasergames</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cyberdillo (USA)" index="" image="">
+		<description>Cyberdillo (USA)</description>
+		<cloneof></cloneof>
+		<crc>d230cc9d</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1995</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cyberia (USA)" index="" image="">
+		<description>Cyberia (USA)</description>
+		<cloneof></cloneof>
+		<crc>74a9ec2f</crc>
+		<manufacturer>Interplay</manufacturer>
+		<year>1996</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="D (USA, Europe) (Disc 1)" index="true" image="d">
+		<description>D (USA, Europe) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc>28308d1c</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="D (USA, Europe) (Disc 2)" index="" image="">
+		<description>D (USA, Europe) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc>6cd9a3ea</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Daedalus Encounter, The (USA) (Disc 1)" index="" image="">
+		<description>Daedalus Encounter, The (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc>0a534155</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Daedalus Encounter, The (USA) (Disc 2)" index="" image="">
+		<description>Daedalus Encounter, The (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc>e37c88d9</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Daedalus Encounter, The (USA) (Disc 3)" index="" image="">
+		<description>Daedalus Encounter, The (USA) (Disc 3)</description>
+		<cloneof></cloneof>
+		<crc>01d65edc</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Daedalus Encounter, The (USA) (Disc 4)" index="" image="">
+		<description>Daedalus Encounter, The (USA) (Disc 4)</description>
+		<cloneof></cloneof>
+		<crc>3cbf9651</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="DeathKeep (USA)" index="" image="">
+		<description>DeathKeep (USA)</description>
+		<cloneof></cloneof>
+		<crc>1e6f7743</crc>
+		<manufacturer>Strategic Simulations Inc.</manufacturer>
+		<year>1995</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Decathlon (USA)" index="" image="">
+		<description>Decathlon (USA)</description>
+		<cloneof></cloneof>
+		<crc>a2906c13</crc>
+		<manufacturer>Older Games</manufacturer>
+		<year>2007</year>
+		<genre>Sports/Track &amp; Field</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Defcon 5 - Incoming (Europe)" index="" image="">
+		<description>Defcon 5 - Incoming (Europe)</description>
+		<cloneof></cloneof>
+		<crc>7ed7f666</crc>
+		<manufacturer>Psygnosis</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Demolition Man (USA)" index="" image="">
+		<description>Demolition Man (USA)</description>
+		<cloneof></cloneof>
+		<crc>6daf6ad8</crc>
+		<manufacturer>Virgin</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Digital Dreamware (USA)" index="" image="">
+		<description>Digital Dreamware (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Virgin</manufacturer>
+		<year>1995</year>
+		<genre>Multimedia</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="DinoPark Tycoon (USA)" index="" image="">
+		<description>DinoPark Tycoon (USA)</description>
+		<cloneof></cloneof>
+		<crc>b282676a</crc>
+		<manufacturer>MECC</manufacturer>
+		<year>1993</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Doctor Hauzer (Japan)" index="" image="">
+		<description>Doctor Hauzer (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>River Hill Software</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Doom (USA)" index="" image="">
+		<description>Doom (USA)</description>
+		<cloneof></cloneof>
+		<crc>25e57d18</crc>
+		<manufacturer>Art Data</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dragon Lore - The Legend Begins (USA, Europe) (Disc 1)" index="" image="">
+		<description>Dragon Lore - The Legend Begins (USA, Europe) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc>88e758bd</crc>
+		<manufacturer>Mindscape</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dragon Lore - The Legend Begins (USA, Europe) (Disc 2)" index="" image="">
+		<description>Dragon Lore - The Legend Begins (USA, Europe) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc>42bf3c82</crc>
+		<manufacturer>Mindscape</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dragon Lore - The Legend Begins (USA, Europe) (Disc 3)" index="" image="">
+		<description>Dragon Lore - The Legend Begins (USA, Europe) (Disc 3)</description>
+		<cloneof></cloneof>
+		<crc>0fee9768</crc>
+		<manufacturer>Mindscape</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dragon Tycoon Edge (Japan)" index="" image="">
+		<description>Dragon Tycoon Edge (Japan)</description>
+		<cloneof></cloneof>
+		<crc>28281e86</crc>
+		<manufacturer>Sara International</manufacturer>
+		<year>1995</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E10+ (Everyone 10+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dragon&apos;s Lair (USA)" index="" image="">
+		<description>Dragon&apos;s Lair (USA)</description>
+		<cloneof></cloneof>
+		<crc>7909f878</crc>
+		<manufacturer>ReadySoft</manufacturer>
+		<year>1993</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - E10+ (Everyone 10+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Drug Wars (USA)" index="" image="">
+		<description>Drug Wars (USA)</description>
+		<cloneof></cloneof>
+		<crc>e9da90ee</crc>
+		<manufacturer>American Lasergames</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Escape from Monster Manor - A Terrifying Hunt for the Undead (USA)" index="true" image="e">
+		<description>Escape from Monster Manor - A Terrifying Hunt for the Undead (USA)</description>
+		<cloneof></cloneof>
+		<crc>191d584d</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="F1GP (Japan)" index="true" image="f">
+		<description>F1GP (Japan)</description>
+		<cloneof></cloneof>
+		<crc>99c5d9b2</crc>
+		<manufacturer>Pony Canyon</manufacturer>
+		<year>1995</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Family Feud (USA)" index="" image="">
+		<description>Family Feud (USA)</description>
+		<cloneof></cloneof>
+		<crc>fed77027</crc>
+		<manufacturer>GameTek</manufacturer>
+		<year>1994</year>
+		<genre>Quiz</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fatty Bear&apos;s Birthday Surprise (USA)" index="" image="">
+		<description>Fatty Bear&apos;s Birthday Surprise (USA)</description>
+		<cloneof></cloneof>
+		<crc>6cf5f8c5</crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1993</year>
+		<genre>Party</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fatty Bear&apos;s Funpack (USA)" index="" image="">
+		<description>Fatty Bear&apos;s Funpack (USA)</description>
+		<cloneof></cloneof>
+		<crc>f976ccb1</crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="FIFA International Soccer (USA)" index="" image="">
+		<description>FIFA International Soccer (USA)</description>
+		<cloneof></cloneof>
+		<crc>6e125c95</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Soccer</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Firewall (Korea)" index="" image="">
+		<description>Firewall (Korea)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>LG Software</manufacturer>
+		<year>1995</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Flashback - The Quest for Identity (USA)" index="" image="">
+		<description>Flashback - The Quest for Identity (USA)</description>
+		<cloneof></cloneof>
+		<crc>1f4a64be</crc>
+		<manufacturer>US Gold</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Flying Nightmares (USA)" index="" image="">
+		<description>Flying Nightmares (USA)</description>
+		<cloneof></cloneof>
+		<crc>05c96725</crc>
+		<manufacturer>Domark</manufacturer>
+		<year>1995</year>
+		<genre>Flying</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Foes of Ali (USA)" index="" image="">
+		<description>Foes of Ali (USA)</description>
+		<cloneof></cloneof>
+		<crc>48aeb61e</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Boxing</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fun &apos;n Games (USA)" index="" image="">
+		<description>Fun &apos;n Games (USA)</description>
+		<cloneof></cloneof>
+		<crc>4f96bd6d</crc>
+		<manufacturer>Williams Entertainment Inc.</manufacturer>
+		<year>1995</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Furopon World (Japan)" index="" image="">
+		<description>Furopon World (Japan)</description>
+		<cloneof></cloneof>
+		<crc>f41ad07f</crc>
+		<manufacturer>Warp</manufacturer>
+		<year>1995</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gex (USA, Europe)" index="true" image="g">
+		<description>Gex (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>735d902a</crc>
+		<manufacturer>Crystal Dynamics</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gridders (USA)" index="" image="">
+		<description>Gridders (USA)</description>
+		<cloneof></cloneof>
+		<crc>8c5fb471</crc>
+		<manufacturer>Tetragon</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Guardian War (USA)" index="" image="">
+		<description>Guardian War (USA)</description>
+		<cloneof></cloneof>
+		<crc>c0c20918</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1994</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hell - A Cyberpunk Thriller (USA)" index="true" image="h">
+		<description>Hell - A Cyberpunk Thriller (USA)</description>
+		<cloneof></cloneof>
+		<crc>9f52117a</crc>
+		<manufacturer>Take2 Interactive</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Hello Kitty Asobi no Mochabako (Japan)" index="" image="">
+		<description>Hello Kitty Asobi no Mochabako (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mizuki</manufacturer>
+		<year>1995</year>
+		<genre>Educational</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Horde, The (USA)" index="" image="">
+		<description>Horde, The (USA)</description>
+		<cloneof></cloneof>
+		<crc>ffcf4485</crc>
+		<manufacturer>Crystal Dynamics</manufacturer>
+		<year>1994</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Icebreaker (USA)" index="true" image="i">
+		<description>Icebreaker (USA)</description>
+		<cloneof></cloneof>
+		<crc>1fd4ac43</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1995</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Icebreaker II (USA)" index="" image="">
+		<description>Icebreaker II (USA)</description>
+		<cloneof></cloneof>
+		<crc>01489f7a</crc>
+		<manufacturer>Older Games</manufacturer>
+		<year>2007</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Idol Mahjong Final Romance 2 - Hyper Edition (Japan)" index="" image="">
+		<description>Idol Mahjong Final Romance 2 - Hyper Edition (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Infini</manufacturer>
+		<year>1996</year>
+		<genre>Mahjong</genre>
+		<rating>ESRB - AO (Adults Only)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Immercenary (USA)" index="" image="">
+		<description>Immercenary (USA)</description>
+		<cloneof></cloneof>
+		<crc>dfc5b6d4</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Incredible Machine, The (USA)" index="" image="">
+		<description>Incredible Machine, The (USA)</description>
+		<cloneof></cloneof>
+		<crc>33bdc862</crc>
+		<manufacturer>Dynamix</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Insect War (Japan)" index="" image="">
+		<description>Insect War (Japan)</description>
+		<cloneof></cloneof>
+		<crc>1da9dc61</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - E10+ (Everyone 10+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Iron Angel of the Apocalypse (USA)" index="" image="">
+		<description>Iron Angel of the Apocalypse (USA)</description>
+		<cloneof></cloneof>
+		<crc>fa00f325</crc>
+		<manufacturer>Synergy Inc</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Iron Angel of the Apocalypse - The Return (USA)" index="" image="">
+		<description>Iron Angel of the Apocalypse - The Return (USA)</description>
+		<cloneof></cloneof>
+		<crc>13e2cae2</crc>
+		<manufacturer>Synergy Inc</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="J-League Virtual Stadium &apos;95 (Japan)" index="true" image="j">
+		<description>J-League Virtual Stadium &apos;95 (Japan)</description>
+		<cloneof></cloneof>
+		<crc>971d87ab</crc>
+		<manufacturer>Electronic Arts Victor</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Soccer</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="J-League Virtual Stadium (Japan)" index="" image="">
+		<description>J-League Virtual Stadium (Japan)</description>
+		<cloneof></cloneof>
+		<crc>14c8e243</crc>
+		<manufacturer>Electronic Arts Victor</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Soccer</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Jammit (USA)" index="" image="">
+		<description>Jammit (USA)</description>
+		<cloneof></cloneof>
+		<crc>5c95ba20</crc>
+		<manufacturer>GTE</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Basketball</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="John Madden Football (USA)" index="" image="">
+		<description>John Madden Football (USA)</description>
+		<cloneof></cloneof>
+		<crc>35efa8e3</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Football</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Johnny Bazookatone (USA)" index="" image="">
+		<description>Johnny Bazookatone (USA)</description>
+		<cloneof></cloneof>
+		<crc>7f504185</crc>
+		<manufacturer>US Gold</manufacturer>
+		<year>1996</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Jurassic Park Interactive (USA)" index="" image="">
+		<description>Jurassic Park Interactive (USA)</description>
+		<cloneof></cloneof>
+		<crc>23031ab5</crc>
+		<manufacturer>Universal Interactive</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Killing Time (USA)" index="true" image="k">
+		<description>Killing Time (USA)</description>
+		<cloneof></cloneof>
+		<crc>ffc7c510</crc>
+		<manufacturer>3DO</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kingdom - The Far Reaches (USA, Europe)" index="" image="">
+		<description>Kingdom - The Far Reaches (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>9ffee86e</crc>
+		<manufacturer>Interplay</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Last Bounty Hunter, The (USA)" index="true" image="l">
+		<description>Last Bounty Hunter, The (USA)</description>
+		<cloneof></cloneof>
+		<crc>1e6d0d36</crc>
+		<manufacturer>American Lasergames</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Lemmings (USA)" index="" image="">
+		<description>Lemmings (USA)</description>
+		<cloneof></cloneof>
+		<crc>1eb7b866</crc>
+		<manufacturer>Psygnosis</manufacturer>
+		<year>1993</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Life Stage, The - Virtual House (USA)" index="" image="">
+		<description>Life Stage, The - Virtual House (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1993</year>
+		<genre>Multimedia</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Lost Eden (USA)" index="" image="">
+		<description>Lost Eden (USA)</description>
+		<cloneof></cloneof>
+		<crc>630b5ea5</crc>
+		<manufacturer>Virgin</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Lost Files of Sherlock Holmes, The (USA)" index="" image="">
+		<description>Lost Files of Sherlock Holmes, The (USA)</description>
+		<cloneof></cloneof>
+		<crc>0aab3cb0</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E10+ (Everyone 10+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Lucienne&apos;s Quest (USA)" index="" image="">
+		<description>Lucienne&apos;s Quest (USA)</description>
+		<cloneof></cloneof>
+		<crc>104a888e</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1996</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mad Dog II - the Lost Gold (USA)" index="true" image="m">
+		<description>Mad Dog II - the Lost Gold (USA)</description>
+		<cloneof></cloneof>
+		<crc>406859f3</crc>
+		<manufacturer>American Lasergames</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mad Dog McCree (USA)" index="" image="">
+		<description>Mad Dog McCree (USA)</description>
+		<cloneof></cloneof>
+		<crc>b1289691</crc>
+		<manufacturer>American Lasergames</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mahjong Kyou Jidai - AV Gal Seifuku Hen (Japan)" index="" image="">
+		<description>Mahjong Kyou Jidai - AV Gal Seifuku Hen (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Micronet</manufacturer>
+		<year>1994</year>
+		<genre>Mahjong</genre>
+		<rating>ESRB - AO (Adults Only)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mahjong Kyou Jidai - Cogal Houkago Hen (Japan)" index="" image="">
+		<description>Mahjong Kyou Jidai - Cogal Houkago Hen (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Micronet</manufacturer>
+		<year>1995</year>
+		<genre>Mahjong</genre>
+		<rating>ESRB - AO (Adults Only)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Masters Harukanaru Augusta 3 (Japan)" index="" image="">
+		<description>Masters Harukanaru Augusta 3 (Japan)</description>
+		<cloneof></cloneof>
+		<crc>60fd1090</crc>
+		<manufacturer>T&amp;E Soft</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Golf</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mathemagics - An Interactive Learning Cube (USA)" index="" image="">
+		<description>Mathemagics - An Interactive Learning Cube (USA)</description>
+		<cloneof></cloneof>
+		<crc>43079a56</crc>
+		<manufacturer>L3</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mazer (USA)" index="" image="">
+		<description>Mazer (USA)</description>
+		<cloneof></cloneof>
+		<crc>a7cebe88</crc>
+		<manufacturer>American Lasergames</manufacturer>
+		<year>1995</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="MegaRace (USA)" index="" image="">
+		<description>MegaRace (USA)</description>
+		<cloneof></cloneof>
+		<crc>a2f477d4</crc>
+		<manufacturer>Mindscape</manufacturer>
+		<year>1994</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Microcosm (USA)" index="" image="">
+		<description>Microcosm (USA)</description>
+		<cloneof></cloneof>
+		<crc>9dabfb05</crc>
+		<manufacturer>Psygnosis</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mind Teazzer (USA)" index="" image="">
+		<description>Mind Teazzer (USA)</description>
+		<cloneof></cloneof>
+		<crc>1fe8551c</crc>
+		<manufacturer>Vivid Interactive</manufacturer>
+		<year>1994</year>
+		<genre>Mature</genre>
+		<rating>ESRB - AO (Adults Only)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Murphy Dayo Zenin Shuugou!! (Japan)" index="" image="">
+		<description>Murphy Dayo Zenin Shuugou!! (Japan)</description>
+		<cloneof></cloneof>
+		<crc>e9744343</crc>
+		<manufacturer>Bantan International</manufacturer>
+		<year>1994</year>
+		<genre>Educational</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Myst (USA)" index="" image="">
+		<description>Myst (USA)</description>
+		<cloneof></cloneof>
+		<crc>9a2655e7</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="N.O.B. - Neo Organic Bioform (Japan)" index="true" image="n">
+		<description>N.O.B. - Neo Organic Bioform (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sanyo</manufacturer>
+		<year>1995</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Need for Speed, The (USA, Europe)" index="" image="">
+		<description>Need for Speed, The (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>148bb29f</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1994</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="NeuroDancer - Journey Into The Neuronet (USA)" index="" image="">
+		<description>NeuroDancer - Journey Into The Neuronet (USA)</description>
+		<cloneof></cloneof>
+		<crc>517f714c</crc>
+		<manufacturer>Electric Dreams Inc.</manufacturer>
+		<year>1994</year>
+		<genre>Mature</genre>
+		<rating>ESRB - AO (Adults Only)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Nice Body - All-Star Suiei Taikai (Japan)" index="" image="">
+		<description>Nice Body - All-Star Suiei Taikai (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Fuji Television</manufacturer>
+		<year>1995</year>
+		<genre>Casino</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Night Trap (USA) (Disc 1)" index="" image="">
+		<description>Night Trap (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc>bf501e71</crc>
+		<manufacturer>DigitalPictures</manufacturer>
+		<year>1993</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Night Trap (USA) (Disc 2)" index="" image="">
+		<description>Night Trap (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc>525d9730</crc>
+		<manufacturer>DigitalPictures</manufacturer>
+		<year>1993</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Novastorm (USA)" index="" image="">
+		<description>Novastorm (USA)</description>
+		<cloneof></cloneof>
+		<crc>1431fb15</crc>
+		<manufacturer>Psygnosis</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Oceans Below (USA)" index="true" image="o">
+		<description>Oceans Below (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Software Toolworks</manufacturer>
+		<year>1993</year>
+		<genre>Multimedia</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Off-world Interceptor (USA, Europe)" index="" image="">
+		<description>Off-world Interceptor (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>422324ae</crc>
+		<manufacturer>Crystal Dynamics</manufacturer>
+		<year>1994</year>
+		<genre>Driving</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Olympic Soccer (USA)" index="" image="">
+		<description>Olympic Soccer (USA)</description>
+		<cloneof></cloneof>
+		<crc>d3913a39</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1996</year>
+		<genre>Sports/Soccer</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Olympic Summer Games (USA)" index="" image="">
+		<description>Olympic Summer Games (USA)</description>
+		<cloneof></cloneof>
+		<crc>9b8571bc</crc>
+		<manufacturer>US Gold</manufacturer>
+		<year>1996</year>
+		<genre>Sports/Olympic</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Onee-san to Isshoo! Kise Kae Paradise (Japan)" index="" image="">
+		<description>Onee-san to Isshoo! Kise Kae Paradise (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>BSS</manufacturer>
+		<year>1995</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - AO (Adults Only)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Onee-san to Isshoo! Shanken Paradise (Japan)" index="" image="">
+		<description>Onee-san to Isshoo! Shanken Paradise (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Interlas</manufacturer>
+		<year>1994</year>
+		<genre>Miscellaneous</genre>
+		<rating>ESRB - AO (Adults Only)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="OnSide Soccer (Europe)" index="" image="">
+		<description>OnSide Soccer (Europe)</description>
+		<cloneof></cloneof>
+		<crc>13015cd0</crc>
+		<manufacturer>Older Games</manufacturer>
+		<year>2007</year>
+		<genre>Sports/Soccer</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Out of this World (USA)" index="" image="">
+		<description>Out of this World (USA)</description>
+		<cloneof></cloneof>
+		<crc>79d0abeb</crc>
+		<manufacturer>Interplay</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Oyaji Hunter Mahjong (Japan)" index="" image="">
+		<description>Oyaji Hunter Mahjong (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Warp</manufacturer>
+		<year>1995</year>
+		<genre>Mahjong</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Panzer General (USA, Europe)" index="true" image="p">
+		<description>Panzer General (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>e285491c</crc>
+		<manufacturer>Mindscape</manufacturer>
+		<year>1995</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="PaTaank (USA, Europe)" index="" image="">
+		<description>PaTaank (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>ff672b0a</crc>
+		<manufacturer>PF Magic</manufacturer>
+		<year>1994</year>
+		<genre>Pinball</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pebble Beach Golf Links (USA)" index="" image="">
+		<description>Pebble Beach Golf Links (USA)</description>
+		<cloneof></cloneof>
+		<crc>54b69d63</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1993</year>
+		<genre>Sports/Golf</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Perfect General, The (USA)" index="" image="">
+		<description>Perfect General, The (USA)</description>
+		<cloneof></cloneof>
+		<crc>bba0802b</crc>
+		<manufacturer>Kirin Entertain</manufacturer>
+		<year>1995</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Peter Frankl - Puzzle no Tou (Japan)" index="" image="">
+		<description>Peter Frankl - Puzzle no Tou (Japan)</description>
+		<cloneof></cloneof>
+		<crc>54f4460c</crc>
+		<manufacturer>TBS Multimedia</manufacturer>
+		<year>1995</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="PGA Tour 96 (USA)" index="" image="">
+		<description>PGA Tour 96 (USA)</description>
+		<cloneof></cloneof>
+		<crc>cb9f4f58</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Golf</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Phoenix 3 (USA)" index="" image="">
+		<description>Phoenix 3 (USA)</description>
+		<cloneof></cloneof>
+		<crc>3f027ea3</crc>
+		<manufacturer>3DO</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Plumbers Don&apos;t Wear Ties (USA)" index="" image="">
+		<description>Plumbers Don&apos;t Wear Ties (USA)</description>
+		<cloneof></cloneof>
+		<crc>4186d500</crc>
+		<manufacturer>Kirin Entertain</manufacturer>
+		<year>1994</year>
+		<genre>Mature</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="PO&apos;ed (USA, Europe)" index="" image="">
+		<description>PO&apos;ed (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>4c0a97fa</crc>
+		<manufacturer>Any Channel</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Primal Rage (USA, Europe)" index="" image="">
+		<description>Primal Rage (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>88d95401</crc>
+		<manufacturer>Goldstar</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pro Stadium (Japan)" index="" image="">
+		<description>Pro Stadium (Japan)</description>
+		<cloneof></cloneof>
+		<crc>1cf041fa</crc>
+		<manufacturer>Sanyo</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Baseball</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pro Yakyuu Virtual Stadium - Professional Baseball (Japan)" index="" image="">
+		<description>Pro Yakyuu Virtual Stadium - Professional Baseball (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Baseball</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Psychic Detective (USA) (Disc 1)" index="" image="">
+		<description>Psychic Detective (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc>adae32c4</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Psychic Detective (USA) (Disc 2)" index="" image="">
+		<description>Psychic Detective (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc>1eeea34c</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Psychic Detective (USA) (Disc 3)" index="" image="">
+		<description>Psychic Detective (USA) (Disc 3)</description>
+		<cloneof></cloneof>
+		<crc>e9395445</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Putt-Putt Goes to the Moon (USA)" index="" image="">
+		<description>Putt-Putt Goes to the Moon (USA)</description>
+		<cloneof></cloneof>
+		<crc>608f04b5</crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Putt-Putt Joins the Parade (USA)" index="" image="">
+		<description>Putt-Putt Joins the Parade (USA)</description>
+		<cloneof></cloneof>
+		<crc>011cc220</crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Putt-Putt&apos;s Fun Pack (USA)" index="" image="">
+		<description>Putt-Putt&apos;s Fun Pack (USA)</description>
+		<cloneof></cloneof>
+		<crc>522cc5ef</crc>
+		<manufacturer>Humongous Entertainment</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pyramid Intruder (Japan)" index="" image="">
+		<description>Pyramid Intruder (Japan)</description>
+		<cloneof></cloneof>
+		<crc>32e43e8a</crc>
+		<manufacturer>Taito</manufacturer>
+		<year>1995</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E10+ (Everyone 10+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Quarantine (USA)" index="true" image="q">
+		<description>Quarantine (USA)</description>
+		<cloneof></cloneof>
+		<crc>fc055339</crc>
+		<manufacturer>GameTek</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Quarterback Attack - The Professional Quarterback Simulator (USA)" index="" image="">
+		<description>Quarterback Attack - The Professional Quarterback Simulator (USA)</description>
+		<cloneof></cloneof>
+		<crc>63568f32</crc>
+		<manufacturer>DigitalPictures</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Football</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Real Pinball (USA)" index="true" image="r">
+		<description>Real Pinball (USA)</description>
+		<cloneof></cloneof>
+		<crc>16c6c950</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1994</year>
+		<genre>Pinball</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Return Fire (USA)" index="" image="">
+		<description>Return Fire (USA)</description>
+		<cloneof></cloneof>
+		<crc>b852db76</crc>
+		<manufacturer>Prolific</manufacturer>
+		<year>1995</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Return Fire - Maps O&apos; Death (USA)" index="" image="">
+		<description>Return Fire - Maps O&apos; Death (USA)</description>
+		<cloneof></cloneof>
+		<crc>175f0031</crc>
+		<manufacturer>Prolific</manufacturer>
+		<year>1996</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rise of the Robots (USA)" index="" image="">
+		<description>Rise of the Robots (USA)</description>
+		<cloneof></cloneof>
+		<crc>230dc833</crc>
+		<manufacturer>Absolute</manufacturer>
+		<year>1995</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Road Rash (USA)" index="" image="">
+		<description>Road Rash (USA)</description>
+		<cloneof></cloneof>
+		<crc>3fc4aa93</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1994</year>
+		<genre>Driving</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Robinson&apos;s Requiem (USA)" index="" image="">
+		<description>Robinson&apos;s Requiem (USA)</description>
+		<cloneof></cloneof>
+		<crc>ea9e67bb</crc>
+		<manufacturer>ReadySoft</manufacturer>
+		<year>1996</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Royal Pro Wrestling - Jikkyou Live!! (Japan)" index="" image="">
+		<description>Royal Pro Wrestling - Jikkyou Live!! (Japan)</description>
+		<cloneof></cloneof>
+		<crc>a0e9268b</crc>
+		<manufacturer>Natsume</manufacturer>
+		<year>1996</year>
+		<genre>Sports/Wrestling</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Samurai Shodown (USA, Europe)" index="true" image="s">
+		<description>Samurai Shodown (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>a9a72286</crc>
+		<manufacturer>Crystal Dynamics</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="San Diego Zoo Presents...The Animals!, The (USA)" index="" image="">
+		<description>San Diego Zoo Presents...The Animals!, The (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Software Toolworks</manufacturer>
+		<year>1993</year>
+		<genre>Multimedia</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Scramble Cobra (USA)" index="" image="">
+		<description>Scramble Cobra (USA)</description>
+		<cloneof></cloneof>
+		<crc>340836ce</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Seal of the Pharaoh (USA)" index="" image="">
+		<description>Seal of the Pharaoh (USA)</description>
+		<cloneof></cloneof>
+		<crc>2c280ba7</crc>
+		<manufacturer>ASK</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sesame Street - Numbers (USA)" index="" image="">
+		<description>Sesame Street - Numbers (USA)</description>
+		<cloneof></cloneof>
+		<crc>90c6cc4d</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sewer Shark (USA)" index="" image="">
+		<description>Sewer Shark (USA)</description>
+		<cloneof></cloneof>
+		<crc>7b670a77</crc>
+		<manufacturer>DigitalPictures</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shadow - War of Succession (USA)" index="" image="">
+		<description>Shadow - War of Succession (USA)</description>
+		<cloneof></cloneof>
+		<crc>dbff25aa</crc>
+		<manufacturer>Tribeca Digital</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shanghai - Triple-Threat (USA)" index="" image="">
+		<description>Shanghai - Triple-Threat (USA)</description>
+		<cloneof></cloneof>
+		<crc>8a95ebb3</crc>
+		<manufacturer>Activision</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shelley Duvall&apos;s It&apos;s A Bird&apos;s Life (USA)" index="" image="">
+		<description>Shelley Duvall&apos;s It&apos;s A Bird&apos;s Life (USA)</description>
+		<cloneof></cloneof>
+		<crc>96b4f8e9</crc>
+		<manufacturer>Sanctuary Woods</manufacturer>
+		<year>1993</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shockwave - Invasion Earth 2019 (USA)" index="" image="">
+		<description>Shockwave - Invasion Earth 2019 (USA)</description>
+		<cloneof></cloneof>
+		<crc>4e91d7d3</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1994</year>
+		<genre>Flying</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shockwave - Operation JumpGate (USA, Europe)" index="" image="">
+		<description>Shockwave - Operation JumpGate (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>d8cca51f</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1995</year>
+		<genre>Flying</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shockwave 2 - Beyond the Gate (USA) (Disc 1)" index="" image="">
+		<description>Shockwave 2 - Beyond the Gate (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc>53021819</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1995</year>
+		<genre>Flying</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shockwave 2 - Beyond the Gate (USA) (Disc 2)" index="" image="">
+		<description>Shockwave 2 - Beyond the Gate (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc>028539df</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1995</year>
+		<genre>Flying</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shootout at Old Tucson (USA)" index="" image="">
+		<description>Shootout at Old Tucson (USA)</description>
+		<cloneof></cloneof>
+		<crc>b9abb2df</crc>
+		<manufacturer>American Lasergames</manufacturer>
+		<year>1994</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Short Warp - Warp&apos;s Short Game Colection (Japan)" index="" image="">
+		<description>Short Warp - Warp&apos;s Short Game Colection (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>WARP</manufacturer>
+		<year>1996</year>
+		<genre>Mini-Games</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sid Meier&apos;s C.P.U. Bach (USA)" index="" image="">
+		<description>Sid Meier&apos;s C.P.U. Bach (USA)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>MicroProse</manufacturer>
+		<year>1994</year>
+		<genre>Multimedia</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Slam &apos;N Jam &apos;95 (USA)" index="" image="">
+		<description>Slam &apos;N Jam &apos;95 (USA)</description>
+		<cloneof></cloneof>
+		<crc>17a3cad8</crc>
+		<manufacturer>Crystal Dynamics</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Basketball</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Slayer (USA)" index="" image="">
+		<description>Slayer (USA)</description>
+		<cloneof></cloneof>
+		<crc>dcf00ee3</crc>
+		<manufacturer>Strategic Simulations Inc.</manufacturer>
+		<year>1994</year>
+		<genre>Role-Playing</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Slopestyle - An Interactive Learning Cube (USA)" index="" image="">
+		<description>Slopestyle - An Interactive Learning Cube (USA)</description>
+		<cloneof></cloneof>
+		<crc>8c746ae4</crc>
+		<manufacturer>L3</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Snow Job Starring Tracy Scoggins (USA) (Disc 1)" index="" image="">
+		<description>Snow Job Starring Tracy Scoggins (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc>7ab76f04</crc>
+		<manufacturer>3DO</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Snow Job Starring Tracy Scoggins (USA) (Disc 2)" index="" image="">
+		<description>Snow Job Starring Tracy Scoggins (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc>2079e8f4</crc>
+		<manufacturer>3DO</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Soccer Kid (USA)" index="" image="">
+		<description>Soccer Kid (USA)</description>
+		<cloneof></cloneof>
+		<crc>b2770503</crc>
+		<manufacturer>3DO</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Space Ace (USA)" index="" image="">
+		<description>Space Ace (USA)</description>
+		<cloneof></cloneof>
+		<crc>3ed46923</crc>
+		<manufacturer>ReadySoft</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Space Hulk - Vengeance of the Blood Angels (USA)" index="" image="">
+		<description>Space Hulk - Vengeance of the Blood Angels (USA)</description>
+		<cloneof></cloneof>
+		<crc>34c14e3c</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Space Pirates (USA)" index="" image="">
+		<description>Space Pirates (USA)</description>
+		<cloneof></cloneof>
+		<crc>ae511b20</crc>
+		<manufacturer>American Lasergames</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Space Shuttle (USA)" index="" image="">
+		<description>Space Shuttle (USA)</description>
+		<cloneof></cloneof>
+		<crc>d5f8d47f</crc>
+		<manufacturer>Amazing Studios</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Star Control II (USA, Europe)" index="" image="">
+		<description>Star Control II (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>43a31ff3</crc>
+		<manufacturer>Crystal Dynamics</manufacturer>
+		<year>1994</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Star Fighter (USA, Europe)" index="" image="">
+		<description>Star Fighter (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>07646501</crc>
+		<manufacturer>3DO</manufacturer>
+		<year>1995</year>
+		<genre>Shooter</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Star Wars - Rebel Assault (USA, Europe)" index="" image="">
+		<description>Star Wars - Rebel Assault (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>8205de3e</crc>
+		<manufacturer>LucasArts</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="StarBlade (USA)" index="" image="">
+		<description>StarBlade (USA)</description>
+		<cloneof></cloneof>
+		<crc>9f71a2ce</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Stellar 7 - Draxon&apos;s Revenge (USA)" index="" image="">
+		<description>Stellar 7 - Draxon&apos;s Revenge (USA)</description>
+		<cloneof></cloneof>
+		<crc>afe723e7</crc>
+		<manufacturer>Dynamix</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Strahl (USA)" index="" image="">
+		<description>Strahl (USA)</description>
+		<cloneof></cloneof>
+		<crc>57c1975f</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Striker - World Cup Special (Europe)" index="" image="">
+		<description>Striker - World Cup Special (Europe)</description>
+		<cloneof></cloneof>
+		<crc>2aeb5d18</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Soccer</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Real Mahjong P.V (Japan)" index="" image="">
+		<description>Super Real Mahjong P.V (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Seta</manufacturer>
+		<year>1995</year>
+		<genre>Mahjong</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Real Mahjong PIV + Aishou Shindan (Japan)" index="" image="">
+		<description>Super Real Mahjong PIV + Aishou Shindan (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Seta</manufacturer>
+		<year>1994</year>
+		<genre>Mahjong</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Street Fighter II Turbo (USA)" index="" image="">
+		<description>Super Street Fighter II Turbo (USA)</description>
+		<cloneof></cloneof>
+		<crc>60774518</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Wing Commander (USA)" index="" image="">
+		<description>Super Wing Commander (USA)</description>
+		<cloneof></cloneof>
+		<crc>b34ecf97</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1994</year>
+		<genre>Flying</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Supreme Warrior - Ying Heung (USA) (Disc 1)" index="" image="">
+		<description>Supreme Warrior - Ying Heung (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc>7b31abed</crc>
+		<manufacturer>DigitalPictures</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Supreme Warrior - Ying Heung (USA) (Disc 2)" index="" image="">
+		<description>Supreme Warrior - Ying Heung (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc>1df8e3ce</crc>
+		<manufacturer>DigitalPictures</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Syndicate (USA)" index="" image="">
+		<description>Syndicate (USA)</description>
+		<cloneof></cloneof>
+		<crc>1a2f48d6</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1995</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Taiketsu! Rumii Zu (Japan)" index="true" image="t">
+		<description>Taiketsu! Rumii Zu (Japan)</description>
+		<cloneof></cloneof>
+		<crc>a93c62a8</crc>
+		<manufacturer>Sanyo</manufacturer>
+		<year>1995</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Theme Park (USA)" index="" image="">
+		<description>Theme Park (USA)</description>
+		<cloneof></cloneof>
+		<crc>bf29aa71</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1994</year>
+		<genre>Strategy</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Tokimeki Mahjong Paradise Special - Koi no Tenpai Beat (Japan)" index="" image="">
+		<description>Tokimeki Mahjong Paradise Special - Koi no Tenpai Beat (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Sonnet</manufacturer>
+		<year>1996</year>
+		<genre>Mahjong</genre>
+		<rating>ESRB - AO (Adults Only)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Toon Time...in the classroom (USA)" index="" image="">
+		<description>Toon Time...in the classroom (USA)</description>
+		<cloneof></cloneof>
+		<crc>1831dd8a</crc>
+		<manufacturer>Videoact V LC</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Total Eclipse (USA)" index="" image="">
+		<description>Total Eclipse (USA)</description>
+		<cloneof></cloneof>
+		<crc>4ea03c62</crc>
+		<manufacturer>Crystal Dynamics</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Totsugeki Kikan! Megadasu!! (Japan)" index="" image="">
+		<description>Totsugeki Kikan! Megadasu!! (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>WARP</manufacturer>
+		<year>1994</year>
+		<genre>Mini-Games</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Trip&apos;d (USA, Europe)" index="" image="">
+		<description>Trip&apos;d (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>4b1bc7ce</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1995</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Twinkle Knights (Japan)" index="" image="">
+		<description>Twinkle Knights (Japan)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Interlas</manufacturer>
+		<year>1995</year>
+		<genre>Card Battle</genre>
+		<rating>ESRB - AO (Adults Only)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Twisted - The Game Show (USA)" index="" image="">
+		<description>Twisted - The Game Show (USA)</description>
+		<cloneof></cloneof>
+		<crc>3a6a5b5e</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1993</year>
+		<genre>Game Show</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Uchuu Seifutsu Furopon-kun (Japan)" index="true" image="u">
+		<description>Uchuu Seifutsu Furopon-kun (Japan)</description>
+		<cloneof></cloneof>
+		<crc>6706ea5a</crc>
+		<manufacturer>San-Ei Shobo Publishing</manufacturer>
+		<year>1994</year>
+		<genre>Board Games</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ultraman Powered (Japan)" index="" image="">
+		<description>Ultraman Powered (Japan)</description>
+		<cloneof></cloneof>
+		<crc>b67b07b6</crc>
+		<manufacturer>Bandai</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="V Goal Soccer &apos;96 (Japan)" index="true" image="v">
+		<description>V Goal Soccer &apos;96 (Japan)</description>
+		<cloneof></cloneof>
+		<crc>6d916841</crc>
+		<manufacturer>Tecmo</manufacturer>
+		<year>1996</year>
+		<genre>Sports/Soccer</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Virtuoso (USA)" index="" image="">
+		<description>Virtuoso (USA)</description>
+		<cloneof></cloneof>
+		<crc>10ae542f</crc>
+		<manufacturer>Elite</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="VR Stalker (USA)" index="" image="">
+		<description>VR Stalker (USA)</description>
+		<cloneof></cloneof>
+		<crc>93a3ebb4</crc>
+		<manufacturer>Morpheus Inter</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Waialae Country Club (USA)" index="true" image="w">
+		<description>Waialae Country Club (USA)</description>
+		<cloneof></cloneof>
+		<crc>00fdc6fb</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Golf</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Way of the Warrior (USA)" index="" image="">
+		<description>Way of the Warrior (USA)</description>
+		<cloneof></cloneof>
+		<crc>7b66807a</crc>
+		<manufacturer>Universal Interactive</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Who Shot Johnny Rock (USA)" index="" image="">
+		<description>Who Shot Johnny Rock (USA)</description>
+		<cloneof></cloneof>
+		<crc>76172e04</crc>
+		<manufacturer>American Lasergames</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wicked 18 (USA)" index="" image="">
+		<description>Wicked 18 (USA)</description>
+		<cloneof></cloneof>
+		<crc>6a5e753f</crc>
+		<manufacturer>Panasonic</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Golf</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wing Commander III - Heart of the Tiger (USA) (Disc 1)" index="" image="">
+		<description>Wing Commander III - Heart of the Tiger (USA) (Disc 1)</description>
+		<cloneof></cloneof>
+		<crc>34e0f094</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1995</year>
+		<genre>Flying</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wing Commander III - Heart of the Tiger (USA) (Disc 2)" index="" image="">
+		<description>Wing Commander III - Heart of the Tiger (USA) (Disc 2)</description>
+		<cloneof></cloneof>
+		<crc>2cb01a93</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1995</year>
+		<genre>Flying</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wing Commander III - Heart of the Tiger (USA) (Disc 3)" index="" image="">
+		<description>Wing Commander III - Heart of the Tiger (USA) (Disc 3)</description>
+		<cloneof></cloneof>
+		<crc>4ddd79ad</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1995</year>
+		<genre>Flying</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wing Commander III - Heart of the Tiger (USA) (Disc 4)" index="" image="">
+		<description>Wing Commander III - Heart of the Tiger (USA) (Disc 4)</description>
+		<cloneof></cloneof>
+		<crc>1419efe2</crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1995</year>
+		<genre>Flying</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wolfenstein 3D (USA)" index="" image="">
+		<description>Wolfenstein 3D (USA)</description>
+		<cloneof></cloneof>
+		<crc>f295ade2</crc>
+		<manufacturer>Interplay</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>ESRB - M (Mature)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="World Cup Golf - Hyatt Dorado Beach (USA)" index="" image="">
+		<description>World Cup Golf - Hyatt Dorado Beach (USA)</description>
+		<cloneof></cloneof>
+		<crc>1f4a0a83</crc>
+		<manufacturer>US Gold</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Golf</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Yuu Yuu Hakusho (Japan)" index="true" image="y">
+		<description>Yuu Yuu Hakusho (Japan)</description>
+		<cloneof></cloneof>
+		<crc>e87bb037</crc>
+		<manufacturer>Tomy</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Zhadnost - The Peoples Party (USA, Europe)" index="true" image="z">
+		<description>Zhadnost - The Peoples Party (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>06a399ee</crc>
+		<manufacturer>3DO</manufacturer>
+		<year>1995</year>
+		<genre>Puzzle</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

@@ -1,0 +1,1639 @@
+<?xml version="1.0"?>
+<menu>
+	<header>
+		<listname>Commodore Amiga CD32</listname>
+		<lastlistupdate>06/08/2013</lastlistupdate>
+		<listversion>1.0 Final</listversion>
+		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+	</header>
+	<game name="Akira (Europe)" index="true" image="a">
+		<description>Akira (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ICE</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Alfred Chicken (Europe)" index="" image="">
+		<description>Alfred Chicken (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mindscape</manufacturer>
+		<year>1993</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Alien Breed &apos;92 Special Edition &amp; Qwak (Europe)" index="" image="">
+		<description>Alien Breed &apos;92 Special Edition &amp; Qwak (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team 17</manufacturer>
+		<year>1994</year>
+		<genre>Miscellaneous</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Alien Breed - Tower Assault (Europe)" index="" image="">
+		<description>Alien Breed - Tower Assault (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team 17</manufacturer>
+		<year>1994</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Alien Breed 3D (Europe)" index="" image="">
+		<description>Alien Breed 3D (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team 17</manufacturer>
+		<year>1995</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Amiga CD32 Sports Football (Europe)" index="" image="">
+		<description>Amiga CD32 Sports Football (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Commodore</manufacturer>
+		<year>1993</year>
+		<genre>Sports/Football</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Arabian Nights (Europe)" index="" image="">
+		<description>Arabian Nights (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Buzz</manufacturer>
+		<year>1993</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Arcade Pool (Europe)" index="" image="">
+		<description>Arcade Pool (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team 17</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Pool and Dart</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="ATR - All Terrain Racing (Europe)" index="" image="">
+		<description>ATR - All Terrain Racing (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team 17</manufacturer>
+		<year>1995</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Banshee (Europe)" index="true" image="b">
+		<description>Banshee (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Core</manufacturer>
+		<year>1994</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Base Jumpers (Europe)" index="" image="">
+		<description>Base Jumpers (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Rasputin</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Battle Chess (Europe)" index="" image="">
+		<description>Battle Chess (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Interplay</manufacturer>
+		<year>1994</year>
+		<genre>Board Games</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Battletoads (Europe)" index="" image="">
+		<description>Battletoads (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Minscape</manufacturer>
+		<year>1994</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Beavers (Europe)" index="" image="">
+		<description>Beavers (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Unique</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Beneath A Steel Sky (Europe)" index="" image="">
+		<description>Beneath A Steel Sky (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Virgin</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Benefactor (Europe)" index="" image="">
+		<description>Benefactor (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Psygnosis</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="The Big 6 (Europe)" index="" image="">
+		<description>Big 6, The (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Codemasters</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Black Viper (Europe)" index="" image="">
+		<description>Black Viper (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Digital Illusions</manufacturer>
+		<year>1994</year>
+		<genre>Motorcycle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Brian the Lion (Europe)" index="" image="">
+		<description>Brian the Lion (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Psygnosis</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Brutal - Paws of Fury (Europe)" index="" image="">
+		<description>Brutal - Paws of Fury (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gametek</manufacturer>
+		<year>1995</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Brutal Football - Brutal Sports Series (Europe)" index="" image="">
+		<description>Brutal Football - Brutal Sports Series (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Millenium</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Football</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bubba &apos;n&apos; Stix (Europe)" index="" image="">
+		<description>Bubba &apos;n&apos; Stix (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Core</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bubble And Squeak (Europe)" index="" image="">
+		<description>Bubble And Squeak (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Audiogenic</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Bump &apos;n&apos; Burn (Europe)" index="" image="">
+		<description>Bump &apos;n&apos; Burn (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Grandslam</manufacturer>
+		<year>1994</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cannon Fodder (Europe)" index="true" image="c">
+		<description>Cannon Fodder (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Virgin</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Castles II - Siege &amp; Conquest (Europe)" index="" image="">
+		<description>Castles II - Siege &amp; Conquest (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Interplay</manufacturer>
+		<year>1993</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Cedric And The Lost Sceptre (Europe)" index="" image="">
+		<description>Cedric And The Lost Sceptre (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Alcatraz</manufacturer>
+		<year>1996</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chambers of Shaolin (Europe)" index="" image="">
+		<description>Chambers of Shaolin (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Unique</manufacturer>
+		<year>1993</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="The Chaos Engine (Europe)" index="" image="">
+		<description>Chaos Engine, The (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Renegade</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chuck Rock (Europe)" index="" image="">
+		<description>Chuck Rock (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Core</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Chuck Rock II - Son of Chuck (Europe)" index="" image="">
+		<description>Chuck Rock II - Son of Chuck (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Core</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="The Classic Lotus Trilogy (Europe)" index="" image="">
+		<description>Classic Lotus Trilogy, The (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gremlin</manufacturer>
+		<year>1994</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Clockwiser (Europe)" index="" image="">
+		<description>Clockwiser (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Rasputin</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="The Clue! (Europe)" index="" image="">
+		<description>Clue!, The (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Kompart</manufacturer>
+		<year>1994</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="D-Generation (Europe)" index="true" image="d">
+		<description>D-Generation (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Minscape</manufacturer>
+		<year>1993</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dangerous Streets &amp; Wing Commander (Europe)" index="" image="">
+		<description>Dangerous Streets &amp; Wing Commander (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Commodore</manufacturer>
+		<year>1993</year>
+		<genre>Compilation</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dangerous Streets (Europe)" index="" image="">
+		<description>Dangerous Streets (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Flair Software</manufacturer>
+		<year>1993</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dark Seed (Europe)" index="" image="">
+		<description>Dark Seed (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Cyberdreams</manufacturer>
+		<year>1993</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Death Mask (Europe)" index="" image="">
+		<description>Death Mask (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Alternative Software</manufacturer>
+		<year>1994</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Deep Core (Europe)" index="" image="">
+		<description>Deep Core (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ICE</manufacturer>
+		<year>1993</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Defender of the Crown II (Europe)" index="" image="">
+		<description>Defender of the Crown II (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Commodore</manufacturer>
+		<year>1993</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dennis (Europe)" index="" image="">
+		<description>Dennis (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1993</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Diggers &amp; Oscar (Europe)" index="" image="">
+		<description>Diggers &amp; Oscar (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Commodore</manufacturer>
+		<year>1993</year>
+		<genre>Compilation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Diggers (Europe)" index="" image="">
+		<description>Diggers (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Millennium</manufacturer>
+		<year>1993</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Disposable Hero (Europe)" index="" image="">
+		<description>Disposable Hero (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gremlin</manufacturer>
+		<year>1994</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Donk! - The Samurai Duck! (Europe)" index="" image="">
+		<description>Donk! - The Samurai Duck! (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Supervision</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Dragonstone (Europe)" index="" image="">
+		<description>Dragonstone (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Core</manufacturer>
+		<year>1995</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Emerald Mines (Europe)" index="true" image="e">
+		<description>Emerald Mines (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Almathera</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Exile (Europe)" index="" image="">
+		<description>Exile (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Audiogenic</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fears (Europe)" index="true" image="f">
+		<description>Fears (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Attic</manufacturer>
+		<year>1995</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fields of Glory (Europe)" index="" image="">
+		<description>Fields of Glory (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>MicroProse</manufacturer>
+		<year>1994</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fightin&apos; Spirit (Europe)" index="" image="">
+		<description>Fightin&apos; Spirit (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Neo</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="The Final Gate (Europe)" index="" image="">
+		<description>Final Gate, The (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Alternative Software</manufacturer>
+		<year>1997</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fire &amp; Ice - The Daring Adventures of Cool Coyote (Europe)" index="" image="">
+		<description>Fire &amp; Ice - The Daring Adventures of Cool Coyote (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Renegade</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fireforce (Europe)" index="" image="">
+		<description>Fireforce (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Buzz</manufacturer>
+		<year>1993</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="The Misadventures Of Flink (Europe)" index="" image="">
+		<description>Flink, The Misadventures Of (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Psygnosis</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fly Harder (Europe)" index="" image="">
+		<description>Fly Harder (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Buzz</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Frontier - Elite II (Europe)" index="" image="">
+		<description>Frontier - Elite II (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gametek</manufacturer>
+		<year>1994</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Fury of the Furries (Europe)" index="" image="">
+		<description>Fury of the Furries (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Kalisto</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gamers&apos; Delight (Europe)" index="true" image="g">
+		<description>Gamers&apos; Delight (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>GTI</manufacturer>
+		<year>1994</year>
+		<genre>Compilation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Global Effect (Europe)" index="" image="">
+		<description>Global Effect (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Millennium</manufacturer>
+		<year>1994</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gloom (Europe)" index="" image="">
+		<description>Gloom (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Guildhall Leisure Services</manufacturer>
+		<year>1995</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Grandslam Gamer Gold Collection (Europe)" index="" image="">
+		<description>Grandslam Gamer Gold Collection (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Grandslam</manufacturer>
+		<year>1995</year>
+		<genre>Compilation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Guardian (Europe)" index="" image="">
+		<description>Guardian (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acid Software</manufacturer>
+		<year>1994</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gulp! (Europe)" index="" image="">
+		<description>Gulp! (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ICE</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Gunship 2000 (Europe)" index="" image="">
+		<description>Gunship 2000 (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>MicroProse</manufacturer>
+		<year>1994</year>
+		<genre>Flying</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Heimdall 2 - Into The Hall Of Worlds (Europe)" index="true" image="h">
+		<description>Heimdall 2 - Into The Hall Of Worlds (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Core</manufacturer>
+		<year>1994</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="HeroQuest II - Legacy Of Sorasil (Europe)" index="" image="">
+		<description>HeroQuest II - Legacy Of Sorasil (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gremlin</manufacturer>
+		<year>1994</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="The Humans 1 &amp; 2 (Europe)" index="" image="">
+		<description>Humans 1 &amp; 2, The (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gametek</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Humans 3 - Evolution - Lost In Time... (Europe)" index="" image="">
+		<description>Humans 3 - Evolution - Lost In Time... (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gametek</manufacturer>
+		<year>1995</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Impossible Mission 2025 - The Special Edition (Europe)" index="true" image="i">
+		<description>Impossible Mission 2025 - The Special Edition (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>MicroProse</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="International Karate + (Europe)" index="" image="">
+		<description>International Karate + (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>System 3</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="International Open Golf Championship (Europe)" index="" image="">
+		<description>International Open Golf Championship (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1993</year>
+		<genre>Sports/Golf</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="James Pond 2 - Codename Robocod (Europe)" index="true" image="j">
+		<description>James Pond 2 - Codename Robocod (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Millennium</manufacturer>
+		<year>1993</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="James Pond 3 - Operation Starfi5h (Europe)" index="" image="">
+		<description>James Pond 3 - Operation Starfi5h (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Kompart</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Jetstrike (Europe)" index="" image="">
+		<description>Jetstrike (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Rasputin</manufacturer>
+		<year>1995</year>
+		<genre>Flying</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="John Barnes European Football (Europe)" index="" image="">
+		<description>John Barnes European Football (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Buzz</manufacturer>
+		<year>1993</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Jungle Strike (Europe)" index="" image="">
+		<description>Jungle Strike (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1994</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kang Fu (Europe)" index="true" image="k">
+		<description>Kang Fu (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ALTER interservice</manufacturer>
+		<year>1996</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kid Chaos (Europe)" index="" image="">
+		<description>Kid Chaos (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Kingpin - Arcade Sports Bowling (Europe)" index="" image="">
+		<description>Kingpin - Arcade Sports Bowling (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team 17</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Bowling</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="The Labyrinth of Time (Europe)" index="true" image="l">
+		<description>Labyrinth of Time, The (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Electronic Arts</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Lamborghini American Challenge (Europe)" index="" image="">
+		<description>Lamborghini American Challenge (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Titus</manufacturer>
+		<year>1994</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Last Ninja 3 (Europe)" index="" image="">
+		<description>Last Ninja 3 (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>System 3</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Legends (Europe)" index="" image="">
+		<description>Legends (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Guildhall Leisure Services</manufacturer>
+		<year>1996</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Lemmings (Europe)" index="" image="">
+		<description>Lemmings (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Psygnosis</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Liberation - Captive II (Europe)" index="" image="">
+		<description>Liberation - Captive II (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mindscape</manufacturer>
+		<year>1994</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Litil Divil (Europe)" index="" image="">
+		<description>Litil Divil (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gremlin</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="The Lost Vikings (Europe)" index="" image="">
+		<description>Lost Vikings, The (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Interplay</manufacturer>
+		<year>1993</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Manchester United - Premier League Champions (Europe)" index="true" image="m">
+		<description>Manchester United - Premier League Champions (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Krisalis</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Marvin&apos;s Marvellous Adventure (Europe)" index="" image="">
+		<description>Marvin&apos;s Marvellous Adventure (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>21st Century Entertainment</manufacturer>
+		<year>1995</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mean Arenas (Europe)" index="" image="">
+		<description>Mean Arenas (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ICE</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Microcosm (Europe)" index="" image="">
+		<description>Microcosm (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Psygnosis</manufacturer>
+		<year>1994</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Mitre Soccer Superstars (Europe)" index="" image="">
+		<description>Mitre Soccer Superstars (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Flair Software</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Morph (Europe)" index="" image="">
+		<description>Morph (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Millennium</manufacturer>
+		<year>1993</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Myth - History in the Making (Europe)" index="" image="">
+		<description>Myth - History in the Making (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>System 3</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Naughty Ones (Europe)" index="true" image="n">
+		<description>Naughty Ones (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Interactivision</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Nick Faldos Championship Golf (Europe)" index="" image="">
+		<description>Nick Faldos Championship Golf (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Grandslam</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Golf</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Nigel Mansell&apos;s World Championship (Europe)" index="" image="">
+		<description>Nigel Mansell&apos;s World Championship (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gremlin</manufacturer>
+		<year>1993</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Overkill &amp; Lunar-C (Europe)" index="true" image="o">
+		<description>Overkill &amp; Lunar-C (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mindscape</manufacturer>
+		<year>1993</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="PGA European Tour (Europe)" index="true" image="p">
+		<description>PGA European Tour (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Golf</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pierre le Chef is... Out to Lunch (Europe)" index="" image="">
+		<description>Pierre le Chef is... Out to Lunch (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mindscape</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pinball Fantasies (Europe)" index="" image="">
+		<description>Pinball Fantasies (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>21st Century Entertainment</manufacturer>
+		<year>1993</year>
+		<genre>Pinball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pinball Illusions (Europe)" index="" image="">
+		<description>Pinball Illusions (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>21st Century Entertainment</manufacturer>
+		<year>1995</year>
+		<genre>Pinball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pinball Prelude (Europe)" index="" image="">
+		<description>Pinball Prelude (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Effigy Software</manufacturer>
+		<year>1996</year>
+		<genre>Pinball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pinocchio (Europe)" index="" image="">
+		<description>Pinocchio (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Si-Lab</manufacturer>
+		<year>1993</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Pirates! Gold (Europe)" index="" image="">
+		<description>Pirates! Gold (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>MicroProse</manufacturer>
+		<year>1993</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Power Drive (Europe)" index="" image="">
+		<description>Power Drive (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>U.S. Gold</manufacturer>
+		<year>1994</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Premiere (Europe)" index="" image="">
+		<description>Premiere (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Core</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Prey - An Alien Encounter (Europe)" index="" image="">
+		<description>Prey - An Alien Encounter (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Almathera</manufacturer>
+		<year>1993</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Project-X &amp; F17 Challenge (Europe)" index="" image="">
+		<description>Project-X &amp; F17 Challenge (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team 17</manufacturer>
+		<year>1993</year>
+		<genre>Compilation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Project-X &amp; Ultimate Body Blows (Europe)" index="" image="">
+		<description>Project-X &amp; Ultimate Body Blows (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team 17</manufacturer>
+		<year>1994</year>
+		<genre>Compilation</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Quik The Thunder Rabbit (Europe)" index="true" image="q">
+		<description>Quik The Thunder Rabbit (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Titus</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Rise Of The Robots (Europe)" index="true" image="r">
+		<description>Rise Of The Robots (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Time Warner Interactive</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Roadkill (Europe)" index="" image="">
+		<description>Roadkill (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acid Software</manufacturer>
+		<year>1994</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ryder Cup - Johnnie Walker (Europe)" index="" image="">
+		<description>Ryder Cup - Johnnie Walker (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1993</year>
+		<genre>Sports/Golf</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sabre Team (Europe)" index="true" image="s">
+		<description>Sabre Team (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Krisalis</manufacturer>
+		<year>1994</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Seek &amp; Destroy (Europe)" index="" image="">
+		<description>Seek &amp; Destroy (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mindscape</manufacturer>
+		<year>1993</year>
+		<genre>Flying</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sensible Soccer - European Champions (Europe)" index="" image="">
+		<description>Sensible Soccer - European Champions (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Renegade</manufacturer>
+		<year>1993</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sensible Soccer - International Edition v1.2 (Europe)" index="" image="">
+		<description>Sensible Soccer - International Edition v1.2 (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Renegade</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="The Seven Gates Of Jambala (Europe)" index="" image="">
+		<description>Seven Gates Of Jambala, The (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Unique</manufacturer>
+		<year>1993</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Shadow Fighter (Europe)" index="" image="">
+		<description>Shadow Fighter (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gremlin</manufacturer>
+		<year>1995</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Simon The Sorcerer (Europe)" index="" image="">
+		<description>Simon The Sorcerer (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Adventure Soft</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Skeleton Krew (Europe)" index="" image="">
+		<description>Skeleton Krew (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Core</manufacturer>
+		<year>1995</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sleepwalker &amp; Pinball Fantasies (Europe)" index="" image="">
+		<description>Sleepwalker &amp; Pinball Fantasies (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1993</year>
+		<genre>Compilation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Sleepwalker (Europe)" index="" image="">
+		<description>Sleepwalker (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1993</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Soccer Kid (Europe)" index="" image="">
+		<description>Soccer Kid (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Krisalis</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Speedball 2 - Brutal Deluxe (Europe)" index="" image="">
+		<description>Speedball 2 - Brutal Deluxe (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Renegade</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Futuristic</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="The Speris Legacy (Europe)" index="" image="">
+		<description>Speris Legacy, The (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1995</year>
+		<genre>Role-Playing</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Star Crusader (Europe)" index="" image="">
+		<description>Star Crusader (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gametek</manufacturer>
+		<year>1994</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Striker (Europe)" index="" image="">
+		<description>Striker (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gremlin</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Strip Pot (Europe)" index="" image="">
+		<description>Strip Pot (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Pixel Blue</manufacturer>
+		<year>1994</year>
+		<genre>Casino</genre>
+		<rating>HSRS - AD (Adult)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Subwar 2050 (Europe)" index="" image="">
+		<description>Subwar 2050 (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>MicroProse</manufacturer>
+		<year>1994</year>
+		<genre>Simulation</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Summer Olympix (Europe)" index="" image="">
+		<description>Summer Olympix (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Flair Software</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Olympic</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super League Manager (Europe)" index="" image="">
+		<description>Super League Manager (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Audiogenic</manufacturer>
+		<year>1995</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Methane Bros (Europe)" index="" image="">
+		<description>Super Methane Bros (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Apache</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Putty (Europe)" index="" image="">
+		<description>Super Putty (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>System 3</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Skidmarks (Europe)" index="" image="">
+		<description>Super Skidmarks (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acid Software</manufacturer>
+		<year>1995</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Stardust (Europe)" index="" image="">
+		<description>Super Stardust (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team 17</manufacturer>
+		<year>1994</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Super Street Fighter II Turbo (Europe)" index="" image="">
+		<description>Super Street Fighter II Turbo (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gametek</manufacturer>
+		<year>1995</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Superfrog (Europe)" index="" image="">
+		<description>Superfrog (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team 17</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Surf Ninjas (Europe)" index="" image="">
+		<description>Surf Ninjas (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Microvalue</manufacturer>
+		<year>1993</year>
+		<genre>Beat-&apos;Em-Up</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Syndicate (Europe)" index="" image="">
+		<description>Syndicate (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mindscape</manufacturer>
+		<year>1995</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Theme Park (Europe)" index="true" image="t">
+		<description>Theme Park (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Mindscape</manufacturer>
+		<year>1995</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Thomas The Tank Engine&apos;s Pinball (Europe)" index="" image="">
+		<description>Thomas The Tank Engine&apos;s Pinball (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Alternative Software</manufacturer>
+		<year>1995</year>
+		<genre>Pinball</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Top Gear 2 (Europe)" index="" image="">
+		<description>Top Gear 2 (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gremlin</manufacturer>
+		<year>1994</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Total Carnage (Europe)" index="" image="">
+		<description>Total Carnage (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>ICE</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>HSRS - 17 (17+)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Trivial Pursuit - The CD32 Edition (Europe)" index="" image="">
+		<description>Trivial Pursuit - The CD32 Edition (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Domark</manufacturer>
+		<year>1994</year>
+		<genre>Game Show</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Trolls (Europe)" index="" image="">
+		<description>Trolls (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Flair Software</manufacturer>
+		<year>1993</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="UFO - Enemy Unknown (Europe)" index="true" image="u">
+		<description>UFO - Enemy Unknown (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>MicroProse</manufacturer>
+		<year>1994</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ultimate Body Blows (Europe)" index="" image="">
+		<description>Ultimate Body Blows (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Team 17</manufacturer>
+		<year>1994</year>
+		<genre>Fighter</genre>
+		<rating>HSRS - PG (Parental Guidance)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Ultimate Super Skidmarks (Europe)" index="" image="">
+		<description>Ultimate Super Skidmarks (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Acid</manufacturer>
+		<year>1995</year>
+		<genre>Driving</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Universe (Europe)" index="" image="">
+		<description>Universe (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Core</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Vital Light (Europe)" index="true" image="v">
+		<description>Vital Light (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Millennium</manufacturer>
+		<year>1994</year>
+		<genre>Puzzle</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wembley International Soccer (Europe)" index="true" image="w">
+		<description>Wembley International Soccer (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Audiogenic</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wendetta 2175 (Europe)" index="" image="">
+		<description>Wendetta 2175 (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Vortex Design</manufacturer>
+		<year>1994</year>
+		<genre>Action</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Whale&apos;s Voyage (Europe)" index="" image="">
+		<description>Whale&apos;s Voyage (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Flair Software</manufacturer>
+		<year>1994</year>
+		<genre>Adventure</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Whizz (Europe)" index="" image="">
+		<description>Whizz (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Flair</manufacturer>
+		<year>1995</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Wild Cup Soccer (Europe)" index="" image="">
+		<description>Wild Cup Soccer (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Millennium</manufacturer>
+		<year>1994</year>
+		<genre>Sports/Soccer</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Will Bridge - Initiation Junior (Europe)" index="" image="">
+		<description>Will Bridge - Initiation Junior (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Will Bridge</manufacturer>
+		<year>1994</year>
+		<genre>Tabletop</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Worms (Europe)" index="" image="">
+		<description>Worms (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Ocean</manufacturer>
+		<year>1995</year>
+		<genre>Strategy</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Zool - Ninja of the &apos;Nth&apos; Dimension (Europe)" index="true" image="z">
+		<description>Zool - Ninja of the &apos;Nth&apos; Dimension (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gremlin</manufacturer>
+		<year>1993</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Zool 2 (Europe)" index="" image="">
+		<description>Zool 2 (Europe)</description>
+		<cloneof></cloneof>
+		<crc></crc>
+		<manufacturer>Gremlin</manufacturer>
+		<year>1994</year>
+		<genre>Platform</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
+</menu>

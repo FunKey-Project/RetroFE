@@ -15,7 +15,6 @@
  */
 
 #include "Database/Configuration.h"
-#include "Database/MamelistMetadata.h"
 #include "Execute/Launcher.h"
 #include "Utility/Log.h"
 #include "Utility/Utils.h"
