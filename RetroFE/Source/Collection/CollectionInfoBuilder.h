@@ -3,7 +3,6 @@
  */
 #pragma once
 
-#include "../Database/DB.h"
 #include "../Database/MetadataDatabase.h"
 #include <string>
 #include <map>
@@ -16,12 +15,12 @@ class CollectionInfo;
 class CollectionInfoBuilder
 {
 public:
-    CollectionInfoBuilder(Configuration &c, DB &db);
+    CollectionInfoBuilder(Configuration &c, MetadataDatabase &mdb);
     virtual ~CollectionInfoBuilder();
     CollectionInfo *BuildCollection(std::string collectionName);
 
 private:
-    MetadataDatabase MetaDB;
+    MetadataDatabase &MetaDB;
     bool ImportDirectory(CollectionInfo *info);
     Configuration &Conf;
 };

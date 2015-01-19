@@ -20,9 +20,12 @@ public:
     bool Initialize();
     bool ResetDatabase();
 
-    void UpdateMetadata(CollectionInfo *collection);
+    void InjectMetadata(CollectionInfo *collection);
+    bool ImportHyperList(std::string hyperlistFile, std::string collectionName);
 
 private:
+    bool ImportDirectory();
+    bool NeedsRefresh();
     Configuration &Config;
     DB &DBInstance;
 };

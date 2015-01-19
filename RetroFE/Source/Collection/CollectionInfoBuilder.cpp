@@ -25,9 +25,9 @@
 #include <sstream>
 #include <vector>
 
-CollectionInfoBuilder::CollectionInfoBuilder(Configuration &c, DB &db)
+CollectionInfoBuilder::CollectionInfoBuilder(Configuration &c, MetadataDatabase &mdb)
     : Conf(c)
-    , MetaDB(db, c)
+    , MetaDB(mdb)
 {
 }
 
@@ -49,7 +49,7 @@ CollectionInfo *CollectionInfoBuilder::BuildCollection(std::string name)
     std::string listItemsPath;
     std::string launcherName;
     std::string extensions;
-    std::string metadataType;
+    std::string metadataType = name;
     std::string metadataPath;
 
     Conf.GetCollectionAbsolutePath(name, listItemsPath);
@@ -137,7 +137,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
         }
     }
 
-    MetaDB.UpdateMetadata(info);
+    MetaDB.InjectMetadata(info);
 
     while(includeFilter.size() > 0)
     {

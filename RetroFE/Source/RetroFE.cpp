@@ -91,6 +91,14 @@ int RetroFE::Initialize(void *context)
         return -1;
     }
 
+    instance->MetaDb = new MetadataDatabase(*(instance->Db), instance->Config);
+
+    if(!instance->MetaDb->Initialize())
+    {
+        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize meta database");
+        return -1;
+    }
+
     instance->Config.GetProperty("videoEnable", videoEnable);
     instance->Config.GetProperty("videoLoop", videoLoop);
 
@@ -164,6 +172,12 @@ bool RetroFE::DeInitialize()
         delete page;
         PageChain.pop_back();
     }
+    if(MetaDb)
+    {
+        delete MetaDb;
+        MetaDb = NULL;
+    }
+
     if(Db)
     {
         delete Db;
@@ -499,7 +513,7 @@ CollectionInfo *RetroFE::GetCollection(std::string collectionName)
     // the page will deallocate this once its done
     MenuParser mp;
 
-    CollectionInfoBuilder cib(Config, *Db);
+    CollectionInfoBuilder cib(Config, *MetaDb);
     CollectionInfo *collection = cib.BuildCollection(collectionName);
     mp.GetMenuItems(collection);
 

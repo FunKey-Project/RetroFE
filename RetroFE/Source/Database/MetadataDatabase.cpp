@@ -47,12 +47,11 @@ MetadataDatabase::~MetadataDatabase()
 
 bool MetadataDatabase::ResetDatabase()
 {
-    bool retVal = true;
     int rc;
     char *error = NULL;
     sqlite3 *handle = DBInstance.GetHandle();
 
-    Logger::Write(Logger::ZONE_INFO, "Database", "Erasing");
+    Logger::Write(Logger::ZONE_INFO, "Metadata", "Erasing");
 
     std::string sql;
     sql.append("DROP TABLE IF EXISTS Meta;");
@@ -63,11 +62,11 @@ bool MetadataDatabase::ResetDatabase()
     {
         std::stringstream ss;
         ss << "Unable to create Metadata table. Error: " << error;
-        Logger::Write(Logger::ZONE_ERROR, "Database", ss.str());
-        retVal = false;
+        Logger::Write(Logger::ZONE_ERROR, "Metadata", ss.str());
+        return false;
     }
-
-    return retVal;
+    
+    return Initialize();
 }
 
 bool MetadataDatabase::Initialize()
@@ -94,15 +93,61 @@ bool MetadataDatabase::Initialize()
     {
         std::stringstream ss;
         ss << "Unable to create Metadata table. Error: " << error;
-        Logger::Write(Logger::ZONE_ERROR, "Database", ss.str());
+        Logger::Write(Logger::ZONE_ERROR, "Metadata", ss.str());
 
         return false;
+    }
+
+    if(NeedsRefresh())
+    {
+        ImportDirectory();
     }
 
     return true;
 }
 
-void MetadataDatabase::UpdateMetadata(CollectionInfo *collection)
+bool MetadataDatabase::ImportDirectory()
+{
+    DIR *dp;
+    struct dirent *dirp;
+    std::string metaPath = "Meta";
+    dp = opendir(metaPath.c_str());
+
+    while((dirp = readdir(dp)) != NULL)
+    {
+        if (dirp->d_type != DT_DIR && std::string(dirp->d_name) != "." && std::string(dirp->d_name) != "..")
+        {
+
+            std::string basename = dirp->d_name;
+
+            //  if(basename.length() > 0)
+            {
+                std::string extension = basename.substr(basename.find_last_of("."), basename.size()-1);
+                basename = basename.substr(0, basename.find_last_of("."));
+                std::string collectionName = basename.substr(0, basename.find_first_of("."));
+
+                
+                std::string type = "";
+                
+                if(collectionName.length() < basename.length())
+                {
+                    type = basename.substr(collectionName.length() + 1, basename.size());
+                }
+
+                if(type == "hyperlist" && extension == ".xml")
+                {
+                    std::string importFile = Configuration::GetAbsolutePath() + "/" + metaPath + "/" + dirp->d_name;
+                    Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing hyperlist: " + importFile);
+                    ImportHyperList(importFile, collectionName);
+                }
+            }
+        }
+    }
+
+    return true;
+}
+
+void MetadataDatabase::InjectMetadata(CollectionInfo *collection)
 {
     sqlite3 *handle = DBInstance.GetHandle();
     int rc;
@@ -130,7 +175,7 @@ void MetadataDatabase::UpdateMetadata(CollectionInfo *collection)
                        "FROM Meta WHERE collectionName=? ORDER BY title ASC;",
                        -1, &stmt, 0);
 
-    sqlite3_bind_text(stmt, 1, collection->GetName().c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 1, collection->GetMetadataType().c_str(), -1, SQLITE_TRANSIENT);
 
     rc = sqlite3_step(stmt);
 
@@ -196,3 +241,114 @@ void MetadataDatabase::UpdateMetadata(CollectionInfo *collection)
         rc = sqlite3_step(stmt);
     }
 }
+
+bool MetadataDatabase::NeedsRefresh()
+{
+    sqlite3 *handle = DBInstance.GetHandle();
+    sqlite3_stmt *stmt;
+
+    sqlite3_prepare_v2(handle,
+                       "SELECT COUNT(*) FROM Meta;",
+                       -1, &stmt, 0);
+
+    int rc = sqlite3_step(stmt);
+
+    if(rc == SQLITE_ROW)
+    {
+        int count = sqlite3_column_int(stmt, 0);
+
+        return (count == 0) ? true : false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+bool MetadataDatabase::ImportHyperList(std::string hyperlistFile, std::string collectionName)
+{
+    bool retVal = false;
+    char *error = NULL;
+    rapidxml::xml_document<> doc;
+    std::ifstream file(hyperlistFile.c_str());
+    std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+
+    try
+    {
+        buffer.push_back('\0');
+
+        doc.parse<0>(&buffer[0]);
+
+        rapidxml::xml_node<> *root = doc.first_node("menu");
+
+        if(!root)
+        {
+            Logger::Write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a HyperList file (missing <menu> tag)");
+            return NULL;
+        }
+        else
+        {
+            sqlite3 *handle = DBInstance.GetHandle();
+            sqlite3_exec(handle, "BEGIN IMMEDIATE TRANSACTION;", NULL, NULL, &error);    
+            for(rapidxml::xml_node<> *game = root->first_node("game"); game; game = game->next_sibling("game"))
+            {
+                rapidxml::xml_attribute<> *nameXml = game->first_attribute("name");
+                rapidxml::xml_node<> *descriptionXml = game->first_node("description");
+                rapidxml::xml_node<> *cloneofXml = game->first_node("cloneof");
+                rapidxml::xml_node<> *crcXml = game->first_node("crc");
+                rapidxml::xml_node<> *manufacturerXml = game->first_node("manufacturer");
+                rapidxml::xml_node<> *yearXml = game->first_node("year");
+                rapidxml::xml_node<> *genreXml = game->first_node("genre");
+                rapidxml::xml_node<> *ratingXml = game->first_node("rating");
+                rapidxml::xml_node<> *enabledXml = game->first_node("enabled");
+                std::string name = (nameXml) ? nameXml->value() : "";
+                std::string description = (descriptionXml) ? descriptionXml->value() : "";
+                std::string crc = (crcXml) ? crcXml->value() : "";
+                std::string cloneOf = (cloneofXml) ? cloneofXml->value() : "";
+                std::string manufacturer = (manufacturerXml) ? manufacturerXml->value() : "";
+                std::string year = (yearXml) ? yearXml->value() : "";
+                std::string genre = (genreXml) ? genreXml->value() : "";
+                std::string rating = (ratingXml) ? ratingXml->value() : "";
+                std::string enabled = (enabledXml) ? enabledXml->value() : "";
+
+                if(name.length() > 0)
+                {
+                    sqlite3_stmt *stmt;
+
+                    sqlite3_prepare_v2(handle,
+                            "INSERT OR REPLACE INTO Meta (name, title, year, manufacturer, cloneOf, collectionName) VALUES (?,?,?,?,?,?)",
+                           -1, &stmt, 0);
+
+                    sqlite3_bind_text(stmt, 1, name.c_str(), -1, SQLITE_TRANSIENT);
+                    sqlite3_bind_text(stmt, 2, description.c_str(), -1, SQLITE_TRANSIENT);
+                    sqlite3_bind_text(stmt, 3, year.c_str(), -1, SQLITE_TRANSIENT);
+                    sqlite3_bind_text(stmt, 4, manufacturer.c_str(), -1, SQLITE_TRANSIENT);
+                    sqlite3_bind_text(stmt, 5, cloneOf.c_str(), -1, SQLITE_TRANSIENT);
+                    sqlite3_bind_text(stmt, 6, collectionName.c_str(), -1, SQLITE_TRANSIENT);
+
+                    sqlite3_step(stmt);
+                    sqlite3_finalize(stmt);
+                }
+            }
+            sqlite3_exec(handle, "COMMIT TRANSACTION;", NULL, NULL, &error);
+        }
+    }
+    catch(rapidxml::parse_error &e)
+    {
+        std::string what = e.what();
+        long line = static_cast<long>(std::count(&buffer.front(), e.where<char>(), char('\n')) + 1);
+        std::stringstream ss;
+        ss << "Could not parse layout file. [Line: " << line << "] Reason: " << e.what();
+
+        Logger::Write(Logger::ZONE_ERROR, "Metadata", ss.str());
+    }
+    catch(std::exception &e)
+    {
+        std::string what = e.what();
+        Logger::Write(Logger::ZONE_ERROR, "Metadata", "Could not parse hyperlist file. Reason: " + what);
+    }
+
+
+    return retVal;
+}
+

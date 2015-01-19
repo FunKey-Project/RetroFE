@@ -6,6 +6,7 @@
 #include "Collection/Item.h"
 #include "Control/UserInput.h"
 #include "Database/DB.h"
+#include "Database/MetadataDatabase.h"
 #include "Execute/AttractMode.h"
 #include "Graphics/FontCache.h"
 #include "Video/IVideo.h"
@@ -58,6 +59,7 @@ private:
     CollectionInfo *GetCollection(std::string collectionName);
     Configuration &Config;
     DB *Db;
+    MetadataDatabase *MetaDb;
     UserInput Input;
     std::list<Page *> PageChain;
     float KeyInputDisable;
