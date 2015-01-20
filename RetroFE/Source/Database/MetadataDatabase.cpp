@@ -130,7 +130,6 @@ bool MetadataDatabase::ImportDirectory()
             {
                 std::string importFile = Configuration::GetAbsolutePath() + "/" + hyperListPath + "/" + dirp->d_name;
                 Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing hyperlist: " + importFile);
-                Config.SetStatus("Scraping data from " + importFile);
                 ImportHyperList(importFile, collectionName);
             }
         }
@@ -286,6 +285,8 @@ bool MetadataDatabase::ImportHyperList(std::string hyperlistFile, std::string co
 {
     bool retVal = false;
     char *error = NULL;
+
+    Config.SetStatus("Scraping data from \"" + hyperlistFile + "\"");
     rapidxml::xml_document<> doc;
     std::ifstream file(hyperlistFile.c_str());
     std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
@@ -347,6 +348,7 @@ bool MetadataDatabase::ImportHyperList(std::string hyperlistFile, std::string co
                     sqlite3_finalize(stmt);
                 }
             }
+            Config.SetStatus("Saving data from \"" + hyperlistFile + "\" to database");
             sqlite3_exec(handle, "COMMIT TRANSACTION;", NULL, NULL, &error);
         }
     }
@@ -376,6 +378,8 @@ bool MetadataDatabase::ImportMameList(std::string filename, std::string collecti
     rapidxml::xml_node<> * rootNode;
     char *error = NULL;
     sqlite3 *handle = DBInstance.GetHandle();
+
+    Config.SetStatus("Scraping data from \"" + filename + "\" (this will take a while)");
 
     Logger::Write(Logger::ZONE_INFO, "Mamelist", "Importing mamelist file \"" + filename + "\" (this will take a while)");
     std::ifstream file(filename.c_str());
@@ -447,6 +451,7 @@ bool MetadataDatabase::ImportMameList(std::string filename, std::string collecti
         }
     }
 
+    Config.SetStatus("Saving data from \"" + filename + "\" to database");
     sqlite3_exec(handle, "COMMIT TRANSACTION;", NULL, NULL, &error);
 
     return retVal;

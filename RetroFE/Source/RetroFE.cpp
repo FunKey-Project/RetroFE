@@ -243,6 +243,12 @@ void RetroFE::Run()
             {
                 state = ProcessUserInput(page);
             }
+            else
+            {
+                // read and discard SDL input to prevent windows from balking at us
+                SDL_Event e;
+                (void)SDL_PollEvent(&e);
+            }
 
             if(Initialized && splashMode)
             {
