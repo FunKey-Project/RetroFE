@@ -73,13 +73,11 @@
 
    </reloadableImage>
    
-<!--   
    <reloadableText type="title" x="0" y="bottom" xOffset="20" yOrigin="center" yOffset="-175" height="150" width="stretch" layer="1" fontSize="50" />
    <reloadableText type="manufacturer" x="left" y="bottom" xOrigin="left" yOrigin="bottom" xOffset="10" yOffset="-10" fontSize="20" layer="0" />
    <reloadableText type="year" x="left" y="bottom" xOrigin="left" yOrigin="bottom" xOffset="10" yOffset="-30" fontSize="20" layer="0" />
    <reloadableText type="numberPlayers" x="left" y="bottom" xOrigin="left" yOrigin="bottom" xOffset="10" yOffset="-70" fontSize="20" layer="0" />
    <reloadableText type="numberButtons" x="left" y="bottom" xOrigin="left" yOrigin="bottom" xOffset="10" yOffset="-90" fontSize="20" layer="0" />
-   -->
  </layout>
 
 

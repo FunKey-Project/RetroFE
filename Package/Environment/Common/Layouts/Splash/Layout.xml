@@ -1,8 +1,4 @@
-<layout width="1920" height="1080">
-   <sound type="load" src="load.wav" /> 
-   <sound type="unload" src="unload.wav" />
-   <sound type="highlight" src="highlight.wav" />
-   <sound type="select" src="select.wav" />
+<layout width="1920" height="1080" font="Age.otf" loadFontSize="32" fontColor="eeeeee">
    
    <!-- border for menu  -->
    <container backgroundColor="C0392B" backgroundAlpha="1.0" x="0" y="0" height="stretch" width="stretch" layer="0" />   
@@ -11,7 +7,7 @@
    <image x="center" y="center" height="150" xOrigin="center" yOrigin="center" src="logo.png" layer="1" alpha="1">
       <onEnter>
          <set duration=".5">
-            <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+            <animate type="alpha" from="1" to="1" algorithm="easeinquadratic"/>
          </set>
       </onEnter>
       <onIdle>
@@ -28,6 +24,10 @@
          </set>
       </onExit>
    </image>
+
+   <statusText x="0" y="bottom" xOffset="20" yOrigin="center" yOffset="-175" height="150" width="stretch" layer="2" fontSize="25" />
+      
+
  </layout>
 
 
