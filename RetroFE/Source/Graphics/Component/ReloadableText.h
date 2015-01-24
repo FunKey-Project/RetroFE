@@ -12,7 +12,7 @@
 class ReloadableText : public Component
 {
 public:
-    ReloadableText(std::string type, Font *font, SDL_Color color, std::string layoutKey, std::string collectionName, float scaleX, float scaleY);
+    ReloadableText(std::string type, Font *font, SDL_Color color, std::string layoutKey, float scaleX, float scaleY);
     virtual ~ReloadableText();
     void Update(float dt);
     void Draw();
@@ -37,7 +37,6 @@ private:
     Text *ImageInst;
     TextType Type;
     std::string LayoutKey;
-    std::string Collection;
     bool ReloadRequested;
     bool FirstLoad;
     Font *FontInst;

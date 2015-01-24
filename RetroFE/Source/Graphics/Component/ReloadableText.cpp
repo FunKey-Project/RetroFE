@@ -23,10 +23,9 @@
 #include <vector>
 #include <iostream>
 
-ReloadableText::ReloadableText(std::string type, Font *font, SDL_Color color, std::string layoutKey, std::string collection, float scaleX, float scaleY)
+ReloadableText::ReloadableText(std::string type, Font *font, SDL_Color color, std::string layoutKey, float scaleX, float scaleY)
     : ImageInst(NULL)
     , LayoutKey(layoutKey)
-    , Collection(collection)
     , ReloadRequested(false)
     , FirstLoad(true)
     , FontInst(font)

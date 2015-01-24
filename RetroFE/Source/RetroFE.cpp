@@ -43,6 +43,7 @@ RetroFE::RetroFE(Configuration &c)
     , Config(c)
     , Db(NULL)
     , Input(Config)
+    , CurrentPage(NULL)
     , KeyInputDisable(0)
     , CurrentTime(0)
 {
@@ -59,15 +60,11 @@ void RetroFE::Render()
     SDL_SetRenderDrawColor(SDL::GetRenderer(), 0x0, 0x0, 0x00, 0xFF);
     SDL_RenderClear(SDL::GetRenderer());
 
-    if(PageChain.size() > 0) 
+    if(CurrentPage)
     {
-        Page *page = PageChain.back();
-
-        if(page)
-        {
-            page->Draw();
-        }
+        CurrentPage->Draw();
     }
+
     SDL_RenderPresent(SDL::GetRenderer());
     SDL_UnlockMutex(SDL::GetMutex());
 }
@@ -111,11 +108,11 @@ int RetroFE::Initialize(void *context)
 
 void RetroFE::LaunchEnter()
 {
-    if(PageChain.size() > 0)
+    if(CurrentPage)
     {
-        Page *p = PageChain.back();
-        p->LaunchEnter();
+        CurrentPage->LaunchEnter();
     }
+
     SDL_SetWindowGrab(SDL::GetWindow(), SDL_FALSE);
 
 }
@@ -125,20 +122,18 @@ void RetroFE::LaunchExit()
     SDL_RestoreWindow(SDL::GetWindow());
     SDL_SetWindowGrab(SDL::GetWindow(), SDL_TRUE);
 
-    if(PageChain.size() > 0)
+    if(CurrentPage)
     {
-        Page *p = PageChain.back();
-        p->LaunchExit();
+        CurrentPage->LaunchExit();
     }
 
 }
 
 void RetroFE::FreeGraphicsMemory()
 {
-    if(PageChain.size() > 0)
+    if(CurrentPage)
     {
-        Page *p = PageChain.back();
-        p->FreeGraphicsMemory();
+        CurrentPage->FreeGraphicsMemory();
     }
     FC.DeInitialize();
 
@@ -151,11 +146,10 @@ void RetroFE::AllocateGraphicsMemory()
 
     FC.Initialize();
 
-    if(PageChain.size() > 0)
+    if(CurrentPage)
     {
-        Page *p = PageChain.back();
-        p->AllocateGraphicsMemory();
-        p->Start();
+        CurrentPage->AllocateGraphicsMemory();
+        CurrentPage->Start();
     }
 }
 
@@ -166,11 +160,10 @@ bool RetroFE::DeInitialize()
 
     bool videoEnable = true;
 
-    while(PageChain.size() > 0)
+    if(CurrentPage)
     {
-        Page *page = PageChain.back();
-        delete page;
-        PageChain.pop_back();
+        delete CurrentPage;
+        CurrentPage = NULL;
     }
     if(MetaDb)
     {
@@ -218,7 +211,7 @@ void RetroFE::Run()
     int initializeStatus = 0;
 
     // load the initial splash screen, unload it once it is complete
-    Page * page = LoadSplashPage();
+    CurrentPage = LoadSplashPage();
     bool splashMode = true;
 
     Launcher l(*this, Config);
@@ -227,9 +220,8 @@ void RetroFE::Run()
     {
         float lastTime = 0;
         float deltaTime = 0;
-        page = PageChain.back();
 
-        if(!page)
+        if(!CurrentPage)
         {
             Logger::Write(Logger::ZONE_WARNING, "RetroFE", "Could not load page");
             running = false;
@@ -239,9 +231,9 @@ void RetroFE::Run()
         switch(state)
         {
         case RETROFE_IDLE:
-            if(page && !splashMode)
+            if(CurrentPage && !splashMode)
             {
-                state = ProcessUserInput(page);
+                state = ProcessUserInput(CurrentPage);
             }
             else
             {
@@ -253,65 +245,65 @@ void RetroFE::Run()
             if(Initialized && splashMode)
             {
                 SDL_WaitThread(InitializeThread, &initializeStatus);
-                state = RETROFE_BACK_WAIT;
-                page->Stop();
+
+                // delete the splash screen and use the standard menu
+                delete CurrentPage;
+                CurrentPage = LoadPage();
+                splashMode = false;
+                if(CurrentPage)
+                {
+                    std::string firstCollection;
+                    Config.GetProperty("firstCollection", firstCollection);
+
+                    CurrentPage->Start();
+                    Config.SetCurrentCollection(firstCollection);
+                    CollectionInfo *info = GetCollection(firstCollection);
+                    CurrentPage->PushCollection(info);
+                }
+                else
+                {
+                    state = RETROFE_QUIT_REQUEST;
+                }
+
             }
 
             break;
 
         case RETROFE_NEXT_PAGE_REQUEST:
-            page->Stop();
-            state = RETROFE_NEXT_PAGE_WAIT;
-            break;
-
-        case RETROFE_NEXT_PAGE_WAIT:
-            if(page->IsHidden())
+            if(CurrentPage->IsIdle())
             {
-                page = LoadPage(NextPageItem->GetName());
                 state = RETROFE_NEW;
             }
             break;
 
         case RETROFE_LAUNCH_REQUEST:
-            l.Run(page->GetCollectionName(), NextPageItem);
+            NextPageItem = CurrentPage->GetSelectedItem();
+            l.Run(CurrentPage->GetCollectionName(), NextPageItem);
             state = RETROFE_IDLE;
             break;
 
         case RETROFE_BACK_REQUEST:
-            page->Stop();
-            state = RETROFE_BACK_WAIT;
-            break;
+            CurrentPage->PopCollection();
+            Config.SetCurrentCollection(CurrentPage->GetCollectionName());
 
-        case RETROFE_BACK_WAIT:
-            if(page->IsHidden())
-            {
-                PageChain.pop_back();
-                delete page;
+            state = RETROFE_NEW;
 
-                page = (splashMode) ? LoadPage(firstCollection) : PageChain.back();
-                splashMode = false;
-                CurrentTime = (float)SDL_GetTicks() / 1000;
-
-                page->AllocateGraphicsMemory();
-                page->Start();
-                state = RETROFE_NEW;
-            }
             break;
 
         case RETROFE_NEW:
-            if(page->IsIdle())
+            if(CurrentPage->IsIdle())
             {
                 state = RETROFE_IDLE;
             }
             break;
 
         case RETROFE_QUIT_REQUEST:
-            page->Stop();
+            CurrentPage->Stop();
             state = RETROFE_QUIT;
             break;
 
         case RETROFE_QUIT:
-            if(page->IsHidden())
+            if(CurrentPage->IsHidden())
             {
                 running = false;
             }
@@ -337,10 +329,10 @@ void RetroFE::Run()
                 SDL_Delay(static_cast<unsigned int>(sleepTime));
             }
 
-            if(page)
+            if(CurrentPage)
             {
-                Attract.Update(deltaTime, *page);
-                page->Update(deltaTime);
+                Attract.Update(deltaTime, *CurrentPage);
+                CurrentPage->Update(deltaTime);
             }
 
             Render();
@@ -353,22 +345,16 @@ void RetroFE::Run()
 bool RetroFE::Back(bool &exit)
 {
     bool canGoBack = false;
-
     bool exitOnBack = false;
     Config.GetProperty("exitOnFirstPageBack", exitOnBack);
     exit = false;
 
-    if(PageChain.size() > 1)
+    if(CurrentPage->GetMenuDepth() == 0)
     {
-        Page *page = PageChain.back();
-        page->Stop();
-        canGoBack = true;
+        exit = exitOnBack;
     }
-    else if(PageChain.size() == 1 && exitOnBack)
+    else
     {
-        Page *page = PageChain.back();
-        page->Stop();
-        exit = true;
         canGoBack = true;
     }
 
@@ -413,10 +399,23 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
         if (keys[Input.GetScancode(UserInput::KeyCodeSelect)])
         {
             NextPageItem = page->GetSelectedItem();
+                    Logger::Write(Logger::ZONE_INFO, "RetroFE", "SELECT KEYCODE START");
 
             if(NextPageItem)
             {
-                state = (NextPageItem->IsLeaf()) ? RETROFE_LAUNCH_REQUEST : RETROFE_NEXT_PAGE_REQUEST;
+                if(NextPageItem->IsLeaf())
+                {
+                    state = RETROFE_LAUNCH_REQUEST;
+                }
+                else
+                {
+                    Config.SetCurrentCollection(NextPageItem->GetName());
+                    CollectionInfo *info = GetCollection(NextPageItem->GetName());
+
+                    Logger::Write(Logger::ZONE_INFO, "RetroFE", "PUSH COLLECTION. EXPECT FOCUS IMMEDIATE");
+                    page->PushCollection(info);
+                    state = RETROFE_NEXT_PAGE_REQUEST;
+                }
             }
         }
 
@@ -449,7 +448,7 @@ void RetroFE::WaitToInitialize()
 {
     Logger::Write(Logger::ZONE_INFO, "RetroFE", "Loading splash screen");
 
-    PageBuilder pb("splash", "", Config, &FC);
+    PageBuilder pb("splash", Config, &FC);
     Page * page = pb.BuildPage();
 
     while(!Initialized)
@@ -467,47 +466,32 @@ void RetroFE::WaitToInitialize()
 }
 
 
-Page *RetroFE::LoadPage(std::string collectionName)
+Page *RetroFE::LoadPage()
 {
-    Logger::Write(Logger::ZONE_INFO, "RetroFE", "Creating page for collection " + collectionName);
+    std::string layoutName;
 
-    Page *page = NULL;
+    Config.GetProperty("layout", layoutName);
 
-    Config.SetCurrentCollection(collectionName);
-    CollectionInfo *collection = GetCollection(collectionName);
-    std::string layoutName = GetLayout(collectionName);
-
-    if(PageChain.size() > 0)
-    {
-        Page *oldPage = PageChain.back();
-        oldPage->FreeGraphicsMemory();
-    }
-
-    PageBuilder pb(layoutName, collectionName, Config, &FC);
-    page = pb.BuildPage();
+    PageBuilder pb(layoutName, Config, &FC);
+    Page *page = pb.BuildPage();
 
     if(!page)
     {
-        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not create page for " + collectionName);
+        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not create page");
     }
     else
     {
-        page->SetCollection(collection);
         page->Start();
-
-        PageChain.push_back(page);
     }
 
     return page;
 }
+
 Page *RetroFE::LoadSplashPage()
 {
-    PageBuilder pb("Splash", "", Config, &FC);
+    PageBuilder pb("Splash", Config, &FC);
     Page * page = pb.BuildPage();
-    Config.SetCurrentCollection("");
-    page->SetCollection(new CollectionInfo("", "", "", "", ""));
     page->Start();
-    PageChain.push_back(page);
 
     return page;
 }

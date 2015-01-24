@@ -31,12 +31,21 @@ public:
 
     };
 
-    ScrollingList(Configuration &c, float scaleX, float scaleY, Font *font, SDL_Color fontColor, std::string layoutKey, std::string CollectionName, std::string imageType);
+    ScrollingList(Configuration &c, 
+        float scaleX, 
+        float scaleY, 
+        Font *font, 
+        SDL_Color fontColor, 
+        std::string layoutKey, 
+        std::string imageType);
     virtual ~ScrollingList();
+    void TriggerMenuEnterEvent();
+    void TriggerMenuExitEvent();
+
     void AllocateTexture(ComponentItemBinding *s);
     void DeallocateTexture(ComponentItemBinding *s);
     void SetItems(std::vector<ComponentItemBinding *> *spriteList);
-    void SetPoints(std::vector<ViewInfo *> *scrollPoints);
+    void SetPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<TweenSet *> *tweenPoints);
     void SetScrollDirection(ScrollDirection direction);
     void PageUp();
     void PageDown();
@@ -71,8 +80,10 @@ private:
 
     std::vector<ComponentItemBinding *> *SpriteList;
     std::vector<ViewInfo *> *ScrollPoints;
+     std::vector<TweenSet *> *TweenPoints;
     std::vector<MenuNotifierInterface *> NotificationComponents;
     float TweenEnterTime;
+    bool Focus;
 
     unsigned int FirstSpriteIndex;
     unsigned int SelectedSpriteListIndex;
@@ -98,7 +109,6 @@ private:
     Font *FontInst;
     SDL_Color FontColor;
     std::string LayoutKey;
-    std::string CollectionName;
     std::string ImageType;
     unsigned int MaxLayer;
 };

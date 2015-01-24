@@ -23,6 +23,7 @@
 #include "Component/ReloadableText.h"
 #include "Component/ReloadableMedia.h"
 #include "Component/ScrollingList.h"
+#include "Animate/TweenSet.h"
 #include "Animate/TweenTypes.h"
 #include "../Sound/Sound.h"
 #include "../Collection/Item.h"
@@ -46,9 +47,8 @@ static const int MENU_END = -2;    // last item transitions here after it scroll
 static const int MENU_CENTER = -4;
     
 //todo: this file is starting to become a god class of building. Consider splitting into sub-builders
-PageBuilder::PageBuilder(std::string layoutKey, std::string collection, Configuration &c, FontCache *fc)
+PageBuilder::PageBuilder(std::string layoutKey, Configuration &c, FontCache *fc)
     : LayoutKey(layoutKey)
-    , Collection(collection)
     , Config(c)
     , ScaleX(1)
     , ScaleY(1)
@@ -168,7 +168,7 @@ Page *PageBuilder::BuildPage()
             ss << layoutWidth << "x" << layoutHeight << " (scale " << ScaleX << "x" << ScaleY << ")";
             Logger::Write(Logger::ZONE_DEBUG, "Layout", "Layout resolution " + ss.str());
 
-            page = new Page(Collection, Config);
+            page = new Page(Config);
 
             // load sounds
             for(xml_node<> *sound = root->first_node("sound"); sound; sound = sound->next_sibling("sound"))
@@ -207,6 +207,7 @@ Page *PageBuilder::BuildPage()
                     }
                 }
             }
+
             if(!BuildComponents(root, page))
             {
                 delete page;
@@ -314,14 +315,11 @@ float PageBuilder::GetVerticalAlignment(xml_attribute<> *attribute, float valueI
 
 bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
 {
-    xml_node<> *menuXml = layout->first_node("menu");
-
-    if(menuXml)
+    for(xml_node<> *componentXml = layout->first_node("menu"); componentXml; componentXml = componentXml->next_sibling("menu"))
     {
-        ScrollingList *scrollingList = BuildMenu(menuXml);
-        page->SetMenu(scrollingList);
+        ScrollingList *scrollingList = BuildMenu(componentXml);
+        page->PushMenu(scrollingList);
     }
-
 
     for(xml_node<> *componentXml = layout->first_node("container"); componentXml; componentXml = componentXml->next_sibling("container"))
     {
@@ -424,14 +422,6 @@ void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, 
             Logger::Write(Logger::ZONE_ERROR, "Layout", "Image component in layout does not specify a source image file");
         }
 
-        if(type && (tagName == "reloadableVideo" || tagName == "reloadableImage"))
-        {
-            std::string configImagePath = "collections." + Collection + ".media." + type->value();
-
-            Config.GetMediaPropertyAbsolutePath(Collection, type->value(), reloadableImagePath);
-
-            Config.GetMediaPropertyAbsolutePath(Collection, "video", reloadableVideoPath);
-        }
 
 
         Component *c = NULL;
@@ -441,12 +431,12 @@ void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, 
             if(type)
             {
                 FC->LoadFont(Font, FontSize, FontColor);
-                c = new ReloadableText(type->value(), FC->GetFont(Font), FontColor, LayoutKey, Collection, ScaleX, ScaleY);
+                c = new ReloadableText(type->value(), FC->GetFont(Font), FontColor, LayoutKey, ScaleX, ScaleY);
             }
         }
         else
         {
-            c = new ReloadableMedia(reloadableImagePath, reloadableVideoPath, (tagName == "reloadableVideo"), ScaleX, ScaleY);
+            c = new ReloadableMedia(Config, type->value(), (tagName == "reloadableVideo"), ScaleX, ScaleY);
         }
 
         if(c)
@@ -463,26 +453,22 @@ void PageBuilder::LoadTweens(Component *c, xml_node<> *componentXml)
 
     BuildViewInfo(componentXml, v);
 
-    Component::TweenSets *tweenSets;
-    tweenSets = new std::vector<std::vector<Tween *> *>();
-    GetTweenSets(componentXml->first_node("onEnter"), tweenSets);
-    c->SetOnEnterTweens(tweenSets);
+    c->SetTweens(CreateTweenInstance(componentXml));
+}
 
-    tweenSets = new std::vector<std::vector<Tween *> *>();
-    GetTweenSets(componentXml->first_node("onExit"), tweenSets);
-    c->SetOnExitTweens(tweenSets);
+TweenSet *PageBuilder::CreateTweenInstance(xml_node<> *componentXml)
+{
+    TweenSet *tweens = new TweenSet();
 
-    tweenSets = new std::vector<std::vector<Tween *> *>();
-    GetTweenSets(componentXml->first_node("onIdle"), tweenSets);
-    c->SetOnIdleTweens(tweenSets);
+    GetTweenSets(componentXml->first_node("onEnter"), tweens->GetOnEnterTweens());
+    GetTweenSets(componentXml->first_node("onExit"), tweens->GetOnExitTweens());
+    GetTweenSets(componentXml->first_node("onIdle"), tweens->GetOnIdleTweens());
+    GetTweenSets(componentXml->first_node("onHighlightEnter"), tweens->GetOnHighlightEnterTweens());
+    GetTweenSets(componentXml->first_node("onHighlightExit"), tweens->GetOnHighlightExitTweens());
+    GetTweenSets(componentXml->first_node("onMenuEnter"), tweens->GetOnMenuEnterTweens());
+    GetTweenSets(componentXml->first_node("onMenuExit"), tweens->GetOnMenuExitTweens());
 
-    tweenSets = new std::vector<std::vector<Tween *> *>();
-    GetTweenSets(componentXml->first_node("onHighlightEnter"), tweenSets);
-    c->SetOnHighlightEnterTweens(tweenSets);
-
-    tweenSets = new std::vector<std::vector<Tween *> *>();
-    GetTweenSets(componentXml->first_node("onHighlightExit"), tweenSets);
-    c->SetOnHighlightExitTweens(tweenSets);
+    return tweens;
 }
 
 
@@ -515,7 +501,7 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
     // on default, text will be rendered to the menu. Preload it into cache.
     FC->LoadFont(Font, FontSize, FontColor);
 
-    menu = new ScrollingList(Config, ScaleX, ScaleY, FC->GetFont(Font), FontColor, LayoutKey, Collection, imageType);
+    menu = new ScrollingList(Config, ScaleX, ScaleY, FC->GetFont(Font), FontColor, LayoutKey, imageType);
 
     ViewInfo *v = menu->GetBaseViewInfo();
     BuildViewInfo(menuXml, v);
@@ -529,6 +515,8 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
         BuildVerticalMenu(menu, menuXml, itemDefaults);
     }
 
+    LoadTweens(menu, menuXml);
+
     return menu;
 }
 
@@ -536,6 +524,7 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
 void PageBuilder::BuildCustomMenu(ScrollingList *menu, xml_node<> *menuXml, xml_node<> *itemDefaults)
 {
     std::vector<ViewInfo *> *points = new std::vector<ViewInfo *>();
+    std::vector<TweenSet *> *tweenPoints = new std::vector<TweenSet *>();
 
     int i = 0;
 
@@ -543,9 +532,9 @@ void PageBuilder::BuildCustomMenu(ScrollingList *menu, xml_node<> *menuXml, xml_
     {
         ViewInfo *viewInfo = new ViewInfo();
         BuildViewInfo(componentXml, viewInfo, itemDefaults);
-
+        
         points->push_back(viewInfo);
-
+        tweenPoints->push_back(CreateTweenInstance(componentXml));
         xml_attribute<> *selected = componentXml->first_attribute("selected");
 
         if(selected)
@@ -556,12 +545,13 @@ void PageBuilder::BuildCustomMenu(ScrollingList *menu, xml_node<> *menuXml, xml_
         i++;
     }
 
-    menu->SetPoints(points);
+    menu->SetPoints(points, tweenPoints);
 }
 
 void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xml_node<> *itemDefaults)
 {
     std::vector<ViewInfo *> *points = new std::vector<ViewInfo *>();
+    std::vector<TweenSet *> *tweenPoints = new std::vector<TweenSet *>();
 
     int selectedIndex = MENU_FIRST;
     std::map<int, xml_node<> *> overrideItems;
@@ -600,6 +590,7 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
         xml_node<> *component = overrideItems[MENU_START];
         ViewInfo *viewInfo = CreateMenuItemInfo(component, itemDefaults, menu->GetBaseViewInfo()->GetY() + height);
         points->push_back(viewInfo);
+        tweenPoints->push_back(CreateTweenInstance(component));
     }
     while(!end)
     {
@@ -637,6 +628,7 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
         height = nextHeight;
         viewInfo->SetY(menu->GetBaseViewInfo()->GetY() + (float)height);
         points->push_back(viewInfo);
+        tweenPoints->push_back(CreateTweenInstance(component));
         index++;
     }
 
@@ -646,6 +638,7 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
         xml_node<> *component = overrideItems[MENU_END];
         ViewInfo *viewInfo = CreateMenuItemInfo(component, itemDefaults, menu->GetBaseViewInfo()->GetY() + height);
         points->push_back(viewInfo);
+        tweenPoints->push_back(CreateTweenInstance(component));
     }
 
     if(selectedIndex >= ((int)points->size()-2))
@@ -658,7 +651,7 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
         menu->SetSelectedIndex(selectedIndex+1);
     }
 
-    menu->SetPoints(points);
+    menu->SetPoints(points, tweenPoints);
 }
 
 ViewInfo *PageBuilder::CreateMenuItemInfo(xml_node<> *component, xml_node<> *defaults, float y)
@@ -780,9 +773,7 @@ void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info, xml_no
     {
         info->SetBackgroundAlpha( backgroundAlpha ? Utils::ConvertFloat(backgroundAlpha->value()) : 1);
     }
-
 }
-
 
 void PageBuilder::GetTweenSets(xml_node<> *node, std::vector<std::vector<Tween *> *> *tweenSets)
 {

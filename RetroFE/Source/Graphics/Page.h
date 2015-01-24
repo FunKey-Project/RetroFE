@@ -1,12 +1,26 @@
-/* This file is subject to the terms and conditions defined in
- * file 'LICENSE.txt', which is part of this source code package.
+/* This file is part of RetroFE.
+ *
+ * RetroFE is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RetroFE is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
 #pragma once
 
 #include "MenuNotifierInterface.h"
 
-#include <vector>
+#include <map>
 #include <string>
+#include <list>
+#include <vector>
 
 class CollectionInfo;
 class Component;
@@ -27,11 +41,14 @@ public:
 
     };
 
-    Page(std::string collectionName, Configuration &c);
+    Page(Configuration &c);
     virtual ~Page();
     virtual void OnNewItemSelected(Item *);
-    void SetCollection(CollectionInfo *collection);
-    void SetMenu(ScrollingList *s);
+    bool PushCollection(CollectionInfo *collection);
+    bool IsMenusFull() { return (MenuDepth > Menus.size()); }
+    bool PopCollection();
+    void PushMenu(ScrollingList *s);
+
     void SetLoadSound(Sound *chunk)
     {
         LoadSoundChunk = chunk;
@@ -51,8 +68,10 @@ public:
     bool AddComponent(Component *c);
     void PageScroll(ScrollDirection direction);
     void Start();
+    void StartComponents();
     void Stop();
     void SetScrolling(ScrollDirection direction);
+    unsigned int GetMenuDepth() { return MenuDepth; }
     Item *GetSelectedItem();
     Item *GetPendingSelectedItem();
     void RemoveSelectedItem();
@@ -65,13 +84,20 @@ public:
     void AllocateGraphicsMemory();
     void LaunchEnter();
     void LaunchExit();
-    const std::string& GetCollectionName() const;
+    std::string GetCollectionName();
 
 private:
     void Highlight();
     std::string CollectionName;
     Configuration &Config;
-    ScrollingList *Menu;
+    typedef std::vector<ScrollingList *> MenuVector_T;
+    typedef std::vector<CollectionInfo *> CollectionInfo_T;
+
+    ScrollingList *ActiveMenu;
+    unsigned int MenuDepth;
+    MenuVector_T Menus;
+    CollectionInfo_T Collections;
+
     static const unsigned int NUM_LAYERS = 8;
     std::vector<Component *> LayerComponents[NUM_LAYERS];
     std::vector<Item *> *Items;
@@ -85,5 +111,6 @@ private:
     Sound *SelectSoundChunk;
     bool HasSoundedWhenActive;
     bool FirstSoundPlayed;
+
 
 };

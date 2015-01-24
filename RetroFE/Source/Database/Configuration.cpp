@@ -41,6 +41,8 @@ Configuration::~Configuration()
 
 void Configuration::Initialize()
 {
+        Configuration::SetAbsolutePath("D:/RetroFE");
+#if 0 
     const char *environment = std::getenv("RETROFE_PATH");
     std::string environmentStr;
     if (environment != NULL)
@@ -68,6 +70,7 @@ void Configuration::Initialize()
 
         Configuration::SetAbsolutePath(sPath);
     }
+#endif
 }
 
 void Configuration::SetCurrentCollection(std::string collection)

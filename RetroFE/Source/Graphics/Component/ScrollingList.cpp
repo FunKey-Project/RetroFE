@@ -41,7 +41,6 @@ ScrollingList::ScrollingList(Configuration &c,
                              Font *font,
                              SDL_Color fontColor,
                              std::string layoutKey,
-                             std::string collectionName,
                              std::string imageType)
     : IsScrollChangedStarted(true)
     , IsScrollChangedSignalled(false)
@@ -64,9 +63,9 @@ ScrollingList::ScrollingList(Configuration &c,
     , FontInst(font)
     , FontColor(fontColor)
     , LayoutKey(layoutKey)
-    , CollectionName(collectionName)
     , ImageType(imageType)
     , MaxLayer(0)
+    , Focus(false)
 {
 }
 
@@ -81,6 +80,7 @@ ScrollingList::~ScrollingList()
             if(*it != NULL)
             {
                 DeallocateTexture(*it);
+
                 if((*it)->GetCollectionItem())
                 {
                     delete (*it)->GetCollectionItem();
@@ -131,9 +131,11 @@ void ScrollingList::SetItems(std::vector<ComponentItemBinding *> *spriteList)
     }
 }
 
-void ScrollingList::SetPoints(std::vector<ViewInfo *> *scrollPoints)
+void ScrollingList::SetPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<TweenSet *> *tweenPoints)
 {
     ScrollPoints = scrollPoints;
+    TweenPoints = tweenPoints;
+
     for(unsigned int i = 0; i != scrollPoints->size(); ++i)
     {
         ViewInfo *info = scrollPoints->at(i);
@@ -155,15 +157,18 @@ void ScrollingList::SetSelectedIndex(int selectedIndex)
 
 void ScrollingList::Click()
 {
-    if(CurrentScrollDirection == ScrollDirectionBack)
+    if(SpriteList)
     {
-        CircularDecrement(FirstSpriteIndex, SpriteList);
-        IsScrollChangedComplete = true;
-    }
-    if(CurrentScrollDirection == ScrollDirectionForward)
-    {
-        CircularIncrement(FirstSpriteIndex, SpriteList);
-        IsScrollChangedComplete = true;
+        if(CurrentScrollDirection == ScrollDirectionBack)
+        {
+            CircularDecrement(FirstSpriteIndex, SpriteList);
+            IsScrollChangedComplete = true;
+        }
+        if(CurrentScrollDirection == ScrollDirectionForward)
+        {
+            CircularIncrement(FirstSpriteIndex, SpriteList);
+            IsScrollChangedComplete = true;
+        }
     }
 }
 
@@ -183,7 +188,7 @@ unsigned int ScrollingList::GetNextTween(unsigned int currentIndex, std::vector<
 
 void ScrollingList::PageUp()
 {
-    if(ScrollPoints && ScrollPoints->size() > 4)
+    if(SpriteList && ScrollPoints && ScrollPoints->size() > 4)
     {
         ScrollVelocity = 0;
         unsigned int counts = ScrollPoints->size() - 4;
@@ -202,7 +207,7 @@ void ScrollingList::PageUp()
 
 void ScrollingList::PageDown()
 {
-    if(ScrollPoints && ScrollPoints->size() > 4)
+    if(SpriteList && ScrollPoints && ScrollPoints->size() > 4)
     {
         unsigned int counts = ScrollPoints->size() - 4;
 
@@ -231,12 +236,61 @@ void ScrollingList::FreeGraphicsMemory()
     ScrollAcceleration = 6;  // todo: make configurable
     ScrollVelocity = 0;
 
-    for(unsigned int i = 0; i < SpriteList->size(); i++)
+    for(unsigned int i = 0; SpriteList && i < SpriteList->size(); i++)
     {
         ComponentItemBinding *s = SpriteList->at(i);
 
         DeallocateTexture(s);
     }
+}
+
+void ScrollingList::TriggerMenuEnterEvent()
+{
+    Focus = true;
+
+    if(ScrollPoints && SpriteList && SpriteList->size() > 0 && FirstSpriteIndex < SpriteList->size())
+    {
+        unsigned int spriteIndex = FirstSpriteIndex;
+        unsigned int numIterations = (ScrollPoints->size() > SpriteList->size()) ? SpriteList->size() : ScrollPoints->size();
+        unsigned int start = (ScrollPoints->size() > SpriteList->size()) ? SelectedSpriteListIndex : 0;
+
+        for(unsigned int i = start; i < start+numIterations && spriteIndex < SpriteList->size(); i++)
+        {
+            ComponentItemBinding *s = SpriteList->at(spriteIndex);
+
+            Component *c = s->GetComponent();
+            if(c)
+            {
+                c->SetTweens(TweenPoints->at(i));
+                c->TriggerMenuEnterEvent();
+            }
+        }
+    }
+
+}
+
+void ScrollingList::TriggerMenuExitEvent()
+{
+    Focus = false;
+    if(ScrollPoints && SpriteList && SpriteList->size() > 0 && FirstSpriteIndex < SpriteList->size())
+    {
+        unsigned int spriteIndex = FirstSpriteIndex;
+        unsigned int numIterations = (ScrollPoints->size() > SpriteList->size()) ? SpriteList->size() : ScrollPoints->size();
+        unsigned int start = (ScrollPoints->size() > SpriteList->size()) ? SelectedSpriteListIndex : 0;
+
+        for(unsigned int i = start; i < start+numIterations && spriteIndex < SpriteList->size(); i++)
+        {
+            ComponentItemBinding *s = SpriteList->at(spriteIndex);
+
+            Component *c = s->GetComponent();
+            if(c)
+            {
+                c->SetTweens(TweenPoints->at(i));
+                c->TriggerMenuExitEvent();
+          }
+        }
+    }
+
 }
 
 
@@ -311,7 +365,7 @@ void ScrollingList::Update(float dt)
     }
 
 
-    if(ScrollPoints && SpriteList->size() > 0 && FirstSpriteIndex < SpriteList->size())
+    if(ScrollPoints && SpriteList && SpriteList->size() > 0 && FirstSpriteIndex < SpriteList->size())
     {
         unsigned int spriteIndex = FirstSpriteIndex;
         unsigned int numIterations = (ScrollPoints->size() > SpriteList->size()) ? SpriteList->size() : ScrollPoints->size();
@@ -320,37 +374,42 @@ void ScrollingList::Update(float dt)
         for(unsigned int i = start; i < start+numIterations && spriteIndex < SpriteList->size(); i++)
         {
             ComponentItemBinding *s = SpriteList->at(spriteIndex);
-            unsigned int nextI = GetNextTween(i, ScrollPoints);
-
-            ViewInfo *currentViewInfo = ScrollPoints->at(i);
-            ViewInfo *nextViewInfo = ScrollPoints->at(nextI);
 
             AllocateTexture(s);
 
             Component *c = s->GetComponent();
             if(c)
             {
-                currentViewInfo->SetImageHeight(c->GetBaseViewInfo()->GetImageHeight());
-                currentViewInfo->SetImageWidth(c->GetBaseViewInfo()->GetImageWidth());
-                nextViewInfo->SetImageHeight(c->GetBaseViewInfo()->GetImageHeight());
-                nextViewInfo->SetImageWidth(c->GetBaseViewInfo()->GetImageWidth());
-                nextViewInfo->SetBackgroundAlpha(c->GetBaseViewInfo()->GetBackgroundAlpha());
+                if(Focus)
+                {
+                    ViewInfo *spriteViewInfo = c->GetBaseViewInfo();
+                    ViewInfo *currentViewInfo = ScrollPoints->at(i);
+                    unsigned int nextI = GetNextTween(i, ScrollPoints);
+                    ViewInfo *nextViewInfo = ScrollPoints->at(nextI);
+                    currentViewInfo->SetImageHeight(c->GetBaseViewInfo()->GetImageHeight());
+                    currentViewInfo->SetImageWidth(c->GetBaseViewInfo()->GetImageWidth());
+                    nextViewInfo->SetImageHeight(c->GetBaseViewInfo()->GetImageHeight());
+                    nextViewInfo->SetImageWidth(c->GetBaseViewInfo()->GetImageWidth());
+                    nextViewInfo->SetBackgroundAlpha(c->GetBaseViewInfo()->GetBackgroundAlpha());
+                    spriteViewInfo->SetX(Tween::AnimateSingle(LINEAR, currentViewInfo->GetX(), nextViewInfo->GetX(), scrollPeriod, CurrentAnimateTime));
+                    spriteViewInfo->SetY(Tween::AnimateSingle(LINEAR, currentViewInfo->GetY(), nextViewInfo->GetY(), scrollPeriod, CurrentAnimateTime));
+                    spriteViewInfo->SetXOrigin(Tween::AnimateSingle(LINEAR, currentViewInfo->GetXOrigin(), nextViewInfo->GetXOrigin(), scrollPeriod, CurrentAnimateTime));
+                    spriteViewInfo->SetYOrigin(Tween::AnimateSingle(LINEAR, currentViewInfo->GetYOrigin(), nextViewInfo->GetYOrigin(), scrollPeriod, CurrentAnimateTime));
+                    spriteViewInfo->SetXOffset(Tween::AnimateSingle(LINEAR, currentViewInfo->GetXOffset(), nextViewInfo->GetXOffset(), scrollPeriod, CurrentAnimateTime));
+                    spriteViewInfo->SetYOffset(Tween::AnimateSingle(LINEAR, currentViewInfo->GetYOffset(), nextViewInfo->GetYOffset(), scrollPeriod, CurrentAnimateTime));
+                    spriteViewInfo->SetHeight(Tween::AnimateSingle(LINEAR, currentViewInfo->GetHeight(), nextViewInfo->GetHeight(), scrollPeriod, CurrentAnimateTime));
+                    spriteViewInfo->SetWidth(Tween::AnimateSingle(LINEAR, currentViewInfo->GetWidth(), nextViewInfo->GetWidth(), scrollPeriod, CurrentAnimateTime));
+                    spriteViewInfo->SetAlpha(Tween::AnimateSingle(LINEAR, currentViewInfo->GetAlpha(), nextViewInfo->GetAlpha(), scrollPeriod, CurrentAnimateTime));
+                    spriteViewInfo->SetAngle(Tween::AnimateSingle(LINEAR, currentViewInfo->GetAngle(), nextViewInfo->GetAngle(), scrollPeriod, CurrentAnimateTime));
+                    spriteViewInfo->SetFontSize(Tween::AnimateSingle(LINEAR, currentViewInfo->GetFontSize(), nextViewInfo->GetFontSize(), scrollPeriod, CurrentAnimateTime));
+                    spriteViewInfo->SetBackgroundAlpha(Tween::AnimateSingle(LINEAR, currentViewInfo->GetBackgroundAlpha(), nextViewInfo->GetBackgroundAlpha(), scrollPeriod, CurrentAnimateTime));
+                }
+                else
+                {
+//                    c->GetBaseViewInfo()->SetAlpha(0.25);
+                }
 
-                //todo: 30 is a magic number
-                ViewInfo *spriteViewInfo = c->GetBaseViewInfo();
 
-                spriteViewInfo->SetX(Tween::AnimateSingle(LINEAR, currentViewInfo->GetX(), nextViewInfo->GetX(), scrollPeriod, CurrentAnimateTime));
-                spriteViewInfo->SetY(Tween::AnimateSingle(LINEAR, currentViewInfo->GetY(), nextViewInfo->GetY(), scrollPeriod, CurrentAnimateTime));
-                spriteViewInfo->SetXOrigin(Tween::AnimateSingle(LINEAR, currentViewInfo->GetXOrigin(), nextViewInfo->GetXOrigin(), scrollPeriod, CurrentAnimateTime));
-                spriteViewInfo->SetYOrigin(Tween::AnimateSingle(LINEAR, currentViewInfo->GetYOrigin(), nextViewInfo->GetYOrigin(), scrollPeriod, CurrentAnimateTime));
-                spriteViewInfo->SetXOffset(Tween::AnimateSingle(LINEAR, currentViewInfo->GetXOffset(), nextViewInfo->GetXOffset(), scrollPeriod, CurrentAnimateTime));
-                spriteViewInfo->SetYOffset(Tween::AnimateSingle(LINEAR, currentViewInfo->GetYOffset(), nextViewInfo->GetYOffset(), scrollPeriod, CurrentAnimateTime));
-                spriteViewInfo->SetHeight(Tween::AnimateSingle(LINEAR, currentViewInfo->GetHeight(), nextViewInfo->GetHeight(), scrollPeriod, CurrentAnimateTime));
-                spriteViewInfo->SetWidth(Tween::AnimateSingle(LINEAR, currentViewInfo->GetWidth(), nextViewInfo->GetWidth(), scrollPeriod, CurrentAnimateTime));
-                spriteViewInfo->SetAlpha(Tween::AnimateSingle(LINEAR, currentViewInfo->GetAlpha(), nextViewInfo->GetAlpha(), scrollPeriod, CurrentAnimateTime));
-                spriteViewInfo->SetAngle(Tween::AnimateSingle(LINEAR, currentViewInfo->GetAngle(), nextViewInfo->GetAngle(), scrollPeriod, CurrentAnimateTime));
-                spriteViewInfo->SetFontSize(Tween::AnimateSingle(LINEAR, currentViewInfo->GetFontSize(), nextViewInfo->GetFontSize(), scrollPeriod, CurrentAnimateTime));
-                spriteViewInfo->SetBackgroundAlpha(Tween::AnimateSingle(LINEAR, currentViewInfo->GetBackgroundAlpha(), nextViewInfo->GetBackgroundAlpha(), scrollPeriod, CurrentAnimateTime));
                 c->Update(dt);
 
             }
@@ -433,7 +492,7 @@ void ScrollingList::AllocateTexture(ComponentItemBinding *s)
         //todo: will create a runtime fault if not of the right type
         //todo: remove coupling from knowing the collection name
 
-        std::string videoKey ="collections." + CollectionName + ".media.video";
+        std::string videoKey ="collections." + GetCollectionName() + ".media.video";
         std::string imagePath;
         std::string videoPath;
 
@@ -476,6 +535,7 @@ void ScrollingList::DeallocateTexture(ComponentItemBinding *s)
     if(s && s->GetComponent() != NULL)
     {
         delete s->GetComponent();
+        //todo: memory leak here, need to destroy allocated tween points here and in page (cannot be destroyed by component)
     }
     s->SetComponent(NULL);
 }
@@ -517,7 +577,7 @@ void ScrollingList::SetScrollDirection(ScrollDirection direction)
 void ScrollingList::RemoveSelectedItem()
 {
     ComponentItemBinding *sprite = GetSelectedCollectionItemSprite();
-    if(sprite)
+    if(sprite && SpriteList)
     {
         Item *item = sprite->GetCollectionItem();
         DeallocateTexture(sprite);
@@ -569,7 +629,7 @@ ComponentItemBinding* ScrollingList::GetPendingCollectionItemSprite()
 {
     ComponentItemBinding *item = NULL;
     unsigned int index = FirstSpriteIndex;
-    if(CurrentScrollState != ScrollStatePageChange)
+    if(SpriteList && CurrentScrollState != ScrollStatePageChange)
     {
         if(CurrentScrollDirection == ScrollDirectionBack)
         {
@@ -613,22 +673,25 @@ ComponentItemBinding* ScrollingList::GetPendingSelectedCollectionItemSprite()
 {
     ComponentItemBinding *item = NULL;
 
-    unsigned int index = SelectedSpriteListIndex;
-
-    if(CurrentScrollDirection == ScrollDirectionBack)
+    if(SpriteList)
     {
-        CircularDecrement(index, SpriteList);
-    }
-    if(CurrentScrollDirection == ScrollDirectionForward)
-    {
-        CircularIncrement(index, SpriteList);
-    }
+        unsigned int index = SelectedSpriteListIndex;
 
-    if(SpriteList && SpriteList->size() > 0)
-    {
-        index = (index + SelectedSpriteListIndex) % SpriteList->size();
+        if(CurrentScrollDirection == ScrollDirectionBack)
+        {
+            CircularDecrement(index, SpriteList);
+        }
+        if(CurrentScrollDirection == ScrollDirectionForward)
+        {
+            CircularIncrement(index, SpriteList);
+        }
 
-        item = SpriteList->at(index);
+        if(SpriteList && SpriteList->size() > 0)
+        {
+            index = (index + SelectedSpriteListIndex) % SpriteList->size();
+
+            item = SpriteList->at(index);
+        }
     }
 
     return item;

@@ -21,15 +21,12 @@
 
 Component::Component()
 {
-    OnEnterTweens = NULL;
-    OnExitTweens = NULL;
-    OnIdleTweens = NULL;
-    OnHighlightEnterTweens = NULL;
-    OnHighlightExitTweens = NULL;
+    Tweens = NULL;
     SelectedItem = NULL;
     NewItemSelectedSinceEnter = false;
     BackgroundTexture = NULL;
     FreeGraphicsMemory();
+
 }
 
 Component::~Component()
@@ -42,6 +39,9 @@ void Component::FreeGraphicsMemory()
     CurrentAnimationState = HIDDEN;
     EnterRequested = false;
     ExitRequested = false;
+    MenuEnterRequested = false;
+    MenuExitRequested = false;
+
     NewItemSelected = false;
     HighlightExitComplete = false;
     CurrentTweens = NULL;
@@ -87,6 +87,22 @@ void Component::TriggerExitEvent()
     ExitRequested = true;
 }
 
+
+
+void Component::TriggerMenuEnterEvent()
+{
+    std::stringstream ss;
+    ss << CurrentAnimationState;
+    ss << " Triggering menu enter request";
+                Logger::Write(Logger::ZONE_DEBUG, "Component", ss.str());
+
+    MenuEnterRequested = true;
+}
+
+void Component::TriggerMenuExitEvent()
+{
+    MenuExitRequested = true;
+}
 void Component::TriggerHighlightEvent(Item *selectedItem)
 {
     NewItemSelected = true;
@@ -108,6 +124,22 @@ bool Component::IsWaiting()
     return (CurrentAnimationState == HIGHLIGHT_WAIT);
 }
 
+bool Component::IsMenuAnimating()
+{
+    return (CurrentAnimationState == MENU_ENTER || CurrentAnimationState == MENU_EXIT);
+}
+
+
+std::string Component::GetCollectionName()
+{
+    return CollectionName;
+}
+
+void Component::SetCollectionName(std::string collectionName)
+{
+    CollectionName = collectionName;
+}
+
 void Component::Update(float dt)
 {
     ElapsedTweenTime += dt;
@@ -122,21 +154,35 @@ void Component::Update(float dt)
         CurrentTweens = NULL;
 
         // There was no request to override our state path. Continue on as normal.
+        std::stringstream ss;
         switch(CurrentAnimationState)
         {
+        case MENU_ENTER:
+            Logger::Write(Logger::ZONE_DEBUG, "Page", "MENU EXIT!");
+            CurrentTweens = NULL;
+            CurrentAnimationState = IDLE;
+            break;
+
+        case MENU_EXIT:
+            Logger::Write(Logger::ZONE_DEBUG, "Page", "MENU EXIT!");
+            CurrentTweens = NULL;
+            CurrentAnimationState = IDLE;
+            break;
+
+
         case ENTER:
-            CurrentTweens = OnHighlightEnterTweens;
+            CurrentTweens = Tweens->GetOnHighlightEnterTweens();
             CurrentAnimationState = HIGHLIGHT_ENTER;
             break;
 
         case EXIT:
+        Logger::Write(Logger::ZONE_DEBUG, "Page", "COMPONENT EXIT!");
             CurrentTweens = NULL;
             CurrentAnimationState = HIDDEN;
-
             break;
 
         case HIGHLIGHT_ENTER:
-            CurrentTweens = OnIdleTweens;
+            CurrentTweens = Tweens->GetOnIdleTweens();
             CurrentAnimationState = IDLE;
             break;
 
@@ -144,17 +190,36 @@ void Component::Update(float dt)
             // prevent us from automatically jumping to the exit tween upon enter
             if(EnterRequested)
             {
-                EnterRequested = false;
-                NewItemSelected = false;
+               Logger::Write(Logger::ZONE_DEBUG, "Component", "Triggering enter event");
+               EnterRequested = false;
+               NewItemSelected = false;
+            }
+            else if(MenuEnterRequested)
+            {
+                Logger::Write(Logger::ZONE_DEBUG, "Component", "Triggering menu enter event from idle");
+                MenuEnterRequested = false;
+                CurrentTweens = Tweens->GetOnMenuEnterTweens();
+                CurrentAnimationState = MENU_ENTER;
+                ss << CurrentTweens->size();
+                Logger::Write(Logger::ZONE_DEBUG, "Page", "MENU ENTER! SIZE " + ss.str());
+            }
+            else if(MenuExitRequested)
+            {
+                Logger::Write(Logger::ZONE_DEBUG, "Component", "Triggering menu exit event from idle");
+                MenuExitRequested = false;
+                CurrentTweens = Tweens->GetOnMenuExitTweens();
+                CurrentAnimationState = MENU_EXIT;
+                ss << CurrentTweens->size();
+                Logger::Write(Logger::ZONE_DEBUG, "Page", "MENU ENTER! SIZE " + ss.str());
             }
             else if(IsScrollActive() || NewItemSelected || ExitRequested)
             {
-                CurrentTweens = OnHighlightExitTweens;
+                CurrentTweens = Tweens->GetOnHighlightExitTweens();
                 CurrentAnimationState = HIGHLIGHT_EXIT;
             }
             else
             {
-                CurrentTweens = OnIdleTweens;
+                CurrentTweens = Tweens->GetOnIdleTweens();
                 CurrentAnimationState = IDLE;
             }
             break;
@@ -166,14 +231,14 @@ void Component::Update(float dt)
 
             if(ExitRequested && (CurrentAnimationState == HIGHLIGHT_WAIT))
             {
-                CurrentTweens = OnHighlightExitTweens;
+                CurrentTweens = Tweens->GetOnHighlightExitTweens();
                 CurrentAnimationState = HIGHLIGHT_EXIT;
 
             }
             else if(ExitRequested && (CurrentAnimationState == HIGHLIGHT_EXIT))
             {
 
-                CurrentTweens = OnExitTweens;
+                CurrentTweens = Tweens->GetOnExitTweens();
                 CurrentAnimationState = EXIT;
                 ExitRequested = false;
             }
@@ -184,7 +249,7 @@ void Component::Update(float dt)
             }
             else if(NewItemSelected)
             {
-                CurrentTweens = OnHighlightEnterTweens;
+                CurrentTweens = Tweens->GetOnHighlightEnterTweens();
                 CurrentAnimationState = HIGHLIGHT_ENTER;
                 HighlightExitComplete = true;
                 NewItemSelected = false;
@@ -199,8 +264,25 @@ void Component::Update(float dt)
         case HIDDEN:
             if(EnterRequested || ExitRequested)
             {
-                CurrentTweens = OnEnterTweens;
+                CurrentTweens = Tweens->GetOnEnterTweens();
                 CurrentAnimationState = ENTER;
+            }
+            else if(MenuExitRequested)
+            {
+                CurrentTweens = Tweens->GetOnMenuExitTweens();
+                ss << CurrentTweens->size();
+                Logger::Write(Logger::ZONE_DEBUG, "Component", "Entering menu exit from hidden! " + ss.str());
+                CurrentAnimationState = MENU_EXIT;
+                MenuExitRequested = false;
+            }
+            else if(MenuEnterRequested)
+            {
+                CurrentTweens = Tweens->GetOnMenuEnterTweens();
+                ss << CurrentTweens->size();
+                Logger::Write(Logger::ZONE_DEBUG, "Component", "Entering menu enter from hidden!" + ss.str());
+                CurrentAnimationState = MENU_ENTER;
+                MenuEnterRequested = false;
+
             }
             else
             {

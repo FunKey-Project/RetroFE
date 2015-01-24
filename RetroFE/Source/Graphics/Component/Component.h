@@ -1,5 +1,17 @@
-/* This file is subject to the terms and conditions defined in
- * file 'LICENSE.txt', which is part of this source code package.
+/* This file is part of RetroFE.
+ *
+ * RetroFE is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RetroFE is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
 #pragma once
 
@@ -9,6 +21,7 @@
 #include "../MenuNotifierInterface.h"
 #include "../ViewInfo.h"
 #include "../Animate/Tween.h"
+#include "../Animate/TweenSet.h"
 #include "../../Collection/Item.h"
 
 class Component
@@ -22,36 +35,28 @@ public:
     virtual void LaunchExit() {}
     void TriggerEnterEvent();
     void TriggerExitEvent();
+    void TriggerMenuEnterEvent();
+    void TriggerMenuExitEvent();
     void TriggerHighlightEvent(Item *selectedItem);
     bool IsIdle();
     bool IsHidden();
     bool IsWaiting();
+    bool IsMenuAnimating();
+    std::string GetCollectionName();
+    void SetCollectionName(std::string collectionName);
     typedef std::vector<std::vector<Tween *> *> TweenSets;
 
-    void SetOnEnterTweens(TweenSets *tweens)
+    TweenSet *GetTweens() { return Tweens; }
+
+    void SetTweens(TweenSet *set)
     {
-        this->OnEnterTweens = tweens;
+        Tweens = set;
+        CurrentAnimationState = IDLE; 
+        CurrentTweenIndex = 0;
+        CurrentTweenComplete = false;
+        ElapsedTweenTime = 0;
     }
 
-    void SetOnExitTweens(TweenSets *tweens)
-    {
-        this->OnExitTweens = tweens;
-    }
-
-    void SetOnIdleTweens(TweenSets *tweens)
-    {
-        this->OnIdleTweens = tweens;
-    }
-
-    void SetOnHighlightEnterTweens(TweenSets *tweens)
-    {
-        this->OnHighlightEnterTweens = tweens;
-    }
-
-    void SetOnHighlightExitTweens(TweenSets *tweens)
-    {
-        this->OnHighlightExitTweens = tweens;
-    }
     virtual void Update(float dt);
 
     virtual void Draw();
@@ -78,6 +83,7 @@ public:
 
 
 protected:
+    std::string CollectionName;
     Item *GetSelectedItem()
     {
         return SelectedItem;
@@ -90,12 +96,16 @@ protected:
         HIGHLIGHT_WAIT,
         HIGHLIGHT_ENTER,
         EXIT,
+        MENU_ENTER,
+        MENU_EXIT,
         HIDDEN
     };
 
     AnimationState CurrentAnimationState;
     bool EnterRequested;
     bool ExitRequested;
+    bool MenuEnterRequested;
+    bool MenuExitRequested;
     bool NewItemSelected;
     bool HighlightExitComplete;
     bool NewItemSelectedSinceEnter;
@@ -103,13 +113,7 @@ private:
     bool Animate(bool loop);
     bool IsTweenSequencingComplete();
     void ResetTweenSequence(std::vector<ViewInfo *> *tweens);
-
-    TweenSets *OnEnterTweens;
-    TweenSets *OnExitTweens;
-    TweenSets *OnIdleTweens;
-    TweenSets *OnHighlightEnterTweens;
-    TweenSets *OnHighlightExitTweens;
-
+    TweenSet *Tweens;
     TweenSets *CurrentTweens;
     unsigned int CurrentTweenIndex;
 
