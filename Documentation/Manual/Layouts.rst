@@ -65,6 +65,7 @@ Top Level Components             Description
 <reloadableVideo>                Display a video for the selected item
 <reloadableText>                 Display text for the selected item
 <text>                           Display custom text
+<statusText>                     Display the status of a current action
 ===========================      ===========================================================================
 
 Component attributes
@@ -168,16 +169,16 @@ The animation engine is very flexible. You can move, rotate, scale, and make ima
       </onEnter>
    </image>
 
-=====================================      =================================================================================================
+=====================================      =========================================================================================================================
 Tag (in example above)                     Description
-=====================================      =================================================================================================
+=====================================      =========================================================================================================================
 <image>                                    The component to animate. In this case it is an image.
 <onEnter>                                  When to trigger the event. In this case it will be triggered when the page is first loaded.
 <set>                                      Groups component properties to animate. In this case the first group animates the x and y coordinates
                                            together for one second and then later animates the y axis for half a second.
 <animation>                                Defines the start, end, and algorithm to use for animating a property (in this case the X and Y position).
 <onIdle>                                   Event that is continuously looped when there is no active input (when the menu is idling)
-=====================================      =================================================================================================
+=====================================      =========================================================================================================================
 
 
 Events
@@ -185,15 +186,17 @@ Events
 
 The following animations are supported by all component tags. 
 
-=====================================      =================================================================================================
+=====================================      ================================================================================================================
 Tag                                        Description
-=====================================      =================================================================================================
+=====================================      ================================================================================================================
 <onEnter>                                  Events that are triggered when the layout first starts
 <onExit>                                   Events that are triggered when the layout exits
 <onHighlightExit>                          Events that are triggered when the currently highlighted item is no longer highlighted
 <onHighlightEnter>                         Events that are triggered when the item is highlighted
 <onIdle>                                   Event that is continuously looped when there is no active input (when the menu is idling)
-=====================================      =================================================================================================
+<onMenuEnter>                              Event that is triggered when a menu is being entered. Only applicable when used inside a menu.
+<onMenuExit>                               Event that is triggered when leaving a menu to enter a new menu. Only applicable when used inside a menu.
+=====================================      ================================================================================================================
 
 .. code-block:: xml
 
@@ -339,7 +342,7 @@ While this example may not be practical; it showcases all the properties that ca
             <animation type="yOffset"      from="0"    to="20"     algorithm="linear">
             <animation type="xOrigin"      from="0"    to="30"     algorithm="easeinoutquintic">
             <animation type="yOrigin"      from="0"    to="20"     algorithm="linear">
-            <animation type="transparency" from="0"    to="1"      algorithm="easeinoutquintic">
+            <animation type="alpha"        from="0"    to="1"      algorithm="easeinoutquintic">
             <animation type="angle"        from="0"    to="360"    algorithm="linear">
             <animation type="height"       from="0"    to="300"    algorithm="easeinoutquadratic">
             <animation type="width"        from="0"    to="180"    algorithm="easeincircular">
@@ -352,7 +355,7 @@ While this example may not be practical; it showcases all the properties that ca
             <animation type="yOffset"      from="20"     to="0"    algorithm="linear">
             <animation type="xOrigin"      from="30"     to="0"    algorithm="easeinoutquintic">
             <animation type="yOrigin"      from="20"     to="0"    algorithm="linear">
-            <animation type="transparency" from="1"      to="0"    algorithm="easeinoutquintic">
+            <animation type="alpha"        from="1"      to="0"    algorithm="easeinoutquintic">
             <animation type="angle"        from="360"    to="0"    algorithm="linear">         
             <animation type="height"       from="300"    to="0"    algorithm="easeinoutquadratic">
             <animation type="width"        from="180"    to="0"    algorithm="easeincircular">
@@ -542,7 +545,7 @@ If an attribute in <item> is not specified, it will use the attribute specified 
       <itemDefaults x="center" y="20" fontColor="FFCC00" layer="3"/>
       <item xOrigin="center" yOrigin="20" />
       <item xOrigin="center" yOrigin="40" />
-      <item xOrigin="center" yOrigin="60" />
+      <item xOrigin="center" yOrigin="60" selected="true">
       <item xOrigin="center" yOrigin="80" />
       <item xOrigin="center" yOrigin="100" />
       <item xOrigin="center" yOrigin="120" />
@@ -602,6 +605,97 @@ Not only can the entire menu have an animation performed, the menu item at a par
    </menu>
 
 
+
+   
+Multiple menus
+==============================================================================================
+Multiple menus can be enabled. Add an extra menu tag for each nested menu.
+
+.. code-block:: xml
+
+   <!-- Display the primary menu -->
+   <menu x="center" y="20" fontColor="FFCC00">
+      <item xOrigin="center" yOrigin="40">
+         <onMenuEnter>
+            <set duration="0.5">
+               <animation type="alpha" from="0" to="0.5">
+            </set>
+         </onMenuEnter>
+         <onMenuExit>
+            <set duration="0.5">
+               <animation type="alpha" from="0.5" to="0">
+            </set>
+         </onMenuExit>
+      </item>
+      
+      <item xOrigin="center" yOrigin="60" selected="true">
+         <onMenuEnter>
+            <set duration="0.5">
+               <animation type="alpha" from=".25" to="1">
+            </set>
+         </onMenuEnter>
+         <onMenuExit>
+            <set duration="0.5">
+               <animation type="alpha" from="1" to=".25">
+            </set>
+         </onMenuExit>
+      </item>
+      
+      <item xOrigin="center" yOrigin="80">
+         <onMenuEnter>
+            <set duration="0.5">
+               <animation type="alpha" from="0" to="0.5">
+            </set>
+         </onMenuEnter>
+         <onMenuExit>
+            <set duration="0.5">
+               <animation type="alpha" from="0.5" to="0">
+            </set>
+         </onMenuExit>
+      </item>
+   </menu>
+
+   <!-- Display the submenu -->
+   <menu x="center" y="20" fontColor="FFCC00">
+      <item xOrigin="center" yOrigin="40">
+         <onMenuEnter>
+            <set duration="0.5">
+               <animation type="alpha" from="0" to="0.5">
+            </set>
+         </onMenuEnter>
+         <onMenuExit>
+            <set duration="0.5">
+               <animation type="alpha" from="0.5" to="0">
+            </set>
+         </onMenuExit>
+      </item>
+      
+      <item xOrigin="center" yOrigin="60" selected="true">
+         <onMenuEnter>
+            <set duration="0.5">
+               <animation type="alpha" from=".25" to="1">
+            </set>
+         </onMenuEnter>
+         <onMenuExit>
+            <set duration="0.5">
+               <animation type="alpha" from="1" to=".25">
+            </set>
+         </onMenuExit>
+      </item>
+
+      <item xOrigin="center" yOrigin="80">
+         <onMenuEnter>
+            <set duration="0.5">
+               <animation type="alpha" from="0" to="0.5">
+            </set>
+         </onMenuEnter>
+         <onMenuExit>
+            <set duration="0.5">
+               <animation type="alpha" from="0.5" to="0">
+            </set>
+         </onMenuExit>
+      </item>
+   </menu>
 Sounds
 #######
 In addition to displaying graphical components, the frontend supports sound effects that are triggered when certain events occur.
@@ -612,7 +706,7 @@ Tag                                  Description
 <onLoad>                             Sound triggered when the layout is started
 <onUnload>                           Sound triggered when the layout is exited
 <highlight>                          Sound triggered when a new item is highlighted. This will not loop while actively scrolling. 
-<select>                             Sound triggered when an item is selected2
+<select>                             Sound triggered when an item is selected
 ===============================      =================================================================================================
 
 Each sound effect supports the following parameters:
