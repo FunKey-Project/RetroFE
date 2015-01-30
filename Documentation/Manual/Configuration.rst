@@ -15,7 +15,7 @@ Collections                      Defines directories to scan for populating list
 Main Menu                        Defines the list of collections to pick from on the main page.
 ===========================      ==================================================================================================================================================================
 
-Main Configuration
+Main Configurations
 ################################################
 
 **/Settings.conf**
@@ -36,30 +36,46 @@ showSquareBrackets  			     Set to no if you want to hide braces (and anything i
 showVideo                            Set to no if you want to not load video (for slower systems)
 videoLoop							 Number of times to loop video playback (enter 0 to continuously loop)
 firstCollection						 Defines the first collection to load. If not specified, the "Main" collection will be used.
-controls.previousItem                The key to press to scroll to the previous item in a list
-controls.nextItem                    The key to press to scroll to the next item in a list
-controls.pageUp                      The key to press to scroll page up in a list
-controls.pageDown                    The key to press to scroll page down in a list
-controls.select                      The key to press to select (or launch) the selected list item
-controls.back                        The key to press to return to the previous menu
-controls.quit                        The key to press to quit the frontend
 ==================================   ========================================================================================================
 
-Basic example (640x480 fullscreen with controls configured):
+**/Controls.conf**
+
+See below for a list of supported properties.
+
+=========================   ========================================================================================================
+Property                    Description                            
+=========================   ========================================================================================================
+previousItem                The key to press to scroll to the previous item in a list
+nextItem                    The key to press to scroll to the next item in a list
+pageUp                      The key to press to scroll page up in a list
+pageDown                    The key to press to scroll page down in a list
+select                      The key to press to select (or launch) the selected list item
+back                        The key to press to return to the previous menu
+quit                        The key to press to quit the frontend
+=========================   ========================================================================================================
+
+
+Basic example for Settings.conf (640x480 fullscreen):
 
 .. code-block:: javascript
 
    horizontal = 640
    vertical   = 480
    fullscreen = yes
-   
-   controls.previousItem = Up
-   controls.nextItem = Down
-   controls.pageUp = Left
-   controls.pageDown = Right
-   controls.select = Space
-   controls.back = Escape
-   controls.quit = q
+
+
+
+Basic example for Controls.conf:
+
+.. code-block:: javascript
+
+   previousItem = Up
+   nextItem = Down
+   pageUp = Left
+   pageDown = Right
+   select = Space
+   back = Escape
+   quit = q
 
 See :ref:`ControlKeycodes` for a list of valid key codes
    
@@ -141,14 +157,11 @@ Collections
 A collection is a list of items to display on a menu. A collection can be built by scanning a list of files in a folder. Each collection configuration is broken up into three separate
 configuration files (for portability).
 
-
 ==================================   ==================================================================================================================
 Configuration  File                  Description                            
 ==================================   ==================================================================================================================
 Settings.conf                        Defines which launcher to use, item (ROM) folders, extensions, media paths, layout/theme, etc...
-Mamelist.xml                         If this is a mame collection, place your mamelist.xml file in this folder. 
 Include.txt                          List the filenames (without the extension) to show up in your list. If empty, all files will be shown in the list.
-Include.xml                          HyperSpin HyperList XML file to show up in your list. Ignored if Include.txt exists.
 Exclude.txt                          List the filenames (without the extension) to hide from being shown up in your list
 ==================================   ==================================================================================================================
 
@@ -163,10 +176,10 @@ launcher                             Launcher to use when item is selected (will
 layout                               The name of the layout to load for the collection (will read layout from Layouts/<layout>     
 path                                 Location of where files to launch exist    
 extensions                           Adds only files with the given extension to a list (comma separated)    
-snap                                 Snapshot image folder    
-title                                Title screen image folder    
-video                                Video folder    
-box                                  Box artwork folder    
+media.snap                           Snapshot image folder    
+media.title                          Title screen image folder    
+media.video                          Video folder    
+media.box                            Box artwork folder    
 ==================================   ================================================================================================================================
 
 The following example will use the launcher configuration from "/Launchers/nestopia.conf" and will use the layout in "Layouts/Nintendo Entertainment System"
@@ -177,10 +190,10 @@ The following example will use the launcher configuration from "/Launchers/nesto
    layout   = Nintendo Entertainment System
    path  = D:/ROMs/Nintendo Entertainment System
    extensions = nes,zip
-   snap  = D:/Media/Nintendo Entertainment System/Snaps
-   title = D:/Media/Nintendo Entertainment System/Titles
-   video = D:/Media/Nintendo Entertainment System/Videos
-   box   = D:/Media/Nintendo Entertainment System/Box
+   media.snap  = D:/Media/Nintendo Entertainment System/Snaps
+   media.title = D:/Media/Nintendo Entertainment System/Titles
+   media.video = D:/Media/Nintendo Entertainment System/Videos
+   media.box   = D:/Media/Nintendo Entertainment System/Box
 
 
 Showing and Hiding Collection Items
@@ -209,6 +222,15 @@ Example Exclude.txt file:
    E.T. (USA)
    Bayou Billy (USA)
 
+
+Meta Database (scraping)
+################################################
+
+RetroFE has the ability to take information from various sources and and consolidate them into a database for collections to reference for additional details about a specific game item.
+The database is populated by scanning for all files in /Meta/Hyperlist and /Meta/Mamelist. 
+
+HyperLists and mamelists are supported for scraping. The latest versions of RetroFE come pre-packaged with the Hyperlist files and/Meta/Hyperlist/<CollectionName>.xml and /Meta/Mamelist/<CollectionName.xml>.
+If no cache.db file exists, the frontend will scrape those files and build the database for you automatically. To update the database, it is currently required that you manually delete cache.db.
 
 .. _ConfigurationMenu:
 
