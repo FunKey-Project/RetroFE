@@ -13,7 +13,6 @@
  * You should have received a copy of the GNU General Public License
  * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #include "Tween.h"
 #include <algorithm>
 #define _USE_MATH_DEFINES
