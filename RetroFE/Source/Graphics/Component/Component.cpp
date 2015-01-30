@@ -21,15 +21,12 @@
 
 Component::Component()
 {
-    OnEnterTweens = NULL;
-    OnExitTweens = NULL;
-    OnIdleTweens = NULL;
-    OnHighlightEnterTweens = NULL;
-    OnHighlightExitTweens = NULL;
+    Tweens = NULL;
     SelectedItem = NULL;
     NewItemSelectedSinceEnter = false;
     BackgroundTexture = NULL;
     FreeGraphicsMemory();
+
 }
 
 Component::~Component()
@@ -42,6 +39,10 @@ void Component::FreeGraphicsMemory()
     CurrentAnimationState = HIDDEN;
     EnterRequested = false;
     ExitRequested = false;
+    MenuEnterRequested = false;
+    MenuScrollRequested = false;
+    MenuExitRequested = false;
+
     NewItemSelected = false;
     HighlightExitComplete = false;
     CurrentTweens = NULL;
@@ -87,6 +88,23 @@ void Component::TriggerExitEvent()
     ExitRequested = true;
 }
 
+
+
+void Component::TriggerMenuEnterEvent()
+{
+    MenuEnterRequested = true;
+}
+
+void Component::TriggerMenuScrollEvent()
+{
+    MenuScrollRequested = true;
+}
+
+
+void Component::TriggerMenuExitEvent()
+{
+    MenuExitRequested = true;
+}
 void Component::TriggerHighlightEvent(Item *selectedItem)
 {
     NewItemSelected = true;
@@ -108,6 +126,22 @@ bool Component::IsWaiting()
     return (CurrentAnimationState == HIGHLIGHT_WAIT);
 }
 
+bool Component::IsMenuScrolling()
+{
+    return (CurrentAnimationState == MENU_ENTER || CurrentAnimationState == MENU_SCROLL || CurrentAnimationState == MENU_EXIT || MenuScrollRequested);
+}
+
+
+std::string Component::GetCollectionName()
+{
+    return CollectionName;
+}
+
+void Component::SetCollectionName(std::string collectionName)
+{
+    CollectionName = collectionName;
+}
+
 void Component::Update(float dt)
 {
     ElapsedTweenTime += dt;
@@ -122,21 +156,38 @@ void Component::Update(float dt)
         CurrentTweens = NULL;
 
         // There was no request to override our state path. Continue on as normal.
+        std::stringstream ss;
         switch(CurrentAnimationState)
         {
+        case MENU_ENTER:
+            CurrentTweens = NULL;
+            CurrentAnimationState = IDLE;
+            break;
+
+        case MENU_SCROLL:
+            CurrentTweens = NULL;
+            CurrentAnimationState = IDLE;
+            break;
+
+        case MENU_EXIT:
+            CurrentTweens = NULL;
+            CurrentAnimationState = IDLE;
+                Logger::Write(Logger::ZONE_ERROR, "Component", "completed menu exit tween (hidden)");
+            break;
+
+
         case ENTER:
-            CurrentTweens = OnHighlightEnterTweens;
+            CurrentTweens = Tweens->GetOnHighlightEnterTweens();
             CurrentAnimationState = HIGHLIGHT_ENTER;
             break;
 
         case EXIT:
             CurrentTweens = NULL;
             CurrentAnimationState = HIDDEN;
-
             break;
 
         case HIGHLIGHT_ENTER:
-            CurrentTweens = OnIdleTweens;
+            CurrentTweens = Tweens->GetOnIdleTweens();
             CurrentAnimationState = IDLE;
             break;
 
@@ -144,17 +195,35 @@ void Component::Update(float dt)
             // prevent us from automatically jumping to the exit tween upon enter
             if(EnterRequested)
             {
-                EnterRequested = false;
-                NewItemSelected = false;
+               EnterRequested = false;
+               NewItemSelected = false;
+            }
+            else if(MenuEnterRequested)
+            {
+                MenuEnterRequested = false;
+                CurrentTweens = Tweens->GetOnMenuEnterTweens();
+                CurrentAnimationState = MENU_ENTER;
+            }
+            else if(MenuScrollRequested)
+            {
+                MenuScrollRequested = false;
+                CurrentTweens = Tweens->GetOnMenuScrollTweens();
+                CurrentAnimationState = MENU_SCROLL;
+            }
+            else if(MenuExitRequested)
+            {
+                MenuExitRequested = false;
+                CurrentTweens = Tweens->GetOnMenuExitTweens();
+                CurrentAnimationState = MENU_EXIT;
             }
             else if(IsScrollActive() || NewItemSelected || ExitRequested)
             {
-                CurrentTweens = OnHighlightExitTweens;
+                CurrentTweens = Tweens->GetOnHighlightExitTweens();
                 CurrentAnimationState = HIGHLIGHT_EXIT;
             }
             else
             {
-                CurrentTweens = OnIdleTweens;
+                CurrentTweens = Tweens->GetOnIdleTweens();
                 CurrentAnimationState = IDLE;
             }
             break;
@@ -166,14 +235,14 @@ void Component::Update(float dt)
 
             if(ExitRequested && (CurrentAnimationState == HIGHLIGHT_WAIT))
             {
-                CurrentTweens = OnHighlightExitTweens;
+                CurrentTweens = Tweens->GetOnHighlightExitTweens();
                 CurrentAnimationState = HIGHLIGHT_EXIT;
 
             }
             else if(ExitRequested && (CurrentAnimationState == HIGHLIGHT_EXIT))
             {
 
-                CurrentTweens = OnExitTweens;
+                CurrentTweens = Tweens->GetOnExitTweens();
                 CurrentAnimationState = EXIT;
                 ExitRequested = false;
             }
@@ -184,7 +253,7 @@ void Component::Update(float dt)
             }
             else if(NewItemSelected)
             {
-                CurrentTweens = OnHighlightEnterTweens;
+                CurrentTweens = Tweens->GetOnHighlightEnterTweens();
                 CurrentAnimationState = HIGHLIGHT_ENTER;
                 HighlightExitComplete = true;
                 NewItemSelected = false;
@@ -199,8 +268,27 @@ void Component::Update(float dt)
         case HIDDEN:
             if(EnterRequested || ExitRequested)
             {
-                CurrentTweens = OnEnterTweens;
+                CurrentTweens = Tweens->GetOnEnterTweens();
                 CurrentAnimationState = ENTER;
+            }
+            else if(MenuExitRequested)
+            {
+                CurrentTweens = Tweens->GetOnMenuExitTweens();
+                CurrentAnimationState = MENU_EXIT;
+                MenuExitRequested = false;
+            }
+            else if(MenuEnterRequested)
+            {
+                CurrentTweens = Tweens->GetOnMenuEnterTweens();
+                CurrentAnimationState = MENU_ENTER;
+                MenuEnterRequested = false;
+
+            }
+            else if(MenuScrollRequested)
+            {
+                MenuScrollRequested = false;
+                CurrentTweens = Tweens->GetOnMenuScrollTweens();
+                CurrentAnimationState = MENU_SCROLL;
             }
             else
             {

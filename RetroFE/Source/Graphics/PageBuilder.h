@@ -18,14 +18,13 @@ class Configuration;
 class PageBuilder
 {
 public:
-    PageBuilder(std::string layoutKey, std::string collection, Configuration &c, FontCache *fc);
+    PageBuilder(std::string layoutKey, Configuration &c, FontCache *fc);
     virtual ~PageBuilder();
     Page *BuildPage();
 
 private:
     std::string LayoutKey;
     std::string LayoutPath;
-    std::string Collection;
     Configuration &Config;
     float ScaleX;
     float ScaleY;
@@ -42,6 +41,7 @@ private:
     void BuildViewInfo(rapidxml::xml_node<> *componentXml, ViewInfo *info, rapidxml::xml_node<> *defaultXml = NULL);
     bool BuildComponents(rapidxml::xml_node<> *layout, Page *page);
     void LoadTweens(Component *c, rapidxml::xml_node<> *componentXml);
+    TweenSet *CreateTweenInstance(rapidxml::xml_node<> *componentXml);
     ScrollingList * BuildMenu(rapidxml::xml_node<> *menuXml);
     void BuildCustomMenu(ScrollingList *menu, rapidxml::xml_node<> *menuXml, rapidxml::xml_node<> *itemDefaults);
     void BuildVerticalMenu(ScrollingList *menu, rapidxml::xml_node<> *menuXml, rapidxml::xml_node<> *itemDefaults);

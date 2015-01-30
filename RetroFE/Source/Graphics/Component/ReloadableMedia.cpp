@@ -27,12 +27,12 @@
 #include <vector>
 #include <iostream>
 
-ReloadableMedia::ReloadableMedia(std::string imagePath, std::string videoPath, bool isVideo, float scaleX, float scaleY)
-    : LoadedComponent(NULL)
-    , ImagePath(imagePath)
-    , VideoPath(videoPath)
+ReloadableMedia::ReloadableMedia(Configuration &config, std::string type, bool isVideo, float scaleX, float scaleY)
+    : Config(config)
+    , LoadedComponent(NULL)
     , ReloadRequested(false)
     , FirstLoad(true)
+    , Type(type)
     , IsVideo(isVideo)
     , ScaleX(scaleX)
     , ScaleY(scaleY)
@@ -134,19 +134,14 @@ void ReloadableMedia::ReloadTexture()
             {
                 names.push_back(selectedItem->GetCloneOf());
             }
+            std::string videoPath;
+            Config.GetMediaPropertyAbsolutePath(GetCollectionName(), "video", videoPath);
 
             for(unsigned int n = 0; n < names.size() && !found; ++n)
             {
-                std::string filePrefix;
-                filePrefix.append(VideoPath);
-                filePrefix.append("/");
-                filePrefix.append(names[n]);
-
-                std::string file;
-
                 VideoBuilder videoBuild;
 
-                LoadedComponent = videoBuild.CreateVideo(VideoPath, names[n], ScaleX, ScaleY);
+                LoadedComponent = videoBuild.CreateVideo(videoPath, names[n], ScaleX, ScaleY);
 
                 if(LoadedComponent)
                 {
@@ -158,8 +153,10 @@ void ReloadableMedia::ReloadTexture()
 
         if(!LoadedComponent)
         {
+            std::string imagePath;
+            Config.GetMediaPropertyAbsolutePath(GetCollectionName(), Type, imagePath);
             ImageBuilder imageBuild;
-            LoadedComponent = imageBuild.CreateImage(ImagePath, selectedItem->GetFullTitle(), ScaleX, ScaleY);
+            LoadedComponent = imageBuild.CreateImage(imagePath, selectedItem->GetFullTitle(), ScaleX, ScaleY);
 
             if (LoadedComponent != NULL)
             {

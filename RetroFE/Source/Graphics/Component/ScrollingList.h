@@ -31,12 +31,22 @@ public:
 
     };
 
-    ScrollingList(Configuration &c, float scaleX, float scaleY, Font *font, SDL_Color fontColor, std::string layoutKey, std::string CollectionName, std::string imageType);
+    ScrollingList(Configuration &c, 
+        float scaleX, 
+        float scaleY, 
+        Font *font, 
+        SDL_Color fontColor, 
+        std::string layoutKey, 
+        std::string imageType);
     virtual ~ScrollingList();
-    void AllocateTexture(ComponentItemBinding *s);
+    void TriggerMenuEnterEvent();
+    void TriggerMenuExitEvent();
+
+    bool AllocateTexture(ComponentItemBinding *s);
     void DeallocateTexture(ComponentItemBinding *s);
     void SetItems(std::vector<ComponentItemBinding *> *spriteList);
-    void SetPoints(std::vector<ViewInfo *> *scrollPoints);
+    void DestroyItems();
+    void SetPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<TweenSet *> *tweenPoints);
     void SetScrollDirection(ScrollDirection direction);
     void PageUp();
     void PageDown();
@@ -55,11 +65,12 @@ public:
     void Draw(unsigned int layer);
 
 private:
-    void Click();
+    void Click(double nextScrollTime);
+    void DeallocateSpritePoints();
+    void AllocateSpritePoints();
+    void UpdateSprite(unsigned int spriteIndex, unsigned int pointIndex, bool newScroll, float dt, double nextScrollTime);
     unsigned int GetNextTween(unsigned int currentIndex, std::vector<ViewInfo *> *list);
-    bool IsScrollChangedStarted;
-    bool IsScrollChangedSignalled;
-    bool IsScrollChangedComplete;
+    void ResetTweens(Component *c, TweenSet *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime);
 
     enum ScrollState
     {
@@ -71,20 +82,22 @@ private:
 
     std::vector<ComponentItemBinding *> *SpriteList;
     std::vector<ViewInfo *> *ScrollPoints;
+     std::vector<TweenSet *> *TweenPoints;
     std::vector<MenuNotifierInterface *> NotificationComponents;
     float TweenEnterTime;
+    bool Focus;
 
     unsigned int FirstSpriteIndex;
     unsigned int SelectedSpriteListIndex;
-    float CurrentAnimateTime;
-    float ScrollTime;
+    bool ScrollStopRequested;
 
     ScrollDirection CurrentScrollDirection;
     ScrollDirection RequestedScrollDirection;
     ScrollState CurrentScrollState;
     float ScrollAcceleration;
-    float ScrollVelocity;
+    float ScrollPeriod;
 
+    int CircularIncrement(unsigned int index, unsigned int offset, std::vector<ComponentItemBinding *> *list);
     void CircularIncrement(unsigned &index, std::vector<ComponentItemBinding *> *list);
     void CircularDecrement(unsigned &index, std::vector<ComponentItemBinding *> *list);
     void CircularIncrement(unsigned &index, std::vector<ViewInfo *> *list);
@@ -98,7 +111,6 @@ private:
     Font *FontInst;
     SDL_Color FontColor;
     std::string LayoutKey;
-    std::string CollectionName;
     std::string ImageType;
     unsigned int MaxLayer;
 };

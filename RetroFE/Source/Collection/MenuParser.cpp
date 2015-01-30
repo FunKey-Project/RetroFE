@@ -56,7 +56,6 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
         // gracefully exit if there is no menu file for the pa
         if(file.good())
         {
-            Logger::Write(Logger::ZONE_INFO, "Menu", "Found menu");
             std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 
             buffer.push_back('\0');

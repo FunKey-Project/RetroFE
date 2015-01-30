@@ -38,10 +38,8 @@ private:
     {
         RETROFE_IDLE,
         RETROFE_NEXT_PAGE_REQUEST,
-        RETROFE_NEXT_PAGE_WAIT,
         RETROFE_LAUNCH_REQUEST,
         RETROFE_BACK_REQUEST,
-        RETROFE_BACK_WAIT,
         RETROFE_NEW,
         RETROFE_QUIT_REQUEST,
         RETROFE_QUIT,
@@ -51,7 +49,7 @@ private:
     bool Back(bool &exit);
     void Quit();
     void WaitToInitialize();
-    Page *LoadPage(std::string collectionName);
+    Page *LoadPage();
     Page *LoadSplashPage();
     RETROFE_STATE ProcessUserInput(Page *page);
     void Update(float dt, bool scrollActive);
@@ -61,7 +59,7 @@ private:
     DB *Db;
     MetadataDatabase *MetaDb;
     UserInput Input;
-    std::list<Page *> PageChain;
+    Page *CurrentPage;
     float KeyInputDisable;
     float CurrentTime;
     Item *NextPageItem;
