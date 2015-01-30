@@ -70,7 +70,7 @@ bool Font::Initialize(std::string fontPath, int fontSize, SDL_Color color)
     for(unsigned short int i = 32; i < 128; ++i)
     {
         GlyphInfoBuild *info = new GlyphInfoBuild;
-        memset(info, sizeof(GlyphInfoBuild), 0);
+        memset(info, 0, sizeof(GlyphInfoBuild));
 
         color.a = 255;
         info->Surface = TTF_RenderGlyph_Blended(font, i, color);

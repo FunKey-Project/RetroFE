@@ -28,38 +28,14 @@ public:
     //todo: delete the tweens in a destructor
 
 
-    TweenSets *GetOnEnterTweens()
-    {
-        return &OnEnterTweens;
-    }
-    TweenSets *GetOnExitTweens()
-    {
-        return &OnExitTweens;
-    }
-    TweenSets *GetOnIdleTweens()
-    {
-        return &OnIdleTweens;
-    }
-    TweenSets *GetOnHighlightEnterTweens()
-    {
-        return &OnHighlightEnterTweens;
-    }
-    TweenSets *GetOnHighlightExitTweens()
-    {
-        return &OnHighlightExitTweens;
-    }
-    TweenSets *GetOnMenuEnterTweens()
-    {
-        return &OnMenuEnterTweens;
-    }
-    TweenSets *GetOnMenuScrollTweens()
-    {
-        return &OnMenuScrollTweens;
-    }
-    TweenSets *GetOnMenuExitTweens()
-    {
-        return &OnMenuExitTweens;
-    }
+    TweenSets *GetOnEnterTweens();
+    TweenSets *GetOnExitTweens();
+    TweenSets *GetOnIdleTweens();
+    TweenSets *GetOnHighlightEnterTweens();
+    TweenSets *GetOnHighlightExitTweens();
+    TweenSets *GetOnMenuEnterTweens();
+    TweenSets *GetOnMenuScrollTweens();
+    TweenSets *GetOnMenuExitTweens();
 
 private:
     TweenSets OnEnterTweens;

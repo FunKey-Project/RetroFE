@@ -13,3 +13,40 @@
  * You should have received a copy of the GNU General Public License
  * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+#include "TweenSet.h"
+
+
+TweenSets *TweenSet::GetOnEnterTweens()
+{
+    return &OnEnterTweens;
+}
+TweenSets *TweenSet::GetOnExitTweens()
+{
+    return &OnExitTweens;
+}
+TweenSets *TweenSet::GetOnIdleTweens()
+{
+    return &OnIdleTweens;
+}
+TweenSets *TweenSet::GetOnHighlightEnterTweens()
+{
+    return &OnHighlightEnterTweens;
+}
+TweenSets *TweenSet::GetOnHighlightExitTweens()
+{
+    return &OnHighlightExitTweens;
+}
+TweenSets *TweenSet::GetOnMenuEnterTweens()
+{
+    return &OnMenuEnterTweens;
+}
+TweenSets *TweenSet::GetOnMenuScrollTweens()
+{
+    return &OnMenuScrollTweens;
+}
+TweenSets *TweenSet::GetOnMenuExitTweens()
+{
+    return &OnMenuExitTweens;
+}
+

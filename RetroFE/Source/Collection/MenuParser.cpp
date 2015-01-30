@@ -75,34 +75,32 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
                     Logger::Write(Logger::ZONE_ERROR, "Menu", "Menu item tag is missing collection attribute");
                     break;
                 }
+                //todo: too much nesting! Ack!
+                std::string import;
+                if(importAttribute)
+                {
+                    import = importAttribute->value();
+                }
+                
+                if(import != "true")
+                {
+                    //todo, check for empty string
+                    std::string title = collectionAttribute->value();
+                    Item *item = new Item();
+                    item->SetTitle(title);
+                    item->SetFullTitle(title);
+                    item->SetName(collectionAttribute->value());
+                    item->SetIsLeaf(false);
+                    collection->GetItems()->push_back(item);
+
+                }
                 else
                 {
-                    //todo: too much nesting! Ack!
-                    std::string import;
-                    if(importAttribute)
-                    {
-                        import = importAttribute->value();
-                    }
-                    if(import != "true")
-                    {
-                        //todo, check for empty string
-                        std::string title = collectionAttribute->value();
-                        Item *item = new Item();
-                        item->SetTitle(title);
-                        item->SetFullTitle(title);
-                        item->SetName(collectionAttribute->value());
-                        item->SetIsLeaf(false);
-                        collection->GetItems()->push_back(item);
+                    std::string collectionName = collectionAttribute->value();
+                    Logger::Write(Logger::ZONE_INFO, "Menu", "Loading collection into menu: " + collectionName);
 
-                    }
-                    else
-                    {
-                        std::string collectionName = collectionAttribute->value();
-                        Logger::Write(Logger::ZONE_INFO, "Menu", "Loading collection into menu: " + collectionName);
-
-                        //todo: unsupported option with this refactor
-                        // need to append the collection
-                    }
+                    //todo: unsupported option with this refactor
+                    // need to append the collection
                 }
             }
 

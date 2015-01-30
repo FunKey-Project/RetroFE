@@ -90,53 +90,55 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
     std::string excludeFile = Configuration::GetAbsolutePath() + "/Collections/" + info->GetName() + "/Exclude.txt";
     std::string launcher;
     
+    std::vector<std::string> extensions;
+    std::vector<std::string>::iterator extensionsIt;
+    
+    info->GetExtensions(extensions);
+    
     (void)Conf.GetProperty("collections." + info->GetName() + ".launcher", launcher);
 
     dp = opendir(path.c_str());
-    std::vector<std::string> extensions;
-    info->GetExtensions(extensions);
-    std::vector<std::string>::iterator extensionsIt;
 
     if(dp == NULL)
     {
         Logger::Write(Logger::ZONE_ERROR, "CollectionInfoBuilder", "Could not read directory \"" + path + "\"");
-        //todo: store into a database
+        return false;
     }
-    else
+    
+    while((dirp = readdir(dp)) != NULL)
     {
-        while((dirp = readdir(dp)) != NULL)
+        std::string file = dirp->d_name;
+
+        Utils::NormalizeBackSlashes(file);
+        size_t position = file.find_last_of(".");
+        std::string basename = (std::string::npos == position)? file : file.substr(0, position);
+
+        if((includeFilter.size() == 0 || includeFilter.find(basename) != includeFilter.end()) &&
+                (excludeFilter.size() == 0 || excludeFilter.find(basename) == excludeFilter.end()))
         {
-            std::string file = dirp->d_name;
-
-            Utils::NormalizeBackSlashes(file);
-            size_t position = file.find_last_of(".");
-            std::string basename = (std::string::npos == position)? file : file.substr(0, position);
-
-            if((includeFilter.size() == 0 || includeFilter.find(basename) != includeFilter.end()) &&
-                    (excludeFilter.size() == 0 || excludeFilter.find(basename) == excludeFilter.end()))
+            for(extensionsIt = extensions.begin(); extensionsIt != extensions.end(); ++extensionsIt)
             {
-                for(extensionsIt = extensions.begin(); extensionsIt != extensions.end(); ++extensionsIt)
-                {
-                    std::string comparator = "." + *extensionsIt;
-                    int start = file.length() - comparator.length() + 1;
+                std::string comparator = "." + *extensionsIt;
+                int start = file.length() - comparator.length() + 1;
 
-                    if(start >= 0)
+                if(start >= 0)
+                {
+                    if(file.compare(start, comparator.length(), *extensionsIt) == 0)
                     {
-                        if(file.compare(start, comparator.length(), *extensionsIt) == 0)
-                        {
-                            Item *i = new Item();
-                            i->SetName(basename);
-                            i->SetFullTitle(basename);
-                            i->SetTitle(basename);
-                            i->SetLauncher(launcher);
-                            info->GetItems()->push_back(i);
-                        }
+                        Item *i = new Item();
+                        i->SetName(basename);
+                        i->SetFullTitle(basename);
+                        i->SetTitle(basename);
+                        i->SetLauncher(launcher);
+                        info->GetItems()->push_back(i);
                     }
                 }
             }
         }
     }
 
+    closedir(dp);
+    
     MetaDB.InjectMetadata(info);
 
     while(includeFilter.size() > 0)

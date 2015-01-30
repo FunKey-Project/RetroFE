@@ -114,51 +114,68 @@ bool MetadataDatabase::ImportDirectory()
 
     dp = opendir(hyperListPath.c_str());
 
-    while((dirp = readdir(dp)) != NULL)
+    if(dp == NULL)
     {
-        if (dirp->d_type != DT_DIR && std::string(dirp->d_name) != "." && std::string(dirp->d_name) != "..")
+        Logger::Write(Logger::ZONE_INFO, "MetadataDatabase", "Could not read directory \"" + hyperListPath + "\"");
+    }
+    else
+    {
+        while((dirp = readdir(dp)) != NULL)
         {
-
-            std::string basename = dirp->d_name;
-
-            std::string extension = basename.substr(basename.find_last_of("."), basename.size()-1);
-            basename = basename.substr(0, basename.find_last_of("."));
-            std::string collectionName = basename.substr(0, basename.find_first_of("."));
-
-                
-            if(extension == ".xml")
+            if (dirp->d_type != DT_DIR && std::string(dirp->d_name) != "." && std::string(dirp->d_name) != "..")
             {
-                std::string importFile = Configuration::GetAbsolutePath() + "/" + hyperListPath + "/" + dirp->d_name;
-                Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing hyperlist: " + importFile);
-                ImportHyperList(importFile, collectionName);
+
+                std::string basename = dirp->d_name;
+
+                std::string extension = basename.substr(basename.find_last_of("."), basename.size()-1);
+                basename = basename.substr(0, basename.find_last_of("."));
+                std::string collectionName = basename.substr(0, basename.find_first_of("."));
+
+                    
+                if(extension == ".xml")
+                {
+                    std::string importFile = Configuration::GetAbsolutePath() + "/" + hyperListPath + "/" + dirp->d_name;
+                    Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing hyperlist: " + importFile);
+                    ImportHyperList(importFile, collectionName);
+                }
             }
         }
+        
+        closedir(dp);
     }
 
     dp = opendir(mameListPath.c_str());
-
-    while((dirp = readdir(dp)) != NULL)
+    
+    if(dp == NULL)
     {
-        if (dirp->d_type != DT_DIR && std::string(dirp->d_name) != "." && std::string(dirp->d_name) != "..")
-        {
-
-            std::string basename = dirp->d_name;
-
-            std::string extension = basename.substr(basename.find_last_of("."), basename.size()-1);
-            basename = basename.substr(0, basename.find_last_of("."));
-            std::string collectionName = basename.substr(0, basename.find_first_of("."));
-
-                
-            if(extension == ".xml")
-            {
-                std::string importFile = Configuration::GetAbsolutePath() + "/" + mameListPath + "/" + dirp->d_name;
-                Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing mamelist: " + importFile);
-                Config.SetStatus("Scraping data from " + importFile);
-                ImportMameList(importFile, collectionName);
-            }
-        }
+        Logger::Write(Logger::ZONE_ERROR, "CollectionInfoBuilder", "Could not read directory \"" + mameListPath + "\"");
     }
+    else 
+    {    
+      while((dirp = readdir(dp)) != NULL)
+      {
+          if (dirp->d_type != DT_DIR && std::string(dirp->d_name) != "." && std::string(dirp->d_name) != "..")
+          {
 
+              std::string basename = dirp->d_name;
+
+              std::string extension = basename.substr(basename.find_last_of("."), basename.size()-1);
+              basename = basename.substr(0, basename.find_last_of("."));
+              std::string collectionName = basename.substr(0, basename.find_first_of("."));
+
+                  
+              if(extension == ".xml")
+              {
+                  std::string importFile = Configuration::GetAbsolutePath() + "/" + mameListPath + "/" + dirp->d_name;
+                  Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing mamelist: " + importFile);
+                  Config.SetStatus("Scraping data from " + importFile);
+                  ImportMameList(importFile, collectionName);
+              }
+          }
+      }
+      
+      closedir(dp);
+    }
 
     return true;
 }
