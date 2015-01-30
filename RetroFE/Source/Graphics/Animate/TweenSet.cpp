@@ -17,31 +17,31 @@
 #include "TweenSet.h"
 
 
-TweenSets *TweenSet::GetOnEnterTweens()
+TweenSet::TweenSets *TweenSet::GetOnEnterTweens()
 {
     return &OnEnterTweens;
 }
-TweenSets *TweenSet::GetOnExitTweens()
+TweenSet::TweenSets *TweenSet::GetOnExitTweens()
 {
     return &OnExitTweens;
 }
-TweenSets *TweenSet::GetOnIdleTweens()
+TweenSet::TweenSets *TweenSet::GetOnIdleTweens()
 {
     return &OnIdleTweens;
 }
-TweenSets *TweenSet::GetOnHighlightEnterTweens()
+TweenSet::TweenSets *TweenSet::GetOnHighlightEnterTweens()
 {
     return &OnHighlightEnterTweens;
 }
-TweenSets *TweenSet::GetOnHighlightExitTweens()
+TweenSet::TweenSets *TweenSet::GetOnHighlightExitTweens()
 {
     return &OnHighlightExitTweens;
 }
-TweenSets *TweenSet::GetOnMenuEnterTweens()
+TweenSet::TweenSets *TweenSet::GetOnMenuEnterTweens()
 {
     return &OnMenuEnterTweens;
 }
-TweenSets *TweenSet::GetOnMenuScrollTweens()
+TweenSet::TweenSets *TweenSet::GetOnMenuScrollTweens()
 {
     return &OnMenuScrollTweens;
 }
