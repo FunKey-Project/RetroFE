@@ -42,9 +42,10 @@ public:
     void TriggerMenuEnterEvent();
     void TriggerMenuExitEvent();
 
-    void AllocateTexture(ComponentItemBinding *s);
+    bool AllocateTexture(ComponentItemBinding *s);
     void DeallocateTexture(ComponentItemBinding *s);
     void SetItems(std::vector<ComponentItemBinding *> *spriteList);
+    void DestroyItems();
     void SetPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<TweenSet *> *tweenPoints);
     void SetScrollDirection(ScrollDirection direction);
     void PageUp();
@@ -64,11 +65,12 @@ public:
     void Draw(unsigned int layer);
 
 private:
-    void Click();
+    void Click(double nextScrollTime);
+    void DeallocateSpritePoints();
+    void AllocateSpritePoints();
+    void UpdateSprite(unsigned int spriteIndex, unsigned int pointIndex, bool newScroll, float dt, double nextScrollTime);
     unsigned int GetNextTween(unsigned int currentIndex, std::vector<ViewInfo *> *list);
-    bool IsScrollChangedStarted;
-    bool IsScrollChangedSignalled;
-    bool IsScrollChangedComplete;
+    void ResetTweens(Component *c, TweenSet *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime);
 
     enum ScrollState
     {
@@ -87,15 +89,15 @@ private:
 
     unsigned int FirstSpriteIndex;
     unsigned int SelectedSpriteListIndex;
-    float CurrentAnimateTime;
-    float ScrollTime;
+    bool ScrollStopRequested;
 
     ScrollDirection CurrentScrollDirection;
     ScrollDirection RequestedScrollDirection;
     ScrollState CurrentScrollState;
     float ScrollAcceleration;
-    float ScrollVelocity;
+    float ScrollPeriod;
 
+    int CircularIncrement(unsigned int index, unsigned int offset, std::vector<ComponentItemBinding *> *list);
     void CircularIncrement(unsigned &index, std::vector<ComponentItemBinding *> *list);
     void CircularDecrement(unsigned &index, std::vector<ComponentItemBinding *> *list);
     void CircularIncrement(unsigned &index, std::vector<ViewInfo *> *list);

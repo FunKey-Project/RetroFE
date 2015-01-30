@@ -37,11 +37,12 @@ public:
     void TriggerExitEvent();
     void TriggerMenuEnterEvent();
     void TriggerMenuExitEvent();
+    void TriggerMenuScrollEvent();
     void TriggerHighlightEvent(Item *selectedItem);
     bool IsIdle();
     bool IsHidden();
     bool IsWaiting();
-    bool IsMenuAnimating();
+    bool IsMenuScrolling();
     std::string GetCollectionName();
     void SetCollectionName(std::string collectionName);
     typedef std::vector<std::vector<Tween *> *> TweenSets;
@@ -97,6 +98,7 @@ protected:
         HIGHLIGHT_ENTER,
         EXIT,
         MENU_ENTER,
+        MENU_SCROLL,
         MENU_EXIT,
         HIDDEN
     };
@@ -105,6 +107,7 @@ protected:
     bool EnterRequested;
     bool ExitRequested;
     bool MenuEnterRequested;
+    bool MenuScrollRequested;
     bool MenuExitRequested;
     bool NewItemSelected;
     bool HighlightExitComplete;

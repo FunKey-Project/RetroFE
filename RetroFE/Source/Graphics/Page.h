@@ -65,6 +65,7 @@ public:
     {
         SelectSoundChunk = chunk;
     }
+
     bool AddComponent(Component *c);
     void PageScroll(ScrollDirection direction);
     void Start();
@@ -102,6 +103,7 @@ private:
     std::vector<Component *> LayerComponents[NUM_LAYERS];
     std::vector<Item *> *Items;
     bool ScrollActive;
+    
     Item *SelectedItem;
     Text *TextStatusComponent;
     bool SelectedItemChanged;

@@ -412,7 +412,6 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
                     Config.SetCurrentCollection(NextPageItem->GetName());
                     CollectionInfo *info = GetCollection(NextPageItem->GetName());
 
-                    Logger::Write(Logger::ZONE_INFO, "RetroFE", "PUSH COLLECTION. EXPECT FOCUS IMMEDIATE");
                     page->PushCollection(info);
                     state = RETROFE_NEXT_PAGE_REQUEST;
                 }

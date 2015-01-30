@@ -48,13 +48,17 @@ public:
     {
         return &OnHighlightExitTweens;
     }
-    TweenSets *GetOnMenuExitTweens()
-    {
-        return &OnMenuExitTweens;
-    }
     TweenSets *GetOnMenuEnterTweens()
     {
         return &OnMenuEnterTweens;
+    }
+    TweenSets *GetOnMenuScrollTweens()
+    {
+        return &OnMenuScrollTweens;
+    }
+    TweenSets *GetOnMenuExitTweens()
+    {
+        return &OnMenuExitTweens;
     }
 
 private:
@@ -64,6 +68,7 @@ private:
     TweenSets OnHighlightEnterTweens;
     TweenSets OnHighlightExitTweens;
     TweenSets OnMenuEnterTweens;
+    TweenSets OnMenuScrollTweens;
     TweenSets OnMenuExitTweens;
 
 };

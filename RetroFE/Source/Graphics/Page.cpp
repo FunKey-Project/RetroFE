@@ -197,7 +197,6 @@ void Page::Start()
     {
         ScrollingList *menu = *it;
         menu->TriggerEnterEvent();
-        Logger::Write(Logger::ZONE_DEBUG, "Page", "Triggering enter event");
     }
 
     if(LoadSoundChunk)
@@ -307,10 +306,7 @@ void Page::SetScrolling(ScrollDirection direction)
         break;
     }
 
-    if(ActiveMenu)
-    {
-        ActiveMenu->SetScrollDirection(menuDirection);
-    }
+    ActiveMenu->SetScrollDirection(menuDirection);
 }
 
 void Page::PageScroll(ScrollDirection direction)
@@ -335,15 +331,14 @@ bool Page::PushCollection(CollectionInfo *collection)
 
     if(ActiveMenu)
     {
-        Logger::Write(Logger::ZONE_INFO, "Page", "Trigger exit event, expect focus immediate");
         ActiveMenu->TriggerMenuExitEvent();
     }
     
     ActiveMenu = Menus[MenuDepth];
 
-    ActiveMenu->SetItems(sprites);
     ActiveMenu->SetCollectionName(collection->GetName());
-    Logger::Write(Logger::ZONE_INFO, "Page", "Trigger enter event, expect focus immediate");
+    ActiveMenu->DestroyItems();
+    ActiveMenu->SetItems(sprites);
     ActiveMenu->TriggerMenuEnterEvent();
 
     if(MenuDepth < Menus.size())
@@ -358,7 +353,6 @@ bool Page::PushCollection(CollectionInfo *collection)
             (*it)->SetCollectionName(collection->GetName());
         }
     }
-    Logger::Write(Logger::ZONE_INFO, "Page", "PUSH COMPLETE, expect updates");
 
     return true;
 }
