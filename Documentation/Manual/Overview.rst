@@ -33,7 +33,7 @@ File or Folder                                      Description
 /Core/RetroFE.exe									Main Executable							
 /Collections                                        Contains all your list information
 /Collections/Main/Menu.xml                          List for the main menu
-/Cache.db                                           Used to help make the frontend run more quickly. This should not need to be touched or editied (unless you know what you are doing).
+/Cache.db                                           Stores metadata information for items (i.e. year, manufacturer, description, etc.)
 /Log.txt                                            Log file from the last time you ran RetroFE. Used for troubleshooting issues.
 /Settings.conf                                      Main configuration. Set your screen resolution, controls, how to launch games, etc.
 =============================================       ========================================================================================================================================
