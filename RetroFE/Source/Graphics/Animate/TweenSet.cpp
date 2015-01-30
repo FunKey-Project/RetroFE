@@ -45,7 +45,7 @@ TweenSet::TweenSets *TweenSet::GetOnMenuScrollTweens()
 {
     return &OnMenuScrollTweens;
 }
-TweenSets *TweenSet::GetOnMenuExitTweens()
+TweenSets::TweenSets *TweenSet::GetOnMenuExitTweens()
 {
     return &OnMenuExitTweens;
 }
