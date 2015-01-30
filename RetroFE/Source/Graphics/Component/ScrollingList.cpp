@@ -626,7 +626,7 @@ void ScrollingList::SetScrollDirection(ScrollDirection direction)
 {
     RequestedScrollDirection = direction;
 
-    ScrollStopRequested = (direction == ScrollDirectionIdle);
+    ScrollStopRequested = (direction == ScrollDirection::ScrollDirectionIdle);
 }
 
 void ScrollingList::RemoveSelectedItem()
@@ -670,7 +670,7 @@ ComponentItemBinding* ScrollingList::GetSelectedCollectionItemSprite()
     ComponentItemBinding *item = NULL;
 
     if(SpriteList && SpriteList->size() > 0)
-    {ScrollDirection
+    {
         int index = (FirstSpriteIndex + SelectedSpriteListIndex) % SpriteList->size();
 
         item = SpriteList->at(index);
@@ -710,7 +710,7 @@ void ScrollingList::RemoveComponentForNotifications(MenuNotifierInterface *c)
         }
     }
 }
-ScrollDirection
+
 
 ComponentItemBinding* ScrollingList::GetPendingSelectedCollectionItemSprite()
 {
