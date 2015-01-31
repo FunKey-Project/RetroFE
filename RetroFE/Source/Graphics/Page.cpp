@@ -329,13 +329,20 @@ bool Page::PushCollection(CollectionInfo *collection)
     Collections.push_back(collection);
     std::vector<ComponentItemBinding *> *sprites = ComponentItemBindingBuilder::BuildCollectionItems(collection->GetItems());
 
+    int menuExitIndex = -1;
+    int menuEnterIndex = -1;
+
     if(ActiveMenu)
     {
         ActiveMenu->TriggerMenuExitEvent();
     }
+
+    if(MenuDepth > 0)
+    {
+        menuExitIndex = MenuDepth - 1;
+    }
     
     ActiveMenu = Menus[MenuDepth];
-
     ActiveMenu->SetCollectionName(collection->GetName());
     ActiveMenu->DestroyItems();
     ActiveMenu->SetItems(sprites);
@@ -343,6 +350,7 @@ bool Page::PushCollection(CollectionInfo *collection)
 
     if(MenuDepth < Menus.size())
     {
+        menuEnterIndex = MenuDepth; 
         MenuDepth++;
     }
 
@@ -351,6 +359,15 @@ bool Page::PushCollection(CollectionInfo *collection)
         for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
         {
             (*it)->SetCollectionName(collection->GetName());
+            if(menuEnterIndex >= 0)
+            {
+                (*it)->TriggerMenuEnterEvent(menuEnterIndex);
+            }
+
+            if(menuExitIndex >= 0)
+            {
+                (*it)->TriggerMenuExitEvent(menuExitIndex);
+            }
         }
     }
 
@@ -359,6 +376,9 @@ bool Page::PushCollection(CollectionInfo *collection)
 
 bool Page::PopCollection()
 {
+    int menuExitIndex = -1;
+    int menuEnterIndex = -1;
+
     if(MenuDepth > 1)
     {
         if(Collections.size() > 1)
@@ -372,15 +392,34 @@ bool Page::PopCollection()
         }
 
         MenuDepth--;
-
+        menuExitIndex = MenuDepth;
+        menuEnterIndex = menuExitIndex - 1;
         ActiveMenu = Menus[MenuDepth - 1];
         if(ActiveMenu)
         {
             ActiveMenu->TriggerMenuEnterEvent();
         }
 
+        for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+        {
+            for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
+            {
+                if(menuEnterIndex >= 0)
+                {
+                    (*it)->TriggerMenuEnterEvent(menuEnterIndex);
+                }
+
+                if(menuExitIndex >= 0)
+                {
+                    (*it)->TriggerMenuExitEvent(menuExitIndex);
+                }
+            }
+        }
+
+
         return true;
     }
+
     return false;
 }
 

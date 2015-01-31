@@ -35,8 +35,8 @@ public:
     virtual void LaunchExit() {}
     void TriggerEnterEvent();
     void TriggerExitEvent();
-    void TriggerMenuEnterEvent();
-    void TriggerMenuExitEvent();
+    void TriggerMenuEnterEvent(int menuIndex = -1);
+    void TriggerMenuExitEvent(int menuIndex = -1);
     void TriggerMenuScrollEvent();
     void TriggerHighlightEvent(Item *selectedItem);
     bool IsIdle();
@@ -107,8 +107,10 @@ protected:
     bool EnterRequested;
     bool ExitRequested;
     bool MenuEnterRequested;
+    int MenuEnterIndex;
     bool MenuScrollRequested;
     bool MenuExitRequested;
+    int MenuExitIndex;
     bool NewItemSelected;
     bool HighlightExitComplete;
     bool NewItemSelectedSinceEnter;

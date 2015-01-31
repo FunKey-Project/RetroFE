@@ -16,6 +16,26 @@
 
 #include "TweenSet.h"
 
+TweenSet::~TweenSet() 
+{
+    std::map<int, TweenSets *>::iterator it;
+    
+    it = OnMenuEnterTweens.begin();
+    while(it != OnMenuEnterTweens.end())
+    {
+        delete it->second;
+        OnMenuEnterTweens.erase(it);
+        it = OnMenuEnterTweens.begin();
+    }
+
+    it = OnMenuExitTweens.begin();
+    while(it != OnMenuExitTweens.end())
+    {
+        delete it->second;
+        OnMenuExitTweens.erase(it);
+        it = OnMenuExitTweens.begin();
+    }
+}
 
 TweenSet::TweenSets *TweenSet::GetOnEnterTweens()
 {
@@ -37,16 +57,64 @@ TweenSet::TweenSets *TweenSet::GetOnHighlightExitTweens()
 {
     return &OnHighlightExitTweens;
 }
+
 TweenSet::TweenSets *TweenSet::GetOnMenuEnterTweens()
 {
-    return &OnMenuEnterTweens;
+    return GetOnMenuEnterTweens(-1);
 }
+
+
+TweenSet::TweenSets *TweenSet::GetOnMenuEnterTweens(int index)
+{
+    if(OnMenuEnterTweens.find(index) == OnMenuEnterTweens.end())
+    {
+        index = -1;
+
+        if(OnMenuEnterTweens.find(index) == OnMenuEnterTweens.end())
+        {
+            TweenSets *set = new TweenSets();
+            OnMenuEnterTweens[index] = set;
+        }
+    }
+
+    return OnMenuEnterTweens[index];
+}
+
 TweenSet::TweenSets *TweenSet::GetOnMenuScrollTweens()
 {
     return &OnMenuScrollTweens;
 }
+
 TweenSet::TweenSets *TweenSet::GetOnMenuExitTweens()
 {
-    return &OnMenuExitTweens;
+    return GetOnMenuExitTweens(-1);
 }
+
+
+TweenSet::TweenSets *TweenSet::GetOnMenuExitTweens(int index)
+{
+    if(OnMenuExitTweens.find(index) == OnMenuExitTweens.end())
+    {
+        index = -1;
+
+        if(OnMenuExitTweens.find(index) == OnMenuExitTweens.end())
+        {
+            TweenSets *set = new TweenSets();
+            OnMenuExitTweens[index] = set;
+        }
+    }
+
+    return OnMenuExitTweens[index];
+}
+
+void TweenSet::SetOnMenuEnterTweens(int index, TweenSets *set)
+{
+    OnMenuEnterTweens[index] = set;
+}
+
+void TweenSet::SetOnMenuExitTweens(int index, TweenSets *set)
+{
+    OnMenuExitTweens[index] = set;
+}
+
 

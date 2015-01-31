@@ -40,8 +40,10 @@ void Component::FreeGraphicsMemory()
     EnterRequested = false;
     ExitRequested = false;
     MenuEnterRequested = false;
+    MenuEnterIndex = -1;
     MenuScrollRequested = false;
     MenuExitRequested = false;
+    MenuExitIndex = -1;
 
     NewItemSelected = false;
     HighlightExitComplete = false;
@@ -90,9 +92,10 @@ void Component::TriggerExitEvent()
 
 
 
-void Component::TriggerMenuEnterEvent()
+void Component::TriggerMenuEnterEvent(int menuIndex)
 {
     MenuEnterRequested = true;
+    MenuEnterIndex = menuIndex;
 }
 
 void Component::TriggerMenuScrollEvent()
@@ -101,9 +104,10 @@ void Component::TriggerMenuScrollEvent()
 }
 
 
-void Component::TriggerMenuExitEvent()
+void Component::TriggerMenuExitEvent(int menuIndex)
 {
     MenuExitRequested = true;
+    MenuExitIndex = menuIndex;
 }
 void Component::TriggerHighlightEvent(Item *selectedItem)
 {
@@ -200,7 +204,7 @@ void Component::Update(float dt)
             else if(MenuEnterRequested)
             {
                 MenuEnterRequested = false;
-                CurrentTweens = Tweens->GetOnMenuEnterTweens();
+                CurrentTweens = Tweens->GetOnMenuEnterTweens(MenuEnterIndex);
                 CurrentAnimationState = MENU_ENTER;
             }
             else if(MenuScrollRequested)
@@ -212,7 +216,7 @@ void Component::Update(float dt)
             else if(MenuExitRequested)
             {
                 MenuExitRequested = false;
-                CurrentTweens = Tweens->GetOnMenuExitTweens();
+                CurrentTweens = Tweens->GetOnMenuExitTweens(MenuExitIndex);
                 CurrentAnimationState = MENU_EXIT;
             }
             else if(IsScrollActive() || NewItemSelected || ExitRequested)
