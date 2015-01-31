@@ -626,7 +626,7 @@ void ScrollingList::SetScrollDirection(ScrollDirection direction)
 {
     RequestedScrollDirection = direction;
 
-    ScrollStopRequested = (direction == ScrollDirection::ScrollDirectionIdle);
+    ScrollStopRequested = (direction == ScrollDirectionIdle);
 }
 
 void ScrollingList::RemoveSelectedItem()
