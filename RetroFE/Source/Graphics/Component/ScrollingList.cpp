@@ -75,8 +75,7 @@ void ScrollingList::SetItems(std::vector<ComponentItemBinding *> *spriteList)
     SpriteList = spriteList;
     FirstSpriteIndex = 0;
 
-
-    if(!SpriteList) { return ; }
+    if(!SpriteList) { return; }
     unsigned int originalSize = SpriteList->size();
 
     // loop the scroll points if there are not enough, the +2 represents the head and tail nodes (for when the item is allocated)
@@ -103,6 +102,8 @@ void ScrollingList::SetItems(std::vector<ComponentItemBinding *> *spriteList)
 
 void ScrollingList::DeallocateSpritePoints()
 {
+    if(!SpriteList) { return; }
+
     unsigned int spriteIndex = FirstSpriteIndex;
 
     for(unsigned int i = 0; i < ScrollPoints->size(); ++i)
@@ -114,11 +115,15 @@ void ScrollingList::DeallocateSpritePoints()
 
 void ScrollingList::AllocateSpritePoints()
 {
+    if(!ScrollPoints) { return; }
+    if(!SpriteList) { return; }
+    if(SpriteList->size() == 0) { return; }
+    if(!TweenPoints) { return; }
+
     unsigned int spriteIndex = FirstSpriteIndex;
 
     for(unsigned int i = 0; i < ScrollPoints->size(); ++i)
     {
-
         AllocateTexture(SpriteList->at(spriteIndex));
         Component *c = SpriteList->at(spriteIndex)->GetComponent();
         ViewInfo *currentViewInfo = ScrollPoints->at(i);
@@ -133,33 +138,31 @@ void ScrollingList::AllocateSpritePoints()
 
 void ScrollingList::DestroyItems()
 {
-    if(SpriteList)
+    if(!SpriteList) { return; }
+    std::vector<ComponentItemBinding *>::iterator it  = SpriteList->begin();
+
+    while(it != SpriteList->end())
     {
-        std::vector<ComponentItemBinding *>::iterator it  = SpriteList->begin();
-
-        while(it != SpriteList->end())
+        if(*it != NULL)
         {
-            if(*it != NULL)
+            DeallocateTexture(*it);
+
+            if((*it)->GetCollectionItem())
             {
-                DeallocateTexture(*it);
-
-                if((*it)->GetCollectionItem())
-                {
-                    delete (*it)->GetCollectionItem();
-                }
-
-                delete *it;
+                delete (*it)->GetCollectionItem();
             }
 
-
-            SpriteList->erase(it);
-
-            it = SpriteList->begin();
+            delete *it;
         }
 
-        delete SpriteList;
-        SpriteList = NULL;
+
+        SpriteList->erase(it);
+
+        it = SpriteList->begin();
     }
+
+    delete SpriteList;
+    SpriteList = NULL;
 }
 
 

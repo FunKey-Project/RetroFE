@@ -109,8 +109,8 @@ bool MetadataDatabase::ImportDirectory()
 {
     DIR *dp;
     struct dirent *dirp;
-    std::string hyperListPath = "Meta/Hyperlist";
-    std::string mameListPath = "Meta/Mamelist";
+    std::string hyperListPath = Configuration::GetAbsolutePath() + "/Meta/Hyperlist";
+    std::string mameListPath = Configuration::GetAbsolutePath() + "/Meta/Mamelist";
 
     dp = opendir(hyperListPath.c_str());
 
@@ -134,7 +134,7 @@ bool MetadataDatabase::ImportDirectory()
                     
                 if(extension == ".xml")
                 {
-                    std::string importFile = Configuration::GetAbsolutePath() + "/" + hyperListPath + "/" + dirp->d_name;
+                    std::string importFile = hyperListPath + "/" + dirp->d_name;
                     Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing hyperlist: " + importFile);
                     ImportHyperList(importFile, collectionName);
                 }
@@ -166,7 +166,7 @@ bool MetadataDatabase::ImportDirectory()
                   
               if(extension == ".xml")
               {
-                  std::string importFile = Configuration::GetAbsolutePath() + "/" + mameListPath + "/" + dirp->d_name;
+                  std::string importFile = mameListPath + "/" + dirp->d_name;
                   Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing mamelist: " + importFile);
                   Config.SetStatus("Scraping data from " + importFile);
                   ImportMameList(importFile, collectionName);
@@ -300,7 +300,6 @@ bool MetadataDatabase::NeedsRefresh()
 
 bool MetadataDatabase::ImportHyperList(std::string hyperlistFile, std::string collectionName)
 {
-    bool retVal = false;
     char *error = NULL;
 
     Config.SetStatus("Scraping data from \"" + hyperlistFile + "\"");
@@ -319,55 +318,54 @@ bool MetadataDatabase::ImportHyperList(std::string hyperlistFile, std::string co
         if(!root)
         {
             Logger::Write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a HyperList file (missing <menu> tag)");
-            return NULL;
+            return false;
         }
-        else
+        sqlite3 *handle = DBInstance.GetHandle();
+        sqlite3_exec(handle, "BEGIN IMMEDIATE TRANSACTION;", NULL, NULL, &error);    
+        for(rapidxml::xml_node<> *game = root->first_node("game"); game; game = game->next_sibling("game"))
         {
-            sqlite3 *handle = DBInstance.GetHandle();
-            sqlite3_exec(handle, "BEGIN IMMEDIATE TRANSACTION;", NULL, NULL, &error);    
-            for(rapidxml::xml_node<> *game = root->first_node("game"); game; game = game->next_sibling("game"))
+            rapidxml::xml_attribute<> *nameXml = game->first_attribute("name");
+            rapidxml::xml_node<> *descriptionXml = game->first_node("description");
+            rapidxml::xml_node<> *cloneofXml = game->first_node("cloneof");
+            rapidxml::xml_node<> *crcXml = game->first_node("crc");
+            rapidxml::xml_node<> *manufacturerXml = game->first_node("manufacturer");
+            rapidxml::xml_node<> *yearXml = game->first_node("year");
+            rapidxml::xml_node<> *genreXml = game->first_node("genre");
+            rapidxml::xml_node<> *ratingXml = game->first_node("rating");
+            rapidxml::xml_node<> *enabledXml = game->first_node("enabled");
+            std::string name = (nameXml) ? nameXml->value() : "";
+            std::string description = (descriptionXml) ? descriptionXml->value() : "";
+            std::string crc = (crcXml) ? crcXml->value() : "";
+            std::string cloneOf = (cloneofXml) ? cloneofXml->value() : "";
+            std::string manufacturer = (manufacturerXml) ? manufacturerXml->value() : "";
+            std::string year = (yearXml) ? yearXml->value() : "";
+            std::string genre = (genreXml) ? genreXml->value() : "";
+            std::string rating = (ratingXml) ? ratingXml->value() : "";
+            std::string enabled = (enabledXml) ? enabledXml->value() : "";
+
+            if(name.length() > 0)
             {
-                rapidxml::xml_attribute<> *nameXml = game->first_attribute("name");
-                rapidxml::xml_node<> *descriptionXml = game->first_node("description");
-                rapidxml::xml_node<> *cloneofXml = game->first_node("cloneof");
-                rapidxml::xml_node<> *crcXml = game->first_node("crc");
-                rapidxml::xml_node<> *manufacturerXml = game->first_node("manufacturer");
-                rapidxml::xml_node<> *yearXml = game->first_node("year");
-                rapidxml::xml_node<> *genreXml = game->first_node("genre");
-                rapidxml::xml_node<> *ratingXml = game->first_node("rating");
-                rapidxml::xml_node<> *enabledXml = game->first_node("enabled");
-                std::string name = (nameXml) ? nameXml->value() : "";
-                std::string description = (descriptionXml) ? descriptionXml->value() : "";
-                std::string crc = (crcXml) ? crcXml->value() : "";
-                std::string cloneOf = (cloneofXml) ? cloneofXml->value() : "";
-                std::string manufacturer = (manufacturerXml) ? manufacturerXml->value() : "";
-                std::string year = (yearXml) ? yearXml->value() : "";
-                std::string genre = (genreXml) ? genreXml->value() : "";
-                std::string rating = (ratingXml) ? ratingXml->value() : "";
-                std::string enabled = (enabledXml) ? enabledXml->value() : "";
+                sqlite3_stmt *stmt;
 
-                if(name.length() > 0)
-                {
-                    sqlite3_stmt *stmt;
+                sqlite3_prepare_v2(handle,
+                        "INSERT OR REPLACE INTO Meta (name, title, year, manufacturer, cloneOf, collectionName) VALUES (?,?,?,?,?,?)",
+                        -1, &stmt, 0);
 
-                    sqlite3_prepare_v2(handle,
-                            "INSERT OR REPLACE INTO Meta (name, title, year, manufacturer, cloneOf, collectionName) VALUES (?,?,?,?,?,?)",
-                           -1, &stmt, 0);
+                sqlite3_bind_text(stmt, 1, name.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt, 2, description.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt, 3, year.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt, 4, manufacturer.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt, 5, cloneOf.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt, 6, collectionName.c_str(), -1, SQLITE_TRANSIENT);
 
-                    sqlite3_bind_text(stmt, 1, name.c_str(), -1, SQLITE_TRANSIENT);
-                    sqlite3_bind_text(stmt, 2, description.c_str(), -1, SQLITE_TRANSIENT);
-                    sqlite3_bind_text(stmt, 3, year.c_str(), -1, SQLITE_TRANSIENT);
-                    sqlite3_bind_text(stmt, 4, manufacturer.c_str(), -1, SQLITE_TRANSIENT);
-                    sqlite3_bind_text(stmt, 5, cloneOf.c_str(), -1, SQLITE_TRANSIENT);
-                    sqlite3_bind_text(stmt, 6, collectionName.c_str(), -1, SQLITE_TRANSIENT);
-
-                    sqlite3_step(stmt);
-                    sqlite3_finalize(stmt);
-                }
+                sqlite3_step(stmt);
+                sqlite3_finalize(stmt);
             }
-            Config.SetStatus("Saving data from \"" + hyperlistFile + "\" to database");
-            sqlite3_exec(handle, "COMMIT TRANSACTION;", NULL, NULL, &error);
         }
+        Config.SetStatus("Saving data from \"" + hyperlistFile + "\" to database");
+        sqlite3_exec(handle, "COMMIT TRANSACTION;", NULL, NULL, &error);
+
+        return true;
     }
     catch(rapidxml::parse_error &e)
     {
@@ -385,12 +383,11 @@ bool MetadataDatabase::ImportHyperList(std::string hyperlistFile, std::string co
     }
 
 
-    return retVal;
+    return false;
 }
 
 bool MetadataDatabase::ImportMameList(std::string filename, std::string collectionName)
 {
-    bool retVal = true;
     rapidxml::xml_document<> doc;
     rapidxml::xml_node<> * rootNode;
     char *error = NULL;
@@ -408,6 +405,12 @@ bool MetadataDatabase::ImportMameList(std::string filename, std::string collecti
     doc.parse<0>(&buffer[0]);
 
     rootNode = doc.first_node("mame");
+
+    if(!rootNode)
+    {
+        Logger::Write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a MameList file (missing <mame> tag)");
+        return false;
+    }
 
     sqlite3_exec(handle, "BEGIN IMMEDIATE TRANSACTION;", NULL, NULL, &error);
     for (rapidxml::xml_node<> * game = rootNode->first_node("game"); game; game = game->next_sibling())
@@ -471,7 +474,7 @@ bool MetadataDatabase::ImportMameList(std::string filename, std::string collecti
     Config.SetStatus("Saving data from \"" + filename + "\" to database");
     sqlite3_exec(handle, "COMMIT TRANSACTION;", NULL, NULL, &error);
 
-    return retVal;
+    return true;
 }
 
 
