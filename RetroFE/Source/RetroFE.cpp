@@ -252,7 +252,7 @@ void RetroFE::Run()
                 splashMode = false;
                 if(CurrentPage)
                 {
-                    std::string firstCollection;
+                    std::string firstCollection = "Main";
                     Config.GetProperty("firstCollection", firstCollection);
 
                     CurrentPage->Start();

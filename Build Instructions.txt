@@ -3,6 +3,7 @@ Windows Setup
 Install Python 2.7
 Install sphinx with python
 Install visual studio 2012
+Install Microsoft Windows SDK for Windows 7 and .net Framework 4 http://www.microsoft.com/en-us/download/details.aspx?id=8279
 Install cmake
 Install tortoisehg
 Install 7zip
