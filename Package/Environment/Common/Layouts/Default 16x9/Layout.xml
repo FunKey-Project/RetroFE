@@ -1,4 +1,4 @@
-<layout width="1920" height="1080" font="opensans_hebrew_condensed_regular.ttf" loadFontSize="32" fontColor="eeeeee">
+<layout width="1920" height="1080" font="Roboto-Bold.ttf" loadFontSize="32" fontColor="eeeeee">
    <sound type="load" src="load.wav" /> 
    <sound type="unload" src="unload.wav" />
    <sound type="highlight" src="highlight.wav" />
