@@ -386,7 +386,7 @@ void ScrollingList::Update(float dt)
     }
     else if(CurrentScrollState == ScrollStateIdle && readyToScroll)
     {
-        ScrollPeriod = 0.500;
+        ScrollPeriod = 0.250;
         // check to see if requested to scroll
         if(RequestedScrollDirection != ScrollDirectionIdle)
         {
@@ -426,10 +426,10 @@ void ScrollingList::Update(float dt)
 
         else if(CurrentScrollState == ScrollStateActive)
         {
-            ScrollPeriod -= 0.050f;
-            if(ScrollPeriod < 0.050)
+            ScrollPeriod -= 0.075f;
+            if(ScrollPeriod < 0)
             {
-                ScrollPeriod = 0.050f;
+                ScrollPeriod = 0.00f;
             }
 
             Click(ScrollPeriod);
