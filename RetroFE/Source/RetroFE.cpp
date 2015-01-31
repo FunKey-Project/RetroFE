@@ -399,7 +399,6 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
         if (keys[Input.GetScancode(UserInput::KeyCodeSelect)])
         {
             NextPageItem = page->GetSelectedItem();
-                    Logger::Write(Logger::ZONE_INFO, "RetroFE", "SELECT KEYCODE START");
 
             if(NextPageItem)
             {

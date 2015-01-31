@@ -172,7 +172,6 @@ void Component::Update(float dt)
         case MENU_EXIT:
             CurrentTweens = NULL;
             CurrentAnimationState = IDLE;
-                Logger::Write(Logger::ZONE_ERROR, "Component", "completed menu exit tween (hidden)");
             break;
 
 
