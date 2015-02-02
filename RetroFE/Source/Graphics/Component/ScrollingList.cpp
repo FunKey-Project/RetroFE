@@ -51,7 +51,8 @@ ScrollingList::ScrollingList(Configuration &c,
     , CurrentScrollDirection(ScrollDirectionIdle)
     , RequestedScrollDirection(ScrollDirectionIdle)
     , CurrentScrollState(ScrollStateIdle)
-    , ScrollAcceleration(6)  // todo: make configurable
+    , ScrollAcceleration(0)
+    , StartScrollTime(0.500)
     , ScrollPeriod(0)
     , Config(c)
     , ScaleX(scaleX)
@@ -98,6 +99,16 @@ void ScrollingList::SetItems(std::vector<ComponentItemBinding *> *spriteList)
     }
 
     AllocateSpritePoints();
+}
+
+void ScrollingList::SetScrollAcceleration(float value)
+{
+    ScrollAcceleration = value;
+}
+
+void ScrollingList::SetStartScrollTime(float value)
+{
+    StartScrollTime = value;
 }
 
 void ScrollingList::DeallocateSpritePoints()
@@ -291,7 +302,6 @@ void ScrollingList::FreeGraphicsMemory()
     CurrentScrollDirection = ScrollDirectionIdle;
     RequestedScrollDirection = ScrollDirectionIdle;
     CurrentScrollState = ScrollStateIdle;
-    ScrollAcceleration = 6;  // todo: make configurable
     ScrollPeriod = 0;
 
     for(unsigned int i = 0; SpriteList && i < SpriteList->size(); i++)
@@ -386,7 +396,7 @@ void ScrollingList::Update(float dt)
     }
     else if(CurrentScrollState == ScrollStateIdle && readyToScroll)
     {
-        ScrollPeriod = 0.250;
+        ScrollPeriod = StartScrollTime;
         // check to see if requested to scroll
         if(RequestedScrollDirection != ScrollDirectionIdle)
         {
@@ -426,10 +436,10 @@ void ScrollingList::Update(float dt)
 
         else if(CurrentScrollState == ScrollStateActive)
         {
-            ScrollPeriod -= 0.075f;
-            if(ScrollPeriod < 0)
+            ScrollPeriod -= ScrollAcceleration;
+            if(ScrollPeriod < ScrollAcceleration)
             {
-                ScrollPeriod = 0.00f;
+                ScrollPeriod = ScrollAcceleration;
             }
 
             Click(ScrollPeriod);
@@ -534,18 +544,18 @@ void ScrollingList::ResetTweens(Component *c, TweenSet *sets, ViewInfo *currentV
     c->UpdateBaseViewInfo(*currentViewInfo);
 
     std::vector<Tween *> *set = new std::vector<Tween *>();
-    set->push_back(new Tween(TWEEN_PROPERTY_HEIGHT, LINEAR, currentViewInfo->GetHeight(), nextViewInfo->GetHeight(), scrollTime));
-    set->push_back(new Tween(TWEEN_PROPERTY_WIDTH, LINEAR, currentViewInfo->GetWidth(), nextViewInfo->GetWidth(), scrollTime));
-    set->push_back(new Tween(TWEEN_PROPERTY_ANGLE, LINEAR, currentViewInfo->GetAngle(), nextViewInfo->GetAngle(), scrollTime));
-    set->push_back(new Tween(TWEEN_PROPERTY_ALPHA, LINEAR, currentViewInfo->GetAlpha(), nextViewInfo->GetAlpha(), scrollTime));
-    set->push_back(new Tween(TWEEN_PROPERTY_X, LINEAR, currentViewInfo->GetX(), nextViewInfo->GetX(), scrollTime));
-    set->push_back(new Tween(TWEEN_PROPERTY_Y, LINEAR, currentViewInfo->GetY(), nextViewInfo->GetY(), scrollTime));
-    set->push_back(new Tween(TWEEN_PROPERTY_X_ORIGIN, LINEAR, currentViewInfo->GetXOrigin(), nextViewInfo->GetXOrigin(), scrollTime));
-    set->push_back(new Tween(TWEEN_PROPERTY_Y_ORIGIN, LINEAR, currentViewInfo->GetYOrigin(), nextViewInfo->GetYOrigin(), scrollTime));
-    set->push_back(new Tween(TWEEN_PROPERTY_X_OFFSET, LINEAR, currentViewInfo->GetXOffset(), nextViewInfo->GetXOffset(), scrollTime));
-    set->push_back(new Tween(TWEEN_PROPERTY_Y_OFFSET, LINEAR, currentViewInfo->GetYOffset(), nextViewInfo->GetYOffset(), scrollTime));
-    set->push_back(new Tween(TWEEN_PROPERTY_FONT_SIZE, LINEAR, currentViewInfo->GetFontSize(), nextViewInfo->GetFontSize(), scrollTime));
-    set->push_back(new Tween(TWEEN_PROPERTY_BACKGROUND_ALPHA, LINEAR, currentViewInfo->GetBackgroundAlpha(), nextViewInfo->GetBackgroundAlpha(), scrollTime));
+    set->push_back(new Tween(TWEEN_PROPERTY_HEIGHT, EASE_INOUT_QUADRATIC, currentViewInfo->GetHeight(), nextViewInfo->GetHeight(), scrollTime));
+    set->push_back(new Tween(TWEEN_PROPERTY_WIDTH, EASE_INOUT_QUADRATIC, currentViewInfo->GetWidth(), nextViewInfo->GetWidth(), scrollTime));
+    set->push_back(new Tween(TWEEN_PROPERTY_ANGLE, EASE_INOUT_QUADRATIC, currentViewInfo->GetAngle(), nextViewInfo->GetAngle(), scrollTime));
+    set->push_back(new Tween(TWEEN_PROPERTY_ALPHA, EASE_INOUT_QUADRATIC, currentViewInfo->GetAlpha(), nextViewInfo->GetAlpha(), scrollTime));
+    set->push_back(new Tween(TWEEN_PROPERTY_X, EASE_INOUT_QUADRATIC, currentViewInfo->GetX(), nextViewInfo->GetX(), scrollTime));
+    set->push_back(new Tween(TWEEN_PROPERTY_Y, EASE_INOUT_QUADRATIC, currentViewInfo->GetY(), nextViewInfo->GetY(), scrollTime));
+    set->push_back(new Tween(TWEEN_PROPERTY_X_ORIGIN, EASE_INOUT_QUADRATIC, currentViewInfo->GetXOrigin(), nextViewInfo->GetXOrigin(), scrollTime));
+    set->push_back(new Tween(TWEEN_PROPERTY_Y_ORIGIN, EASE_INOUT_QUADRATIC, currentViewInfo->GetYOrigin(), nextViewInfo->GetYOrigin(), scrollTime));
+    set->push_back(new Tween(TWEEN_PROPERTY_X_OFFSET, EASE_INOUT_QUADRATIC, currentViewInfo->GetXOffset(), nextViewInfo->GetXOffset(), scrollTime));
+    set->push_back(new Tween(TWEEN_PROPERTY_Y_OFFSET, EASE_INOUT_QUADRATIC, currentViewInfo->GetYOffset(), nextViewInfo->GetYOffset(), scrollTime));
+    set->push_back(new Tween(TWEEN_PROPERTY_FONT_SIZE, EASE_INOUT_QUADRATIC, currentViewInfo->GetFontSize(), nextViewInfo->GetFontSize(), scrollTime));
+    set->push_back(new Tween(TWEEN_PROPERTY_BACKGROUND_ALPHA, EASE_INOUT_QUADRATIC, currentViewInfo->GetBackgroundAlpha(), nextViewInfo->GetBackgroundAlpha(), scrollTime));
     scrollTween->push_back(set);
 }
 

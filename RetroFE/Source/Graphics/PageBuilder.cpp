@@ -500,6 +500,8 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
     xml_node<> *itemDefaults = menuXml->first_node("itemDefaults");
     xml_attribute<> *imageTypeXml = menuXml->first_attribute("imageType");
     xml_attribute<> *menuTypeXml = menuXml->first_attribute("type");
+    xml_attribute<> *scrollTimeXml = menuXml->first_attribute("scrollTime");
+    xml_attribute<> *scrollAccelerationXml = menuXml->first_attribute("scrollAcceleration");
 
     if(menuTypeXml)
     {
@@ -521,6 +523,16 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
     FC->LoadFont(Font, FontSize, FontColor);
 
     menu = new ScrollingList(Config, ScaleX, ScaleY, FC->GetFont(Font), FontColor, LayoutKey, imageType);
+
+    if(scrollTimeXml)
+    {
+        menu->SetStartScrollTime(Utils::ConvertFloat(scrollTimeXml->value()));
+    }
+
+    if(scrollAccelerationXml)
+    {
+        menu->SetScrollAcceleration(Utils::ConvertFloat(scrollAccelerationXml->value()));
+    }
 
     ViewInfo *v = menu->GetBaseViewInfo();
     BuildViewInfo(menuXml, v);

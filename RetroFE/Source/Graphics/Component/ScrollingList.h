@@ -75,6 +75,8 @@ public:
     void Update(float dt);
     void Draw();
     void Draw(unsigned int layer);
+    void SetScrollAcceleration(float value);
+    void SetStartScrollTime(float value);
 
 private:
     void Click(double nextScrollTime);
@@ -107,6 +109,7 @@ private:
     ScrollDirection RequestedScrollDirection;
     ScrollState CurrentScrollState;
     float ScrollAcceleration;
+    float StartScrollTime;
     float ScrollPeriod;
 
     int CircularIncrement(unsigned int index, unsigned int offset, std::vector<ComponentItemBinding *> *list);
