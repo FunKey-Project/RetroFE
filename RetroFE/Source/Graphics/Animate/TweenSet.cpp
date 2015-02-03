@@ -23,7 +23,7 @@ TweenSet::~TweenSet()
 
 void TweenSet::DestroyTweens()
 {
-    std::map<std::string, std::map<int, TweenSets *>>::iterator it = TweenMap.begin();
+    std::map<std::string, std::map<int, TweenSets *> >::iterator it = TweenMap.begin();
 
     while(it != TweenMap.end())
     {
