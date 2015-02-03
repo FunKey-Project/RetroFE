@@ -34,7 +34,7 @@ public:
 
 private:
     TweenSets *FindTween(std::map<int, TweenSets *> &tweens, int index);
-void TweenSet::DestroyTweens();
+    void DestroyTweens();
 
-    std::map<std::string, std::map<int, TweenSets *>> TweenMap;
+    std::map<std::string, std::map<int, TweenSets *> > TweenMap;
 };
