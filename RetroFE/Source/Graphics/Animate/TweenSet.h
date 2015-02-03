@@ -27,29 +27,14 @@ class TweenSet
 public:
     ~TweenSet();
     typedef std::vector<std::vector<Tween *> *> TweenSets;
-    //todo: delete the tweens in a destructor
 
-    TweenSets *GetOnEnterTweens();
-    TweenSets *GetOnExitTweens();
-    TweenSets *GetOnIdleTweens();
-    TweenSets *GetOnHighlightEnterTweens();
-    TweenSets *GetOnHighlightExitTweens();
-    TweenSets *GetOnMenuScrollTweens();
-    TweenSets *GetOnMenuEnterTweens();
-    TweenSets *GetOnMenuExitTweens();
-    TweenSets *GetOnMenuEnterTweens(int index);
-    TweenSets *GetOnMenuExitTweens(int index);
-    void SetOnMenuEnterTweens(int index, TweenSets *set);
-    void SetOnMenuExitTweens(int index, TweenSets *set);
+    TweenSets *GetTween(std::string tween);
+    TweenSets *GetTween(std::string tween, int index);
+    void SetTween(std::string tween, int index, TweenSets *set);
 
 private:
-    TweenSets OnEnterTweens;
-    TweenSets OnExitTweens;
-    TweenSets OnIdleTweens;
-    TweenSets OnHighlightEnterTweens;
-    TweenSets OnHighlightExitTweens;
-    TweenSets OnMenuScrollTweens;
-    std::map<int, TweenSets *> OnMenuEnterTweens;
-    std::map<int, TweenSets *> OnMenuExitTweens;
+    TweenSets *FindTween(std::map<int, TweenSets *> &tweens, int index);
+void TweenSet::DestroyTweens();
 
+    std::map<std::string, std::map<int, TweenSets *>> TweenMap;
 };

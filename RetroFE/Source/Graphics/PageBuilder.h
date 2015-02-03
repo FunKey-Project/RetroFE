@@ -54,6 +54,7 @@ private:
     bool BuildComponents(rapidxml::xml_node<> *layout, Page *page);
     void LoadTweens(Component *c, rapidxml::xml_node<> *componentXml);
     TweenSet *CreateTweenInstance(rapidxml::xml_node<> *componentXml);
+    void BuildTweenSets(TweenSet *tweens, rapidxml::xml_node<> *componentXml, std::string tagName, std::string tweenName);
     ScrollingList * BuildMenu(rapidxml::xml_node<> *menuXml);
     void BuildCustomMenu(ScrollingList *menu, rapidxml::xml_node<> *menuXml, rapidxml::xml_node<> *itemDefaults);
     void BuildVerticalMenu(ScrollingList *menu, rapidxml::xml_node<> *menuXml, rapidxml::xml_node<> *itemDefaults);

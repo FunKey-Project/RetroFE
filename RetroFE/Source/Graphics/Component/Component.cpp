@@ -180,7 +180,7 @@ void Component::Update(float dt)
 
 
         case ENTER:
-            CurrentTweens = Tweens->GetOnHighlightEnterTweens();
+            CurrentTweens = Tweens->GetTween("enter", MenuEnterIndex);
             CurrentAnimationState = HIGHLIGHT_ENTER;
             break;
 
@@ -190,7 +190,7 @@ void Component::Update(float dt)
             break;
 
         case HIGHLIGHT_ENTER:
-            CurrentTweens = Tweens->GetOnIdleTweens();
+            CurrentTweens = Tweens->GetTween("idle", MenuEnterIndex);
             CurrentAnimationState = IDLE;
             break;
 
@@ -204,29 +204,29 @@ void Component::Update(float dt)
             else if(MenuEnterRequested)
             {
                 MenuEnterRequested = false;
-                CurrentTweens = Tweens->GetOnMenuEnterTweens(MenuEnterIndex);
+                CurrentTweens = Tweens->GetTween("menuEnter", MenuEnterIndex);
                 CurrentAnimationState = MENU_ENTER;
             }
             else if(MenuScrollRequested)
             {
                 MenuScrollRequested = false;
-                CurrentTweens = Tweens->GetOnMenuScrollTweens();
+                CurrentTweens = Tweens->GetTween("menuScroll", MenuEnterIndex);
                 CurrentAnimationState = MENU_SCROLL;
             }
             else if(MenuExitRequested)
             {
                 MenuExitRequested = false;
-                CurrentTweens = Tweens->GetOnMenuExitTweens(MenuExitIndex);
+                CurrentTweens = Tweens->GetTween("menuExit", MenuEnterIndex);
                 CurrentAnimationState = MENU_EXIT;
             }
             else if(IsScrollActive() || NewItemSelected || ExitRequested)
             {
-                CurrentTweens = Tweens->GetOnHighlightExitTweens();
+                CurrentTweens = Tweens->GetTween("highlightExit", MenuEnterIndex);
                 CurrentAnimationState = HIGHLIGHT_EXIT;
             }
             else
             {
-                CurrentTweens = Tweens->GetOnIdleTweens();
+                CurrentTweens = Tweens->GetTween("idle", MenuEnterIndex);
                 CurrentAnimationState = IDLE;
             }
             break;
@@ -238,14 +238,14 @@ void Component::Update(float dt)
 
             if(ExitRequested && (CurrentAnimationState == HIGHLIGHT_WAIT))
             {
-                CurrentTweens = Tweens->GetOnHighlightExitTweens();
+                CurrentTweens = Tweens->GetTween("highlightExit", MenuEnterIndex);
                 CurrentAnimationState = HIGHLIGHT_EXIT;
 
             }
             else if(ExitRequested && (CurrentAnimationState == HIGHLIGHT_EXIT))
             {
 
-                CurrentTweens = Tweens->GetOnExitTweens();
+                CurrentTweens = Tweens->GetTween("exit", MenuEnterIndex);
                 CurrentAnimationState = EXIT;
                 ExitRequested = false;
             }
@@ -256,7 +256,7 @@ void Component::Update(float dt)
             }
             else if(NewItemSelected)
             {
-                CurrentTweens = Tweens->GetOnHighlightEnterTweens();
+                CurrentTweens = Tweens->GetTween("highlightEnter", MenuEnterIndex);
                 CurrentAnimationState = HIGHLIGHT_ENTER;
                 HighlightExitComplete = true;
                 NewItemSelected = false;
@@ -271,18 +271,18 @@ void Component::Update(float dt)
         case HIDDEN:
             if(EnterRequested || ExitRequested)
             {
-                CurrentTweens = Tweens->GetOnEnterTweens();
+                CurrentTweens = Tweens->GetTween("enter", MenuEnterIndex);
                 CurrentAnimationState = ENTER;
             }
             else if(MenuExitRequested)
             {
-                CurrentTweens = Tweens->GetOnMenuExitTweens();
+                CurrentTweens = Tweens->GetTween("menuExit", MenuEnterIndex);
                 CurrentAnimationState = MENU_EXIT;
                 MenuExitRequested = false;
             }
             else if(MenuEnterRequested)
             {
-                CurrentTweens = Tweens->GetOnMenuEnterTweens();
+                CurrentTweens = Tweens->GetTween("menuEnter", MenuEnterIndex);
                 CurrentAnimationState = MENU_ENTER;
                 MenuEnterRequested = false;
 
@@ -290,7 +290,7 @@ void Component::Update(float dt)
             else if(MenuScrollRequested)
             {
                 MenuScrollRequested = false;
-                CurrentTweens = Tweens->GetOnMenuScrollTweens();
+                CurrentTweens = Tweens->GetTween("menuScroll", MenuEnterIndex);
                 CurrentAnimationState = MENU_SCROLL;
             }
             else

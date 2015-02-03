@@ -460,34 +460,28 @@ TweenSet *PageBuilder::CreateTweenInstance(xml_node<> *componentXml)
 {
     TweenSet *tweens = new TweenSet();
 
-    GetTweenSets(componentXml->first_node("onEnter"), tweens->GetOnEnterTweens());
-    GetTweenSets(componentXml->first_node("onExit"), tweens->GetOnExitTweens());
-    GetTweenSets(componentXml->first_node("onIdle"), tweens->GetOnIdleTweens());
-    GetTweenSets(componentXml->first_node("onHighlightEnter"), tweens->GetOnHighlightEnterTweens());
-    GetTweenSets(componentXml->first_node("onHighlightExit"), tweens->GetOnHighlightExitTweens());
-
-    for(xml_node<> *menuEnter = componentXml->first_node("onMenuEnter"); menuEnter; menuEnter = menuEnter->next_sibling("onMenuEnter"))
-    {
-        xml_attribute<> *indexXml = menuEnter->first_attribute("menuIndex");
-        int index = (indexXml) ? Utils::ConvertInt(indexXml->value()) : -1;
-
-        TweenSet::TweenSets *sets = new TweenSet::TweenSets();
-        GetTweenSets(menuEnter, sets);
-        tweens->SetOnMenuEnterTweens(index, sets);
-    }   
-
-    for(xml_node<> *menuExit = componentXml->first_node("onMenuExit"); menuExit; menuExit = menuExit->next_sibling("onMenuExit"))
-    {
-        xml_attribute<> *indexXml = menuExit->first_attribute("menuIndex");
-        int index = (indexXml) ? Utils::ConvertInt(indexXml->value()) : -1;
-
-        TweenSet::TweenSets *sets = new TweenSet::TweenSets();
-        GetTweenSets(menuExit, sets);
-        tweens->SetOnMenuExitTweens(index, sets);
-    }
-
+    BuildTweenSets(tweens, componentXml, "onEnter", "enter");
+    BuildTweenSets(tweens, componentXml, "onExit", "exit");
+    BuildTweenSets(tweens, componentXml, "onIdle", "idle");
+    BuildTweenSets(tweens, componentXml, "onHighlightEnter", "highlightEnter");
+    BuildTweenSets(tweens, componentXml, "onHighlightExit", "highlightExit");
+    BuildTweenSets(tweens, componentXml, "onMenuEnter", "menuEnter");
+    BuildTweenSets(tweens, componentXml, "onMenuExit", "menuExit");
 
     return tweens;
+}
+
+void PageBuilder::BuildTweenSets(TweenSet *tweens, xml_node<> *componentXml, std::string tagName, std::string tweenName)
+{
+    for(componentXml = componentXml->first_node(tagName.c_str()); componentXml; componentXml = componentXml->next_sibling(tweenName.c_str()))
+    {
+        xml_attribute<> *indexXml = componentXml->first_attribute("menuIndex");
+        int index = (indexXml) ? Utils::ConvertInt(indexXml->value()) : -1;
+
+        TweenSet::TweenSets *sets = new TweenSet::TweenSets();
+        GetTweenSets(componentXml, sets);
+        tweens->SetTween(tweenName, index, sets);
+    }   
 }
 
 

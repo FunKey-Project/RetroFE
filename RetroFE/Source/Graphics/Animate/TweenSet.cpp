@@ -18,103 +18,57 @@
 
 TweenSet::~TweenSet() 
 {
-    std::map<int, TweenSets *>::iterator it;
-    
-    it = OnMenuEnterTweens.begin();
-    while(it != OnMenuEnterTweens.end())
+    DestroyTweens();
+}
+
+void TweenSet::DestroyTweens()
+{
+    std::map<std::string, std::map<int, TweenSets *>>::iterator it = TweenMap.begin();
+
+    while(it != TweenMap.end())
     {
-        delete it->second;
-        OnMenuEnterTweens.erase(it);
-        it = OnMenuEnterTweens.begin();
+        std::map<int, TweenSets *>::iterator it2 = (it->second).begin();
+
+        while(it2 != (it->second).end())
+        {
+            delete it2->second;
+            (it->second).erase(it2);
+            it2 = (it->second).begin();
+        }
+
+        it =TweenMap.begin();
     }
-
-    it = OnMenuExitTweens.begin();
-    while(it != OnMenuExitTweens.end())
-    {
-        delete it->second;
-        OnMenuExitTweens.erase(it);
-        it = OnMenuExitTweens.begin();
-    }
 }
 
-TweenSet::TweenSets *TweenSet::GetOnEnterTweens()
+TweenSet::TweenSets *TweenSet::GetTween(std::string tween)
 {
-    return &OnEnterTweens;
-}
-TweenSet::TweenSets *TweenSet::GetOnExitTweens()
-{
-    return &OnExitTweens;
-}
-TweenSet::TweenSets *TweenSet::GetOnIdleTweens()
-{
-    return &OnIdleTweens;
-}
-TweenSet::TweenSets *TweenSet::GetOnHighlightEnterTweens()
-{
-    return &OnHighlightEnterTweens;
-}
-TweenSet::TweenSets *TweenSet::GetOnHighlightExitTweens()
-{
-    return &OnHighlightExitTweens;
+    return GetTween(tween, -1);
 }
 
-TweenSet::TweenSets *TweenSet::GetOnMenuEnterTweens()
+TweenSet::TweenSets *TweenSet::GetTween(std::string tween, int index)
 {
-    return GetOnMenuEnterTweens(-1);
+    return FindTween(TweenMap[tween], index);
 }
 
-
-TweenSet::TweenSets *TweenSet::GetOnMenuEnterTweens(int index)
+void TweenSet::SetTween(std::string tween, int index, TweenSets *set)
 {
-    if(OnMenuEnterTweens.find(index) == OnMenuEnterTweens.end())
+    TweenMap[tween][index] = set;
+}
+
+TweenSet::TweenSets *TweenSet::FindTween(std::map<int, TweenSets *> &tweens, int index)
+{
+    if(tweens.find(index) == tweens.end())
     {
         index = -1;
 
-        if(OnMenuEnterTweens.find(index) == OnMenuEnterTweens.end())
+        if(tweens.find(index) == tweens.end())
         {
             TweenSets *set = new TweenSets();
-            OnMenuEnterTweens[index] = set;
+            tweens[index] = set;
         }
     }
 
-    return OnMenuEnterTweens[index];
-}
-
-TweenSet::TweenSets *TweenSet::GetOnMenuScrollTweens()
-{
-    return &OnMenuScrollTweens;
-}
-
-TweenSet::TweenSets *TweenSet::GetOnMenuExitTweens()
-{
-    return GetOnMenuExitTweens(-1);
-}
-
-
-TweenSet::TweenSets *TweenSet::GetOnMenuExitTweens(int index)
-{
-    if(OnMenuExitTweens.find(index) == OnMenuExitTweens.end())
-    {
-        index = -1;
-
-        if(OnMenuExitTweens.find(index) == OnMenuExitTweens.end())
-        {
-            TweenSets *set = new TweenSets();
-            OnMenuExitTweens[index] = set;
-        }
-    }
-
-    return OnMenuExitTweens[index];
-}
-
-void TweenSet::SetOnMenuEnterTweens(int index, TweenSets *set)
-{
-    OnMenuEnterTweens[index] = set;
-}
-
-void TweenSet::SetOnMenuExitTweens(int index, TweenSets *set)
-{
-    OnMenuExitTweens[index] = set;
+    return tweens[index];
 }
 
 
