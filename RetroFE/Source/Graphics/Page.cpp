@@ -378,49 +378,46 @@ bool Page::PopCollection()
 {
     int menuExitIndex = -1;
     int menuEnterIndex = -1;
+    CollectionInfo *collection = NULL;
+    if(MenuDepth <= 1) { return false; }
+    if(Collections.size() <= 1) { return false; }
+        
+    Collections.pop_back();
+    collection = Collections.back(); 
 
-    if(MenuDepth > 1)
+    if(ActiveMenu)
     {
-        if(Collections.size() > 1)
-        {
-            Collections.pop_back();
-        }
-
-        if(ActiveMenu)
-        {
-            ActiveMenu->TriggerMenuExitEvent();
-        }
-
-        MenuDepth--;
-        menuExitIndex = MenuDepth;
-        menuEnterIndex = menuExitIndex - 1;
-        ActiveMenu = Menus[MenuDepth - 1];
-        if(ActiveMenu)
-        {
-            ActiveMenu->TriggerMenuEnterEvent();
-        }
-
-        for(unsigned int i = 0; i < NUM_LAYERS; ++i)
-        {
-            for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-            {
-                if(menuEnterIndex >= 0)
-                {
-                    (*it)->TriggerMenuEnterEvent(menuEnterIndex);
-                }
-
-                if(menuExitIndex >= 0)
-                {
-                    (*it)->TriggerMenuExitEvent(menuExitIndex);
-                }
-            }
-        }
-
-
-        return true;
+        ActiveMenu->TriggerMenuExitEvent();
     }
 
-    return false;
+    MenuDepth--;
+    menuExitIndex = MenuDepth;
+    menuEnterIndex = menuExitIndex - 1;
+    ActiveMenu = Menus[MenuDepth - 1];
+    if(ActiveMenu)
+    {
+        ActiveMenu->TriggerMenuEnterEvent();
+    }
+
+    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    {
+        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
+        {
+            (*it)->SetCollectionName(collection->GetName());
+
+            if(menuEnterIndex >= 0)
+            {
+                (*it)->TriggerMenuEnterEvent(menuEnterIndex);
+            }
+
+            if(menuExitIndex >= 0)
+            {
+                (*it)->TriggerMenuExitEvent(menuExitIndex);
+            }
+        }
+    }
+
+    return true;
 }
 
 
