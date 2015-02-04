@@ -31,8 +31,25 @@ bool UserInput::Initialize()
 {
     bool retVal = true;
 
-    retVal = MapKey("nextItem", KeyCodeNextItem) && retVal;
-    retVal = MapKey("previousItem", KeyCodePreviousItem) && retVal;
+    if(!MapKey("up", KeyCodeUp))
+    {
+        retVal = MapKey("previousItem", KeyCodeUp) && retVal;
+    }
+    if(!MapKey("down", KeyCodePageDown))
+    {
+        retVal = MapKey("nextItem", KeyCodeDown) && retVal;
+    }
+
+    if(!MapKey("left", KeyCodeLeft))
+    {
+        retVal = MapKey("previousItem", KeyCodeLeft) && retVal;
+    }
+
+    if(!MapKey("right", KeyCodeRight))
+    {
+        retVal = MapKey("nextItem", KeyCodeRight) && retVal;
+    }
+
     retVal = MapKey("pageDown", KeyCodePageDown) && retVal;
     retVal = MapKey("pageUp", KeyCodePageUp) && retVal;
     retVal = MapKey("select", KeyCodeSelect) && retVal;
@@ -61,7 +78,6 @@ SDL_Scancode UserInput::GetScancode(KeyCode_E key)
 
 bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
 {
-    bool retVal = false;
     SDL_Scancode scanCode;
     std::string description;
 
@@ -70,22 +86,17 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
     if(!Config.GetProperty(configKey, description))
     {
         Logger::Write(Logger::ZONE_ERROR, "Configuration", "Missing property " + configKey);
+        return false;
     }
-    else
+    scanCode = SDL_GetScancodeFromName(description.c_str());
+
+    if(scanCode == SDL_SCANCODE_UNKNOWN)
     {
-        scanCode = SDL_GetScancodeFromName(description.c_str());
-
-        if(scanCode == SDL_SCANCODE_UNKNOWN)
-        {
-            Logger::Write(Logger::ZONE_ERROR, "Configuration", "Unsupported property value for " + configKey + "(" + description + "). See Documentation/Keycodes.txt for valid inputs");
-        }
-        else
-        {
-            KeyMap[key] = scanCode;
-            retVal = true;
-        }
+        Logger::Write(Logger::ZONE_ERROR, "Configuration", "Unsupported property value for " + configKey + "(" + description + "). See Documentation/Keycodes.txt for valid inputs");
+        return false;
     }
+    KeyMap[key] = scanCode;
 
-    return retVal;
+    return true;
 }
 
