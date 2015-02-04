@@ -473,7 +473,7 @@ TweenSet *PageBuilder::CreateTweenInstance(xml_node<> *componentXml)
 
 void PageBuilder::BuildTweenSets(TweenSet *tweens, xml_node<> *componentXml, std::string tagName, std::string tweenName)
 {
-    for(componentXml = componentXml->first_node(tagName.c_str()); componentXml; componentXml = componentXml->next_sibling(tweenName.c_str()))
+    for(componentXml = componentXml->first_node(tagName.c_str()); componentXml; componentXml = componentXml->next_sibling(tagName.c_str()))
     {
         xml_attribute<> *indexXml = componentXml->first_attribute("menuIndex");
         int index = (indexXml) ? Utils::ConvertInt(indexXml->value()) : -1;

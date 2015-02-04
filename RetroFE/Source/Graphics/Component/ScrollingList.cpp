@@ -455,7 +455,7 @@ void ScrollingList::Update(float dt)
         CircularIncrement(spriteIndex, SpriteList);
     }
 
-    if(scrollStopped || scrollChanged)
+    if(scrollStopped)
     {
         ComponentItemBinding *sprite = GetPendingCollectionItemSprite();
         Item *item = NULL;

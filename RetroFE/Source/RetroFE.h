@@ -22,6 +22,7 @@
 #include "Execute/AttractMode.h"
 #include "Graphics/FontCache.h"
 #include "Video/IVideo.h"
+#include "Video/VideoFactory.h"
 #include <SDL2/SDL.h>
 #include <list>
 #include <vector>
@@ -42,7 +43,7 @@ public:
     void LaunchEnter();
     void LaunchExit();
 private:
-    bool Initialized;
+    volatile bool Initialized;
     SDL_Thread *InitializeThread;
     static int Initialize(void *context);
 
@@ -60,7 +61,6 @@ private:
     void Render();
     bool Back(bool &exit);
     void Quit();
-    void WaitToInitialize();
     Page *LoadPage();
     Page *LoadSplashPage();
     RETROFE_STATE ProcessUserInput(Page *page);

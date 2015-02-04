@@ -57,6 +57,7 @@ void ReloadableMedia::Update(float dt)
     // wait for the right moment to reload the image
     if (ReloadRequested && (HighlightExitComplete || FirstLoad))
     {
+
         ReloadTexture();
         ReloadRequested = false;
         FirstLoad = false;

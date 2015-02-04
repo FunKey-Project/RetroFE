@@ -75,8 +75,6 @@ int RetroFE::Initialize(void *context)
     RetroFE *instance = static_cast<RetroFE *>(context);
 
     Logger::Write(Logger::ZONE_INFO, "RetroFE", "Initializing");
-    bool videoEnable = true;
-    int videoLoop = 0;
 
     if(!instance->Input.Initialize()) return -1;
 
@@ -95,12 +93,6 @@ int RetroFE::Initialize(void *context)
         Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize meta database");
         return -1;
     }
-
-    instance->Config.GetProperty("videoEnable", videoEnable);
-    instance->Config.GetProperty("videoLoop", videoLoop);
-
-    VideoFactory::SetEnabled(videoEnable);
-    VideoFactory::SetNumLoops(videoLoop);
 
     instance->Initialized = true;
     return 0;
@@ -187,6 +179,16 @@ void RetroFE::Run()
     if(!SDL::Initialize(Config)) return;
 
     FC.Initialize();
+
+    bool videoEnable = true;
+    int videoLoop = 0;
+    Config.GetProperty("videoEnable", videoEnable);
+    Config.GetProperty("videoLoop", videoLoop);
+
+    VideoFactory::SetEnabled(videoEnable);
+    VideoFactory::SetNumLoops(videoLoop);
+    VideoFactory::CreateVideo(); // pre-initialize the gstreamer engine
+
 
     InitializeThread = SDL_CreateThread(Initialize, "RetroFEInit", (void *)this);
 
@@ -441,28 +443,6 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
 
     return state;
 }
-
-void RetroFE::WaitToInitialize()
-{
-    Logger::Write(Logger::ZONE_INFO, "RetroFE", "Loading splash screen");
-
-    PageBuilder pb("splash", Config, &FC);
-    Page * page = pb.BuildPage();
-
-    while(!Initialized)
-    {
-        SDL_SetRenderDrawColor(SDL::GetRenderer(), 0x0, 0x0, 0x00, 0xFF);
-        SDL_RenderClear(SDL::GetRenderer());
-
-        page->Draw();
-        SDL_RenderPresent(SDL::GetRenderer());
-    }
-
-    int status = 0;
-    delete page;    
-    SDL_WaitThread(InitializeThread, &status);
-}
-
 
 Page *RetroFE::LoadPage()
 {

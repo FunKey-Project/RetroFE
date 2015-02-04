@@ -20,7 +20,7 @@ class IVideo;
 class VideoFactory
 {
 public:
-    IVideo *CreateVideo();
+    static IVideo *CreateVideo();
     static void SetEnabled(bool enabled);
     static void SetNumLoops(int numLoops);
 

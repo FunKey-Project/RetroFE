@@ -129,7 +129,7 @@ void GStreamerVideo::ProcessNewBuffer (GstElement *fakesink, GstBuffer *buf, Gst
 
 bool GStreamerVideo::Initialize()
 {
-    bool retVal = true;
+    if(Initialized) { return true; }
 
     std::string path = Configuration::GetAbsolutePath() + "/Core";
     gst_init(NULL, NULL);
@@ -141,7 +141,7 @@ bool GStreamerVideo::Initialize()
 
     Initialized = true;
 
-    return retVal;
+    return true;
 }
 
 bool GStreamerVideo::DeInitialize()
