@@ -104,7 +104,7 @@ private:
     unsigned int FirstSpriteIndex;
     unsigned int SelectedSpriteListIndex;
     bool ScrollStopRequested;
-
+    bool NotifyAllRequested;
     ScrollDirection CurrentScrollDirection;
     ScrollDirection RequestedScrollDirection;
     ScrollState CurrentScrollState;

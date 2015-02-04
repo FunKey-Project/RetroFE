@@ -48,6 +48,7 @@ ScrollingList::ScrollingList(Configuration &c,
     , FirstSpriteIndex(0)
     , SelectedSpriteListIndex(0)
     , ScrollStopRequested(true)
+    , NotifyAllRequested(false)
     , CurrentScrollDirection(ScrollDirectionIdle)
     , RequestedScrollDirection(ScrollDirectionIdle)
     , CurrentScrollState(ScrollStateIdle)
@@ -73,6 +74,7 @@ ScrollingList::~ScrollingList()
 
 void ScrollingList::SetItems(std::vector<ComponentItemBinding *> *spriteList)
 {
+    NotifyAllRequested = true;
     SpriteList = spriteList;
     FirstSpriteIndex = 0;
 
@@ -187,7 +189,6 @@ void ScrollingList::SetPoints(std::vector<ViewInfo *> *scrollPoints, std::vector
         ViewInfo *info = scrollPoints->at(i);
         MaxLayer = (MaxLayer < info->GetLayer()) ? MaxLayer : info->GetLayer();
     }
-
 }
 
 void ScrollingList::SetSelectedIndex(int selectedIndex)
@@ -257,6 +258,7 @@ unsigned int ScrollingList::GetNextTween(unsigned int currentIndex, std::vector<
 
 void ScrollingList::PageUp()
 {
+    NotifyAllRequested = true;
     DeallocateSpritePoints();
 
     if(SpriteList && ScrollPoints && ScrollPoints->size() > 2)
@@ -277,6 +279,8 @@ void ScrollingList::PageUp()
 
 void ScrollingList::PageDown()
 {
+    NotifyAllRequested = true;
+
     DeallocateSpritePoints();
 
     if(SpriteList && ScrollPoints && ScrollPoints->size() > 2)
@@ -315,6 +319,7 @@ void ScrollingList::FreeGraphicsMemory()
 void ScrollingList::TriggerMenuEnterEvent()
 {
     Focus = true;
+    NotifyAllRequested = true;
 
     if(!ScrollPoints) { return; }
     if(!SpriteList) { return; }
@@ -340,6 +345,8 @@ void ScrollingList::TriggerMenuEnterEvent()
 void ScrollingList::TriggerMenuExitEvent()
 {
     Focus = false;
+    NotifyAllRequested = true;
+
     if(!ScrollPoints) { return; }
     if(!SpriteList) { return; }
     if(SpriteList->size() == 0 ) { return; }
@@ -455,7 +462,7 @@ void ScrollingList::Update(float dt)
         CircularIncrement(spriteIndex, SpriteList);
     }
 
-    if(scrollStopped)
+    if(scrollStopped || NotifyAllRequested)
     {
         ComponentItemBinding *sprite = GetPendingCollectionItemSprite();
         Item *item = NULL;
@@ -481,6 +488,8 @@ void ScrollingList::Update(float dt)
             CurrentScrollState = ScrollStateIdle;
         }
     }
+
+    NotifyAllRequested = false;
 }
 
 void ScrollingList::UpdateSprite(unsigned int spriteIndex, unsigned int pointIndex, bool newScroll, float dt, double nextScrollTime)
