@@ -201,17 +201,18 @@ void Component::Update(float dt)
                EnterRequested = false;
                NewItemSelected = false;
             }
-            else if(MenuExitRequested)
+            else if(MenuExitRequested && (!MenuEnterRequested || MenuExitRequested <= MenuEnterRequested))
             {
-                MenuExitRequested = false;
                 CurrentTweens = Tweens->GetTween("menuExit", MenuExitIndex);
                 CurrentAnimationState = MENU_EXIT;
+                MenuExitRequested = false;
             }
-            else if(MenuEnterRequested)
+            else if(MenuEnterRequested && (!MenuExitRequested || MenuExitRequested > MenuEnterRequested))
             {
-                MenuEnterRequested = false;
                 CurrentTweens = Tweens->GetTween("menuEnter", MenuEnterIndex);
                 CurrentAnimationState = MENU_ENTER;
+                MenuEnterRequested = false;
+
             }
             else if(MenuScrollRequested)
             {
@@ -274,13 +275,14 @@ void Component::Update(float dt)
                 CurrentTweens = Tweens->GetTween("enter", MenuEnterIndex);
                 CurrentAnimationState = ENTER;
             }
-            else if(MenuExitRequested)
+
+            else if(MenuExitRequested && (!MenuEnterRequested || MenuExitRequested <= MenuEnterRequested))
             {
                 CurrentTweens = Tweens->GetTween("menuExit", MenuExitIndex);
                 CurrentAnimationState = MENU_EXIT;
                 MenuExitRequested = false;
             }
-            else if(MenuEnterRequested)
+            else if(MenuEnterRequested && (!MenuExitRequested || MenuExitRequested > MenuEnterRequested))
             {
                 CurrentTweens = Tweens->GetTween("menuEnter", MenuEnterIndex);
                 CurrentAnimationState = MENU_ENTER;
