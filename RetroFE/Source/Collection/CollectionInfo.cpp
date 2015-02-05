@@ -17,6 +17,7 @@
 #include "Item.h"
 #include "../Database/Configuration.h"
 #include <sstream>
+#include <algorithm>
 
 CollectionInfo::CollectionInfo(std::string name,
                                std::string listPath,
@@ -86,6 +87,16 @@ void CollectionInfo::GetExtensions(std::vector<std::string> &extensions)
 std::vector<Item *> *CollectionInfo::GetItems()
 {
     return &Items;
+}
+
+bool CollectionInfo::ItemIsLess(Item const *lhs, Item const *rhs) 
+{
+    return lhs->GetLCTitle() < rhs->GetLCTitle();
+}
+
+void CollectionInfo::SortItems()
+{
+    std::sort(Items.begin(), Items.end(), ItemIsLess);	
 }
 
 

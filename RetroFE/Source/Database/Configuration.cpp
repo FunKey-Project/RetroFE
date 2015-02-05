@@ -343,32 +343,30 @@ void Configuration::GetMediaPropertyAbsolutePath(std::string collectionName, std
 {
     std::string key = "media." + collectionName + "." + mediaType;
 
-    if(!GetPropertyAbsolutePath(key, value))
-    {
-        std::string baseMediaPath;
-        if(!GetPropertyAbsolutePath("baseMediaPath", baseMediaPath))
-        {
-            baseMediaPath = "Media";
-        }
+    if(GetPropertyAbsolutePath(key, value)) { return; }
 
-        value = baseMediaPath + "/" + collectionName + "/" + Utils::UppercaseFirst(Utils::ToLower(mediaType));
+    std::string baseMediaPath;
+    if(!GetPropertyAbsolutePath("baseMediaPath", baseMediaPath))
+    {
+        baseMediaPath = "Media";
     }
+
+    value = baseMediaPath + "/" + collectionName + "/" + Utils::ToLower(mediaType);
 }
 
 void Configuration::GetCollectionAbsolutePath(std::string collectionName, std::string &value)
 {
     std::string key = "collections." + collectionName + ".list.path";
 
-    if(!GetPropertyAbsolutePath(key, value))
-    {
-        std::string baseItemPath;
-        if(!GetPropertyAbsolutePath("baseItemPath", baseItemPath))
-        {
-            baseItemPath = "Assets";
-        }
+    if(GetPropertyAbsolutePath(key, value)) { return; }
 
-        value = baseItemPath + "/" + collectionName;
+    std::string baseItemPath;
+    if(!GetPropertyAbsolutePath("baseItemPath", baseItemPath))
+    {
+        baseItemPath = "Assets";
     }
+
+    value = baseItemPath + "/" + collectionName;
 }
 
 

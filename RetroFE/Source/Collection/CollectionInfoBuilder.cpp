@@ -24,6 +24,7 @@
 #include <dirent.h>
 #include <sstream>
 #include <vector>
+#include <algorithm>
 
 CollectionInfoBuilder::CollectionInfoBuilder(Configuration &c, MetadataDatabase &mdb)
     : Conf(c)
@@ -78,6 +79,33 @@ CollectionInfo *CollectionInfoBuilder::BuildCollection(std::string name)
     return collection;
 }
 
+
+bool CollectionInfoBuilder::ImportBasicList(CollectionInfo *info, std::string file, std::map<std::string, Item *> &list)
+{
+    std::ifstream includeStream(file.c_str());
+
+    if (!includeStream.good()) { return false; }
+
+    std::string line;
+
+    while(std::getline(includeStream, line))
+    {
+
+        if(list.find(line) == list.end())
+        {
+            Item *i = new Item();
+
+            line.erase( std::remove(line.begin(), line.end(), '\r'), line.end() );
+
+            i->SetFullTitle(line);
+
+            list[line] = i;
+        }
+    }
+
+    return true;
+}
+
 bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
 {
     DIR *dp;
@@ -89,6 +117,10 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
     std::string includeFile = Configuration::GetAbsolutePath() + "/Collections/" + info->GetName() + "/Include.txt";
     std::string excludeFile = Configuration::GetAbsolutePath() + "/Collections/" + info->GetName() + "/Exclude.txt";
     std::string launcher;
+
+
+    ImportBasicList(info, includeFile, includeFilter);
+    ImportBasicList(info, excludeFile, excludeFilter);
     
     std::vector<std::string> extensions;
     std::vector<std::string>::iterator extensionsIt;
@@ -96,6 +128,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
     info->GetExtensions(extensions);
     
     (void)Conf.GetProperty("collections." + info->GetName() + ".launcher", launcher);
+        Logger::Write(Logger::ZONE_ERROR, "CollectionInfoBuilder", "Check path " + includeFile);
 
     dp = opendir(path.c_str());
 
@@ -138,7 +171,9 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
     }
 
     closedir(dp);
-    
+
+    info->SortItems();
+
     MetaDB.InjectMetadata(info);
 
     while(includeFilter.size() > 0)

@@ -46,8 +46,6 @@ public:
     void SetFullTitle(const std::string& fulltitle);
     const std::string& GetCloneOf() const;
     void SetCloneOf(const std::string& cloneOf);
-    bool operator<(const Item& rhs);
-    bool operator>(const Item& rhs);
 
 private:
     std::string Launcher;

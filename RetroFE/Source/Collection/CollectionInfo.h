@@ -32,9 +32,12 @@ public:
     std::string GetMetadataPath() const;
     std::string GetExtensions() const;
     std::vector<Item *> *GetItems();
+    void SortItems();
     void GetExtensions(std::vector<std::string> &extensions);
 
 private:
+    static bool ItemIsLess(Item const *lhs, Item const *rhs);  
+
     std::string Name;
     std::string ListPath;
     std::string Extensions;

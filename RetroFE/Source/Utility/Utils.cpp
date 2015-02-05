@@ -48,7 +48,7 @@ std::string Utils::UppercaseFirst(std::string str)
     if(str.length() > 0)
     {
         std::locale loc;
-        str[0] = std::tolower(str[0], loc);
+        str[0] = std::toupper(str[0], loc);
     }
 
     return str;

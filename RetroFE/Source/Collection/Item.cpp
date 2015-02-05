@@ -150,13 +150,3 @@ void Item::SetCloneOf(const std::string& cloneOf)
 {
     CloneOf = cloneOf;
 }
-
-bool Item::operator<(const Item &rhs)
-{
-    return LCTitle < rhs.LCTitle;
-}
-bool Item::operator>(const Item &rhs)
-{
-    return LCTitle > rhs.LCTitle;
-}
-
