@@ -260,6 +260,8 @@ void RetroFE::Run()
                     CurrentPage->Start();
                     Config.SetCurrentCollection(firstCollection);
                     CollectionInfo *info = GetCollection(firstCollection);
+                    MenuParser mp;
+                    mp.GetMenuItems(info);
                     CurrentPage->PushCollection(info);
                 }
                 else
@@ -478,11 +480,9 @@ Page *RetroFE::LoadSplashPage()
 CollectionInfo *RetroFE::GetCollection(std::string collectionName)
 {
     // the page will deallocate this once its done
-    MenuParser mp;
 
     CollectionInfoBuilder cib(Config, *MetaDb);
     CollectionInfo *collection = cib.BuildCollection(collectionName);
-    mp.GetMenuItems(collection);
 
     if(collection->GetItems()->size() == 0)
     {
