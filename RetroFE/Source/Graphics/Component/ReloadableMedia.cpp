@@ -156,8 +156,16 @@ void ReloadableMedia::ReloadTexture()
         {
             std::string imagePath;
             Config.GetMediaPropertyAbsolutePath(GetCollectionName(), Type, imagePath);
+            
             ImageBuilder imageBuild;
-            LoadedComponent = imageBuild.CreateImage(imagePath, selectedItem->GetFullTitle(), ScaleX, ScaleY);
+            std::string imageBasename = selectedItem->GetFullTitle();
+            
+            if(Utils::ToLower(imageBasename) == "manufacturer")
+            {
+                imageBasename = selectedItem->GetManufacturer();
+            }
+                        
+            LoadedComponent = imageBuild.CreateImage(imagePath, imageBasename, ScaleX, ScaleY);
 
             if (LoadedComponent != NULL)
             {
