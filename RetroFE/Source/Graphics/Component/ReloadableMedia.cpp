@@ -65,6 +65,14 @@ void ReloadableMedia::Update(float dt)
 
     if(LoadedComponent)
     {
+
+        // video needs to run a frame to start getting size info
+        if(GetBaseViewInfo()->GetImageHeight() == 0 && GetBaseViewInfo()->GetImageWidth() == 0)
+        {
+            GetBaseViewInfo()->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
+            GetBaseViewInfo()->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
+        }
+
         LoadedComponent->Update(dt);
     }
 
@@ -147,6 +155,8 @@ void ReloadableMedia::ReloadTexture()
                 if(LoadedComponent)
                 {
                     LoadedComponent->AllocateGraphicsMemory();
+                    GetBaseViewInfo()->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
+                    GetBaseViewInfo()->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
                     found = true;
                 }
             }

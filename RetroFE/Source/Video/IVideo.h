@@ -29,4 +29,6 @@ public:
     virtual SDL_Texture *GetTexture() const = 0;
     virtual void Update(float dt) = 0;
     virtual void Draw() = 0;
+    virtual int GetHeight() = 0;
+    virtual int GetWidth() = 0;
 };

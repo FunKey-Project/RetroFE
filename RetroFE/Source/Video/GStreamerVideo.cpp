@@ -323,8 +323,19 @@ void GStreamerVideo::FreeElements()
         gst_object_unref(Playbin);
         Playbin = NULL;
     }
-
 }
+
+
+int GStreamerVideo::GetHeight()
+{
+    return static_cast<int>(Height);
+}
+
+int GStreamerVideo::GetWidth()
+{
+    return static_cast<int>(Width);
+}
+
 
 void GStreamerVideo::Draw()
 {

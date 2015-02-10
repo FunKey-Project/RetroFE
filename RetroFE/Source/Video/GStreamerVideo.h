@@ -38,6 +38,8 @@ public:
     void Draw();
     void SetNumLoops(int n);
     void FreeElements();
+    int GetHeight();
+    int GetWidth();
 
 private:
     static void ProcessNewBuffer (GstElement *fakesink, GstBuffer *buf, GstPad *pad, gpointer data);

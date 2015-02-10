@@ -45,6 +45,13 @@ void VideoComponent::Update(float dt)
     if(IsPlaying)
     {
         VideoInst->Update(dt);
+
+        // video needs to run a frame to start getting size info
+        if(GetBaseViewInfo()->GetImageHeight() == 0 && GetBaseViewInfo()->GetImageWidth() == 0)
+        {
+            GetBaseViewInfo()->SetImageHeight(static_cast<float>(VideoInst->GetHeight()));
+            GetBaseViewInfo()->SetImageWidth(static_cast<float>(VideoInst->GetWidth()));
+        }
     }
 
     Component::Update(dt);
@@ -67,6 +74,15 @@ void VideoComponent::FreeGraphicsMemory()
     IsPlaying = false;
 
     Component::FreeGraphicsMemory();
+}
+
+void VideoComponent::LaunchEnter()
+{
+    FreeGraphicsMemory();
+}
+void VideoComponent::LaunchExit()
+{
+    AllocateGraphicsMemory();
 }
 
 void VideoComponent::Draw()

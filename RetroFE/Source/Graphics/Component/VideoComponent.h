@@ -30,14 +30,8 @@ public:
     void Draw();
     void FreeGraphicsMemory();
     void AllocateGraphicsMemory();
-    void LaunchEnter()
-    {
-        FreeGraphicsMemory();
-    }
-    void LaunchExit()
-    {
-        AllocateGraphicsMemory();
-    }
+    void LaunchEnter();
+    void LaunchExit();
 
 private:
     std::string VideoFile;
