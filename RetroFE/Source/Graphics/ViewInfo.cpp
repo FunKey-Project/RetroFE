@@ -92,7 +92,7 @@ float ViewInfo::GetHeight() const
         {
             height = MaxHeight;
         }
-        if(width > MaxWidth && height <= MaxHeight)
+        else if(width > MaxWidth && height <= MaxHeight)
         {
             height = scaleW * height;
         }
@@ -137,7 +137,7 @@ float ViewInfo::GetWidth() const
         {
             width = MaxWidth;
         }
-        if(height > MaxHeight && width <= MaxWidth)
+        else if(height > MaxHeight && width <= MaxWidth)
         {
             width = scaleH * width;
         }
