@@ -62,58 +62,124 @@ float ViewInfo::GetYRelativeToOrigin() const
 
 float ViewInfo::GetHeight() const
 {
-    float value = Height;
+    float height = GetAbsoluteHeight();
+    float width = GetAbsoluteWidth();
 
-    if(Height == -1 && Width == -1)
+    if (height < MinHeight || width < MinWidth)
     {
-        value = ImageHeight;
+        float scaleH = MinHeight / height;
+        float scaleW = MinWidth / width;
+
+        if(width >= MinWidth && height < MinHeight) 
+        {
+            height = MinHeight;
+        }
+        else if(width < MinWidth && height >= MinHeight) 
+        {
+            height = scaleW * height;
+        }
+        else
+        {
+            height = (scaleH > scaleW) ? (MinHeight) : (height * scaleW);
+        }
     }
-    else
+    if (width > MaxWidth || height > MaxHeight)
     {
-        if (Height == -1 && ImageWidth != 0)
-        {
-            value = ImageHeight * Width / ImageWidth;
-        }
+        float scaleH = MaxHeight / height;
+        float scaleW = MaxWidth / width;
 
-        if (value < MinHeight)
+        if(width <= MaxWidth && height > MaxHeight)
         {
-            value = MinHeight;
+            height = MaxHeight;
         }
-        else if (value > MaxHeight)
+        if(width > MaxWidth && height <= MaxHeight)
         {
-            value = MaxHeight;
+            height = scaleW * height;
+        }
+        else
+        {
+            height = (scaleH < scaleW) ? (MaxHeight) : (height * scaleW);
         }
     }
 
-    return value;
+    return height;
 }
 
 float ViewInfo::GetWidth() const
 {
-    float value = Width;
+    float height = GetAbsoluteHeight();
+    float width = GetAbsoluteWidth();
 
+    if (height < MinHeight || width < MinWidth)
+    {
+        float scaleH = MinHeight / height;
+        float scaleW = MinWidth / width;
+
+        if(height >= MinHeight && width < MinWidth) 
+        {
+            width = MinWidth;
+        }
+        else if(height < MinHeight && width >= MinWidth) 
+        {
+            width = scaleH * width;
+        }
+        else
+        {
+            width = (scaleH > scaleW) ? (MinWidth) : (width * scaleH);
+        }
+    }
+    if (width > MaxWidth || height > MaxHeight)
+    {
+        float scaleH = MaxHeight / height;
+        float scaleW = MaxWidth / width;
+
+        if(height <= MaxHeight && width > MaxWidth)
+        {
+            width = MaxWidth;
+        }
+        if(height > MaxHeight && width <= MaxWidth)
+        {
+            width = scaleH * width;
+        }
+        else
+        {
+            width = (scaleH > scaleW) ? (MaxWidth) : (width * scaleH);
+        }
+    }
+
+    return width;
+}
+
+float ViewInfo::GetAbsoluteHeight() const
+{
     if(Height == -1 && Width == -1)
     {
-        value = ImageWidth;
-    }
-    else
-    {
-        if (Width == -1 && ImageHeight != 0)
-        {
-            value = ImageWidth * Height / ImageHeight;
-        }
-        if (value < MinWidth)
-        {
-            value = MinWidth;
-        }
-        else if (value > MaxWidth)
-        {
-            value = MaxWidth;
-        }
+        return ImageHeight;
     }
 
-    return value;
+    if (Height == -1 && ImageWidth != 0)
+    {
+        return ImageHeight * Width / ImageWidth;
+    }
+
+    return Height;
 }
+
+float ViewInfo::GetAbsoluteWidth() const
+{
+    if(Height == -1 && Width == -1)
+    {
+        return ImageWidth;
+    }
+
+    if (Width == -1 && ImageHeight != 0)
+    {
+        return ImageWidth * Height / ImageHeight;
+    }
+
+    return Width;
+}
+
 
 float ViewInfo::GetXOffset() const
 {

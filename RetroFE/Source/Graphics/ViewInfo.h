@@ -31,6 +31,7 @@ public:
 
     float GetHeight() const;
     float GetWidth() const;
+
     float GetAngle() const;
     void SetAngle(float angle);
     float GetImageHeight() const;
@@ -87,6 +88,8 @@ public:
     static const int AlignBottom = -5;
 
 private:
+    float GetAbsoluteHeight() const;
+    float GetAbsoluteWidth() const;
     float X;
     float Y;
     float XOrigin;
