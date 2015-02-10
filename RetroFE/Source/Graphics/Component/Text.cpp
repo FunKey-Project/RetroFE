@@ -108,7 +108,7 @@ void Text::Draw()
             SDL::RenderCopy(t, static_cast<char>(info->GetAlpha() * 255), &charRect, &rect, info->GetAngle());
             rect.x += static_cast<int>(glyph.Advance * scale);
             
-            if(static_cast<float>(rect.x) - xOrigin) > info->GetMaxWidth())
+            if((static_cast<float>(rect.x) - xOrigin) > info->GetMaxWidth())
             {
                 break;
             }
