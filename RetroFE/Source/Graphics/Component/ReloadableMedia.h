@@ -15,6 +15,7 @@
  */
 #pragma once
 #include "Component.h"
+#include "ReloadableText.h"
 #include "../../Video/IVideo.h"
 #include "../../Collection/Item.h"
 #include <SDL2/SDL.h>
@@ -26,7 +27,7 @@ class Image;
 class ReloadableMedia : public Component
 {
 public:
-    ReloadableMedia(Configuration &config, std::string type, bool isVideo, float scaleX, float scaleY);
+    ReloadableMedia(Configuration &config, std::string type, bool isVideo, Font *font, SDL_Color fontColor, float scaleX, float scaleY);
     virtual ~ReloadableMedia();
     void Update(float dt);
     void Draw();
@@ -34,6 +35,7 @@ public:
     void AllocateGraphicsMemory();
     void LaunchEnter();
     void LaunchExit();
+    void EnableTextFallback(bool value);
 
 private:
     void ReloadTexture();
@@ -42,8 +44,10 @@ private:
     bool ReloadRequested;
     bool FirstLoad;
     IVideo *VideoInst;
-
     bool IsVideo;
+    Font *FontInst;
+    SDL_Color FontColor;
+    bool TextFallback;
     std::string Type;
     float ScaleX;
     float ScaleY;

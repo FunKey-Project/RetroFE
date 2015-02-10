@@ -436,7 +436,18 @@ void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, 
         }
         else
         {
-            c = new ReloadableMedia(Config, type->value(), (tagName == "reloadableVideo"), ScaleX, ScaleY);
+            FC->LoadFont(Font, FontSize, FontColor);
+            c = new ReloadableMedia(Config, type->value(), (tagName == "reloadableVideo"), FC->GetFont(Font), FontColor, ScaleX, ScaleY);
+            xml_attribute<> *textFallback = componentXml->first_attribute("textFallback");
+
+            if(textFallback && Utils::ToLower(textFallback->value()) == "true")
+            {
+                static_cast<ReloadableMedia *>(c)->EnableTextFallback(true);
+            }
+            else
+            {
+                static_cast<ReloadableMedia *>(c)->EnableTextFallback(false);
+            }
         }
 
         if(c)

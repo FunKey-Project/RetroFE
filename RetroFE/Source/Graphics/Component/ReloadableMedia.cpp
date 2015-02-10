@@ -17,6 +17,7 @@
 #include "ReloadableMedia.h"
 #include "ImageBuilder.h"
 #include "VideoBuilder.h"
+#include "ReloadableText.h"
 #include "../ViewInfo.h"
 #include "../../Video/VideoFactory.h"
 #include "../../Database/Configuration.h"
@@ -27,13 +28,16 @@
 #include <vector>
 #include <iostream>
 
-ReloadableMedia::ReloadableMedia(Configuration &config, std::string type, bool isVideo, float scaleX, float scaleY)
+ReloadableMedia::ReloadableMedia(Configuration &config, std::string type, bool isVideo, Font *font, SDL_Color fontColor, float scaleX, float scaleY)
     : Config(config)
     , LoadedComponent(NULL)
     , ReloadRequested(false)
     , FirstLoad(true)
     , Type(type)
     , IsVideo(isVideo)
+    , FontInst(font)
+    , FontColor(fontColor)
+    , TextFallback(false)
     , ScaleX(scaleX)
     , ScaleY(scaleY)
 {
@@ -46,6 +50,11 @@ ReloadableMedia::~ReloadableMedia()
     {
         delete LoadedComponent;
     }
+}
+
+void ReloadableMedia::EnableTextFallback(bool value)
+{
+    TextFallback = value;
 }
 
 void ReloadableMedia::Update(float dt)
@@ -162,18 +171,37 @@ void ReloadableMedia::ReloadTexture()
             }
         }
 
+        std::string imageBasename = selectedItem->GetFullTitle();
+       
+        std::string typeLC = Utils::ToLower(Type);
+
+        if(typeLC == "numberButtons")
+        {
+            imageBasename = selectedItem->GetNumberButtons();
+        }
+        else if(typeLC == "numberPlayers")
+        {
+            imageBasename = selectedItem->GetNumberPlayers();
+        }
+        else if(typeLC == "year")
+        {
+            imageBasename = selectedItem->GetYear();
+        }
+        else if(typeLC == "title")
+        {
+            imageBasename = selectedItem->GetTitle();
+        }
+        else if(typeLC == "manufacturer")
+        {
+            imageBasename = selectedItem->GetManufacturer();
+        }
+
         if(!LoadedComponent)
         {
             std::string imagePath;
             Config.GetMediaPropertyAbsolutePath(GetCollectionName(), Type, imagePath);
             
             ImageBuilder imageBuild;
-            std::string imageBasename = selectedItem->GetFullTitle();
-            
-            if(Utils::ToLower(Type) == "manufacturer")
-            {
-                imageBasename = selectedItem->GetManufacturer();
-            }
                         
             LoadedComponent = imageBuild.CreateImage(imagePath, imageBasename, ScaleX, ScaleY);
 
@@ -183,6 +211,13 @@ void ReloadableMedia::ReloadTexture()
                 GetBaseViewInfo()->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
                 GetBaseViewInfo()->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
             }
+        }
+
+        if(!LoadedComponent && TextFallback)
+        {
+            LoadedComponent = new Text(imageBasename, FontInst, FontColor, ScaleX, ScaleY);
+            GetBaseViewInfo()->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
+            GetBaseViewInfo()->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
         }
     }
 }
