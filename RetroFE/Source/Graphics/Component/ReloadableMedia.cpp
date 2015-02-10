@@ -160,7 +160,7 @@ void ReloadableMedia::ReloadTexture()
             ImageBuilder imageBuild;
             std::string imageBasename = selectedItem->GetFullTitle();
             
-            if(Utils::ToLower(imageBasename) == "manufacturer")
+            if(Utils::ToLower(Type) == "manufacturer")
             {
                 imageBasename = selectedItem->GetManufacturer();
             }
