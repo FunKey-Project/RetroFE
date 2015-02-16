@@ -20,21 +20,19 @@
 #include <vector>
 #include <map>
 
-
-
 class TweenSet
 {
 public:
     ~TweenSet();
-    typedef std::vector<std::vector<Tween *> *> TweenSets;
+    typedef std::vector<std::vector<Tween *> *> TweenAttributes;
 
-    TweenSets *GetTween(std::string tween);
-    TweenSets *GetTween(std::string tween, int index);
-    void SetTween(std::string tween, int index, TweenSets *set);
+    TweenAttributes *GetTween(std::string tween);
+    TweenAttributes *GetTween(std::string tween, int index);
+    void SetTween(std::string tween, int index, TweenAttributes *set);
 
 private:
-    TweenSets *FindTween(std::map<int, TweenSets *> &tweens, int index);
+    TweenAttributes *FindTween(std::map<int, TweenAttributes *> &tweens, int index);
     void DestroyTweens();
 
-    std::map<std::string, std::map<int, TweenSets *> > TweenMap;
+    std::map<std::string, std::map<int, TweenAttributes *> > TweenMap;
 };

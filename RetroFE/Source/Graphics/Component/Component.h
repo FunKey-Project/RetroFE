@@ -45,7 +45,7 @@ public:
     bool IsMenuScrolling();
     std::string GetCollectionName();
     void SetCollectionName(std::string collectionName);
-    typedef std::vector<std::vector<Tween *> *> TweenSets;
+    typedef std::vector<std::vector<Tween *> *> TweenAttributes;
 
     TweenSet *GetTweens() { return Tweens; }
 
@@ -119,7 +119,7 @@ private:
     bool IsTweenSequencingComplete();
     void ResetTweenSequence(std::vector<ViewInfo *> *tweens);
     TweenSet *Tweens;
-    TweenSets *CurrentTweens;
+    TweenAttributes *CurrentTweens;
     unsigned int CurrentTweenIndex;
 
     bool CurrentTweenComplete;

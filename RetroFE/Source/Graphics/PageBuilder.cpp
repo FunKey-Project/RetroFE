@@ -471,26 +471,26 @@ TweenSet *PageBuilder::CreateTweenInstance(xml_node<> *componentXml)
 {
     TweenSet *tweens = new TweenSet();
 
-    BuildTweenSets(tweens, componentXml, "onEnter", "enter");
-    BuildTweenSets(tweens, componentXml, "onExit", "exit");
-    BuildTweenSets(tweens, componentXml, "onIdle", "idle");
-    BuildTweenSets(tweens, componentXml, "onHighlightEnter", "highlightEnter");
-    BuildTweenSets(tweens, componentXml, "onHighlightExit", "highlightExit");
-    BuildTweenSets(tweens, componentXml, "onMenuEnter", "menuEnter");
-    BuildTweenSets(tweens, componentXml, "onMenuExit", "menuExit");
+    BuildTweenAttributes(tweens, componentXml, "onEnter", "enter");
+    BuildTweenAttributes(tweens, componentXml, "onExit", "exit");
+    BuildTweenAttributes(tweens, componentXml, "onIdle", "idle");
+    BuildTweenAttributes(tweens, componentXml, "onHighlightEnter", "highlightEnter");
+    BuildTweenAttributes(tweens, componentXml, "onHighlightExit", "highlightExit");
+    BuildTweenAttributes(tweens, componentXml, "onMenuEnter", "menuEnter");
+    BuildTweenAttributes(tweens, componentXml, "onMenuExit", "menuExit");
 
     return tweens;
 }
 
-void PageBuilder::BuildTweenSets(TweenSet *tweens, xml_node<> *componentXml, std::string tagName, std::string tweenName)
+void PageBuilder::BuildTweenAttributes(TweenSet *tweens, xml_node<> *componentXml, std::string tagName, std::string tweenName)
 {
     for(componentXml = componentXml->first_node(tagName.c_str()); componentXml; componentXml = componentXml->next_sibling(tagName.c_str()))
     {
         xml_attribute<> *indexXml = componentXml->first_attribute("menuIndex");
         int index = (indexXml) ? Utils::ConvertInt(indexXml->value()) : -1;
 
-        TweenSet::TweenSets *sets = new TweenSet::TweenSets();
-        GetTweenSets(componentXml, sets);
+        TweenSet::TweenAttributes *sets = new TweenSet::TweenAttributes();
+        GetTweenAttributes(componentXml, sets);
         tweens->SetTween(tweenName, index, sets);
     }   
 }
@@ -810,7 +810,7 @@ void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info, xml_no
     }
 }
 
-void PageBuilder::GetTweenSets(xml_node<> *node, std::vector<std::vector<Tween *> *> *tweenSets)
+void PageBuilder::GetTweenAttributes(xml_node<> *node, std::vector<std::vector<Tween *> *> *TweenAttributes)
 {
     if(node)
     {
@@ -818,7 +818,7 @@ void PageBuilder::GetTweenSets(xml_node<> *node, std::vector<std::vector<Tween *
         {
             std::vector<Tween *> *tweens = new std::vector<Tween *>();
             GetTweenSet(set, *tweens);
-            tweenSets->push_back(tweens);
+            TweenAttributes->push_back(tweens);
         }
     }
 }

@@ -23,11 +23,11 @@ TweenSet::~TweenSet()
 
 void TweenSet::DestroyTweens()
 {
-    std::map<std::string, std::map<int, TweenSets *> >::iterator it = TweenMap.begin();
+    std::map<std::string, std::map<int, TweenAttributes *> >::iterator it = TweenMap.begin();
 
     while(it != TweenMap.end())
     {
-        std::map<int, TweenSets *>::iterator it2 = (it->second).begin();
+        std::map<int, TweenAttributes *>::iterator it2 = (it->second).begin();
 
         while(it2 != (it->second).end())
         {
@@ -40,22 +40,22 @@ void TweenSet::DestroyTweens()
     }
 }
 
-TweenSet::TweenSets *TweenSet::GetTween(std::string tween)
+TweenSet::TweenAttributes *TweenSet::GetTween(std::string tween)
 {
     return GetTween(tween, -1);
 }
 
-TweenSet::TweenSets *TweenSet::GetTween(std::string tween, int index)
+TweenSet::TweenAttributes *TweenSet::GetTween(std::string tween, int index)
 {
     return FindTween(TweenMap[tween], index);
 }
 
-void TweenSet::SetTween(std::string tween, int index, TweenSets *set)
+void TweenSet::SetTween(std::string tween, int index, TweenAttributes *set)
 {
     TweenMap[tween][index] = set;
 }
 
-TweenSet::TweenSets *TweenSet::FindTween(std::map<int, TweenSets *> &tweens, int index)
+TweenSet::TweenAttributes *TweenSet::FindTween(std::map<int, TweenAttributes *> &tweens, int index)
 {
     if(tweens.find(index) == tweens.end())
     {
@@ -63,7 +63,7 @@ TweenSet::TweenSets *TweenSet::FindTween(std::map<int, TweenSets *> &tweens, int
 
         if(tweens.find(index) == tweens.end())
         {
-            TweenSets *set = new TweenSets();
+            TweenAttributes *set = new TweenAttributes();
             tweens[index] = set;
         }
     }
