@@ -13,46 +13,31 @@
  * You should have received a copy of the GNU General Public License
  * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
+#pragma once
 
-#include "VideoFactory.h"
 #include "IVideo.h"
 
-#ifdef NO_VIDEO
-#include "NullVideo.h"
-#else 
-#include "GStreamerVideo.h"
-#endif
-
-bool VideoFactory::Enabled = true;
-int VideoFactory::NumLoops = 0;
-IVideo *VideoFactory::Instance = NULL;
-
-IVideo *VideoFactory::CreateVideo()
+extern "C"
 {
-
-    if(Enabled && !Instance)
-    {
-#ifdef NO_VIDEO
-        Instance = new NullVideo();
-#else
-        Instance = new GStreamerVideo();
-#endif
-        Instance->Initialize();
-
-#ifndef NO_VIDEO
-        ((GStreamerVideo *)(Instance))->SetNumLoops(NumLoops);
-#endif
-    }
-
-    return Instance;
+#include <gst/gst.h>
+#include <gst/app/gstappsink.h>
 }
 
-void VideoFactory::SetEnabled(bool enabled)
-{
-    Enabled = enabled;
-}
 
-void VideoFactory::SetNumLoops(int numLoops)
+class NullVideo : public IVideo
 {
-    NumLoops = numLoops;
-}
+public:
+    NullVideo();
+    ~NullVideo();
+    bool Initialize();
+    bool Play(std::string file);
+    bool Stop();
+    bool DeInitialize();
+    SDL_Texture *GetTexture() const;
+    void Update(float dt);
+    void Draw();
+    void SetNumLoops(int n);
+    void FreeElements();
+    int GetHeight();
+    int GetWidth();
+};

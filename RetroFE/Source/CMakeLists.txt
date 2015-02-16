@@ -107,7 +107,6 @@ set(RETROFE_HEADERS
 	"${RETROFE_DIR}/Source/Utility/Log.h"
 	"${RETROFE_DIR}/Source/Utility/Utils.h"
 	"${RETROFE_DIR}/Source/Video/IVideo.h"
-	"${RETROFE_DIR}/Source/Video/GStreamerVideo.h"
 	"${RETROFE_DIR}/Source/Video/VideoFactory.h"
 	"${RETROFE_DIR}/Source/Graphics/ComponentItemBindingBuilder.h"
 	"${RETROFE_DIR}/Source/Graphics/ViewInfo.h"
@@ -149,7 +148,6 @@ set(RETROFE_SOURCES
 	"${RETROFE_DIR}/Source/Sound/Sound.cpp"
 	"${RETROFE_DIR}/Source/Utility/Log.cpp"
 	"${RETROFE_DIR}/Source/Utility/Utils.cpp"
-	"${RETROFE_DIR}/Source/Video/GStreamerVideo.cpp"
 	"${RETROFE_DIR}/Source/Video/VideoFactory.cpp"
 	"${RETROFE_DIR}/Source/Main.cpp"
 	"${RETROFE_DIR}/Source/RetroFE.cpp"
@@ -158,6 +156,13 @@ set(RETROFE_SOURCES
 	"${SQLITE3_ROOT}/sqlite3.c"
 )
 
+if(NO_VIDEO)
+set(RETROFE_HEADERS ${RETROFE_HEADERS} "${RETROFE_DIR}/Source/Video/NullVideo.h")
+set(RETROFE_SOURCES ${RETROFE_SOURCES} "${RETROFE_DIR}/Source/Video/NullVideo.cpp")
+else()
+set(RETROFE_HEADERS ${RETROFE_HEADERS} "${RETROFE_DIR}/Source/Video/GStreamerVideo.h")
+set(RETROFE_SOURCES ${RETROFE_SOURCES} "${RETROFE_DIR}/Source/Video/GStreamerVideo.cpp")
+endif()
 
 set(EXECUTABLE_OUTPUT_PATH "${RETROFE_DIR}/Build" CACHE PATH "Build directory" FORCE)
 set(LIBRARY_OUTPUT_PATH "${RETROFE_DIR}/Build" CACHE PATH "Build directory" FORCE)
