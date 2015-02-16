@@ -19,6 +19,21 @@
 TweenSets::TweenSets()
 {
 }
+TweenSets::TweenSets(TweenSets &copy)
+{
+    std::map<std::string, std::map<int, TweenAttributes *> >::iterator it;
+
+    for(it = copy.TweenMap.begin(); it != copy.TweenMap.end(); it++)
+    {
+        std::map<int, TweenAttributes *>::iterator it2;
+
+        for(it2 = (it->second).begin(); it2 != (it->second).end(); it2++)
+        {
+            TweenMap[it->first][it2->first] = it2->second;
+        }
+    }
+
+}
 
 TweenSets::~TweenSets() 
 {

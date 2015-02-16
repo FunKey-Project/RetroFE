@@ -24,6 +24,7 @@ class TweenSets
 {
 public:
     TweenSets();
+    TweenSets(TweenSets &copy);
     ~TweenSets();
     typedef std::vector<std::vector<Tween *> *> TweenAttributes;
 

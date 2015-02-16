@@ -56,7 +56,6 @@ public:
     void SetScrollActive(bool scrollActive);
 
 protected:
-    std::string CollectionName;
     Item *GetSelectedItem();
     enum AnimationState
     {
@@ -84,20 +83,20 @@ protected:
     bool HighlightExitComplete;
     bool NewItemSelectedSinceEnter;
 private:
+
     bool Animate(bool loop);
     bool IsTweenSequencingComplete();
     void ResetTweenSequence(std::vector<ViewInfo *> *tweens);
+
     TweenSets *Tweens;
     TweenSets::TweenAttributes *CurrentTweens;
-    unsigned int CurrentTweenIndex;
-
-    bool CurrentTweenComplete;
-    ViewInfo BaseViewInfo;
-
-    float ElapsedTweenTime;
-    Tween *TweenInst;
     Item *SelectedItem;
-    bool ScrollActive;
     SDL_Texture *BackgroundTexture;
 
+    unsigned int CurrentTweenIndex;
+    bool CurrentTweenComplete;
+    std::string CollectionName;
+    ViewInfo BaseViewInfo;
+    float ElapsedTweenTime;
+    bool ScrollActive;
 };
