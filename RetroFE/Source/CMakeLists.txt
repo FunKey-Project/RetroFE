@@ -20,15 +20,19 @@ if(WIN32)
 	set(SDL2_MIXER_ROOT "${RETROFE_THIRD_PARTY_DIR}/SDL2_mixer-2.0.0")
 	set(SDL2_TTF_ROOT "${RETROFE_THIRD_PARTY_DIR}/SDL2_ttf-2.0.12")
 	set(ZLIB_ROOT "${RETROFE_THIRD_PARTY_DIR}/zlib128-dll")
-
-	set(GSTREAMER_ROOT "C:/gstreamer/1.0/x86" CACHE STRING "location of where your gstreamer include and lib folders reside")
-	set(GLIB2_ROOT "${GSTREAMER_ROOT}")
 	set(DIRENT_INCLUDE_DIR "${RETROFE_THIRD_PARTY_DIR}/dirent-1.20.1/include")
+
+	if(NOT DEFINED NO_VIDEO)
+		set(GSTREAMER_ROOT "C:/gstreamer/1.0/x86" CACHE STRING "location of where your gstreamer include and lib folders reside")
+		set(GLIB2_ROOT "${GSTREAMER_ROOT}")
+	endif()
 endif()
 
 if(MSVC)
-	find_package(Glib2 REQUIRED)
-	find_package(GStreamer REQUIRED)
+	if(NOT DEFINED NO_VIDEO)
+		find_package(Glib2 REQUIRED)
+		find_package(GStreamer REQUIRED)
+	endif()
 	find_package(SDL2 REQUIRED)
 	find_package(SDL2_image REQUIRED)
 	find_package(SDL2_mixer REQUIRED)
@@ -41,14 +45,14 @@ else()
 	pkg_search_module(SDL2_MIXER REQUIRED SDL2_mixer)
 	pkg_search_module(SDL2_TTF REQUIRED SDL2_ttf)
 	pkg_search_module(ZLIB REQUIRED zlib)
-	pkg_search_module(GSTREAMER REQUIRED gstreamer-1.0 gstbase-1.0)
-	pkg_search_module(Glib2 REQUIRED glib-2.0 gobject-2.0 gthread-2.0 gmodule-2.0)
+	if(NOT DEFINED NO_VIDEO)
+		pkg_search_module(GSTREAMER REQUIRED gstreamer-1.0 gstbase-1.0)
+		pkg_search_module(Glib2 REQUIRED glib-2.0 gobject-2.0 gthread-2.0 gmodule-2.0)
+	endif()
 	find_package(Threads REQUIRED)
 endif()
 
 set(RETROFE_INCLUDE_DIRS
-	"${GLIB2_INCLUDE_DIRS}"
-	"${GSTREAMER_INCLUDE_DIRS}"
 	"${SDL2_INCLUDE_DIRS}"
 	"${SDL2_IMAGE_INCLUDE_DIRS}"
 	"${SDL2_MIXER_INCLUDE_DIRS}"
@@ -59,18 +63,23 @@ set(RETROFE_INCLUDE_DIRS
 	"${DIRENT_INCLUDE_DIR}"
 )
 
+if(NOT DEFINED NO_VIDEO)
+	list(APPEND RETROFE_INCLUDE_DIRS "${GLIB2_INCLUDE_DIRS}" "${GSTREAMER_INCLUDE_DIRS}")
+endif()
+
 set(RETROFE_LIBRARIES
-	${GLIB2_LIBRARIES}
-	${GSTREAMER_LIBRARIES}
 	${SDL2_LIBRARIES}
 	${SDL2_IMAGE_LIBRARIES}
 	${SDL2_MIXER_LIBRARIES}
 	${SDL2_TTF_LIBRARIES}
 	${ZLIB_LIBRARIES}
 )
+if(NOT DEFINED NO_VIDEO)
+	list(APPEND RETROFE_LIBRARIES "${GLIB2_LIBRARIES}" "${GSTREAMER_LIBRARIES}")
+endif()
 
 if(NOT MSVC)
-	LIST(APPEND RETROFE_LIBRARIES ${CMAKE_DL_LIBS} ${CMAKE_THREAD_LIBS_INIT})
+	list(APPEND RETROFE_LIBRARIES ${CMAKE_DL_LIBS} ${CMAKE_THREAD_LIBS_INIT})
 endif()
 
 set(RETROFE_HEADERS
@@ -157,11 +166,11 @@ set(RETROFE_SOURCES
 )
 
 if(NO_VIDEO)
-set(RETROFE_HEADERS ${RETROFE_HEADERS} "${RETROFE_DIR}/Source/Video/NullVideo.h")
-set(RETROFE_SOURCES ${RETROFE_SOURCES} "${RETROFE_DIR}/Source/Video/NullVideo.cpp")
+	list(APPEND RETROFE_HEADERS "${RETROFE_DIR}/Source/Video/NullVideo.h")
+	list(APPEND RETROFE_SOURCES "${RETROFE_DIR}/Source/Video/NullVideo.cpp")
 else()
-set(RETROFE_HEADERS ${RETROFE_HEADERS} "${RETROFE_DIR}/Source/Video/GStreamerVideo.h")
-set(RETROFE_SOURCES ${RETROFE_SOURCES} "${RETROFE_DIR}/Source/Video/GStreamerVideo.cpp")
+	list(APPEND RETROFE_HEADERS "${RETROFE_DIR}/Source/Video/GStreamerVideo.h")
+	list(APPEND RETROFE_SOURCES  "${RETROFE_DIR}/Source/Video/GStreamerVideo.cpp")
 endif()
 
 set(EXECUTABLE_OUTPUT_PATH "${RETROFE_DIR}/Build" CACHE PATH "Build directory" FORCE)
