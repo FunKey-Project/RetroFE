@@ -80,6 +80,11 @@ void Component::AllocateGraphicsMemory()
     }
 }
 
+Item *Component::GetSelectedItem()
+{
+    return SelectedItem;
+}
+
 void Component::TriggerEnterEvent()
 {
     EnterRequested = true;

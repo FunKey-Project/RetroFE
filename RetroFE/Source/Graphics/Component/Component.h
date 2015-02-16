@@ -57,10 +57,7 @@ public:
 
 protected:
     std::string CollectionName;
-    Item *GetSelectedItem()
-    {
-        return SelectedItem;
-    }
+    Item *GetSelectedItem();
     enum AnimationState
     {
         IDLE,
