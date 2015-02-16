@@ -16,6 +16,10 @@
 
 #include "TweenSets.h"
 
+TweenSets::TweenSets()
+{
+}
+
 TweenSets::~TweenSets() 
 {
     DestroyTweens();

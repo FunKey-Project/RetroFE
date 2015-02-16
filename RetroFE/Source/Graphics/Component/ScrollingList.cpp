@@ -531,8 +531,8 @@ void ScrollingList::ResetTweens(Component *c, TweenSets *sets, ViewInfo *current
     //todo: delete properly, memory leak (big), proof of concept
     c->SetTweens(sets);
 
-    TweenAttributes *scrollTween = sets->GetTween("menuScroll");
-    TweenAttributes::iterator it = scrollTween->begin();
+    TweenSets::TweenAttributes *scrollTween = sets->GetTween("menuScroll");
+    TweenSets::TweenAttributes::iterator it = scrollTween->begin();
 
     while(it != scrollTween->end())
     {

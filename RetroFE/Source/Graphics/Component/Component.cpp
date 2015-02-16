@@ -146,6 +146,40 @@ void Component::SetCollectionName(std::string collectionName)
     CollectionName = collectionName;
 }
 
+TweenSets *Component::GetTweens() 
+{ 
+    return Tweens; 
+}
+
+void Component::SetTweens(TweenSets *set)
+{
+    Tweens = set;
+    CurrentAnimationState = IDLE; 
+    CurrentTweenIndex = 0;
+    CurrentTweenComplete = false;
+    ElapsedTweenTime = 0;
+}
+
+ViewInfo *Component::GetBaseViewInfo()
+{
+    return &BaseViewInfo;
+}
+void Component::UpdateBaseViewInfo(ViewInfo &info)
+{
+    BaseViewInfo = info;
+}
+
+bool Component::IsScrollActive() const
+{
+    return ScrollActive;
+}
+
+void Component::SetScrollActive(bool scrollActive)
+{
+    ScrollActive = scrollActive;
+}
+
+
 void Component::Update(float dt)
 {
     ElapsedTweenTime += dt;

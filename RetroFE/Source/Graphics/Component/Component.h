@@ -45,43 +45,15 @@ public:
     bool IsMenuScrolling();
     std::string GetCollectionName();
     void SetCollectionName(std::string collectionName);
-    typedef std::vector<std::vector<Tween *> *> TweenAttributes;
-
-    TweenSets *GetTweens() { return Tweens; }
-
-    void SetTweens(TweenSets *set)
-    {
-        Tweens = set;
-        CurrentAnimationState = IDLE; 
-        CurrentTweenIndex = 0;
-        CurrentTweenComplete = false;
-        ElapsedTweenTime = 0;
-    }
 
     virtual void Update(float dt);
-
     virtual void Draw();
-
-    ViewInfo *GetBaseViewInfo()
-    {
-        return &BaseViewInfo;
-    }
-    void UpdateBaseViewInfo(ViewInfo &info)
-    {
-        BaseViewInfo = info;
-    }
-
-    bool IsScrollActive() const
-    {
-        return ScrollActive;
-    }
-
-    void SetScrollActive(bool scrollActive)
-    {
-        ScrollActive = scrollActive;
-    }
-
-
+    TweenSets *GetTweens();
+    void SetTweens(TweenSets *set);
+    ViewInfo *GetBaseViewInfo();
+    void UpdateBaseViewInfo(ViewInfo &info);
+    bool IsScrollActive() const;
+    void SetScrollActive(bool scrollActive);
 
 protected:
     std::string CollectionName;
@@ -119,7 +91,7 @@ private:
     bool IsTweenSequencingComplete();
     void ResetTweenSequence(std::vector<ViewInfo *> *tweens);
     TweenSets *Tweens;
-    TweenAttributes *CurrentTweens;
+    TweenSets::TweenAttributes *CurrentTweens;
     unsigned int CurrentTweenIndex;
 
     bool CurrentTweenComplete;

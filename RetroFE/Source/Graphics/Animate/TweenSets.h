@@ -23,6 +23,7 @@
 class TweenSets
 {
 public:
+    TweenSets();
     ~TweenSets();
     typedef std::vector<std::vector<Tween *> *> TweenAttributes;
 
