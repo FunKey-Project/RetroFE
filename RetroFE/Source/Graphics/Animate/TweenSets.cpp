@@ -14,14 +14,14 @@
  * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "TweenSet.h"
+#include "TweenSets.h"
 
-TweenSet::~TweenSet() 
+TweenSets::~TweenSets() 
 {
     DestroyTweens();
 }
 
-void TweenSet::DestroyTweens()
+void TweenSets::DestroyTweens()
 {
     std::map<std::string, std::map<int, TweenAttributes *> >::iterator it = TweenMap.begin();
 
@@ -40,22 +40,22 @@ void TweenSet::DestroyTweens()
     }
 }
 
-TweenSet::TweenAttributes *TweenSet::GetTween(std::string tween)
+TweenSets::TweenAttributes *TweenSets::GetTween(std::string tween)
 {
     return GetTween(tween, -1);
 }
 
-TweenSet::TweenAttributes *TweenSet::GetTween(std::string tween, int index)
+TweenSets::TweenAttributes *TweenSets::GetTween(std::string tween, int index)
 {
     return FindTween(TweenMap[tween], index);
 }
 
-void TweenSet::SetTween(std::string tween, int index, TweenAttributes *set)
+void TweenSets::SetTween(std::string tween, int index, TweenAttributes *set)
 {
     TweenMap[tween][index] = set;
 }
 
-TweenSet::TweenAttributes *TweenSet::FindTween(std::map<int, TweenAttributes *> &tweens, int index)
+TweenSets::TweenAttributes *TweenSets::FindTween(std::map<int, TweenAttributes *> &tweens, int index)
 {
     if(tweens.find(index) == tweens.end())
     {

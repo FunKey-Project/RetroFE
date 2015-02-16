@@ -20,10 +20,10 @@
 #include <vector>
 #include <map>
 
-class TweenSet
+class TweenSets
 {
 public:
-    ~TweenSet();
+    ~TweenSets();
     typedef std::vector<std::vector<Tween *> *> TweenAttributes;
 
     TweenAttributes *GetTween(std::string tween);

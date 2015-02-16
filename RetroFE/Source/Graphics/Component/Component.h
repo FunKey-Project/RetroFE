@@ -21,7 +21,7 @@
 #include "../MenuNotifierInterface.h"
 #include "../ViewInfo.h"
 #include "../Animate/Tween.h"
-#include "../Animate/TweenSet.h"
+#include "../Animate/TweenSets.h"
 #include "../../Collection/Item.h"
 
 class Component
@@ -47,9 +47,9 @@ public:
     void SetCollectionName(std::string collectionName);
     typedef std::vector<std::vector<Tween *> *> TweenAttributes;
 
-    TweenSet *GetTweens() { return Tweens; }
+    TweenSets *GetTweens() { return Tweens; }
 
-    void SetTweens(TweenSet *set)
+    void SetTweens(TweenSets *set)
     {
         Tweens = set;
         CurrentAnimationState = IDLE; 
@@ -118,7 +118,7 @@ private:
     bool Animate(bool loop);
     bool IsTweenSequencingComplete();
     void ResetTweenSequence(std::vector<ViewInfo *> *tweens);
-    TweenSet *Tweens;
+    TweenSets *Tweens;
     TweenAttributes *CurrentTweens;
     unsigned int CurrentTweenIndex;
 

@@ -58,7 +58,7 @@ public:
     void DeallocateTexture(ComponentItemBinding *s);
     void SetItems(std::vector<ComponentItemBinding *> *spriteList);
     void DestroyItems();
-    void SetPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<TweenSet *> *tweenPoints);
+    void SetPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<TweenSets *> *tweenPoints);
     void SetScrollDirection(ScrollDirection direction);
     void PageUp();
     void PageDown();
@@ -84,7 +84,7 @@ private:
     void AllocateSpritePoints();
     void UpdateSprite(unsigned int spriteIndex, unsigned int pointIndex, bool newScroll, float dt, double nextScrollTime);
     unsigned int GetNextTween(unsigned int currentIndex, std::vector<ViewInfo *> *list);
-    void ResetTweens(Component *c, TweenSet *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime);
+    void ResetTweens(Component *c, TweenSets *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime);
 
     enum ScrollState
     {
@@ -96,7 +96,7 @@ private:
 
     std::vector<ComponentItemBinding *> *SpriteList;
     std::vector<ViewInfo *> *ScrollPoints;
-     std::vector<TweenSet *> *TweenPoints;
+     std::vector<TweenSets *> *TweenPoints;
     std::vector<MenuNotifierInterface *> NotificationComponents;
     float TweenEnterTime;
     bool Focus;

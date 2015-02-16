@@ -343,11 +343,11 @@ bool Component::Animate(bool loop)
     else if(CurrentTweens)
     {
         bool currentDone = true;
-        std::vector<Tween *> *tweenSet = CurrentTweens->at(CurrentTweenIndex);
+        std::vector<Tween *> *TweenSets = CurrentTweens->at(CurrentTweenIndex);
 
-        for(unsigned int i = 0; i < tweenSet->size(); i++)
+        for(unsigned int i = 0; i < TweenSets->size(); i++)
         {
-            Tween *tween = tweenSet->at(i);
+            Tween *tween = TweenSets->at(i);
             float elapsedTime = ElapsedTweenTime;
 
             //todo: too many levels of nesting

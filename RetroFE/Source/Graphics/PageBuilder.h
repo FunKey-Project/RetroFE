@@ -53,8 +53,8 @@ private:
     void BuildViewInfo(rapidxml::xml_node<> *componentXml, ViewInfo *info, rapidxml::xml_node<> *defaultXml = NULL);
     bool BuildComponents(rapidxml::xml_node<> *layout, Page *page);
     void LoadTweens(Component *c, rapidxml::xml_node<> *componentXml);
-    TweenSet *CreateTweenInstance(rapidxml::xml_node<> *componentXml);
-    void BuildTweenAttributes(TweenSet *tweens, rapidxml::xml_node<> *componentXml, std::string tagName, std::string tweenName);
+    TweenSets *CreateTweenInstance(rapidxml::xml_node<> *componentXml);
+    void BuildTweenAttributes(TweenSets *tweens, rapidxml::xml_node<> *componentXml, std::string tagName, std::string tweenName);
     ScrollingList * BuildMenu(rapidxml::xml_node<> *menuXml);
     void BuildCustomMenu(ScrollingList *menu, rapidxml::xml_node<> *menuXml, rapidxml::xml_node<> *itemDefaults);
     void BuildVerticalMenu(ScrollingList *menu, rapidxml::xml_node<> *menuXml, rapidxml::xml_node<> *itemDefaults);
@@ -64,7 +64,7 @@ private:
     rapidxml::xml_attribute<> *FindAttribute(rapidxml::xml_node<> *componentXml, std::string attribute, rapidxml::xml_node<> *defaultXml);
 
     void GetTweenAttributes(rapidxml::xml_node<> *node, std::vector<std::vector<Tween *> *> *TweenAttributes);
-    void GetTweenSet(rapidxml::xml_node<> *node, std::vector<Tween *> &tweens);
+    void GetTweenSets(rapidxml::xml_node<> *node, std::vector<Tween *> &tweens);
 
 
     void LoadLayoutXml();

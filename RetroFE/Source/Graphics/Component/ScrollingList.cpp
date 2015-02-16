@@ -179,7 +179,7 @@ void ScrollingList::DestroyItems()
 }
 
 
-void ScrollingList::SetPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<TweenSet *> *tweenPoints)
+void ScrollingList::SetPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<TweenSets *> *tweenPoints)
 {
     ScrollPoints = scrollPoints;
     TweenPoints = tweenPoints;
@@ -515,7 +515,7 @@ void ScrollingList::UpdateSprite(unsigned int spriteIndex, unsigned int pointInd
     CircularIncrement(spriteIndex, SpriteList);
 }
 
-void ScrollingList::ResetTweens(Component *c, TweenSet *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime)
+void ScrollingList::ResetTweens(Component *c, TweenSets *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime)
 {
     if(!c) { return; }
     if(!sets) { return; }
