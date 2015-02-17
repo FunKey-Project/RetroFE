@@ -56,9 +56,9 @@ public:
 
     bool AllocateTexture(ComponentItemBinding *s);
     void DeallocateTexture(ComponentItemBinding *s);
-    void SetItems(std::vector<ComponentItemBinding *> *spriteList);
+    void SetItems(std::vector<ComponentItemBinding> *spriteList);
     void DestroyItems();
-    void SetPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<TweenSets *> *tweenPoints);
+    void SetPoints(std::vector<ViewInfo> *scrollPoints, std::vector<TweenSets> *tweenPoints);
     void SetScrollDirection(ScrollDirection direction);
     void PageUp();
     void PageDown();
@@ -69,7 +69,7 @@ public:
     ComponentItemBinding *GetPendingSelectedCollectionItemSprite();
     void AddComponentForNotifications(MenuNotifierInterface *c);
     void RemoveComponentForNotifications(MenuNotifierInterface *c);
-    std::vector<ComponentItemBinding *> *GetCollectionItemSprites();
+    std::vector<ComponentItemBinding> GetCollectionItemSprites();
     void RemoveSelectedItem();
     void FreeGraphicsMemory();
     void Update(float dt);
@@ -83,8 +83,8 @@ private:
     void DeallocateSpritePoints();
     void AllocateSpritePoints();
     void UpdateSprite(unsigned int spriteIndex, unsigned int pointIndex, bool newScroll, float dt, double nextScrollTime);
-    unsigned int GetNextTween(unsigned int currentIndex, std::vector<ViewInfo *> *list);
-    void ResetTweens(Component *c, TweenSets *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime);
+    unsigned int GetNextTween(unsigned int currentIndex, std::vector<ViewInfo> *list);
+    void ResetTweens(Component *c, TweenSets &sets, ViewInfo &currentViewInfo, ViewInfo &nextViewInfo, double scrollTime);
 
     enum ScrollState
     {
@@ -94,9 +94,9 @@ private:
         ScrollStateIdle
     };
 
-    std::vector<ComponentItemBinding *> *SpriteList;
-    std::vector<ViewInfo *> *ScrollPoints;
-    std::vector<TweenSets *> *TweenPoints;
+    std::vector<ComponentItemBinding> *SpriteList;
+    std::vector<ViewInfo> *ScrollPoints;
+    std::vector<TweenSets> *TweenPoints;
     std::vector<MenuNotifierInterface *> NotificationComponents;
     float TweenEnterTime;
     bool Focus;
@@ -112,11 +112,11 @@ private:
     float StartScrollTime;
     float ScrollPeriod;
 
-    int CircularIncrement(unsigned int index, unsigned int offset, std::vector<ComponentItemBinding *> *list);
-    void CircularIncrement(unsigned &index, std::vector<ComponentItemBinding *> *list);
-    void CircularDecrement(unsigned &index, std::vector<ComponentItemBinding *> *list);
-    void CircularIncrement(unsigned &index, std::vector<ViewInfo *> *list);
-    void CircularDecrement(unsigned &index, std::vector<ViewInfo *> *list);
+    int CircularIncrement(unsigned int index, unsigned int offset, std::vector<ComponentItemBinding> *list);
+    void CircularIncrement(unsigned &index, std::vector<ComponentItemBinding> *list);
+    void CircularDecrement(unsigned &index, std::vector<ComponentItemBinding> *list);
+    void CircularIncrement(unsigned &index, std::vector<ViewInfo> *list);
+    void CircularDecrement(unsigned &index, std::vector<ViewInfo> *list);
     void UpdateOffset(float dt);
 
     std::string Collection;
@@ -129,4 +129,3 @@ private:
     std::string ImageType;
     unsigned int MaxLayer;
 };
-

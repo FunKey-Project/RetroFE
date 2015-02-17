@@ -26,14 +26,14 @@ ComponentItemBindingBuilder::~ComponentItemBindingBuilder()
 {
 }
 
-std::vector<ComponentItemBinding *> *ComponentItemBindingBuilder::BuildCollectionItems(std::vector<Item *> *infoList)
+std::vector<ComponentItemBinding> *ComponentItemBindingBuilder::BuildCollectionItems(std::vector<Item> *infoList)
 {
-    std::vector<ComponentItemBinding *> *sprites = new std::vector<ComponentItemBinding *>();
-    std::vector<Item *>::iterator it;
+    std::vector<ComponentItemBinding> *sprites = new std::vector<ComponentItemBinding>();
+    std::vector<Item>::iterator it;
 
     for(it = infoList->begin(); it != infoList->end(); ++it)
     {
-        ComponentItemBinding *s = new ComponentItemBinding(*it);
+        ComponentItemBinding s(*it);
         sprites->push_back(s);
     }
 

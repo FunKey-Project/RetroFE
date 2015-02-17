@@ -19,62 +19,32 @@
 TweenSets::TweenSets()
 {
 }
-TweenSets::TweenSets(TweenSets &copy)
-{
-    std::map<std::string, std::map<int, TweenAttributes *> >::iterator it;
 
-    for(it = copy.TweenMap.begin(); it != copy.TweenMap.end(); it++)
-    {
-        std::map<int, TweenAttributes *>::iterator it2;
-
-        for(it2 = (it->second).begin(); it2 != (it->second).end(); it2++)
-        {
-            TweenMap[it->first][it2->first] = it2->second;
-        }
-    }
-
-}
 
 TweenSets::~TweenSets()
 {
-    DestroyTweens();
 }
 
 void TweenSets::DestroyTweens()
 {
-    std::map<std::string, std::map<int, TweenAttributes *> >::iterator it = TweenMap.begin();
-
-    while(it != TweenMap.end())
-    {
-        std::map<int, TweenAttributes *>::iterator it2 = (it->second).begin();
-
-        while(it2 != (it->second).end())
-        {
-            delete it2->second;
-            (it->second).erase(it2);
-            it2 = (it->second).begin();
-        }
-
-        it =TweenMap.begin();
-    }
 }
 
-TweenSets::TweenAttributes *TweenSets::GetTween(std::string tween)
+TweenSets::TweenAttributes &TweenSets::GetTween(std::string tween)
 {
     return GetTween(tween, -1);
 }
 
-TweenSets::TweenAttributes *TweenSets::GetTween(std::string tween, int index)
+TweenSets::TweenAttributes &TweenSets::GetTween(std::string tween, int index)
 {
     return FindTween(TweenMap[tween], index);
 }
 
-void TweenSets::SetTween(std::string tween, int index, TweenAttributes *set)
+void TweenSets::ImportTween(std::string tween, int index, TweenAttributes &set)
 {
     TweenMap[tween][index] = set;
 }
 
-TweenSets::TweenAttributes *TweenSets::FindTween(std::map<int, TweenAttributes *> &tweens, int index)
+TweenSets::TweenAttributes &TweenSets::FindTween(std::map<int, TweenAttributes> &tweens, int index)
 {
     if(tweens.find(index) == tweens.end())
     {
@@ -82,12 +52,10 @@ TweenSets::TweenAttributes *TweenSets::FindTween(std::map<int, TweenAttributes *
 
         if(tweens.find(index) == tweens.end())
         {
-            TweenAttributes *set = new TweenAttributes();
+            TweenAttributes set;
             tweens[index] = set;
         }
     }
 
-    return tweens[index];
+    return tweens->at(index);
 }
-
-

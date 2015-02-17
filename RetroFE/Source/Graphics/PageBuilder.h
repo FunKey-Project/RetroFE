@@ -39,7 +39,7 @@ private:
     std::string LayoutPath;
     Configuration &Config;
     float ScaleX;
-    float ScaleY;
+    float ScaleY;->
     int ScreenHeight;
     int ScreenWidth;
     SDL_Color FontColor;
@@ -53,14 +53,14 @@ private:
     void BuildViewInfo(rapidxml::xml_node<> *componentXml, ViewInfo *info, rapidxml::xml_node<> *defaultXml = NULL);
     bool BuildComponents(rapidxml::xml_node<> *layout, Page *page);
     void LoadTweens(Component *c, rapidxml::xml_node<> *componentXml);
-    TweenSets *CreateTweenInstance(rapidxml::xml_node<> *componentXml);
-    void BuildTweenAttributes(TweenSets *tweens, rapidxml::xml_node<> *componentXml, std::string tagName, std::string tweenName);
+    TweenSets CreateTweenInstance(rapidxml::xml_node<> *componentXml);
+    void BuildTweenAttributes(TweenSets &tweens, rapidxml::xml_node<> *componentXml, std::string tagName, std::string tweenName);
     ScrollingList * BuildMenu(rapidxml::xml_node<> *menuXml);
     void BuildCustomMenu(ScrollingList *menu, rapidxml::xml_node<> *menuXml, rapidxml::xml_node<> *itemDefaults);
     void BuildVerticalMenu(ScrollingList *menu, rapidxml::xml_node<> *menuXml, rapidxml::xml_node<> *itemDefaults);
     int ParseMenuPosition(std::string strIndex);
     rapidxml::xml_attribute<> *FindAttribute(rapidxml::xml_node<> *componentXml, std::string attribute, rapidxml::xml_node<> *defaultXml);
-    void GetTweenAttributes(rapidxml::xml_node<> *node, std::vector<std::vector<Tween *> *> *TweenAttributes);
-    void GetTweenSets(rapidxml::xml_node<> *node, std::vector<Tween *> &tweens);
-    ViewInfo * CreateMenuItemInfo(rapidxml::xml_node<> *component, rapidxml::xml_node<> *defaults, float y);
+    void GetTweenAttributes(rapidxml::xml_node<> *node, std::vector<std::vector<Tween>> &TweenAttributes);
+    void GetTweenSets(rapidxml::xml_node<> *node, std::vector<Tween> &tweens);
+    ViewInfo CreateMenuItemInfo(rapidxml::xml_node<> *component, rapidxml::xml_node<> *defaults, float y);
 };

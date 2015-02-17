@@ -36,13 +36,13 @@ SDL_Texture *Font::GetTexture()
 
 bool Font::GetRect(unsigned int charCode, GlyphInfo &glyph)
 {
-    std::map<unsigned int, GlyphInfoBuild *>::iterator it = Atlas.find(charCode);
+    std::map<unsigned int, GlyphInfoBuild>::iterator it = Atlas.find(charCode);
 
     if(it != Atlas.end())
     {
-        GlyphInfoBuild *info = it->second;
+        GlyphInfoBuild &info = it->second;
 
-        glyph = info->Glyph;
+        glyph = info.Glyph;
 
         return true;
     }
@@ -119,12 +119,12 @@ bool Font::Initialize(std::string fontPath, int fontSize, SDL_Color color)
 #endif
 
     SDL_Surface *atlasSurface = SDL_CreateRGBSurface(0, atlasWidth, atlasHeight, 32, rmask, gmask, bmask, amask);
-    std::map<unsigned int, GlyphInfoBuild *>::iterator it;
+    std::map<unsigned int, GlyphInfoBuild>::iterator it;
     for(it = Atlas.begin(); it != Atlas.end(); it++)
     {
-        GlyphInfoBuild *info = it->second;
-        SDL_BlitSurface(info->Surface, NULL, atlasSurface, &info->Glyph.Rect);
-        SDL_FreeSurface(info->Surface);
+        GlyphInfoBuild &info = it->second;
+        SDL_BlitSurface(info.Surface, NULL, atlasSurface, &info.Glyph.Rect);
+        SDL_FreeSurface(info.Surface);
         info->Surface = NULL;
     }
     SDL_LockMutex(SDL::GetMutex());
@@ -149,13 +149,6 @@ void Font::DeInitialize()
         Texture = NULL;
         SDL_UnlockMutex(SDL::GetMutex());
     }
-
-    std::map<unsigned int, GlyphInfoBuild *>::iterator atlasIt = Atlas.begin();
-    while(atlasIt != Atlas.end())
-    {
-        delete atlasIt->second;
-        Atlas.erase(atlasIt);
-        atlasIt = Atlas.begin();
-    }
-
+    
+    Atlas.clear();
 }

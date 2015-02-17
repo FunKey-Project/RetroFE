@@ -24,17 +24,14 @@ class TweenSets
 {
 public:
     TweenSets();
-    TweenSets(TweenSets &copy);
     ~TweenSets();
-    typedef std::vector<std::vector<Tween *> *> TweenAttributes;
+    typedef std::vector<std::vector<Tween>> TweenAttributes;
 
-    TweenAttributes *GetTween(std::string tween);
-    TweenAttributes *GetTween(std::string tween, int index);
-    void SetTween(std::string tween, int index, TweenAttributes *set);
+    TweenAttributes &GetTween(std::string tween);
+    TweenAttributes &GetTween(std::string tween, int index);
+    void ImportTween(std::string tween, int index, TweenAttributes &set);
 
 private:
-    TweenAttributes *FindTween(std::map<int, TweenAttributes *> &tweens, int index);
-    void DestroyTweens();
-
-    std::map<std::string, std::map<int, TweenAttributes *> > TweenMap;
+    TweenAttributes &FindTween(std::map<int, TweenAttributes> &tweens, int index);
+    std::map<std::string, std::map<int, TweenAttributes> > TweenMap;
 };

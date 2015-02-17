@@ -15,13 +15,13 @@
  */
 #include "ComponentItemBinding.h"
 
-ComponentItemBinding::ComponentItemBinding( Component *c, Item *item)
+ComponentItemBinding::ComponentItemBinding( Component *c, Item &item)
     : CollectionComponent(c)
     , CollectionItem(item)
 {
 }
 
-ComponentItemBinding::ComponentItemBinding(Item *item)
+ComponentItemBinding::ComponentItemBinding(Item &item)
     : CollectionComponent(NULL)
     , CollectionItem(item)
 {
@@ -31,7 +31,7 @@ ComponentItemBinding::~ComponentItemBinding()
 {
 }
 
-Item* ComponentItemBinding::GetCollectionItem() const
+Item &ComponentItemBinding::GetCollectionItem() const
 {
     return CollectionItem;
 }

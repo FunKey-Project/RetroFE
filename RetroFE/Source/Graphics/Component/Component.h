@@ -48,8 +48,8 @@ public:
 
     virtual void Update(float dt);
     virtual void Draw();
-    TweenSets *GetTweens();
-    void SetTweens(TweenSets *set);
+    TweenSets &GetTweens();
+    void ImportTweens(TweenSets &set);
     ViewInfo *GetBaseViewInfo();
     void UpdateBaseViewInfo(ViewInfo &info);
     bool IsScrollActive() const;
@@ -87,7 +87,7 @@ private:
     bool Animate(bool loop);
     bool IsTweenSequencingComplete();
 
-    TweenSets *Tweens;
+    TweenSets Tweens;
     TweenSets::TweenAttributes *CurrentTweens;
     Item *SelectedItem;
     SDL_Texture *BackgroundTexture;

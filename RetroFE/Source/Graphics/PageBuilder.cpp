@@ -467,10 +467,9 @@ void PageBuilder::LoadTweens(Component *c, xml_node<> *componentXml)
     c->SetTweens(CreateTweenInstance(componentXml));
 }
 
-TweenSets *PageBuilder::CreateTweenInstance(xml_node<> *componentXml)
+TweenSets PageBuilder::CreateTweenInstance(xml_node<> *componentXml)
 {
-    TweenSets *tweens = new TweenSets();
-
+    TweenSets tweens;
     BuildTweenAttributes(tweens, componentXml, "onEnter", "enter");
     BuildTweenAttributes(tweens, componentXml, "onExit", "exit");
     BuildTweenAttributes(tweens, componentXml, "onIdle", "idle");
@@ -482,16 +481,16 @@ TweenSets *PageBuilder::CreateTweenInstance(xml_node<> *componentXml)
     return tweens;
 }
 
-void PageBuilder::BuildTweenAttributes(TweenSets *tweens, xml_node<> *componentXml, std::string tagName, std::string tweenName)
+void PageBuilder::BuildTweenAttributes(TweenSets &tweens, xml_node<> *componentXml, std::string tagName, std::string tweenName)
 {
     for(componentXml = componentXml->first_node(tagName.c_str()); componentXml; componentXml = componentXml->next_sibling(tagName.c_str()))
     {
         xml_attribute<> *indexXml = componentXml->first_attribute("menuIndex");
         int index = (indexXml) ? Utils::ConvertInt(indexXml->value()) : -1;
 
-        TweenSets::TweenAttributes *sets = new TweenSets::TweenAttributes();
+        TweenSets::TweenAttributes sets;
         GetTweenAttributes(componentXml, sets);
-        tweens->SetTween(tweenName, index, sets);
+        tweens.ImportTween(tweenName, index, sets);
     }
 }
 
@@ -559,15 +558,15 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
 
 void PageBuilder::BuildCustomMenu(ScrollingList *menu, xml_node<> *menuXml, xml_node<> *itemDefaults)
 {
-    std::vector<ViewInfo *> *points = new std::vector<ViewInfo *>();
-    std::vector<TweenSets *> *tweenPoints = new std::vector<TweenSets *>();
+    std::vector<ViewInfo> *points = new std::vector<ViewInfo>();
+    std::vector<TweenSets> *tweenPoints = new std::vector<TweenSets>();
 
     int i = 0;
 
     for(xml_node<> *componentXml = menuXml->first_node("item"); componentXml; componentXml = componentXml->next_sibling("item"))
     {
-        ViewInfo *viewInfo = new ViewInfo();
-        BuildViewInfo(componentXml, viewInfo, itemDefaults);
+        ViewInfo viewInfo;
+        BuildViewInfo(componentXml, &viewInfo, itemDefaults);
 
         points->push_back(viewInfo);
         tweenPoints->push_back(CreateTweenInstance(componentXml));
@@ -586,8 +585,8 @@ void PageBuilder::BuildCustomMenu(ScrollingList *menu, xml_node<> *menuXml, xml_
 
 void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xml_node<> *itemDefaults)
 {
-    std::vector<ViewInfo *> *points = new std::vector<ViewInfo *>();
-    std::vector<TweenSets *> *tweenPoints = new std::vector<TweenSets *>();
+    std::vector<ViewInfo> *points = new std::vector<ViewInfo>();
+    std::vector<TweenSets> *tweenPoints = new std::vector<TweenSets>();
 
     int selectedIndex = MENU_FIRST;
     std::map<int, xml_node<> *> overrideItems;
@@ -630,7 +629,7 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
     }
     while(!end)
     {
-        ViewInfo *viewInfo = new ViewInfo();
+        ViewInfo viewInfo;
         xml_node<> *component = itemDefaults;
 
         // uss overridden item setting if specified by layout for the given index
@@ -690,10 +689,10 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
     menu->SetPoints(points, tweenPoints);
 }
 
-ViewInfo *PageBuilder::CreateMenuItemInfo(xml_node<> *component, xml_node<> *defaults, float y)
+ViewInfo PageBuilder::CreateMenuItemInfo(xml_node<> *component, xml_node<> *defaults, float y)
 {
-    ViewInfo *viewInfo = new ViewInfo();
-    BuildViewInfo(component, viewInfo, defaults);
+    ViewInfo viewInfo;
+    BuildViewInfo(component, &viewInfo, defaults);
     viewInfo->SetY(y);
     return viewInfo;
 }
@@ -810,107 +809,106 @@ void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info, xml_no
     }
 }
 
-void PageBuilder::GetTweenAttributes(xml_node<> *node, std::vector<std::vector<Tween *> *> *TweenAttributes)
+void PageBuilder::GetTweenAttributes(xml_node<> *node, TweenSets::TweenAttributes &tweenAttributes)
 {
     if(node)
     {
         for(xml_node<> *set = node->first_node("set"); set; set = set->next_sibling("set"))
         {
-            std::vector<Tween *> *tweens = new std::vector<Tween *>();
-            GetTweenSets(set, *tweens);
-            TweenAttributes->push_back(tweens);
+            std::vector<Tween> tweens;
+            GetTweenSets(set, tweens);
+            tweenAttributes.push_back(tweens);
         }
     }
 }
 
-void PageBuilder::GetTweenSets(xml_node<> *node, std::vector<Tween *> &tweens)
+void PageBuilder::GetTweenSets(xml_node<> *node, std::vector<Tween> &tweens)
 {
     xml_attribute<> *durationXml = node->first_attribute("duration");
 
     if(!durationXml)
     {
         Logger::Write(Logger::ZONE_ERROR, "Layout", "Animation set tag missing \"duration\" attribute");
+        return;
     }
-    else
-    {
-        for(xml_node<> *animate = node->first_node("animate"); animate; animate = animate->next_sibling("animate"))
-        {
-            xml_attribute<> *type = animate->first_attribute("type");
-            xml_attribute<> *from = animate->first_attribute("from");
-            xml_attribute<> *to = animate->first_attribute("to");
-            xml_attribute<> *algorithmXml = animate->first_attribute("algorithm");
 
-            if(!type)
+    for(xml_node<> *animate = node->first_node("animate"); animate; animate = animate->next_sibling("animate"))
+    {
+        xml_attribute<> *type = animate->first_attribute("type");
+        xml_attribute<> *from = animate->first_attribute("from");
+        xml_attribute<> *to = animate->first_attribute("to");
+        xml_attribute<> *algorithmXml = animate->first_attribute("algorithm");
+
+        if(!type)
+        {
+            Logger::Write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"type\" attribute");
+        }
+        else if(!from)
+        {
+            Logger::Write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"from\" attribute");
+        }
+        else if(!to)
+        {
+            Logger::Write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"to\" attribute");
+        }
+        else
+        {
+            float fromValue = Utils::ConvertFloat(from->value());
+            float toValue = Utils::ConvertFloat(to->value());
+            float durationValue = Utils::ConvertFloat(durationXml->value());
+
+            TweenAlgorithm algorithm = LINEAR;
+            TweenProperty property;
+
+            if(algorithmXml)
             {
-                Logger::Write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"type\" attribute");
+                algorithm = Tween::GetTweenType(algorithmXml->value());
+
             }
-            else if(!from)
+
+            if(Tween::GetTweenProperty(type->value(), property))
             {
-                Logger::Write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"from\" attribute");
-            }
-            else if(!to)
-            {
-                Logger::Write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"to\" attribute");
+                switch(property)
+                {
+                case TWEEN_PROPERTY_WIDTH:
+                case TWEEN_PROPERTY_X:
+                case TWEEN_PROPERTY_X_OFFSET:
+                    fromValue = GetHorizontalAlignment(from, 0);
+                    toValue = GetHorizontalAlignment(to, 0);
+                    break;
+
+                    // x origin gets translated to a percent
+                case TWEEN_PROPERTY_X_ORIGIN:
+                    fromValue = GetHorizontalAlignment(from, 0) / ScreenWidth;
+                    toValue = GetHorizontalAlignment(to, 0) / ScreenWidth;
+                    break;
+
+                case TWEEN_PROPERTY_HEIGHT:
+                case TWEEN_PROPERTY_Y:
+                case TWEEN_PROPERTY_Y_OFFSET:
+                case TWEEN_PROPERTY_FONT_SIZE:
+                    fromValue = GetVerticalAlignment(from, 0);
+                    toValue = GetVerticalAlignment(to, 0);
+                    break;
+
+                    // y origin gets translated to a percent
+                case TWEEN_PROPERTY_Y_ORIGIN:
+                    fromValue = GetVerticalAlignment(from, 0) / ScreenHeight;
+                    toValue = GetVerticalAlignment(to, 0) / ScreenHeight;
+                    break;
+
+                default:
+                    break;
+                }
+
+                Tween t(property, algorithm, fromValue, toValue, durationValue);
+                tweens.push_back(t);
             }
             else
             {
-                float fromValue = Utils::ConvertFloat(from->value());
-                float toValue = Utils::ConvertFloat(to->value());
-                float durationValue = Utils::ConvertFloat(durationXml->value());
-
-                TweenAlgorithm algorithm = LINEAR;
-                TweenProperty property;
-
-                if(algorithmXml)
-                {
-                    algorithm = Tween::GetTweenType(algorithmXml->value());
-
-                }
-
-                if(Tween::GetTweenProperty(type->value(), property))
-                {
-                    switch(property)
-                    {
-                    case TWEEN_PROPERTY_WIDTH:
-                    case TWEEN_PROPERTY_X:
-                    case TWEEN_PROPERTY_X_OFFSET:
-                        fromValue = GetHorizontalAlignment(from, 0);
-                        toValue = GetHorizontalAlignment(to, 0);
-                        break;
-
-                        // x origin gets translated to a percent
-                    case TWEEN_PROPERTY_X_ORIGIN:
-                        fromValue = GetHorizontalAlignment(from, 0) / ScreenWidth;
-                        toValue = GetHorizontalAlignment(to, 0) / ScreenWidth;
-                        break;
-
-                    case TWEEN_PROPERTY_HEIGHT:
-                    case TWEEN_PROPERTY_Y:
-                    case TWEEN_PROPERTY_Y_OFFSET:
-                    case TWEEN_PROPERTY_FONT_SIZE:
-                        fromValue = GetVerticalAlignment(from, 0);
-                        toValue = GetVerticalAlignment(to, 0);
-                        break;
-
-                        // y origin gets translated to a percent
-                    case TWEEN_PROPERTY_Y_ORIGIN:
-                        fromValue = GetVerticalAlignment(from, 0) / ScreenHeight;
-                        toValue = GetVerticalAlignment(to, 0) / ScreenHeight;
-                        break;
-
-                    default:
-                        break;
-                    }
-
-                    Tween *t = new Tween(property, algorithm, fromValue, toValue, durationValue);
-                    tweens.push_back(t);
-                }
-                else
-                {
-                    std::stringstream ss;
-                    ss << "Unsupported tween type attribute \"" << type->value() << "\"";
-                    Logger::Write(Logger::ZONE_ERROR, "Layout", ss.str());
-                }
+                std::stringstream ss;
+                ss << "Unsupported tween type attribute \"" << type->value() << "\"";
+                Logger::Write(Logger::ZONE_ERROR, "Layout", ss.str());
             }
         }
     }

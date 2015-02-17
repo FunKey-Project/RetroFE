@@ -89,11 +89,8 @@ void ScrollingList::SetItems(std::vector<ComponentItemBinding *> *spriteList)
     {
         for(unsigned int i = 0; i < originalSize; ++i)
         {
-            Item *newItem = new Item();
-            Item *originalItem = SpriteList->at(i)->GetCollectionItem();
-
-            *newItem = *originalItem;
-            ComponentItemBinding *newSprite = new ComponentItemBinding(newItem);
+            Item newItem = SpriteList->at(i).GetCollectionItem();
+            ComponentItemBinding newSprite(newItem);
             SpriteList->push_back(newSprite);
         }
     }
@@ -157,9 +154,9 @@ void ScrollingList::AllocateSpritePoints()
     {
         AllocateTexture(SpriteList->at(spriteIndex));
         Component *c = SpriteList->at(spriteIndex)->GetComponent();
-        ViewInfo *currentViewInfo = ScrollPoints->at(i);
+        ViewInfo &currentViewInfo = ScrollPoints->at(i);
         unsigned int nextI = GetNextTween(i, ScrollPoints);
-        ViewInfo *nextViewInfo = ScrollPoints->at(nextI);
+        ViewInfo &nextViewInfo = ScrollPoints->at(nextI);
 
         ResetTweens(c, TweenPoints->at(i), currentViewInfo, nextViewInfo, 0);
 
@@ -575,21 +572,9 @@ void ScrollingList::UpdateSprite(unsigned int spriteIndex, unsigned int pointInd
     CircularIncrement(spriteIndex, SpriteList);
 }
 
-void ScrollingList::ResetTweens(Component *c, TweenSets *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime)
+void ScrollingList::ResetTweens(Component *c, TweenSets &sets, ViewInfo &currentViewInfo, ViewInfo &nextViewInfo, double scrollTime)
 {
     if(!c)
-    {
-        return;
-    }
-    if(!sets)
-    {
-        return;
-    }
-    if(!currentViewInfo)
-    {
-        return;
-    }
-    if(!nextViewInfo)
     {
         return;
     }
@@ -600,31 +585,15 @@ void ScrollingList::ResetTweens(Component *c, TweenSets *sets, ViewInfo *current
     nextViewInfo->SetImageWidth(c->GetBaseViewInfo()->GetImageWidth());
     nextViewInfo->SetBackgroundAlpha(c->GetBaseViewInfo()->GetBackgroundAlpha());
 
-    //todo: delete properly, memory leak (big), proof of concept
     c->SetTweens(sets);
 
-    TweenSets::TweenAttributes *scrollTween = sets->GetTween("menuScroll");
+    TweenSets::TweenAttributes &scrollTween = sets->GetTween("menuScroll");
     TweenSets::TweenAttributes::iterator it = scrollTween->begin();
+    scrollTween.clear();
 
-    while(it != scrollTween->end())
-    {
-        std::vector<Tween *>::iterator it2 = (*it)->begin();
-        while(it2 != (*it)->end())
-        {
-            delete *it2;
-            (*it)->erase(it2);
-            it2 = (*it)->begin();
-        }
-        delete *it;
-        scrollTween->erase(it);
-        it = scrollTween->begin();
+    c->UpdateBaseViewInfo(currentViewInfo);
 
-    }
-
-    scrollTween->clear();
-    c->UpdateBaseViewInfo(*currentViewInfo);
-
-    std::vector<Tween *> *set = new std::vector<Tween *>();
+    std::vector<Tween *> set;
     set->push_back(new Tween(TWEEN_PROPERTY_HEIGHT, EASE_INOUT_QUADRATIC, currentViewInfo->GetHeight(), nextViewInfo->GetHeight(), scrollTime));
     set->push_back(new Tween(TWEEN_PROPERTY_WIDTH, EASE_INOUT_QUADRATIC, currentViewInfo->GetWidth(), nextViewInfo->GetWidth(), scrollTime));
     set->push_back(new Tween(TWEEN_PROPERTY_ANGLE, EASE_INOUT_QUADRATIC, currentViewInfo->GetAngle(), nextViewInfo->GetAngle(), scrollTime));
@@ -637,7 +606,7 @@ void ScrollingList::ResetTweens(Component *c, TweenSets *sets, ViewInfo *current
     set->push_back(new Tween(TWEEN_PROPERTY_Y_OFFSET, EASE_INOUT_QUADRATIC, currentViewInfo->GetYOffset(), nextViewInfo->GetYOffset(), scrollTime));
     set->push_back(new Tween(TWEEN_PROPERTY_FONT_SIZE, EASE_INOUT_QUADRATIC, currentViewInfo->GetFontSize(), nextViewInfo->GetFontSize(), scrollTime));
     set->push_back(new Tween(TWEEN_PROPERTY_BACKGROUND_ALPHA, EASE_INOUT_QUADRATIC, currentViewInfo->GetBackgroundAlpha(), nextViewInfo->GetBackgroundAlpha(), scrollTime));
-    scrollTween->push_back(set);
+    scrollTween.push_back(set);
 }
 
 
@@ -715,11 +684,11 @@ void ScrollingList::Draw(unsigned int layer)
 
     for(unsigned int i = 0; i < ScrollPoints->size(); i++)
     {
-        ComponentItemBinding *s = SpriteList->at(spriteIndex);
+        ComponentItemBinding &s = SpriteList->at(spriteIndex);
         Component *c = s->GetComponent();
-        ViewInfo *currentViewInfo = ScrollPoints->at(i);
+        ViewInfo &currentViewInfo = ScrollPoints->at(i);
 
-        if(c && currentViewInfo && currentViewInfo->GetLayer() == layer)
+        if(c && currentViewInfo.GetLayer() == layer)
         {
             c->Draw();
         }
@@ -766,37 +735,35 @@ void ScrollingList::RemoveSelectedItem()
 }
 
 
-std::vector<ComponentItemBinding *> *ScrollingList::GetCollectionItemSprites()
+std::vector<ComponentItemBinding> *ScrollingList::GetCollectionItemSprites()
 {
     return SpriteList;
 }
 
 ComponentItemBinding* ScrollingList::GetSelectedCollectionItemSprite()
 {
-    ComponentItemBinding *item = NULL;
-
     if(SpriteList && SpriteList->size() > 0)
     {
         int index = (FirstSpriteIndex + SelectedSpriteListIndex) % SpriteList->size();
-
-        item = SpriteList->at(index);
+        ComponentItemBinding item = &SpriteList->at(index);
+        return &item;
     }
 
-    return item;
+    return NULL;
 }
 
 ComponentItemBinding* ScrollingList::GetPendingCollectionItemSprite()
 {
-    ComponentItemBinding *item = NULL;
     unsigned int index = FirstSpriteIndex;
     if(SpriteList && SpriteList->size() > 0)
     {
         index = (index + SelectedSpriteListIndex) % SpriteList->size();
 
-        item = SpriteList->at(index);
-    }
+        ComponentItemBinding item = &SpriteList->at(index);
+        return &item;
+      }
 
-    return item;
+    return NULL;
 }
 
 void ScrollingList::AddComponentForNotifications(MenuNotifierInterface *c)
@@ -820,30 +787,31 @@ void ScrollingList::RemoveComponentForNotifications(MenuNotifierInterface *c)
 
 ComponentItemBinding* ScrollingList::GetPendingSelectedCollectionItemSprite()
 {
-    ComponentItemBinding *item = NULL;
-
-    if(SpriteList)
+    if(!SpriteList)
     {
-        unsigned int index = SelectedSpriteListIndex;
+        return NULL;
 
-        if(CurrentScrollDirection == ScrollDirectionBack)
-        {
-            CircularDecrement(index, SpriteList);
-        }
-        if(CurrentScrollDirection == ScrollDirectionForward)
-        {
-            CircularIncrement(index, SpriteList);
-        }
+    }
+    unsigned int index = SelectedSpriteListIndex;
 
-        if(SpriteList && SpriteList->size() > 0)
-        {
-            index = (index + SelectedSpriteListIndex) % SpriteList->size();
-
-            item = SpriteList->at(index);
-        }
+    if(CurrentScrollDirection == ScrollDirectionBack)
+    {
+        CircularDecrement(index, SpriteList);
+    }
+    if(CurrentScrollDirection == ScrollDirectionForward)
+    {
+        CircularIncrement(index, SpriteList);
     }
 
-    return item;
+    if(SpriteList && SpriteList->size() > 0)
+    {
+        index = (index + SelectedSpriteListIndex) % SpriteList->size();
+
+        ComponentItemBinding &item = SpriteList->at(index);
+        return &item;
+    }
+
+    return NULL;
 }
 
 bool ScrollingList::IsIdle()
@@ -921,4 +889,3 @@ void ScrollingList::CircularDecrement(unsigned int &index, std::vector<Component
         }
     }
 }
-

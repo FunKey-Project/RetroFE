@@ -151,12 +151,12 @@ void Component::SetCollectionName(std::string collectionName)
     CollectionName = collectionName;
 }
 
-TweenSets *Component::GetTweens()
+TweenSets &Component::GetTweens()
 {
     return Tweens;
 }
 
-void Component::SetTweens(TweenSets *set)
+void Component::ImportTweens(TweenSets &set)
 {
     Tweens = set;
     CurrentAnimationState = IDLE;
@@ -219,7 +219,7 @@ void Component::Update(float dt)
 
 
         case ENTER:
-            CurrentTweens = Tweens->GetTween("enter", MenuEnterIndex);
+            CurrentTweens = Tweens.GetTween("enter", MenuEnterIndex);
             CurrentAnimationState = HIGHLIGHT_ENTER;
             break;
 
@@ -229,7 +229,7 @@ void Component::Update(float dt)
             break;
 
         case HIGHLIGHT_ENTER:
-            CurrentTweens = Tweens->GetTween("idle", MenuEnterIndex);
+            CurrentTweens = Tweens.GetTween("idle", MenuEnterIndex);
             CurrentAnimationState = IDLE;
             break;
 
@@ -242,13 +242,13 @@ void Component::Update(float dt)
             }
             else if(MenuExitRequested && (!MenuEnterRequested || MenuExitRequested <= MenuEnterRequested))
             {
-                CurrentTweens = Tweens->GetTween("menuExit", MenuExitIndex);
+                CurrentTweens = Tweens.GetTween("menuExit", MenuExitIndex);
                 CurrentAnimationState = MENU_EXIT;
                 MenuExitRequested = false;
             }
             else if(MenuEnterRequested && (!MenuExitRequested || MenuExitRequested > MenuEnterRequested))
             {
-                CurrentTweens = Tweens->GetTween("menuEnter", MenuEnterIndex);
+                CurrentTweens = Tweens.GetTween("menuEnter", MenuEnterIndex);
                 CurrentAnimationState = MENU_ENTER;
                 MenuEnterRequested = false;
 
@@ -256,17 +256,17 @@ void Component::Update(float dt)
             else if(MenuScrollRequested)
             {
                 MenuScrollRequested = false;
-                CurrentTweens = Tweens->GetTween("menuScroll", MenuEnterIndex);
+                CurrentTweens = Tweens.GetTween("menuScroll", MenuEnterIndex);
                 CurrentAnimationState = MENU_SCROLL;
             }
             else if(IsScrollActive() || NewItemSelected || ExitRequested)
             {
-                CurrentTweens = Tweens->GetTween("highlightExit", MenuEnterIndex);
+                CurrentTweens = Tweens.GetTween("highlightExit", MenuEnterIndex);
                 CurrentAnimationState = HIGHLIGHT_EXIT;
             }
             else
             {
-                CurrentTweens = Tweens->GetTween("idle", MenuEnterIndex);
+                CurrentTweens = Tweens.GetTween("idle", MenuEnterIndex);
                 CurrentAnimationState = IDLE;
             }
             break;
@@ -278,14 +278,14 @@ void Component::Update(float dt)
 
             if(ExitRequested && (CurrentAnimationState == HIGHLIGHT_WAIT))
             {
-                CurrentTweens = Tweens->GetTween("highlightExit", MenuEnterIndex);
+                CurrentTweens = Tweens.GetTween("highlightExit", MenuEnterIndex);
                 CurrentAnimationState = HIGHLIGHT_EXIT;
 
             }
             else if(ExitRequested && (CurrentAnimationState == HIGHLIGHT_EXIT))
             {
 
-                CurrentTweens = Tweens->GetTween("exit", MenuEnterIndex);
+                CurrentTweens = Tweens.GetTween("exit", MenuEnterIndex);
                 CurrentAnimationState = EXIT;
                 ExitRequested = false;
             }
@@ -296,7 +296,7 @@ void Component::Update(float dt)
             }
             else if(NewItemSelected)
             {
-                CurrentTweens = Tweens->GetTween("highlightEnter", MenuEnterIndex);
+                CurrentTweens = Tweens.GetTween("highlightEnter", MenuEnterIndex);
                 CurrentAnimationState = HIGHLIGHT_ENTER;
                 HighlightExitComplete = true;
                 NewItemSelected = false;
@@ -311,19 +311,19 @@ void Component::Update(float dt)
         case HIDDEN:
             if(EnterRequested || ExitRequested)
             {
-                CurrentTweens = Tweens->GetTween("enter", MenuEnterIndex);
+                CurrentTweens = Tweens.GetTween("enter", MenuEnterIndex);
                 CurrentAnimationState = ENTER;
             }
 
             else if(MenuExitRequested && (!MenuEnterRequested || MenuExitRequested <= MenuEnterRequested))
             {
-                CurrentTweens = Tweens->GetTween("menuExit", MenuExitIndex);
+                CurrentTweens = Tweens.GetTween("menuExit", MenuExitIndex);
                 CurrentAnimationState = MENU_EXIT;
                 MenuExitRequested = false;
             }
             else if(MenuEnterRequested && (!MenuExitRequested || MenuExitRequested > MenuEnterRequested))
             {
-                CurrentTweens = Tweens->GetTween("menuEnter", MenuEnterIndex);
+                CurrentTweens = Tweens.GetTween("menuEnter", MenuEnterIndex);
                 CurrentAnimationState = MENU_ENTER;
                 MenuEnterRequested = false;
 
@@ -331,7 +331,7 @@ void Component::Update(float dt)
             else if(MenuScrollRequested)
             {
                 MenuScrollRequested = false;
-                CurrentTweens = Tweens->GetTween("menuScroll", MenuEnterIndex);
+                CurrentTweens = Tweens.GetTween("menuScroll", MenuEnterIndex);
                 CurrentAnimationState = MENU_SCROLL;
             }
             else
@@ -382,26 +382,26 @@ bool Component::Animate(bool loop)
     else if(CurrentTweens)
     {
         bool currentDone = true;
-        std::vector<Tween *> *TweenSets = CurrentTweens->at(CurrentTweenIndex);
+        std::vector<Tween> &TweenSets = CurrentTweens->at(CurrentTweenIndex);
 
-        for(unsigned int i = 0; i < TweenSets->size(); i++)
+        for(unsigned int i = 0; i < TweenSets.size(); i++)
         {
-            Tween *tween = TweenSets->at(i);
+            Tween &tween = TweenSets.at(i);
             float elapsedTime = ElapsedTweenTime;
 
             //todo: too many levels of nesting
-            if(elapsedTime < tween->GetDuration())
+            if(elapsedTime < tween.GetDuration())
             {
                 currentDone = false;
             }
             else
             {
-                elapsedTime = tween->GetDuration();
+                elapsedTime = tween.GetDuration();
             }
 
-            float value = tween->Animate(elapsedTime);
+            float value = tween.Animate(elapsedTime);
 
-            switch(tween->GetProperty())
+            switch(tween.GetProperty())
             {
             case TWEEN_PROPERTY_X:
                 GetBaseViewInfo()->SetX(value);
