@@ -86,7 +86,6 @@ private:
 
     bool Animate(bool loop);
     bool IsTweenSequencingComplete();
-    void ResetTweenSequence(std::vector<ViewInfo *> *tweens);
 
     TweenSets *Tweens;
     TweenSets::TweenAttributes *CurrentTweens;

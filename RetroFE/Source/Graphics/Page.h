@@ -45,40 +45,20 @@ public:
     virtual ~Page();
     virtual void OnNewItemSelected(Item *);
     bool PushCollection(CollectionInfo *collection);
-    bool IsMenusFull()
-    {
-        return (MenuDepth > Menus.size());
-    }
     bool PopCollection();
     void PushMenu(ScrollingList *s);
-
-    void SetLoadSound(Sound *chunk)
-    {
-        LoadSoundChunk = chunk;
-    }
-    void SetUnloadSound(Sound *chunk)
-    {
-        UnloadSoundChunk = chunk;
-    }
-    void SetHighlightSound(Sound *chunk)
-    {
-        HighlightSoundChunk = chunk;
-    }
-    void SetSelectSound(Sound *chunk)
-    {
-        SelectSoundChunk = chunk;
-    }
-
+    bool IsMenusFull();
+    void SetLoadSound(Sound *chunk);
+    void SetUnloadSound(Sound *chunk);
+    void SetHighlightSound(Sound *chunk);
+    void SetSelectSound(Sound *chunk);
     bool AddComponent(Component *c);
     void PageScroll(ScrollDirection direction);
     void Start();
     void StartComponents();
     void Stop();
     void SetScrolling(ScrollDirection direction);
-    unsigned int GetMenuDepth()
-    {
-        return MenuDepth;
-    }
+    unsigned int GetMenuDepth();
     Item *GetSelectedItem();
     Item *GetPendingSelectedItem();
     void RemoveSelectedItem();

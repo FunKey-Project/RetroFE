@@ -92,6 +92,28 @@ Page::~Page()
     }
 }
 
+
+bool Page::IsMenusFull()
+{
+  return (MenuDepth > Menus.size());
+}
+
+void Page::SetLoadSound(Sound *chunk)
+{
+  LoadSoundChunk = chunk;
+}
+void Page::SetUnloadSound(Sound *chunk)
+{
+  UnloadSoundChunk = chunk;
+}
+void Page::SetHighlightSound(Sound *chunk)
+{
+  HighlightSoundChunk = chunk;
+}
+void Page::SetSelectSound(Sound *chunk)
+{
+  SelectSoundChunk = chunk;
+}
 void Page::OnNewItemSelected(Item *item)
 {
     SelectedItem = item;
@@ -108,6 +130,10 @@ void Page::PushMenu(ScrollingList *s)
     }
 }
 
+unsigned int Page::GetMenuDepth()
+{
+    return MenuDepth;
+}
 
 void Page::SetStatusTextComponent(Text *t)
 {
@@ -580,4 +606,3 @@ void Page::LaunchExit()
         }
     }
 }
-

@@ -50,5 +50,3 @@ private:
     std::map<unsigned int, GlyphInfoBuild *> Atlas;
     SDL_Texture *Texture;
 };
-
-
