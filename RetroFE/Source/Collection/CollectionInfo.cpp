@@ -35,7 +35,7 @@ CollectionInfo::CollectionInfo(std::string name,
 CollectionInfo::~CollectionInfo()
 {
     std::vector<Item *>::iterator it = Items.begin();
-    
+
     while(it != Items.end())
     {
         delete *it;
@@ -89,14 +89,14 @@ std::vector<Item *> *CollectionInfo::GetItems()
     return &Items;
 }
 
-bool CollectionInfo::ItemIsLess(Item const *lhs, Item const *rhs) 
+bool CollectionInfo::ItemIsLess(Item const *lhs, Item const *rhs)
 {
     return lhs->GetLCTitle() < rhs->GetLCTitle();
 }
 
 void CollectionInfo::SortItems()
 {
-    std::sort(Items.begin(), Items.end(), ItemIsLess);	
+    std::sort(Items.begin(), Items.end(), ItemIsLess);
 }
 
 

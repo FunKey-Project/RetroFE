@@ -84,7 +84,10 @@ bool CollectionInfoBuilder::ImportBasicList(CollectionInfo *info, std::string fi
 {
     std::ifstream includeStream(file.c_str());
 
-    if (!includeStream.good()) { return false; }
+    if (!includeStream.good())
+    {
+        return false;
+    }
 
     std::string line;
 
@@ -121,14 +124,14 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
 
     ImportBasicList(info, includeFile, includeFilter);
     ImportBasicList(info, excludeFile, excludeFilter);
-    
+
     std::vector<std::string> extensions;
     std::vector<std::string>::iterator extensionsIt;
-    
+
     info->GetExtensions(extensions);
-    
+
     (void)Conf.GetProperty("collections." + info->GetName() + ".launcher", launcher);
-        Logger::Write(Logger::ZONE_ERROR, "CollectionInfoBuilder", "Check path " + includeFile);
+    Logger::Write(Logger::ZONE_ERROR, "CollectionInfoBuilder", "Check path " + includeFile);
 
     dp = opendir(path.c_str());
 
@@ -137,7 +140,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
         Logger::Write(Logger::ZONE_ERROR, "CollectionInfoBuilder", "Could not read directory \"" + path + "\"");
         return false;
     }
-    
+
     while((dirp = readdir(dp)) != NULL)
     {
         std::string file = dirp->d_name;

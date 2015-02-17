@@ -205,7 +205,7 @@ bool Configuration::GetProperty(std::string key, std::string &value)
     GetRawProperty("baseMediaPath", baseMediaPath);
     GetRawProperty("baseItemPath", baseItemPath);
     collectionName = GetCurrentCollection();
-    
+
     value = Utils::Replace(value, "%BASE_MEDIA_PATH%", baseMediaPath);
     value = Utils::Replace(value, "%BASE_ITEM_PATH%", baseItemPath);
     value = Utils::Replace(value, "%ITEM_COLLECTION_NAME%", collectionName);
@@ -343,7 +343,10 @@ void Configuration::GetMediaPropertyAbsolutePath(std::string collectionName, std
 {
     std::string key = "media." + collectionName + "." + mediaType;
 
-    if(GetPropertyAbsolutePath(key, value)) { return; }
+    if(GetPropertyAbsolutePath(key, value))
+    {
+        return;
+    }
 
     std::string baseMediaPath;
     if(!GetPropertyAbsolutePath("baseMediaPath", baseMediaPath))
@@ -358,7 +361,10 @@ void Configuration::GetCollectionAbsolutePath(std::string collectionName, std::s
 {
     std::string key = "collections." + collectionName + ".list.path";
 
-    if(GetPropertyAbsolutePath(key, value)) { return; }
+    if(GetPropertyAbsolutePath(key, value))
+    {
+        return;
+    }
 
     std::string baseItemPath;
     if(!GetPropertyAbsolutePath("baseItemPath", baseItemPath))

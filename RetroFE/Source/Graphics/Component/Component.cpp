@@ -151,15 +151,15 @@ void Component::SetCollectionName(std::string collectionName)
     CollectionName = collectionName;
 }
 
-TweenSets *Component::GetTweens() 
-{ 
-    return Tweens; 
+TweenSets *Component::GetTweens()
+{
+    return Tweens;
 }
 
 void Component::SetTweens(TweenSets *set)
 {
     Tweens = set;
-    CurrentAnimationState = IDLE; 
+    CurrentAnimationState = IDLE;
     CurrentTweenIndex = 0;
     CurrentTweenComplete = false;
     ElapsedTweenTime = 0;
@@ -237,8 +237,8 @@ void Component::Update(float dt)
             // prevent us from automatically jumping to the exit tween upon enter
             if(EnterRequested)
             {
-               EnterRequested = false;
-               NewItemSelected = false;
+                EnterRequested = false;
+                NewItemSelected = false;
             }
             else if(MenuExitRequested && (!MenuEnterRequested || MenuExitRequested <= MenuEnterRequested))
             {
@@ -273,7 +273,7 @@ void Component::Update(float dt)
 
         case HIGHLIGHT_EXIT:
 
-        // intentionally break down
+            // intentionally break down
         case HIGHLIGHT_WAIT:
 
             if(ExitRequested && (CurrentAnimationState == HIGHLIGHT_WAIT))

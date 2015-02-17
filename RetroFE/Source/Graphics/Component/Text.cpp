@@ -46,7 +46,7 @@ void Text::AllocateGraphicsMemory()
     Component::AllocateGraphicsMemory();
 }
 
-void Text::SetText(std::string text) 
+void Text::SetText(std::string text)
 {
     TextData = text;
 }
@@ -66,11 +66,11 @@ void Text::Draw()
     {
         Font::GlyphInfo glyph;
         if(FontInst->GetRect(TextData[i], glyph))
-        {          
-           imageWidth += glyph.Advance;
-           imageHeight = (imageHeight >= glyph.Rect.h) ? imageHeight : glyph.Rect.h;
+        {
+            imageWidth += glyph.Advance;
+            imageHeight = (imageHeight >= glyph.Rect.h) ? imageHeight : glyph.Rect.h;
         }
-        
+
     }
 
     float scale = (float)info->GetFontSize() / (float)imageHeight;
@@ -107,7 +107,7 @@ void Text::Draw()
 
             SDL::RenderCopy(t, static_cast<char>(info->GetAlpha() * 255), &charRect, &rect, info->GetAngle());
             rect.x += static_cast<int>(glyph.Advance * scale);
-            
+
             if((static_cast<float>(rect.x) - xOrigin) > info->GetMaxWidth())
             {
                 break;

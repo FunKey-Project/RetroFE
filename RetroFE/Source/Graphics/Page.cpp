@@ -341,7 +341,7 @@ bool Page::PushCollection(CollectionInfo *collection)
     {
         menuExitIndex = MenuDepth - 1;
     }
-    
+
     ActiveMenu = Menus[MenuDepth];
     ActiveMenu->SetCollectionName(collection->GetName());
     ActiveMenu->DestroyItems();
@@ -350,7 +350,7 @@ bool Page::PushCollection(CollectionInfo *collection)
 
     if(MenuDepth < Menus.size())
     {
-        menuEnterIndex = MenuDepth; 
+        menuEnterIndex = MenuDepth;
         MenuDepth++;
     }
 
@@ -379,11 +379,17 @@ bool Page::PopCollection()
     int menuExitIndex = -1;
     int menuEnterIndex = -1;
     CollectionInfo *collection = NULL;
-    if(MenuDepth <= 1) { return false; }
-    if(Collections.size() <= 1) { return false; }
-        
+    if(MenuDepth <= 1)
+    {
+        return false;
+    }
+    if(Collections.size() <= 1)
+    {
+        return false;
+    }
+
     Collections.pop_back();
-    collection = Collections.back(); 
+    collection = Collections.back();
 
     if(ActiveMenu)
     {

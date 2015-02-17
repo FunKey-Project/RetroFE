@@ -36,7 +36,7 @@ public:
     void GetExtensions(std::vector<std::string> &extensions);
 
 private:
-    static bool ItemIsLess(Item const *lhs, Item const *rhs);  
+    static bool ItemIsLess(Item const *lhs, Item const *rhs);
 
     std::string Name;
     std::string ListPath;

@@ -112,7 +112,7 @@ bool ImportConfiguration(Configuration *c)
     }
 
     closedir(dp);
-    
+
     dp = opendir(collectionsPath.c_str());
 
     if(dp == NULL)
@@ -137,7 +137,7 @@ bool ImportConfiguration(Configuration *c)
             }
         }
     }
-    
+
     closedir(dp);
 
     Logger::Write(Logger::ZONE_INFO, "RetroFE", "Imported configuration");

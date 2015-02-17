@@ -81,7 +81,7 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
                 {
                     import = importAttribute->value();
                 }
-                
+
                 if(import != "true")
                 {
                     //todo, check for empty string

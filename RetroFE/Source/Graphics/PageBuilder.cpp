@@ -45,7 +45,7 @@ static const int MENU_LAST = -3;   // last visible item in the list
 static const int MENU_START = -1;  // first item transitions here after it scrolls "off the menu/screen"
 static const int MENU_END = -2;    // last item transitions here after it scrolls "off the menu/screen"
 static const int MENU_CENTER = -4;
-    
+
 //todo: this file is starting to become a god class of building. Consider splitting into sub-builders
 PageBuilder::PageBuilder(std::string layoutKey, Configuration &c, FontCache *fc)
     : LayoutKey(layoutKey)
@@ -378,7 +378,7 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
             page->AddComponent(c);
         }
     }
-    
+
     for(xml_node<> *componentXml = layout->first_node("statusText"); componentXml; componentXml = componentXml->next_sibling("statusText"))
     {
         FC->LoadFont(Font, FontSize, FontColor);
@@ -492,7 +492,7 @@ void PageBuilder::BuildTweenAttributes(TweenSets *tweens, xml_node<> *componentX
         TweenSets::TweenAttributes *sets = new TweenSets::TweenAttributes();
         GetTweenAttributes(componentXml, sets);
         tweens->SetTween(tweenName, index, sets);
-    }   
+    }
 }
 
 
@@ -568,7 +568,7 @@ void PageBuilder::BuildCustomMenu(ScrollingList *menu, xml_node<> *menuXml, xml_
     {
         ViewInfo *viewInfo = new ViewInfo();
         BuildViewInfo(componentXml, viewInfo, itemDefaults);
-        
+
         points->push_back(viewInfo);
         tweenPoints->push_back(CreateTweenInstance(componentXml));
         xml_attribute<> *selected = componentXml->first_attribute("selected");
@@ -878,7 +878,7 @@ void PageBuilder::GetTweenSets(xml_node<> *node, std::vector<Tween *> &tweens)
                         toValue = GetHorizontalAlignment(to, 0);
                         break;
 
-                    // x origin gets translated to a percent
+                        // x origin gets translated to a percent
                     case TWEEN_PROPERTY_X_ORIGIN:
                         fromValue = GetHorizontalAlignment(from, 0) / ScreenWidth;
                         toValue = GetHorizontalAlignment(to, 0) / ScreenWidth;
@@ -892,7 +892,7 @@ void PageBuilder::GetTweenSets(xml_node<> *node, std::vector<Tween *> &tweens)
                         toValue = GetVerticalAlignment(to, 0);
                         break;
 
-                    // y origin gets translated to a percent
+                        // y origin gets translated to a percent
                     case TWEEN_PROPERTY_Y_ORIGIN:
                         fromValue = GetVerticalAlignment(from, 0) / ScreenHeight;
                         toValue = GetVerticalAlignment(to, 0) / ScreenHeight;

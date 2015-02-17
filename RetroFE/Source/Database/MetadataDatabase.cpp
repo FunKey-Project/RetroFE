@@ -64,7 +64,7 @@ bool MetadataDatabase::ResetDatabase()
         Logger::Write(Logger::ZONE_ERROR, "Metadata", ss.str());
         return false;
     }
-    
+
     return Initialize();
 }
 
@@ -131,7 +131,7 @@ bool MetadataDatabase::ImportDirectory()
                 basename = basename.substr(0, basename.find_last_of("."));
                 std::string collectionName = basename.substr(0, basename.find_first_of("."));
 
-                    
+
                 if(extension == ".xml")
                 {
                     std::string importFile = hyperListPath + "/" + dirp->d_name;
@@ -140,41 +140,41 @@ bool MetadataDatabase::ImportDirectory()
                 }
             }
         }
-        
+
         closedir(dp);
     }
 
     dp = opendir(mameListPath.c_str());
-    
+
     if(dp == NULL)
     {
         Logger::Write(Logger::ZONE_ERROR, "CollectionInfoBuilder", "Could not read directory \"" + mameListPath + "\"");
     }
-    else 
-    {    
-      while((dirp = readdir(dp)) != NULL)
-      {
-          if (dirp->d_type != DT_DIR && std::string(dirp->d_name) != "." && std::string(dirp->d_name) != "..")
-          {
+    else
+    {
+        while((dirp = readdir(dp)) != NULL)
+        {
+            if (dirp->d_type != DT_DIR && std::string(dirp->d_name) != "." && std::string(dirp->d_name) != "..")
+            {
 
-              std::string basename = dirp->d_name;
+                std::string basename = dirp->d_name;
 
-              std::string extension = basename.substr(basename.find_last_of("."), basename.size()-1);
-              basename = basename.substr(0, basename.find_last_of("."));
-              std::string collectionName = basename.substr(0, basename.find_first_of("."));
+                std::string extension = basename.substr(basename.find_last_of("."), basename.size()-1);
+                basename = basename.substr(0, basename.find_last_of("."));
+                std::string collectionName = basename.substr(0, basename.find_first_of("."));
 
-                  
-              if(extension == ".xml")
-              {
-                  std::string importFile = mameListPath + "/" + dirp->d_name;
-                  Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing mamelist: " + importFile);
-                  Config.SetStatus("Scraping data from " + importFile);
-                  ImportMameList(importFile, collectionName);
-              }
-          }
-      }
-      
-      closedir(dp);
+
+                if(extension == ".xml")
+                {
+                    std::string importFile = mameListPath + "/" + dirp->d_name;
+                    Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing mamelist: " + importFile);
+                    Config.SetStatus("Scraping data from " + importFile);
+                    ImportMameList(importFile, collectionName);
+                }
+            }
+        }
+
+        closedir(dp);
     }
 
     return true;
@@ -259,7 +259,7 @@ void MetadataDatabase::InjectMetadata(CollectionInfo *collection)
         }
 
         std::map<std::string, Item *>::iterator it = itemMap.find(name);
-        
+
         if(it != itemMap.end())
         {
             Item *item = it->second;
@@ -321,7 +321,7 @@ bool MetadataDatabase::ImportHyperList(std::string hyperlistFile, std::string co
             return false;
         }
         sqlite3 *handle = DBInstance.GetHandle();
-        sqlite3_exec(handle, "BEGIN IMMEDIATE TRANSACTION;", NULL, NULL, &error);    
+        sqlite3_exec(handle, "BEGIN IMMEDIATE TRANSACTION;", NULL, NULL, &error);
         for(rapidxml::xml_node<> *game = root->first_node("game"); game; game = game->next_sibling("game"))
         {
             rapidxml::xml_attribute<> *nameXml = game->first_attribute("name");
@@ -348,8 +348,8 @@ bool MetadataDatabase::ImportHyperList(std::string hyperlistFile, std::string co
                 sqlite3_stmt *stmt;
 
                 sqlite3_prepare_v2(handle,
-                        "INSERT OR REPLACE INTO Meta (name, title, year, manufacturer, cloneOf, collectionName) VALUES (?,?,?,?,?,?)",
-                        -1, &stmt, 0);
+                                   "INSERT OR REPLACE INTO Meta (name, title, year, manufacturer, cloneOf, collectionName) VALUES (?,?,?,?,?,?)",
+                                   -1, &stmt, 0);
 
                 sqlite3_bind_text(stmt, 1, name.c_str(), -1, SQLITE_TRANSIENT);
                 sqlite3_bind_text(stmt, 2, description.c_str(), -1, SQLITE_TRANSIENT);
@@ -453,8 +453,8 @@ bool MetadataDatabase::ImportMameList(std::string filename, std::string collecti
             sqlite3_stmt *stmt;
 
             sqlite3_prepare_v2(handle,
-                    "INSERT OR REPLACE INTO Meta (name, title, year, manufacturer, players, buttons, cloneOf, collectionName) VALUES (?,?,?,?,?,?,?,?)",
-                    -1, &stmt, 0);
+                               "INSERT OR REPLACE INTO Meta (name, title, year, manufacturer, players, buttons, cloneOf, collectionName) VALUES (?,?,?,?,?,?,?,?)",
+                               -1, &stmt, 0);
 
 
             sqlite3_bind_text(stmt, 1, name.c_str(), -1, SQLITE_TRANSIENT);

@@ -70,11 +70,11 @@ float ViewInfo::GetHeight() const
         float scaleH = MinHeight / height;
         float scaleW = MinWidth / width;
 
-        if(width >= MinWidth && height < MinHeight) 
+        if(width >= MinWidth && height < MinHeight)
         {
             height = MinHeight;
         }
-        else if(width < MinWidth && height >= MinHeight) 
+        else if(width < MinWidth && height >= MinHeight)
         {
             height = scaleW * height;
         }
@@ -115,11 +115,11 @@ float ViewInfo::GetWidth() const
         float scaleH = MinHeight / height;
         float scaleW = MinWidth / width;
 
-        if(height >= MinHeight && width < MinWidth) 
+        if(height >= MinHeight && width < MinWidth)
         {
             width = MinWidth;
         }
-        else if(height < MinHeight && width >= MinWidth) 
+        else if(height < MinHeight && width >= MinWidth)
         {
             width = scaleH * width;
         }

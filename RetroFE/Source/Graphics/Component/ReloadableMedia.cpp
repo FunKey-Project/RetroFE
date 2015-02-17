@@ -172,7 +172,7 @@ void ReloadableMedia::ReloadTexture()
         }
 
         std::string imageBasename = selectedItem->GetFullTitle();
-       
+
         std::string typeLC = Utils::ToLower(Type);
 
         if(typeLC == "numberButtons")
@@ -200,9 +200,9 @@ void ReloadableMedia::ReloadTexture()
         {
             std::string imagePath;
             Config.GetMediaPropertyAbsolutePath(GetCollectionName(), Type, imagePath);
-            
+
             ImageBuilder imageBuild;
-                        
+
             LoadedComponent = imageBuild.CreateImage(imagePath, imageBasename, ScaleX, ScaleY);
 
             if (LoadedComponent != NULL)

@@ -35,7 +35,7 @@ TweenSets::TweenSets(TweenSets &copy)
 
 }
 
-TweenSets::~TweenSets() 
+TweenSets::~TweenSets()
 {
     DestroyTweens();
 }

@@ -45,7 +45,10 @@ public:
     virtual ~Page();
     virtual void OnNewItemSelected(Item *);
     bool PushCollection(CollectionInfo *collection);
-    bool IsMenusFull() { return (MenuDepth > Menus.size()); }
+    bool IsMenusFull()
+    {
+        return (MenuDepth > Menus.size());
+    }
     bool PopCollection();
     void PushMenu(ScrollingList *s);
 
@@ -72,7 +75,10 @@ public:
     void StartComponents();
     void Stop();
     void SetScrolling(ScrollDirection direction);
-    unsigned int GetMenuDepth() { return MenuDepth; }
+    unsigned int GetMenuDepth()
+    {
+        return MenuDepth;
+    }
     Item *GetSelectedItem();
     Item *GetPendingSelectedItem();
     void RemoveSelectedItem();
@@ -103,7 +109,7 @@ private:
     std::vector<Component *> LayerComponents[NUM_LAYERS];
     std::vector<Item *> *Items;
     bool ScrollActive;
-    
+
     Item *SelectedItem;
     Text *TextStatusComponent;
     bool SelectedItemChanged;

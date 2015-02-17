@@ -43,13 +43,13 @@ public:
 
     };
 
-    ScrollingList(Configuration &c, 
-        float scaleX, 
-        float scaleY, 
-        Font *font, 
-        SDL_Color fontColor, 
-        std::string layoutKey, 
-        std::string imageType);
+    ScrollingList(Configuration &c,
+                  float scaleX,
+                  float scaleY,
+                  Font *font,
+                  SDL_Color fontColor,
+                  std::string layoutKey,
+                  std::string imageType);
     virtual ~ScrollingList();
     void TriggerMenuEnterEvent();
     void TriggerMenuExitEvent();
@@ -96,7 +96,7 @@ private:
 
     std::vector<ComponentItemBinding *> *SpriteList;
     std::vector<ViewInfo *> *ScrollPoints;
-     std::vector<TweenSets *> *TweenPoints;
+    std::vector<TweenSets *> *TweenPoints;
     std::vector<MenuNotifierInterface *> NotificationComponents;
     float TweenEnterTime;
     bool Focus;

@@ -105,7 +105,7 @@ void GStreamerVideo::ProcessNewBuffer (GstElement *fakesink, GstBuffer *buf, Gst
         if(video->Height && video->Width)
         {
             // keep the largest video buffer allocated to avoid the penalty of reallocating and deallocating
-            if(!video->VideoBuffer || video->MaxVideoBufferSize < map.size) 
+            if(!video->VideoBuffer || video->MaxVideoBufferSize < map.size)
             {
                 if(video->VideoBuffer)
                 {
@@ -129,7 +129,10 @@ void GStreamerVideo::ProcessNewBuffer (GstElement *fakesink, GstBuffer *buf, Gst
 
 bool GStreamerVideo::Initialize()
 {
-    if(Initialized) { return true; }
+    if(Initialized)
+    {
+        return true;
+    }
 
     std::string path = Configuration::GetAbsolutePath() + "/Core";
     gst_init(NULL, NULL);
@@ -169,14 +172,14 @@ bool GStreamerVideo::Stop()
         (void)gst_element_set_state(Playbin, GST_STATE_NULL);
     }
 
-    if(Texture) 
+    if(Texture)
     {
         SDL_DestroyTexture(Texture);
         Texture = NULL;
     }
 
 
-   // FreeElements();
+    // FreeElements();
 
     IsPlaying = false;
     Height = 0;
