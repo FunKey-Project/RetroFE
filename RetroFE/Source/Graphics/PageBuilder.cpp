@@ -464,7 +464,7 @@ void PageBuilder::LoadTweens(Component *c, xml_node<> *componentXml)
 
     BuildViewInfo(componentXml, v);
 
-    c->SetTweens(CreateTweenInstance(componentXml));
+    c->ImportTweens(CreateTweenInstance(componentXml));
 }
 
 TweenSets PageBuilder::CreateTweenInstance(xml_node<> *componentXml)
@@ -623,7 +623,7 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
     if(overrideItems.find(MENU_START) != overrideItems.end())
     {
         xml_node<> *component = overrideItems[MENU_START];
-        ViewInfo *viewInfo = CreateMenuItemInfo(component, itemDefaults, menu->GetBaseViewInfo()->GetY() + height);
+        ViewInfo &viewInfo = CreateMenuItemInfo(component, itemDefaults, menu->GetBaseViewInfo()->GetY() + height);
         points->push_back(viewInfo);
         tweenPoints->push_back(CreateTweenInstance(component));
     }
@@ -639,10 +639,10 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
         }
 
         // calculate the total height of our menu items if we can load any additional items
-        BuildViewInfo(component, viewInfo, itemDefaults);
+        BuildViewInfo(component, &viewInfo, itemDefaults);
         xml_attribute<> *itemSpacingXml = component->first_attribute("spacing");
         int itemSpacing = itemSpacingXml ? Utils::ConvertInt(itemSpacingXml->value()) : 0;
-        float nextHeight = height + viewInfo->GetHeight() + itemSpacing;
+        float nextHeight = height + viewInfo.GetHeight() + itemSpacing;
 
         if(nextHeight >= menu->GetBaseViewInfo()->GetHeight())
         {
@@ -654,14 +654,14 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
         {
             component = overrideItems[MENU_LAST];
 
-            BuildViewInfo(component, viewInfo, itemDefaults);
+            BuildViewInfo(component, &viewInfo, itemDefaults);
             xml_attribute<> *itemSpacingXml = component->first_attribute("spacing");
             int itemSpacing = itemSpacingXml ? Utils::ConvertInt(itemSpacingXml->value()) : 0;
-            nextHeight = height + viewInfo->GetHeight() + itemSpacing;
+            nextHeight = height + viewInfo.GetHeight() + itemSpacing;
         }
 
         height = nextHeight;
-        viewInfo->SetY(menu->GetBaseViewInfo()->GetY() + (float)height);
+        viewInfo.SetY(menu->GetBaseViewInfo()->GetY() + (float)height);
         points->push_back(viewInfo);
         tweenPoints->push_back(CreateTweenInstance(component));
         index++;
@@ -671,7 +671,7 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
     if(overrideItems.find(MENU_END) != overrideItems.end())
     {
         xml_node<> *component = overrideItems[MENU_END];
-        ViewInfo *viewInfo = CreateMenuItemInfo(component, itemDefaults, menu->GetBaseViewInfo()->GetY() + height);
+        ViewInfo &viewInfo = CreateMenuItemInfo(component, itemDefaults, menu->GetBaseViewInfo()->GetY() + height);
         points->push_back(viewInfo);
         tweenPoints->push_back(CreateTweenInstance(component));
     }
@@ -693,7 +693,7 @@ ViewInfo PageBuilder::CreateMenuItemInfo(xml_node<> *component, xml_node<> *defa
 {
     ViewInfo viewInfo;
     BuildViewInfo(component, &viewInfo, defaults);
-    viewInfo->SetY(y);
+    viewInfo.SetY(y);
     return viewInfo;
 }
 

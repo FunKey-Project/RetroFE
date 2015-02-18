@@ -72,7 +72,6 @@ CollectionInfo *CollectionInfoBuilder::BuildCollection(std::string name)
     }
 
     CollectionInfo *collection = new CollectionInfo(name, listItemsPath, extensions, metadataType, metadataPath);
-    std::vector<Item *> *list = collection->GetItems();
 
     ImportDirectory(collection);
 
@@ -166,7 +165,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
                         i->SetFullTitle(basename);
                         i->SetTitle(basename);
                         i->SetLauncher(launcher);
-                        info->GetItems()->push_back(i);
+                        info->GetItems().push_back(i);
                     }
                 }
             }

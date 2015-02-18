@@ -54,8 +54,8 @@ public:
     void TriggerMenuEnterEvent();
     void TriggerMenuExitEvent();
 
-    bool AllocateTexture(ComponentItemBinding *s);
-    void DeallocateTexture(ComponentItemBinding *s);
+    bool AllocateTexture(ComponentItemBinding &s);
+    void DeallocateTexture(ComponentItemBinding &s);
     void SetItems(std::vector<ComponentItemBinding> *spriteList);
     void DestroyItems();
     void SetPoints(std::vector<ViewInfo> *scrollPoints, std::vector<TweenSets> *tweenPoints);
@@ -69,7 +69,7 @@ public:
     ComponentItemBinding *GetPendingSelectedCollectionItemSprite();
     void AddComponentForNotifications(MenuNotifierInterface *c);
     void RemoveComponentForNotifications(MenuNotifierInterface *c);
-    std::vector<ComponentItemBinding> GetCollectionItemSprites();
+    std::vector<ComponentItemBinding> *GetCollectionItemSprites();
     void RemoveSelectedItem();
     void FreeGraphicsMemory();
     void Update(float dt);

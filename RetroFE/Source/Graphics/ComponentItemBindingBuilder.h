@@ -26,5 +26,5 @@ class ComponentItemBindingBuilder
 public:
     ComponentItemBindingBuilder();
     virtual ~ComponentItemBindingBuilder();
-    static std::vector<ComponentItemBinding *> *BuildCollectionItems(std::vector<Item *> *infoList);
+    static std::vector<ComponentItemBinding> *BuildCollectionItems(std::vector<Item *> &infoList);
 };

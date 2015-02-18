@@ -34,14 +34,13 @@ CollectionInfo::CollectionInfo(std::string name,
 
 CollectionInfo::~CollectionInfo()
 {
-    std::vector<Item *>::iterator it = Items.begin();
-
-    while(it != Items.end())
+    for(unsigned int i = 0; i < Items.size(); ++i)
     {
-        delete *it;
-        Items.erase(it);
-        it = Items.begin();
+        Item *item = Items.at(i);
+        delete item;
     }
+
+    Items.clear();
 }
 
 std::string CollectionInfo::GetName() const
@@ -84,12 +83,12 @@ void CollectionInfo::GetExtensions(std::vector<std::string> &extensions)
         extensions.push_back(token);
     }
 }
-std::vector<Item *> *CollectionInfo::GetItems()
+std::vector<Item *> &CollectionInfo::GetItems()
 {
-    return &Items;
+    return Items;
 }
 
-bool CollectionInfo::ItemIsLess(Item const *lhs, Item const *rhs)
+bool CollectionInfo::ItemIsLess(Item *lhs, Item *rhs)
 {
     return lhs->GetLCTitle() < rhs->GetLCTitle();
 }

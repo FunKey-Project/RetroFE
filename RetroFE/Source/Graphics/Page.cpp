@@ -353,7 +353,7 @@ void Page::PageScroll(ScrollDirection direction)
 bool Page::PushCollection(CollectionInfo *collection)
 {
     Collections.push_back(collection);
-    std::vector<ComponentItemBinding *> *sprites = ComponentItemBindingBuilder::BuildCollectionItems(collection->GetItems());
+    std::vector<ComponentItemBinding> *sprites = ComponentItemBindingBuilder::BuildCollectionItems(collection->GetItems());
 
     int menuExitIndex = -1;
     int menuEnterIndex = -1;

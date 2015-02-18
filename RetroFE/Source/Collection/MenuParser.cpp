@@ -25,7 +25,7 @@
 #include <fstream>
 #include <sstream>
 
-bool VectorSort(const Item *d1, const Item *d2)
+bool VectorSort(Item *d1, Item *d2)
 {
     return d1->GetLCTitle() < d2->GetLCTitle();
 }
@@ -91,7 +91,7 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
                     item->SetFullTitle(title);
                     item->SetName(collectionAttribute->value());
                     item->SetIsLeaf(false);
-                    collection->GetItems()->push_back(item);
+                    collection->GetItems().push_back(item);
 
                 }
                 else
@@ -105,8 +105,8 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
             }
 
             // todo: sorting should occur within the collection itself, not externally
-            std::vector<Item *> *items = collection->GetItems();
-            std::sort( items->begin(), items->end(), VectorSort);
+            std::vector<Item *> &items = collection->GetItems();
+            std::sort( items.begin(), items.end(), VectorSort);
 
             retVal = true;
         }

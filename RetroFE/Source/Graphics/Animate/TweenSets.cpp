@@ -25,10 +25,6 @@ TweenSets::~TweenSets()
 {
 }
 
-void TweenSets::DestroyTweens()
-{
-}
-
 TweenSets::TweenAttributes &TweenSets::GetTween(std::string tween)
 {
     return GetTween(tween, -1);
@@ -57,5 +53,5 @@ TweenSets::TweenAttributes &TweenSets::FindTween(std::map<int, TweenAttributes> 
         }
     }
 
-    return tweens->at(index);
+    return tweens.at(index);
 }

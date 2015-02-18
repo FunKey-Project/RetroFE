@@ -39,7 +39,7 @@ private:
     std::string LayoutPath;
     Configuration &Config;
     float ScaleX;
-    float ScaleY;->
+    float ScaleY;
     int ScreenHeight;
     int ScreenWidth;
     SDL_Color FontColor;

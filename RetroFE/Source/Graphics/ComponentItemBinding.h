@@ -21,10 +21,10 @@
 class ComponentItemBinding
 {
 public:
-    ComponentItemBinding(Component *c, Item &item);
-    ComponentItemBinding(Item &item);
+    ComponentItemBinding(Component *c, Item *item);
+    ComponentItemBinding(Item *item);
     virtual ~ComponentItemBinding();
-    Item &GetCollectionItem() const;
+    Item *GetCollectionItem();
 
     void SetComponent(Component *c);
     Component* GetComponent() const;
@@ -32,5 +32,5 @@ public:
 
 private:
     Component *CollectionComponent;
-    Item CollectionItem;
+    Item *CollectionItem;
 };

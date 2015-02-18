@@ -69,14 +69,13 @@ bool Font::Initialize(std::string fontPath, int fontSize, SDL_Color color)
 
     for(unsigned short int i = 32; i < 128; ++i)
     {
-        GlyphInfoBuild *info = new GlyphInfoBuild;
-        memset(info, 0, sizeof(GlyphInfoBuild));
+        GlyphInfoBuild info;
 
         color.a = 255;
-        info->Surface = TTF_RenderGlyph_Blended(font, i, color);
-        TTF_GlyphMetrics(font, i, &info->Glyph.MinX, &info->Glyph.MaxX, &info->Glyph.MinY, &info->Glyph.MaxY, &info->Glyph.Advance);
+        info.Surface = TTF_RenderGlyph_Blended(font, i, color);
+        TTF_GlyphMetrics(font, i, &info.Glyph.MinX, &info.Glyph.MaxX, &info.Glyph.MinY, &info.Glyph.MaxY, &info.Glyph.Advance);
 
-        if(x + info->Surface->w >= 1024)
+        if(x + info.Surface->w >= 1024)
         {
             atlasHeight += y;
             atlasWidth = (atlasWidth >= x) ? atlasWidth : x;
@@ -84,14 +83,14 @@ bool Font::Initialize(std::string fontPath, int fontSize, SDL_Color color)
             y = 0;
         }
 
-        info->Glyph.Rect.w = info->Surface->w;
-        info->Glyph.Rect.h = info->Surface->h;
-        info->Glyph.Rect.x = x;
-        info->Glyph.Rect.y = atlasHeight;
+        info.Glyph.Rect.w = info.Surface->w;
+        info.Glyph.Rect.h = info.Surface->h;
+        info.Glyph.Rect.x = x;
+        info.Glyph.Rect.y = atlasHeight;
         Atlas[i] = info;
 
-        x += info->Glyph.Rect.w;
-        y = (y > info->Glyph.Rect.h) ? y : info->Glyph.Rect.h;
+        x += info.Glyph.Rect.w;
+        y = (y > info.Glyph.Rect.h) ? y : info.Glyph.Rect.h;
         /*
         std::stringstream ss;
         ss << " tw:" << atlasWidth << " th:" << atlasHeight << " x:" << x << " y:" << y << " w:" << info->Glyph.Rect.w << " h:" << info->Glyph.Rect.h;
@@ -125,7 +124,7 @@ bool Font::Initialize(std::string fontPath, int fontSize, SDL_Color color)
         GlyphInfoBuild &info = it->second;
         SDL_BlitSurface(info.Surface, NULL, atlasSurface, &info.Glyph.Rect);
         SDL_FreeSurface(info.Surface);
-        info->Surface = NULL;
+        info.Surface = NULL;
     }
     SDL_LockMutex(SDL::GetMutex());
 

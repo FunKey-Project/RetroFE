@@ -194,10 +194,10 @@ void MetadataDatabase::InjectMetadata(CollectionInfo *collection)
 
 
     // items into a hash to make it easily searchable
-    std::vector<Item *> *items = collection->GetItems();
+    std::vector<Item *> &items = collection->GetItems();
     std::map<std::string, Item *> itemMap;
 
-    for(std::vector<Item *>::iterator it = items->begin(); it != items->end(); it++)
+    for(std::vector<Item *>::iterator it = items.begin(); it != items.end(); it++)
     {
         itemMap[(*it)->GetName()] = *it;
     }

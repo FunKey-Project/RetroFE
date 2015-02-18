@@ -31,12 +31,12 @@ public:
     std::string GetMetadataType() const;
     std::string GetMetadataPath() const;
     std::string GetExtensions() const;
-    std::vector<Item *> *GetItems();
+    std::vector<Item *> &GetItems();
     void SortItems();
     void GetExtensions(std::vector<std::string> &extensions);
 
 private:
-    static bool ItemIsLess(Item const *lhs, Item const *rhs);
+    static bool ItemIsLess(Item *lhs, Item *rhs);
 
     std::string Name;
     std::string ListPath;

@@ -484,7 +484,7 @@ CollectionInfo *RetroFE::GetCollection(std::string collectionName)
     CollectionInfoBuilder cib(Config, *MetaDb);
     CollectionInfo *collection = cib.BuildCollection(collectionName);
 
-    if(collection->GetItems()->size() == 0)
+    if(collection->GetItems().size() == 0)
     {
         Logger::Write(Logger::ZONE_WARNING, "RetroFE", "No list items found for collection " + collectionName);
     }
