@@ -23,7 +23,7 @@
 #include "Component/ReloadableText.h"
 #include "Component/ReloadableMedia.h"
 #include "Component/ScrollingList.h"
-#include "Animate/TweenSets.h"
+#include "Animate/AnimationEvents.h"
 #include "Animate/TweenTypes.h"
 #include "../Sound/Sound.h"
 #include "../Collection/Item.h"
@@ -467,31 +467,31 @@ void PageBuilder::LoadTweens(Component *c, xml_node<> *componentXml)
     c->SetTweens(CreateTweenInstance(componentXml));
 }
 
-TweenSets *PageBuilder::CreateTweenInstance(xml_node<> *componentXml)
+AnimationEvents *PageBuilder::CreateTweenInstance(xml_node<> *componentXml)
 {
-    TweenSets *tweens = new TweenSets();
+    AnimationEvents *tweens = new AnimationEvents();
 
-    BuildTweenAttributes(tweens, componentXml, "onEnter", "enter");
-    BuildTweenAttributes(tweens, componentXml, "onExit", "exit");
-    BuildTweenAttributes(tweens, componentXml, "onIdle", "idle");
-    BuildTweenAttributes(tweens, componentXml, "onHighlightEnter", "highlightEnter");
-    BuildTweenAttributes(tweens, componentXml, "onHighlightExit", "highlightExit");
-    BuildTweenAttributes(tweens, componentXml, "onMenuEnter", "menuEnter");
-    BuildTweenAttributes(tweens, componentXml, "onMenuExit", "menuExit");
+    BuildTweenSet(tweens, componentXml, "onEnter", "enter");
+    BuildTweenSet(tweens, componentXml, "onExit", "exit");
+    BuildTweenSet(tweens, componentXml, "onIdle", "idle");
+    BuildTweenSet(tweens, componentXml, "onHighlightEnter", "highlightEnter");
+    BuildTweenSet(tweens, componentXml, "onHighlightExit", "highlightExit");
+    BuildTweenSet(tweens, componentXml, "onMenuEnter", "menuEnter");
+    BuildTweenSet(tweens, componentXml, "onMenuExit", "menuExit");
 
     return tweens;
 }
 
-void PageBuilder::BuildTweenAttributes(TweenSets *tweens, xml_node<> *componentXml, std::string tagName, std::string tweenName)
+void PageBuilder::BuildTweenSet(AnimationEvents *tweens, xml_node<> *componentXml, std::string tagName, std::string tweenName)
 {
     for(componentXml = componentXml->first_node(tagName.c_str()); componentXml; componentXml = componentXml->next_sibling(tagName.c_str()))
     {
         xml_attribute<> *indexXml = componentXml->first_attribute("menuIndex");
         int index = (indexXml) ? Utils::ConvertInt(indexXml->value()) : -1;
 
-        TweenSets::TweenAttributes *sets = new TweenSets::TweenAttributes();
-        GetTweenAttributes(componentXml, sets);
-        tweens->SetTween(tweenName, index, sets);
+        Animation *animation = new Animation();
+        GetTweenSet(componentXml, animation);
+        tweens->SetAnimation(tweenName, index, animation);
     }
 }
 
@@ -560,7 +560,7 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
 void PageBuilder::BuildCustomMenu(ScrollingList *menu, xml_node<> *menuXml, xml_node<> *itemDefaults)
 {
     std::vector<ViewInfo *> *points = new std::vector<ViewInfo *>();
-    std::vector<TweenSets *> *tweenPoints = new std::vector<TweenSets *>();
+    std::vector<AnimationEvents *> *tweenPoints = new std::vector<AnimationEvents *>();
 
     int i = 0;
 
@@ -587,7 +587,7 @@ void PageBuilder::BuildCustomMenu(ScrollingList *menu, xml_node<> *menuXml, xml_
 void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xml_node<> *itemDefaults)
 {
     std::vector<ViewInfo *> *points = new std::vector<ViewInfo *>();
-    std::vector<TweenSets *> *tweenPoints = new std::vector<TweenSets *>();
+    std::vector<AnimationEvents *> *tweenPoints = new std::vector<AnimationEvents *>();
 
     int selectedIndex = MENU_FIRST;
     std::map<int, xml_node<> *> overrideItems;
@@ -810,20 +810,20 @@ void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info, xml_no
     }
 }
 
-void PageBuilder::GetTweenAttributes(xml_node<> *node, std::vector<std::vector<Tween *> *> *TweenAttributes)
+void PageBuilder::GetTweenSet(xml_node<> *node, Animation *animation)
 {
     if(node)
     {
         for(xml_node<> *set = node->first_node("set"); set; set = set->next_sibling("set"))
         {
-            std::vector<Tween *> *tweens = new std::vector<Tween *>();
-            GetTweenSets(set, *tweens);
-            TweenAttributes->push_back(tweens);
+            TweenSet *ts = new TweenSet();
+            GetAnimationEvents(set, *ts);
+            animation->Push(ts);
         }
     }
 }
 
-void PageBuilder::GetTweenSets(xml_node<> *node, std::vector<Tween *> &tweens)
+void PageBuilder::GetAnimationEvents(xml_node<> *node, TweenSet &tweens)
 {
     xml_attribute<> *durationXml = node->first_attribute("duration");
 
@@ -903,7 +903,7 @@ void PageBuilder::GetTweenSets(xml_node<> *node, std::vector<Tween *> &tweens)
                     }
 
                     Tween *t = new Tween(property, algorithm, fromValue, toValue, durationValue);
-                    tweens.push_back(t);
+                    tweens.Push(t);
                 }
                 else
                 {

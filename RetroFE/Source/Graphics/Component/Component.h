@@ -21,13 +21,14 @@
 #include "../MenuNotifierInterface.h"
 #include "../ViewInfo.h"
 #include "../Animate/Tween.h"
-#include "../Animate/TweenSets.h"
+#include "../Animate/AnimationEvents.h"
 #include "../../Collection/Item.h"
 
 class Component
 {
 public:
     Component();
+    Component(const Component &copy);
     virtual ~Component();
     virtual void FreeGraphicsMemory();
     virtual void AllocateGraphicsMemory();
@@ -48,8 +49,9 @@ public:
 
     virtual void Update(float dt);
     virtual void Draw();
-    TweenSets *GetTweens();
-    void SetTweens(TweenSets *set);
+    AnimationEvents *GetTweens();
+    void SetTweens(AnimationEvents *set);
+    void ForceIdle();
     ViewInfo *GetBaseViewInfo();
     void UpdateBaseViewInfo(ViewInfo &info);
     bool IsScrollActive() const;
@@ -87,8 +89,8 @@ private:
     bool Animate(bool loop);
     bool IsTweenSequencingComplete();
 
-    TweenSets *Tweens;
-    TweenSets::TweenAttributes *CurrentTweens;
+    AnimationEvents *Tweens;
+    Animation *CurrentTweens;
     Item *SelectedItem;
     SDL_Texture *BackgroundTexture;
 

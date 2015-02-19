@@ -368,6 +368,13 @@ bool Page::PushCollection(CollectionInfo *collection)
         menuExitIndex = MenuDepth - 1;
     }
 
+    if(Menus.size() >= MenuDepth && ActiveMenu)
+    {
+        ScrollingList *newList = new ScrollingList(*ActiveMenu);
+        newList->ForceIdle();
+        PushMenu(newList);
+    }
+
     ActiveMenu = Menus[MenuDepth];
     ActiveMenu->SetCollectionName(collection->GetName());
     ActiveMenu->DestroyItems();

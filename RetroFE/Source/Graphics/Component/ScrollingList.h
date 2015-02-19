@@ -50,6 +50,8 @@ public:
                   SDL_Color fontColor,
                   std::string layoutKey,
                   std::string imageType);
+
+    ScrollingList(const ScrollingList &copy);
     virtual ~ScrollingList();
     void TriggerMenuEnterEvent();
     void TriggerMenuExitEvent();
@@ -58,7 +60,7 @@ public:
     void DeallocateTexture(ComponentItemBinding *s);
     void SetItems(std::vector<ComponentItemBinding *> *spriteList);
     void DestroyItems();
-    void SetPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<TweenSets *> *tweenPoints);
+    void SetPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<AnimationEvents *> *tweenPoints);
     void SetScrollDirection(ScrollDirection direction);
     void PageUp();
     void PageDown();
@@ -84,7 +86,7 @@ private:
     void AllocateSpritePoints();
     void UpdateSprite(unsigned int spriteIndex, unsigned int pointIndex, bool newScroll, float dt, double nextScrollTime);
     unsigned int GetNextTween(unsigned int currentIndex, std::vector<ViewInfo *> *list);
-    void ResetTweens(Component *c, TweenSets *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime);
+    void ResetTweens(Component *c, AnimationEvents *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime);
 
     enum ScrollState
     {
@@ -96,7 +98,7 @@ private:
 
     std::vector<ComponentItemBinding *> *SpriteList;
     std::vector<ViewInfo *> *ScrollPoints;
-    std::vector<TweenSets *> *TweenPoints;
+    std::vector<AnimationEvents *> *TweenPoints;
     std::vector<MenuNotifierInterface *> NotificationComponents;
     float TweenEnterTime;
     bool Focus;
@@ -127,6 +129,5 @@ private:
     SDL_Color FontColor;
     std::string LayoutKey;
     std::string ImageType;
-    unsigned int MaxLayer;
 };
 

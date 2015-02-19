@@ -16,25 +16,23 @@
 #pragma once
 
 #include "Tween.h"
+#include "Animation.h"
 #include <string>
 #include <vector>
 #include <map>
 
-class TweenSets
+class AnimationEvents
 {
 public:
-    TweenSets();
-    TweenSets(TweenSets &copy);
-    ~TweenSets();
-    typedef std::vector<std::vector<Tween *> *> TweenAttributes;
+    AnimationEvents();
+    AnimationEvents(AnimationEvents &copy);
+    ~AnimationEvents();
 
-    TweenAttributes *GetTween(std::string tween);
-    TweenAttributes *GetTween(std::string tween, int index);
-    void SetTween(std::string tween, int index, TweenAttributes *set);
+    Animation *GetAnimation(std::string tween);
+    Animation *GetAnimation(std::string tween, int index);
+    void SetAnimation(std::string tween, int index, Animation *animation);
+    void Clear();
 
 private:
-    TweenAttributes *FindTween(std::map<int, TweenAttributes *> &tweens, int index);
-    void DestroyTweens();
-
-    std::map<std::string, std::map<int, TweenAttributes *> > TweenMap;
+    std::map<std::string, std::map<int, Animation *> > AnimationMap;
 };
