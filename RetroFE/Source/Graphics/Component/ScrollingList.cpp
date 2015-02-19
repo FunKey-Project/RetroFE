@@ -72,7 +72,8 @@ ScrollingList::ScrollingList(Configuration &c,
 }
 
 ScrollingList::ScrollingList(const ScrollingList &copy)
-    : SpriteList(NULL)
+    : Component(copy)
+    , SpriteList(NULL)
     , TweenEnterTime(0)
     , FirstSpriteIndex(0)
     , SelectedSpriteListIndex(0)
@@ -116,8 +117,6 @@ ScrollingList::ScrollingList(const ScrollingList &copy)
             TweenPoints->push_back(v);
         }
     }
-
-    Component::Component(copy);
 }
 
 
