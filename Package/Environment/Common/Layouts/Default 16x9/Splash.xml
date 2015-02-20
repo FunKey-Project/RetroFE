@@ -1,4 +1,4 @@
-<layout width="1920" height="1080" font="Age.otf" loadFontSize="32" fontColor="eeeeee">
+<layout width="1920" height="1080" font="LoveloBlack.otf" loadFontSize="32" fontColor="eeeeee">
    
    <!-- border for menu  -->
    <container backgroundColor="C0392B" backgroundAlpha="1.0" x="0" y="0" height="stretch" width="stretch" layer="0" />   

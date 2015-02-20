@@ -30,7 +30,7 @@
 <!-- Main Menu Background -->
 
 <!-- Main Menu index 0 -->
-   <menu type="custom" imageType="logo" orientation="horizontal" x="0" width="center" y="center" yOffset="320" algorithm="easeincircular"  speed="0.04" acceleration="0.05">
+   <menu type="custom" imageType="logo" orientation="horizontal" x="0" width="center" y="center" yOffset="320" algorithm="easeincircular"  scrollSpeed="0.250" scrollAcceleration="0.05">
     <itemDefaults xOrigin="center" y="center" yOrigin="center" width="300" spacing="10" x="center" yOffset="320" alpha="0.5" fontSize="35" layer="6"/>
     <item xOffset="-1420" alpha="0" />
     <item xOffset="-1060">
@@ -124,7 +124,7 @@
 <!-- ---------------SUB  MENU--------------- -->
 
 <!-- Sub Menu  index 1 -->
-   <menu orientation="horizontal" algorithm="easeincircular" y="75" width="600" height="920" speed="0.5" acceleration="0.05">
+   <menu orientation="horizontal" algorithm="easeincircular" y="75" width="600" height="920" scrollSpeed="0.250" scrollAcceleration="0.05">
     <itemDefaults spacing="5" x="center" height="34" width="600" fontSize="28" alpha="1" xOffset="100" yOrigin="center" xOrigin="left"  layer="5">
         <onMenuExit>
         <set duration=".25">

@@ -452,7 +452,7 @@ Page *RetroFE::LoadPage()
 
     Config.GetProperty("layout", layoutName);
 
-    PageBuilder pb(layoutName, Config, &FC);
+    PageBuilder pb(layoutName, "Layout", Config, &FC);
     Page *page = pb.BuildPage();
 
     if(!page)
@@ -469,7 +469,10 @@ Page *RetroFE::LoadPage()
 
 Page *RetroFE::LoadSplashPage()
 {
-    PageBuilder pb("Splash", Config, &FC);
+    std::string layoutName;
+    Config.GetProperty("layout", layoutName);
+
+    PageBuilder pb(layoutName, "Splash", Config, &FC);
     Page * page = pb.BuildPage();
     page->Start();
 

@@ -47,8 +47,9 @@ static const int MENU_END = -2;    // last item transitions here after it scroll
 static const int MENU_CENTER = -4;
 
 //todo: this file is starting to become a god class of building. Consider splitting into sub-builders
-PageBuilder::PageBuilder(std::string layoutKey, Configuration &c, FontCache *fc)
+PageBuilder::PageBuilder(std::string layoutKey, std::string layoutPage, Configuration &c, FontCache *fc)
     : LayoutKey(layoutKey)
+    , LayoutPage(layoutPage)
     , Config(c)
     , ScaleX(1)
     , ScaleY(1)
@@ -77,7 +78,7 @@ Page *PageBuilder::BuildPage()
     std::string layoutName = LayoutKey;
 
     LayoutPath = Configuration::GetAbsolutePath() + "/Layouts/" + layoutName;
-    layoutFile = LayoutPath + "/Layout.xml";
+    layoutFile = LayoutPath + "/" + LayoutPage + ".xml";
 
     Logger::Write(Logger::ZONE_INFO, "Layout", "Initializing " + layoutFile);
 
@@ -369,7 +370,7 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
         else
         {
             FC->LoadFont(Font, FontSize, FontColor);
-            Text *c = new Text(value->value(), FC->GetFont(Font), FontColor, ScaleX, ScaleY);
+            Text *c = new Text(value->value(), FC->GetFont(Font, FontSize, FontColor), FontColor, ScaleX, ScaleY);
             ViewInfo *v = c->GetBaseViewInfo();
 
             BuildViewInfo(componentXml, v);
@@ -382,7 +383,7 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
     for(xml_node<> *componentXml = layout->first_node("statusText"); componentXml; componentXml = componentXml->next_sibling("statusText"))
     {
         FC->LoadFont(Font, FontSize, FontColor);
-        Text *c = new Text("", FC->GetFont(Font), FontColor, ScaleX, ScaleY);
+        Text *c = new Text("", FC->GetFont(Font, FontSize, FontColor), FontColor, ScaleX, ScaleY);
         ViewInfo *v = c->GetBaseViewInfo();
 
         BuildViewInfo(componentXml, v);
@@ -431,13 +432,13 @@ void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, 
             if(type)
             {
                 FC->LoadFont(Font, FontSize, FontColor);
-                c = new ReloadableText(type->value(), FC->GetFont(Font), FontColor, LayoutKey, ScaleX, ScaleY);
+                c = new ReloadableText(type->value(), FC->GetFont(Font, FontSize, FontColor), FontColor, LayoutKey, ScaleX, ScaleY);
             }
         }
         else
         {
             FC->LoadFont(Font, FontSize, FontColor);
-            c = new ReloadableMedia(Config, type->value(), (tagName == "reloadableVideo"), FC->GetFont(Font), FontColor, ScaleX, ScaleY);
+            c = new ReloadableMedia(Config, type->value(), (tagName == "reloadableVideo"), FC->GetFont(Font, FontSize, FontColor), FontColor, ScaleX, ScaleY);
             xml_attribute<> *textFallback = componentXml->first_attribute("textFallback");
 
             if(textFallback && Utils::ToLower(textFallback->value()) == "true")
@@ -527,7 +528,7 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
     // on default, text will be rendered to the menu. Preload it into cache.
     FC->LoadFont(Font, FontSize, FontColor);
 
-    menu = new ScrollingList(Config, ScaleX, ScaleY, FC->GetFont(Font), FontColor, LayoutKey, imageType);
+    menu = new ScrollingList(Config, ScaleX, ScaleY, FC->GetFont(Font, FontSize, FontColor), FontColor, LayoutKey, imageType);
 
     if(scrollTimeXml)
     {

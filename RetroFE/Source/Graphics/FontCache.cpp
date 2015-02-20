@@ -52,11 +52,11 @@ void FontCache::Initialize()
     //todo: make bool
     TTF_Init();
 }
-Font *FontCache::GetFont(std::string fontPath)
+Font *FontCache::GetFont(std::string fontPath, int fontSize, SDL_Color color)
 {
     Font *t = NULL;
 
-    std::map<std::string, Font *>::iterator it = FontFaceMap.find(fontPath);
+    std::map<std::string, Font *>::iterator it = FontFaceMap.find(BuildFontKey(fontPath, fontSize, color));
 
     if(it != FontFaceMap.end())
     {
@@ -66,15 +66,24 @@ Font *FontCache::GetFont(std::string fontPath)
     return t;
 }
 
+std::string FontCache::BuildFontKey(std::string font, int fontSize, SDL_Color color)
+{
+    std::stringstream ss;
+    ss << font << "_SIZE=" << fontSize << " RGB=" << color.r << "." << color.g << "." << color.b;
+
+    return ss.str();
+}
+
 bool FontCache::LoadFont(std::string fontPath, int fontSize, SDL_Color color)
 {
-    std::map<std::string, Font *>::iterator it = FontFaceMap.find(fontPath);
+    std::string key = BuildFontKey(fontPath, fontSize, color);
+    std::map<std::string, Font *>::iterator it = FontFaceMap.find(key);
 
     if(it == FontFaceMap.end())
     {
         Font *f = new Font();
         f->Initialize(fontPath, fontSize, color);
-        FontFaceMap[fontPath] = f;
+        FontFaceMap[key] = f;
     }
 
     return true;

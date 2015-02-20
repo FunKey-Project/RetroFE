@@ -26,11 +26,12 @@ public:
     void DeInitialize();
     FontCache();
     bool LoadFont(std::string font, int fontSize, SDL_Color color);
-    Font *GetFont(std::string font);
+    Font *GetFont(std::string font, int fontSize, SDL_Color color);
 
     virtual ~FontCache();
 private:
     std::map<std::string, Font *> FontFaceMap;
+    std::string BuildFontKey(std::string font, int fontSize, SDL_Color color);
 
 };
 

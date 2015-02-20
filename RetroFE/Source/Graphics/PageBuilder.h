@@ -30,12 +30,13 @@ class Configuration;
 class PageBuilder
 {
 public:
-    PageBuilder(std::string layoutKey, Configuration &c, FontCache *fc);
+    PageBuilder(std::string layoutKey, std::string layoutPage, Configuration &c, FontCache *fc);
     virtual ~PageBuilder();
     Page *BuildPage();
 
 private:
     std::string LayoutKey;
+    std::string LayoutPage;
     std::string LayoutPath;
     Configuration &Config;
     float ScaleX;
