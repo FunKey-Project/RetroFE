@@ -628,6 +628,7 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
         ViewInfo *viewInfo = CreateMenuItemInfo(component, itemDefaults, menu->GetBaseViewInfo()->GetY() + height);
         points->push_back(viewInfo);
         tweenPoints->push_back(CreateTweenInstance(component));
+        height += viewInfo->GetHeight();
     }
     while(!end)
     {
@@ -662,11 +663,11 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
             nextHeight = height + viewInfo->GetHeight() + itemSpacing;
         }
 
-        height = nextHeight;
         viewInfo->SetY(menu->GetBaseViewInfo()->GetY() + (float)height);
         points->push_back(viewInfo);
         tweenPoints->push_back(CreateTweenInstance(component));
         index++;
+        height = nextHeight;
     }
 
     //menu end
