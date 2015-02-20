@@ -68,7 +68,6 @@ ScrollingList::ScrollingList(Configuration &c,
     , ImageType(imageType)
     , Focus(false)
 {
-    Component::Component();
 }
 
 ScrollingList::ScrollingList(const ScrollingList &copy)
