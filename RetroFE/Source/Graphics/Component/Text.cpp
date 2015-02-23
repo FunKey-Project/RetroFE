@@ -67,26 +67,36 @@ void Text::Draw()
         Font::GlyphInfo glyph;
         if(FontInst->GetRect(TextData[i], glyph))
         {
+            if(glyph.MinX < 0)
+            {
+                imageWidth += glyph.MinX;
+            }
+
             imageWidth += glyph.Advance;
-            imageHeight = (imageHeight >= glyph.Rect.h) ? imageHeight : glyph.Rect.h;
         }
 
     }
 
+    imageHeight = (float)FontInst->GetHeight();
     float scale = (float)info->GetFontSize() / (float)imageHeight;
 
-
-    float width = info->GetRawWidth();
-    float height = info->GetRawHeight();
+    float oldWidth = info->GetRawWidth();
+    float oldHeight = info->GetRawHeight();
+    float oldImageWidth = info->GetImageHeight();
+    float oldImageHeight = info->GetImageWidth();
 
     info->SetWidth(imageWidth*scale);
-    info->SetHeight(imageHeight*scale);
+    info->SetHeight(info->GetFontSize());
+    info->SetImageWidth(imageWidth);
+    info->SetImageHeight(imageHeight);
 
     float xOrigin = info->GetXRelativeToOrigin();
     float yOrigin = info->GetYRelativeToOrigin();
 
-    info->SetWidth(width);
-    info->SetHeight(height);
+    info->SetWidth(oldWidth);
+    info->SetHeight(oldHeight);
+    info->SetImageWidth(oldImageWidth);
+    info->SetImageHeight(oldImageHeight);
 
 
     SDL_Rect rect;
@@ -105,7 +115,18 @@ void Text::Draw()
             rect.w = static_cast<int>(w);
             rect.y = static_cast<int>(yOrigin);
 
+            if(glyph.MinX < 0)
+            {
+                rect.x += static_cast<int>((float)(glyph.MinX) * scale);
+            }
+            if(FontInst->GetAscent() < glyph.MaxY)
+            {
+                rect.y += static_cast<int>((FontInst->GetAscent() - glyph.MaxY)*scale);
+            }
+
+
             SDL::RenderCopy(t, static_cast<char>(info->GetAlpha() * 255), &charRect, &rect, info->GetAngle());
+
             rect.x += static_cast<int>(glyph.Advance * scale);
 
             if((static_cast<float>(rect.x) - xOrigin) > info->GetMaxWidth())

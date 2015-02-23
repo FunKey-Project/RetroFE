@@ -66,6 +66,8 @@ bool Font::Initialize(std::string fontPath, int fontSize, SDL_Color color)
     int y = 0;
     int atlasHeight = 0;
     int atlasWidth = 0;
+    Height = TTF_FontHeight(font);
+    Ascent = TTF_FontAscent(font);
 
     for(unsigned short int i = 32; i < 128; ++i)
     {
@@ -159,3 +161,13 @@ void Font::DeInitialize()
     }
 
 }
+
+int Font::GetHeight()
+{
+    return Height;
+}
+int Font::GetAscent()
+{
+    return Ascent;
+}
+

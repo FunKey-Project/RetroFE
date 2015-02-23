@@ -38,7 +38,8 @@ public:
     void DeInitialize();
     SDL_Texture *GetTexture();
     bool GetRect(unsigned int charCode, GlyphInfo &glyph);
-
+    int GetHeight();
+    int GetAscent();
 
 private:
     struct GlyphInfoBuild
@@ -47,6 +48,8 @@ private:
         SDL_Surface *Surface;
     };
 
+    int Height;
+    int Ascent;
     std::map<unsigned int, GlyphInfoBuild *> Atlas;
     SDL_Texture *Texture;
 };
