@@ -18,6 +18,7 @@
 #include "../Utility/Log.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include <cstdio>
 
 Font::Font()
     : Texture(NULL)
