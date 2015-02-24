@@ -174,14 +174,15 @@ include_directories(${RETROFE_INCLUDE_DIRS})
 add_executable(RetroFE  ${RETROFE_SOURCES} ${RETROFE_HEADERS})
 target_link_libraries(RetroFE ${RETROFE_LIBRARIES})
 set_target_properties(RetroFE PROPERTIES LINKER_LANGUAGE CXX)
+if(MINGW)
+  set(CMAKE_CXX_FLAGS_RELEASE  "${CMAKE_CXX_FLAGS_RELEASE} -mwindows")
+  set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -mwindows")
+endif()
 
 add_definitions(-DRETROFE_VERSION_MAJOR=${VERSION_MAJOR})
 add_definitions(-DRETROFE_VERSION_MINOR=${VERSION_MINOR})
 add_definitions(-DRETROFE_VERSION_BUILD=${VERSION_BUILD})
 
-if(MINGW)
-  set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -mwindows")
-endif()
 
 if(MSVC)
 	set(CMAKE_DEBUG_POSTFIX "d")
