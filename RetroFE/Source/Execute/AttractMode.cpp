@@ -15,6 +15,11 @@
  */
 #include "AttractMode.h"
 #include "../Graphics/Page.h"
+
+#ifdef WIN32
+#define _CRT_RAND_S
+#endif
+
 #include <cstdlib>
 
 AttractMode::AttractMode()
