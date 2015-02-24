@@ -1,3 +1,20 @@
+Linux Setup
+===============================
+Install ubuntu or xubuntu 14.04
+Run the following command to install necessary dependencies
+	sudo apt-get install git g++ cmake dos2unix zlib1g-dev libsdl2-2.0 libsdl2-mixer-2.0 libsdl2-image-2.0 libsdl2-ttf-2.0 \
+                libsdl2-dev libsdl2-mixer-dev libsdl2-image-dev libsdl2-ttf-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
+                libgstreamer-plugins-good1.0-dev zlib1g-dev libglib2.0-0 libglib2.0-dev sqlite3
+
+To build, run the following command:
+
+./Build.sh
+
+Files will output to Artifacts/RetroFE. Copy this directory to any folder of your choosing (i.e.)
+
+cp -r Artifacts/RetroFE /opt
+
+
 Windows Setup
 ===============================
 Install Python 2.7
@@ -27,28 +44,5 @@ Copy Build/Debug/RetroFE.exe to Artifacts/RetroFE/Core
 
 Build Configuration/Configuration.sln
 copy Configuration.exe to Artifacts/RetroFE
-
-Build documentation and copy to Artifacts/RetroFE/Documentation
-
-
-Linux Setup
-===============================
-Install ubuntu or xubuntu 14.04
-Run the following command
-sudo apt-get install git g++ cmake zlib1g-dev libsdl2-2.0 libsdl2-mixer-2.0 libsdl2-image-2.0 libsdl2-ttf-2.0 \
-                libsdl2-dev libsdl2-mixer-dev libsdl2-image-dev libsdl2-ttf-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
-                libgstreamer-plugins-good1.0-dev zlib1g-dev libglib2.0-0 libglib2.0-dev sqlite3
-
-To build:
-   cd RetroFE
-   cmake Source -BBuild -DVERSION_MAJOR=0 -DVERSION_MINOR=0 -DVERSION_BUILD=0
-   cd Build
-   make
-
-To package:
-Create a Artifacts/RetroFE folder
-Copy Package/Environment/Common/* to Artifacts/RetroFE
-Copy Package/Environment/Linux/* to Artifacts/RetroFE
-Copy Build/RetroFE binary to Artifacts/RetroFE
 
 Build documentation and copy to Artifacts/RetroFE/Documentation

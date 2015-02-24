@@ -26,7 +26,7 @@ if(WIN32)
 	set(DIRENT_INCLUDE_DIR "${RETROFE_THIRD_PARTY_DIR}/dirent-1.20.1/include")
 endif()
 
-if(MSVC)
+if(WIN32)
 	find_package(Glib2 REQUIRED)
 	find_package(GStreamer REQUIRED)
 	find_package(SDL2 REQUIRED)
@@ -56,8 +56,11 @@ set(RETROFE_INCLUDE_DIRS
 	"${ZLIB_INCLUDE_DIRS}"
 	"${SQLITE3_ROOT}"
 	"${RAPIDXML_ROOT}"
-	"${DIRENT_INCLUDE_DIR}"
 )
+
+if(MSVC)
+LIST(APPEND RETROFE_INCLUDE_DIRS 	"${DIRENT_INCLUDE_DIR}")
+endif()
 
 set(RETROFE_LIBRARIES
 	${GLIB2_LIBRARIES}
@@ -69,7 +72,7 @@ set(RETROFE_LIBRARIES
 	${ZLIB_LIBRARIES}
 )
 
-if(NOT MSVC)
+if(NOT WIN32)
 	LIST(APPEND RETROFE_LIBRARIES ${CMAKE_DL_LIBS} ${CMAKE_THREAD_LIBS_INIT})
 endif()
 
@@ -175,6 +178,10 @@ set_target_properties(RetroFE PROPERTIES LINKER_LANGUAGE CXX)
 add_definitions(-DRETROFE_VERSION_MAJOR=${VERSION_MAJOR})
 add_definitions(-DRETROFE_VERSION_MINOR=${VERSION_MINOR})
 add_definitions(-DRETROFE_VERSION_BUILD=${VERSION_BUILD})
+
+if(MINGW)
+  set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
+endif()
 
 if(MSVC)
 	set(CMAKE_DEBUG_POSTFIX "d")
