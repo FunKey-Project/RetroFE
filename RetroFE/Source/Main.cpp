@@ -27,7 +27,7 @@
 static bool ImportConfiguration(Configuration *c);
 static bool StartLogging();
 
-int main(int argc, char *argv[])
+int main(int /* argc */, char ** /* argv */)
 {
 
     Configuration::Initialize();

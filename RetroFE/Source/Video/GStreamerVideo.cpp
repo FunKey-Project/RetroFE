@@ -33,8 +33,8 @@ bool GStreamerVideo::Initialized = false;
 //todo: this started out as sandbox code. This class needs to be refactored
 
 // MUST match video size
-gboolean GStreamerVideo::BusCallback(GstBus *bus, GstMessage *msg, gpointer data)
-{
+gboolean GStreamerVideo::BusCallback(GstBus * /* bus */, GstMessage * /* msg */, gpointer /* data */)
+{ 
     // this callback only needs to be defined so we can loop the video once it completes
     return TRUE;
 }
@@ -85,7 +85,7 @@ SDL_Texture *GStreamerVideo::GetTexture() const
     return Texture;
 }
 
-void GStreamerVideo::ProcessNewBuffer (GstElement *fakesink, GstBuffer *buf, GstPad *new_pad, gpointer userdata)
+void GStreamerVideo::ProcessNewBuffer (GstElement * /* fakesink */, GstBuffer *buf, GstPad *new_pad, gpointer userdata)
 {
     GStreamerVideo *video = (GStreamerVideo *)userdata;
     GstMapInfo map;
@@ -345,7 +345,7 @@ void GStreamerVideo::Draw()
     FrameReady = false;
 }
 
-void GStreamerVideo::Update(float dt)
+void GStreamerVideo::Update(float /* dt */)
 {
     SDL_LockMutex(SDL::GetMutex());
     if(!Texture && Width != 0 && Height != 0)

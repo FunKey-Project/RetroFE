@@ -467,7 +467,6 @@ void ScrollingList::TriggerMenuExitEvent()
 
 void ScrollingList::Update(float dt)
 {
-    float scrollPeriod = 0;
     bool initializePoints = false;
     Component::Update(dt);
 

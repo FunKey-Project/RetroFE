@@ -72,7 +72,6 @@ CollectionInfo *CollectionInfoBuilder::BuildCollection(std::string name)
     }
 
     CollectionInfo *collection = new CollectionInfo(name, listItemsPath, extensions, metadataType, metadataPath);
-    std::vector<Item *> *list = collection->GetItems();
 
     ImportDirectory(collection);
 
@@ -80,7 +79,7 @@ CollectionInfo *CollectionInfoBuilder::BuildCollection(std::string name)
 }
 
 
-bool CollectionInfoBuilder::ImportBasicList(CollectionInfo *info, std::string file, std::map<std::string, Item *> &list)
+bool CollectionInfoBuilder::ImportBasicList(CollectionInfo * /*info*/, std::string file, std::map<std::string, Item *> &list)
 {
     std::ifstream includeStream(file.c_str());
 
@@ -116,7 +115,6 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
     std::string path = info->GetListPath();
     std::map<std::string, Item *> includeFilter;
     std::map<std::string, Item *> excludeFilter;
-    bool retVal = true;
     std::string includeFile = Configuration::GetAbsolutePath() + "/Collections/" + info->GetName() + "/Include.txt";
     std::string excludeFile = Configuration::GetAbsolutePath() + "/Collections/" + info->GetName() + "/Exclude.txt";
     std::string launcher;

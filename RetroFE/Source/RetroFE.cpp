@@ -71,7 +71,6 @@ void RetroFE::Render()
 
 int RetroFE::Initialize(void *context)
 {
-    int retVal = 0;
     RetroFE *instance = static_cast<RetroFE *>(context);
 
     Logger::Write(Logger::ZONE_INFO, "RetroFE", "Initializing");
@@ -150,8 +149,6 @@ bool RetroFE::DeInitialize()
     bool retVal = true;
     FreeGraphicsMemory();
 
-    bool videoEnable = true;
-
     if(CurrentPage)
     {
         delete CurrentPage;
@@ -201,8 +198,6 @@ void RetroFE::Run()
     int attractModeTime = 0;
     std::string firstCollection = "Main";
     bool running = true;
-    Item *nextPageItem = NULL;
-    bool adminMode = false;
     RETROFE_STATE state = RETROFE_NEW;
 
     Config.GetProperty("attractModeTime", attractModeTime);
