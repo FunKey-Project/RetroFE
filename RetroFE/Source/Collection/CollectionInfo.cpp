@@ -51,7 +51,7 @@ std::string CollectionInfo::GetName() const
 
 std::string CollectionInfo::GetSettingsPath() const
 {
-    return Configuration::GetAbsolutePath() + "/Collections/" + GetName();
+    return Configuration::GetAbsolutePath() + "/collections/" + GetName();
 }
 
 std::string CollectionInfo::GetListPath() const
@@ -98,6 +98,3 @@ void CollectionInfo::SortItems()
 {
     std::sort(Items.begin(), Items.end(), ItemIsLess);
 }
-
-
-

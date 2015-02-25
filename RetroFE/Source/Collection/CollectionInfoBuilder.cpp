@@ -115,8 +115,8 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
     std::string path = info->GetListPath();
     std::map<std::string, Item *> includeFilter;
     std::map<std::string, Item *> excludeFilter;
-    std::string includeFile = Configuration::GetAbsolutePath() + "/Collections/" + info->GetName() + "/Include.txt";
-    std::string excludeFile = Configuration::GetAbsolutePath() + "/Collections/" + info->GetName() + "/Exclude.txt";
+    std::string includeFile = Configuration::GetAbsolutePath() + "/collections/" + info->GetName() + "/include.txt";
+    std::string excludeFile = Configuration::GetAbsolutePath() + "/collections/" + info->GetName() + "/exclude.txt";
     std::string launcher;
 
 
