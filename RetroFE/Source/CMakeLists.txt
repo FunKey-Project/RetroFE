@@ -187,21 +187,8 @@ if(MSVC)
 	set(CMAKE_DEBUG_POSTFIX "d")
 	add_definitions(-D_CRT_SECURE_NO_DEPRECATE)
 	add_definitions(-D_CRT_NONSTDC_NO_DEPRECATE)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP /WX")
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /MP /WX")
-
-	set(CompilerFlags
-			CMAKE_CXX_FLAGS
-			CMAKE_CXX_FLAGS_DEBUG
-			CMAKE_CXX_FLAGS_RELEASE
-			CMAKE_C_FLAGS
-			CMAKE_C_FLAGS_DEBUG
-			CMAKE_C_FLAGS_RELEASE
-			)
-			
-	foreach(CompilerFlag ${CompilerFlags})
-        string(REPLACE "/MD" "/MT" ${CompilerFlag} "${${CompilerFlag}}")
-    endforeach()	
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP /WX /MD")
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /MP /WX /MD")
 	
 	set_target_properties(RetroFE PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
 else()
