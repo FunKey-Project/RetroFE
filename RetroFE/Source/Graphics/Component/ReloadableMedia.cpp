@@ -33,11 +33,12 @@ ReloadableMedia::ReloadableMedia(Configuration &config, std::string type, bool i
     , LoadedComponent(NULL)
     , ReloadRequested(false)
     , FirstLoad(true)
-    , Type(type)
+    , VideoInst(NULL)
     , IsVideo(isVideo)
     , FontInst(font)
     , FontColor(fontColor)
     , TextFallback(false)
+    , Type(type)
     , ScaleX(scaleX)
     , ScaleY(scaleY)
 {

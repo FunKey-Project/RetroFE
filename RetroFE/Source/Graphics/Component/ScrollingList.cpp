@@ -49,6 +49,7 @@ ScrollingList::ScrollingList(Configuration &c,
     , ScrollPoints(NULL)
     , TweenPoints(NULL)
     , TweenEnterTime(0)
+    , Focus(false)
     , FirstSpriteIndex(0)
     , SelectedSpriteListIndex(0)
     , ScrollStopRequested(true)
@@ -66,7 +67,6 @@ ScrollingList::ScrollingList(Configuration &c,
     , FontColor(fontColor)
     , LayoutKey(layoutKey)
     , ImageType(imageType)
-    , Focus(false)
 {
 }
 
@@ -74,6 +74,7 @@ ScrollingList::ScrollingList(const ScrollingList &copy)
     : Component(copy)
     , SpriteList(NULL)
     , TweenEnterTime(0)
+    , Focus(false)
     , FirstSpriteIndex(0)
     , SelectedSpriteListIndex(0)
     , ScrollStopRequested(true)
@@ -91,7 +92,6 @@ ScrollingList::ScrollingList(const ScrollingList &copy)
     , FontColor(copy.FontColor)
     , LayoutKey(copy.LayoutKey)
     , ImageType(copy.ImageType)
-    , Focus(false)
 {
 
     ScrollPoints = NULL;
@@ -467,7 +467,6 @@ void ScrollingList::TriggerMenuExitEvent()
 
 void ScrollingList::Update(float dt)
 {
-    bool initializePoints = false;
     Component::Update(dt);
 
     if(!ScrollPoints)
@@ -512,7 +511,6 @@ void ScrollingList::Update(float dt)
         // check to see if requested to scroll
         if(RequestedScrollDirection != ScrollDirectionIdle)
         {
-            initializePoints = true;
             CurrentScrollState = ScrollStateActive;
             CurrentScrollDirection = RequestedScrollDirection;
             scrollRequested = true;

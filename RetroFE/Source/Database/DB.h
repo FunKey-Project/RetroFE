@@ -30,7 +30,7 @@ public:
     }
 
 private:
-    sqlite3 *Handle;
     std::string Path;
+    sqlite3 *Handle;
 };
 
