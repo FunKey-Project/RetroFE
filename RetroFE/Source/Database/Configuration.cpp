@@ -347,14 +347,20 @@ void Configuration::GetMediaPropertyAbsolutePath(std::string collectionName, std
     {
         return;
     }
-
     std::string baseMediaPath;
     if(!GetPropertyAbsolutePath("baseMediaPath", baseMediaPath))
     {
         baseMediaPath = "Media";
     }
 
-    value = baseMediaPath + "/" + collectionName + "/" + Utils::ToLower(mediaType);
+    if(mediaType == "manufacturer")
+    {
+        value = baseMediaPath + "/_Manufacturer";
+    }
+    else
+    {
+        value = baseMediaPath + "/" + collectionName + "/" + Utils::UppercaseFirst(Utils::ToLower(mediaType));
+    }
 }
 
 void Configuration::GetCollectionAbsolutePath(std::string collectionName, std::string &value)
