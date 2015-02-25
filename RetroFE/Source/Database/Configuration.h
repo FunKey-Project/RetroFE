@@ -43,6 +43,7 @@ public:
     bool PropertyPrefixExists(std::string key);
     bool GetPropertyAbsolutePath(std::string key, std::string &value);
     void GetMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, std::string &value);
+    void GetMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, bool system, std::string &value);
     void GetCollectionAbsolutePath(std::string collectionName, std::string &value);
     bool IsVerbose() const;
     void SetVerbose(bool verbose);

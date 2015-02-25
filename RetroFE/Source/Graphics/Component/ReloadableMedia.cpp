@@ -199,18 +199,25 @@ void ReloadableMedia::ReloadTexture()
         if(!LoadedComponent)
         {
             std::string imagePath;
-            Config.GetMediaPropertyAbsolutePath(GetCollectionName(), Type, imagePath);
+            Config.GetMediaPropertyAbsolutePath(GetCollectionName(), Type, false, imagePath);
 
             ImageBuilder imageBuild;
 
             LoadedComponent = imageBuild.CreateImage(imagePath, imageBasename, ScaleX, ScaleY);
 
+            if(!LoadedComponent)
+            {
+                 Config.GetMediaPropertyAbsolutePath(imageBasename, Type, true, imagePath);
+                 LoadedComponent = imageBuild.CreateImage(imagePath, imageBasename, ScaleX, ScaleY);
+            }
+
             if (LoadedComponent != NULL)
             {
-                LoadedComponent->AllocateGraphicsMemory();
-                GetBaseViewInfo()->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
-                GetBaseViewInfo()->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
+                 LoadedComponent->AllocateGraphicsMemory();
+                 GetBaseViewInfo()->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
+                 GetBaseViewInfo()->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
             }
+
         }
 
         if(!LoadedComponent && TextFallback)
