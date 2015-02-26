@@ -77,7 +77,7 @@ int RetroFE::Initialize(void *context)
 
     if(!instance->Input.Initialize()) return -1;
 
-    instance->Db = new DB(Configuration::GetAbsolutePath() + "/Meta.db");
+    instance->Db = new DB(Configuration::GetAbsolutePath() + "/meta.db");
 
     if(!instance->Db->Initialize())
     {

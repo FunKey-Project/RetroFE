@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 2.8)
 
-project (RetroFE)
+project (retrofe)
 
 set(RETROFE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/..)
 set(RETROFE_THIRD_PARTY_DIR "${RETROFE_DIR}/ThirdParty")
@@ -35,7 +35,7 @@ if(WIN32)
 	find_package(SDL2_ttf REQUIRED)
 	find_package(ZLIB REQUIRED)
 else()
-	include(FindPkgConfig)	
+	include(FindPkgConfig)
 	pkg_search_module(SDL2 REQUIRED sdl2)
 	pkg_search_module(SDL2_IMAGE REQUIRED SDL2_image)
 	pkg_search_module(SDL2_MIXER REQUIRED SDL2_mixer)
@@ -171,9 +171,9 @@ set(LIBRARY_OUTPUT_PATH "${RETROFE_DIR}/Build" CACHE PATH "Build directory" FORC
 
 
 include_directories(${RETROFE_INCLUDE_DIRS})
-add_executable(RetroFE  ${RETROFE_SOURCES} ${RETROFE_HEADERS})
-target_link_libraries(RetroFE ${RETROFE_LIBRARIES})
-set_target_properties(RetroFE PROPERTIES LINKER_LANGUAGE CXX)
+add_executable(retrofe  ${RETROFE_SOURCES} ${RETROFE_HEADERS})
+target_link_libraries(retrofe ${RETROFE_LIBRARIES})
+set_target_properties(retrofe PROPERTIES LINKER_LANGUAGE CXX)
 if(MINGW)
   set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -mwindows")
 endif()
@@ -189,10 +189,9 @@ if(MSVC)
 	add_definitions(-D_CRT_NONSTDC_NO_DEPRECATE)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP /WX /MD")
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /MP /WX /MD")
-	
-	set_target_properties(RetroFE PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
+
+	set_target_properties(retrofe PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
 else()
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
   set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 endif()
-

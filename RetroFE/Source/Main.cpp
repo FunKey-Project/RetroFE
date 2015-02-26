@@ -58,20 +58,20 @@ int main(int /* argc */, char ** /* argv */)
 bool ImportConfiguration(Configuration *c)
 {
     std::string configPath =  Configuration::GetAbsolutePath();
-    std::string launchersPath =  Configuration::GetAbsolutePath() + "/Launchers";
-    std::string collectionsPath =  Configuration::GetAbsolutePath() + "/Collections";
+    std::string launchersPath =  Configuration::GetAbsolutePath() + "/launchers";
+    std::string collectionsPath =  Configuration::GetAbsolutePath() + "/collections";
     DIR *dp;
     struct dirent *dirp;
 
-    if(!c->Import("", configPath + "/Settings.conf"))
+    if(!c->Import("", configPath + "/settings.conf"))
     {
-        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + configPath + "/Settings.conf\"");
+        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + configPath + "/settings.conf\"");
         return false;
     }
 
-    if(!c->Import("controls", configPath + "/Controls.conf"))
+    if(!c->Import("controls", configPath + "/controls.conf"))
     {
-        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + configPath + "/Settings.conf\"");
+        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + configPath + "/settings.conf\"");
         return false;
     }
 
@@ -127,7 +127,7 @@ bool ImportConfiguration(Configuration *c)
         {
             std::string prefix = "collections." + std::string(dirp->d_name);
 
-            std::string settingsFile = collectionsPath + "/" + dirp->d_name + "/Settings.conf";
+            std::string settingsFile = collectionsPath + "/" + dirp->d_name + "/settings.conf";
 
             if(!c->Import(prefix, settingsFile))
             {
@@ -147,7 +147,7 @@ bool ImportConfiguration(Configuration *c)
 
 bool StartLogging()
 {
-    std::string logFile = Configuration::GetAbsolutePath() + "/Log.txt";
+    std::string logFile = Configuration::GetAbsolutePath() + "/log.txt";
 
     if(!Logger::Initialize(logFile))
     {
@@ -167,4 +167,3 @@ bool StartLogging()
 
     return true;
 }
-

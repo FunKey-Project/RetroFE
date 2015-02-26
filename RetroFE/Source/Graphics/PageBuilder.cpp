@@ -77,7 +77,7 @@ Page *PageBuilder::BuildPage()
     std::string layoutFile;
     std::string layoutName = LayoutKey;
 
-    LayoutPath = Configuration::GetAbsolutePath() + "/Layouts/" + layoutName;
+    LayoutPath = Configuration::GetAbsolutePath() + "/layouts/" + layoutName;
     layoutFile = LayoutPath + "/" + LayoutPage + ".xml";
 
     Logger::Write(Logger::ZONE_INFO, "Layout", "Initializing " + layoutFile);
@@ -127,7 +127,7 @@ Page *PageBuilder::BuildPage()
                 Config.SetProperty(fontPropertyKey, fontXml->value());
 
                 Font = Config.ConvertToAbsolutePath(
-                           Config.GetAbsolutePath() + "/Layouts/" + LayoutKey + "/",
+                           Config.GetAbsolutePath() + "/layouts/" + LayoutKey + "/",
                            fontXml->value());
 
                 Logger::Write(Logger::ZONE_DEBUG, "Layout", "Layout font set to " + Font);

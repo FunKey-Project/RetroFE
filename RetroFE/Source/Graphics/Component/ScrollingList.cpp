@@ -686,8 +686,14 @@ bool ScrollingList::AllocateTexture(ComponentItemBinding *s)
     Component *t = NULL;
 
     ImageBuilder imageBuild;
-    Config.GetMediaPropertyAbsolutePath(GetCollectionName(), ImageType, imagePath);
+    Config.GetMediaPropertyAbsolutePath(GetCollectionName(), ImageType, false, imagePath);
     t = imageBuild.CreateImage(imagePath, item->GetName(), ScaleX, ScaleY);
+
+    if(!t)
+    {
+            Config.GetMediaPropertyAbsolutePath(item->GetName(), ImageType, true, imagePath);
+            t = imageBuild.CreateImage(imagePath, ImageType, ScaleX, ScaleY);
+    }
 
     if(!t && item->GetTitle() != item->GetFullTitle())
     {
