@@ -153,14 +153,20 @@ void ReloadableMedia::ReloadTexture()
             {
                 names.push_back(selectedItem->GetCloneOf());
             }
-            std::string videoPath;
-            Config.GetMediaPropertyAbsolutePath(GetCollectionName(), "video", videoPath);
 
             for(unsigned int n = 0; n < names.size() && !found; ++n)
             {
                 VideoBuilder videoBuild;
+                std::string videoPath;
+                Config.GetMediaPropertyAbsolutePath(GetCollectionName(), "video", false, videoPath);
 
                 LoadedComponent = videoBuild.CreateVideo(videoPath, names[n], ScaleX, ScaleY);
+
+                if(!LoadedComponent)
+                {
+                     Config.GetMediaPropertyAbsolutePath(names[n], Type, true, videoPath);
+                     LoadedComponent = videoBuild.CreateVideo(videoPath, "video", ScaleX, ScaleY);
+                }
 
                 if(LoadedComponent)
                 {
