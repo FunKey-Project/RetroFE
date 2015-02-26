@@ -629,6 +629,9 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
         points->push_back(viewInfo);
         tweenPoints->push_back(CreateTweenInstance(component));
         height += viewInfo->GetHeight();
+
+        // increment the selected index to account for the new "invisible" menu item
+        selectedIndex++;
     }
     while(!end)
     {
@@ -679,16 +682,22 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
         tweenPoints->push_back(CreateTweenInstance(component));
     }
 
-    if(selectedIndex >= ((int)points->size()-2))
+    if(selectedIndex >= ((int)points->size()))
     {
-        //todo: print debug statements when out of range
-        selectedIndex = 1;
-    }
-    else
-    {
-        menu->SetSelectedIndex(selectedIndex+1);
+
+        std::stringstream ss;
+
+        ss << "Design error! Selected menu item was set to " << selectedIndex 
+           << " although there are only " << points->size()
+           << " menu points that can be displayed";
+
+        Logger::Write(Logger::ZONE_ERROR, "Layout", "Design error! \"duration\" attribute");
+
+        selectedIndex = 0;
     }
 
+
+    menu->SetSelectedIndex(selectedIndex);
     menu->SetPoints(points, tweenPoints);
 }
 
