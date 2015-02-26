@@ -208,7 +208,7 @@ void ReloadableMedia::ReloadTexture()
             if(!LoadedComponent)
             {
                  Config.GetMediaPropertyAbsolutePath(imageBasename, Type, true, imagePath);
-                 LoadedComponent = imageBuild.CreateImage(imagePath, imageBasename, ScaleX, ScaleY);
+                 LoadedComponent = imageBuild.CreateImage(imagePath, Type, ScaleX, ScaleY);
             }
 
             if (LoadedComponent != NULL)

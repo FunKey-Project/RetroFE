@@ -198,8 +198,8 @@ bool Configuration::GetProperty(std::string key, std::string &value)
 {
     bool retVal = GetRawProperty(key, value);
 
-    std::string baseMediaPath;
-    std::string baseItemPath;
+    std::string baseMediaPath = GetAbsolutePath();
+    std::string baseItemPath = GetAbsolutePath();
     std::string collectionName;
 
     GetRawProperty("baseMediaPath", baseMediaPath);
@@ -349,24 +349,31 @@ void Configuration::GetMediaPropertyAbsolutePath(std::string collectionName, std
 {
     std::string key = "media." + collectionName + "." + mediaType;
 
+    // use user-overridden setting if it exists
     if(GetPropertyAbsolutePath(key, value))
     {
         return;
     }
 
+    // use user-overridden base media path if it was specified
     std::string baseMediaPath;
     if(!GetPropertyAbsolutePath("baseMediaPath", baseMediaPath))
     {
-        baseMediaPath = "collections";
+        // base media path was not specified, assume media files are in the collection
+        baseMediaPath = GetAbsolutePath() + "/collections";
     }
 
     if(mediaType == "manufacturer")
     {
         value = baseMediaPath + "/_manufacturer";
     }
+    else if(system)
+    {
+        value = baseMediaPath + "/" + collectionName + "/system_artwork";
+    }
     else
     {
-        value = baseMediaPath + "/" + collectionName + "/" + mediaType + "/system");
+        value = baseMediaPath + "/" + collectionName + "/medium_artwork/" + mediaType;
     }
 }
 
@@ -380,12 +387,14 @@ void Configuration::GetCollectionAbsolutePath(std::string collectionName, std::s
     }
 
     std::string baseItemPath;
-    if(!GetPropertyAbsolutePath("baseItemPath", baseItemPath))
+    if(GetPropertyAbsolutePath("baseItemPath", baseItemPath))
     {
-        baseItemPath = "Assets";
+        value = baseItemPath + "/" + collectionName;
+        return;
     }
 
-    value = baseItemPath + "/" + collectionName;
+        value = GetAbsolutePath() + "/collections/" + collectionName + "/roms";
+
 }
 
 
