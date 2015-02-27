@@ -43,7 +43,7 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
 {
     bool retVal = false;
     //todo: magic string
-    std::string menuFilename = Configuration::GetAbsolutePath() + "/collections/" + collection->GetName() + "/Menu.xml";
+    std::string menuFilename = Configuration::GetAbsolutePath() + "/collections/" + collection->GetName() + "/menu.xml";
     rapidxml::xml_document<> doc;
     rapidxml::xml_node<> * rootNode;
 
