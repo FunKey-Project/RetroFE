@@ -1,308 +1,392 @@
-<layout width="1920" height="1080" font="LoveloBlack.otf" loadFontSize="48" fontColor="000000">
-   <sound type="load" src="load.wav" /> 
-   <sound type="unload" src="unload.wav" />
-   <sound type="highlight" src="highlight.wav" />
-   <sound type="select" src="select.wav" />
+<layout width="1920" height="1080" font="Roboto-Bold.ttf" loadFontSize="64" fontColor="dedede">
+    <sound type="load" src="load.wav" />
+    <sound type="unload" src="unload.wav" />
+    <sound type="highlight" src="highlight.wav" />
+    <sound type="select" src="select.wav" />
+<!--background-->
+    <!-- <container backgroundColor="262626" backgroundAlpha="1.0" x="0" y="0" height="stretch" width="stretch" layer="0"/> -->
 
-   <!-- background -->
-  <container backgroundColor="4A4A4A" backgroundAlpha="1.0" x="0" y="0" height="stretch" width="stretch" layer="0"/>
-   <!-- backgroundImage -->
-   <!-- <image src="bkgd.png" x="0" y="0" height="stretch" width="stretch" layer="0"/> -->
-   <!-- background -->
+<!--backgroundImage-->
+  <image src="bkgnd.png" x="0" y="0" height="stretch" width="stretch" layer="0"/>
 
-
-
-<!-- ---------------MAIN MENU--------------- -->
-
-<!-- Main Menu Background --> 
-  <image src="barbkgrnd.png"  x="0" y="center" yOrigin="center" height="132" width="1920" layer="5">
-      <onMenuExit menuIndex="0">
-         <set duration=".4">
-            <animate type="yOffset" from="320" to="800" algorithm="easeinquadratic"/>
-         </set>
-      </onMenuExit>
-      <onMenuEnter menuIndex="0">
-         <set duration=".4">
-            <animate type="yOffset" from="800" to="320" algorithm="easeinquadratic"/>
-         </set>
-      </onMenuEnter>
-  </image>
-<!-- Main Menu Background -->
-
-<!-- Main Menu index 0 -->
-   <menu type="custom" imageType="logo" orientation="horizontal" x="0" width="center" y="center" yOffset="320" algorithm="easeincircular"  scrollSpeed="0.250" scrollAcceleration="0.05">
-    <itemDefaults xOrigin="center" y="center" yOrigin="center" width="300" spacing="10" x="center" yOffset="320" alpha="0.5" fontSize="35" layer="6"/>
-    <item xOffset="-1420" alpha="0" />
-    <item xOffset="-1060">
-        <onMenuEnter>
-         <set duration=".25">
-            <animate type="alpha" from="0" to="0.5" algorithm="easeincircular"/>
-          </set>
+<!-----------------MAIN MENU----------------->
+<reloadableText type="title" x="center" y="center" xOrigin="center" yOrigin="center" yOffset="394" fontSize="48" layer="5">
+        <onMenuEnter menuIndex="0">
+            <set duration=".2">
+                <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+            </set>
         </onMenuEnter>
-        <onMenuExit>
-         <set duration=".25">
-            <animate type="alpha" from="0.5" to="0" algorithm="easeincircular"/>
-         </set>
+        <onMenuExit menuIndex="0">
+            <set duration=".2">
+                <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+            </set>
         </onMenuExit>
-    </item>
-    <item xOffset="-720">
-        <onMenuEnter>
-         <set duration=".25">
-            <animate type="alpha" from="0" to="0.5" algorithm="easeincircular"/>
-          </set>
+</reloadableText>
+<!--Main Menu Background-->
+    <image src="barbkgrnd.png"  x="center" y="center" yOffset="300" xOrigin="center" yOrigin="center" layer="5">
+        <onMenuExit menuIndex="0">
+            <set duration=".4">
+                <animate type="xOffset" from="0" to="-1028" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuExit>
+        <onMenuEnter menuIndex="0">
+            <set duration=".4">
+                <animate type="xOffset" from="-1028" to="0" algorithm="easeinquadratic"/>
+            </set>
         </onMenuEnter>
-        <onMenuExit>
-         <set duration=".25">
-            <animate type="alpha" from="0.5" to="0" algorithm="easeincircular"/>
-         </set>
-        </onMenuExit>
-    </item>
-    <item xOffset="-380">
-        <onMenuEnter>
-         <set duration=".25">
-            <animate type="alpha" from="0" to="0.5" algorithm="easeincircular"/>
-          </set>
+    </image>
+
+<!--Main Menu index 0-->
+    <menu type="custom" imageType="logo" scrollTime=".24" scrollAcceleration=".04" orientation="horizontal" x="0" width="center" y="center" yOffset="260" algorithm="easeincircular" >
+        <itemDefaults xOrigin="center" y="center" yOrigin="center" width="300" spacing="10" x="center" yOffset="260" alpha="0.5" fontSize="35" layer="6"/>
+        <item xOffset="-1420" alpha="0" />
+        <item xOffset="-1060">
+            <onMenuEnter>
+                <set duration=".25">
+                    <animate type="alpha" from="0" to="0.5" algorithm="easeincircular"/>
+                </set>
+            </onMenuEnter>
+            <onMenuExit>
+                <set duration=".25">
+                    <animate type="alpha" from="0.5" to="0" algorithm="easeincircular"/>
+                </set>
+            </onMenuExit>
+        </item>
+        <item xOffset="-720">
+            <onMenuEnter>
+                <set duration=".25">
+                    <animate type="alpha" from="0" to="0.5" algorithm="easeincircular"/>
+                </set>
+            </onMenuEnter>
+            <onMenuExit>
+                <set duration=".25">
+                    <animate type="alpha" from="0.5" to="0" algorithm="easeincircular"/>
+                </set>
+            </onMenuExit>
+        </item>
+        <item xOffset="-380">
+            <onMenuEnter>
+                <set duration=".25">
+                    <animate type="alpha" from="0" to="0.5" algorithm="easeincircular"/>
+                </set>
+            </onMenuEnter>
+            <onMenuExit>
+                <set duration=".25">
+                    <animate type="alpha" from="0.5" to="0" algorithm="easeincircular"/>
+                </set>
+            </onMenuExit>
+        </item>
+        <item selected="true" width="400" layer="7" alpha="1">
+            <onMenuExit>
+                <set duration=".4">
+                    <animate type="xOffset" from="0" to="-710" algorithm="easeinquadratic"/>
+                </set>
+            </onMenuExit>
+            <onMenuEnter>
+                <set duration=".4">
+                    <animate type="xOffset" from="-710" to="0" algorithm="easeinquadratic"/>
+                </set>
+            </onMenuEnter>
+        </item>
+        <item xOffset="380">
+            <onMenuEnter>
+                <set duration=".25">
+                    <animate type="alpha" from="0" to="0.5" algorithm="easeincircular"/>
+                </set>
+            </onMenuEnter>
+            <onMenuExit>
+                <set duration=".25">
+                    <animate type="alpha" from="0.5" to="0" algorithm="easeincircular"/>
+                </set>
+            </onMenuExit>
+        </item>
+        <item xOffset="720">
+            <onMenuEnter>
+                <set duration=".25">
+                    <animate type="alpha" from="0" to="0.5" algorithm="easeincircular"/>
+                </set>
+            </onMenuEnter>
+            <onMenuExit>
+                <set duration=".25">
+                    <animate type="alpha" from="0.5" to="0" algorithm="easeincircular"/>
+                </set>
+            </onMenuExit>
+        </item>
+        <item xOffset="1060">
+            <onMenuEnter>
+                <set duration=".25">
+                    <animate type="alpha" from="0" to="0.5" algorithm="easeincircular"/>
+                </set>
+            </onMenuEnter>
+            <onMenuExit>
+                <set duration=".25">
+                    <animate type="alpha" from="0.5" to="0" algorithm="easeincircular"/>
+                </set>
+            </onMenuExit>
+        </item>
+        <item xOffset="1420" alpha="0" />
+    </menu>
+
+<!-----------------SUB  MENU----------------->
+
+<!--Sub Menu  index 1-->
+
+    <menu orientation="vertical" scrollTime=".24" scrollAcceleration=".04" algorithm="easeincircular" y="638" width="940" height="380">
+        <itemDefaults spacing="4" x="center" height="32" width="400" maxWidth="910" fontSize="32" alpha="1" xOrigin="left" xOffset="20"  layer="5">
+            <onMenuExit>
+                <set duration=".25">
+                    <animate type="alpha" from="1" to="0" algorithm="easeincircular"/>
+                </set>
+            </onMenuExit>
+            <onMenuEnter>
+                <set duration=".25">
+                    <animate type="alpha" from="0" to="1" algorithm="easeincircular"/>
+                </set>
+            </onMenuEnter>
+        </itemDefaults>
+        <item index="start" spacing="0" alpha="0"/>
+        <item index="4" spacing="8" height="48" fontSize="48" alpha="1" selected="true">
+            <onMenuExit>
+                <set duration=".25">
+                    <animate type="alpha" from="1" to="0" algorithm="easeincircular"/>
+                </set>
+            </onMenuExit>
+            <onMenuEnter>
+                <set duration=".25">
+                    <animate type="alpha" from="0" to="1" algorithm="easeincircular"/>
+                </set>
+            </onMenuEnter>
+        </item>
+        <item index="last" spacing="10.5" alpha="0"/>
+        <item index="end" spacing="10.5" alpha="0"/>
+    </menu>
+
+
+    <reloadableText type="title" x="center" alpha="0" y="center" xOrigin="center" yOrigin="center" xOffset="380" yOffset="20" fontSize="48" layer="5">
+        <onMenuEnter menuIndex="1">
+            <set duration=".2">
+                <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+            </set>
         </onMenuEnter>
-        <onMenuExit>
-         <set duration=".25">
-            <animate type="alpha" from="0.5" to="0" algorithm="easeincircular"/>
-         </set>
+        <onMenuExit menuIndex="1">
+            <set duration=".2">
+                <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+            </set>
         </onMenuExit>
-    </item>
-    <item selected="true" width="400" layer="7" alpha="1">
-        <onMenuExit>
-         <set duration=".4">
-            <animate type="yOffset" from="320" to="-440" algorithm="easeinquadratic"/>
-         </set>
-        </onMenuExit>
-        <onMenuEnter>
-         <set duration=".4">
-            <animate type="yOffset" from="-440" to="320" algorithm="easeinquadratic"/>
-         </set>
-       </onMenuEnter>
-    </item>
-    <item xOffset="380">
-        <onMenuEnter>
-         <set duration=".25">
-            <animate type="alpha" from="0" to="0.5" algorithm="easeincircular"/>
-          </set>
+    </reloadableText>
+
+
+	<image src="menubk.png" yOffset="300" x="center" xOffset="1500" y="center" xOrigin="center" yOrigin="center" layer="4">
+        <onMenuEnter menuIndex="1">
+            <set duration=".4">
+                <animate type="xOffset" from="1500" to="500" algorithm="easeinquadratic"/>
+            </set>
         </onMenuEnter>
-        <onMenuExit>
-         <set duration=".25">
-            <animate type="alpha" from="0.5" to="0" algorithm="easeincircular"/>
-         </set>
+        <onMenuExit menuIndex="1">
+            <set duration=".4">
+                <animate type="xOffset" from="500" to="1500" algorithm="easeinquadratic"/>
+            </set>
         </onMenuExit>
-    </item>
-    <item xOffset="720">
-        <onMenuEnter>
-         <set duration=".25">
-            <animate type="alpha" from="0" to="0.5" algorithm="easeincircular"/>
-          </set>
+	</image>
+
+    <image src="highlight.png" yOffset="300" x="center" xOffset="1500" y="center" xOrigin="center" yOrigin="center" layer="4">
+        <onMenuEnter menuIndex="1">
+            <set duration=".4">
+                <animate type="xOffset" from="1500" to="500" algorithm="easeinquadratic"/>
+            </set>
         </onMenuEnter>
-        <onMenuExit>
-         <set duration=".25">
-            <animate type="alpha" from="0.5" to="0" algorithm="easeincircular"/>
-         </set>
+        <onMenuExit menuIndex="1">
+            <set duration=".4">
+                <animate type="xOffset" from="500" to="1500" algorithm="easeinquadratic"/>
+            </set>
         </onMenuExit>
-    </item>
-    <item xOffset="1060">
-        <onMenuEnter>
-         <set duration=".25">
-            <animate type="alpha" from="0" to="0.5" algorithm="easeincircular"/>
-          </set>
+        <onIdle  menuIndex="1">
+            <set duration=".4">
+                <animate type="alpha" from="1" to=".6" />
+            </set>
+            <set duration=".4">
+                <animate type="alpha" from=".6" to="1"/>
+            </set>
+        </onIdle>
+    </image>
+
+<!-- system logo bk -->
+	<image src="logobk.png" xOffset="-1500" yOffset="346" x="center" y="center" xOrigin="center" yOrigin="center" layer="4">
+        <onMenuEnter menuIndex="1">
+            <set duration=".4">
+                <animate type="xOffset" from="-1500" to="-710" algorithm="easeinquadratic"/>
+            </set>
         </onMenuEnter>
-        <onMenuExit>
-         <set duration=".25">
-            <animate type="alpha" from="0.5" to="0" algorithm="easeincircular"/>
-         </set>
+        <onMenuExit menuIndex="1">
+            <set duration=".4">
+                <animate type="xOffset" from="-710" to="-1500" algorithm="easeinquadratic"/>
+            </set>
         </onMenuExit>
-    </item>
-    <item xOffset="1420" alpha="0" />
-    </menu> 
-<!-- Main Menu  index 0 -->
+	</image>
 
-<!-- ---------------SUB  MENU--------------- -->
-
-<!-- Sub Menu  index 1 -->
-   <menu orientation="horizontal" algorithm="easeincircular" y="75" width="600" height="920" scrollSpeed="0.250" scrollAcceleration="0.05">
-    <itemDefaults spacing="5" x="center" height="34" width="600" fontSize="28" alpha="1" xOffset="100" yOrigin="center" xOrigin="left"  layer="5">
-        <onMenuExit>
-        <set duration=".25">
-            <animate type="alpha" from="1" to="0" algorithm="easeincircular"/>
-        </set>
-        </onMenuExit>
-        <onMenuEnter>
-         <set duration=".25">
-            <animate type="alpha" from="0" to="1" algorithm="easeincircular"/>
-        </set>
+	<reloadableImage type="logo" alpha="0" xOffset="-740" yOffset="-382" x="center" y="center" angle="-20" xOrigin="center" yOrigin="center" layer="5">
+        <onMenuEnter menuIndex="1">
+            <set duration=".2">
+                <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+            </set>
         </onMenuEnter>
-    </itemDefaults>
-    <item index="start" spacing="0" alpha="0"/>
-    <item index="11" spacing="0" height="48" fontSize="48" alpha="1" selected="true">
-      <onMenuExit>
-        <set duration=".25">
-            <animate type="alpha" from="1" to="0" algorithm="easeincircular"/>
-        </set>
-      </onMenuExit>
-      <onMenuEnter>
-         <set duration=".25">
-            <animate type="alpha" from="0" to="1" algorithm="easeincircular"/>
-        </set>
-      </onMenuEnter>
-    </item>
-    <item index="last" spacing="10.5" alpha="0"/>
-    <item index="end" spacing="10.5" alpha="0"/>
-   </menu>
-<!-- Sub Menu  index 1 -->
+        <onMenuExit menuIndex="1">
+            <set duration=".2">
+                <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuExit>
+	</reloadableImage>
 
-<!-- Sub Menu Video Background -->
-  <container backgroundColor="CACACA" backgroundAlpha="0" yOrigin="center" xOrigin="center" x="525" y="center" yOffset="-80" width="528" height="400" layer="4">
-    <onMenuEnter menuIndex="1">
-         <set duration=".2">
-          <animate type="backgroundAlpha" from="0" to="1" algorithm="easeincircular"/>
-        </set>
-    </onMenuEnter>
-    <onMenuExit menuIndex="1">
-        <set duration=".2">
-          <animate type="backgroundAlpha" from="1" to="0" algorithm="easeoutcircular"/>
-        </set>
-    </onMenuExit>
-  </container>
+	<reloadableImage type="manufacturer" alpha="0" xOffset="-282" yOffset="260" x="center" y="center" xOrigin="center" yOrigin="center" layer="6">
+        <onMenuEnter menuIndex="1">
+            <set duration=".2">
+                <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuEnter>
+        <onMenuExit menuIndex="1">
+            <set duration=".2">
+                <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuExit>
+	</reloadableImage>
 
-  <container backgroundColor="24C0EB" backgroundAlpha="0" yOrigin="center" xOrigin="center" x="525" y="center" yOffset="-80" width="532" height="404" layer="3">
-    <onMenuEnter menuIndex="1">
-      <set duration=".2">
-        <animate type="backgroundAlpha" from="0" to="1" algorithm="easeincircular"/>
-      </set>
-    </onMenuEnter>
-    <onMenuExit menuIndex="1">
-      <set duration=".2">
-        <animate type="backgroundAlpha" from="1" to="0" algorithm="easeoutcircular"/>
-      </set>
-    </onMenuExit>
-  </container>
-<!-- Sub Menu Video Background -->
+  <text value="Released:" alpha="0" x="center" y="center" xOrigin="right" yOrigin="center" xOffset="-510" yOffset="394" fontSize="48" layer="5">
+          <onMenuEnter menuIndex="1">
+            <set duration=".2">
+                <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuEnter>
+        <onMenuExit menuIndex="1">
+            <set duration=".2">
+                <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuExit>
+    </text>
+    <reloadableText type="year" alpha="0"x="center" y="center" xOrigin="left" yOrigin="center" xOffset="-506" yOffset="394" fontSize="48" layer="5">
+          <onMenuEnter menuIndex="1">
+            <set duration=".2">
+                <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuEnter>
+        <onMenuExit menuIndex="1">
+            <set duration=".2">
+                <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuExit>
+    </reloadableText>
+	<reloadableImage type="artwork_front" alpha="0" xOffset="145" yOffset="-240" x="center" maxHeight="405" maxWidth="405" y="center" xOrigin="center" yOrigin="center" layer="5">
+        <onMenuEnter menuIndex="1">
+            <set duration=".2">
+                <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuEnter>
+        <onMenuExit menuIndex="1">
+            <set duration=".2">
+                <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuExit>
+	</reloadableImage>
+<!--Sub Menu Cart -->
+	<reloadableImage type="medium_front" alpha="0" xOffset="617" yOffset="-240" x="center" maxHeight="405" height="405" maxWidth="460" y="center" xOrigin="center" yOrigin="center" layer="5">
+        <onMenuEnter menuIndex="1">
+            <set duration=".2">
+                <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuEnter>
+        <onMenuExit menuIndex="1">
+            <set duration=".2">
+                <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuExit>
+	</reloadableImage>
+	<image src="videobk.png" xOffset="-540" yOffset="-800" x="center" y="center" xOrigin="center" yOrigin="center" layer="2">
+        <onMenuEnter menuIndex="1">
+            <set duration=".4">
+                <animate type="yOffset" from="-800" to="-200" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuEnter>
+        <onMenuExit menuIndex="1">
+            <set duration=".4">
+                <animate type="yOffset" from="-200" to="-800" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuExit>
+	</image>
 
-<!-- Sub Menu List Background -->
-  <container backgroundColor="CACACA" backgroundAlpha="1" xOrigin="left" xOffset="1002" x="center" yOrigin="center" y="center" height="1000" width="900" layer="4">
-    <onMenuEnter menuIndex="1">
-      <set duration=".2">
-        <animate type="xOffset" from="1002" to="85" algorithm="easeincircular"/>
-      </set>
-    </onMenuEnter>
-    <onMenuExit menuIndex="1">
-      <set duration=".2">
-        <animate type="xOffset" from="85" to="1002" algorithm="easeoutcircular"/>
-      </set>
-    </onMenuExit>
-  </container> 
+	<image src="infobk.png" xOffset="380" yOffset="-800" x="center" y="center" xOrigin="center" yOrigin="center" layer="4">
+        <onMenuEnter menuIndex="1">
+            <set duration=".4">
+                <animate type="yOffset" from="-800" to="-200" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuEnter>
+        <onMenuExit menuIndex="1">
+            <set duration=".4">
+                <animate type="yOffset" from="-200" to="-800" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuExit>
+	</image>
 
-  <container backgroundColor="24C0EB" backgroundAlpha="1" xOrigin="left" xOffset="1000" x="center" yOrigin="center" y="center" height="1004" width="900" layer="3">
-    <onMenuEnter menuIndex="1">
-      <set duration=".2">
-        <animate type="xOffset" from="1000" to="83" algorithm="easeincircular"/>
-      </set>
-    </onMenuEnter>
-    <onMenuExit menuIndex="1">
-      <set duration=".2">
-        <animate type="xOffset" from="83" to="1000" algorithm="easeoutcircular"/>
-      </set>
-    </onMenuExit>
-  </container> 
-<!-- Sub Menu List Background -->
+<!--Shared Items-->
 
-<!-- Sub Menu Snap as Background -->
-
-<!-- Sub Menu Snap as Background -->
-
-<!-- Sub Menu List Background Wrap -->
-   <container backgroundColor="CACACA" backgroundAlpha="1" xOffset="-30" xOrigin="left" yOrigin="center" y="center" height="1000" width="16" layer="4">
-    <onMenuEnter menuIndex="1">
-      <set duration=".2">
-        <animate type="xOffset" from="-30" to="0" algorithm="easeincircular"/>
-      </set>
-    </onMenuEnter>
-    <onMenuExit menuIndex="1">
-      <set duration=".2">
-        <animate type="xOffset" from="0" to="-30" algorithm="easeoutcircular"/>
-      </set>
-    </onMenuExit>
-   </container>
-
-   <container backgroundColor="24C0EB" backgroundAlpha="1" xOffset="-34" xOrigin="left" yOrigin="center" y="center" height="1004" width="18" layer="3">
-    <onMenuEnter menuIndex="1">
-      <set duration=".2">
-        <animate type="xOffset" from="-34" to="0" algorithm="easeincircular"/>
-      </set>
-    </onMenuEnter>
-    <onMenuExit menuIndex="1">
-      <set duration=".2">
-        <animate type="xOffset" from="0" to="-34" algorithm="easeoutcircular"/>
-      </set>
-    </onMenuExit>
-   </container>
-<!-- Sub Menu Left Filler Background Wrap -->
-
-    <reloadableVideo imageType="snap" x="center" y="center" yOrigin="center" layer="4" xOrigin="center" >
-    <onMenuEnter menuIndex="1">
-        <set duration=".25">
-            <animate type="x" from="center" to="525"/>
-            <animate type="yOffset" from="0" to="-80" />
-            <animate type="width" from="1920" to="512"/>
-            <animate type="height" from="1440" to="384" />
-        </set>
-    </onMenuEnter>
-    <onMenuEnter menuIndex="0">
-        <set duration=".25">
-            <animate type="x" to="center" from="525"/>
-            <animate type="yOffset" to="0" from="-80" />
-            <animate type="width" to="1920" from="512" />
-            <animate type="height" to="1440" from="384" />
-        </set>
-    </onMenuEnter>
-     <onHighlightEnter menuIndex="0">
-         <set duration=".2">
-            <animate type="alpha" from="0" to="0.2" algorithm="easeinquadratic"/>
-         </set>
-      </onHighlightEnter>
-      <onHighlightExit menuIndex="0">
-         <set duration=".2">
-            <animate type="alpha" from="0.2" to="0" algorithm="easeinquadratic"/>
-         </set>
-      </onHighlightExit>
-      <onHighlightEnter menuIndex="1">
-         <set duration=".2">
-            <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
-         </set>
-      </onHighlightEnter>
-      <onHighlightExit menuIndex="1">
-         <set duration=".2">
-            <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
-         </set>
-      </onHighlightExit>
+    <reloadableVideo imageType="screenshots" x="center" alpha="0.2" height="1440" y="center" yOrigin="center" layer="3" xOrigin="center" >
+        <onMenuEnter menuIndex="1">
+            <set duration=".25">
+                <animate type="xOffset" from="0" to="-540"/>
+                <animate type="yOffset" from="0" to="-200" />
+                <animate type="height" from="1440" to="480" />
+                <animate type="alpha" from=".2" to="1" />
+            </set>
+        </onMenuEnter>
+        <onMenuExit menuIndex="1">
+            <set duration=".25">
+                <animate type="xOffset" to="0" from="-540"/>
+                <animate type="yOffset" to="0" from="-200" />
+                <animate type="height" to="1440" from="480" />
+                <animate type="alpha" from="1" to="0.2" />
+            </set>
+        </onMenuExit>
+        <onHighlightEnter menuIndex="0">
+            <set duration=".3">
+                <animate type="alpha" from="0" to="0.2" algorithm="easeinquadratic"/>
+            </set>
+        </onHighlightEnter>
+        <onHighlightExit menuIndex="0">
+            <set duration=".3">
+                <animate type="alpha" from="0.2" to="0" algorithm="easeinquadratic"/>
+            </set>
+        </onHighlightExit>
+        <onHighlightEnter menuIndex="1">
+            <set duration=".3">
+                <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+            </set>
+        </onHighlightEnter>
+        <onHighlightExit menuIndex="1">
+            <set duration=".3">
+                <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+            </set>
+        </onHighlightExit>
     </reloadableVideo>
-
-  <reloadableImage type="snap" x="0" y="-174" height="1440" width="1920" layer="4">
- <onMenuEnter menuIndex="1">
-         <set duration=".25">
-            <animate type="alpha" from="0" to=".2" algorithm="easeincircular"/>
-        </set>
-    </onMenuEnter>
-    <onMenuEnter menuIndex="0">
-        <set duration=".25">
-            <animate type="alpha" from=".2" to="0" algorithm="easeincircular"/>
-        </set>
-    </onMenuEnter>
-  <onHighlightEnter menuIndex="1">
-         <set duration=".25">
-            <animate type="alpha" from="0" to=".2" algorithm="easeinquadratic"/>
-         </set>
-  </onHighlightEnter>
-  <onHighlightExit menuIndex="1">
-         <set duration=".25">
-            <animate type="alpha" from=".2" to="0" algorithm="easeinquadratic"/>
-         </set>
-  </onHighlightExit>
-  </reloadableImage>
-
+<!--
+    <reloadableImage type="snaps" x="0" y="-174" height="1440" layer="1">
+        <onMenuEnter menuIndex="1">
+            <set duration=".25">
+                <animate type="alpha" from="0" to=".1" algorithm="easeincircular"/>
+            </set>
+        </onMenuEnter>
+        <onMenuExit menuIndex="1">
+            <set duration=".25">
+                <animate type="alpha" from=".1" to="0" algorithm="easeincircular"/>
+            </set>
+        </onMenuExit>
+        <onHighlightEnter menuIndex="1">
+            <set duration=".25">
+                <animate type="alpha" from="0" to=".1" algorithm="easeinquadratic"/>
+            </set>
+        </onHighlightEnter>
+        <onHighlightExit menuIndex="1">
+            <set duration=".25">
+                <animate type="alpha" from=".1" to="0" algorithm="easeinquadratic"/>
+            </set>
+        </onHighlightExit>
+    </reloadableImage>
+-->
 </layout>
