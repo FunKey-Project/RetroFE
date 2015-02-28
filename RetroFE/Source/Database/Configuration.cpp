@@ -86,13 +86,13 @@ bool Configuration::Import(std::string keyPrefix, std::string file)
     int lineCount = 0;
     std::string line;
 
-    Logger::Write(Logger::ZONE_INFO, "Configuration", "Importing " + file);
+    Logger::Write(Logger::ZONE_INFO, "Configuration", "Importing \"" + file + "\"");
 
     std::ifstream ifs(file.c_str());
 
     if (!ifs.is_open())
     {
-        Logger::Write(Logger::ZONE_ERROR, "Configuration", "Could not open " + file);
+        Logger::Write(Logger::ZONE_ERROR, "Configuration", "Could not open " + file + "\"");
 
         return false;
     }
@@ -366,6 +366,22 @@ void Configuration::GetMediaPropertyAbsolutePath(std::string collectionName, std
     if(mediaType == "manufacturer")
     {
         value = baseMediaPath + "/_manufacturer";
+    }
+    else if(mediaType == "genre")
+    {
+        value = baseMediaPath + "/_genre";
+    }
+    else if(mediaType == "year")
+    {
+        value = baseMediaPath + "/_year";
+    }
+    else if(mediaType == "number_players")
+    {
+        value = baseMediaPath + "/_number_players";
+    }
+    else if(mediaType == "number_buttons")
+    {
+        value = baseMediaPath + "/_number_buttons";
     }
     else if(system)
     {
