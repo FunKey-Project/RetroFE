@@ -123,14 +123,11 @@ Page *PageBuilder::BuildPage()
             }
             if(fontXml)
             {
-                std::string fontPropertyKey  = "layouts." + LayoutKey + ".font";
-                Config.SetProperty(fontPropertyKey, fontXml->value());
-
-                Font = Config.ConvertToAbsolutePath(
+                FontName = Config.ConvertToAbsolutePath(
                            Config.GetAbsolutePath() + "/layouts/" + LayoutKey + "/",
                            fontXml->value());
 
-                Logger::Write(Logger::ZONE_DEBUG, "Layout", "Layout font set to " + Font);
+                Logger::Write(Logger::ZONE_DEBUG, "Layout", "Layout font set to " + FontName);
 
             }
 
@@ -369,8 +366,8 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
         }
         else
         {
-            FC->LoadFont(Font, FontSize, FontColor);
-            Text *c = new Text(value->value(), FC->GetFont(Font, FontSize, FontColor), FontColor, ScaleX, ScaleY);
+            Font *font = AddFont(componentXml, NULL);
+            Text *c = new Text(value->value(), font, ScaleX, ScaleY);
             ViewInfo *v = c->GetBaseViewInfo();
 
             BuildViewInfo(componentXml, v);
@@ -382,8 +379,8 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
 
     for(xml_node<> *componentXml = layout->first_node("statusText"); componentXml; componentXml = componentXml->next_sibling("statusText"))
     {
-        FC->LoadFont(Font, FontSize, FontColor);
-        Text *c = new Text("", FC->GetFont(Font, FontSize, FontColor), FontColor, ScaleX, ScaleY);
+        Font *font = AddFont(componentXml, NULL);
+        Text *c = new Text("", font, ScaleX, ScaleY);
         ViewInfo *v = c->GetBaseViewInfo();
 
         BuildViewInfo(componentXml, v);
@@ -431,14 +428,14 @@ void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, 
         {
             if(type)
             {
-                FC->LoadFont(Font, FontSize, FontColor);
-                c = new ReloadableText(type->value(), FC->GetFont(Font, FontSize, FontColor), FontColor, LayoutKey, ScaleX, ScaleY);
+                Font *font = AddFont(componentXml, NULL);
+                c = new ReloadableText(type->value(), font, LayoutKey, ScaleX, ScaleY);
             }
         }
         else
         {
-            FC->LoadFont(Font, FontSize, FontColor);
-            c = new ReloadableMedia(Config, type->value(), (tagName == "reloadableVideo"), FC->GetFont(Font, FontSize, FontColor), FontColor, ScaleX, ScaleY);
+            Font *font = AddFont(componentXml, NULL);
+            c = new ReloadableMedia(Config, type->value(), (tagName == "reloadableVideo"), font, ScaleX, ScaleY);
             xml_attribute<> *textFallback = componentXml->first_attribute("textFallback");
 
             if(textFallback && Utils::ToLower(textFallback->value()) == "true")
@@ -459,6 +456,69 @@ void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, 
         }
     }
 }
+
+Font *PageBuilder::AddFont(xml_node<> *component, xml_node<> *defaults)
+{
+    xml_attribute<> *fontXml = component->first_attribute("font");
+    xml_attribute<> *fontColorXml = component->first_attribute("fontColor");
+    xml_attribute<> *fontSizeXml = component->first_attribute("loadFontSize");
+
+    if(defaults)
+    {
+        if(defaults->first_attribute("font"))
+        {
+            fontXml = defaults->first_attribute("font");
+        }
+
+        if(defaults->first_attribute("fontColor"))
+        {
+            fontColorXml = defaults->first_attribute("fontColor");
+        }
+
+        if(defaults->first_attribute("loadFontSize"))
+        {
+            fontSizeXml = defaults->first_attribute("loadFontSize");
+        }
+    }
+
+
+    // use layout defaults unless overridden
+    std::string fontName = FontName;
+    SDL_Color fontColor = FontColor;
+    int fontSize = FontSize;
+
+    if(fontXml)
+    {
+        fontName = Config.ConvertToAbsolutePath(
+                    Config.GetAbsolutePath() + "/layouts/" + LayoutKey + "/",
+                    fontXml->value());
+
+        Logger::Write(Logger::ZONE_DEBUG, "Layout", "loading font " + fontName );
+    }
+    if(fontColorXml)
+    {
+        int intColor = 0;
+        std::stringstream ss;
+        ss << std::hex << fontColorXml->value();
+        ss >> intColor;
+
+        fontColor.b = intColor & 0xFF;
+        intColor >>= 8;
+        fontColor.g = intColor & 0xFF;
+        intColor >>= 8;
+        fontColor.r = intColor & 0xFF;
+    }
+
+    if(fontSizeXml)
+    {
+        fontSize = Utils::ConvertInt(fontSizeXml->value());
+    }
+
+    FC->LoadFont(fontName, fontSize, fontColor);
+
+    return FC->GetFont(fontName, fontSize, fontColor);
+}
+
 void PageBuilder::LoadTweens(Component *c, xml_node<> *componentXml)
 {
     ViewInfo *v = c->GetBaseViewInfo();
@@ -526,9 +586,9 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
     }
 
     // on default, text will be rendered to the menu. Preload it into cache.
-    FC->LoadFont(Font, FontSize, FontColor);
+    Font *font = AddFont(itemDefaults, NULL);
 
-    menu = new ScrollingList(Config, ScaleX, ScaleY, FC->GetFont(Font, FontSize, FontColor), FontColor, LayoutKey, imageType);
+    menu = new ScrollingList(Config, ScaleX, ScaleY, font, LayoutKey, imageType);
 
     if(scrollTimeXml)
     {

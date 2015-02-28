@@ -23,13 +23,12 @@
 #include <vector>
 #include <iostream>
 
-ReloadableText::ReloadableText(std::string type, Font *font, SDL_Color color, std::string layoutKey, float scaleX, float scaleY)
+ReloadableText::ReloadableText(std::string type, Font *font, std::string layoutKey, float scaleX, float scaleY)
     : ImageInst(NULL)
     , LayoutKey(layoutKey)
     , ReloadRequested(false)
     , FirstLoad(true)
     , FontInst(font)
-    , FontColor(color)
     , ScaleX(scaleX)
     , ScaleY(scaleY)
 {
@@ -152,7 +151,7 @@ void ReloadableText::ReloadTexture()
             break;
         }
 
-        ImageInst = new Text(ss.str(), FontInst, FontColor, ScaleX, ScaleY);
+        ImageInst = new Text(ss.str(), FontInst, ScaleX, ScaleY);
     }
 }
 

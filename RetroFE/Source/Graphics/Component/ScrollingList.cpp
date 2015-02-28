@@ -42,7 +42,6 @@ ScrollingList::ScrollingList(Configuration &c,
                              float scaleX,
                              float scaleY,
                              Font *font,
-                             SDL_Color fontColor,
                              std::string layoutKey,
                              std::string imageType)
     : SpriteList(NULL)
@@ -64,7 +63,6 @@ ScrollingList::ScrollingList(Configuration &c,
     , ScaleX(scaleX)
     , ScaleY(scaleY)
     , FontInst(font)
-    , FontColor(fontColor)
     , LayoutKey(layoutKey)
     , ImageType(imageType)
 {
@@ -89,7 +87,6 @@ ScrollingList::ScrollingList(const ScrollingList &copy)
     , ScaleX(copy.ScaleX)
     , ScaleY(copy.ScaleY)
     , FontInst(copy.FontInst)
-    , FontColor(copy.FontColor)
     , LayoutKey(copy.LayoutKey)
     , ImageType(copy.ImageType)
 {
@@ -701,7 +698,7 @@ bool ScrollingList::AllocateTexture(ComponentItemBinding *s)
     }
     if (!t)
     {
-        t = new Text(item->GetTitle(), FontInst, FontColor, ScaleX, ScaleY);
+        t = new Text(item->GetTitle(), FontInst, ScaleX, ScaleY);
     }
 
     if(t)

@@ -20,10 +20,9 @@
 #include "../Font.h"
 #include <sstream>
 
-Text::Text(std::string text, Font *font, SDL_Color fontColor, float scaleX, float scaleY)
+Text::Text(std::string text, Font *font, float scaleX, float scaleY)
     : TextData(text)
     , FontInst(font)
-    , FontColor(fontColor)
     , ScaleX(scaleX)
     , ScaleY(scaleY)
 {

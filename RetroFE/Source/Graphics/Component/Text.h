@@ -26,7 +26,7 @@ class Text : public Component
 {
 public:
     //todo: should have a Font flass that references fontcache, pass that in as an argument
-    Text(std::string text, Font *font, SDL_Color fontColor, float scaleX, float scaleY);
+    Text(std::string text, Font *font, float scaleX, float scaleY);
     void SetText(std::string text);
     virtual ~Text();
     void AllocateGraphicsMemory();
@@ -36,7 +36,6 @@ public:
 private:
     std::string TextData;
     Font *FontInst;
-    SDL_Color FontColor;
     float ScaleX;
     float ScaleY;
 };

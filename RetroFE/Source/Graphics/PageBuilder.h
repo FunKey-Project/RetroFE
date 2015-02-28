@@ -26,6 +26,7 @@ class ScrollingList;
 class Page;
 class ViewInfo;
 class Configuration;
+class Font;
 
 class PageBuilder
 {
@@ -44,10 +45,11 @@ private:
     int ScreenHeight;
     int ScreenWidth;
     SDL_Color FontColor;
-    std::string Font;
+    std::string FontName;
     int FontSize;
     FontCache *FC;
 
+    Font *AddFont(rapidxml::xml_node<> *component, rapidxml::xml_node<> *defaults);
     void LoadReloadableImages(rapidxml::xml_node<> *layout, std::string tagName, Page *page);
     float GetVerticalAlignment(rapidxml::xml_attribute<> *attribute, float valueIfNull);
     float GetHorizontalAlignment(rapidxml::xml_attribute<> *attribute, float valueIfNull);

@@ -28,7 +28,7 @@
 #include <vector>
 #include <iostream>
 
-ReloadableMedia::ReloadableMedia(Configuration &config, std::string type, bool isVideo, Font *font, SDL_Color fontColor, float scaleX, float scaleY)
+ReloadableMedia::ReloadableMedia(Configuration &config, std::string type, bool isVideo, Font *font, float scaleX, float scaleY)
     : Config(config)
     , LoadedComponent(NULL)
     , ReloadRequested(false)
@@ -36,7 +36,6 @@ ReloadableMedia::ReloadableMedia(Configuration &config, std::string type, bool i
     , VideoInst(NULL)
     , IsVideo(isVideo)
     , FontInst(font)
-    , FontColor(fontColor)
     , TextFallback(false)
     , Type(type)
     , ScaleX(scaleX)
@@ -229,7 +228,7 @@ void ReloadableMedia::ReloadTexture()
 
         if(!LoadedComponent && TextFallback)
         {
-            LoadedComponent = new Text(imageBasename, FontInst, FontColor, ScaleX, ScaleY);
+            LoadedComponent = new Text(imageBasename, FontInst, ScaleX, ScaleY);
             GetBaseViewInfo()->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
             GetBaseViewInfo()->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
         }

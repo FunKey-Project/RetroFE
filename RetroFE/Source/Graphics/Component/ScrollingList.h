@@ -47,7 +47,6 @@ public:
                   float scaleX,
                   float scaleY,
                   Font *font,
-                  SDL_Color fontColor,
                   std::string layoutKey,
                   std::string imageType);
 
@@ -126,7 +125,6 @@ private:
     float ScaleX;
     float ScaleY;
     Font *FontInst;
-    SDL_Color FontColor;
     std::string LayoutKey;
     std::string ImageType;
 };

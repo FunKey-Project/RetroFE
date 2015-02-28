@@ -27,7 +27,7 @@ class Image;
 class ReloadableMedia : public Component
 {
 public:
-    ReloadableMedia(Configuration &config, std::string type, bool isVideo, Font *font, SDL_Color fontColor, float scaleX, float scaleY);
+    ReloadableMedia(Configuration &config, std::string type, bool isVideo, Font *font, float scaleX, float scaleY);
     virtual ~ReloadableMedia();
     void Update(float dt);
     void Draw();
@@ -46,7 +46,6 @@ private:
     IVideo *VideoInst;
     bool IsVideo;
     Font *FontInst;
-    SDL_Color FontColor;
     bool TextFallback;
     std::string Type;
     float ScaleX;
