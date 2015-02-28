@@ -89,23 +89,20 @@ bool ImportConfiguration(Configuration *c)
         {
             std::string basename = dirp->d_name;
 
-            //  if(basename.length() > 0)
+            std::string extension = basename.substr(basename.find_last_of("."), basename.size()-1);
+            basename = basename.substr(0, basename.find_last_of("."));
+
+            if(extension == ".conf")
             {
-                std::string extension = basename.substr(basename.find_last_of("."), basename.size()-1);
-                basename = basename.substr(0, basename.find_last_of("."));
+                std::string prefix = "launchers." + basename;
 
-                if(extension == ".conf")
+                std::string importFile = launchersPath + "/" + std::string(dirp->d_name);
+
+                if(!c->Import(prefix, importFile))
                 {
-                    std::string prefix = "launchers." + basename;
-
-                    std::string importFile = launchersPath + "/" + std::string(dirp->d_name);
-
-                    if(!c->Import(prefix, importFile))
-                    {
-                        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + importFile + "\"");
-                        closedir(dp);
-                        return false;
-                    }
+                    Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + importFile + "\"");
+                    closedir(dp);
+                    return false;
                 }
             }
         }
@@ -123,7 +120,8 @@ bool ImportConfiguration(Configuration *c)
 
     while((dirp = readdir(dp)) != NULL)
     {
-        if (dirp->d_type == DT_DIR && std::string(dirp->d_name) != "." && std::string(dirp->d_name) != "..")
+        std::string dirName = (dirp->d_name);
+        if (dirp->d_type == DT_DIR && dirName != "." && dirName != ".." && dirName.length() > 0 && dirName[0] != '_')
         {
             std::string prefix = "collections." + std::string(dirp->d_name);
 

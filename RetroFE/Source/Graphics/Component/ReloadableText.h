@@ -42,6 +42,7 @@ private:
         TextTypeYear,
         TextTypeTitle,
         TextTypeManufacturer,
+        TextTypeGenre,
     };
 
     void ReloadTexture();

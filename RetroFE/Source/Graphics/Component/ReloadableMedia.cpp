@@ -215,6 +215,12 @@ void ReloadableMedia::ReloadTexture()
         {
             imageBasename = selectedItem->GetManufacturer();
         }
+        else if(typeLC == "genre")
+        {
+            imageBasename = selectedItem->GetGenre();
+        }
+
+        Utils::ReplaceSlashesWithUnderscores(imageBasename);
 
         if(!LoadedComponent)
         {

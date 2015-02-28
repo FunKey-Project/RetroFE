@@ -114,6 +114,13 @@ void Utils::NormalizeBackSlashes(std::string& content)
     std::replace(content.begin(), content.end(), '\\', '/');
 }
 
+void Utils::ReplaceSlashesWithUnderscores(std::string &content)
+{
+    std::replace(content.begin(), content.end(), '\\', '_');
+    std::replace(content.begin(), content.end(), '/', '_');
+}
+
+
 std::string Utils::GetDirectory(std::string filePath)
 {
 

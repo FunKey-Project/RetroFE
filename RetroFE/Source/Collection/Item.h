@@ -29,6 +29,8 @@ public:
     void SetLauncher(const std::string& launcher);
     const std::string& GetManufacturer() const;
     void SetManufacturer(const std::string& manufacturer);
+    const std::string& GetGenre() const;
+    void SetGenre(const std::string& genre);
     const std::string& GetName() const;
     void SetName(const std::string& name);
     void SetNumberButtons(std::string numberbuttons);
@@ -56,6 +58,7 @@ private:
     std::string FullTitle;
     std::string Year;
     std::string Manufacturer;
+    std::string Genre;
     std::string CloneOf;
     std::string NumberPlayers;
     std::string NumberButtons;

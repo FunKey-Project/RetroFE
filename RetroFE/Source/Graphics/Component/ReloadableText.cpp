@@ -55,6 +55,10 @@ ReloadableText::ReloadableText(std::string type, Font *font, std::string layoutK
     {
         Type = TextTypeManufacturer;
     }
+    else if(type == "genre")
+    {
+        Type = TextTypeGenre;
+    }
 
     AllocateGraphicsMemory();
 }
@@ -146,6 +150,9 @@ void ReloadableText::ReloadTexture()
             break;
         case TextTypeManufacturer:
             ss << selectedItem->GetManufacturer();
+            break;
+        case TextTypeGenre:
+            ss << selectedItem->GetGenre();
             break;
         default:
             break;

@@ -63,6 +63,16 @@ void Item::SetManufacturer(const std::string& manufacturer)
     Manufacturer = manufacturer;
 }
 
+const std::string& Item::GetGenre() const
+{
+    return Genre;
+}
+
+void Item::SetGenre(const std::string& genre)
+{
+    Genre = genre;
+}
+
 const std::string& Item::GetName() const
 {
     return Name;
