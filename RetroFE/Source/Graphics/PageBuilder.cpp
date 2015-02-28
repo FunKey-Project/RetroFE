@@ -400,16 +400,20 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
 
 void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, Page *page)
 {
+    
     for(xml_node<> *componentXml = layout->first_node(tagName.c_str()); componentXml; componentXml = componentXml->next_sibling(tagName.c_str()))
     {
         std::string reloadableImagePath;
         std::string reloadableVideoPath;
         xml_attribute<> *type = componentXml->first_attribute("type");
+        xml_attribute<> *mode = componentXml->first_attribute("mode");
+        bool systemMode = false;
 
         if(tagName == "reloadableVideo")
         {
             type = componentXml->first_attribute("imageType");
         }
+
 
         if(!type && tagName == "reloadableVideo")
         {
@@ -420,6 +424,15 @@ void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, 
             Logger::Write(Logger::ZONE_ERROR, "Layout", "Image component in layout does not specify a source image file");
         }
 
+
+        if(mode)
+        {
+            std::string sysMode = mode->value();
+            if(sysMode == "system")
+            {
+                systemMode = true;
+            }
+        }
 
 
         Component *c = NULL;
@@ -435,7 +448,7 @@ void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, 
         else
         {
             Font *font = AddFont(componentXml, NULL);
-            c = new ReloadableMedia(Config, type->value(), (tagName == "reloadableVideo"), font, ScaleX, ScaleY);
+            c = new ReloadableMedia(Config, systemMode, type->value(), (tagName == "reloadableVideo"), font, ScaleX, ScaleY);
             xml_attribute<> *textFallback = componentXml->first_attribute("textFallback");
 
             if(textFallback && Utils::ToLower(textFallback->value()) == "true")

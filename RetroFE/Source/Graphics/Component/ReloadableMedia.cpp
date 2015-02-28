@@ -28,8 +28,9 @@
 #include <vector>
 #include <iostream>
 
-ReloadableMedia::ReloadableMedia(Configuration &config, std::string type, bool isVideo, Font *font, float scaleX, float scaleY)
+ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, std::string type, bool isVideo, Font *font, float scaleX, float scaleY)
     : Config(config)
+    , SystemMode(systemMode)
     , LoadedComponent(NULL)
     , ReloadRequested(false)
     , FirstLoad(true)
@@ -61,7 +62,10 @@ void ReloadableMedia::Update(float dt)
 {
     if(NewItemSelected)
     {
-        ReloadRequested = true;
+        if(!SystemMode || (SystemMode && CurrentCollection != Config.GetCurrentCollection()))
+        {
+            ReloadRequested = true;
+        }
     }
     // wait for the right moment to reload the image
     if (ReloadRequested && (HighlightExitComplete || FirstLoad))
@@ -140,6 +144,8 @@ void ReloadableMedia::ReloadTexture()
 
     Item *selectedItem = GetSelectedItem();
 
+    CurrentCollection = Config.GetCurrentCollection();
+
     if (selectedItem != NULL)
     {
         if(IsVideo)
@@ -157,11 +163,19 @@ void ReloadableMedia::ReloadTexture()
             {
                 VideoBuilder videoBuild;
                 std::string videoPath;
-                Config.GetMediaPropertyAbsolutePath(GetCollectionName(), "video", false, videoPath);
 
-                LoadedComponent = videoBuild.CreateVideo(videoPath, names[n], ScaleX, ScaleY);
+                if(SystemMode)
+                {
+                    Config.GetMediaPropertyAbsolutePath(GetCollectionName(), "video", true, videoPath);
+                    LoadedComponent = videoBuild.CreateVideo(videoPath, "video", ScaleX, ScaleY);
+                }
+                else
+                {
+                    Config.GetMediaPropertyAbsolutePath(GetCollectionName(), "video", false, videoPath);
+                    LoadedComponent = videoBuild.CreateVideo(videoPath, names[n], ScaleX, ScaleY);
+                }
 
-                if(!LoadedComponent)
+                if(!LoadedComponent && !SystemMode)
                 {
                      Config.GetMediaPropertyAbsolutePath(names[n], Type, true, videoPath);
                      LoadedComponent = videoBuild.CreateVideo(videoPath, "video", ScaleX, ScaleY);
@@ -205,13 +219,21 @@ void ReloadableMedia::ReloadTexture()
         if(!LoadedComponent)
         {
             std::string imagePath;
-            Config.GetMediaPropertyAbsolutePath(GetCollectionName(), Type, false, imagePath);
 
             ImageBuilder imageBuild;
 
-            LoadedComponent = imageBuild.CreateImage(imagePath, imageBasename, ScaleX, ScaleY);
+            if(SystemMode)
+            {
+                Config.GetMediaPropertyAbsolutePath(GetCollectionName(), Type, true, imagePath);
+                LoadedComponent = imageBuild.CreateImage(imagePath, Type, ScaleX, ScaleY);
+            }
+            else
+            {
+                Config.GetMediaPropertyAbsolutePath(GetCollectionName(), Type, false, imagePath);
+                LoadedComponent = imageBuild.CreateImage(imagePath, imageBasename, ScaleX, ScaleY);
+            }
 
-            if(!LoadedComponent)
+            if(!LoadedComponent && !SystemMode)
             {
                  Config.GetMediaPropertyAbsolutePath(imageBasename, Type, true, imagePath);
                  LoadedComponent = imageBuild.CreateImage(imagePath, Type, ScaleX, ScaleY);

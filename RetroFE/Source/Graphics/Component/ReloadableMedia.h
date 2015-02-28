@@ -27,7 +27,7 @@ class Image;
 class ReloadableMedia : public Component
 {
 public:
-    ReloadableMedia(Configuration &config, std::string type, bool isVideo, Font *font, float scaleX, float scaleY);
+    ReloadableMedia(Configuration &config, bool systemMode, std::string type, bool isVideo, Font *font, float scaleX, float scaleY);
     virtual ~ReloadableMedia();
     void Update(float dt);
     void Draw();
@@ -40,6 +40,7 @@ public:
 private:
     void ReloadTexture();
     Configuration &Config;
+    bool SystemMode;
     Component *LoadedComponent;
     bool ReloadRequested;
     bool FirstLoad;
@@ -50,4 +51,5 @@ private:
     std::string Type;
     float ScaleX;
     float ScaleY;
+    std::string CurrentCollection;
 };
