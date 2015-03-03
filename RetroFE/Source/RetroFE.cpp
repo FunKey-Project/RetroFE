@@ -378,7 +378,7 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
 
         Attract.Reset();
 
-	if(page->IsHorizontalScroll())
+	    if(page->IsHorizontalScroll())
         {
             if (keys[Input.GetScancode(UserInput::KeyCodeLeft)])
             {
@@ -386,30 +386,30 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
             }
             if (keys[Input.GetScancode(UserInput::KeyCodeRight)])
             {
-               page->SetScrolling(Page::ScrollDirectionForward);
+                page->SetScrolling(Page::ScrollDirectionForward);
             } 
+        }
+        else
+        { 
             if (keys[Input.GetScancode(UserInput::KeyCodeUp)])
             {
                 page->SetScrolling(Page::ScrollDirectionBack);
             }
             if (keys[Input.GetScancode(UserInput::KeyCodeDown)])
             {
-                 page->SetScrolling(Page::ScrollDirectionForward);
+                    page->SetScrolling(Page::ScrollDirectionForward);
             }
         }
-        else
-        { 
-            if (keys[Input.GetScancode(UserInput::KeyCodePageUp)])
-            {
-                page->PageScroll(Page::ScrollDirectionBack);
-            }
-            if (keys[Input.GetScancode(UserInput::KeyCodePageDown)])
-            {
-                page->PageScroll(Page::ScrollDirectionForward);
-            }
-       }
-       if (keys[Input.GetScancode(UserInput::KeyCodeAdminMode)])
-       {
+        if (keys[Input.GetScancode(UserInput::KeyCodePageUp)])
+        {
+            page->PageScroll(Page::ScrollDirectionBack);
+        }
+        if (keys[Input.GetScancode(UserInput::KeyCodePageDown)])
+        {
+            page->PageScroll(Page::ScrollDirectionForward);
+        }
+        if (keys[Input.GetScancode(UserInput::KeyCodeAdminMode)])
+        {
             //todo: add admin mode support
         }
         if (keys[Input.GetScancode(UserInput::KeyCodeSelect)])
