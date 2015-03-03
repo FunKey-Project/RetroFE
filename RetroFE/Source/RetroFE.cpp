@@ -378,13 +378,27 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
 
         Attract.Reset();
 
-        if (keys[Input.GetScancode(UserInput::KeyCodePreviousItem)])
+	    if(page->IsHorizontalScroll())
         {
-            page->SetScrolling(Page::ScrollDirectionBack);
+            if (keys[Input.GetScancode(UserInput::KeyCodeLeft)])
+            {
+                page->SetScrolling(Page::ScrollDirectionBack);
+            }
+            if (keys[Input.GetScancode(UserInput::KeyCodeRight)])
+            {
+                page->SetScrolling(Page::ScrollDirectionForward);
+            } 
         }
-        if (keys[Input.GetScancode(UserInput::KeyCodeNextItem)])
-        {
-            page->SetScrolling(Page::ScrollDirectionForward);
+        else
+        { 
+            if (keys[Input.GetScancode(UserInput::KeyCodeUp)])
+            {
+                page->SetScrolling(Page::ScrollDirectionBack);
+            }
+            if (keys[Input.GetScancode(UserInput::KeyCodeDown)])
+            {
+                    page->SetScrolling(Page::ScrollDirectionForward);
+            }
         }
         if (keys[Input.GetScancode(UserInput::KeyCodePageUp)])
         {
@@ -432,8 +446,10 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
             state = RETROFE_QUIT_REQUEST;
         }
 
-        if(!keys[Input.GetScancode(UserInput::KeyCodePreviousItem)] &&
-                !keys[Input.GetScancode(UserInput::KeyCodeNextItem)] &&
+        if(!keys[Input.GetScancode(UserInput::KeyCodeUp)] &&
+                !keys[Input.GetScancode(UserInput::KeyCodeLeft)] &&
+                !keys[Input.GetScancode(UserInput::KeyCodeDown)] &&
+                !keys[Input.GetScancode(UserInput::KeyCodeRight)] &&
                 !keys[Input.GetScancode(UserInput::KeyCodePageUp)] &&
                 !keys[Input.GetScancode(UserInput::KeyCodePageDown)])
         {

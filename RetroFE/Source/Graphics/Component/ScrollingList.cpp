@@ -65,6 +65,7 @@ ScrollingList::ScrollingList(Configuration &c,
     , FontInst(font)
     , LayoutKey(layoutKey)
     , ImageType(imageType)
+    , HorizontalScroll(false)
 {
 }
 
@@ -153,6 +154,16 @@ void ScrollingList::SetItems(std::vector<ComponentItemBinding *> *spriteList)
     }
 
     AllocateSpritePoints();
+}
+
+bool ScrollingList::IsHorizontalScroll()
+{
+    return HorizontalScroll;
+}
+
+void ScrollingList::SetScrollOrientation(bool horizontal)
+{
+    HorizontalScroll = horizontal;
 }
 
 void ScrollingList::SetScrollAcceleration(float value)
