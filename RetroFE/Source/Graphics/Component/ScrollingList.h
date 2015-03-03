@@ -61,6 +61,8 @@ public:
     void DestroyItems();
     void SetPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<AnimationEvents *> *tweenPoints);
     void SetScrollDirection(ScrollDirection direction);
+    void SetScrollOrientation(bool horizontal);
+    bool IsHorizontalScroll();
     void PageUp();
     void PageDown();
     bool IsIdle();
@@ -127,5 +129,6 @@ private:
     Font *FontInst;
     std::string LayoutKey;
     std::string ImageType;
+    bool HorizontalScroll;
 };
 

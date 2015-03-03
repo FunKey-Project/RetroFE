@@ -335,6 +335,13 @@ void Page::SetScrolling(ScrollDirection direction)
     ActiveMenu->SetScrollDirection(menuDirection);
 }
 
+bool Page::IsHorizontalScroll()
+{
+   if(!ActiveMenu) { return false; }
+
+   return ActiveMenu->IsHorizontalScroll();
+}
+
 void Page::PageScroll(ScrollDirection direction)
 {
     if(ActiveMenu)

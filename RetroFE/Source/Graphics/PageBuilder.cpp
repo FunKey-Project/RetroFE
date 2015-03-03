@@ -580,6 +580,7 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
     xml_attribute<> *menuTypeXml = menuXml->first_attribute("type");
     xml_attribute<> *scrollTimeXml = menuXml->first_attribute("scrollTime");
     xml_attribute<> *scrollAccelerationXml = menuXml->first_attribute("scrollAcceleration");
+    xml_attribute<> *scrollOrientationXml = menuXml->first_attribute("scrollOrientation");
 
     if(menuTypeXml)
     {
@@ -610,6 +611,15 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
     if(scrollAccelerationXml)
     {
         menu->SetScrollAcceleration(Utils::ConvertFloat(scrollAccelerationXml->value()));
+    }
+
+    if(scrollOrientationXml)
+    {
+        std::string scrollOrientation = scrollOrientationXml->value();
+	if(scrollOrientation == "horizontal")
+        {
+        	menu->SetScrollOrientation(true);
+        }
     }
 
     ViewInfo *v = menu->GetBaseViewInfo();

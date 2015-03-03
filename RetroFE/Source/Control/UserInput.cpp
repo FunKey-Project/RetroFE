@@ -31,8 +31,23 @@ bool UserInput::Initialize()
 {
     bool retVal = true;
 
-    retVal = MapKey("nextItem", KeyCodeNextItem) && retVal;
-    retVal = MapKey("previousItem", KeyCodePreviousItem) && retVal;
+    if(!MapKey("up", KeyCodeUp))
+    {
+        retVal = MapKey("previousItem", KeyCodeUp) && retVal;
+    }
+    if(!MapKey("left", KeyCodeLeft))
+    {
+        retVal = MapKey("previousItem", KeyCodeLeft) && retVal;
+    }
+    if(!MapKey("down", KeyCodeDown))
+    {
+        retVal = MapKey("nextItem", KeyCodeDown) && retVal;
+    }
+    if(!MapKey("right", KeyCodeRight))
+    {
+        retVal = MapKey("nextItem", KeyCodeRight) && retVal;
+    }
+
     retVal = MapKey("pageDown", KeyCodePageDown) && retVal;
     retVal = MapKey("pageUp", KeyCodePageUp) && retVal;
     retVal = MapKey("select", KeyCodeSelect) && retVal;

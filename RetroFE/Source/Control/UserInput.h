@@ -25,8 +25,10 @@ class UserInput
 public:
     enum KeyCode_E
     {
-        KeyCodeNextItem,
-        KeyCodePreviousItem,
+        KeyCodeUp,
+        KeyCodeDown,
+        KeyCodeLeft,
+        KeyCodeRight,
         KeyCodeSelect,
         KeyCodeBack,
         KeyCodePageDown,

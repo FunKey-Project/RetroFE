@@ -58,6 +58,7 @@ public:
     void StartComponents();
     void Stop();
     void SetScrolling(ScrollDirection direction);
+    bool IsHorizontalScroll();
     unsigned int GetMenuDepth();
     Item *GetSelectedItem();
     Item *GetPendingSelectedItem();
