@@ -79,7 +79,7 @@ bool ImportConfiguration(Configuration *c)
 
     if(dp == NULL)
     {
-        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not read directory \"" + launchersPath + "\"");
+        Logger::Write(Logger::ZONE_NOTICE, "RetroFE", "Could not read directory \"" + launchersPath + "\"");
         return false;
     }
 

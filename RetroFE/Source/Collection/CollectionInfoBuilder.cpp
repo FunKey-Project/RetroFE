@@ -61,14 +61,14 @@ CollectionInfo *CollectionInfoBuilder::BuildCollection(std::string name)
     if(!Conf.GetProperty(launcherKey, launcherName))
     {
         std::stringstream ss;
-        ss        << "Warning: launcher property  \""
+        ss        << "\""
                   << launcherKey
                   << "\" points to a launcher that is not configured (launchers."
                   << launcherName
                   << "). Your collection will be viewable, however you will not be able to "
                   << "launch any of the items in your collection.";
 
-        Logger::Write(Logger::ZONE_WARNING, "Collections", ss.str());
+        Logger::Write(Logger::ZONE_NOTICE, "Collections", ss.str());
     }
 
     CollectionInfo *collection = new CollectionInfo(name, listItemsPath, extensions, metadataType, metadataPath);
@@ -129,13 +129,13 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
     info->GetExtensions(extensions);
 
     (void)Conf.GetProperty("collections." + info->GetName() + ".launcher", launcher);
-    Logger::Write(Logger::ZONE_ERROR, "CollectionInfoBuilder", "Check path " + includeFile);
+    Logger::Write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Checking for \"" + includeFile + "\"");
 
     dp = opendir(path.c_str());
 
     if(dp == NULL)
     {
-        Logger::Write(Logger::ZONE_ERROR, "CollectionInfoBuilder", "Could not read directory \"" + path + "\"");
+        Logger::Write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Could not read directory \"" + path + "\". Ignore if this is a menu.");
         return false;
     }
 

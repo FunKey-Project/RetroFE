@@ -533,8 +533,6 @@ std::string Page::GetCollectionName()
 
 void Page::FreeGraphicsMemory()
 {
-    Logger::Write(Logger::ZONE_DEBUG, "Page", "Free");
-
     for(MenuVector_T::iterator it = Menus.begin(); it != Menus.end(); it++)
     {
         ScrollingList *menu = *it;

@@ -28,6 +28,7 @@ public:
     {
         ZONE_DEBUG,
         ZONE_INFO,
+        ZONE_NOTICE,
         ZONE_WARNING,
         ZONE_ERROR
 

@@ -41,7 +41,7 @@ bool SDL::Initialize(Configuration &config)
     int audioBuffers = 4096;
     bool hideMouse;
 
-    Logger::Write(Logger::ZONE_DEBUG, "SDL", "Initializing");
+    Logger::Write(Logger::ZONE_INFO, "SDL", "Initializing");
     if (retVal && SDL_Init(SDL_INIT_EVERYTHING) != 0)
     {
         std::string error = SDL_GetError();
@@ -140,9 +140,12 @@ bool SDL::Initialize(Configuration &config)
 
     if(retVal)
     {
+        std::string fullscreenStr = Fullscreen ? "yes" : "no";
         std::stringstream ss;
-        ss << "Creating "<< WindowWidth << "x" << WindowHeight << " window (fullscreen: " << Fullscreen << ")";
-        Logger::Write(Logger::ZONE_DEBUG, "SDL", ss.str());
+        ss << "Creating "<< WindowWidth << "x" << WindowHeight << " window (fullscreen: " 
+           << fullscreenStr << ")";
+
+        Logger::Write(Logger::ZONE_INFO, "SDL", ss.str());
 
         Window = SDL_CreateWindow("RetroFE",
                                   SDL_WINDOWPOS_CENTERED,
@@ -204,7 +207,7 @@ bool SDL::Initialize(Configuration &config)
 bool SDL::DeInitialize()
 {
     std::string error = SDL_GetError();
-    Logger::Write(Logger::ZONE_DEBUG, "SDL", "DeInitializing");
+    Logger::Write(Logger::ZONE_INFO, "SDL", "DeInitializing");
 
     Mix_CloseAudio();
     Mix_Quit();

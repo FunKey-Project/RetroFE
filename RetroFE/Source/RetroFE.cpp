@@ -168,6 +168,9 @@ bool RetroFE::DeInitialize()
 
     Initialized = false;
     //todo: handle video deallocation
+
+    Logger::Write(Logger::ZONE_INFO, "RetroFE", "Exiting");
+
     return retVal;
 }
 
@@ -481,11 +484,6 @@ CollectionInfo *RetroFE::GetCollection(std::string collectionName)
 
     CollectionInfoBuilder cib(Config, *MetaDb);
     CollectionInfo *collection = cib.BuildCollection(collectionName);
-
-    if(collection->GetItems()->size() == 0)
-    {
-        Logger::Write(Logger::ZONE_WARNING, "RetroFE", "No list items found for collection " + collectionName);
-    }
 
     return collection;
 }

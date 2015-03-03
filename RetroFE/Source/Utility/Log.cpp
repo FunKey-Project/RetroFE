@@ -58,6 +58,9 @@ void Logger::Write(Zone zone, std::string component, std::string message)
     case ZONE_DEBUG:
         zoneStr = "DEBUG";
         break;
+    case ZONE_NOTICE:
+        zoneStr = "NOTICE";
+        break;
     case ZONE_WARNING:
         zoneStr = "WARNING";
         break;

@@ -126,9 +126,6 @@ Page *PageBuilder::BuildPage()
                 FontName = Config.ConvertToAbsolutePath(
                            Config.GetAbsolutePath() + "/layouts/" + LayoutKey + "/",
                            fontXml->value());
-
-                Logger::Write(Logger::ZONE_DEBUG, "Layout", "Layout font set to " + FontName);
-
             }
 
             if(fontColorXml)
@@ -164,7 +161,7 @@ Page *PageBuilder::BuildPage()
 
             std::stringstream ss;
             ss << layoutWidth << "x" << layoutHeight << " (scale " << ScaleX << "x" << ScaleY << ")";
-            Logger::Write(Logger::ZONE_DEBUG, "Layout", "Layout resolution " + ss.str());
+            Logger::Write(Logger::ZONE_INFO, "Layout", "Layout resolution " + ss.str());
 
             page = new Page(Config);
 
@@ -232,10 +229,12 @@ Page *PageBuilder::BuildPage()
 
     if(page)
     {
-        Logger::Write(Logger::ZONE_DEBUG, "Layout", "Created page");
+        Logger::Write(Logger::ZONE_INFO, "Layout", "Initialized");
     }
-
-    Logger::Write(Logger::ZONE_INFO, "Layout", "Initialized");
+    else
+    {
+        Logger::Write(Logger::ZONE_ERROR, "Layout", "Could not initialize layout (see previous messages for reason)");
+    }
 
     return page;
 }
