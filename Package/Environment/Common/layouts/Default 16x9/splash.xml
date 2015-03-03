@@ -1,10 +1,10 @@
-<layout width="1920" height="1080" font="Roboto-Bold.ttf" loadFontSize="32" fontColor="dedede">
+<layout width="1920" height="1080" font="LoveloBlack.otf" loadFontSize="32" fontColor="dedede">
    
 <!--backgroundImage-->
   <image src="bkgnd.png" x="0" y="0" height="stretch" width="stretch" layer="0"/>
 
    <!-- logo -->
-   <image x="center" y="center" height="150" xOrigin="center" yOrigin="center" src="logo.png" layer="1" alpha="1">
+   <image x="center" y="center" height="400" xOrigin="center" yOrigin="center" src="logo.png" layer="1" alpha="1">
       <onEnter>
          <set duration=".5">
             <animate type="alpha" from="1" to="1" algorithm="easeinquadratic"/>
@@ -24,7 +24,7 @@
          </set>
       </onExit>
    </image>
-
+   <!-- Text shown when creating meta.db. This will only show once unless meta.db does not exsist -->
    <statusText x="0" y="bottom" xOffset="20" yOrigin="center" yOffset="-175" height="150" width="stretch" fontSize="25" layer="2" />
       
 

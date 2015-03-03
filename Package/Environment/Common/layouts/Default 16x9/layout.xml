@@ -1,4 +1,4 @@
-<layout width="1920" height="1080" font="Roboto-Bold.ttf" loadFontSize="64" fontColor="dedede">
+<layout width="1920" height="1080" font="Roboto-Bold.ttf" loadFontSize="32" fontColor="EEEEEEE">
     <sound type="load" src="load.wav" />
     <sound type="unload" src="unload.wav" />
     <sound type="highlight" src="highlight.wav" />
@@ -237,7 +237,7 @@
         </onMenuExit>
 	</reloadableImage>
 
-	<reloadableImage type="manufacturer" alpha="0" xOffset="-282" yOffset="260" x="center" y="center" xOrigin="center" yOrigin="center" layer="6">
+	<reloadableImage type="device" alpha="0" xOffset="-282" yOffset="260" height="200" x="center" y="center" xOrigin="center" yOrigin="center" layer="6">
         <onMenuEnter menuIndex="1">
             <set duration=".2">
                 <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
@@ -365,28 +365,5 @@
             </set>
         </onHighlightExit>
     </reloadableVideo>
-<!--
-    <reloadableImage type="snaps" x="0" y="-174" height="1440" layer="1">
-        <onMenuEnter menuIndex="1">
-            <set duration=".25">
-                <animate type="alpha" from="0" to=".1" algorithm="easeincircular"/>
-            </set>
-        </onMenuEnter>
-        <onMenuExit menuIndex="1">
-            <set duration=".25">
-                <animate type="alpha" from=".1" to="0" algorithm="easeincircular"/>
-            </set>
-        </onMenuExit>
-        <onHighlightEnter menuIndex="1">
-            <set duration=".25">
-                <animate type="alpha" from="0" to=".1" algorithm="easeinquadratic"/>
-            </set>
-        </onHighlightEnter>
-        <onHighlightExit menuIndex="1">
-            <set duration=".25">
-                <animate type="alpha" from=".1" to="0" algorithm="easeinquadratic"/>
-            </set>
-        </onHighlightExit>
-    </reloadableImage>
--->
+
 </layout>
