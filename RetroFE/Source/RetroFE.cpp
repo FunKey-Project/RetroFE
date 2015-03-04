@@ -39,9 +39,11 @@
 
 RetroFE::RetroFE(Configuration &c)
     : Initialized(false)
+    , InitializeError(false)
     , InitializeThread(NULL)
     , Config(c)
     , Db(NULL)
+    , MetaDb(NULL)
     , Input(Config)
     , CurrentPage(NULL)
     , KeyInputDisable(0)
@@ -75,13 +77,19 @@ int RetroFE::Initialize(void *context)
 
     Logger::Write(Logger::ZONE_INFO, "RetroFE", "Initializing");
 
-    if(!instance->Input.Initialize()) return -1;
+    if(!instance->Input.Initialize()) 
+    { 
+        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize user controls");
+        instance->InitializeError = true;
+        return -1;
+    }
 
     instance->Db = new DB(Configuration::GetAbsolutePath() + "/meta.db");
 
     if(!instance->Db->Initialize())
     {
         Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize database");
+        instance->InitializeError = true;
         return -1;
     }
 
@@ -90,6 +98,7 @@ int RetroFE::Initialize(void *context)
     if(!instance->MetaDb->Initialize())
     {
         Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize meta database");
+        instance->InitializeError = true;
         return -1;
     }
 
@@ -243,12 +252,19 @@ void RetroFE::Run()
                 (void)SDL_PollEvent(&e);
             }
 
-            if(Initialized && splashMode && CurrentPage->GetMinShowTime() <= (CurrentTime - preloadTime))
+            if((Initialized || InitializeError) && splashMode && CurrentPage->GetMinShowTime() <= (CurrentTime - preloadTime))
             {
                 SDL_WaitThread(InitializeThread, &initializeStatus);
 
+                if(InitializeError)
+                {
+                    state = RETROFE_QUIT_REQUEST;
+                    break;
+                }
+
                 // delete the splash screen and use the standard menu
                 delete CurrentPage;
+
                 CurrentPage = LoadPage();
                 splashMode = false;
                 if(CurrentPage)

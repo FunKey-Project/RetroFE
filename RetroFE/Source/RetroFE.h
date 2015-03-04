@@ -44,6 +44,7 @@ public:
     void LaunchExit();
 private:
     volatile bool Initialized;
+    volatile bool InitializeError;
     SDL_Thread *InitializeThread;
     static int Initialize(void *context);
 
