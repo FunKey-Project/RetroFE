@@ -22,6 +22,14 @@
 #include "../Utility/Log.h"
 #include "../Utility/Utils.h"
 #include <dirent.h>
+
+#ifdef __linux
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <errno.h>
+#include <cstring>
+#endif
+
 #include <sstream>
 #include <vector>
 #include <fstream>
@@ -72,7 +80,7 @@ bool CollectionInfoBuilder::CreateCollectionDirectory(std::string name)
 #else 
         if(mkdir(it->c_str(), 0644) == -1)
         {
-           std::cout << "Could not create folder \"" << *it << "\" error: " << errno << std::endl;
+           std::cout << "Could not create folder \"" << *it << "\":" << strerror(errno) << std::endl;
         }
     #endif
     }
