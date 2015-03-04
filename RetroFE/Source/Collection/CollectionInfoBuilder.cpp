@@ -85,23 +85,29 @@ bool CollectionInfoBuilder::CreateCollectionDirectory(std::string name)
     #endif
     }
 
+    std::string filename = collectionPath + "/include.txt";
+    std::cout << "Creating file \"" << filename << "\"" << std::endl;
+
     std::ofstream includeFile;
-    std::cout << "Creating file \"" << collectionPath + "/include.txt" << "\"" << std::endl;
-    includeFile.open(collectionPath + "/include.txt");
+    includeFile.open(filename.c_str());
     includeFile << "# Add a list of files to show on the menu (one filename per line, without the extension)." << std::endl;
     includeFile << "# If no items are in this list then all files in the folder specified" << std::endl;
     includeFile << "# by settings.conf will be used" << std::endl;
     includeFile.close();
 
+    filename = collectionPath + "/exclude.txt";
+    std::cout << "Creating file \"" << filename << "\"" << std::endl;
     std::ofstream excludeFile;
-    std::cout << "Creating file \"" << collectionPath + "/exclude.txt" << "\"" << std::endl;
-    excludeFile.open(collectionPath + "/exclude.txt");
+    excludeFile.open(filename.c_str());
+
     includeFile << "# Add a list of files to hide on the menu (one filename per line, without the extension)." << std::endl;
     excludeFile.close();
 
+    filename = collectionPath + "/settings.conf";
+    std::cout << "Creating file \"" << filename << "\"" << std::endl;
     std::ofstream settingsFile;
-    std::cout << "Creating file \"" << collectionPath + "/settings.conf" << "\"" << std::endl;
-    settingsFile.open(collectionPath + "/settings.conf");
+    settingsFile.open(filename.c_str());
+
     settingsFile << "# Uncomment and edit the following line to use a different ROM path." << std::endl;
     settingsFile << "#list.path = %BASE_ITEM_PATH%/%ITEM_COLLECTION_NAME%/roms" << std::endl;
     settingsFile << "list.extensions = zip" << std::endl;
@@ -120,9 +126,10 @@ bool CollectionInfoBuilder::CreateCollectionDirectory(std::string name)
     settingsFile << "#media.video         = %BASE_MEDIA_PATH%/%ITEM_COLLECTION_NAME%/medium_artwork/video" << std::endl;
     settingsFile.close();
 
+    filename = collectionPath + "/menu.xml";
+    std::cout << "Creating file \"" << filename << "\"" << std::endl;
     std::ofstream menuFile;
-    std::cout << "Creating file \"" << collectionPath + "/menu.xml" << "\"" << std::endl;
-    menuFile.open(collectionPath + "/menu.xml");
+    menuFile.open(filename.c_str());
 
     menuFile << "<menu>" << std::endl;
     menuFile << std::endl;
