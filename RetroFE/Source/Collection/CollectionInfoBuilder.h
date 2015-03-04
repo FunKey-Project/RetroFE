@@ -30,6 +30,7 @@ public:
     CollectionInfoBuilder(Configuration &c, MetadataDatabase &mdb);
     virtual ~CollectionInfoBuilder();
     CollectionInfo *BuildCollection(std::string collectionName);
+    static bool CreateCollectionDirectory(std::string collectionName);
 
 private:
     Configuration &Conf;

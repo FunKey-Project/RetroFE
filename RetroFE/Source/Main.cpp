@@ -15,6 +15,7 @@
  */
 
 #include "Database/Configuration.h"
+#include "Collection/CollectionInfoBuilder.h"
 #include "Execute/Launcher.h"
 #include "Utility/Log.h"
 #include "Utility/Utils.h"
@@ -27,9 +28,8 @@
 static bool ImportConfiguration(Configuration *c);
 static bool StartLogging();
 
-int main(int /* argc */, char ** /* argv */)
+int main(int argc, char **argv)
 {
-
     Configuration::Initialize();
 
     Configuration config;
@@ -38,6 +38,21 @@ int main(int /* argc */, char ** /* argv */)
     {
         return -1;
     }
+
+    // check to see if createcollection was requested
+    if(argc == 3)
+    {
+        std::string param = argv[1];
+        std::string value = argv[2];
+
+        if(param == "-createcollection")
+        {
+            CollectionInfoBuilder::CreateCollectionDirectory(value);
+        }
+
+        return 0;
+    }
+
 
     if(!ImportConfiguration(&config))
     {

@@ -24,6 +24,7 @@
 #include <dirent.h>
 #include <sstream>
 #include <vector>
+#include <fstream>
 #include <algorithm>
 
 CollectionInfoBuilder::CollectionInfoBuilder(Configuration &c, MetadataDatabase &mdb)
@@ -34,6 +35,100 @@ CollectionInfoBuilder::CollectionInfoBuilder(Configuration &c, MetadataDatabase 
 
 CollectionInfoBuilder::~CollectionInfoBuilder()
 {
+}
+
+bool CollectionInfoBuilder::CreateCollectionDirectory(std::string name)
+{
+    std::string collectionPath = Configuration::GetAbsolutePath() + "/collections/" + name;
+
+    std::vector<std::string> paths;
+    paths.push_back(collectionPath);
+    paths.push_back(collectionPath + "/medium_artwork");
+    paths.push_back(collectionPath + "/medium_artwork/artwork_back");
+    paths.push_back(collectionPath + "/medium_artwork/artwork_front");
+    paths.push_back(collectionPath + "/medium_artwork/bezel");
+    paths.push_back(collectionPath + "/medium_artwork/logo");
+    paths.push_back(collectionPath + "/medium_artwork/medium_back");
+    paths.push_back(collectionPath + "/medium_artwork/medium_front");
+    paths.push_back(collectionPath + "/medium_artwork/screenshot");
+    paths.push_back(collectionPath + "/medium_artwork/screentitle");
+    paths.push_back(collectionPath + "/medium_artwork/video");
+    paths.push_back(collectionPath + "/roms");
+    paths.push_back(collectionPath + "/system_artwork");
+
+    for(std::vector<std::string>::iterator it = paths.begin(); it != paths.end(); it++)
+    {
+        std::cout << "Creating folder \"" << *it << "\"" << std::endl;
+
+#if defined(_WIN32)
+        if(!CreateDirectory(it->c_str(), NULL))
+        {
+            if(ERROR_ALREADY_EXISTS != GetLastError())
+            {
+                std::cout << "Could not create folder \"" << *it << "\"" << std::endl;
+                return false;
+            }
+        }
+#else 
+        if(mkdir(it->c_str(), 0644) == -1)
+        {
+           std::cout << "Could not create folder \"" << *it << "\" error: " << errno << std::endl;
+        }
+    #endif
+    }
+
+    std::ofstream includeFile;
+    std::cout << "Creating file \"" << collectionPath + "/include.txt" << "\"" << std::endl;
+    includeFile.open(collectionPath + "/include.txt");
+    includeFile << "# Add a list of files to show on the menu (one filename per line, without the extension)." << std::endl;
+    includeFile << "# If no items are in this list then all files in the folder specified" << std::endl;
+    includeFile << "# by settings.conf will be used" << std::endl;
+    includeFile.close();
+
+    std::ofstream excludeFile;
+    std::cout << "Creating file \"" << collectionPath + "/exclude.txt" << "\"" << std::endl;
+    excludeFile.open(collectionPath + "/exclude.txt");
+    includeFile << "# Add a list of files to hide on the menu (one filename per line, without the extension)." << std::endl;
+    excludeFile.close();
+
+    std::ofstream settingsFile;
+    std::cout << "Creating file \"" << collectionPath + "/settings.conf" << "\"" << std::endl;
+    settingsFile.open(collectionPath + "/settings.conf");
+    settingsFile << "# Uncomment and edit the following line to use a different ROM path." << std::endl;
+    settingsFile << "#list.path = %BASE_ITEM_PATH%/%ITEM_COLLECTION_NAME%/roms" << std::endl;
+    settingsFile << "list.extensions = zip" << std::endl;
+    settingsFile << "launcher = mame" << std::endl;
+    settingsFile << "metadata.type = MAME" << std::endl;
+    settingsFile << std::endl;
+    settingsFile << "#media.screenshot    = %BASE_MEDIA_PATH%/%ITEM_COLLECTION_NAME%/medium_artwork/screenshot" << std::endl;
+    settingsFile << "#media.screentitle   = %BASE_MEDIA_PATH%/%ITEM_COLLECTION_NAME%/medium_artwork/screentitle" << std::endl;
+    settingsFile << "#media.artwork_back  = %BASE_MEDIA_PATH%/%ITEM_COLLECTION_NAME%/medium_artwork/artwork_back" << std::endl;
+    settingsFile << "#media.artwork_front = %BASE_MEDIA_PATH%/%ITEM_COLLECTION_NAME%/medium_artwork/artwork_front" << std::endl;
+    settingsFile << "#media.logo          = %BASE_MEDIA_PATH%/%ITEM_COLLECTION_NAME%/medium_artwork/logo" << std::endl;
+    settingsFile << "#media.medium_back   = %BASE_MEDIA_PATH%/%ITEM_COLLECTION_NAME%/medium_artwork/medium_back" << std::endl;
+    settingsFile << "#media.medium_front  = %BASE_MEDIA_PATH%/%ITEM_COLLECTION_NAME%/medium_artwork/medium_front" << std::endl;
+    settingsFile << "#media.screenshot    = %BASE_MEDIA_PATH%/%ITEM_COLLECTION_NAME%/medium_artwork/screenshot" << std::endl;
+    settingsFile << "#media.screentitle   = %BASE_MEDIA_PATH%/%ITEM_COLLECTION_NAME%/medium_artwork/screentitle" << std::endl;
+    settingsFile << "#media.video         = %BASE_MEDIA_PATH%/%ITEM_COLLECTION_NAME%/medium_artwork/video" << std::endl;
+    settingsFile.close();
+
+    std::ofstream menuFile;
+    std::cout << "Creating file \"" << collectionPath + "/menu.xml" << "\"" << std::endl;
+    menuFile.open(collectionPath + "/menu.xml");
+
+    menuFile << "<menu>" << std::endl;
+    menuFile << std::endl;
+    menuFile << "<!-- uncomment this line and edit the example below to have a submenu" << std::endl;
+    menuFile << std::endl;
+    menuFile << "    <item collection=\"Some collection name\"/>" << std::endl;
+    menuFile << "    <item collection=\"Arcade\"/>" << std::endl;
+    menuFile << std::endl;
+    menuFile << "uncomment this line and edit the example above to have a submenu -->" << std::endl;
+    menuFile << std::endl;
+    menuFile << "</menu>" << std::endl;
+    menuFile.close();
+
+    return true;
 }
 
 CollectionInfo *CollectionInfoBuilder::BuildCollection(std::string name)
