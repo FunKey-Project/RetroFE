@@ -113,6 +113,7 @@ Page *PageBuilder::BuildPage()
             xml_attribute<> *fontXml = root->first_attribute("font");
             xml_attribute<> *fontColorXml = root->first_attribute("fontColor");
             xml_attribute<> *fontSizeXml = root->first_attribute("loadFontSize");
+            xml_attribute<> *minShowTimeXml = root->first_attribute("minShowTime");
 
             int layoutHeight;
             int layoutWidth;
@@ -164,6 +165,11 @@ Page *PageBuilder::BuildPage()
             Logger::Write(Logger::ZONE_INFO, "Layout", "Layout resolution " + ss.str());
 
             page = new Page(Config);
+
+            if(minShowTimeXml) 
+            {
+                page->SetMinShowTime(Utils::ConvertFloat(minShowTimeXml->value()));
+            }
 
             // load sounds
             for(xml_node<> *sound = root->first_node("sound"); sound; sound = sound->next_sibling("sound"))

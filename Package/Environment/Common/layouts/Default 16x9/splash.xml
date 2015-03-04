@@ -1,4 +1,4 @@
-<layout width="1920" height="1080" font="LoveloBlack.otf" loadFontSize="32" fontColor="dedede">
+<layout width="1920" height="1080" font="LoveloBlack.otf" loadFontSize="32" fontColor="dedede"  minShowTime="2">
    
 <!--backgroundImage-->
   <image src="bkgnd.png" x="0" y="0" height="stretch" width="stretch" layer="0"/>

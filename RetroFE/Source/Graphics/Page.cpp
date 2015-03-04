@@ -40,6 +40,7 @@ Page::Page(Configuration &config)
     , SelectSoundChunk(NULL)
     , HasSoundedWhenActive(false)
     , FirstSoundPlayed(false)
+    , MinShowTime(0)
 {
 }
 
@@ -286,6 +287,15 @@ void Page::RemoveSelectedItem()
 
 }
 
+void Page::SetMinShowTime(float value)
+{
+    MinShowTime = value;
+}
+
+float Page::GetMinShowTime()
+{
+    return MinShowTime;
+}
 
 void Page::Highlight()
 {

@@ -179,7 +179,7 @@ void RetroFE::Run()
     if(!SDL::Initialize(Config)) return;
 
     FC.Initialize();
-
+    float preloadTime = 0;
     bool videoEnable = true;
     int videoLoop = 0;
     Config.GetProperty("videoEnable", videoEnable);
@@ -215,6 +215,7 @@ void RetroFE::Run()
     bool splashMode = true;
 
     Launcher l(*this, Config);
+    preloadTime = static_cast<float>(SDL_GetTicks()) / 1000;
 
     while (running)
     {
@@ -242,7 +243,7 @@ void RetroFE::Run()
                 (void)SDL_PollEvent(&e);
             }
 
-            if(Initialized && splashMode)
+            if(Initialized && splashMode && CurrentPage->GetMinShowTime() <= (CurrentTime - preloadTime))
             {
                 SDL_WaitThread(InitializeThread, &initializeStatus);
 
@@ -317,7 +318,7 @@ void RetroFE::Run()
         if(running)
         {
             lastTime = CurrentTime;
-            CurrentTime = (float)SDL_GetTicks() / 1000;
+            CurrentTime = static_cast<float>(SDL_GetTicks()) / 1000;
 
             if (CurrentTime < lastTime)
             {

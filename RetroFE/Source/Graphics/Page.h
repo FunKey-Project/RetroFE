@@ -73,6 +73,8 @@ public:
     void LaunchEnter();
     void LaunchExit();
     std::string GetCollectionName();
+    void SetMinShowTime(float value);
+    float GetMinShowTime();
 
 private:
     void Highlight();
@@ -100,6 +102,8 @@ private:
     Sound *SelectSoundChunk;
     bool HasSoundedWhenActive;
     bool FirstSoundPlayed;
+    float MinShowTime;
+    float ElapsedTime;
 
 
 };
