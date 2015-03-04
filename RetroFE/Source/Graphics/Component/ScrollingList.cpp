@@ -90,6 +90,7 @@ ScrollingList::ScrollingList(const ScrollingList &copy)
     , FontInst(copy.FontInst)
     , LayoutKey(copy.LayoutKey)
     , ImageType(copy.ImageType)
+    , HorizontalScroll(copy.HorizontalScroll)
 {
 
     ScrollPoints = NULL;
