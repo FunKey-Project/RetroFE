@@ -256,10 +256,13 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
         Utils::NormalizeBackSlashes(file);
         size_t position = file.find_last_of(".");
         std::string basename = (std::string::npos == position)? file : file.substr(0, position);
-
+        
+        // if there is an include list, only include roms that are found and are in the include list
+        // if there is an exclude list, exclude those roms
         if((includeFilter.size() == 0 || includeFilter.find(basename) != includeFilter.end()) &&
                 (excludeFilter.size() == 0 || excludeFilter.find(basename) == excludeFilter.end()))
         {
+            // iterate through all known file extensions
             for(extensionsIt = extensions.begin(); extensionsIt != extensions.end(); ++extensionsIt)
             {
                 std::string comparator = "." + *extensionsIt;
