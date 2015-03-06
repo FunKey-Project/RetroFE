@@ -143,7 +143,7 @@ if args.os == 'windows':
   
 elif args.os == 'linux':
   if args.build == 'full' or args.build == 'core' or args.build == 'engine':
-    src_exe = os.path.join(base_path, 'RetroFE', 'Source', 'Build', 'retrofe')
+    src_exe = os.path.join(base_path, 'RetroFE', 'Build', 'retrofe')
     shutil.copy(src_exe, output_path)
 
 
