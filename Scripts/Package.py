@@ -113,7 +113,7 @@ elif args.build == 'layout':
 if args.os == 'windows':
   if args.build == 'full' or args.build == 'core' or args.build == 'engine':
     # copy retrofe.exe to core folder
-    src_exe = os.path.join(base_path, 'RetroFE', 'Build', 'Debug', 'retrofe.exe')
+    src_exe = os.path.join(base_path, 'RetroFE', 'Build', 'Release', 'retrofe.exe')
     core_path = os.path.join(output_path, 'core')
     
     # create the core folder
