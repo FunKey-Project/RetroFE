@@ -19,12 +19,12 @@
   <menu orientation="vertical" scrollTime=".24" scrollAcceleration=".04" algorithm="easeincircular" x="0" y="862" width="1600" height="245">
     <itemDefaults x="center" height="35" xOrigin="800" width="333" maxWidth="1418" fontSize="35" alpha="0.5" layer="1">
       <onMenuExit>
-        <set duration=".2">
+        <set duration=".3">
           <animate type="alpha" from="0.5" to="0" algorithm="easeincircular"/>
         </set>
       </onMenuExit>
       <onMenuEnter>
-        <set duration=".2">
+        <set duration=".3">
            <animate type="alpha" from="0" to="0.5" algorithm="easeincircular"/>
         </set>
       </onMenuEnter>
@@ -33,12 +33,12 @@
     <item index="end" spacing="0" alpha="0" height="0"/>
     <item index="3" spacing="2" height="53" fontSize="53" alpha="1" selected="true">
       <onMenuExit>
-        <set duration=".2">
+        <set duration=".3">
            <animate type="alpha" from="1" to="0" algorithm="easeincircular"/>
         </set>
       </onMenuExit>
       <onMenuEnter>
-        <set duration=".2">
+        <set duration=".3">
            <animate type="alpha" from="0" to="1" algorithm="easeincircular"/>
         </set>
       </onMenuEnter>
@@ -48,13 +48,24 @@
 
   <!-- Reloadable items -->
 
-  <reloadableVideo imageType="screenshot"      x="498"  y="578" xOrigin="center" yOrigin="center" height="400"    maxWidth="667" layer="2"/>
+  <reloadableVideo imageType="screenshot"      x="498"  y="578" xOrigin="center" yOrigin="center" height="400"    maxWidth="667" layer="2">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableVideo>
 
   <reloadableImage type="device"               x="1258" y="355" xOrigin="center" yOrigin="center" height="362"    maxWidth="360" layer="3"/>
   <reloadableImage type="device" mode="system" x="1258" y="355" xOrigin="center" yOrigin="center" height="362"    maxWidth="360" layer="3"/>
 
 
-  <reloadableImage type="logo"                 x="498"  y="332" xOrigin="center" yOrigin="top"    maxHeight="222" maxWidth="168" layer="4" alpha="0">
+  <reloadableImage type="logo"                 x="498"  y="390" xOrigin="center" yOrigin="bottom" maxHeight="222" maxWidth="168" layer="4" alpha="0">
     <onIdle>
       <set duration="1">
         <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
@@ -63,11 +74,6 @@
         <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
       </set>
     </onIdle>
-    <onExit>
-      <set duration="0.1">
-        <animate type="alpha" to="0" algorithm="easeinquadratic"/>
-      </set>
-    </onExit>
   </reloadableImage>
 
   <reloadableText type="year"                  x="1020" y="790" xOrigin="center" fontSize="48"   maxWidth="168" layer="6"/>
