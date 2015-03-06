@@ -67,7 +67,7 @@ elif args.os == 'linux':
 #####################################################################
 # Copy layers, artwork, config files, etc for the given os
 #####################################################################
-output_path = os.path.join(base_path, 'artifacts', args.os, 'RetroFE')
+output_path = os.path.join(base_path, 'Artifacts', args.os, 'RetroFE')
 
 if os.path.exists(output_path) and hasattr(args, 'clean'):
   shutil.rmtree(output_path)
