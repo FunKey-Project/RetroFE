@@ -40,13 +40,13 @@ gstreamer_path = None
 # windows needs a gstreamer path set
 if args.os == 'windows':
   if not hasattr(args, 'gstreamer_path'):
-    print 'missing argument --gstreamer_path '
+    print('missing argument --gstreamer_path')
     sys.exit(-1)
     
   gstreamer_path = args.gstreamer_path
   
   if not os.path.exists(gstreamer_path):
-    print 'could not find gstreamer libraries: ' + gstreamer_path
+    print('could not find gstreamer libraries: ' + gstreamer_path)
     sys.exit(-1)
 
 
