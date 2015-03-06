@@ -12,14 +12,16 @@
 
   <!-- Background image -->
 
-  <image src="mamedbg.jpg" x="0" y="0" height="stretch" width="stretch" layer="0"/>
+  <image src="mamedbg.png" x="0" y="0" height="stretch" width="stretch" layer="0"/>
 
 
 
   <!--Menu structure-->
 
-  <menu orientation="vertical" scrollTime=".24" scrollAcceleration=".04" algorithm="easeincircular" x="0" y="775" width="1920" height="220">
-    <itemDefaults x="center" height="32" xOrigin="960" width="400" maxWidth="1700" fontSize="32" alpha="0.5" layer="1">
+  <menu orientation="vertical" scrollTime=".24" scrollAcceleration=".04" algorithm="easeincircular" x="0"
+  y="770" width="1920" height="220">
+    <itemDefaults x="center" height="32" xOrigin="960" width="400" maxWidth="1700"
+    fontSize="35" alpha="0.5" layer="1">
       <onMenuExit>
         <set duration=".1">
           <animate type="alpha" from="0.5" to="0" algorithm="easeincircular"/>
@@ -33,7 +35,19 @@
     </itemDefaults>
     <item index="start" spacing="0" alpha="0" height="0"/>
     <item index="end" spacing="0" alpha="0" height="0"/>
-    <item index="3" spacing="2" height="48" fontSize="48" alpha="1" selected="true">
+    <item index="2" spacing="6">
+      <onMenuExit>
+        <set duration=".1">
+          <animate type="alpha" from="0.5" to="0" algorithm="easeincircular"/>
+        </set>
+      </onMenuExit>
+      <onMenuEnter>
+        <set duration=".1">
+           <animate type="alpha" from="0" to="0.5" algorithm="easeincircular"/>
+        </set>
+      </onMenuEnter>
+    </item>
+    <item index="3" spacing="4" height="48" fontSize="48" alpha="1" selected="true">
       <onMenuExit>
         <set duration=".1">
            <animate type="alpha" from="1" to="0" algorithm="easeincircular"/>
@@ -116,11 +130,11 @@
   </reloadableImage>
 
 
-  <reloadableText type="year"                   x="1220" y="712" xOrigin="center" fontSize="40"   maxWidth="200" layer="6"/>
+  <reloadableText type="year"                   x="1225" y="705" xOrigin="center" fontSize="40"   maxWidth="200" layer="6"/>
 
-  <reloadableText type="manufacturer"           x="1800" y="712" xOrigin="right"  fontSize="40"   maxWidth="500" layer="6"/>
+  <reloadableText type="manufacturer"           x="1800" y="705" xOrigin="right"  fontSize="40"   maxWidth="500" layer="6"/>
 
-  <reloadableText type="genre"                  x="1520" y="656" xOrigin="center" fontSize="40"   maxWidth="550" layer="6"/>
+  <reloadableText type="genre"                  x="1520" y="645" xOrigin="center" fontSize="40"   maxWidth="550" layer="6"/>
 
 
 </layout>
