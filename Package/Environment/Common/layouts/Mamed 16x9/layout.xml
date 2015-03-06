@@ -100,7 +100,18 @@
   </reloadableImage>
 
 
-  <reloadableImage type="device"                x="1510" y="319" xOrigin="center" yOrigin="center" height="326"    maxWidth="432" layer="3"/>
+  <reloadableImage type="device"                x="1510" y="319" xOrigin="center" yOrigin="center" height="326"    maxWidth="432" layer="3">
+    <onHighlightEnter menuIndex="0">
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit menuIndex="0">
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableImage>
   <reloadableImage type="device" mode="system"  x="1510" y="319" xOrigin="center" yOrigin="center" height="326"    maxWidth="432" layer="3"/>
 
 
