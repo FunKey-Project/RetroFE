@@ -61,7 +61,18 @@
     </onHighlightExit>
   </reloadableVideo>
 
-  <reloadableImage type="device"               x="1258" y="355" xOrigin="center" yOrigin="center" height="362"    maxWidth="360" layer="3"/>
+  <reloadableImage type="device"               x="1258" y="355" xOrigin="center" yOrigin="center" height="362"    maxWidth="360" layer="3">
+    <onHighlightEnter menuIndex="0">
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit menuIndex="0">
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableImage>
   <reloadableImage type="device" mode="system" x="1258" y="355" xOrigin="center" yOrigin="center" height="362"    maxWidth="360" layer="3"/>
 
 
