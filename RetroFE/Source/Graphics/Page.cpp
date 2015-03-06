@@ -38,8 +38,6 @@ Page::Page(Configuration &config)
     , UnloadSoundChunk(NULL)
     , HighlightSoundChunk(NULL)
     , SelectSoundChunk(NULL)
-    , HasSoundedWhenActive(false)
-    , FirstSoundPlayed(false)
     , MinShowTime(0)
 {
 }
@@ -324,6 +322,7 @@ void Page::Highlight()
 void Page::SetScrolling(ScrollDirection direction)
 {
     ScrollingList::ScrollDirection menuDirection;
+    bool prevScrollActive = ScrollActive;
 
     switch(direction)
     {
@@ -341,6 +340,12 @@ void Page::SetScrolling(ScrollDirection direction)
         ScrollActive = false;
         break;
     }
+
+    if(!prevScrollActive && ScrollActive && HighlightSoundChunk)
+    {
+        HighlightSoundChunk->Play();
+    }
+
 
     ActiveMenu->SetScrollDirection(menuDirection);
 }
@@ -486,22 +491,10 @@ void Page::Update(float dt)
         menu->Update(dt);
     }
 
-    if(SelectedItemChanged && !HasSoundedWhenActive && HighlightSoundChunk)
-    {
-        // skip the first sound being played (as it is part of the on-enter)
-        if(FirstSoundPlayed)
-        {
-            HighlightSoundChunk->Play();
-            HasSoundedWhenActive = true;
-        }
-        FirstSoundPlayed = true;
-    }
-
     if(SelectedItemChanged && !ScrollActive)
     {
         Highlight();
         SelectedItemChanged = false;
-        HasSoundedWhenActive = false;
     }
 
     if(TextStatusComponent)
@@ -572,7 +565,6 @@ void Page::FreeGraphicsMemory()
 
 void Page::AllocateGraphicsMemory()
 {
-    FirstSoundPlayed = false;
     Logger::Write(Logger::ZONE_DEBUG, "Page", "Allocating graphics memory");
 
     for(MenuVector_T::iterator it = Menus.begin(); it != Menus.end(); it++)

@@ -100,8 +100,6 @@ private:
     Sound *UnloadSoundChunk;
     Sound *HighlightSoundChunk;
     Sound *SelectSoundChunk;
-    bool HasSoundedWhenActive;
-    bool FirstSoundPlayed;
     float MinShowTime;
     float ElapsedTime;
 
