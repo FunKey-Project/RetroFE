@@ -1,4 +1,5 @@
 import argparse
+import errno
 import glob
 import os
 import shutil
@@ -13,7 +14,13 @@ def copytree(src, dst):
                    os.path.join(dst, name))
   else:
       shutil.copyfile(src, dst)
-
+      
+def mkdir_p(path):
+    try:
+        os.makedirs(path)
+    except OSError as exception:
+        if exception.errno != errno.EEXIST:
+            raise
 #todo: this script needs to be broken up into multiple methods 
 #      and should be ported to be more like a class
 
@@ -72,7 +79,20 @@ if args.build != 'none' and not os.path.exists(output_path):
 if args.build == 'full':
   copytree(common_path, output_path)
   copytree(os_path, output_path)
-  
+  for collection in os.walk(os.path.join(output_path, 'collections')).next()[1]:
+    if not collection.startswith('_'):
+     mkdir_p(os.path.join(output_path, 'collections', collection, 'roms'))
+     mkdir_p(os.path.join(output_path, 'collections', collection, 'medium_artwork'))
+     mkdir_p(os.path.join(output_path, 'collections', collection, 'medium_artwork', 'artwork_front'))
+     mkdir_p(os.path.join(output_path, 'collections', collection, 'medium_artwork', 'artwork_back'))
+     mkdir_p(os.path.join(output_path, 'collections', collection, 'medium_artwork', 'medium_back'))
+     mkdir_p(os.path.join(output_path, 'collections', collection, 'medium_artwork', 'medium_front'))
+     mkdir_p(os.path.join(output_path, 'collections', collection, 'medium_artwork', 'bezel'))
+     mkdir_p(os.path.join(output_path, 'collections', collection, 'medium_artwork', 'logo'))
+     mkdir_p(os.path.join(output_path, 'collections', collection, 'medium_artwork', 'screenshot'))
+     mkdir_p(os.path.join(output_path, 'collections', collection, 'medium_artwork', 'screentitle'))
+     mkdir_p(os.path.join(output_path, 'collections', collection, 'system_artwork'))
+ 
 elif args.build == 'layout':
   layout_dest_path = os.path.join(output_path, 'layouts')
   layout_common_path = os.path.join(common_path, 'layouts')
@@ -93,7 +113,7 @@ elif args.build == 'layout':
 if args.os == 'windows':
   if args.build == 'full' or args.build == 'core' or args.build == 'engine':
     # copy retrofe.exe to core folder
-    src_exe = os.path.join(base_path, 'RetroFE', 'Source', 'Build', 'Debug', 'retrofe.exe')
+    src_exe = os.path.join(base_path, 'RetroFE', 'Build', 'Debug', 'retrofe.exe')
     core_path = os.path.join(output_path, 'core')
     
     # create the core folder
