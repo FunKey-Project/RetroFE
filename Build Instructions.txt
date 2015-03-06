@@ -13,9 +13,9 @@ Install ubuntu or xubuntu 14.04
 2. Compile RetroFE and create a full environment by running the following commands: 
 
   cmake --build RetroFE/Build
-  python Scripts/Package.py --os=windows --build=full --gstreamer_path=D:/gstreamer/1.0/x86
+  python Scripts/Package.py --os=linux --build=full
 
-3. Copy your live RetroFE system to any folder of your choosing. files can be found in Artifacts\windows\RetroFE
+3. Copy your live RetroFE system to any folder of your choosing. files can be found in Artifacts\linux\RetroFE
 
 Windows Setup
 ===============================
@@ -52,12 +52,20 @@ After compiling your code you can also build different environments:
 
 1. To copy just the layouts to Artifacts/windows/RetroFE, run 
   python Scripts\Package.py --os=windows --build=layout --gstreamer_path=D:/gstreamer/1.0/x86
-
+  or
+  python Scripts\Package.py --os=linux --build=layout
+  
 2. To copy just retrofe.exe to Artifacts/windows/RetroFE, run 
   python Scripts\Package.py --os=windows --build=engine --gstreamer_path=D:/gstreamer/1.0/x86
+  or
+  python Scripts\Package.py --os=linux --build=engine
 
 3. To copy just the third party dlls and retrofe to Artifacts/windows/RetroFE, run 
   python Scripts\Package.py --os=windows --build=core --gstreamer_path=D:/gstreamer/1.0/x86
+  or
+  python Scripts\Package.py --os=linux --build=core
 
 4. To copy a whole live installation Artifacts/windows/RetroFE, run 
   python Scripts\Package.py --os=windows --build=full --gstreamer_path=D:/gstreamer/1.0/x86
+  or
+  python Scripts\Package.py --os=linux --build=full
