@@ -83,6 +83,9 @@ if args.build == 'full':
   collection_path = os.path.join(output_path, 'collections')
   copytree(common_path, output_path)
   copytree(os_path, output_path)
+  
+   mkdir_p(os.path.join(output_path, 'meta', 'mamelist'))
+  
   dirs = [d for d in os.listdir(collection_path) if os.path.isdir(os.path.join(collection_path, d))]
   for collection in dirs:
     if not collection.startswith('_'):
