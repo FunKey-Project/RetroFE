@@ -8,19 +8,22 @@ import sys
 def copytree(src, dst):
   if os.path.isdir(src):
       if not os.path.exists(dst):
-          os.makedirs(dst)
+          mkdir_p(dst)
       for name in os.listdir(src):
           copytree(os.path.join(src, name),
                    os.path.join(dst, name))
   else:
+      print("COPY: " + dst)
       shutil.copyfile(src, dst)
       
 def mkdir_p(path):
-    try:
-        os.makedirs(path)
-    except OSError as exception:
-        if exception.errno != errno.EEXIST:
-            raise
+  print("CREATE: " + path)
+  try:
+    os.makedirs(path)
+    
+  except OSError as exception:
+    if exception.errno != errno.EEXIST:
+      raise
 #todo: this script needs to be broken up into multiple methods 
 #      and should be ported to be more like a class
 
@@ -77,9 +80,11 @@ if args.build != 'none' and not os.path.exists(output_path):
   os.makedirs(output_path)
 
 if args.build == 'full':
+  collection_path = os.path.join(output_path, 'collections')
   copytree(common_path, output_path)
   copytree(os_path, output_path)
-  for collection in os.walk(os.path.join(output_path, 'collections')).next()[1]:
+  dirs = [d for d in os.listdir(collection_path) if os.path.isdir(os.path.join(collection_path, d))]
+  for collection in dirs:
     if not collection.startswith('_'):
      mkdir_p(os.path.join(output_path, 'collections', collection, 'roms'))
      mkdir_p(os.path.join(output_path, 'collections', collection, 'medium_artwork'))
