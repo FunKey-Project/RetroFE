@@ -23,7 +23,10 @@ if(WIN32)
 
 	set(GSTREAMER_ROOT "C:/gstreamer/1.0/x86" CACHE STRING "location of where your gstreamer include and lib folders reside")
 	set(GLIB2_ROOT "${GSTREAMER_ROOT}")
+  
+if(MSVC)  
 	set(DIRENT_INCLUDE_DIR "${RETROFE_THIRD_PARTY_DIR}/dirent-1.20.1/include")
+endif()
 endif()
 
 if(WIN32)

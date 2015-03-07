@@ -32,9 +32,10 @@ def mkdir_p(path):
 #####################################################################
 parser = argparse.ArgumentParser(description='Bundle up some RetroFE common files.')
 parser.add_argument('--os', choices=['windows','linux'], required=True, help='Operating System (windows or linux)')
-parser.add_argument('--gstreamer_path', help='path to gstreamer sdk (i.e. D:/gstreamer')
-parser.add_argument('--build', default='full', help='define what contents to package (full, core, engine, layout,none')
-parser.add_argument('--clean', action='store_true', help='clean the output directory')
+parser.add_argument('--gstreamer_path', help='Path to gstreamer sdk (i.e. D:/gstreamer')
+parser.add_argument('--build', default='full', help='Define what contents to package (full, core, engine, layout,none')
+parser.add_argument('--clean', action='store_true', help='Clean the output directory')
+parser.add_argument('--compiler', help='Compiler to use (vs, mingw, gcc')
 
 args = parser.parse_args()
 
@@ -121,7 +122,11 @@ elif args.build == 'layout':
 if args.os == 'windows':
   if args.build == 'full' or args.build == 'core' or args.build == 'engine':
     # copy retrofe.exe to core folder
-    src_exe = os.path.join(base_path, 'RetroFE', 'Build', 'Release', 'retrofe.exe')
+    if(hasattr(args, 'compiler') and args.compiler == 'mingw'):
+      src_exe = os.path.join(base_path, 'RetroFE', 'Build', 'Release', 'retrofe.exe')
+    else:
+      src_exe = os.path.join(base_path, 'RetroFE', 'Build', 'retrofe.exe')
+      
     core_path = os.path.join(output_path, 'core')
     
     # create the core folder

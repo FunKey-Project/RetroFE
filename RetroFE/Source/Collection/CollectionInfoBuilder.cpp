@@ -68,7 +68,7 @@ bool CollectionInfoBuilder::CreateCollectionDirectory(std::string name)
     {
         std::cout << "Creating folder \"" << *it << "\"" << std::endl;
 
-#if defined(_WIN32)
+#if defined(_WIN32) && !defined(__GNUC__)
         if(!CreateDirectory(it->c_str(), NULL))
         {
             if(ERROR_ALREADY_EXISTS != GetLastError())
@@ -78,7 +78,11 @@ bool CollectionInfoBuilder::CreateCollectionDirectory(std::string name)
             }
         }
 #else 
+#if defined(__MINGW32__)
+        if(mkdir(it->c_str()) == -1)
+#else
         if(mkdir(it->c_str(), 0744) == -1)
+#endif        
         {
            std::cout << "Could not create folder \"" << *it << "\":" << strerror(errno) << std::endl;
         }
