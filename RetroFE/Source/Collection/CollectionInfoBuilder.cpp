@@ -84,7 +84,7 @@ bool CollectionInfoBuilder::CreateCollectionDirectory(std::string name)
         if(mkdir(it->c_str(), 0744) == -1)
 #endif        
         {
-           std::cout << "Could not create folder \"" << *it << "\":" << errno << std::endl:
+           std::cout << "Could not create folder \"" << *it << "\":" << errno << std::endl;
         }
     #endif
     }
