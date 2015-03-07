@@ -234,7 +234,7 @@
         </onMenuExit>
 	</reloadableImage>
 <!-- This is the games publisher-developer logo -->
-	<reloadableImage type="_manufacturer" alpha="0" xOffset="-282" yOffset="260" x="center" y="center" xOrigin="center" yOrigin="center" layer="5">
+	<reloadableImage type="manufacturer" alpha="0" xOffset="-282" yOffset="260" x="center" y="center" xOrigin="center" yOrigin="center" layer="5">
         <onMenuEnter menuIndex="1">
             <set duration=".2">
                 <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
