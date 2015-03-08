@@ -1,0 +1,253 @@
+<layout width="1920" height="1080" font="Roboto-Bold.ttf" loadFontSize="64" fontColor="dedede">
+
+
+  <!-- Sounds -->
+
+  <sound type="load" src="load.wav" />
+  <sound type="unload" src="unload.wav" />
+  <sound type="highlight" src="highlight.wav" />
+  <sound type="select" src="select.wav" />
+
+
+  <!-- Background: image and pulsating red background -->
+
+  <image src="bg.png" x="0" y="0" height="stretch" width="stretch" layer="0"/>
+
+
+  <!-- Menu structure Main Menu -->
+
+  <menu type="custom" imageType="device" scrollTime=".24" scrollAcceleration=".04" orientation="horizontal" >
+    <itemDefaults x="center" y="680" xOrigin="center" yOrigin="center" width="200" maxHeight="350" fontSize="35" layer="2"/>
+    <item xOffset="-1150" alpha="0"  algorithm="easeinquadratic"/>
+    <item xOffset="-940">
+      <onMenuEnter>
+        <set duration=".3">
+          <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuEnter>
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="-730">
+      <onMenuEnter>
+        <set duration=".3">
+          <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuEnter>
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="-520">
+      <onMenuEnter>
+        <set duration=".3">
+          <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuEnter>
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="-310">
+      <onMenuEnter>
+        <set duration=".3">
+          <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuEnter>
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item selected="true" width="400" layer="3">
+      <onMenuEnter>
+        <set duration=".3">
+          <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuEnter>
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="310">
+      <onMenuEnter>
+        <set duration=".3">
+          <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuEnter>
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="520">
+      <onMenuEnter>
+        <set duration=".3">
+          <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuEnter>
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="730">
+      <onMenuEnter>
+        <set duration=".3">
+          <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuEnter>
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="940">
+      <onMenuEnter>
+        <set duration=".3">
+          <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuEnter>
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="1150" alpha="0"  algorithm="easeinquadratic"/>
+  </menu>
+
+
+  <!-- Menu structure Collections -->
+
+  <menu type="custom" imageType="artwork_front" scrollTime=".24" scrollAcceleration=".04" orientation="horizontal">
+    <itemDefaults x="center" y="680" xOrigin="center" yOrigin="center" width="200" maxHeight="350" fontSize="35" layer="2"/>
+    <item xOffset="-1150" alpha="0"  algorithm="easeinquadratic"/>
+    <item xOffset="-940">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="-730">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="-520">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="-310">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item selected="true" width="400" layer="3">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="310">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="520">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="730">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="940">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="1150" alpha="0"  algorithm="easeinquadratic"/>
+  </menu>
+
+
+  <!-- Reloadable items -->
+
+  <image src="videobg.png"                     x="400"  y="300"  xOrigin="center" yOrigin="center" height="520"    width="750"     layer="2"/>
+  <reloadableVideo imageType="screenshot"      x="400"  y="300"  xOrigin="center" yOrigin="center" height="480"    maxWidth="640"  layer="3">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableVideo>
+  <reloadableImage type="device"               x="1300" y="1000" xOrigin="center" yOrigin="bottom" maxHeight="950" width="2000"    layer="1">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableImage>
+  <image src="border.png"                      x="0"    y="1080" xOrigin="left"   yOrigin="bottom" height="350"    width="1920"    layer="4"/>
+  <reloadableImage type="device" mode="system" x="1300" y="1000" xOrigin="center" yOrigin="bottom" maxHeight="950" width="2000"    layer="1">
+  </reloadableImage>
+  <reloadableImage type="logo"                 x="960"  y="950"  xOrigin="center" yOrigin="center" maxHeight="200"                 layer="5">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableImage>
+  <reloadableImage type="logo"   mode="system" x="1300" y="80"   xOrigin="center" yOrigin="top"    height="200"                    layer="5"/>
+  <reloadableText  type="year"                 x="550"  y="1000" xOrigin="left"   yOrigin="center" fontSize="32"   maxWidth="200"  layer="5"/>
+  <reloadableText  type="manufacturer"         x="1350" y="1000" xOrigin="right"  yOrigin="center" fontSize="32"   maxWidth="200"  layer="5"/>
+
+
+</layout>
