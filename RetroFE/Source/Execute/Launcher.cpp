@@ -151,7 +151,7 @@ bool Launcher::ExecuteCommand(std::string executable, std::string args, std::str
     startupInfo.hStdInput = GetStdHandle(STD_INPUT_HANDLE);
     startupInfo.wShowWindow = SW_SHOWDEFAULT;
 
-    if(!CreateProcess(NULL, applicationName, NULL, NULL, FALSE, CREATE_NO_WINDOW, NULL, NULL, &startupInfo, &processInfo))
+    if(!CreateProcess(NULL, applicationName, NULL, NULL, FALSE, CREATE_NO_WINDOW, NULL, currDir, &startupInfo, &processInfo))
 #else
     if(system(executionString.c_str()) != 0)
 #endif
