@@ -443,9 +443,6 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
                 {
                     Config.SetCurrentCollection(NextPageItem->GetName());
                     CollectionInfo *info = GetCollection(NextPageItem->GetName());
-                    MenuParser mp;
-                    mp.GetMenuItems(info);
-                    CurrentPage->PushCollection(info);
 
                     MenuParser mp;
                     mp.GetMenuItems(info);
