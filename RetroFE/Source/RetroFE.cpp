@@ -368,7 +368,7 @@ bool RetroFE::Back(bool &exit)
     Config.GetProperty("exitOnFirstPageBack", exitOnBack);
     exit = false;
 
-    if(CurrentPage->GetMenuDepth() <= 1)
+    if(CurrentPage->GetMenuDepth() == 0)
     {
         exit = exitOnBack;
     }
@@ -444,10 +444,6 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
                     Config.SetCurrentCollection(NextPageItem->GetName());
                     CollectionInfo *info = GetCollection(NextPageItem->GetName());
 
-                    MenuParser mp;
-                    mp.GetMenuItems(info);
-                    CurrentPage->PushCollection(info);
-
                     page->PushCollection(info);
                     state = RETROFE_NEXT_PAGE_REQUEST;
                 }
@@ -456,7 +452,7 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
 
         if (keys[Input.GetScancode(UserInput::KeyCodeBack)])
         {
-            if(Back(exit) || exit)
+            if(Back(exit))
             {
                 state = (exit) ? RETROFE_QUIT_REQUEST : RETROFE_BACK_REQUEST;
             }
