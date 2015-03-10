@@ -191,7 +191,7 @@ void ReloadableMedia::ReloadTexture()
             }
         }
 
-        std::string imageBasename = selectedItem->GetFullTitle();
+        std::string imageBasename = selectedItem->GetName();
 
         std::string typeLC = Utils::ToLower(Type);
 
