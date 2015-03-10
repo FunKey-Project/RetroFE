@@ -100,6 +100,7 @@ if args.build == 'full':
      mkdir_p(os.path.join(output_path, 'collections', collection, 'medium_artwork', 'logo'))
      mkdir_p(os.path.join(output_path, 'collections', collection, 'medium_artwork', 'screenshot'))
      mkdir_p(os.path.join(output_path, 'collections', collection, 'medium_artwork', 'screentitle'))
+     mkdir_p(os.path.join(output_path, 'collections', collection, 'medium_artwork', 'video'))
      mkdir_p(os.path.join(output_path, 'collections', collection, 'system_artwork'))
  
 elif args.build == 'layout':
