@@ -429,7 +429,7 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
         {
             //todo: add admin mode support
         }
-        if (keys[Input.GetScancode(UserInput::KeyCodeSelect)])
+        if (keys[Input.GetScancode(UserInput::KeyCodeSelect)] && page->IsMenuIdle())
         {
             NextPageItem = page->GetSelectedItem();
 
@@ -453,7 +453,7 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
             }
         }
 
-        if (keys[Input.GetScancode(UserInput::KeyCodeBack)])
+        if (keys[Input.GetScancode(UserInput::KeyCodeBack)] && page->IsMenuIdle())
         {
             if(Back(exit) || exit)
             {

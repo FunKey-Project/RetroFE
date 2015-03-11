@@ -162,7 +162,7 @@ bool Page::AddComponent(Component *c)
     return retVal;
 }
 
-bool Page::IsIdle()
+bool Page::IsMenuIdle()
 {
     bool idle = true;
 
@@ -176,7 +176,13 @@ bool Page::IsIdle()
             break;
         }
     }
+    return idle;
+}
 
+bool Page::IsIdle()
+{
+    bool idle = IsMenuIdle();
+    
     for(unsigned int i = 0; i < NUM_LAYERS && idle; ++i)
     {
         for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end() && idle; ++it)

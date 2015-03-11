@@ -61,9 +61,9 @@ public:
     bool IsHorizontalScroll();
     unsigned int GetMenuDepth();
     Item *GetSelectedItem();
-    Item *GetPendingSelectedItem();
     void RemoveSelectedItem();
     bool IsIdle();
+    bool IsMenuIdle();
     bool IsHidden();
     void SetStatusTextComponent(Text *t);
     void Update(float dt);
