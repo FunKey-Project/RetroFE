@@ -114,6 +114,7 @@ bool CollectionInfoBuilder::CreateCollectionDirectory(std::string name)
 
     settingsFile << "# Uncomment and edit the following line to use a different ROM path." << std::endl;
     settingsFile << "#list.path = %BASE_ITEM_PATH%/%ITEM_COLLECTION_NAME%/roms" << std::endl;
+    settingsFile << "list.includeMissingItems = true" << std::endl;
     settingsFile << "list.extensions = zip" << std::endl;
     settingsFile << "launcher = mame" << std::endl;
     settingsFile << "metadata.type = MAME" << std::endl;
@@ -193,7 +194,7 @@ CollectionInfo *CollectionInfoBuilder::BuildCollection(std::string name)
 }
 
 
-bool CollectionInfoBuilder::ImportBasicList(CollectionInfo * /*info*/, std::string file, std::map<std::string, Item *> &list)
+bool CollectionInfoBuilder::ImportBasicList(CollectionInfo * /*info*/, std::string file, std::string launcher, std::map<std::string, Item *> &list)
 {
     std::ifstream includeStream(file.c_str());
 
@@ -214,6 +215,10 @@ bool CollectionInfoBuilder::ImportBasicList(CollectionInfo * /*info*/, std::stri
             line.erase( std::remove(line.begin(), line.end(), '\r'), line.end() );
 
             i->SetFullTitle(line);
+            i->SetName(line);
+            i->SetFullTitle(line);
+            i->SetTitle(line);
+            i->SetLauncher(launcher);
 
             list[line] = i;
         }
@@ -232,17 +237,19 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
     std::string includeFile = Configuration::GetAbsolutePath() + "/collections/" + info->GetName() + "/include.txt";
     std::string excludeFile = Configuration::GetAbsolutePath() + "/collections/" + info->GetName() + "/exclude.txt";
     std::string launcher;
+    bool showMissing = true;
+ 
+    (void)Conf.GetProperty("collections." + info->GetName() + ".launcher", launcher);
+    (void)Conf.GetProperty("collections." + info->GetName() + ".list.includeMissingItems", showMissing);
 
-
-    ImportBasicList(info, includeFile, includeFilter);
-    ImportBasicList(info, excludeFile, excludeFilter);
+    ImportBasicList(info, includeFile, launcher, includeFilter);
+    ImportBasicList(info, excludeFile, launcher, excludeFilter);
 
     std::vector<std::string> extensions;
     std::vector<std::string>::iterator extensionsIt;
 
     info->GetExtensions(extensions);
 
-    (void)Conf.GetProperty("collections." + info->GetName() + ".launcher", launcher);
     Logger::Write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Checking for \"" + includeFile + "\"");
 
     dp = opendir(path.c_str());
@@ -251,6 +258,17 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
     {
         Logger::Write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Could not read directory \"" + path + "\". Ignore if this is a menu.");
         return false;
+    }
+
+    if(showMissing)
+    {
+        for(std::map<std::string, Item *>::iterator it = includeFilter.begin(); it != includeFilter.end(); it++)
+        {
+            if(excludeFilter.find(it->first) == excludeFilter.end())
+            {
+                info->GetItems()->push_back(it->second);
+            }
+        }
     }
 
     while((dirp = readdir(dp)) != NULL)
@@ -292,12 +310,14 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
 
     info->SortItems();
 
-    MetaDB.InjectMetadata(info);
-
     while(includeFilter.size() > 0)
     {
         std::map<std::string, Item *>::iterator it = includeFilter.begin();
-        delete it->second;
+        // delete the unused items if they were never pushed to the main collection
+        if(!showMissing)
+        {
+            delete it->second;
+        }
         includeFilter.erase(it);
     }
     while(excludeFilter.size() > 0)
@@ -306,6 +326,8 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
         delete it->second;
         excludeFilter.erase(it);
     }
+
+    MetaDB.InjectMetadata(info);
 
     return true;
 }

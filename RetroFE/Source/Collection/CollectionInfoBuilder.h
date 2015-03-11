@@ -35,6 +35,6 @@ public:
 private:
     Configuration &Conf;
     MetadataDatabase &MetaDB;
-    bool ImportBasicList(CollectionInfo *info, std::string file, std::map<std::string, Item *> &list);
+    bool ImportBasicList(CollectionInfo *info, std::string file, std::string launcher, std::map<std::string, Item *> &list);
     bool ImportDirectory(CollectionInfo *info);
 };
