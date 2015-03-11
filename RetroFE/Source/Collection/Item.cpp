@@ -155,7 +155,7 @@ void Item::SetFullTitle(const std::string& fulltitle)
 {
     FullTitle = fulltitle;
     LCFullTitle = fulltitle;
-    std::transform(LCFullTitle.begin(), LCFullTitle.end(), LCFullCTitle.begin(), ::tolower);
+    std::transform(LCFullTitle.begin(), LCFullTitle.end(), LCFullTitle.begin(), ::tolower);
 }
 
 const std::string& Item::GetCloneOf() const
