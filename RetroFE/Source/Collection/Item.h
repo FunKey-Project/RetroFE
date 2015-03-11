@@ -45,6 +45,7 @@ public:
     bool IsLeaf() const;
     void SetIsLeaf(bool leaf);
     const std::string& GetFullTitle() const;
+    const std::string& GetLCFullTitle() const;
     void SetFullTitle(const std::string& fulltitle);
     const std::string& GetCloneOf() const;
     void SetCloneOf(const std::string& cloneOf);
@@ -56,6 +57,7 @@ private:
     std::string Title;
     std::string LCTitle;
     std::string FullTitle;
+    std::string LCFullTitle;
     std::string Year;
     std::string Manufacturer;
     std::string Genre;

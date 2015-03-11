@@ -91,7 +91,7 @@ std::vector<Item *> *CollectionInfo::GetItems()
 
 bool CollectionInfo::ItemIsLess(Item const *lhs, Item const *rhs)
 {
-    return lhs->GetLCTitle() < rhs->GetLCTitle();
+    return lhs->GetLCFullTitle() < rhs->GetLCFullTitle();
 }
 
 void CollectionInfo::SortItems()

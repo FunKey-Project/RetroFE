@@ -114,6 +114,11 @@ const std::string& Item::GetLCTitle() const
     return LCTitle;
 }
 
+const std::string& Item::GetLCFullTitle() const
+{
+    return LCFullTitle;
+}
+
 void Item::SetTitle(const std::string& title)
 {
     Title = title;
@@ -149,6 +154,8 @@ const std::string& Item::GetFullTitle() const
 void Item::SetFullTitle(const std::string& fulltitle)
 {
     FullTitle = fulltitle;
+    LCFullTitle = fulltitle;
+    std::transform(LCFullTitle.begin(), LCFullTitle.end(), LCFullCTitle.begin(), ::tolower);
 }
 
 const std::string& Item::GetCloneOf() const
