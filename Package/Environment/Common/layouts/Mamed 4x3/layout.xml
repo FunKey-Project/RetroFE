@@ -48,7 +48,7 @@
 
   <!-- Reloadable items -->
 
-  <reloadableVideo imageType="screenshot"      x="498"  y="578" xOrigin="center" yOrigin="center" height="400"    maxWidth="667" layer="2">
+  <reloadableVideo imageType="screenshot"      x="498"  y="580" xOrigin="center" yOrigin="center" height="395"    maxWidth="667" layer="2">
     <onHighlightEnter>
       <set duration=".3">
         <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
@@ -61,7 +61,7 @@
     </onHighlightExit>
   </reloadableVideo>
 
-  <reloadableImage type="device"               x="1258" y="355" xOrigin="center" yOrigin="center" height="362"    maxWidth="360" layer="3">
+  <reloadableImage type="device"               x="1227" y="655" xOrigin="center" yOrigin="bottom" height="540"    maxWidth="535" layer="3">
     <onHighlightEnter menuIndex="0">
       <set duration=".3">
         <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
@@ -73,10 +73,22 @@
       </set>
     </onHighlightExit>
   </reloadableImage>
-  <reloadableImage type="device" mode="system" x="1258" y="355" xOrigin="center" yOrigin="center" height="362"    maxWidth="360" layer="3"/>
+  <reloadableImage type="device" mode="system" x="1227" y="655" xOrigin="center" yOrigin="bottom" height="540"    maxWidth="535" layer="3"/>
 
 
-  <reloadableImage type="logo"                 x="498"  y="390" xOrigin="center" yOrigin="bottom" maxHeight="222" maxWidth="168" layer="4" alpha="0">
+  <reloadableImage type="logo"                 x="1227" y="120" xOrigin="center" yOrigin="top" height="170"   maxWidth="535" layer="4">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableImage>
+  <reloadableImage type="logo"                 x="498"  y="390" xOrigin="center" yOrigin="bottom" height="60"    maxWidth="300" layer="4" alpha="0">
     <onIdle>
       <set duration="1">
         <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>

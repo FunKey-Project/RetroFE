@@ -114,7 +114,7 @@
   </reloadableImage>
 
 
-  <reloadableImage type="device"                x="1510" y="319" xOrigin="center" yOrigin="center" height="326"    maxWidth="432" layer="3">
+  <reloadableImage type="device"                x="1491" y="565" xOrigin="center" yOrigin="bottom" height="465"    maxWidth="635" layer="3">
     <onHighlightEnter menuIndex="0">
       <set duration=".3">
         <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
@@ -126,10 +126,22 @@
       </set>
     </onHighlightExit>
   </reloadableImage>
-  <reloadableImage type="device" mode="system"  x="1510" y="319" xOrigin="center" yOrigin="center" height="326"    maxWidth="432" layer="3"/>
+  <reloadableImage type="device" mode="system"  x="1491" y="565" xOrigin="center" yOrigin="bottom" height="465"    maxWidth="635" layer="3"/>
 
 
-  <reloadableImage type="logo"                  x="597"  y="350" xOrigin="center" yOrigin="bottom" maxHeight="200" maxWidth="200" layer="4" alpha="0">
+  <reloadableImage type="logo"                  x="1491" y="100" xOrigin="center" yOrigin="top"    height="170"    maxWidth="635" layer="4">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableImage>
+  <reloadableImage type="logo"                  x="597"  y="350" xOrigin="center" yOrigin="bottom" height="70"     maxWidth="200" layer="4" alpha="0">
     <onIdle>
       <set duration="1">
         <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
