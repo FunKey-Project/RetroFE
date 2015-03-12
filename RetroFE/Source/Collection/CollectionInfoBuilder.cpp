@@ -281,7 +281,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
         
         // if there is an include list, only include roms that are found and are in the include list
         // if there is an exclude list, exclude those roms
-        if((includeFilter.size() == 0 || includeFilter.find(basename) != includeFilter.end()) &&
+        if((includeFilter.size() == 0 || (!showMissing && includeFilter.find(basename) != includeFilter.end())) &&
                 (excludeFilter.size() == 0 || excludeFilter.find(basename) == excludeFilter.end()))
         {
             // iterate through all known file extensions
