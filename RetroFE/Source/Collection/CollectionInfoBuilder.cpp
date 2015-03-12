@@ -308,8 +308,6 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
 
     closedir(dp);
 
-    info->SortItems();
-
     while(includeFilter.size() > 0)
     {
         std::map<std::string, Item *>::iterator it = includeFilter.begin();
@@ -328,6 +326,8 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
     }
 
     MetaDB.InjectMetadata(info);
+    
+    info->SortItems();
 
     return true;
 }
