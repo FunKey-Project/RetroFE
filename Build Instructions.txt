@@ -11,7 +11,7 @@ Install ubuntu or xubuntu 14.04
    
 2. Generate your gcc make files with running the following command from inside the root folder of your setup:
 
-  cmake RetroFE/Source -BRetroFE/Build -DGSTREAMER_ROOT=D:/gstreamer/1.0/x86 -DVERSION_MAJOR=0 -DVERSION_MINOR=0 -DVERSION_BUILD=0
+  cmake RetroFE/Source -BRetroFE/Build -DVERSION_MAJOR=0 -DVERSION_MINOR=0 -DVERSION_BUILD=0
 
 3. Compile RetroFE and create a full environment by running the following commands: 
 
