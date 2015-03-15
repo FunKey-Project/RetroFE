@@ -17,7 +17,7 @@
   <!-- Menu structure Main Menu -->
 
   <menu type="custom" imageType="device" scrollTime=".24" scrollAcceleration=".04" orientation="horizontal" >
-    <itemDefaults x="center" y="780" xOrigin="center" yOrigin="center" width="200" maxHeight="500" fontSize="35" layer="4"/>
+    <itemDefaults x="center" y="790" xOrigin="center" yOrigin="bottom" width="200" maxHeight="500" fontSize="35" layer="4"/>
     <item xOffset="-1150" alpha="0"  algorithm="easeinquadratic"/>
     <item xOffset="-940">
       <onMenuEnter>
@@ -67,7 +67,7 @@
         </set>
       </onMenuExit>
     </item>
-    <item selected="true" width="400" layer="5">
+    <item selected="true" width="400" yOffset="60" layer="5">
       <onMenuEnter>
         <set duration=".3">
           <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
@@ -134,7 +134,7 @@
   <!-- Menu structure Collections -->
 
   <menu type="custom" imageType="artwork_front" scrollTime=".24" scrollAcceleration=".04" orientation="horizontal">
-    <itemDefaults x="center" y="780" xOrigin="center" yOrigin="center" width="200" maxHeight="500" fontSize="35" layer="4"/>
+    <itemDefaults x="center" y="790" xOrigin="center" yOrigin="bottom" width="200" maxHeight="500" fontSize="35" layer="4"/>
     <item xOffset="-1150" alpha="0"  algorithm="easeinquadratic"/>
     <item xOffset="-940">
       <onMenuExit>
@@ -164,11 +164,11 @@
         </set>
       </onMenuExit>
     </item>
-    <item selected="true" width="400" layer="5">
+    <item selected="true" width="400" yOffset="60" layer="5">
       <onMenuExit>
         <set duration=".3">
           <animate type="alpha" from="1" to="0"
-          algorithm="easeinquadratic"/>u
+          algorithm="easeinquadratic"/>
         </set>
       </onMenuExit>
     </item>
@@ -206,8 +206,9 @@
 
   <!-- Reloadable items -->
 
-  <image src="videobg.png"                     x="400"  y="300"  xOrigin="center" yOrigin="center" height="520"     width="750"     layer="2"/>
-  <reloadableVideo imageType="screenshot"      x="400"  y="300"  xOrigin="center" yOrigin="center" height="480"     maxWidth="640"  layer="3">
+  <image src="black.png"                       x="400"  y="300"  xOrigin="center" yOrigin="center" height="480"     width="640"     layer="1"/>
+  <image src="videoborder.png"                 x="400"  y="300"  xOrigin="center" yOrigin="center"                                  layer="3"/>
+  <reloadableVideo imageType="screenshot"      x="400"  y="300"  xOrigin="center" yOrigin="center" height="480"     maxWidth="640"  layer="2">
     <onHighlightEnter>
       <set duration=".3">
         <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
@@ -231,11 +232,11 @@
       </set>
     </onHighlightExit>
   </reloadableImage>
-  <image src="border.png"                      x="0"    y="1080" xOrigin="left"   yOrigin="bottom" height="350"     width="1920"    layer="6"/>
+  <image src="bottomborder.png"                x="0"    y="1080" xOrigin="left"   yOrigin="bottom"                                  layer="3"/>
   <reloadableImage type="device" mode="system" x="1200" y="540"  xOrigin="center" yOrigin="center" maxHeight="1200" width="2000"    layer="1">
   </reloadableImage>
   <reloadableImage type="logo"   mode="system" x="1200" y="50"   xOrigin="center" yOrigin="top"    height="200"                     layer="7"/>
-  <reloadableImage type="logo"                 x="400"  y="70"   xOrigin="center" yOrigin="bottom" maxHeight="70"   maxWidth="200"  layer="4" alpha="0">
+  <reloadableImage type="logo"                 x="400"  y="90"   xOrigin="center" yOrigin="top"    maxHeight="70"   maxWidth="200"  layer="4" alpha="0">
     <onIdle>
       <set duration="1">
         <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
@@ -245,6 +246,55 @@
       </set>
     </onIdle>
   </reloadableImage>
+  <reloadableImage type="medium_front"        x="1500" y="925"  xOrigin="center" yOrigin="center"  maxHeight="190" width="350"    layer="7">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableImage>
+
+  <reloadableText type="year"         x="350" y="890" xOrigin="center" yOrigin="bottom" fontSize="48" maxWidth="400" layer="7">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableText>
+  <reloadableText type="genre"        x="350" y="940" xOrigin="center" yOrigin="bottom" fontSize="48" maxWidth="400" layer="7">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableText>
+  <reloadableText type="manufacturer" x="350" y="990" xOrigin="center" yOrigin="bottom" fontSize="48" maxWidth="400" layer="7">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableText>
 
 
 </layout>
