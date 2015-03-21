@@ -153,11 +153,11 @@ bool Launcher::ExecuteCommand(std::string executable, std::string args, std::str
 
     if(!CreateProcess(NULL, applicationName, NULL, NULL, FALSE, CREATE_NO_WINDOW, NULL, currDir, &startupInfo, &processInfo))
 #else
-    if (executable.find_last_of("/") != std::string::npos)
+    const std::size_t last_slash_idx = executable.rfind("/");
+    if (last_slash_idx != std::string::npos)
     {
-        std::string workDir = executable.substr(0,executable.find_last_of("/"));
-        std::string progName = executable.substr(executable.find_last_of("/") + 1);
-        executionString="cd \"" + workDir + "\" && exec \"./" + progName + "\" " + args;
+        std::string applicationName = executable.substr(last_slash_idx + 1);
+        executionString = "cd \"" + currentDirectory + "\" && exec \"./" + applicationName + "\" " + args;
     }
     if(system(executionString.c_str()) != 0)
 #endif
