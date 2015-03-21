@@ -25,6 +25,7 @@ class UserInput
 public:
     enum KeyCode_E
     {
+        KeyCodeNull,
         KeyCodeUp,
         KeyCodeDown,
         KeyCodeLeft,
@@ -42,11 +43,19 @@ public:
     virtual ~UserInput();
     bool Initialize();
     SDL_Scancode GetScancode(KeyCode_E key);
+    KeyCode_E GetKeycode(SDL_Scancode scancode);
+    bool SetKeyState(SDL_Scancode code, bool state);
+    bool GetKeyState(KeyCode_E key);
+    bool KeyStateChanged();
+    void ResetKeyStates();
+
 
 
 private:
     bool MapKey(std::string keyDescription, KeyCode_E key);
     std::map<KeyCode_E, SDL_Scancode> KeyMap;
-
+    std::map<SDL_Scancode, KeyCode_E> ReverseKeyMap;
+    std::map<KeyCode_E, bool> KeyState;
     Configuration &Config;
+    const Uint8 *SDLKeys;
 };

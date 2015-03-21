@@ -74,6 +74,29 @@ SDL_Scancode UserInput::GetScancode(KeyCode_E key)
 }
 
 
+UserInput::KeyCode_E UserInput::GetKeycode(SDL_Scancode scancode)
+{
+    KeyCode_E keycode = KeyCodeNull;
+
+    std::map<SDL_Scancode, KeyCode_E>::iterator it = ReverseKeyMap.find(scancode);
+
+    if(it != ReverseKeyMap.end())
+    {
+        keycode = it->second;
+    }
+
+    return keycode;
+}
+
+void UserInput::ResetKeyStates()
+{
+    for(std::map<KeyCode_E, bool>::iterator it = KeyState.begin(); it != KeyState.end(); it++)
+    {
+      it->second = false;
+    }
+}
+
+
 bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
 {
     SDL_Scancode scanCode;
@@ -96,6 +119,28 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
     }
 
     KeyMap[key] = scanCode;
+    ReverseKeyMap[scanCode] = key;
+    KeyState[key] = false;
     return true;
 }
+
+bool UserInput::SetKeyState(SDL_Scancode code, bool state)
+{
+     KeyCode_E key = GetKeycode(code);
+
+     if(key == KeyCodeNull)
+     {
+         return false;
+     }
+
+     KeyState[key] = state;
+     return true;
+
+}
+bool UserInput::GetKeyState(KeyCode_E key)
+{
+    return KeyState[key];
+}
+
+
 

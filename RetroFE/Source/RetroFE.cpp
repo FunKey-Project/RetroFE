@@ -120,8 +120,10 @@ void RetroFE::LaunchEnter()
 void RetroFE::LaunchExit()
 {
     SDL_RestoreWindow(SDL::GetWindow());
+    SDL_RaiseWindow(SDL::GetWindow());
     SDL_SetWindowGrab(SDL::GetWindow(), SDL_TRUE);
-
+    Input.ResetKeyStates();
+    Attract.Reset();
     if(CurrentPage)
     {
         CurrentPage->LaunchExit();
@@ -386,50 +388,50 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
     SDL_Event e;
     bool exit = false;
     RETROFE_STATE state = RETROFE_IDLE;
-
     if (SDL_PollEvent(&e) == 0) return state;
 
     if(e.type == SDL_KEYDOWN || e.type == SDL_KEYUP)
     {
-        const Uint8 *keys = SDL_GetKeyboardState(NULL);
+        SDL_Scancode scancode = SDL_GetScancodeFromKey(e.key.keysym.sym);
+	Input.SetKeyState(scancode, (e.type == SDL_KEYDOWN) ? true : false);
 
         Attract.Reset();
 
-	    if(page->IsHorizontalScroll())
+	if(page->IsHorizontalScroll())
         {
-            if (keys[Input.GetScancode(UserInput::KeyCodeLeft)])
+            if (Input.GetKeyState(UserInput::KeyCodeLeft))
             {
                 page->SetScrolling(Page::ScrollDirectionBack);
             }
-            if (keys[Input.GetScancode(UserInput::KeyCodeRight)])
+            if (Input.GetKeyState(UserInput::KeyCodeRight))
             {
                 page->SetScrolling(Page::ScrollDirectionForward);
             } 
         }
         else
         { 
-            if (keys[Input.GetScancode(UserInput::KeyCodeUp)])
+            if (Input.GetKeyState(UserInput::KeyCodeUp))
             {
                 page->SetScrolling(Page::ScrollDirectionBack);
             }
-            if (keys[Input.GetScancode(UserInput::KeyCodeDown)])
+            if (Input.GetKeyState(UserInput::KeyCodeDown))
             {
                     page->SetScrolling(Page::ScrollDirectionForward);
             }
         }
-        if (keys[Input.GetScancode(UserInput::KeyCodePageUp)])
+        if (Input.GetKeyState(UserInput::KeyCodePageUp))
         {
             page->PageScroll(Page::ScrollDirectionBack);
         }
-        if (keys[Input.GetScancode(UserInput::KeyCodePageDown)])
+        if (Input.GetKeyState(UserInput::KeyCodePageDown))
         {
             page->PageScroll(Page::ScrollDirectionForward);
         }
-        if (keys[Input.GetScancode(UserInput::KeyCodeAdminMode)])
+        if (Input.GetKeyState(UserInput::KeyCodeAdminMode))
         {
             //todo: add admin mode support
         }
-        if (keys[Input.GetScancode(UserInput::KeyCodeSelect)] && page->IsMenuIdle())
+        if (Input.GetKeyState(UserInput::KeyCodeSelect) && page->IsMenuIdle())
         {
             NextPageItem = page->GetSelectedItem();
 
@@ -453,7 +455,7 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
             }
         }
 
-        if (keys[Input.GetScancode(UserInput::KeyCodeBack)] && page->IsMenuIdle())
+        if (Input.GetKeyState(UserInput::KeyCodeBack) && page->IsMenuIdle())
         {
             if(Back(exit) || exit)
             {
@@ -461,17 +463,17 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
             }
         }
 
-        if (keys[Input.GetScancode(UserInput::KeyCodeQuit)])
+        if (Input.GetKeyState(UserInput::KeyCodeQuit))
         {
             state = RETROFE_QUIT_REQUEST;
         }
 
-        if(!keys[Input.GetScancode(UserInput::KeyCodeUp)] &&
-                !keys[Input.GetScancode(UserInput::KeyCodeLeft)] &&
-                !keys[Input.GetScancode(UserInput::KeyCodeDown)] &&
-                !keys[Input.GetScancode(UserInput::KeyCodeRight)] &&
-                !keys[Input.GetScancode(UserInput::KeyCodePageUp)] &&
-                !keys[Input.GetScancode(UserInput::KeyCodePageDown)])
+        if(!Input.GetKeyState(UserInput::KeyCodeUp) &&
+                !Input.GetKeyState(UserInput::KeyCodeLeft) &&
+                !Input.GetKeyState(UserInput::KeyCodeDown) &&
+                !Input.GetKeyState(UserInput::KeyCodeRight) &&
+                !Input.GetKeyState(UserInput::KeyCodePageUp) &&
+                !Input.GetKeyState(UserInput::KeyCodePageDown))
         {
             page->SetScrolling(Page::ScrollDirectionIdle);
         }

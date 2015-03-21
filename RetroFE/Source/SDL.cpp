@@ -135,7 +135,11 @@ bool SDL::Initialize(Configuration &config)
 
     if (retVal && Fullscreen)
     {
+#ifdef WIN32
         windowFlags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+#else
+        windowFlags |= SDL_WINDOW_FULLSCREEN;
+#endif
     }
 
     if(retVal)
