@@ -26,6 +26,7 @@
 #else
 #include <sys/types.h>
 #include <unistd.h>
+#include <wordexp.h>
 #endif
 
 std::string Configuration::AbsolutePath;
@@ -305,6 +306,18 @@ std::string Configuration::ConvertToAbsolutePath(std::string prefix, std::string
 {
     char first = ' ';
     char second = ' ';
+
+    // expand path variables 
+#ifdef WIN32
+    // Do something equivalent to the 'nix code using Windows' ExpandEnvironmentStrings() here
+#else
+    wordexp_t expandedPath;
+    wordexp(path.c_str(), &expandedPath, 0);
+    path = "\"" + path + "\"";
+    path.assign(expandedPath.we_wordv[0]);
+    path.erase(std::remove(path.begin(), path.end(), '"'), path.end());
+    wordfree(&expandedPath);
+#endif
 
     if(path.length() >= 0)
     {
