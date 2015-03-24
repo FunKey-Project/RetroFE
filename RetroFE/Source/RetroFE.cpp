@@ -124,6 +124,8 @@ void RetroFE::LaunchExit()
     SDL_SetWindowGrab(SDL::GetWindow(), SDL_TRUE);
     Input.ResetKeyStates();
     Attract.Reset();
+
+    CurrentTime = static_cast<float>(SDL_GetTicks()) / 1000;
     if(CurrentPage)
     {
         CurrentPage->LaunchExit();
