@@ -17,9 +17,7 @@
 #include "VideoFactory.h"
 #include "IVideo.h"
 
-#ifdef NO_VIDEO
-#include "NullVideo.h"
-#else 
+#ifndef NO_VIDEO
 #include "GStreamerVideo.h"
 #endif
 
@@ -32,14 +30,9 @@ IVideo *VideoFactory::CreateVideo()
 
     if(Enabled && !Instance)
     {
-#ifdef NO_VIDEO
-        Instance = new NullVideo();
-#else
-        Instance = new GStreamerVideo();
-#endif
-        Instance->Initialize();
-
 #ifndef NO_VIDEO
+        Instance = new GStreamerVideo();
+        Instance->Initialize();
         ((GStreamerVideo *)(Instance))->SetNumLoops(NumLoops);
 #endif
     }

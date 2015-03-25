@@ -186,10 +186,7 @@ set(RETROFE_SOURCES
 	"${SQLITE3_ROOT}/sqlite3.c"
 )
 
-if(NO_VIDEO)
-set(RETROFE_HEADERS ${RETROFE_HEADERS} "${RETROFE_DIR}/Source/Video/NullVideo.h")
-set(RETROFE_SOURCES ${RETROFE_SOURCES} "${RETROFE_DIR}/Source/Video/NullVideo.cpp")
-else()
+if(NOT NO_VIDEO)
 set(RETROFE_HEADERS ${RETROFE_HEADERS} "${RETROFE_DIR}/Source/Video/GStreamerVideo.h")
 set(RETROFE_SOURCES ${RETROFE_SOURCES} "${RETROFE_DIR}/Source/Video/GStreamerVideo.cpp")
 endif()
