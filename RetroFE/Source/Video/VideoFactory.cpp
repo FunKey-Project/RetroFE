@@ -16,7 +16,12 @@
 
 #include "VideoFactory.h"
 #include "IVideo.h"
+
+#ifdef NO_VIDEO
+#include "NullVideo.h"
+#else 
 #include "GStreamerVideo.h"
+#endif
 
 bool VideoFactory::Enabled = true;
 int VideoFactory::NumLoops = 0;
@@ -27,9 +32,16 @@ IVideo *VideoFactory::CreateVideo()
 
     if(Enabled && !Instance)
     {
+#ifdef NO_VIDEO
+        Instance = new NullVideo();
+#else
         Instance = new GStreamerVideo();
+#endif
         Instance->Initialize();
+
+#ifndef NO_VIDEO
         ((GStreamerVideo *)(Instance))->SetNumLoops(NumLoops);
+#endif
     }
 
     return Instance;

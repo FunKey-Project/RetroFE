@@ -37,8 +37,12 @@ endif()
 endif()
 
 if(WIN32)
+
+if(NOT NO_VIDEO)
 	find_package(Glib2 REQUIRED)
 	find_package(GStreamer REQUIRED)
+endif()
+
 	find_package(SDL2 REQUIRED)
 	find_package(SDL2_image REQUIRED)
 	find_package(SDL2_mixer REQUIRED)
@@ -51,8 +55,12 @@ else()
 	pkg_search_module(SDL2_MIXER REQUIRED SDL2_mixer)
 	pkg_search_module(SDL2_TTF REQUIRED SDL2_ttf)
 	pkg_search_module(ZLIB REQUIRED zlib)
+
+if(NOT NO_VIDEO)
 	pkg_search_module(GSTREAMER REQUIRED gstreamer-1.0 gstbase-1.0)
 	pkg_search_module(Glib2 REQUIRED glib-2.0 gobject-2.0 gthread-2.0 gmodule-2.0)
+endif()
+
 	find_package(Threads REQUIRED)
 endif()
 
@@ -73,14 +81,19 @@ LIST(APPEND RETROFE_INCLUDE_DIRS 	"${DIRENT_INCLUDE_DIR}")
 endif()
 
 set(RETROFE_LIBRARIES
-	${GLIB2_LIBRARIES}
-	${GSTREAMER_LIBRARIES}
 	${SDL2_LIBRARIES}
 	${SDL2_IMAGE_LIBRARIES}
 	${SDL2_MIXER_LIBRARIES}
 	${SDL2_TTF_LIBRARIES}
 	${ZLIB_LIBRARIES}
 )
+
+if(NOT NO_VIDEO)
+  list(APPEND RETROFE_LIBRARIES 
+	${GLIB2_LIBRARIES}
+	${GSTREAMER_LIBRARIES}
+	)
+endif()
 
 if(NOT WIN32)
 	LIST(APPEND RETROFE_LIBRARIES ${CMAKE_DL_LIBS} ${CMAKE_THREAD_LIBS_INIT})
@@ -122,7 +135,6 @@ set(RETROFE_HEADERS
 	"${RETROFE_DIR}/Source/Utility/Log.h"
 	"${RETROFE_DIR}/Source/Utility/Utils.h"
 	"${RETROFE_DIR}/Source/Video/IVideo.h"
-	"${RETROFE_DIR}/Source/Video/GStreamerVideo.h"
 	"${RETROFE_DIR}/Source/Video/VideoFactory.h"
 	"${RETROFE_DIR}/Source/Graphics/ComponentItemBindingBuilder.h"
 	"${RETROFE_DIR}/Source/Graphics/ViewInfo.h"
@@ -166,7 +178,6 @@ set(RETROFE_SOURCES
 	"${RETROFE_DIR}/Source/Sound/Sound.cpp"
 	"${RETROFE_DIR}/Source/Utility/Log.cpp"
 	"${RETROFE_DIR}/Source/Utility/Utils.cpp"
-	"${RETROFE_DIR}/Source/Video/GStreamerVideo.cpp"
 	"${RETROFE_DIR}/Source/Video/VideoFactory.cpp"
 	"${RETROFE_DIR}/Source/Main.cpp"
 	"${RETROFE_DIR}/Source/RetroFE.cpp"
@@ -175,6 +186,13 @@ set(RETROFE_SOURCES
 	"${SQLITE3_ROOT}/sqlite3.c"
 )
 
+if(NO_VIDEO)
+set(RETROFE_HEADERS ${RETROFE_HEADERS} "${RETROFE_DIR}/Source/Video/NullVideo.h")
+set(RETROFE_SOURCES ${RETROFE_SOURCES} "${RETROFE_DIR}/Source/Video/NullVideo.cpp")
+else()
+set(RETROFE_HEADERS ${RETROFE_HEADERS} "${RETROFE_DIR}/Source/Video/GStreamerVideo.h")
+set(RETROFE_SOURCES ${RETROFE_SOURCES} "${RETROFE_DIR}/Source/Video/GStreamerVideo.cpp")
+endif()
 
 set(EXECUTABLE_OUTPUT_PATH "${RETROFE_DIR}/Build" CACHE PATH "Build directory" FORCE)
 set(LIBRARY_OUTPUT_PATH "${RETROFE_DIR}/Build" CACHE PATH "Build directory" FORCE)
@@ -192,6 +210,9 @@ add_definitions(-DRETROFE_VERSION_MAJOR=${VERSION_MAJOR})
 add_definitions(-DRETROFE_VERSION_MINOR=${VERSION_MINOR})
 add_definitions(-DRETROFE_VERSION_BUILD=${VERSION_BUILD})
 
+if(NO_VIDEO)
+add_definitions(-DNO_VIDEO)
+endif()
 
 if(MSVC)
 	set(CMAKE_DEBUG_POSTFIX "d")
