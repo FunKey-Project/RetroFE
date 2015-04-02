@@ -3,7 +3,7 @@
 RetroFE is a cross-platform frontend designed for MAME cabinets/game centers/etc. with a focus on simplicity and customization.
 
 ##  Compiling and installing on Ubuntu Linux (10.04 or newer) ##
-===============================
+
 ### Install libraries ###
 Install necessary dependencies:
 	
@@ -45,10 +45,8 @@ Compile RetroFE and create a full environment:
 	Install gstreamer and gstreamer-devel to c:/gstreamer(x86, not 64 bit!) from http://gstreamer.freedesktop/org/data/pkg/windows/1.4.0
 
 ### Download and compile the source code ###
-#### Open a command prompt #### 
-    Launch cmd.exe
-    
-#### Download the source code ####
+
+Download the source code
 
 	hg clone https://bitbucket.org/teamretro/retrofe
 
