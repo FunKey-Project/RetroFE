@@ -1,5 +1,7 @@
 # README #
 
+[TOC]
+
 RetroFE is a cross-platform frontend designed for MAME cabinets/game centers/etc. with a focus on simplicity and customization.
 
 ##  Compiling and installing on Ubuntu Linux (10.04 or newer) ##
