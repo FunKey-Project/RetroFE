@@ -31,7 +31,7 @@ Compile RetroFE and create a full environment:
 
 
 
-## Compiling and installing on Windows ## 
+## Compiling and installing on Windows ##
 ** Visit the [RetroFE downloads](retrofe.com/download.php) page to download a precompiled version if you do not want to compile your own. **
 
 ### Install libraries ###
