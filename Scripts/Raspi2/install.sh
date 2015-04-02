@@ -4,7 +4,7 @@
 # Installs RetroFE and SDL2 from source on the Raspberry Pi 2 (Raspbian)
 #
 # Run from the web:
-#   bash <(curl -s https://bitbucket.org/teamretro/retrofe/Scripts/Raspi2/install.sh)
+#   bash <(curl -s https://bitbucket.org/teamretro/retrofe/raw/default/Scripts/Raspi2/install.sh)
 # --------------------------------------------------------
 
 bold="\033[1m"
