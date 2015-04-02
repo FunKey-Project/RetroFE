@@ -1,19 +1,17 @@
-# README #
-
 [TOC]
 
 RetroFE is a cross-platform frontend designed for MAME cabinets/game centers/etc. with a focus on simplicity and customization.
 
-##  Compiling and installing on Ubuntu Linux (10.04 or newer) ##
+#  Compiling and installing on Ubuntu Linux (10.04 or newer) #
 
-### Install libraries ###
+## Install libraries ##
 Install necessary dependencies:
 	
 	sudo apt-get install tortoisehg g++ cmake dos2unix zlib1g-dev libsdl2-2.0 libsdl2-mixer-2.0 libsdl2-image-2.0 libsdl2-ttf-2.0 \
                 libsdl2-dev libsdl2-mixer-dev libsdl2-image-dev libsdl2-ttf-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
                 libgstreamer-plugins-good1.0-dev zlib1g-dev libglib2.0-0 libglib2.0-dev sqlite3
 
-### Download and compile the source code ###
+## Download and compile the source code ##
 Download the source code:
 
 	hg clone https://bitbucket.org/teamretro/retrofe
@@ -28,15 +26,15 @@ Compile RetroFE and create a full environment:
 	cmake --build RetroFE/Build
 	python Scripts/Package.py --os=linux --build=full
 
-### Download and compile the source code ###
+## Download and compile the source code ##
 	cp -r Artifacts\linux\RetroFE /your/ideal/retrofe/path
 
 
 
-## Compiling and installing on Windows ##
+# Compiling and installing on Windows #
 ** Visit the [RetroFE downloads](retrofe.com/download.php) page to download a precompiled version if you do not want to compile your own. **
 
-### Install libraries ###
+## Install libraries ##
 	Install Python 2.7
 	Install sphinx with python
 	Install visual studio 2012
@@ -46,7 +44,7 @@ Compile RetroFE and create a full environment:
 	Install 7zip
 	Install gstreamer and gstreamer-devel to c:/gstreamer(x86, not 64 bit!) from http://gstreamer.freedesktop/org/data/pkg/windows/1.4.0
 
-### Download and compile the source code ###
+## Download and compile the source code ##
 
 Download the source code
 
@@ -69,13 +67,13 @@ Compile RetroFE and create a full environment by running the following commands
 Copy your live RetroFE system to any folder of your choosing. files can be found in Artifacts\windows\RetroFE
 
 
-## Compiling and Installing on Raspberry Pi (raspbian) ##
-### Install libraries ###
+# Compiling and Installing on Raspberry Pi (raspbian) #
+## Install libraries ##
 Install necessary dependencies:
 
 	sudo apt-get install tortoisehg g++ cmake dos2unix
 
-### Download and compile the source code ###
+## Download and compile the source code ##
 Download the source code:
 
 	hg clone https://bitbucket.org/teamretro/retrofe
@@ -92,11 +90,11 @@ Compile RetroFE and create a full environment:
 	cmake --build RetroFE/Build
 	python Scripts/Package.py --os=linux --build=full
 
-### Download and compile the source code ###
+## Download and compile the source code ##
 	cp -r Artifacts\linux\RetroFE /your/ideal/retrofe/path
 
 
-## Other build options ##
+# Other build options #
 After compiling your code you can also build different environments:
 
 To copy just the layouts to Artifacts/windows/RetroFE, run
