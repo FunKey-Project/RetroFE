@@ -67,52 +67,10 @@ Compile RetroFE and create a full environment by running the following commands
 Copy your live RetroFE system to any folder of your choosing. files can be found in Artifacts\windows\RetroFE
 
 
-# Compiling and Installing on Raspberry Pi (raspbian) #
-## Install libraries ##
-Install necessary dependencies:
+# Compiling and Installing on Raspberry Pi 2 (raspbian) #
 
-	sudo apt-get install tortoisehg g++ cmake dos2unix
+** Due to performance, the Rasperry Pi 1 is not supported. **
 
-## Download and compile the source code ##
-Download the source code:
+Just run the following on your raspberry pi 2 (assuming you have an internet connection:
 
-	hg clone https://bitbucket.org/teamretro/retrofe
-
-Compile SDL2:
-	sudo Scripts/Raspi/install_sdl2_rpi.sh
-   
-Generate your gcc make files:
-	cd retrofe
-	cmake RetroFE/Source -BRetroFE/Build -DVERSION_MAJOR=0 -DVERSION_MINOR=0 -DVERSION_BUILD=0
-
-Compile RetroFE and create a full environment: 
-
-	cmake --build RetroFE/Build
-	python Scripts/Package.py --os=linux --build=full
-
-## Download and compile the source code ##
-	cp -r Artifacts\linux\RetroFE /your/ideal/retrofe/path
-
-
-# Other build options #
-After compiling your code you can also build different environments:
-
-To copy just the layouts to Artifacts/windows/RetroFE, run
-	python Scripts\Package.py --os=windows --build=layout --gstreamer_path=D:/gstreamer/1.0/x86
-	or
-	python Scripts\Package.py --os=linux --build=layout
-  
-To copy just retrofe.exe to Artifacts/windows/RetroFE, run 
-	python Scripts\Package.py --os=windows --build=engine --gstreamer_path=D:/gstreamer/1.0/x86
-	or
-	python Scripts\Package.py --os=linux --build=engine
-
-To copy just the third party dlls and retrofe to Artifacts/windows/RetroFE, run 
-	python Scripts\Package.py --os=windows --build=core --gstreamer_path=D:/gstreamer/1.0/x86
-	or
-	python Scripts\Package.py --os=linux --build=core
-
-To copy a whole live installation Artifacts/windows/RetroFE, run 
-	python Scripts\Package.py --os=windows --build=full --gstreamer_path=D:/gstreamer/1.0/x86
-	or
-	python Scripts\Package.py --os=linux --build=full
+	bash <(curl -s https://bitbucket.org/teamretro/retrofe/raw/default/Scripts/Raspi2/install.sh)
