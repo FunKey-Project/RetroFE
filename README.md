@@ -26,7 +26,7 @@ Compile RetroFE and create a full environment:
 	cmake --build RetroFE/Build
 	python Scripts/Package.py --os=linux --build=full
 
-## Download and compile the source code ##
+Copy your live RetroFE system to any folder of your choosing:
 	cp -r Artifacts\linux\RetroFE /your/ideal/retrofe/path
 
 
@@ -55,7 +55,7 @@ Setup Environment (to setup necessary variables and paths to compile in visual s
 	cd retrofe
 	RetroFE/Source/SetupEnvironment.bat   
 
-Generate visual studio solution files ####
+Generate visual studio solution files
 
 	cmake RetroFE/Source -BRetroFE/Build -DGSTREAMER_ROOT=C:/gstreamer/1.0/x86 -DVERSION_MAJOR=0 -DVERSION_MINOR=0 -DVERSION_BUILD=0
   
