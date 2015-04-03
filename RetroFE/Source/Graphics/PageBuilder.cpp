@@ -77,8 +77,8 @@ Page *PageBuilder::BuildPage()
     std::string layoutFile;
     std::string layoutName = LayoutKey;
 
-    LayoutPath = Configuration::GetAbsolutePath() + "/layouts/" + layoutName;
-    layoutFile = LayoutPath + "/" + LayoutPage + ".xml";
+    LayoutPath = Utils::CombinePath(Configuration::GetAbsolutePath(), "layouts", layoutName);
+    layoutFile = Utils::CombinePath(LayoutPath, LayoutPage + ".xml");
 
     Logger::Write(Logger::ZONE_INFO, "Layout", "Initializing " + layoutFile);
 
@@ -125,7 +125,7 @@ Page *PageBuilder::BuildPage()
             if(fontXml)
             {
                 FontName = Config.ConvertToAbsolutePath(
-                           Config.GetAbsolutePath() + "/layouts/" + LayoutKey + "/",
+                           Utils::CombinePath(Config.GetAbsolutePath(), "layouts", LayoutKey, ""),
                            fontXml->value());
             }
 
@@ -345,12 +345,7 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
         else
         {
             std::string imagePath;
-            imagePath = Configuration::ConvertToAbsolutePath(LayoutPath, imagePath);
-
-            imagePath.append("/");
-            imagePath.append(src->value());
-
-
+            imagePath = Utils::CombinePath(Configuration::ConvertToAbsolutePath(LayoutPath, imagePath), std::string(src->value()));
 
             Image *c = new Image(imagePath, ScaleX, ScaleY);
             ViewInfo *v = c->GetBaseViewInfo();
@@ -508,7 +503,7 @@ Font *PageBuilder::AddFont(xml_node<> *component, xml_node<> *defaults)
     if(fontXml)
     {
         fontName = Config.ConvertToAbsolutePath(
-                    Config.GetAbsolutePath() + "/layouts/" + LayoutKey + "/",
+                    Utils::CombinePath(Config.GetAbsolutePath(), "layouts", LayoutKey,""),
                     fontXml->value());
 
         Logger::Write(Logger::ZONE_DEBUG, "Layout", "loading font " + fontName );

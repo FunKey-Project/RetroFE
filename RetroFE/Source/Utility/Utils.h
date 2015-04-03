@@ -17,7 +17,7 @@
 
 #include <string>
 #include <vector>
-
+#include <list>
 class Utils
 {
 public:
@@ -34,6 +34,20 @@ public:
     static bool FindMatchingFile(std::string prefix, std::vector<std::string> &extensions, std::string &file);
     static std::string ToLower(std::string str);
     static std::string UppercaseFirst(std::string str);
+
+    //todo: there has to be a better way to do this
+    static std::string CombinePath(std::list<std::string> &paths);
+    static std::string CombinePath(std::string path1, std::string path2);
+    static std::string CombinePath(std::string path1, std::string path2, std::string path3);
+    static std::string CombinePath(std::string path1, std::string path2, std::string path3, std::string path4);
+    static std::string CombinePath(std::string path1, std::string path2, std::string path3, std::string path4, std::string path5);
+   
+#ifdef WIN32
+    static const char PathSeparator = '\\';
+#else
+    static const char PathSeparator = '/';
+#endif
+
 private:
     Utils();
     virtual ~Utils();

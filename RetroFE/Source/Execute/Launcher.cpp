@@ -116,9 +116,9 @@ std::string Launcher::ReplaceVariables(std::string str,
     str = Utils::Replace(str, "%ITEM_COLLECTION_NAME%", itemCollectionName);
     str = Utils::Replace(str, "%RETROFE_PATH%", Configuration::GetAbsolutePath());
 #ifdef WIN32
-    str = Utils::Replace(str, "%RETROFE_EXEC_PATH%", Configuration::GetAbsolutePath() + "/RetroFE.exe");
+    str = Utils::Replace(str, "%RETROFE_EXEC_PATH%", Utils::CombinePath(Configuration::GetAbsolutePath(), "RetroFE.exe"));
 #else
-    str = Utils::Replace(str, "%RETROFE_EXEC_PATH%", Configuration::GetAbsolutePath() + "/RetroFE");
+    str = Utils::Replace(str, "%RETROFE_EXEC_PATH%", Utils::CombinePath(Configuration::GetAbsolutePath(), "RetroFE"));
 #endif
 
     return str;
@@ -153,7 +153,7 @@ bool Launcher::ExecuteCommand(std::string executable, std::string args, std::str
 
     if(!CreateProcess(NULL, applicationName, NULL, NULL, FALSE, CREATE_NO_WINDOW, NULL, currDir, &startupInfo, &processInfo))
 #else
-    const std::size_t last_slash_idx = executable.rfind("/");
+    const std::size_t last_slash_idx = executable.rfind(Utils::PathSeparator);
     if (last_slash_idx != std::string::npos)
     {
         std::string applicationName = executable.substr(last_slash_idx + 1);
@@ -275,7 +275,7 @@ bool Launcher::GetCollectionDirectory(std::string &directory, std::string collec
 
     // find the items path folder (i.e. ROM path)
     Config.GetCollectionAbsolutePath(collection, itemsPathValue);
-    directory += itemsPathValue + "/";
+    directory += itemsPathValue + Utils::PathSeparator;
 
     return true;
 }

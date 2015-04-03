@@ -73,20 +73,22 @@ int main(int argc, char **argv)
 bool ImportConfiguration(Configuration *c)
 {
     std::string configPath =  Configuration::GetAbsolutePath();
-    std::string launchersPath =  Configuration::GetAbsolutePath() + "/launchers";
-    std::string collectionsPath =  Configuration::GetAbsolutePath() + "/collections";
+    std::string launchersPath =  Utils::CombinePath(Configuration::GetAbsolutePath(), "launchers");
+    std::string collectionsPath =  Utils::CombinePath(Configuration::GetAbsolutePath(), "collections");
     DIR *dp;
     struct dirent *dirp;
 
-    if(!c->Import("", configPath + "/settings.conf"))
+    std::string settingsConfPath = Utils::CombinePath(configPath, "settings.conf");
+    if(!c->Import("", settingsConfPath))
     {
-        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + configPath + "/settings.conf\"");
+        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + settingsConfPath + "\"");
         return false;
     }
-
-    if(!c->Import("controls", configPath + "/controls.conf"))
+    
+    std::string controlsConfPath = Utils::CombinePath(configPath, "controls.conf");
+    if(!c->Import("controls", controlsConfPath))
     {
-        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + configPath + "/settings.conf\"");
+        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + controlsConfPath + "\"");
         return false;
     }
 
@@ -111,7 +113,7 @@ bool ImportConfiguration(Configuration *c)
             {
                 std::string prefix = "launchers." + basename;
 
-                std::string importFile = launchersPath + "/" + std::string(dirp->d_name);
+                std::string importFile = Utils::CombinePath(launchersPath, std::string(dirp->d_name));
 
                 if(!c->Import(prefix, importFile))
                 {
@@ -140,7 +142,7 @@ bool ImportConfiguration(Configuration *c)
         {
             std::string prefix = "collections." + std::string(dirp->d_name);
 
-            std::string settingsFile = collectionsPath + "/" + dirp->d_name + "/settings.conf";
+            std::string settingsFile = Utils::CombinePath(collectionsPath, std::string(dirp->d_name), "settings.conf");
 
             if(!c->Import(prefix, settingsFile))
             {
@@ -160,7 +162,7 @@ bool ImportConfiguration(Configuration *c)
 
 bool StartLogging()
 {
-    std::string logFile = Configuration::GetAbsolutePath() + "/log.txt";
+    std::string logFile = Utils::CombinePath(Configuration::GetAbsolutePath(), "log.txt");
 
     if(!Logger::Initialize(logFile))
     {

@@ -41,6 +41,8 @@ Configuration::~Configuration()
 
 void Configuration::Initialize()
 {
+        Configuration::SetAbsolutePath("D:\\RetroFE");
+        return;
     const char *environment = std::getenv("RETROFE_PATH");
     std::string environmentStr;
     if (environment != NULL)
@@ -316,12 +318,11 @@ std::string Configuration::ConvertToAbsolutePath(std::string prefix, std::string
     }
 
     // check to see if it is already an absolute path
-    if((first != '/') &&
-            (first != '\\') &&
+    if((first != Utils::PathSeparator) &&
             //(first != '.') &&
             (second != ':'))
     {
-        path = prefix + "/" + path;
+        path = Utils::CombinePath(prefix, path);
     }
 
     return path;
@@ -360,36 +361,36 @@ void Configuration::GetMediaPropertyAbsolutePath(std::string collectionName, std
     if(!GetPropertyAbsolutePath("baseMediaPath", baseMediaPath))
     {
         // base media path was not specified, assume media files are in the collection
-        baseMediaPath = GetAbsolutePath() + "/collections";
+        baseMediaPath = Utils::CombinePath(GetAbsolutePath(), "collections");
     }
 
     if(mediaType == "manufacturer")
     {
-        value = baseMediaPath + "/_manufacturer";
+        value = Utils::CombinePath(baseMediaPath, "_manufacturer");
     }
     else if(mediaType == "genre")
     {
-        value = baseMediaPath + "/_genre";
+        value = Utils::CombinePath(baseMediaPath, "_genre");
     }
     else if(mediaType == "year")
     {
-        value = baseMediaPath + "/_year";
+        value = Utils::CombinePath(baseMediaPath, "_year");
     }
     else if(mediaType == "number_players")
     {
-        value = baseMediaPath + "/_number_players";
+        value = Utils::CombinePath(baseMediaPath, "_number_players");
     }
     else if(mediaType == "number_buttons")
     {
-        value = baseMediaPath + "/_number_buttons";
+        value = Utils::CombinePath(baseMediaPath, "_number_buttons");
     }
     else if(system)
     {
-        value = baseMediaPath + "/" + collectionName + "/system_artwork";
+        value = Utils::CombinePath(baseMediaPath, collectionName, "system_artwork");
     }
     else
     {
-        value = baseMediaPath + "/" + collectionName + "/medium_artwork/" + mediaType;
+        value = Utils::CombinePath(baseMediaPath, collectionName, "medium_artwork", mediaType);
     }
 }
 
@@ -405,12 +406,11 @@ void Configuration::GetCollectionAbsolutePath(std::string collectionName, std::s
     std::string baseItemPath;
     if(GetPropertyAbsolutePath("baseItemPath", baseItemPath))
     {
-        value = baseItemPath + "/" + collectionName;
+        value = Utils::CombinePath(baseItemPath, collectionName);
         return;
     }
 
-        value = GetAbsolutePath() + "/collections/" + collectionName + "/roms";
-
+    value = Utils::CombinePath(GetAbsolutePath(), "collections", collectionName, "roms");
 }
 
 

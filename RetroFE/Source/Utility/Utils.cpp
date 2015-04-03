@@ -22,6 +22,7 @@
 #include <fstream>
 #include <dirent.h>
 #include <locale>
+#include <list>
 
 
 Utils::Utils()
@@ -53,6 +54,66 @@ std::string Utils::UppercaseFirst(std::string str)
 
     return str;
 }
+
+std::string Utils::CombinePath(std::list<std::string> &paths)
+{
+    std::list<std::string>::iterator it = paths.begin();
+    std::string path;
+
+    if(it != paths.end())
+    {
+        path += *it;
+        it++;
+    }
+
+
+    while(it != paths.end())
+    {
+        path += Utils::PathSeparator;
+        path += *it;
+        it++;
+    }
+
+    return path;
+}
+
+std::string Utils::CombinePath(std::string path1, std::string path2)
+{
+    std::list<std::string> paths;
+    paths.push_back(path1);
+    paths.push_back(path2);
+    return CombinePath(paths);
+}
+
+std::string Utils::CombinePath(std::string path1, std::string path2, std::string path3)
+{
+    std::list<std::string> paths;
+    paths.push_back(path1);
+    paths.push_back(path2);
+    paths.push_back(path3);
+    return CombinePath(paths);
+}
+
+std::string Utils::CombinePath(std::string path1, std::string path2, std::string path3, std::string path4)
+{
+    std::list<std::string> paths;
+    paths.push_back(path1);
+    paths.push_back(path2);
+    paths.push_back(path3);
+    paths.push_back(path4);
+    return CombinePath(paths);
+}
+std::string Utils::CombinePath(std::string path1, std::string path2, std::string path3, std::string path4, std::string path5)
+{
+    std::list<std::string> paths;
+    paths.push_back(path1);
+    paths.push_back(path2);
+    paths.push_back(path3);
+    paths.push_back(path4);
+    paths.push_back(path5);
+    return CombinePath(paths);
+}
+
 
 bool Utils::FindMatchingFile(std::string prefix, std::vector<std::string> &extensions, std::string &file)
 {
