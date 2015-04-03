@@ -30,7 +30,7 @@ Image * ImageBuilder::CreateImage(std::string path, std::string name, float scal
     extensions.push_back("jpeg");
     extensions.push_back("JPEG");
 
-    std::string prefix = path + "/" + name;
+    std::string prefix = Utils::CombinePath(path, name);
     std::string file;
 
     if(Utils::FindMatchingFile(prefix, extensions, file))

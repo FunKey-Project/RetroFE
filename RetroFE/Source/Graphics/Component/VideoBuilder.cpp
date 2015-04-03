@@ -31,7 +31,7 @@ VideoComponent * VideoBuilder::CreateVideo(std::string path, std::string name, f
     extensions.push_back("avi");
     extensions.push_back("AVI");
 
-    std::string prefix = path + "/" + name;
+    std::string prefix = Utils::CombinePath(path, name);
     std::string file;
 
     if(Utils::FindMatchingFile(prefix, extensions, file))

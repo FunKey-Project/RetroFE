@@ -18,6 +18,7 @@
 #include "CollectionInfo.h"
 #include "Item.h"
 #include "../Utility/Log.h"
+#include "../Utility/Utils.h"
 #include "../Database/Configuration.h"
 #include "../Database/DB.h"
 #include <algorithm>
@@ -43,7 +44,7 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
 {
     bool retVal = false;
     //todo: magic string
-    std::string menuFilename = Configuration::GetAbsolutePath() + "/collections/" + collection->GetName() + "/menu.xml";
+    std::string menuFilename = Utils::CombinePath(Configuration::GetAbsolutePath(), "collections", collection->GetName(), "menu.xml");
     rapidxml::xml_document<> doc;
     rapidxml::xml_node<> * rootNode;
 

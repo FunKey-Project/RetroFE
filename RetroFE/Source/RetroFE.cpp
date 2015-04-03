@@ -21,6 +21,7 @@
 #include "Collection/Item.h"
 #include "Execute/Launcher.h"
 #include "Utility/Log.h"
+#include "Utility/Utils.h"
 #include "Collection/MenuParser.h"
 #include "SDL.h"
 #include "Control/UserInput.h"
@@ -84,7 +85,7 @@ int RetroFE::Initialize(void *context)
         return -1;
     }
 
-    instance->Db = new DB(Configuration::GetAbsolutePath() + "/meta.db");
+    instance->Db = new DB(Utils::CombinePath(Configuration::GetAbsolutePath(), "meta.db"));
 
     if(!instance->Db->Initialize())
     {

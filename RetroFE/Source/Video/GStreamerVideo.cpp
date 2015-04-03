@@ -18,6 +18,7 @@
 #include "../Graphics/Component/Image.h"
 #include "../Database/Configuration.h"
 #include "../Utility/Log.h"
+#include "../Utility/Utils.h"
 #include "../SDL.h"
 #include <sstream>
 #include <cstring>
@@ -134,7 +135,7 @@ bool GStreamerVideo::Initialize()
         return true;
     }
 
-    std::string path = Configuration::GetAbsolutePath() + "/Core";
+    std::string path = Utils::CombinePath(Configuration::GetAbsolutePath(), "Core");
     gst_init(NULL, NULL);
 
 #ifdef WIN32

@@ -16,6 +16,7 @@
 #include "CollectionInfo.h"
 #include "Item.h"
 #include "../Database/Configuration.h"
+#include "../Utility/Utils.h"
 #include <sstream>
 #include <algorithm>
 
@@ -51,7 +52,7 @@ std::string CollectionInfo::GetName() const
 
 std::string CollectionInfo::GetSettingsPath() const
 {
-    return Configuration::GetAbsolutePath() + "/collections/" + GetName();
+    return Utils::CombinePath(Configuration::GetAbsolutePath(), "collections", GetName());
 }
 
 std::string CollectionInfo::GetListPath() const

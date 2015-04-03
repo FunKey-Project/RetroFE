@@ -110,8 +110,8 @@ bool MetadataDatabase::ImportDirectory()
 {
     DIR *dp;
     struct dirent *dirp;
-    std::string hyperListPath = Configuration::GetAbsolutePath() + "/meta/hyperlist";
-    std::string mameListPath = Configuration::GetAbsolutePath() + "/meta/mamelist";
+    std::string hyperListPath = Utils::CombinePath(Configuration::GetAbsolutePath() + "meta", "hyperlist");
+    std::string mameListPath = Utils::CombinePath(Configuration::GetAbsolutePath(), "meta", "mamelist");
 
     dp = opendir(hyperListPath.c_str());
 
@@ -135,7 +135,7 @@ bool MetadataDatabase::ImportDirectory()
 
                 if(extension == ".xml")
                 {
-                    std::string importFile = hyperListPath + "/" + dirp->d_name;
+                    std::string importFile = Utils::CombinePath(hyperListPath, std::string(dirp->d_name));
                     Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing hyperlist: " + importFile);
                     ImportHyperList(importFile, collectionName);
                 }
@@ -167,7 +167,7 @@ bool MetadataDatabase::ImportDirectory()
 
                 if(extension == ".xml")
                 {
-                    std::string importFile = mameListPath + "/" + dirp->d_name;
+                    std::string importFile = Utils::CombinePath(mameListPath, std::string(dirp->d_name));
                     Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing mamelist: " + importFile);
                     Config.SetStatus("Scraping data from " + importFile);
                     ImportMameList(importFile, collectionName);
