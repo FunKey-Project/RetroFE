@@ -275,7 +275,6 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
     {
         std::string file = dirp->d_name;
 
-        Utils::NormalizeBackSlashes(file);
         size_t position = file.find_last_of(".");
         std::string basename = (std::string::npos == position)? file : file.substr(0, position);
         

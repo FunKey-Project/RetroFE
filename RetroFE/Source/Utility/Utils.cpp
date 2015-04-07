@@ -170,11 +170,6 @@ int Utils::ConvertInt(std::string content)
     return retVal;
 }
 
-void Utils::NormalizeBackSlashes(std::string& content)
-{
-    std::replace(content.begin(), content.end(), '\\', '/');
-}
-
 void Utils::ReplaceSlashesWithUnderscores(std::string &content)
 {
     std::replace(content.begin(), content.end(), '\\', '_');
@@ -185,10 +180,9 @@ void Utils::ReplaceSlashesWithUnderscores(std::string &content)
 std::string Utils::GetDirectory(std::string filePath)
 {
 
-    NormalizeBackSlashes(filePath);
     std::string directory = filePath;
 
-    const size_t last_slash_idx = filePath.rfind('/');
+    const size_t last_slash_idx = filePath.rfind(PathSeparator);
     if (std::string::npos != last_slash_idx)
     {
         directory = filePath.substr(0, last_slash_idx);
@@ -199,14 +193,11 @@ std::string Utils::GetDirectory(std::string filePath)
 
 std::string Utils::GetParentDirectory(std::string directory)
 {
-
-    NormalizeBackSlashes(directory);
-
-    size_t last_slash_idx = directory.find_last_of('/');
+    size_t last_slash_idx = directory.find_last_of(PathSeparator);
     if(directory.length() - 1 == last_slash_idx)
     {
         directory = directory.erase(last_slash_idx, directory.length()-1);
-        last_slash_idx = directory.find_last_of('/');
+        last_slash_idx = directory.find_last_of(PathSeparator);
     }
 
     if (std::string::npos != last_slash_idx)
@@ -221,10 +212,9 @@ std::string Utils::GetParentDirectory(std::string directory)
 std::string Utils::GetFileName(std::string filePath)
 {
 
-    NormalizeBackSlashes(filePath);
     std::string filename = filePath;
 
-    const size_t last_slash_idx = filePath.rfind('/');
+    const size_t last_slash_idx = filePath.rfind(PathSeparator);
     if (std::string::npos != last_slash_idx)
     {
         filename = filePath.erase(0, last_slash_idx+1);

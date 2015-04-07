@@ -26,7 +26,6 @@ public:
 
     static float ConvertFloat(std::string content);
     static int ConvertInt(std::string content);
-    static void NormalizeBackSlashes(std::string &content);
     static void ReplaceSlashesWithUnderscores(std::string &content);
     static std::string GetDirectory(std::string filePath);
     static std::string GetParentDirectory(std::string filePath);

@@ -110,7 +110,7 @@ bool MetadataDatabase::ImportDirectory()
 {
     DIR *dp;
     struct dirent *dirp;
-    std::string hyperListPath = Utils::CombinePath(Configuration::GetAbsolutePath() + "meta", "hyperlist");
+    std::string hyperListPath = Utils::CombinePath(Configuration::GetAbsolutePath(), "meta", "hyperlist");
     std::string mameListPath = Utils::CombinePath(Configuration::GetAbsolutePath(), "meta", "mamelist");
 
     dp = opendir(hyperListPath.c_str());
