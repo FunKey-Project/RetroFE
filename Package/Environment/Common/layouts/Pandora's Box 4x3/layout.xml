@@ -1,0 +1,407 @@
+<layout width="1600" height="1200" font="Roboto-Bold.ttf" loadFontSize="64" fontColor="dedede">
+
+
+  <!--
+     - Default RetroFE sound files.
+    -->
+
+  <sound type="load" src="load.wav" />
+  <sound type="unload" src="unload.wav" />
+  <sound type="highlight" src="highlight.wav" />
+  <sound type="select" src="select.wav" />
+
+
+  <!--
+     - Flaming background, slowly pulsating using transparency.
+    -->
+
+  <image src="bg.jpg" x="0" y="0" height="stretch" width="stretch" layer="0">
+    <onIdle>
+      <set duration="2">
+        <animate type="alpha" from="1" to="0.5" algorithm="easeinquadratic"/>
+      </set>
+      <set duration="1">
+        <animate type="alpha" from="0.5" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onIdle>
+  </image>
+
+
+  <!--
+     - Main menu structure.
+     - This menu uses the device images from the system_artwork directory.
+     - The menu items are faded out when leaving this menu, and faded in
+     - when entering this menu.
+    -->
+
+  <menu type="custom" imageType="device" scrollTime=".24" scrollAcceleration=".04" orientation="horizontal" >
+    <itemDefaults x="center" y="960" xOrigin="center" yOrigin="bottom" width="200" maxHeight="500" fontSize="35" layer="5"/>
+    <item xOffset="-940" alpha="0" algorithm="easeinquadratic"/>
+    <item xOffset="-730">
+      <onMenuEnter>
+        <set duration=".3">
+          <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuEnter>
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="-520">
+      <onMenuEnter>
+        <set duration=".3">
+          <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuEnter>
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="-310">
+      <onMenuEnter>
+        <set duration=".3">
+          <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuEnter>
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item selected="true" width="350" yOffset="50" layer="5">
+      <onMenuEnter>
+        <set duration=".3">
+          <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuEnter>
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="310">
+      <onMenuEnter>
+        <set duration=".3">
+          <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuEnter>
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="520">
+      <onMenuEnter>
+        <set duration=".3">
+          <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuEnter>
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="730">
+      <onMenuEnter>
+        <set duration=".3">
+          <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuEnter>
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="940" alpha="0" algorithm="easeinquadratic"/>
+  </menu>
+
+
+  <!--
+     - Collection menu structure.
+     - This menu uses the artwork_front images from the medium_artwork directory.
+     - The menu items are faded out when leaving this menu, and faded in
+     - when entering this menu.
+     - It is left to the user which images should be used for the
+     - artwork_front for systems like MAME. Personally I use the logo's
+     - there, since the available cabinet images leave something to be
+     - desired.
+    -->
+
+  <menu type="custom" imageType="artwork_front" scrollTime=".24" scrollAcceleration=".04" orientation="horizontal">
+    <itemDefaults x="center" y="960" xOrigin="center" yOrigin="bottom" width="150" maxHeight="500" fontSize="35" layer="5"/>
+    <item xOffset="-925" alpha="0" algorithm="easeinquadratic"/>
+    <item xOffset="-765">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="-605">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="-445">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="-285">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item selected="true" width="350" yOffset="50" layer="5">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0"
+          algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="285">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="445">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="605">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="765">
+      <onMenuExit>
+        <set duration=".3">
+          <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+        </set>
+      </onMenuExit>
+    </item>
+    <item xOffset="925" alpha="0" algorithm="easeinquadratic"/>
+  </menu>
+
+
+  <!--
+     - Video display, consisting of a black background image, a video border
+     - image by Timmyb, and a 640x480 video display with screenshots as
+     - backup in case the video is not available.
+    -->
+
+  <image src="black.png" x="400" y="300" xOrigin="center" yOrigin="center" height="480" width="640" layer="2"/>
+  <image src="videoborder.png" x="400" y="300" xOrigin="center" yOrigin="center" layer="4"/>
+  <reloadableVideo imageType="screenshot" x="400" y="300" xOrigin="center" yOrigin="center" height="480" maxWidth="640" layer="3">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableVideo>
+
+
+  <!--
+     - Logo displayed at the top of the video window.
+    -->
+
+  <reloadableImage type="logo" x="400" y="90" xOrigin="center" yOrigin="top" maxHeight="70" maxWidth="200" layer="5" alpha="0">
+    <onIdle>
+      <set duration="1">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+      <set duration="1">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onIdle>
+  </reloadableImage>
+
+
+  <!--
+     - Large device image displayed during the main menu. When switching
+     - devices, the device image is moved off-screen to the right, and the
+     - next device image moves in from the right. When switching to the
+     - collection menu's, the device image is faded out, and the display is
+     - taken over by the system mode device image.
+    -->
+
+  <reloadableImage type="device" x="1175" y="640" xOrigin="center" yOrigin="center" maxHeight="1200" width="2000" layer="1">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="x" from="4000" to="1175" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="x" from="1175" to="4000" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+    <onMenuEnter menuIndex="0">
+      <set duration="0.3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onMenuEnter>
+    <onMenuExit menuIndex="0">
+      <set duration="0.3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onMenuExit>
+  </reloadableImage>
+
+
+  <!--
+     - Large system mode device image of the selected collection displayed
+     - during the collection menu.
+    -->
+
+  <reloadableImage type="device" mode="system" x="1175" y="640" xOrigin="center" yOrigin="center" maxHeight="1200" width="2000" layer="1"/>
+
+
+  <!--
+     - Large logo display at the top of the device image for the main menu.
+    -->
+
+  <reloadableImage type="logo" x="1175" y="50" xOrigin="center" yOrigin="top" height="250" maxWidth="800" layer="7">
+    <onMenuExit menuIndex="0">
+      <set duration="1">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onMenuExit>
+    <onHighlightEnter menuIndex="0">
+      <set duration=".6">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+  </reloadableImage>
+
+
+  <!--
+     - Large logo display of the selected collection at the top of the
+     - device image for the collection menu.
+    -->
+
+  <reloadableImage type="logo" mode="system" x="1175" y="50" xOrigin="center" yOrigin="top" height="250" maxWidth="800" layer="7"/>
+
+
+
+  <!--
+     - Bottom border image by Timmyb.
+    -->
+
+  <image src="bottomborder.png" x="0" y="1200" xOrigin="left" yOrigin="bottom" layer="3"/>
+
+
+  <!--
+     - Medium (cart/disk) displayed in the right side area of the bottom
+     - border.
+    -->
+
+  <reloadableImage type="medium_front" x="1255" y="1070" xOrigin="center" yOrigin="center"
+  maxHeight="160" width="350" layer="7">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableImage>
+
+
+  <!--
+     - Displaying year, genre, and manufacturer in the left side area of the
+     - bottom border.
+    -->
+
+  <text value="Year:" x="290" y="995" xOrigin="right" yOrigin="top" fontSize="48" layer="7"/>
+  <text value="Genre:" x="290" y="1045" xOrigin="right" yOrigin="top" fontSize="48" layer="7"/>
+  <text value="Manufacturer:" x="290" y="1095" xOrigin="right" yOrigin="top" fontSize="48" layer="7"/>
+
+  <reloadableText type="year" x="300" y="995" xOrigin="left" yOrigin="top" fontSize="48" maxWidth="220" layer="7">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableText>
+  <reloadableText type="genre" x="300" y="1045" xOrigin="left" yOrigin="top" fontSize="48" maxWidth="220" layer="7">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableText>
+  <reloadableText type="manufacturer" x="300" y="1095" xOrigin="left" yOrigin="top" fontSize="48" maxWidth="220" layer="7">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableText>
+
+
+  <!--
+     - System/Game title display in the center area of the bottom border.
+    -->
+
+  <reloadableText type="title" x="800" y="1040" xOrigin="center" yOrigin="top" fontSize="36" maxWidth="600" layer="7">
+    <onHighlightEnter>
+      <set duration=".3">
+        <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightEnter>
+    <onHighlightExit>
+      <set duration=".3">
+        <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
+      </set>
+    </onHighlightExit>
+  </reloadableText>
+
+
+</layout>
