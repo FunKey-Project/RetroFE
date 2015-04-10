@@ -151,6 +151,7 @@ void ReloadableMedia::ReloadTexture()
         std::vector<std::string> names;
 
         names.push_back(selectedItem->GetName());
+        names.push_back(selectedItem->GetFullTitle());
 
         if(selectedItem->GetCloneOf().length() > 0)
         {
