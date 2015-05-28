@@ -283,6 +283,11 @@ void RetroFE::Run()
                     MenuParser mp;
                     mp.GetMenuItems(info);
                     CurrentPage->PushCollection(info);
+                    
+                    if(LastSelectedItems.find(firstCollection) != LastSelectedItems.end())
+                    {
+                        CurrentPage->SetSelectedIndex(LastSelectedItems[firstCollection]);
+                    }
                 }
                 else
                 {
@@ -307,6 +312,7 @@ void RetroFE::Run()
             break;
 
         case RETROFE_BACK_REQUEST:
+            LastSelectedItems[CurrentPage->GetCollectionName()] = CurrentPage->GetSelectedIndex();
             CurrentPage->PopCollection();
             Config.SetCurrentCollection(CurrentPage->GetCollectionName());
 

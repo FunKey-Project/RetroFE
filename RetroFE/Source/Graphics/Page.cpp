@@ -291,6 +291,23 @@ void Page::RemoveSelectedItem()
 
 }
 
+void Page::SetSelectedIndex(int i)
+{
+    if(!ActiveMenu) return;
+
+    ActiveMenu->SetSelectedIndex();
+}
+
+int Page::GetSelectedIndex()
+{
+    if(!ActiveMenu) return -1;
+
+    return ActiveMenu->GetSelectedIndex();
+}
+
+
+
+
 void Page::SetMinShowTime(float value)
 {
     MinShowTime = value;

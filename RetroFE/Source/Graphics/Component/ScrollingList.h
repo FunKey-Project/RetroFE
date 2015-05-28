@@ -67,6 +67,7 @@ public:
     void PageDown();
     bool IsIdle();
     void SetSelectedIndex(int selectedIndex);
+    int GetSelectedIndex();
     ComponentItemBinding *GetSelectedCollectionItemSprite();
     ComponentItemBinding *GetPendingCollectionItemSprite();
     ComponentItemBinding *GetPendingSelectedCollectionItemSprite();

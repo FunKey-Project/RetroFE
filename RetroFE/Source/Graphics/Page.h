@@ -62,6 +62,8 @@ public:
     unsigned int GetMenuDepth();
     Item *GetSelectedItem();
     void RemoveSelectedItem();
+    void SetSelectedIndex(int i);
+    int GetSelectedIndex();
     bool IsIdle();
     bool IsMenuIdle();
     bool IsHidden();

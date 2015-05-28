@@ -267,8 +267,15 @@ void ScrollingList::SetPoints(std::vector<ViewInfo *> *scrollPoints, std::vector
     TweenPoints = tweenPoints;
 }
 
+int ScrollingList::GetSelectedIndex()
+{
+    return SelectedSpriteListIndex;
+}
+
 void ScrollingList::SetSelectedIndex(int selectedIndex)
 {
+    if(selectedIndex >= SpriteList.size()) return;
+
     SelectedSpriteListIndex = selectedIndex;
 
     for(unsigned int i = 0; SpriteList && ScrollPoints && i < SelectedSpriteListIndex; ++i)
