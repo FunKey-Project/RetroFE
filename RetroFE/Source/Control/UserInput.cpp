@@ -50,9 +50,9 @@ bool UserInput::Initialize()
 
     retVal = MapKey("pageDown", KeyCodePageDown) && retVal;
     retVal = MapKey("pageUp", KeyCodePageUp) && retVal;
-    retVal = MapKey("letterDown", KeyCodeLetterDown) && retVal;
+    MapKey("letterDown", KeyCodeLetterDown);
     MapKey("letterUp", KeyCodeLetterUp);
-    MapKey("select", KeyCodeSelect);
+    retVal = MapKey("select", KeyCodeSelect) && retVal;
     retVal = MapKey("back", KeyCodeBack) && retVal;
     retVal = MapKey("quit", KeyCodeQuit) && retVal;
     // these features will need to be implemented at a later time
