@@ -36,6 +36,7 @@
 #include <math.h>
 #include <SDL2/SDL_image.h>
 #include <sstream>
+#include <cctype>
 
 
 //todo: remove coupling from configuration data (if possible)
@@ -406,7 +407,14 @@ void ScrollingList::LetterUp()
             ++i;
             
             // check if we are changing characters from a-z, or changing from alpha character to non-alpha character
-            done = (isalpha(startname[0]) ^ isalpha(endname[0])) || (isalpha(startname[0]) && isalpha(endname[0]) && startname[0] != endname[0]));
+            if(isalpha(startname[0]) ^ isalpha(endname[0]))
+            {
+                done = true;
+            }
+            else if(isalpha(startname[0]) && isalpha(endname[0]) && startname[0] != endname[0])
+            {
+                done = true;
+            }
             
             if(done)
             {
@@ -439,7 +447,14 @@ void ScrollingList::LetterDown()
             ++i;
             
             // check if we are changing characters from a-z, or changing from alpha character to non-alpha character
-            done = (isalpha(startname[0]) ^ isalpha(endname[0])) || (isalpha(startname[0]) && isalpha(endname[0]) && startname[0] != endname[0]));
+            if(isalpha(startname[0]) ^ isalpha(endname[0]))
+            {
+                done = true;
+            }
+            else if(isalpha(startname[0]) && isalpha(endname[0]) && startname[0] != endname[0])
+            {
+                done = true;
+            }
         }
     }
 
