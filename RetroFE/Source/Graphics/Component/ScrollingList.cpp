@@ -388,8 +388,6 @@ void ScrollingList::LetterUp()
 
     if(SpriteList && ScrollPoints)
     {
-
-
         unsigned int i = 0;
 
         // Select the previous item in the list in case we are at the top of all the items
@@ -406,8 +404,10 @@ void ScrollingList::LetterUp()
             CircularDecrement(FirstSpriteIndex, SpriteList);
             std::string endname = GetSelectedCollectionItemSprite()->GetCollectionItem()->GetLCFullTitle();
             ++i;
-            done = (startname[0] != endname[0]);
-
+            
+            // check if we are changing characters from a-z, or changing from alpha character to non-alpha character
+            done = (isalpha(startname[0]) ^ isalpha(endname[0])) || (isalpha(startname[0]) && isalpha(endname[0]) && startname[0] != endname[0]));
+            
             if(done)
             {
                 // our searching went too far, rewind to the first item in the list that matches the starting letter
@@ -431,12 +431,15 @@ void ScrollingList::LetterDown()
         std::string endname = startname;
 
         unsigned int i = 0;
-
-        while(startname[0] == endname[0] && i < SpriteList->size())
+        bool done = false;
+        while(!done && i < SpriteList->size())
         {
             CircularIncrement(FirstSpriteIndex, SpriteList);
             endname = GetSelectedCollectionItemSprite()->GetCollectionItem()->GetLCFullTitle();
             ++i;
+            
+            // check if we are changing characters from a-z, or changing from alpha character to non-alpha character
+            done = (isalpha(startname[0]) ^ isalpha(endname[0])) || (isalpha(startname[0]) && isalpha(endname[0]) && startname[0] != endname[0]));
         }
     }
 
