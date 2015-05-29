@@ -34,6 +34,8 @@ public:
         KeyCodeBack,
         KeyCodePageDown,
         KeyCodePageUp,
+        KeyCodeLetterDown,
+        KeyCodeLetterUp,
         KeyCodeAdminMode,
         KeyCodeHideItem,
         KeyCodeQuit

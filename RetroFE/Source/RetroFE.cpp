@@ -430,6 +430,15 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
         {
             page->PageScroll(Page::ScrollDirectionForward);
         }
+        if (Input.GetKeyState(UserInput::KeyCodeLetterUp))
+        {
+            page->LetterScroll(Page::ScrollDirectionBack);
+        }
+        if (Input.GetKeyState(UserInput::KeyCodeLetterDown))
+        {
+            page->LetterScroll(Page::ScrollDirectionForward);
+        }
+
         if (Input.GetKeyState(UserInput::KeyCodeAdminMode))
         {
             //todo: add admin mode support

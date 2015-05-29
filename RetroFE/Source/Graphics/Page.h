@@ -54,6 +54,7 @@ public:
     void SetSelectSound(Sound *chunk);
     bool AddComponent(Component *c);
     void PageScroll(ScrollDirection direction);
+    void LetterScroll(ScrollDirection direction);
     void Start();
     void StartComponents();
     void Stop();

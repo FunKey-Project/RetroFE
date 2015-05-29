@@ -65,6 +65,8 @@ public:
     bool IsHorizontalScroll();
     void PageUp();
     void PageDown();
+    void LetterUp();
+    void LetterDown();
     bool IsIdle();
     void SetSelectedIndex(int selectedIndex);
     ComponentItemBinding *GetSelectedCollectionItemSprite();

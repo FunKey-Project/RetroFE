@@ -378,6 +378,22 @@ void Page::PageScroll(ScrollDirection direction)
     }
 }
 
+void Page::LetterScroll(ScrollDirection direction)
+{
+    if(ActiveMenu)
+    {
+        if(direction == ScrollDirectionForward)
+        {
+            ActiveMenu->LetterDown();
+        }
+        if(direction == ScrollDirectionBack)
+        {
+            ActiveMenu->LetterUp();
+        }
+    }
+}
+
+
 bool Page::PushCollection(CollectionInfo *collection)
 {
     Collections.push_back(collection);
