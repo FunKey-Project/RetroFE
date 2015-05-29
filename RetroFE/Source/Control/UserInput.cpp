@@ -51,8 +51,8 @@ bool UserInput::Initialize()
     retVal = MapKey("pageDown", KeyCodePageDown) && retVal;
     retVal = MapKey("pageUp", KeyCodePageUp) && retVal;
     retVal = MapKey("letterDown", KeyCodeLetterDown) && retVal;
-    retVal = MapKey("letterUp", KeyCodeLetterUp) && retVal;
-    retVal = MapKey("select", KeyCodeSelect) && retVal;
+    MapKey("letterUp", KeyCodeLetterUp);
+    MapKey("select", KeyCodeSelect);
     retVal = MapKey("back", KeyCodeBack) && retVal;
     retVal = MapKey("quit", KeyCodeQuit) && retVal;
     // these features will need to be implemented at a later time
@@ -128,19 +128,18 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
 
 bool UserInput::SetKeyState(SDL_Scancode code, bool state)
 {
-     KeyCode_E key = GetKeycode(code);
+    KeyCode_E key = GetKeycode(code);
 
-     if(key == KeyCodeNull)
-     {
-         return false;
-     }
+    if(key == KeyCodeNull) { return false; }
+    if(KeyState.find(key) == KeyState.end()) { return false; }
 
-     KeyState[key] = state;
-     return true;
+    KeyState[key] = state;
+    return true;
 
 }
 bool UserInput::GetKeyState(KeyCode_E key)
 {
+    if(KeyState.find(key) == KeyState.end()) { return false; }
     return KeyState[key];
 }
 

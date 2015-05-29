@@ -419,7 +419,7 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
             }
             if (Input.GetKeyState(UserInput::KeyCodeDown))
             {
-                    page->SetScrolling(Page::ScrollDirectionForward);
+                page->SetScrolling(Page::ScrollDirectionForward);
             }
         }
         if (Input.GetKeyState(UserInput::KeyCodePageUp))
