@@ -291,6 +291,20 @@ void Page::RemoveSelectedItem()
 
 }
 
+void Page::SetScrollOffsetIndex(unsigned int i)
+{
+    if(!ActiveMenu) return;
+
+    ActiveMenu->SetScrollOffsetIndex(i);
+}
+
+unsigned int Page::GetScrollOffsetIndex()
+{
+    if(!ActiveMenu) return -1;
+
+    return ActiveMenu->GetScrollOffsetIndex();
+}
+
 void Page::SetMinShowTime(float value)
 {
     MinShowTime = value;

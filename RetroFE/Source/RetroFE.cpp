@@ -307,6 +307,7 @@ void RetroFE::Run()
             break;
 
         case RETROFE_BACK_REQUEST:
+            LastMenuOffsets[CurrentPage->GetCollectionName()] = CurrentPage->GetScrollOffsetIndex();
             CurrentPage->PopCollection();
             Config.SetCurrentCollection(CurrentPage->GetCollectionName());
 
@@ -419,7 +420,7 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
             }
             if (Input.GetKeyState(UserInput::KeyCodeDown))
             {
-                page->SetScrolling(Page::ScrollDirectionForward);
+                    page->SetScrolling(Page::ScrollDirectionForward);
             }
         }
         if (Input.GetKeyState(UserInput::KeyCodePageUp))
@@ -461,6 +462,11 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
                     MenuParser mp;
                     mp.GetMenuItems(info);
                     page->PushCollection(info);
+
+                    if(LastMenuOffsets.find(NextPageItem->GetName()) != LastMenuOffsets.end())
+                    {
+                        page->SetScrollOffsetIndex(LastMenuOffsets[NextPageItem->GetName()]);
+                    }
                     
                     state = RETROFE_NEXT_PAGE_REQUEST;
                 }

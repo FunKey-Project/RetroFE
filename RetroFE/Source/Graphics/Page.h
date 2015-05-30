@@ -63,6 +63,8 @@ public:
     unsigned int GetMenuDepth();
     Item *GetSelectedItem();
     void RemoveSelectedItem();
+    void SetScrollOffsetIndex(unsigned int i);
+    unsigned int GetScrollOffsetIndex();
     bool IsIdle();
     bool IsMenuIdle();
     bool IsHidden();

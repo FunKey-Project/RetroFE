@@ -269,6 +269,21 @@ void ScrollingList::SetPoints(std::vector<ViewInfo *> *scrollPoints, std::vector
     TweenPoints = tweenPoints;
 }
 
+unsigned int ScrollingList::GetScrollOffsetIndex()
+{
+    return FirstSpriteIndex;
+}
+
+void ScrollingList::SetScrollOffsetIndex(unsigned int index)
+{
+    if(SpriteList && index < SpriteList->size())
+    {
+        DeallocateSpritePoints();
+        FirstSpriteIndex = index;
+        AllocateSpritePoints();
+    }
+}
+
 void ScrollingList::SetSelectedIndex(int selectedIndex)
 {
     SelectedSpriteListIndex = selectedIndex;

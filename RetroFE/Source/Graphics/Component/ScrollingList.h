@@ -68,6 +68,8 @@ public:
     void LetterUp();
     void LetterDown();
     bool IsIdle();
+    unsigned int GetScrollOffsetIndex();
+    void SetScrollOffsetIndex(unsigned int index);
     void SetSelectedIndex(int selectedIndex);
     ComponentItemBinding *GetSelectedCollectionItemSprite();
     ComponentItemBinding *GetPendingCollectionItemSprite();

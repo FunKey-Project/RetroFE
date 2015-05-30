@@ -26,6 +26,7 @@
 #include <SDL2/SDL.h>
 #include <list>
 #include <vector>
+#include <map>
 
 class CollectionInfo;
 class Configuration;
@@ -78,5 +79,6 @@ private:
     Item *NextPageItem;
     FontCache FC;
     AttractMode Attract;
+    std::map<std::string, unsigned int> LastMenuOffsets;
 
 };
