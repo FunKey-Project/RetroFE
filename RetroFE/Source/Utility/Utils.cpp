@@ -54,7 +54,7 @@ std::string Utils::UppercaseFirst(std::string str)
 
     return str;
 }
-std::string Utils::FilterComments(std:;string line)
+std::string Utils::FilterComments(std::string line)
 {
     size_t position;
 
