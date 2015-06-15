@@ -203,12 +203,13 @@ bool CollectionInfoBuilder::ImportBasicList(CollectionInfo * /*info*/, std::stri
         return false;
     }
 
-    std::string line;
+    std::string line; 
 
     while(std::getline(includeStream, line))
     {
-
-        if(list.find(line) == list.end())
+        line = Utils::FilterComments(line);
+        
+        if(!line.empty() && list.find(line) == list.end())
         {
             Item *i = new Item();
 

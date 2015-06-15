@@ -33,6 +33,7 @@ public:
     static bool FindMatchingFile(std::string prefix, std::vector<std::string> &extensions, std::string &file);
     static std::string ToLower(std::string str);
     static std::string UppercaseFirst(std::string str);
+    static std::string FilterComments(std::string line);
 
     //todo: there has to be a better way to do this
     static std::string CombinePath(std::list<std::string> &paths);

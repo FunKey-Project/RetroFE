@@ -54,6 +54,20 @@ std::string Utils::UppercaseFirst(std::string str)
 
     return str;
 }
+std::string Utils::FilterComments(std:;string line)
+{
+    size_t position;
+
+    // strip out any comments
+    if((position = line.find("#")) != std::string::npos)
+    {
+        line = line.substr(0, position);
+    }
+    // unix only wants \n. Windows uses \r\n. Strip off the \r for unix.
+    line.erase( std::remove(line.begin(), line.end(), '\r'), line.end() );
+    
+    return line;
+}
 
 std::string Utils::CombinePath(std::list<std::string> &paths)
 {
