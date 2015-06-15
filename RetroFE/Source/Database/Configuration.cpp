@@ -117,12 +117,8 @@ bool Configuration::ParseLine(std::string keyPrefix, std::string line, int lineC
     std::string delimiter = "=";
 
     // strip out any comments
-    if((position = line.find("#")) != std::string::npos)
-    {
-        line = line.substr(0, position);
-    }
-    // unix only wants \n. Windows uses \r\n. Strip off the \r for unix.
-    line.erase( std::remove(line.begin(), line.end(), '\r'), line.end() );
+    line = Utils::FilterComments(line);
+    
     if(line.empty() || (line.find_first_not_of(" \t\r") == std::string::npos))
     {
         retVal = true;

@@ -393,6 +393,8 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
     bool exit = false;
     RETROFE_STATE state = RETROFE_IDLE;
     if (SDL_PollEvent(&e) == 0) return state;
+    bool rememberMenu = false;
+    Config.GetProperty("rememberMenu", rememberMenu);
 
     if(e.type == SDL_KEYDOWN || e.type == SDL_KEYUP)
     {
@@ -463,7 +465,7 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
                     mp.GetMenuItems(info);
                     page->PushCollection(info);
 
-                    if(LastMenuOffsets.find(NextPageItem->GetName()) != LastMenuOffsets.end())
+                    if(rememberMenu && LastMenuOffsets.find(NextPageItem->GetName()) != LastMenuOffsets.end())
                     {
                         page->SetScrollOffsetIndex(LastMenuOffsets[NextPageItem->GetName()]);
                     }
