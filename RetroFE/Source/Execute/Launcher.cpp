@@ -38,7 +38,7 @@ Launcher::Launcher(RetroFE &p, Configuration &c)
 
 bool Launcher::Run(std::string collection, Item *collectionItem)
 {
-    std::string launcherName = collectionItem->GetLauncher();
+    std::string launcherName = collectionItem->Launcher;
     std::string executablePath;
     std::string selectedItemsDirectory;
     std::string selectedItemsPath;
@@ -67,29 +67,29 @@ bool Launcher::Run(std::string collection, Item *collectionItem)
         Logger::Write(Logger::ZONE_ERROR, "Launcher", "No launcher arguments specified for launcher " + launcherName);
         return false;
     }
-    if(!FindFile(selectedItemsPath, matchedExtension, selectedItemsDirectory, collectionItem->GetName(), extensions))
+    if(!FindFile(selectedItemsPath, matchedExtension, selectedItemsDirectory, collectionItem->Name, extensions))
     {
         // FindFile() prints out diagnostic messages for us, no need to print anything here
         return false;
     }
     args = ReplaceVariables(args,
                             selectedItemsPath,
-                            collectionItem->GetName(),
-                            collectionItem->GetFileName(),
+                            collectionItem->Name,
+                            collectionItem->FileName(),
                             selectedItemsDirectory,
                             collection);
 
     executablePath = ReplaceVariables(executablePath,
                                       selectedItemsPath,
-                                      collectionItem->GetName(),
-                                      collectionItem->GetFileName(),
+                                      collectionItem->Name,
+                                      collectionItem->FileName(),
                                       selectedItemsDirectory,
                                       collection);
 
     currentDirectory = ReplaceVariables(currentDirectory,
                                         selectedItemsPath,
-                                        collectionItem->GetName(),
-                                        collectionItem->GetFileName(),
+                                        collectionItem->Name,
+                                        collectionItem->FileName(),
                                         selectedItemsDirectory,
                                         collection);
 
@@ -114,11 +114,11 @@ std::string Launcher::ReplaceVariables(std::string str,
     str = Utils::Replace(str, "%ITEM_FILENAME%", itemFilename);
     str = Utils::Replace(str, "%ITEM_DIRECTORY%", itemDirectory);
     str = Utils::Replace(str, "%ITEM_COLLECTION_NAME%", itemCollectionName);
-    str = Utils::Replace(str, "%RETROFE_PATH%", Configuration::GetAbsolutePath());
+    str = Utils::Replace(str, "%RETROFE_PATH%", Configuration::AbsolutePath);
 #ifdef WIN32
-    str = Utils::Replace(str, "%RETROFE_EXEC_PATH%", Utils::CombinePath(Configuration::GetAbsolutePath(), "RetroFE.exe"));
+    str = Utils::Replace(str, "%RETROFE_EXEC_PATH%", Utils::CombinePath(Configuration::AbsolutePath, "RetroFE.exe"));
 #else
-    str = Utils::Replace(str, "%RETROFE_EXEC_PATH%", Utils::CombinePath(Configuration::GetAbsolutePath(), "RetroFE"));
+    str = Utils::Replace(str, "%RETROFE_EXEC_PATH%", Utils::CombinePath(Configuration::AbsolutePath, "RetroFE"));
 #endif
 
     return str;

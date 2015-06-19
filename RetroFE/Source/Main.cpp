@@ -72,9 +72,9 @@ int main(int argc, char **argv)
 
 bool ImportConfiguration(Configuration *c)
 {
-    std::string configPath =  Configuration::GetAbsolutePath();
-    std::string launchersPath =  Utils::CombinePath(Configuration::GetAbsolutePath(), "launchers");
-    std::string collectionsPath =  Utils::CombinePath(Configuration::GetAbsolutePath(), "collections");
+    std::string configPath =  Configuration::AbsolutePath;
+    std::string launchersPath =  Utils::CombinePath(Configuration::AbsolutePath, "launchers");
+    std::string collectionsPath =  Utils::CombinePath(Configuration::AbsolutePath, "collections");
     DIR *dp;
     struct dirent *dirp;
 
@@ -162,7 +162,7 @@ bool ImportConfiguration(Configuration *c)
 
 bool StartLogging()
 {
-    std::string logFile = Utils::CombinePath(Configuration::GetAbsolutePath(), "log.txt");
+    std::string logFile = Utils::CombinePath(Configuration::AbsolutePath, "log.txt");
 
     if(!Logger::Initialize(logFile))
     {
@@ -178,7 +178,7 @@ bool StartLogging()
     Logger::Write(Logger::ZONE_INFO, "RetroFE", "OS: Linux");
 #endif
 
-    Logger::Write(Logger::ZONE_INFO, "RetroFE", "Absolute path: " + Configuration::GetAbsolutePath());
+    Logger::Write(Logger::ZONE_INFO, "RetroFE", "Absolute path: " + Configuration::AbsolutePath);
 
     return true;
 }

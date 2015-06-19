@@ -46,7 +46,7 @@ void Configuration::Initialize()
     if (environment != NULL)
     {
         environmentStr = environment;
-        Configuration::SetAbsolutePath(environment);
+        AbsolutePath = environment;
     }
     else
     {
@@ -66,7 +66,7 @@ void Configuration::Initialize()
 #endif
 
 
-        Configuration::SetAbsolutePath(sPath);
+        AbsolutePath = sPath;
     }
 }
 
@@ -194,8 +194,8 @@ bool Configuration::GetProperty(std::string key, std::string &value)
 {
     bool retVal = GetRawProperty(key, value);
 
-    std::string baseMediaPath = GetAbsolutePath();
-    std::string baseItemPath = GetAbsolutePath();
+    std::string baseMediaPath = AbsolutePath;
+    std::string baseItemPath = AbsolutePath;
     std::string collectionName;
 
     GetRawProperty("baseMediaPath", baseMediaPath);
@@ -328,7 +328,7 @@ bool Configuration::GetPropertyAbsolutePath(std::string key, std::string &value)
 
     if(retVal)
     {
-        value = ConvertToAbsolutePath(GetAbsolutePath(), value);
+        value = ConvertToAbsolutePath(AbsolutePath, value);
     }
 
     return retVal;
@@ -355,7 +355,7 @@ void Configuration::GetMediaPropertyAbsolutePath(std::string collectionName, std
     if(!GetPropertyAbsolutePath("baseMediaPath", baseMediaPath))
     {
         // base media path was not specified, assume media files are in the collection
-        baseMediaPath = Utils::CombinePath(GetAbsolutePath(), "collections");
+        baseMediaPath = Utils::CombinePath(AbsolutePath, "collections");
     }
 
     if(mediaType == "manufacturer")
@@ -404,19 +404,9 @@ void Configuration::GetCollectionAbsolutePath(std::string collectionName, std::s
         return;
     }
 
-    value = Utils::CombinePath(GetAbsolutePath(), "collections", collectionName, "roms");
+    value = Utils::CombinePath(AbsolutePath, "collections", collectionName, "roms");
 }
 
-
-void Configuration::SetAbsolutePath(std::string absolutePath)
-{
-    AbsolutePath = absolutePath;
-}
-
-std::string Configuration::GetAbsolutePath()
-{
-    return AbsolutePath;
-}
 
 bool Configuration::IsVerbose() const
 {

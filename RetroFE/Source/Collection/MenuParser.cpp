@@ -26,9 +26,9 @@
 #include <fstream>
 #include <sstream>
 
-bool VectorSort(const Item *d1, const Item *d2)
+bool VectorSort(Item *d1, Item *d2)
 {
-    return d1->GetLCTitle() < d2->GetLCTitle();
+    return d1->LCTitle() < d2->LCTitle();
 }
 
 MenuParser::MenuParser()
@@ -44,7 +44,7 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
 {
     bool retVal = false;
     //todo: magic string
-    std::string menuFilename = Utils::CombinePath(Configuration::GetAbsolutePath(), "collections", collection->GetName(), "menu.xml");
+    std::string menuFilename = Utils::CombinePath(Configuration::AbsolutePath, "collections", collection->Name, "menu.xml");
     rapidxml::xml_document<> doc;
     rapidxml::xml_node<> * rootNode;
 
@@ -88,11 +88,11 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
                     //todo, check for empty string
                     std::string title = collectionAttribute->value();
                     Item *item = new Item();
-                    item->SetTitle(title);
-                    item->SetFullTitle(title);
-                    item->SetName(collectionAttribute->value());
-                    item->SetIsLeaf(false);
-                    collection->GetItems()->push_back(item);
+                    item->Title = title;
+                    item->FullTitle = title;
+                    item->Name = collectionAttribute->value();
+                    item->Leaf = false;
+                    collection->Items.push_back(item);
 
                 }
                 else
@@ -106,7 +106,7 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
             }
 
             // todo: sorting should occur within the collection itself, not externally
-            std::vector<Item *> *items = collection->GetItems();
+            std::vector<Item *> *items = &collection->Items;
             std::sort( items->begin(), items->end(), VectorSort);
 
             retVal = true;

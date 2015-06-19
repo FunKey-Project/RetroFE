@@ -150,12 +150,12 @@ void ReloadableMedia::ReloadTexture()
     {
         std::vector<std::string> names;
 
-        names.push_back(selectedItem->GetName());
-        names.push_back(selectedItem->GetFullTitle());
+        names.push_back(selectedItem->Name);
+        names.push_back(selectedItem->FullTitle);
 
-        if(selectedItem->GetCloneOf().length() > 0)
+        if(selectedItem->CloneOf.length() > 0)
         {
-            names.push_back(selectedItem->GetCloneOf());
+            names.push_back(selectedItem->CloneOf);
         }
 
         for(unsigned int n = 0; n < names.size() && !found; ++n)
@@ -197,27 +197,27 @@ void ReloadableMedia::ReloadTexture()
 
             if(typeLC == "numberButtons")
             {
-                imageBasename = selectedItem->GetNumberButtons();
+                imageBasename = selectedItem->NumberButtons;
             }
             else if(typeLC == "numberPlayers")
             {
-                imageBasename = selectedItem->GetNumberPlayers();
+                imageBasename = selectedItem->NumberPlayers;
             }
             else if(typeLC == "year")
             {
-                imageBasename = selectedItem->GetYear();
+                imageBasename = selectedItem->Year;
             }
             else if(typeLC == "title")
             {
-                imageBasename = selectedItem->GetTitle();
+                imageBasename = selectedItem->Title;
             }
             else if(typeLC == "manufacturer")
             {
-                imageBasename = selectedItem->GetManufacturer();
+                imageBasename = selectedItem->Manufacturer;
             }
             else if(typeLC == "genre")
             {
-                imageBasename = selectedItem->GetGenre();
+                imageBasename = selectedItem->Genre;
             }
 
             Utils::ReplaceSlashesWithUnderscores(imageBasename);

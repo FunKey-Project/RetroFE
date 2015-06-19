@@ -20,8 +20,8 @@
 #include <fstream>
 
 DB::DB(std::string dbFile)
-    : Path(dbFile)
-    , Handle(NULL)
+    : Handle(NULL)
+, Path(dbFile)
 {
 }
 

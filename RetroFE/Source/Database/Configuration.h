@@ -25,8 +25,6 @@ public:
     Configuration();
     virtual ~Configuration();
     static void Initialize();
-    static void SetAbsolutePath(std::string absolutePath);
-    static std::string GetAbsolutePath();
     static std::string ConvertToAbsolutePath(std::string prefix, std::string path);
     void SetStatus(std::string status);
     std::string GetStatus();
@@ -47,6 +45,7 @@ public:
     void GetCollectionAbsolutePath(std::string collectionName, std::string &value);
     bool IsVerbose() const;
     void SetVerbose(bool verbose);
+    static std::string AbsolutePath;
 
 private:
     bool GetRawProperty(std::string key, std::string &value);
@@ -56,7 +55,6 @@ private:
     typedef std::pair<std::string, std::string> PropertiesPair;
     bool Verbose;
 
-    static std::string AbsolutePath;
     std::string CurrentCollection;
     PropertiesType Properties;
     std::string Status;

@@ -45,35 +45,11 @@ CollectionInfo::~CollectionInfo()
     }
 }
 
-std::string CollectionInfo::GetName() const
-{
-    return Name;
-}
-
 std::string CollectionInfo::GetSettingsPath() const
 {
-    return Utils::CombinePath(Configuration::GetAbsolutePath(), "collections", GetName());
+    return Utils::CombinePath(Configuration::AbsolutePath, "collections", Name);
 }
 
-std::string CollectionInfo::GetListPath() const
-{
-    return ListPath;
-}
-
-std::string CollectionInfo::GetMetadataType() const
-{
-    return MetadataType;
-}
-
-std::string CollectionInfo::GetMetadataPath() const
-{
-    return MetadataPath;
-}
-
-std::string CollectionInfo::GetExtensions() const
-{
-    return Extensions;
-}
 
 void CollectionInfo::GetExtensions(std::vector<std::string> &extensions)
 {
@@ -85,14 +61,11 @@ void CollectionInfo::GetExtensions(std::vector<std::string> &extensions)
         extensions.push_back(token);
     }
 }
-std::vector<Item *> *CollectionInfo::GetItems()
-{
-    return &Items;
-}
 
-bool CollectionInfo::ItemIsLess(Item const *lhs, Item const *rhs)
+
+bool CollectionInfo::ItemIsLess(Item *lhs, Item *rhs)
 {
-    return lhs->GetLCFullTitle() < rhs->GetLCFullTitle();
+    return lhs->LCFullTitle() < rhs->LCFullTitle();
 }
 
 void CollectionInfo::SortItems()

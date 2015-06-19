@@ -409,7 +409,7 @@ void ScrollingList::LetterUp()
         // Select the previous item in the list in case we are at the top of all the items
         // for the currently selected letter. 
         CircularDecrement(FirstSpriteIndex, SpriteList);
-        std::string startname = GetSelectedCollectionItemSprite()->GetCollectionItem()->GetLCFullTitle();
+        std::string startname = GetSelectedCollectionItemSprite()->GetCollectionItem()->LCFullTitle();
         ++i;
 
         bool done = false;
@@ -418,7 +418,7 @@ void ScrollingList::LetterUp()
         while(!done && i < SpriteList->size())
         {
             CircularDecrement(FirstSpriteIndex, SpriteList);
-            std::string endname = GetSelectedCollectionItemSprite()->GetCollectionItem()->GetLCFullTitle();
+            std::string endname = GetSelectedCollectionItemSprite()->GetCollectionItem()->LCFullTitle();
             ++i;
             
             // check if we are changing characters from a-z, or changing from alpha character to non-alpha character
@@ -450,7 +450,7 @@ void ScrollingList::LetterDown()
     if(SpriteList && ScrollPoints)
     {
 
-        std::string startname = GetSelectedCollectionItemSprite()->GetCollectionItem()->GetLCFullTitle();
+        std::string startname = GetSelectedCollectionItemSprite()->GetCollectionItem()->LCFullTitle();
         std::string endname = startname;
 
         unsigned int i = 0;
@@ -458,7 +458,7 @@ void ScrollingList::LetterDown()
         while(!done && i < SpriteList->size())
         {
             CircularIncrement(FirstSpriteIndex, SpriteList);
-            endname = GetSelectedCollectionItemSprite()->GetCollectionItem()->GetLCFullTitle();
+            endname = GetSelectedCollectionItemSprite()->GetCollectionItem()->LCFullTitle();
             ++i;
             
             // check if we are changing characters from a-z, or changing from alpha character to non-alpha character
@@ -792,21 +792,21 @@ bool ScrollingList::AllocateTexture(ComponentItemBinding *s)
 
     ImageBuilder imageBuild;
     Config.GetMediaPropertyAbsolutePath(GetCollectionName(), ImageType, false, imagePath);
-    t = imageBuild.CreateImage(imagePath, item->GetName(), ScaleX, ScaleY);
+    t = imageBuild.CreateImage(imagePath, item->Name, ScaleX, ScaleY);
 
     if(!t)
     {
-            Config.GetMediaPropertyAbsolutePath(item->GetName(), ImageType, true, imagePath);
+            Config.GetMediaPropertyAbsolutePath(item->Name, ImageType, true, imagePath);
             t = imageBuild.CreateImage(imagePath, ImageType, ScaleX, ScaleY);
     }
 
-    if(!t && item->GetTitle() != item->GetFullTitle())
+    if(!t && item->Title != item->FullTitle)
     {
-        t = imageBuild.CreateImage(imagePath, item->GetFullTitle(), ScaleX, ScaleY);
+        t = imageBuild.CreateImage(imagePath, item->FullTitle, ScaleX, ScaleY);
     }
     if (!t)
     {
-        t = new Text(item->GetTitle(), FontInst, ScaleX, ScaleY);
+        t = new Text(item->Title, FontInst, ScaleX, ScaleY);
     }
 
     if(t)

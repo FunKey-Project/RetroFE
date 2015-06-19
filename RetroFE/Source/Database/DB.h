@@ -24,13 +24,9 @@ public:
     bool Initialize();
     void DeInitialize();
     virtual ~DB();
-    sqlite3 *GetHandle()
-    {
-        return Handle;
-    }
+    sqlite3 *Handle;
 
 private:
     std::string Path;
-    sqlite3 *Handle;
 };
 

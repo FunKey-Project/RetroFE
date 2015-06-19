@@ -85,7 +85,7 @@ int RetroFE::Initialize(void *context)
         return -1;
     }
 
-    instance->Db = new DB(Utils::CombinePath(Configuration::GetAbsolutePath(), "meta.db"));
+    instance->Db = new DB(Utils::CombinePath(Configuration::AbsolutePath, "meta.db"));
 
     if(!instance->Db->Initialize())
     {
@@ -220,7 +220,7 @@ void RetroFE::Run()
     Config.GetProperty("attractModeTime", attractModeTime);
     Config.GetProperty("firstCollection", firstCollection);
 
-    Attract.SetIdleTime(static_cast<float>(attractModeTime));
+    Attract.IdleTime = static_cast<float>(attractModeTime);
 
     int initializeStatus = 0;
 
@@ -452,22 +452,22 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
 
             if(NextPageItem)
             {
-                if(NextPageItem->IsLeaf())
+                if(NextPageItem->Leaf)
                 {
                     state = RETROFE_LAUNCH_REQUEST;
                 }
                 else
                 {
-                    Config.SetCurrentCollection(NextPageItem->GetName());
-                    CollectionInfo *info = GetCollection(NextPageItem->GetName());
+                    Config.SetCurrentCollection(NextPageItem->Name);
+                    CollectionInfo *info = GetCollection(NextPageItem->Name);
 
                     MenuParser mp;
                     mp.GetMenuItems(info);
                     page->PushCollection(info);
 
-                    if(rememberMenu && LastMenuOffsets.find(NextPageItem->GetName()) != LastMenuOffsets.end())
+                    if(rememberMenu && LastMenuOffsets.find(NextPageItem->Name) != LastMenuOffsets.end())
                     {
-                        page->SetScrollOffsetIndex(LastMenuOffsets[NextPageItem->GetName()]);
+                        page->SetScrollOffsetIndex(LastMenuOffsets[NextPageItem->Name]);
                     }
                     
                     state = RETROFE_NEXT_PAGE_REQUEST;

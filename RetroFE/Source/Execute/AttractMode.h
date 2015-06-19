@@ -21,14 +21,13 @@ class AttractMode
 {
 public:
     AttractMode();
-    void SetIdleTime(float time);
     void Reset();
     void Update(float dt, Page &page);
+    float IdleTime;
 
 private:
     bool IsActive;
     float ElapsedTime;
     float ActiveTime;
-    float IdleTime;
 
 };

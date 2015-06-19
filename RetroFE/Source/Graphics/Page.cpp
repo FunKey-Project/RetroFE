@@ -411,7 +411,7 @@ void Page::LetterScroll(ScrollDirection direction)
 bool Page::PushCollection(CollectionInfo *collection)
 {
     Collections.push_back(collection);
-    std::vector<ComponentItemBinding *> *sprites = ComponentItemBindingBuilder::BuildCollectionItems(collection->GetItems());
+    std::vector<ComponentItemBinding *> *sprites = ComponentItemBindingBuilder::BuildCollectionItems(&collection->Items);
 
     int menuExitIndex = -1;
     int menuEnterIndex = -1;
@@ -434,7 +434,7 @@ bool Page::PushCollection(CollectionInfo *collection)
     }
 
     ActiveMenu = Menus[MenuDepth];
-    ActiveMenu->SetCollectionName(collection->GetName());
+    ActiveMenu->SetCollectionName(collection->Name);
     ActiveMenu->DestroyItems();
     ActiveMenu->SetItems(sprites);
     ActiveMenu->TriggerMenuEnterEvent();
@@ -449,7 +449,7 @@ bool Page::PushCollection(CollectionInfo *collection)
     {
         for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
         {
-            (*it)->SetCollectionName(collection->GetName());
+            (*it)->SetCollectionName(collection->Name);
             if(menuEnterIndex >= 0)
             {
                 (*it)->TriggerMenuEnterEvent(menuEnterIndex);
@@ -500,7 +500,7 @@ bool Page::PopCollection()
     {
         for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
         {
-            (*it)->SetCollectionName(collection->GetName());
+            (*it)->SetCollectionName(collection->Name);
 
             if(menuEnterIndex >= 0)
             {
@@ -571,7 +571,7 @@ std::string Page::GetCollectionName()
 
     if(info)
     {
-        return info->GetName();
+        return info->Name;
     }
 
     return "";

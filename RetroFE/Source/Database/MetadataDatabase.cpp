@@ -48,7 +48,7 @@ bool MetadataDatabase::ResetDatabase()
 {
     int rc;
     char *error = NULL;
-    sqlite3 *handle = DBInstance.GetHandle();
+    sqlite3 *handle = DBInstance.Handle;
 
     Logger::Write(Logger::ZONE_INFO, "Metadata", "Erasing");
 
@@ -72,7 +72,7 @@ bool MetadataDatabase::Initialize()
 {
     int rc;
     char *error = NULL;
-    sqlite3 *handle = DBInstance.GetHandle();
+    sqlite3 *handle = DBInstance.Handle;
 
     std::string sql;
     sql.append("CREATE TABLE IF NOT EXISTS Meta(");
@@ -110,8 +110,8 @@ bool MetadataDatabase::ImportDirectory()
 {
     DIR *dp;
     struct dirent *dirp;
-    std::string hyperListPath = Utils::CombinePath(Configuration::GetAbsolutePath(), "meta", "hyperlist");
-    std::string mameListPath = Utils::CombinePath(Configuration::GetAbsolutePath(), "meta", "mamelist");
+    std::string hyperListPath = Utils::CombinePath(Configuration::AbsolutePath, "meta", "hyperlist");
+    std::string mameListPath = Utils::CombinePath(Configuration::AbsolutePath, "meta", "mamelist");
 
     dp = opendir(hyperListPath.c_str());
 
@@ -183,7 +183,7 @@ bool MetadataDatabase::ImportDirectory()
 
 void MetadataDatabase::InjectMetadata(CollectionInfo *collection)
 {
-    sqlite3 *handle = DBInstance.GetHandle();
+    sqlite3 *handle = DBInstance.Handle;
     int rc;
     sqlite3_stmt *stmt;
 
@@ -195,12 +195,12 @@ void MetadataDatabase::InjectMetadata(CollectionInfo *collection)
 
 
     // items into a hash to make it easily searchable
-    std::vector<Item *> *items = collection->GetItems();
+    std::vector<Item *> *items = &collection->Items;
     std::map<std::string, Item *> itemMap;
 
     for(std::vector<Item *>::iterator it = items->begin(); it != items->end(); it++)
     {
-        itemMap[(*it)->GetName()] = *it;
+        itemMap[(*it)->Name] = *it;
     }
 
     //todo: program crashes if this query fails
@@ -209,7 +209,7 @@ void MetadataDatabase::InjectMetadata(CollectionInfo *collection)
                        "FROM Meta WHERE collectionName=? ORDER BY title ASC;",
                        -1, &stmt, 0);
 
-    sqlite3_bind_text(stmt, 1, collection->GetMetadataType().c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 1, collection->MetadataType.c_str(), -1, SQLITE_TRANSIENT);
 
     rc = sqlite3_step(stmt);
 
@@ -265,14 +265,14 @@ void MetadataDatabase::InjectMetadata(CollectionInfo *collection)
         if(it != itemMap.end())
         {
             Item *item = it->second;
-            item->SetTitle(title);
-            item->SetFullTitle(fullTitle);
-            item->SetYear(year);
-            item->SetManufacturer(manufacturer);
-            item->SetGenre(genre);
-            item->SetNumberPlayers(numberPlayers);
-            item->SetNumberButtons(numberButtons);
-            item->SetCloneOf(cloneOf);
+            item->Title = title;
+            item->FullTitle = fullTitle;
+            item->Year = year;
+            item->Manufacturer = manufacturer;
+            item->Genre = genre;
+            item->NumberPlayers = numberPlayers;
+            item->NumberButtons = numberButtons;
+            item->CloneOf = cloneOf;
         }
         rc = sqlite3_step(stmt);
     }
@@ -280,7 +280,7 @@ void MetadataDatabase::InjectMetadata(CollectionInfo *collection)
 
 bool MetadataDatabase::NeedsRefresh()
 {
-    sqlite3 *handle = DBInstance.GetHandle();
+    sqlite3 *handle = DBInstance.Handle;
     sqlite3_stmt *stmt;
 
     sqlite3_prepare_v2(handle,
@@ -323,7 +323,7 @@ bool MetadataDatabase::ImportHyperList(std::string hyperlistFile, std::string co
             Logger::Write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a HyperList file (missing <menu> tag)");
             return false;
         }
-        sqlite3 *handle = DBInstance.GetHandle();
+        sqlite3 *handle = DBInstance.Handle;
         sqlite3_exec(handle, "BEGIN IMMEDIATE TRANSACTION;", NULL, NULL, &error);
         for(rapidxml::xml_node<> *game = root->first_node("game"); game; game = game->next_sibling("game"))
         {
@@ -395,7 +395,7 @@ bool MetadataDatabase::ImportMameList(std::string filename, std::string collecti
     rapidxml::xml_document<> doc;
     rapidxml::xml_node<> * rootNode;
     char *error = NULL;
-    sqlite3 *handle = DBInstance.GetHandle();
+    sqlite3 *handle = DBInstance.Handle;
 
     Config.SetStatus("Scraping data from \"" + filename + "\" (this will take a while)");
 

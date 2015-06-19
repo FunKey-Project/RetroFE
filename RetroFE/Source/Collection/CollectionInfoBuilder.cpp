@@ -47,7 +47,7 @@ CollectionInfoBuilder::~CollectionInfoBuilder()
 
 bool CollectionInfoBuilder::CreateCollectionDirectory(std::string name)
 {
-    std::string collectionPath = Utils::CombinePath(Configuration::GetAbsolutePath(), "collections", name);
+    std::string collectionPath = Utils::CombinePath(Configuration::AbsolutePath, "collections", name);
 
     std::vector<std::string> paths;
     paths.push_back(collectionPath);
@@ -215,11 +215,10 @@ bool CollectionInfoBuilder::ImportBasicList(CollectionInfo * /*info*/, std::stri
 
             line.erase( std::remove(line.begin(), line.end(), '\r'), line.end() );
 
-            i->SetFullTitle(line);
-            i->SetName(line);
-            i->SetFullTitle(line);
-            i->SetTitle(line);
-            i->SetLauncher(launcher);
+            i->FullTitle = line;
+            i->Name = line;
+            i->Title = line;
+            i->Launcher = launcher;
 
             list[line] = i;
         }
@@ -232,16 +231,16 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
 {
     DIR *dp;
     struct dirent *dirp;
-    std::string path = info->GetListPath();
+    std::string path = info->ListPath;
     std::map<std::string, Item *> includeFilter;
     std::map<std::string, Item *> excludeFilter;
-    std::string includeFile = Utils::CombinePath(Configuration::GetAbsolutePath(), "collections", info->GetName(), "include.txt");
-    std::string excludeFile = Utils::CombinePath(Configuration::GetAbsolutePath(), "collections", info->GetName(), "exclude.txt");
+    std::string includeFile = Utils::CombinePath(Configuration::AbsolutePath, "collections", info->Name, "include.txt");
+    std::string excludeFile = Utils::CombinePath(Configuration::AbsolutePath, "collections", info->Name, "exclude.txt");
     std::string launcher;
     bool showMissing = false; 
  
-    (void)Conf.GetProperty("collections." + info->GetName() + ".launcher", launcher);
-    (void)Conf.GetProperty("collections." + info->GetName() + ".list.includeMissingItems", showMissing);
+    (void)Conf.GetProperty("collections." + info->Name + ".launcher", launcher);
+    (void)Conf.GetProperty("collections." + info->Name + ".list.includeMissingItems", showMissing);
 
     ImportBasicList(info, includeFile, launcher, includeFilter);
     ImportBasicList(info, excludeFile, launcher, excludeFilter);
@@ -267,7 +266,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
         {
             if(excludeFilter.find(it->first) == excludeFilter.end())
             {
-                info->GetItems()->push_back(it->second);
+                info->Items.push_back(it->second);
             }
         }
     }
@@ -295,11 +294,11 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
                     if(file.compare(start, comparator.length(), *extensionsIt) == 0)
                     {
                         Item *i = new Item();
-                        i->SetName(basename);
-                        i->SetFullTitle(basename);
-                        i->SetTitle(basename);
-                        i->SetLauncher(launcher);
-                        info->GetItems()->push_back(i);
+                        i->Name = basename;
+                        i->FullTitle = basename;
+                        i->Title = basename;
+                        i->Launcher = launcher;
+                        info->Items.push_back(i);
                     }
                 }
             }

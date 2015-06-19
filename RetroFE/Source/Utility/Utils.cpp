@@ -134,7 +134,7 @@ bool Utils::FindMatchingFile(std::string prefix, std::vector<std::string> &exten
     for(unsigned int i = 0; i < extensions.size(); ++i)
     {
         std::string temp = prefix + "." + extensions[i];
-        temp = Configuration::ConvertToAbsolutePath(Configuration::GetAbsolutePath(), temp);
+        temp = Configuration::ConvertToAbsolutePath(Configuration::AbsolutePath, temp);
 
         std::ifstream f(temp.c_str());
 

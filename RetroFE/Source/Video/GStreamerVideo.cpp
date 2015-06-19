@@ -135,7 +135,7 @@ bool GStreamerVideo::Initialize()
         return true;
     }
 
-    std::string path = Utils::CombinePath(Configuration::GetAbsolutePath(), "Core");
+    std::string path = Utils::CombinePath(Configuration::AbsolutePath, "Core");
     gst_init(NULL, NULL);
 
 #ifdef WIN32
@@ -208,7 +208,7 @@ bool GStreamerVideo::Play(std::string file)
     }
     else
     {
-        Configuration::ConvertToAbsolutePath(Configuration::GetAbsolutePath(), file);
+        Configuration::ConvertToAbsolutePath(Configuration::AbsolutePath, file);
         file = uriFile;
 
         if(!Playbin)

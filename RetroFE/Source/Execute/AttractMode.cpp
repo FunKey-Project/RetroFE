@@ -19,17 +19,13 @@
 #include <cstdlib>
 
 AttractMode::AttractMode()
-    : IsActive(false)
+    : IdleTime(0)
+    , IsActive(false)
     , ElapsedTime(0)
     , ActiveTime(0)
-    , IdleTime(0)
 {
 }
 
-void AttractMode::SetIdleTime(float time)
-{
-    IdleTime = time;
-}
 void AttractMode::Reset()
 {
     ElapsedTime = 0;

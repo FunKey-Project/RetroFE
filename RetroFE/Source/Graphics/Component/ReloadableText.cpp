@@ -137,22 +137,22 @@ void ReloadableText::ReloadTexture()
         switch(Type)
         {
         case TextTypeNumberButtons:
-            ss << selectedItem->GetNumberButtons();
+            ss << selectedItem->NumberButtons;
             break;
         case TextTypeNumberPlayers:
-            ss << selectedItem->GetNumberPlayers();
+            ss << selectedItem->NumberPlayers;
             break;
         case TextTypeYear:
-            ss << selectedItem->GetYear();
+            ss << selectedItem->Year;
             break;
         case TextTypeTitle:
-            ss << selectedItem->GetTitle();
+            ss << selectedItem->Title;
             break;
         case TextTypeManufacturer:
-            ss << selectedItem->GetManufacturer();
+            ss << selectedItem->Manufacturer;
             break;
         case TextTypeGenre:
-            ss << selectedItem->GetGenre();
+            ss << selectedItem->Genre;
             break;
         default:
             break;
