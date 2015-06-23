@@ -169,7 +169,7 @@ bool MetadataDatabase::ImportDirectory()
                 {
                     std::string importFile = Utils::CombinePath(mameListPath, std::string(dirp->d_name));
                     Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing mamelist: " + importFile);
-                    Config.SetStatus("Scraping data from " + importFile);
+                    Config.SetProperty("status", "Scraping data from " + importFile);
                     ImportMameList(importFile, collectionName);
                 }
             }
@@ -305,7 +305,7 @@ bool MetadataDatabase::ImportHyperList(std::string hyperlistFile, std::string co
 {
     char *error = NULL;
 
-    Config.SetStatus("Scraping data from \"" + hyperlistFile + "\"");
+    Config.SetProperty("status", "Scraping data from \"" + hyperlistFile + "\"");
     rapidxml::xml_document<> doc;
     std::ifstream file(hyperlistFile.c_str());
     std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
@@ -366,7 +366,7 @@ bool MetadataDatabase::ImportHyperList(std::string hyperlistFile, std::string co
                 sqlite3_finalize(stmt);
             }
         }
-        Config.SetStatus("Saving data from \"" + hyperlistFile + "\" to database");
+        Config.SetProperty("status", "Saving data from \"" + hyperlistFile + "\" to database");
         sqlite3_exec(handle, "COMMIT TRANSACTION;", NULL, NULL, &error);
 
         return true;
@@ -397,7 +397,7 @@ bool MetadataDatabase::ImportMameList(std::string filename, std::string collecti
     char *error = NULL;
     sqlite3 *handle = DBInstance.Handle;
 
-    Config.SetStatus("Scraping data from \"" + filename + "\" (this will take a while)");
+    Config.SetProperty("status", "Scraping data from \"" + filename + "\" (this will take a while)");
 
     Logger::Write(Logger::ZONE_INFO, "Mamelist", "Importing mamelist file \"" + filename + "\" (this will take a while)");
     std::ifstream file(filename.c_str());
@@ -478,7 +478,7 @@ bool MetadataDatabase::ImportMameList(std::string filename, std::string collecti
         }
     }
 
-    Config.SetStatus("Saving data from \"" + filename + "\" to database");
+    Config.SetProperty("status", "Saving data from \"" + filename + "\" to database");
     sqlite3_exec(handle, "COMMIT TRANSACTION;", NULL, NULL, &error);
 
     return true;

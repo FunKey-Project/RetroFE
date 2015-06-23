@@ -62,7 +62,10 @@ void ReloadableMedia::Update(float dt)
 {
     if(NewItemSelected)
     {
-        if(!SystemMode || (SystemMode && CurrentCollection != Config.GetCurrentCollection()))
+    	std::string collection;
+    	Config.GetProperty("currentCollection", collection);
+
+        if(!SystemMode || (SystemMode && CurrentCollection != collection))
         {
             ReloadRequested = true;
         }
@@ -144,7 +147,7 @@ void ReloadableMedia::ReloadTexture()
 
     Item *selectedItem = GetSelectedItem();
 
-    CurrentCollection = Config.GetCurrentCollection();
+    Config.GetProperty("currentCollection", CurrentCollection);
 
     if (selectedItem != NULL)
     {

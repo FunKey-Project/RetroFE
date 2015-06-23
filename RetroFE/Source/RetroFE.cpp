@@ -278,7 +278,7 @@ void RetroFE::Run()
                     Config.GetProperty("firstCollection", firstCollection);
 
                     CurrentPage->Start();
-                    Config.SetCurrentCollection(firstCollection);
+                    Config.SetProperty("currentCollection", firstCollection);
                     CollectionInfo *info = GetCollection(firstCollection);
                     MenuParser mp;
                     mp.GetMenuItems(info);
@@ -307,9 +307,10 @@ void RetroFE::Run()
             break;
 
         case RETROFE_BACK_REQUEST:
+
             LastMenuOffsets[CurrentPage->GetCollectionName()] = CurrentPage->GetScrollOffsetIndex();
             CurrentPage->PopCollection();
-            Config.SetCurrentCollection(CurrentPage->GetCollectionName());
+            Config.SetProperty("currentCollection", CurrentPage->GetCollectionName());
 
             state = RETROFE_NEW;
 
@@ -458,7 +459,7 @@ RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
                 }
                 else
                 {
-                    Config.SetCurrentCollection(NextPageItem->Name);
+                    Config.SetProperty("currentCollection", NextPageItem->Name);
                     CollectionInfo *info = GetCollection(NextPageItem->Name);
 
                     MenuParser mp;

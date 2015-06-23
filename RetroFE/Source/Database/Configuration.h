@@ -26,12 +26,8 @@ public:
     virtual ~Configuration();
     static void Initialize();
     static std::string ConvertToAbsolutePath(std::string prefix, std::string path);
-    void SetStatus(std::string status);
-    std::string GetStatus();
     // gets the global configuration
     bool Import(std::string keyPrefix, std::string file);
-    void SetCurrentCollection(std::string collection);
-    std::string GetCurrentCollection();
     bool GetProperty(std::string key, std::string &value);
     bool GetProperty(std::string key, int &value);
     bool GetProperty(std::string key, bool &value);
@@ -43,8 +39,6 @@ public:
     void GetMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, std::string &value);
     void GetMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, bool system, std::string &value);
     void GetCollectionAbsolutePath(std::string collectionName, std::string &value);
-    bool IsVerbose() const;
-    void SetVerbose(bool verbose);
     static std::string AbsolutePath;
 
 private:
@@ -53,10 +47,7 @@ private:
     std::string TrimEnds(std::string str);
     typedef std::map<std::string, std::string> PropertiesType;
     typedef std::pair<std::string, std::string> PropertiesPair;
-    bool Verbose;
 
-    std::string CurrentCollection;
     PropertiesType Properties;
-    std::string Status;
 
 };

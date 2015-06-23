@@ -31,7 +31,6 @@
 std::string Configuration::AbsolutePath;
 
 Configuration::Configuration()
-    : Verbose(false)
 {
 }
 
@@ -68,16 +67,6 @@ void Configuration::Initialize()
 
         AbsolutePath = sPath;
     }
-}
-
-void Configuration::SetCurrentCollection(std::string collection)
-{
-    CurrentCollection = collection;
-}
-
-std::string Configuration::GetCurrentCollection()
-{
-    return CurrentCollection;
 }
 
 bool Configuration::Import(std::string keyPrefix, std::string file)
@@ -183,10 +172,6 @@ bool Configuration::GetRawProperty(std::string key, std::string &value)
 
         retVal = true;
     }
-    else if(Verbose)
-    {
-        Logger::Write(Logger::ZONE_DEBUG, "Configuration", "Missing property " + key);
-    }
 
     return retVal;
 }
@@ -197,10 +182,10 @@ bool Configuration::GetProperty(std::string key, std::string &value)
     std::string baseMediaPath = AbsolutePath;
     std::string baseItemPath = AbsolutePath;
     std::string collectionName;
+    GetProperty("currentCollection", collectionName);
 
     GetRawProperty("baseMediaPath", baseMediaPath);
     GetRawProperty("baseItemPath", baseItemPath);
-    collectionName = GetCurrentCollection();
 
     value = Utils::Replace(value, "%BASE_MEDIA_PATH%", baseMediaPath);
     value = Utils::Replace(value, "%BASE_ITEM_PATH%", baseItemPath);
@@ -407,23 +392,3 @@ void Configuration::GetCollectionAbsolutePath(std::string collectionName, std::s
     value = Utils::CombinePath(AbsolutePath, "collections", collectionName, "roms");
 }
 
-
-bool Configuration::IsVerbose() const
-{
-    return Verbose;
-}
-
-void Configuration::SetVerbose(bool verbose)
-{
-    this->Verbose = verbose;
-}
-
-void Configuration::SetStatus(std::string status)
-{
-    Status = status;
-}
-
-std::string Configuration::GetStatus()
-{
-    return Status;
-}

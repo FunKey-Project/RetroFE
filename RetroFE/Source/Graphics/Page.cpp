@@ -535,7 +535,9 @@ void Page::Update(float dt)
 
     if(TextStatusComponent)
     {
-        TextStatusComponent->SetText(Config.GetStatus());
+    	std::string status;
+    	Config.SetProperty("status", status);
+        TextStatusComponent->SetText(status);
     }
 
     for(unsigned int i = 0; i < NUM_LAYERS; ++i)
