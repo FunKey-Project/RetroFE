@@ -52,10 +52,9 @@ public:
     AnimationEvents *GetTweens();
     void SetTweens(AnimationEvents *set);
     void ForceIdle();
-    ViewInfo *GetBaseViewInfo();
-    void UpdateBaseViewInfo(ViewInfo &info);
     bool IsScrollActive() const;
     void SetScrollActive(bool scrollActive);
+    ViewInfo BaseViewInfo;
 
 protected:
     Item *GetSelectedItem();
@@ -97,7 +96,6 @@ private:
     unsigned int CurrentTweenIndex;
     bool CurrentTweenComplete;
     std::string CollectionName;
-    ViewInfo BaseViewInfo;
     float ElapsedTweenTime;
     bool ScrollActive;
 };

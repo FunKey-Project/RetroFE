@@ -83,10 +83,10 @@ void ReloadableMedia::Update(float dt)
     {
 
         // video needs to run a frame to start getting size info
-        if(GetBaseViewInfo()->GetImageHeight() == 0 && GetBaseViewInfo()->GetImageWidth() == 0)
+        if(BaseViewInfo.GetImageHeight() == 0 && BaseViewInfo.GetImageWidth() == 0)
         {
-            GetBaseViewInfo()->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
-            GetBaseViewInfo()->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
+            BaseViewInfo.SetImageWidth(LoadedComponent->BaseViewInfo.GetImageWidth());
+            BaseViewInfo.SetImageHeight(LoadedComponent->BaseViewInfo.GetImageHeight());
         }
 
         LoadedComponent->Update(dt);
@@ -188,8 +188,8 @@ void ReloadableMedia::ReloadTexture()
                 if(LoadedComponent)
                 {
                     LoadedComponent->AllocateGraphicsMemory();
-                    GetBaseViewInfo()->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
-                    GetBaseViewInfo()->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
+                    BaseViewInfo.SetImageWidth(LoadedComponent->BaseViewInfo.GetImageWidth());
+                    BaseViewInfo.SetImageHeight(LoadedComponent->BaseViewInfo.GetImageHeight());
                     found = true;
                 }
             }
@@ -251,8 +251,8 @@ void ReloadableMedia::ReloadTexture()
                 if (LoadedComponent != NULL)
                 {
                      LoadedComponent->AllocateGraphicsMemory();
-                     GetBaseViewInfo()->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
-                     GetBaseViewInfo()->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
+                     BaseViewInfo.SetImageWidth(LoadedComponent->BaseViewInfo.GetImageWidth());
+                     BaseViewInfo.SetImageHeight(LoadedComponent->BaseViewInfo.GetImageHeight());
                 }
 
             }
@@ -260,8 +260,8 @@ void ReloadableMedia::ReloadTexture()
             if(!LoadedComponent && TextFallback)
             {
                 LoadedComponent = new Text(imageBasename, FontInst, ScaleX, ScaleY);
-                GetBaseViewInfo()->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
-                GetBaseViewInfo()->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
+                BaseViewInfo.SetImageWidth(LoadedComponent->BaseViewInfo.GetImageWidth());
+                BaseViewInfo.SetImageHeight(LoadedComponent->BaseViewInfo.GetImageHeight());
             }
         }
     }
@@ -269,15 +269,13 @@ void ReloadableMedia::ReloadTexture()
 
 void ReloadableMedia::Draw()
 {
-    ViewInfo *info = GetBaseViewInfo();
-
     Component::Draw();
 
     if(LoadedComponent)
     {
-        info->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
-        info->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
-        LoadedComponent->UpdateBaseViewInfo(*info);
+    	BaseViewInfo.SetImageHeight(LoadedComponent->BaseViewInfo.GetImageHeight());
+    	BaseViewInfo.SetImageWidth(LoadedComponent->BaseViewInfo.GetImageWidth());
+        LoadedComponent->BaseViewInfo = BaseViewInfo;
         LoadedComponent->Draw();
     }
 }

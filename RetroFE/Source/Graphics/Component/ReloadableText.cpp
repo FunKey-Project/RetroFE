@@ -165,11 +165,9 @@ void ReloadableText::ReloadTexture()
 
 void ReloadableText::Draw()
 {
-    ViewInfo *info = GetBaseViewInfo();
-
     if(ImageInst)
     {
-        ImageInst->UpdateBaseViewInfo(*info);
+        ImageInst->BaseViewInfo = BaseViewInfo;
         ImageInst->Draw();
     }
 }

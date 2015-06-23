@@ -327,8 +327,7 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
     for(xml_node<> *componentXml = layout->first_node("container"); componentXml; componentXml = componentXml->next_sibling("container"))
     {
         Container *c = new Container();
-        ViewInfo *v = c->GetBaseViewInfo();
-        BuildViewInfo(componentXml, v);
+        BuildViewInfo(componentXml, c->BaseViewInfo);
         LoadTweens(c, componentXml);
         page->AddComponent(c);
     }
@@ -348,8 +347,7 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
             imagePath = Utils::CombinePath(Configuration::ConvertToAbsolutePath(LayoutPath, imagePath), std::string(src->value()));
 
             Image *c = new Image(imagePath, ScaleX, ScaleY);
-            ViewInfo *v = c->GetBaseViewInfo();
-            BuildViewInfo(componentXml, v);
+            BuildViewInfo(componentXml, c->BaseViewInfo);
             LoadTweens(c, componentXml);
             page->AddComponent(c);
         }
@@ -368,9 +366,8 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
         {
             Font *font = AddFont(componentXml, NULL);
             Text *c = new Text(value->value(), font, ScaleX, ScaleY);
-            ViewInfo *v = c->GetBaseViewInfo();
 
-            BuildViewInfo(componentXml, v);
+            BuildViewInfo(componentXml, c->BaseViewInfo);
 
             LoadTweens(c, componentXml);
             page->AddComponent(c);
@@ -381,9 +378,8 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
     {
         Font *font = AddFont(componentXml, NULL);
         Text *c = new Text("", font, ScaleX, ScaleY);
-        ViewInfo *v = c->GetBaseViewInfo();
 
-        BuildViewInfo(componentXml, v);
+        BuildViewInfo(componentXml, c->BaseViewInfo);
 
         LoadTweens(c, componentXml);
         page->AddComponent(c);
@@ -534,9 +530,7 @@ Font *PageBuilder::AddFont(xml_node<> *component, xml_node<> *defaults)
 
 void PageBuilder::LoadTweens(Component *c, xml_node<> *componentXml)
 {
-    ViewInfo *v = c->GetBaseViewInfo();
-
-    BuildViewInfo(componentXml, v);
+    BuildViewInfo(componentXml, c->BaseViewInfo);
 
     c->SetTweens(CreateTweenInstance(componentXml));
 }
@@ -623,8 +617,7 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
         }
     }
 
-    ViewInfo *v = menu->GetBaseViewInfo();
-    BuildViewInfo(menuXml, v);
+    BuildViewInfo(menuXml, menu->BaseViewInfo);
 
     if(menuType == "custom")
     {
@@ -651,7 +644,7 @@ void PageBuilder::BuildCustomMenu(ScrollingList *menu, xml_node<> *menuXml, xml_
     for(xml_node<> *componentXml = menuXml->first_node("item"); componentXml; componentXml = componentXml->next_sibling("item"))
     {
         ViewInfo *viewInfo = new ViewInfo();
-        BuildViewInfo(componentXml, viewInfo, itemDefaults);
+        BuildViewInfo(componentXml, *viewInfo, itemDefaults);
 
         points->push_back(viewInfo);
         tweenPoints->push_back(CreateTweenInstance(componentXml));
@@ -708,7 +701,7 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
     if(overrideItems.find(MENU_START) != overrideItems.end())
     {
         xml_node<> *component = overrideItems[MENU_START];
-        ViewInfo *viewInfo = CreateMenuItemInfo(component, itemDefaults, menu->GetBaseViewInfo()->GetY() + height);
+        ViewInfo *viewInfo = CreateMenuItemInfo(component, itemDefaults, menu->BaseViewInfo.GetY() + height);
         points->push_back(viewInfo);
         tweenPoints->push_back(CreateTweenInstance(component));
         height += viewInfo->GetHeight();
@@ -728,12 +721,12 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
         }
 
         // calculate the total height of our menu items if we can load any additional items
-        BuildViewInfo(component, viewInfo, itemDefaults);
+        BuildViewInfo(component, *viewInfo, itemDefaults);
         xml_attribute<> *itemSpacingXml = component->first_attribute("spacing");
         int itemSpacing = itemSpacingXml ? Utils::ConvertInt(itemSpacingXml->value()) : 0;
         float nextHeight = height + viewInfo->GetHeight() + itemSpacing;
 
-        if(nextHeight >= menu->GetBaseViewInfo()->GetHeight())
+        if(nextHeight >= menu->BaseViewInfo.GetHeight())
         {
             end = true;
         }
@@ -743,13 +736,13 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
         {
             component = overrideItems[MENU_LAST];
 
-            BuildViewInfo(component, viewInfo, itemDefaults);
+            BuildViewInfo(component, *viewInfo, itemDefaults);
             xml_attribute<> *itemSpacingXml = component->first_attribute("spacing");
             int itemSpacing = itemSpacingXml ? Utils::ConvertInt(itemSpacingXml->value()) : 0;
             nextHeight = height + viewInfo->GetHeight() + itemSpacing;
         }
 
-        viewInfo->SetY(menu->GetBaseViewInfo()->GetY() + (float)height);
+        viewInfo->SetY(menu->BaseViewInfo.GetY() + (float)height);
         points->push_back(viewInfo);
         tweenPoints->push_back(CreateTweenInstance(component));
         index++;
@@ -760,7 +753,7 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
     if(overrideItems.find(MENU_END) != overrideItems.end())
     {
         xml_node<> *component = overrideItems[MENU_END];
-        ViewInfo *viewInfo = CreateMenuItemInfo(component, itemDefaults, menu->GetBaseViewInfo()->GetY() + height);
+        ViewInfo *viewInfo = CreateMenuItemInfo(component, itemDefaults, menu->BaseViewInfo.GetY() + height);
         points->push_back(viewInfo);
         tweenPoints->push_back(CreateTweenInstance(component));
     }
@@ -787,7 +780,7 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
 ViewInfo *PageBuilder::CreateMenuItemInfo(xml_node<> *component, xml_node<> *defaults, float y)
 {
     ViewInfo *viewInfo = new ViewInfo();
-    BuildViewInfo(component, viewInfo, defaults);
+    BuildViewInfo(component, *viewInfo, defaults);
     viewInfo->SetY(y);
     return viewInfo;
 }
@@ -831,7 +824,7 @@ xml_attribute<> *PageBuilder::FindAttribute(xml_node<> *componentXml, std::strin
     return attributeXml;
 }
 
-void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info, xml_node<> *defaultXml)
+void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo &info, xml_node<> *defaultXml)
 {
     xml_attribute<> *x = FindAttribute(componentXml, "x", defaultXml);
     xml_attribute<> *y = FindAttribute(componentXml, "y", defaultXml);
@@ -852,37 +845,37 @@ void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info, xml_no
     xml_attribute<> *backgroundColor = FindAttribute(componentXml, "backgroundColor", defaultXml);
     xml_attribute<> *backgroundAlpha = FindAttribute(componentXml, "backgroundAlpha", defaultXml);
 
-    info->SetX(GetHorizontalAlignment(x, 0));
-    info->SetY(GetVerticalAlignment(y, 0));
+    info.SetX(GetHorizontalAlignment(x, 0));
+    info.SetY(GetVerticalAlignment(y, 0));
 
-    info->SetXOffset( GetHorizontalAlignment(xOffset, 0));
-    info->SetYOffset( GetVerticalAlignment(yOffset, 0));
+    info.SetXOffset( GetHorizontalAlignment(xOffset, 0));
+    info.SetYOffset( GetVerticalAlignment(yOffset, 0));
     float xOriginRelative = GetHorizontalAlignment(xOrigin, 0);
     float yOriginRelative = GetVerticalAlignment(yOrigin, 0);
 
     // the origins need to be saved as a percent since the heights and widths can be scaled
-    info->SetXOrigin(xOriginRelative / ScreenWidth);
-    info->SetYOrigin(yOriginRelative / ScreenHeight);
+    info.SetXOrigin(xOriginRelative / ScreenWidth);
+    info.SetYOrigin(yOriginRelative / ScreenHeight);
 
 
     if(!height && !width)
     {
-        info->SetHeight(-1);
-        info->SetWidth(-1);
+        info.SetHeight(-1);
+        info.SetWidth(-1);
     }
     else
     {
-        info->SetHeight(GetVerticalAlignment(height, -1));
-        info->SetWidth(GetHorizontalAlignment(width, -1));
+        info.SetHeight(GetVerticalAlignment(height, -1));
+        info.SetWidth(GetHorizontalAlignment(width, -1));
     }
-    info->SetFontSize(GetVerticalAlignment(fontSize, -1));
-    info->SetMinHeight(GetVerticalAlignment(minHeight, 0));
-    info->SetMinWidth(GetHorizontalAlignment(minWidth, 0));
-    info->SetMaxHeight(GetVerticalAlignment(maxHeight, FLT_MAX));
-    info->SetMaxWidth(GetVerticalAlignment(maxWidth, FLT_MAX));
-    info->SetAlpha( alpha ? Utils::ConvertFloat(alpha->value()) : 1);
-    info->SetAngle( angle ? Utils::ConvertFloat(angle->value()) : 0);
-    info->SetLayer( layer ? Utils::ConvertInt(layer->value()) : 0);
+    info.SetFontSize(GetVerticalAlignment(fontSize, -1));
+    info.SetMinHeight(GetVerticalAlignment(minHeight, 0));
+    info.SetMinWidth(GetHorizontalAlignment(minWidth, 0));
+    info.SetMaxHeight(GetVerticalAlignment(maxHeight, FLT_MAX));
+    info.SetMaxWidth(GetVerticalAlignment(maxWidth, FLT_MAX));
+    info.SetAlpha( alpha ? Utils::ConvertFloat(alpha->value()) : 1);
+    info.SetAngle( angle ? Utils::ConvertFloat(angle->value()) : 0);
+    info.SetLayer( layer ? Utils::ConvertInt(layer->value()) : 0);
 
     if(backgroundColor)
     {
@@ -893,14 +886,14 @@ void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info, xml_no
         int green = (num / 0x100) % 0x100;
         int blue = num % 0x100;
 
-        info->SetBackgroundRed(static_cast<float>(red)/255);
-        info->SetBackgroundGreen(static_cast<float>(green)/255);
-        info->SetBackgroundBlue(static_cast<float>(blue)/255);
+        info.SetBackgroundRed(static_cast<float>(red)/255);
+        info.SetBackgroundGreen(static_cast<float>(green)/255);
+        info.SetBackgroundBlue(static_cast<float>(blue)/255);
     }
 
     if(backgroundAlpha)
     {
-        info->SetBackgroundAlpha( backgroundAlpha ? Utils::ConvertFloat(backgroundAlpha->value()) : 1);
+        info.SetBackgroundAlpha( backgroundAlpha ? Utils::ConvertFloat(backgroundAlpha->value()) : 1);
     }
 }
 

@@ -47,10 +47,10 @@ void VideoComponent::Update(float dt)
         VideoInst->Update(dt);
 
         // video needs to run a frame to start getting size info
-        if(GetBaseViewInfo()->GetImageHeight() == 0 && GetBaseViewInfo()->GetImageWidth() == 0)
+        if(BaseViewInfo.GetImageHeight() == 0 && BaseViewInfo.GetImageWidth() == 0)
         {
-            GetBaseViewInfo()->SetImageHeight(static_cast<float>(VideoInst->GetHeight()));
-            GetBaseViewInfo()->SetImageWidth(static_cast<float>(VideoInst->GetWidth()));
+            BaseViewInfo.SetImageHeight(static_cast<float>(VideoInst->GetHeight()));
+            BaseViewInfo.SetImageWidth(static_cast<float>(VideoInst->GetWidth()));
         }
     }
 
@@ -87,19 +87,18 @@ void VideoComponent::LaunchExit()
 
 void VideoComponent::Draw()
 {
-    ViewInfo *info = GetBaseViewInfo();
     SDL_Rect rect;
 
-    rect.x = static_cast<int>(info->GetXRelativeToOrigin());
-    rect.y = static_cast<int>(info->GetYRelativeToOrigin());
-    rect.h = static_cast<int>(info->GetHeight());
-    rect.w = static_cast<int>(info->GetWidth());
+    rect.x = static_cast<int>(BaseViewInfo.GetXRelativeToOrigin());
+    rect.y = static_cast<int>(BaseViewInfo.GetYRelativeToOrigin());
+    rect.h = static_cast<int>(BaseViewInfo.GetHeight());
+    rect.w = static_cast<int>(BaseViewInfo.GetWidth());
 
     VideoInst->Draw();
     SDL_Texture *texture = VideoInst->GetTexture();
 
     if(texture)
     {
-        SDL::RenderCopy(texture, static_cast<int>(info->GetAlpha() * 255), NULL, &rect, static_cast<int>(info->GetAngle()));
+        SDL::RenderCopy(texture, static_cast<int>(BaseViewInfo.GetAlpha() * 255), NULL, &rect, static_cast<int>(BaseViewInfo.GetAngle()));
     }
 }

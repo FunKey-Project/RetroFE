@@ -742,18 +742,18 @@ void ScrollingList::ResetTweens(Component *c, AnimationEvents *sets, ViewInfo *c
         return;
     }
 
-    currentViewInfo->SetImageHeight(c->GetBaseViewInfo()->GetImageHeight());
-    currentViewInfo->SetImageWidth(c->GetBaseViewInfo()->GetImageWidth());
-    nextViewInfo->SetImageHeight(c->GetBaseViewInfo()->GetImageHeight());
-    nextViewInfo->SetImageWidth(c->GetBaseViewInfo()->GetImageWidth());
-    nextViewInfo->SetBackgroundAlpha(c->GetBaseViewInfo()->GetBackgroundAlpha());
+    currentViewInfo->SetImageHeight(c->BaseViewInfo.GetImageHeight());
+    currentViewInfo->SetImageWidth(c->BaseViewInfo.GetImageWidth());
+    nextViewInfo->SetImageHeight(c->BaseViewInfo.GetImageHeight());
+    nextViewInfo->SetImageWidth(c->BaseViewInfo.GetImageWidth());
+    nextViewInfo->SetBackgroundAlpha(c->BaseViewInfo.GetBackgroundAlpha());
 
     //todo: delete properly, memory leak (big), proof of concept
     c->SetTweens(sets);
 
     Animation *scrollTween = sets->GetAnimation("menuScroll");
     scrollTween->Clear();
-    c->UpdateBaseViewInfo(*currentViewInfo);
+    c->BaseViewInfo = *currentViewInfo;
 
     TweenSet *set = new TweenSet();
     set->Push(new Tween(TWEEN_PROPERTY_HEIGHT, EASE_INOUT_QUADRATIC, currentViewInfo->GetHeight(), nextViewInfo->GetHeight(), scrollTime));

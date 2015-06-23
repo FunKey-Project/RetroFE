@@ -56,7 +56,6 @@ void Text::Draw()
 
     SDL_Texture *t = FontInst->GetTexture();
 
-    ViewInfo *info = GetBaseViewInfo();
     float imageHeight = 0;
     float imageWidth = 0;
 
@@ -77,25 +76,25 @@ void Text::Draw()
     }
 
     imageHeight = (float)FontInst->GetHeight();
-    float scale = (float)info->GetFontSize() / (float)imageHeight;
+    float scale = (float)BaseViewInfo.GetFontSize() / (float)imageHeight;
 
-    float oldWidth = info->GetRawWidth();
-    float oldHeight = info->GetRawHeight();
-    float oldImageWidth = info->GetImageHeight();
-    float oldImageHeight = info->GetImageWidth();
+    float oldWidth = BaseViewInfo.GetRawWidth();
+    float oldHeight = BaseViewInfo.GetRawHeight();
+    float oldImageWidth = BaseViewInfo.GetImageHeight();
+    float oldImageHeight = BaseViewInfo.GetImageWidth();
 
-    info->SetWidth(imageWidth*scale);
-    info->SetHeight(info->GetFontSize());
-    info->SetImageWidth(imageWidth);
-    info->SetImageHeight(imageHeight);
+    BaseViewInfo.SetWidth(imageWidth*scale);
+    BaseViewInfo.SetHeight(BaseViewInfo.GetFontSize());
+    BaseViewInfo.SetImageWidth(imageWidth);
+    BaseViewInfo.SetImageHeight(imageHeight);
 
-    float xOrigin = info->GetXRelativeToOrigin();
-    float yOrigin = info->GetYRelativeToOrigin();
+    float xOrigin = BaseViewInfo.GetXRelativeToOrigin();
+    float yOrigin = BaseViewInfo.GetYRelativeToOrigin();
 
-    info->SetWidth(oldWidth);
-    info->SetHeight(oldHeight);
-    info->SetImageWidth(oldImageWidth);
-    info->SetImageHeight(oldImageHeight);
+    BaseViewInfo.SetWidth(oldWidth);
+    BaseViewInfo.SetHeight(oldHeight);
+    BaseViewInfo.SetImageWidth(oldImageWidth);
+    BaseViewInfo.SetImageHeight(oldImageHeight);
 
 
     SDL_Rect rect;
@@ -124,11 +123,11 @@ void Text::Draw()
             }
 
 
-            SDL::RenderCopy(t, static_cast<char>(info->GetAlpha() * 255), &charRect, &rect, info->GetAngle());
+            SDL::RenderCopy(t, static_cast<char>(BaseViewInfo.GetAlpha() * 255), &charRect, &rect, BaseViewInfo.GetAngle());
 
             rect.x += static_cast<int>(glyph.Advance * scale);
 
-            if((static_cast<float>(rect.x) - xOrigin) > info->GetMaxWidth())
+            if((static_cast<float>(rect.x) - xOrigin) > BaseViewInfo.GetMaxWidth())
             {
                 break;
             }
