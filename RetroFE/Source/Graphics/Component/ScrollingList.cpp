@@ -742,11 +742,11 @@ void ScrollingList::ResetTweens(Component *c, AnimationEvents *sets, ViewInfo *c
         return;
     }
 
-    currentViewInfo->SetImageHeight(c->BaseViewInfo.GetImageHeight());
-    currentViewInfo->SetImageWidth(c->BaseViewInfo.GetImageWidth());
-    nextViewInfo->SetImageHeight(c->BaseViewInfo.GetImageHeight());
-    nextViewInfo->SetImageWidth(c->BaseViewInfo.GetImageWidth());
-    nextViewInfo->SetBackgroundAlpha(c->BaseViewInfo.GetBackgroundAlpha());
+    currentViewInfo->ImageHeight = c->BaseViewInfo.ImageHeight;
+    currentViewInfo->ImageWidth = c->BaseViewInfo.ImageWidth;
+    nextViewInfo->ImageHeight = c->BaseViewInfo.ImageHeight;
+    nextViewInfo->ImageWidth = c->BaseViewInfo.ImageWidth;
+    nextViewInfo->BackgroundAlpha = c->BaseViewInfo.BackgroundAlpha;
 
     //todo: delete properly, memory leak (big), proof of concept
     c->SetTweens(sets);
@@ -756,18 +756,18 @@ void ScrollingList::ResetTweens(Component *c, AnimationEvents *sets, ViewInfo *c
     c->BaseViewInfo = *currentViewInfo;
 
     TweenSet *set = new TweenSet();
-    set->Push(new Tween(TWEEN_PROPERTY_HEIGHT, EASE_INOUT_QUADRATIC, currentViewInfo->GetHeight(), nextViewInfo->GetHeight(), scrollTime));
-    set->Push(new Tween(TWEEN_PROPERTY_WIDTH, EASE_INOUT_QUADRATIC, currentViewInfo->GetWidth(), nextViewInfo->GetWidth(), scrollTime));
-    set->Push(new Tween(TWEEN_PROPERTY_ANGLE, EASE_INOUT_QUADRATIC, currentViewInfo->GetAngle(), nextViewInfo->GetAngle(), scrollTime));
-    set->Push(new Tween(TWEEN_PROPERTY_ALPHA, EASE_INOUT_QUADRATIC, currentViewInfo->GetAlpha(), nextViewInfo->GetAlpha(), scrollTime));
-    set->Push(new Tween(TWEEN_PROPERTY_X, EASE_INOUT_QUADRATIC, currentViewInfo->GetX(), nextViewInfo->GetX(), scrollTime));
-    set->Push(new Tween(TWEEN_PROPERTY_Y, EASE_INOUT_QUADRATIC, currentViewInfo->GetY(), nextViewInfo->GetY(), scrollTime));
-    set->Push(new Tween(TWEEN_PROPERTY_X_ORIGIN, EASE_INOUT_QUADRATIC, currentViewInfo->GetXOrigin(), nextViewInfo->GetXOrigin(), scrollTime));
-    set->Push(new Tween(TWEEN_PROPERTY_Y_ORIGIN, EASE_INOUT_QUADRATIC, currentViewInfo->GetYOrigin(), nextViewInfo->GetYOrigin(), scrollTime));
-    set->Push(new Tween(TWEEN_PROPERTY_X_OFFSET, EASE_INOUT_QUADRATIC, currentViewInfo->GetXOffset(), nextViewInfo->GetXOffset(), scrollTime));
-    set->Push(new Tween(TWEEN_PROPERTY_Y_OFFSET, EASE_INOUT_QUADRATIC, currentViewInfo->GetYOffset(), nextViewInfo->GetYOffset(), scrollTime));
-    set->Push(new Tween(TWEEN_PROPERTY_FONT_SIZE, EASE_INOUT_QUADRATIC, currentViewInfo->GetFontSize(), nextViewInfo->GetFontSize(), scrollTime));
-    set->Push(new Tween(TWEEN_PROPERTY_BACKGROUND_ALPHA, EASE_INOUT_QUADRATIC, currentViewInfo->GetBackgroundAlpha(), nextViewInfo->GetBackgroundAlpha(), scrollTime));
+    set->Push(new Tween(TWEEN_PROPERTY_HEIGHT, EASE_INOUT_QUADRATIC, currentViewInfo->ScaledHeight(), nextViewInfo->ScaledHeight(), scrollTime));
+    set->Push(new Tween(TWEEN_PROPERTY_WIDTH, EASE_INOUT_QUADRATIC, currentViewInfo->ScaledWidth(), nextViewInfo->ScaledWidth(), scrollTime));
+    set->Push(new Tween(TWEEN_PROPERTY_ANGLE, EASE_INOUT_QUADRATIC, currentViewInfo->Angle, nextViewInfo->Angle, scrollTime));
+    set->Push(new Tween(TWEEN_PROPERTY_ALPHA, EASE_INOUT_QUADRATIC, currentViewInfo->Alpha, nextViewInfo->Alpha, scrollTime));
+    set->Push(new Tween(TWEEN_PROPERTY_X, EASE_INOUT_QUADRATIC, currentViewInfo->X, nextViewInfo->X, scrollTime));
+    set->Push(new Tween(TWEEN_PROPERTY_Y, EASE_INOUT_QUADRATIC, currentViewInfo->Y, nextViewInfo->Y, scrollTime));
+    set->Push(new Tween(TWEEN_PROPERTY_X_ORIGIN, EASE_INOUT_QUADRATIC, currentViewInfo->XOrigin, nextViewInfo->XOrigin, scrollTime));
+    set->Push(new Tween(TWEEN_PROPERTY_Y_ORIGIN, EASE_INOUT_QUADRATIC, currentViewInfo->YOrigin, nextViewInfo->YOrigin, scrollTime));
+    set->Push(new Tween(TWEEN_PROPERTY_X_OFFSET, EASE_INOUT_QUADRATIC, currentViewInfo->XOffset, nextViewInfo->XOffset, scrollTime));
+    set->Push(new Tween(TWEEN_PROPERTY_Y_OFFSET, EASE_INOUT_QUADRATIC, currentViewInfo->YOffset, nextViewInfo->YOffset, scrollTime));
+    set->Push(new Tween(TWEEN_PROPERTY_FONT_SIZE, EASE_INOUT_QUADRATIC, currentViewInfo->FontSize, nextViewInfo->FontSize, scrollTime));
+    set->Push(new Tween(TWEEN_PROPERTY_BACKGROUND_ALPHA, EASE_INOUT_QUADRATIC, currentViewInfo->BackgroundAlpha, nextViewInfo->BackgroundAlpha, scrollTime));
     scrollTween->Push(set);
 }
 
@@ -856,7 +856,7 @@ void ScrollingList::Draw(unsigned int layer)
         Component *c = s->GetComponent();
         ViewInfo *currentViewInfo = ScrollPoints->at(i);
 
-        if(c && currentViewInfo && currentViewInfo->GetLayer() == layer)
+        if(c && currentViewInfo && currentViewInfo->Layer == layer)
         {
             c->Draw();
         }

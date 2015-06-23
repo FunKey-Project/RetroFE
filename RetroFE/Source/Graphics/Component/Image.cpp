@@ -62,8 +62,8 @@ void Image::AllocateGraphicsMemory()
         {
             SDL_SetTextureBlendMode(Texture, SDL_BLENDMODE_BLEND);
             SDL_QueryTexture(Texture, NULL, NULL, &width, &height);
-            BaseViewInfo.SetImageWidth(width * ScaleX);
-            BaseViewInfo.SetImageHeight(height * ScaleY);
+            BaseViewInfo.ImageWidth = width * ScaleX;
+            BaseViewInfo.ImageHeight = height * ScaleY;
         }
         SDL_UnlockMutex(SDL::GetMutex());
 
@@ -78,11 +78,11 @@ void Image::Draw()
     {
         SDL_Rect rect;
 
-        rect.x = static_cast<int>(BaseViewInfo.GetXRelativeToOrigin());
-        rect.y = static_cast<int>(BaseViewInfo.GetYRelativeToOrigin());
-        rect.h = static_cast<int>(BaseViewInfo.GetHeight());
-        rect.w = static_cast<int>(BaseViewInfo.GetWidth());
+        rect.x = static_cast<int>(BaseViewInfo.XRelativeToOrigin());
+        rect.y = static_cast<int>(BaseViewInfo.YRelativeToOrigin());
+        rect.h = static_cast<int>(BaseViewInfo.ScaledHeight());
+        rect.w = static_cast<int>(BaseViewInfo.ScaledWidth());
 
-        SDL::RenderCopy(Texture, static_cast<char>((BaseViewInfo.GetAlpha() * 255)), NULL, &rect, BaseViewInfo.GetAngle());
+        SDL::RenderCopy(Texture, static_cast<char>((BaseViewInfo.Alpha * 255)), NULL, &rect, BaseViewInfo.Angle);
     }
 }

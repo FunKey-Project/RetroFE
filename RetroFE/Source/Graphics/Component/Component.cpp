@@ -371,18 +371,18 @@ void Component::Draw()
     if(BackgroundTexture)
     {
         SDL_Rect rect;
-        rect.h = static_cast<int>(BaseViewInfo.GetHeight());
-        rect.w = static_cast<int>(BaseViewInfo.GetWidth());
-        rect.x = static_cast<int>(BaseViewInfo.GetXRelativeToOrigin());
-        rect.y = static_cast<int>(BaseViewInfo.GetYRelativeToOrigin());
+        rect.h = static_cast<int>(BaseViewInfo.ScaledHeight());
+        rect.w = static_cast<int>(BaseViewInfo.ScaledWidth());
+        rect.x = static_cast<int>(BaseViewInfo.XRelativeToOrigin());
+        rect.y = static_cast<int>(BaseViewInfo.YRelativeToOrigin());
 
 
         SDL_SetTextureColorMod(BackgroundTexture,
-                               static_cast<char>(BaseViewInfo.GetBackgroundRed()*255),
-                               static_cast<char>(BaseViewInfo.GetBackgroundGreen()*255),
-                               static_cast<char>(BaseViewInfo.GetBackgroundBlue()*255));
+                               static_cast<char>(BaseViewInfo.BackgroundRed*255),
+                               static_cast<char>(BaseViewInfo.BackgroundGreen*255),
+                               static_cast<char>(BaseViewInfo.BackgroundBlue*255));
 
-        SDL::RenderCopy(BackgroundTexture, static_cast<char>(BaseViewInfo.GetBackgroundAlpha()*255), NULL, &rect, BaseViewInfo.GetAngle());
+        SDL::RenderCopy(BackgroundTexture, static_cast<char>(BaseViewInfo.BackgroundAlpha*255), NULL, &rect, BaseViewInfo.Angle);
     }
 }
 
@@ -418,51 +418,51 @@ bool Component::Animate(bool loop)
             switch(tween->GetProperty())
             {
             case TWEEN_PROPERTY_X:
-                BaseViewInfo.SetX(value);
+                BaseViewInfo.X = value;
                 break;
 
             case TWEEN_PROPERTY_Y:
-                BaseViewInfo.SetY(value);
+                BaseViewInfo.Y = value;
                 break;
 
             case TWEEN_PROPERTY_HEIGHT:
-                BaseViewInfo.SetHeight(value);
+                BaseViewInfo.Height = value;
                 break;
 
             case TWEEN_PROPERTY_WIDTH:
-                BaseViewInfo.SetWidth(value);
+                BaseViewInfo.Width = value;
                 break;
 
             case TWEEN_PROPERTY_ANGLE:
-                BaseViewInfo.SetAngle(value);
+                BaseViewInfo.Angle = value;
                 break;
 
             case TWEEN_PROPERTY_ALPHA:
-                BaseViewInfo.SetAlpha(value);
+                BaseViewInfo.Alpha = value;
                 break;
 
             case TWEEN_PROPERTY_X_ORIGIN:
-                BaseViewInfo.SetXOrigin(value);
+                BaseViewInfo.XOrigin = value;
                 break;
 
             case TWEEN_PROPERTY_Y_ORIGIN:
-                BaseViewInfo.SetYOrigin(value);
+                BaseViewInfo.YOrigin = value;
                 break;
 
             case TWEEN_PROPERTY_X_OFFSET:
-                BaseViewInfo.SetXOffset(value);
+                BaseViewInfo.XOffset = value;
                 break;
 
             case TWEEN_PROPERTY_Y_OFFSET:
-                BaseViewInfo.SetYOffset(value);
+                BaseViewInfo.YOffset = value;
                 break;
 
             case TWEEN_PROPERTY_FONT_SIZE:
-                BaseViewInfo.SetFontSize(value);
+                BaseViewInfo.FontSize = value;
                 break;
 
             case TWEEN_PROPERTY_BACKGROUND_ALPHA:
-                BaseViewInfo.SetBackgroundAlpha(value);
+                BaseViewInfo.BackgroundAlpha = value;
                 break;
             }
         }

@@ -76,25 +76,25 @@ void Text::Draw()
     }
 
     imageHeight = (float)FontInst->GetHeight();
-    float scale = (float)BaseViewInfo.GetFontSize() / (float)imageHeight;
+    float scale = (float)BaseViewInfo.FontSize / (float)imageHeight;
 
-    float oldWidth = BaseViewInfo.GetRawWidth();
-    float oldHeight = BaseViewInfo.GetRawHeight();
-    float oldImageWidth = BaseViewInfo.GetImageHeight();
-    float oldImageHeight = BaseViewInfo.GetImageWidth();
+    float oldWidth = BaseViewInfo.Width;
+    float oldHeight = BaseViewInfo.Height;
+    float oldImageWidth = BaseViewInfo.ImageHeight;
+    float oldImageHeight = BaseViewInfo.ImageWidth;
 
-    BaseViewInfo.SetWidth(imageWidth*scale);
-    BaseViewInfo.SetHeight(BaseViewInfo.GetFontSize());
-    BaseViewInfo.SetImageWidth(imageWidth);
-    BaseViewInfo.SetImageHeight(imageHeight);
+    BaseViewInfo.Width = imageWidth*scale;
+    BaseViewInfo.Height = BaseViewInfo.FontSize;
+    BaseViewInfo.ImageWidth = imageWidth;
+    BaseViewInfo.ImageHeight = imageHeight;
 
-    float xOrigin = BaseViewInfo.GetXRelativeToOrigin();
-    float yOrigin = BaseViewInfo.GetYRelativeToOrigin();
+    float xOrigin = BaseViewInfo.XRelativeToOrigin();
+    float yOrigin = BaseViewInfo.YRelativeToOrigin();
 
-    BaseViewInfo.SetWidth(oldWidth);
-    BaseViewInfo.SetHeight(oldHeight);
-    BaseViewInfo.SetImageWidth(oldImageWidth);
-    BaseViewInfo.SetImageHeight(oldImageHeight);
+    BaseViewInfo.Width = oldWidth;
+    BaseViewInfo.Height = oldHeight;
+    BaseViewInfo.ImageWidth = oldImageWidth;
+    BaseViewInfo.ImageHeight = oldImageHeight;
 
 
     SDL_Rect rect;
@@ -123,11 +123,11 @@ void Text::Draw()
             }
 
 
-            SDL::RenderCopy(t, static_cast<char>(BaseViewInfo.GetAlpha() * 255), &charRect, &rect, BaseViewInfo.GetAngle());
+            SDL::RenderCopy(t, static_cast<char>(BaseViewInfo.Alpha * 255), &charRect, &rect, BaseViewInfo.Angle);
 
             rect.x += static_cast<int>(glyph.Advance * scale);
 
-            if((static_cast<float>(rect.x) - xOrigin) > BaseViewInfo.GetMaxWidth())
+            if((static_cast<float>(rect.x) - xOrigin) > BaseViewInfo.MaxWidth)
             {
                 break;
             }

@@ -143,7 +143,7 @@ bool Page::AddComponent(Component *c)
 {
     bool retVal = false;
 
-    unsigned int layer = c->BaseViewInfo.GetLayer();
+    unsigned int layer = c->BaseViewInfo.Layer;
 
 
     if(layer < NUM_LAYERS)
