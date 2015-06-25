@@ -116,6 +116,8 @@ bool CollectionInfoBuilder::createCollectionDirectory(std::string name)
     settingsFile << "#list.path = " << Utils::combinePath("%BASE_ITEM_PATH%", "%ITEM_COLLECTION_NAME%", "roms") << std::endl;
     settingsFile << "list.includeMissingItems = false" << std::endl;
     settingsFile << "list.extensions = zip" << std::endl;
+    settingsFile << "list.menuSort = yes" << std::endl;
+    settingsFile << std::endl;
     settingsFile << "launcher = mame" << std::endl;
     settingsFile << "metadata.type = MAME" << std::endl;
     settingsFile << std::endl;

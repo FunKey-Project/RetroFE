@@ -275,13 +275,16 @@ void RetroFE::run()
                 if(currentPage_)
                 {
                     std::string firstCollection = "Main";
+                    bool menuSort = true;
+
                     config_.getProperty("firstCollection", firstCollection);
+                    config_.getProperty("collections." + firstCollection + ".list.menuSort", menuSort);
 
                     currentPage_->start();
                     config_.setProperty("currentCollection", firstCollection);
                     CollectionInfo *info = getCollection(firstCollection);
                     MenuParser mp;
-                    mp.menuItems(info);
+                    mp.buildMenuItems(info, menuSort);
                     currentPage_->pushCollection(info);
                 }
                 else
@@ -459,11 +462,14 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
                 }
                 else
                 {
+                	bool menuSort = true;
                     config_.setProperty("currentCollection", nextPageItem_->name);
+                    config_.getProperty("collections." + nextPageItem_->name + ".list.menuSort", menuSort);
+
                     CollectionInfo *info = getCollection(nextPageItem_->name);
 
                     MenuParser mp;
-                    mp.menuItems(info);
+                    mp.buildMenuItems(info, menuSort);
                     page->pushCollection(info);
 
                     if(rememberMenu && lastMenuOffsets_.find(nextPageItem_->name) != lastMenuOffsets_.end())

@@ -40,13 +40,14 @@ MenuParser::~MenuParser()
 }
 
 //todo: clean up this method, too much nesting
-bool MenuParser::menuItems(CollectionInfo *collection)
+bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort)
 {
     bool retVal = false;
     //todo: magic string
     std::string menuFilename = Utils::combinePath(Configuration::absolutePath, "collections", collection->name, "menu.xml");
     rapidxml::xml_document<> doc;
     rapidxml::xml_node<> * rootNode;
+    std::vector<Item *> menuItems;
 
     Logger::write(Logger::ZONE_INFO, "Menu", "Checking if menu exists at \"" + menuFilename + "\"");
 
@@ -92,8 +93,7 @@ bool MenuParser::menuItems(CollectionInfo *collection)
                     item->fullTitle = title;
                     item->name = collectionAttribute->value();
                     item->leaf = false;
-                    collection->items.push_back(item);
-
+                    menuItems.push_back(item);
                 }
                 else
                 {
@@ -106,8 +106,13 @@ bool MenuParser::menuItems(CollectionInfo *collection)
             }
 
             // todo: sorting should occur within the collection itself, not externally
-            std::vector<Item *> *items = &collection->items;
-            std::sort( items->begin(), items->end(), VectorSort);
+            if(sort)
+            {
+            	// sort the menu if requested
+                std::sort( menuItems.begin(), menuItems.end(), VectorSort);
+            }
+
+            collection->items.insert(collection->items.begin(), menuItems.begin(), menuItems.end());
 
             retVal = true;
         }
