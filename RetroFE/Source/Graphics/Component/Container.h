@@ -24,7 +24,7 @@ class Container : public Component
 public:
     Container();
     virtual ~Container();
-    void FreeGraphicsMemory();
-    void AllocateGraphicsMemory();
-    void Draw();
+    void freeGraphicsMemory();
+    void allocateGraphicsMemory();
+    void draw();
 };

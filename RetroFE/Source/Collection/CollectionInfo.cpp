@@ -25,50 +25,50 @@ CollectionInfo::CollectionInfo(std::string name,
                                std::string extensions,
                                std::string metadataType,
                                std::string metadataPath)
-    : Name(name)
-    , ListPath(listPath)
-    , Extensions(extensions)
-    , MetadataType(metadataType)
-    , MetadataPath(metadataPath)
+    : name(name)
+    , listpath(listPath)
+    , metadataType(metadataType)
+    , metadataPath_(metadataPath)
+	, extensions_(extensions)
 {
 }
 
 CollectionInfo::~CollectionInfo()
 {
-    std::vector<Item *>::iterator it = Items.begin();
+    std::vector<Item *>::iterator it = items.begin();
 
-    while(it != Items.end())
+    while(it != items.end())
     {
         delete *it;
-        Items.erase(it);
-        it = Items.begin();
+        items.erase(it);
+        it = items.begin();
     }
 }
 
-std::string CollectionInfo::GetSettingsPath() const
+std::string CollectionInfo::settingsPath() const
 {
-    return Utils::CombinePath(Configuration::AbsolutePath, "collections", Name);
+    return Utils::combinePath(Configuration::absolutePath, "collections", name);
 }
 
 
-void CollectionInfo::GetExtensions(std::vector<std::string> &extensions)
+void CollectionInfo::extensionList(std::vector<std::string> &extensionlist)
 {
-    std::istringstream ss(Extensions);
+    std::istringstream ss(extensions_);
     std::string token;
 
     while(std::getline(ss, token, ','))
     {
-        extensions.push_back(token);
+    	extensionlist.push_back(token);
     }
 }
 
 
-bool CollectionInfo::ItemIsLess(Item *lhs, Item *rhs)
+bool CollectionInfo::itemIsLess(Item *lhs, Item *rhs)
 {
-    return lhs->LCFullTitle() < rhs->LCFullTitle();
+    return lhs->lowercaseFullTitle() < rhs->lowercaseFullTitle();
 }
 
-void CollectionInfo::SortItems()
+void CollectionInfo::sortItems()
 {
-    std::sort(Items.begin(), Items.end(), ItemIsLess);
+    std::sort(items.begin(), items.end(), itemIsLess);
 }

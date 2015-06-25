@@ -21,84 +21,84 @@
 #include "../../SDL.h"
 
 VideoComponent::VideoComponent(IVideo *videoInst, std::string videoFile, float scaleX, float scaleY)
-    : VideoFile(videoFile)
-    , VideoInst(videoInst)
-    , ScaleX(scaleX)
-    , ScaleY(scaleY)
-    , IsPlaying(false)
+    : videoFile_(videoFile)
+    , videoInst_(videoInst)
+    , scaleX_(scaleX)
+    , scaleY_(scaleY)
+    , isPlaying_(false)
 {
 //   AllocateGraphicsMemory();
 }
 
 VideoComponent::~VideoComponent()
 {
-    FreeGraphicsMemory();
+    freeGraphicsMemory();
 
-    if(VideoInst)
+    if(videoInst_)
     {
-        VideoInst->Stop();
+        videoInst_->stop();
     }
 }
 
-void VideoComponent::Update(float dt)
+void VideoComponent::update(float dt)
 {
-    if(IsPlaying)
+    if(isPlaying_)
     {
-        VideoInst->Update(dt);
+        videoInst_->update(dt);
 
         // video needs to run a frame to start getting size info
-        if(BaseViewInfo.ImageHeight == 0 && BaseViewInfo.ImageWidth == 0)
+        if(baseViewInfo.ImageHeight == 0 && baseViewInfo.ImageWidth == 0)
         {
-            BaseViewInfo.ImageHeight = static_cast<float>(VideoInst->GetHeight());
-            BaseViewInfo.ImageWidth = static_cast<float>(VideoInst->GetWidth());
+            baseViewInfo.ImageHeight = static_cast<float>(videoInst_->getHeight());
+            baseViewInfo.ImageWidth = static_cast<float>(videoInst_->getWidth());
         }
     }
 
-    Component::Update(dt);
+    Component::update(dt);
 
 }
 
-void VideoComponent::AllocateGraphicsMemory()
+void VideoComponent::allocateGraphicsMemory()
 {
-    Component::AllocateGraphicsMemory();
+    Component::allocateGraphicsMemory();
 
-    if(!IsPlaying)
+    if(!isPlaying_)
     {
-        IsPlaying = VideoInst->Play(VideoFile);
+        isPlaying_ = videoInst_->play(videoFile_);
     }
 }
 
-void VideoComponent::FreeGraphicsMemory()
+void VideoComponent::freeGraphicsMemory()
 {
-    VideoInst->Stop();
-    IsPlaying = false;
+    videoInst_->stop();
+    isPlaying_ = false;
 
-    Component::FreeGraphicsMemory();
+    Component::freeGraphicsMemory();
 }
 
-void VideoComponent::LaunchEnter()
+void VideoComponent::launchEnter()
 {
-    FreeGraphicsMemory();
+    freeGraphicsMemory();
 }
-void VideoComponent::LaunchExit()
+void VideoComponent::launchExit()
 {
-    AllocateGraphicsMemory();
+    allocateGraphicsMemory();
 }
 
-void VideoComponent::Draw()
+void VideoComponent::draw()
 {
     SDL_Rect rect;
 
-    rect.x = static_cast<int>(BaseViewInfo.XRelativeToOrigin());
-    rect.y = static_cast<int>(BaseViewInfo.YRelativeToOrigin());
-    rect.h = static_cast<int>(BaseViewInfo.ScaledHeight());
-    rect.w = static_cast<int>(BaseViewInfo.ScaledWidth());
+    rect.x = static_cast<int>(baseViewInfo.XRelativeToOrigin());
+    rect.y = static_cast<int>(baseViewInfo.YRelativeToOrigin());
+    rect.h = static_cast<int>(baseViewInfo.ScaledHeight());
+    rect.w = static_cast<int>(baseViewInfo.ScaledWidth());
 
-    VideoInst->Draw();
-    SDL_Texture *texture = VideoInst->GetTexture();
+    videoInst_->draw();
+    SDL_Texture *texture = videoInst_->getTexture();
 
     if(texture)
     {
-        SDL::RenderCopy(texture, static_cast<int>(BaseViewInfo.Alpha * 255), NULL, &rect, static_cast<int>(BaseViewInfo.Angle));
+        SDL::renderCopy(texture, static_cast<int>(baseViewInfo.Alpha * 255), NULL, &rect, static_cast<int>(baseViewInfo.Angle));
     }
 }

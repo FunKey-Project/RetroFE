@@ -26,12 +26,12 @@ class ReloadableText : public Component
 public:
     ReloadableText(std::string type, Font *font, std::string layoutKey, float scaleX, float scaleY);
     virtual ~ReloadableText();
-    void Update(float dt);
-    void Draw();
-    void FreeGraphicsMemory();
-    void AllocateGraphicsMemory();
-    void LaunchEnter();
-    void LaunchExit();
+    void update(float dt);
+    void draw();
+    void freeGraphicsMemory();
+    void allocateGraphicsMemory();
+    void launchEnter();
+    void launchExit();
 
 private:
     enum TextType
@@ -47,13 +47,13 @@ private:
 
     void ReloadTexture();
 
-    Text *ImageInst;
-    TextType Type;
-    std::string LayoutKey;
-    bool ReloadRequested;
-    bool FirstLoad;
-    Font *FontInst;
+    Text *imageInst_;
+    TextType type_;
+    std::string layoutKey_;
+    bool reloadRequested_;
+    bool firstLoad_;
+    Font *fontInst_;
 
-    float ScaleX;
-    float ScaleY;
+    float scaleX_;
+    float scaleY_;
 };

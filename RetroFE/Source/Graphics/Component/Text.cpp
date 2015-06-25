@@ -21,113 +21,113 @@
 #include <sstream>
 
 Text::Text(std::string text, Font *font, float scaleX, float scaleY)
-    : TextData(text)
-    , FontInst(font)
-    , ScaleX(scaleX)
-    , ScaleY(scaleY)
+    : textData_(text)
+    , fontInst_(font)
+    , scaleX_(scaleX)
+    , scaleY_(scaleY)
 {
-    AllocateGraphicsMemory();
+    allocateGraphicsMemory();
 }
 
 Text::~Text()
 {
-    FreeGraphicsMemory();
+    freeGraphicsMemory();
 }
 
-void Text::FreeGraphicsMemory()
+void Text::freeGraphicsMemory()
 {
-    Component::FreeGraphicsMemory();
+    Component::freeGraphicsMemory();
 }
 
-void Text::AllocateGraphicsMemory()
+void Text::allocateGraphicsMemory()
 {
     //todo: make the font blend color a parameter that is passed in
-    Component::AllocateGraphicsMemory();
+    Component::allocateGraphicsMemory();
 }
 
-void Text::SetText(std::string text)
+void Text::setText(std::string text)
 {
-    TextData = text;
+    textData_ = text;
 }
 
-void Text::Draw()
+void Text::draw()
 {
-    Component::Draw();
+    Component::draw();
 
-    SDL_Texture *t = FontInst->GetTexture();
+    SDL_Texture *t = fontInst_->getTexture();
 
     float imageHeight = 0;
     float imageWidth = 0;
 
     // determine image width
-    for(unsigned int i = 0; i < TextData.size(); ++i)
+    for(unsigned int i = 0; i < textData_.size(); ++i)
     {
         Font::GlyphInfo glyph;
-        if(FontInst->GetRect(TextData[i], glyph))
+        if(fontInst_->getRect(textData_[i], glyph))
         {
-            if(glyph.MinX < 0)
+            if(glyph.minX < 0)
             {
-                imageWidth += glyph.MinX;
+                imageWidth += glyph.minX;
             }
 
-            imageWidth += glyph.Advance;
+            imageWidth += glyph.advance;
         }
 
     }
 
-    imageHeight = (float)FontInst->GetHeight();
-    float scale = (float)BaseViewInfo.FontSize / (float)imageHeight;
+    imageHeight = (float)fontInst_->getHeight();
+    float scale = (float)baseViewInfo.FontSize / (float)imageHeight;
 
-    float oldWidth = BaseViewInfo.Width;
-    float oldHeight = BaseViewInfo.Height;
-    float oldImageWidth = BaseViewInfo.ImageHeight;
-    float oldImageHeight = BaseViewInfo.ImageWidth;
+    float oldWidth = baseViewInfo.Width;
+    float oldHeight = baseViewInfo.Height;
+    float oldImageWidth = baseViewInfo.ImageHeight;
+    float oldImageHeight = baseViewInfo.ImageWidth;
 
-    BaseViewInfo.Width = imageWidth*scale;
-    BaseViewInfo.Height = BaseViewInfo.FontSize;
-    BaseViewInfo.ImageWidth = imageWidth;
-    BaseViewInfo.ImageHeight = imageHeight;
+    baseViewInfo.Width = imageWidth*scale;
+    baseViewInfo.Height = baseViewInfo.FontSize;
+    baseViewInfo.ImageWidth = imageWidth;
+    baseViewInfo.ImageHeight = imageHeight;
 
-    float xOrigin = BaseViewInfo.XRelativeToOrigin();
-    float yOrigin = BaseViewInfo.YRelativeToOrigin();
+    float xOrigin = baseViewInfo.XRelativeToOrigin();
+    float yOrigin = baseViewInfo.YRelativeToOrigin();
 
-    BaseViewInfo.Width = oldWidth;
-    BaseViewInfo.Height = oldHeight;
-    BaseViewInfo.ImageWidth = oldImageWidth;
-    BaseViewInfo.ImageHeight = oldImageHeight;
+    baseViewInfo.Width = oldWidth;
+    baseViewInfo.Height = oldHeight;
+    baseViewInfo.ImageWidth = oldImageWidth;
+    baseViewInfo.ImageHeight = oldImageHeight;
 
 
     SDL_Rect rect;
     rect.x = static_cast<int>(xOrigin);
 
-    for(unsigned int i = 0; i < TextData.size(); ++i)
+    for(unsigned int i = 0; i < textData_.size(); ++i)
     {
         Font::GlyphInfo glyph;
 
-        if(FontInst->GetRect(TextData[i], glyph) && glyph.Rect.h > 0)
+        if(fontInst_->getRect(textData_[i], glyph) && glyph.rect.h > 0)
         {
-            SDL_Rect charRect = glyph.Rect;
+            SDL_Rect charRect = glyph.rect;
             float h = static_cast<float>(charRect.h * scale);
             float w = static_cast<float>(charRect.w * scale);
             rect.h = static_cast<int>(h);
             rect.w = static_cast<int>(w);
             rect.y = static_cast<int>(yOrigin);
 
-            if(glyph.MinX < 0)
+            if(glyph.minX < 0)
             {
-                rect.x += static_cast<int>((float)(glyph.MinX) * scale);
+                rect.x += static_cast<int>((float)(glyph.minX) * scale);
             }
-            if(FontInst->GetAscent() < glyph.MaxY)
+            if(fontInst_->getAscent() < glyph.maxY)
             {
-                rect.y += static_cast<int>((FontInst->GetAscent() - glyph.MaxY)*scale);
+                rect.y += static_cast<int>((fontInst_->getAscent() - glyph.maxY)*scale);
             }
 
 
-            SDL::RenderCopy(t, static_cast<char>(BaseViewInfo.Alpha * 255), &charRect, &rect, BaseViewInfo.Angle);
+            SDL::renderCopy(t, static_cast<char>(baseViewInfo.Alpha * 255), &charRect, &rect, baseViewInfo.Angle);
 
-            rect.x += static_cast<int>(glyph.Advance * scale);
+            rect.x += static_cast<int>(glyph.advance * scale);
 
-            if((static_cast<float>(rect.x) - xOrigin) > BaseViewInfo.MaxWidth)
+            if((static_cast<float>(rect.x) - xOrigin) > baseViewInfo.MaxWidth)
             {
                 break;
             }

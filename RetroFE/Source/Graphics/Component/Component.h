@@ -30,34 +30,31 @@ public:
     Component();
     Component(const Component &copy);
     virtual ~Component();
-    virtual void FreeGraphicsMemory();
-    virtual void AllocateGraphicsMemory();
-    virtual void LaunchEnter() {}
-    virtual void LaunchExit() {}
-    void TriggerEnterEvent();
-    void TriggerExitEvent();
-    void TriggerMenuEnterEvent(int menuIndex = -1);
-    void TriggerMenuExitEvent(int menuIndex = -1);
-    void TriggerMenuScrollEvent();
-    void TriggerHighlightEvent(Item *selectedItem);
-    bool IsIdle();
-    bool IsHidden();
-    bool IsWaiting();
-    bool IsMenuScrolling();
-    std::string GetCollectionName();
-    void SetCollectionName(std::string collectionName);
+    virtual void freeGraphicsMemory();
+    virtual void allocateGraphicsMemory();
+    virtual void launchEnter() {}
+    virtual void launchExit() {}
+    void triggerEnterEvent();
+    void triggerExitEvent();
+    void triggerMenuEnterEvent(int menuIndex = -1);
+    void triggerMenuExitEvent(int menuIndex = -1);
+    void triggerMenuScrollEvent();
+    void triggerHighlightEvent(Item *selectedItem);
+    bool isIdle();
+    bool isHidden();
+    bool isWaiting();
+    bool isMenuScrolling();
 
-    virtual void Update(float dt);
-    virtual void Draw();
-    AnimationEvents *GetTweens();
-    void SetTweens(AnimationEvents *set);
-    void ForceIdle();
-    bool IsScrollActive() const;
-    void SetScrollActive(bool scrollActive);
-    ViewInfo BaseViewInfo;
+    virtual void update(float dt);
+    virtual void draw();
+    void setTweens(AnimationEvents *set);
+    void forceIdle();
+    ViewInfo baseViewInfo;
+    std::string collectionName;
+    bool scrollActive;
 
 protected:
-    Item *GetSelectedItem();
+    Item *getSelectedItem();
     enum AnimationState
     {
         IDLE,
@@ -72,30 +69,28 @@ protected:
         HIDDEN
     };
 
-    AnimationState CurrentAnimationState;
-    bool EnterRequested;
-    bool ExitRequested;
-    bool MenuEnterRequested;
-    int MenuEnterIndex;
-    bool MenuScrollRequested;
-    bool MenuExitRequested;
-    int MenuExitIndex;
-    bool NewItemSelected;
-    bool HighlightExitComplete;
-    bool NewItemSelectedSinceEnter;
+    AnimationState currentAnimationState;
+    bool enterRequested;
+    bool exitRequested;
+    bool menuEnterRequested;
+    int menuEnterIndex;
+    bool menuScrollRequested;
+    bool menuExitRequested;
+    int menuExitIndex;
+    bool newItemSelected;
+    bool highlightExitComplete;
+    bool newItemSelectedSinceEnter;
 private:
 
-    bool Animate(bool loop);
-    bool IsTweenSequencingComplete();
+    bool animate(bool loop);
+    bool tweenSequencingComplete();
 
-    AnimationEvents *Tweens;
-    Animation *CurrentTweens;
-    Item *SelectedItem;
-    SDL_Texture *BackgroundTexture;
+    AnimationEvents *tweens_;
+    Animation *currentTweens_;
+    Item *selectedItem_;
+    SDL_Texture *backgroundTexture_;
 
-    unsigned int CurrentTweenIndex;
-    bool CurrentTweenComplete;
-    std::string CollectionName;
-    float ElapsedTweenTime;
-    bool ScrollActive;
+    unsigned int currentTweenIndex_;
+    bool currentTweenComplete_;
+    float elapsedTweenTime_;
 };

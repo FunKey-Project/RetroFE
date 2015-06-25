@@ -20,29 +20,29 @@
 #include <fstream>
 
 DB::DB(std::string dbFile)
-    : Handle(NULL)
-, Path(dbFile)
+    : handle(NULL)
+, path_(dbFile)
 {
 }
 
 DB::~DB()
 {
-    DeInitialize();
+    deInitialize();
 }
 
-bool DB::Initialize()
+bool DB::initialize()
 {
     bool retVal = false;
 
-    if(sqlite3_open(Path.c_str(), &Handle) != 0)
+    if(sqlite3_open(path_.c_str(), &handle) != 0)
     {
         std::stringstream ss;
-        ss << "Cannot open database: \"" << Path << "\"" << sqlite3_errmsg(Handle);
-        Logger::Write(Logger::ZONE_ERROR, "Database", ss.str());
+        ss << "Cannot open database: \"" << path_ << "\"" << sqlite3_errmsg(handle);
+        Logger::write(Logger::ZONE_ERROR, "Database", ss.str());
     }
     else
     {
-        Logger::Write(Logger::ZONE_INFO, "Database", "Opened database \"" + Path + "\"");
+        Logger::write(Logger::ZONE_INFO, "Database", "Opened database \"" + path_ + "\"");
         retVal = true;
     }
 
@@ -50,12 +50,12 @@ bool DB::Initialize()
 }
 
 
-void DB::DeInitialize()
+void DB::deInitialize()
 {
-    if(Handle != NULL)
+    if(handle != NULL)
     {
-        sqlite3_close(Handle);
-        Handle = NULL;
+        sqlite3_close(handle);
+        handle = NULL;
     }
 }
 

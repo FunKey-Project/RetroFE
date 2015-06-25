@@ -28,37 +28,37 @@ FontCache::FontCache()
 
 FontCache::~FontCache()
 {
-    DeInitialize();
+    deInitialize();
 }
 
-void FontCache::DeInitialize()
+void FontCache::deInitialize()
 {
-    std::map<std::string, Font *>::iterator it = FontFaceMap.begin();
-    while(it != FontFaceMap.end())
+    std::map<std::string, Font *>::iterator it = fontFaceMap_.begin();
+    while(it != fontFaceMap_.end())
     {
         delete it->second;
-        FontFaceMap.erase(it);
-        it = FontFaceMap.begin();
+        fontFaceMap_.erase(it);
+        it = fontFaceMap_.begin();
     }
 
-    SDL_LockMutex(SDL::GetMutex());
+    SDL_LockMutex(SDL::getMutex());
     TTF_Quit();
-    SDL_UnlockMutex(SDL::GetMutex());
+    SDL_UnlockMutex(SDL::getMutex());
 }
 
 
-void FontCache::Initialize()
+void FontCache::initialize()
 {
     //todo: make bool
     TTF_Init();
 }
-Font *FontCache::GetFont(std::string fontPath, int fontSize, SDL_Color color)
+Font *FontCache::getFont(std::string fontPath, int fontSize, SDL_Color color)
 {
     Font *t = NULL;
 
-    std::map<std::string, Font *>::iterator it = FontFaceMap.find(BuildFontKey(fontPath, fontSize, color));
+    std::map<std::string, Font *>::iterator it = fontFaceMap_.find(buildFontKey(fontPath, fontSize, color));
 
-    if(it != FontFaceMap.end())
+    if(it != fontFaceMap_.end())
     {
         t = it->second;
     }
@@ -66,7 +66,7 @@ Font *FontCache::GetFont(std::string fontPath, int fontSize, SDL_Color color)
     return t;
 }
 
-std::string FontCache::BuildFontKey(std::string font, int fontSize, SDL_Color color)
+std::string FontCache::buildFontKey(std::string font, int fontSize, SDL_Color color)
 {
     std::stringstream ss;
     ss << font << "_SIZE=" << fontSize << " RGB=" << color.r << "." << color.g << "." << color.b;
@@ -74,16 +74,16 @@ std::string FontCache::BuildFontKey(std::string font, int fontSize, SDL_Color co
     return ss.str();
 }
 
-bool FontCache::LoadFont(std::string fontPath, int fontSize, SDL_Color color)
+bool FontCache::loadFont(std::string fontPath, int fontSize, SDL_Color color)
 {
-    std::string key = BuildFontKey(fontPath, fontSize, color);
-    std::map<std::string, Font *>::iterator it = FontFaceMap.find(key);
+    std::string key = buildFontKey(fontPath, fontSize, color);
+    std::map<std::string, Font *>::iterator it = fontFaceMap_.find(key);
 
-    if(it == FontFaceMap.end())
+    if(it == fontFaceMap_.end())
     {
         Font *f = new Font();
-        f->Initialize(fontPath, fontSize, color);
-        FontFaceMap[key] = f;
+        f->initialize(fontPath, fontSize, color);
+        fontFaceMap_[key] = f;
     }
 
     return true;

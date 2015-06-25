@@ -52,46 +52,45 @@ public:
 
     ScrollingList(const ScrollingList &copy);
     virtual ~ScrollingList();
-    void TriggerMenuEnterEvent();
-    void TriggerMenuExitEvent();
+    void triggerMenuEnterEvent();
+    void triggerMenuExitEvent();
 
-    bool AllocateTexture(ComponentItemBinding *s);
-    void DeallocateTexture(ComponentItemBinding *s);
-    void SetItems(std::vector<ComponentItemBinding *> *spriteList);
-    void DestroyItems();
-    void SetPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<AnimationEvents *> *tweenPoints);
-    void SetScrollDirection(ScrollDirection direction);
-    void SetScrollOrientation(bool horizontal);
-    bool IsHorizontalScroll();
-    void PageUp();
-    void PageDown();
-    void LetterUp();
-    void LetterDown();
-    bool IsIdle();
-    unsigned int GetScrollOffsetIndex();
-    void SetScrollOffsetIndex(unsigned int index);
-    void SetSelectedIndex(int selectedIndex);
-    ComponentItemBinding *GetSelectedCollectionItemSprite();
-    ComponentItemBinding *GetPendingCollectionItemSprite();
-    ComponentItemBinding *GetPendingSelectedCollectionItemSprite();
-    void AddComponentForNotifications(MenuNotifierInterface *c);
-    void RemoveComponentForNotifications(MenuNotifierInterface *c);
-    std::vector<ComponentItemBinding *> *GetCollectionItemSprites();
-    void RemoveSelectedItem();
-    void FreeGraphicsMemory();
-    void Update(float dt);
-    void Draw();
-    void Draw(unsigned int layer);
-    void SetScrollAcceleration(float value);
-    void SetStartScrollTime(float value);
+    bool allocateTexture(ComponentItemBinding *s);
+    void deallocateTexture(ComponentItemBinding *s);
+    void setItems(std::vector<ComponentItemBinding *> *spriteList);
+    void destroyItems();
+    void setPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<AnimationEvents *> *tweenPoints);
+    void setScrollDirection(ScrollDirection direction);
+    void pageUp();
+    void pageDown();
+    void letterUp();
+    void letterDown();
+    bool isIdle();
+    unsigned int getScrollOffsetIndex();
+    void setScrollOffsetIndex(unsigned int index);
+    void setSelectedIndex(int selectedIndex);
+    ComponentItemBinding *getSelectedCollectionItemSprite();
+    ComponentItemBinding *getPendingCollectionItemSprite();
+    ComponentItemBinding *getPendingSelectedCollectionItemSprite();
+    void addComponentForNotifications(MenuNotifierInterface *c);
+    void removeComponentForNotifications(MenuNotifierInterface *c);
+    std::vector<ComponentItemBinding *> *getCollectionItemSprites();
+    void removeSelectedItem();
+    void freeGraphicsMemory();
+    void update(float dt);
+    void draw();
+    void draw(unsigned int layer);
+    void setScrollAcceleration(float value);
+    void setStartScrollTime(float value);
+    bool horizontalScroll;
 
 private:
-    void Click(double nextScrollTime);
-    void DeallocateSpritePoints();
-    void AllocateSpritePoints();
-    void UpdateSprite(unsigned int spriteIndex, unsigned int pointIndex, bool newScroll, float dt, double nextScrollTime);
-    unsigned int GetNextTween(unsigned int currentIndex, std::vector<ViewInfo *> *list);
-    void ResetTweens(Component *c, AnimationEvents *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime);
+    void click(double nextScrollTime);
+    void deallocateSpritePoints();
+    void allocateSpritePoints();
+    void updateSprite(unsigned int spriteIndex, unsigned int pointIndex, bool newScroll, float dt, double nextScrollTime);
+    unsigned int getNextTween(unsigned int currentIndex, std::vector<ViewInfo *> *list);
+    void resetTweens(Component *c, AnimationEvents *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime);
 
     enum ScrollState
     {
@@ -101,38 +100,37 @@ private:
         ScrollStateIdle
     };
 
-    std::vector<ComponentItemBinding *> *SpriteList;
-    std::vector<ViewInfo *> *ScrollPoints;
-    std::vector<AnimationEvents *> *TweenPoints;
-    std::vector<MenuNotifierInterface *> NotificationComponents;
-    float TweenEnterTime;
-    bool Focus;
+    std::vector<ComponentItemBinding *> *spriteList_;
+    std::vector<ViewInfo *> *scrollPoints_;
+    std::vector<AnimationEvents *> *tweenPoints_;
+    std::vector<MenuNotifierInterface *> notificationComponents_;
+    float tweenEnterTime_;
+    bool focus_;
 
-    unsigned int FirstSpriteIndex;
-    unsigned int SelectedSpriteListIndex;
-    bool ScrollStopRequested;
-    bool NotifyAllRequested;
-    ScrollDirection CurrentScrollDirection;
-    ScrollDirection RequestedScrollDirection;
-    ScrollState CurrentScrollState;
-    float ScrollAcceleration;
-    float StartScrollTime;
-    float ScrollPeriod;
+    unsigned int firstSpriteIndex_;
+    unsigned int selectedSpriteListIndex_;
+    bool scrollStopRequested_;
+    bool notifyAllRequested_;
+    ScrollDirection currentScrollDirection_;
+    ScrollDirection requestedScrollDirection_;
+    ScrollState currentScrollState_;
+    float scrollAcceleration_;
+    float startScrollTime_;
+    float scrollPeriod_;
 
-    int CircularIncrement(unsigned int index, unsigned int offset, std::vector<ComponentItemBinding *> *list);
-    void CircularIncrement(unsigned &index, std::vector<ComponentItemBinding *> *list);
-    void CircularDecrement(unsigned &index, std::vector<ComponentItemBinding *> *list);
-    void CircularIncrement(unsigned &index, std::vector<ViewInfo *> *list);
-    void CircularDecrement(unsigned &index, std::vector<ViewInfo *> *list);
-    void UpdateOffset(float dt);
+    int circularIncrement(unsigned int index, unsigned int offset, std::vector<ComponentItemBinding *> *list);
+    void circularIncrement(unsigned &index, std::vector<ComponentItemBinding *> *list);
+    void circularDecrement(unsigned &index, std::vector<ComponentItemBinding *> *list);
+    void circularIncrement(unsigned &index, std::vector<ViewInfo *> *list);
+    void circularDecrement(unsigned &index, std::vector<ViewInfo *> *list);
+    void updateOffset(float dt);
 
-    std::string Collection;
-    Configuration &Config;
-    float ScaleX;
-    float ScaleY;
-    Font *FontInst;
-    std::string LayoutKey;
-    std::string ImageType;
-    bool HorizontalScroll;
+    std::string collection_;
+    Configuration &config_;
+    float scaleX_;
+    float scaleY_;
+    Font *fontInst_;
+    std::string layoutKey_;
+    std::string imageType_;
 };
 

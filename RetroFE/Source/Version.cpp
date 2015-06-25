@@ -33,7 +33,7 @@
 #define RETROFE_VERSION_BETA
 #endif
 
-std::string Version::GetString()
+std::string Version::getString()
 {
     std::stringstream version;
     version << RETROFE_VERSION_MAJOR;

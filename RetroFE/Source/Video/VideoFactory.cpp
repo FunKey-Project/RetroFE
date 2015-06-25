@@ -18,29 +18,29 @@
 #include "IVideo.h"
 #include "GStreamerVideo.h"
 
-bool VideoFactory::Enabled = true;
-int VideoFactory::NumLoops = 0;
-IVideo *VideoFactory::Instance = NULL;
+bool VideoFactory::enabled_ = true;
+int VideoFactory::numLoops_ = 0;
+IVideo *VideoFactory::instance_ = NULL;
 
-IVideo *VideoFactory::CreateVideo()
+IVideo *VideoFactory::createVideo()
 {
 
-    if(Enabled && !Instance)
+    if(enabled_ && !instance_)
     {
-        Instance = new GStreamerVideo();
-        Instance->Initialize();
-        ((GStreamerVideo *)(Instance))->SetNumLoops(NumLoops);
+        instance_ = new GStreamerVideo();
+        instance_->initialize();
+        ((GStreamerVideo *)(instance_))->setNumLoops(numLoops_);
     }
 
-    return Instance;
+    return instance_;
 }
 
-void VideoFactory::SetEnabled(bool enabled)
+void VideoFactory::setEnabled(bool enabled)
 {
-    Enabled = enabled;
+    enabled_ = enabled;
 }
 
-void VideoFactory::SetNumLoops(int numLoops)
+void VideoFactory::setNumLoops(int numLoops)
 {
-    NumLoops = numLoops;
+    numLoops_ = numLoops;
 }

@@ -26,7 +26,7 @@ ComponentItemBindingBuilder::~ComponentItemBindingBuilder()
 {
 }
 
-std::vector<ComponentItemBinding *> *ComponentItemBindingBuilder::BuildCollectionItems(std::vector<Item *> *infoList)
+std::vector<ComponentItemBinding *> *ComponentItemBindingBuilder::buildCollectionItems(std::vector<Item *> *infoList)
 {
     std::vector<ComponentItemBinding *> *sprites = new std::vector<ComponentItemBinding *>();
     std::vector<Item *>::iterator it;

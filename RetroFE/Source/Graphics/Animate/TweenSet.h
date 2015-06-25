@@ -24,12 +24,12 @@ public:
     TweenSet();
     TweenSet(TweenSet &copy);
     ~TweenSet();
-    void Push(Tween * tween);
-    void Clear();
-    std::vector<Tween *> *GetTweens();
-    Tween *GetTween(unsigned int index);
-    unsigned int GetSize();
+    void push(Tween * tween);
+    void clear();
+    std::vector<Tween *> *tweens();
+    Tween *getTween(unsigned int index);
+    unsigned int size();
 
 private:
-    std::vector<Tween *> Set;
+    std::vector<Tween *> set_;
 };

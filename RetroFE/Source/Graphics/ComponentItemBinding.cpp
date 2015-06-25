@@ -16,14 +16,14 @@
 #include "ComponentItemBinding.h"
 
 ComponentItemBinding::ComponentItemBinding( Component *c, Item *item)
-    : CollectionComponent(c)
-    , CollectionItem(item)
+    : component(c)
+    , item(item)
 {
 }
 
 ComponentItemBinding::ComponentItemBinding(Item *item)
-    : CollectionComponent(NULL)
-    , CollectionItem(item)
+    : component(NULL)
+    , item(item)
 {
 }
 
@@ -31,17 +31,3 @@ ComponentItemBinding::~ComponentItemBinding()
 {
 }
 
-Item* ComponentItemBinding::GetCollectionItem() const
-{
-    return CollectionItem;
-}
-
-void ComponentItemBinding::SetComponent(Component *c)
-{
-    CollectionComponent = c;
-}
-
-Component* ComponentItemBinding::GetComponent() const
-{
-    return CollectionComponent;
-}

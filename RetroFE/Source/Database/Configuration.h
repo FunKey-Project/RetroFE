@@ -24,30 +24,30 @@ class Configuration
 public:
     Configuration();
     virtual ~Configuration();
-    static void Initialize();
-    static std::string ConvertToAbsolutePath(std::string prefix, std::string path);
+    static void initialize();
+    static std::string convertToAbsolutePath(std::string prefix, std::string path);
     // gets the global configuration
-    bool Import(std::string keyPrefix, std::string file);
-    bool GetProperty(std::string key, std::string &value);
-    bool GetProperty(std::string key, int &value);
-    bool GetProperty(std::string key, bool &value);
-    void GetChildKeyCrumbs(std::string parent, std::vector<std::string> &children);
-    void SetProperty(std::string key, std::string value);
-    bool PropertyExists(std::string key);
-    bool PropertyPrefixExists(std::string key);
-    bool GetPropertyAbsolutePath(std::string key, std::string &value);
-    void GetMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, std::string &value);
-    void GetMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, bool system, std::string &value);
-    void GetCollectionAbsolutePath(std::string collectionName, std::string &value);
-    static std::string AbsolutePath;
+    bool import(std::string keyPrefix, std::string file);
+    bool getProperty(std::string key, std::string &value);
+    bool getProperty(std::string key, int &value);
+    bool getProperty(std::string key, bool &value);
+    void childKeyCrumbs(std::string parent, std::vector<std::string> &children);
+    void setProperty(std::string key, std::string value);
+    bool propertyExists(std::string key);
+    bool propertyPrefixExists(std::string key);
+    bool getPropertyAbsolutePath(std::string key, std::string &value);
+    void getMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, std::string &value);
+    void getMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, bool system, std::string &value);
+    void getCollectionAbsolutePath(std::string collectionName, std::string &value);
+    static std::string absolutePath;
 
 private:
-    bool GetRawProperty(std::string key, std::string &value);
-    bool ParseLine(std::string keyPrefix, std::string line, int lineCount);
-    std::string TrimEnds(std::string str);
+    bool getRawProperty(std::string key, std::string &value);
+    bool parseLine(std::string keyPrefix, std::string line, int lineCount);
+    std::string trimEnds(std::string str);
     typedef std::map<std::string, std::string> PropertiesType;
     typedef std::pair<std::string, std::string> PropertiesPair;
 
-    PropertiesType Properties;
+    PropertiesType properties_;
 
 };

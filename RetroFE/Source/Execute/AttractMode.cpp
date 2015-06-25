@@ -19,41 +19,41 @@
 #include <cstdlib>
 
 AttractMode::AttractMode()
-    : IdleTime(0)
-    , IsActive(false)
-    , ElapsedTime(0)
-    , ActiveTime(0)
+    : idleTime(0)
+    , isActive_(false)
+    , elapsedTime_(0)
+    , activeTime_(0)
 {
 }
 
-void AttractMode::Reset()
+void AttractMode::reset()
 {
-    ElapsedTime = 0;
-    IsActive = false;
-    ActiveTime = 0;
+    elapsedTime_ = 0;
+    isActive_ = false;
+    activeTime_ = 0;
 }
 
-void AttractMode::Update(float dt, Page &page)
+void AttractMode::update(float dt, Page &page)
 {
-    ElapsedTime += dt;
+    elapsedTime_ += dt;
 
     // enable attract mode when idling for the expected time. Disable if idle time is set to 0.
-    if(!IsActive && ElapsedTime > IdleTime && IdleTime > 0)
+    if(!isActive_ && elapsedTime_ > idleTime && idleTime > 0)
     {
-        IsActive = true;
-        ElapsedTime = 0;
-        ActiveTime = ((float)((1000+rand()) % 5000)) / 1000;
+        isActive_ = true;
+        elapsedTime_ = 0;
+        activeTime_ = ((float)((1000+rand()) % 5000)) / 1000;
     }
 
-    if(IsActive)
+    if(isActive_)
     {
-        page.SetScrolling(Page::ScrollDirectionForward);
+        page.setScrolling(Page::ScrollDirectionForward);
 
-        if(ElapsedTime > ActiveTime)
+        if(elapsedTime_ > activeTime_)
         {
-            ElapsedTime = 0;
-            IsActive = false;
-            page.SetScrolling(Page::ScrollDirectionIdle);
+            elapsedTime_ = 0;
+            isActive_ = false;
+            page.setScrolling(Page::ScrollDirectionIdle);
         }
     }
 }

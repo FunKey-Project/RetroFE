@@ -22,6 +22,6 @@ class MenuParser
 public:
     MenuParser();
     virtual ~MenuParser();
-    bool GetMenuItems(CollectionInfo *cdb);
+    bool menuItems(CollectionInfo *cdb);
 
 };

@@ -24,150 +24,150 @@
 #include <iostream>
 
 ReloadableText::ReloadableText(std::string type, Font *font, std::string layoutKey, float scaleX, float scaleY)
-    : ImageInst(NULL)
-    , LayoutKey(layoutKey)
-    , ReloadRequested(false)
-    , FirstLoad(true)
-    , FontInst(font)
-    , ScaleX(scaleX)
-    , ScaleY(scaleY)
+    : imageInst_(NULL)
+    , layoutKey_(layoutKey)
+    , reloadRequested_(false)
+    , firstLoad_(true)
+    , fontInst_(font)
+    , scaleX_(scaleX)
+    , scaleY_(scaleY)
 {
 
-    Type = TextTypeUnknown;
+    type_ = TextTypeUnknown;
 
     if(type == "numberButtons")
     {
-        Type = TextTypeNumberButtons;
+        type_ = TextTypeNumberButtons;
     }
     else if(type == "numberPlayers")
     {
-        Type = TextTypeNumberPlayers;
+        type_ = TextTypeNumberPlayers;
     }
     else if(type == "year")
     {
-        Type = TextTypeYear;
+        type_ = TextTypeYear;
     }
     else if(type == "title")
     {
-        Type = TextTypeTitle;
+        type_ = TextTypeTitle;
     }
     else if(type == "manufacturer")
     {
-        Type = TextTypeManufacturer;
+        type_ = TextTypeManufacturer;
     }
     else if(type == "genre")
     {
-        Type = TextTypeGenre;
+        type_ = TextTypeGenre;
     }
 
-    AllocateGraphicsMemory();
+    allocateGraphicsMemory();
 }
 
 
 
 ReloadableText::~ReloadableText()
 {
-    if (ImageInst != NULL)
+    if (imageInst_ != NULL)
     {
-        delete ImageInst;
+        delete imageInst_;
     }
 }
 
-void ReloadableText::Update(float dt)
+void ReloadableText::update(float dt)
 {
-    if(NewItemSelected)
+    if(newItemSelected)
     {
-        ReloadRequested = true;
+        reloadRequested_ = true;
     }
     // wait for the right moment to reload the image
-    if (ReloadRequested && (HighlightExitComplete || FirstLoad))
+    if (reloadRequested_ && (highlightExitComplete || firstLoad_))
     {
         ReloadTexture();
-        ReloadRequested = false;
-        FirstLoad = false;
+        reloadRequested_ = false;
+        firstLoad_ = false;
     }
 
     // needs to be ran at the end to prevent the NewItemSelected flag from being detected
-    Component::Update(dt);
+    Component::update(dt);
 
 }
 
-void ReloadableText::AllocateGraphicsMemory()
+void ReloadableText::allocateGraphicsMemory()
 {
-    FirstLoad = true;
+    firstLoad_ = true;
 
     ReloadTexture();
 
     // NOTICE! needs to be done last to prevent flags from being missed
-    Component::AllocateGraphicsMemory();
+    Component::allocateGraphicsMemory();
 }
 
-void ReloadableText::LaunchEnter()
+void ReloadableText::launchEnter()
 {
 }
 
-void ReloadableText::LaunchExit()
+void ReloadableText::launchExit()
 {
 }
 
-void ReloadableText::FreeGraphicsMemory()
+void ReloadableText::freeGraphicsMemory()
 {
-    Component::FreeGraphicsMemory();
+    Component::freeGraphicsMemory();
 
-    if (ImageInst != NULL)
+    if (imageInst_ != NULL)
     {
-        delete ImageInst;
-        ImageInst = NULL;
+        delete imageInst_;
+        imageInst_ = NULL;
     }
 }
 void ReloadableText::ReloadTexture()
 {
-    if (ImageInst != NULL)
+    if (imageInst_ != NULL)
     {
-        delete ImageInst;
-        ImageInst = NULL;
+        delete imageInst_;
+        imageInst_ = NULL;
     }
 
-    Item *selectedItem = GetSelectedItem();
+    Item *selectedItem = getSelectedItem();
 
     if (selectedItem != NULL)
     {
         std::stringstream ss;
         std::string text;
-        switch(Type)
+        switch(type_)
         {
         case TextTypeNumberButtons:
-            ss << selectedItem->NumberButtons;
+            ss << selectedItem->numberButtons;
             break;
         case TextTypeNumberPlayers:
-            ss << selectedItem->NumberPlayers;
+            ss << selectedItem->numberPlayers;
             break;
         case TextTypeYear:
-            ss << selectedItem->Year;
+            ss << selectedItem->year;
             break;
         case TextTypeTitle:
-            ss << selectedItem->Title;
+            ss << selectedItem->title;
             break;
         case TextTypeManufacturer:
-            ss << selectedItem->Manufacturer;
+            ss << selectedItem->manufacturer;
             break;
         case TextTypeGenre:
-            ss << selectedItem->Genre;
+            ss << selectedItem->genre;
             break;
         default:
             break;
         }
 
-        ImageInst = new Text(ss.str(), FontInst, ScaleX, ScaleY);
+        imageInst_ = new Text(ss.str(), fontInst_, scaleX_, scaleY_);
     }
 }
 
 
-void ReloadableText::Draw()
+void ReloadableText::draw()
 {
-    if(ImageInst)
+    if(imageInst_)
     {
-        ImageInst->BaseViewInfo = BaseViewInfo;
-        ImageInst->Draw();
+        imageInst_->baseViewInfo = baseViewInfo;
+        imageInst_->draw();
     }
 }

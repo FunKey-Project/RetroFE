@@ -22,16 +22,16 @@
 class FontCache
 {
 public:
-    void Initialize();
-    void DeInitialize();
     FontCache();
-    bool LoadFont(std::string font, int fontSize, SDL_Color color);
-    Font *GetFont(std::string font, int fontSize, SDL_Color color);
+    void initialize();
+    void deInitialize();
+    bool loadFont(std::string font, int fontSize, SDL_Color color);
+    Font *getFont(std::string font, int fontSize, SDL_Color color);
 
     virtual ~FontCache();
 private:
-    std::map<std::string, Font *> FontFaceMap;
-    std::string BuildFontKey(std::string font, int fontSize, SDL_Color color);
+    std::map<std::string, Font *> fontFaceMap_;
+    std::string buildFontKey(std::string font, int fontSize, SDL_Color color);
 
 };
 

@@ -34,8 +34,8 @@
 #include <exception>
 
 MetadataDatabase::MetadataDatabase(DB &db, Configuration &c)
-    : Config(c)
-    , DBInstance(db)
+    : config_(c)
+    , db_(db)
 {
 
 }
@@ -44,13 +44,13 @@ MetadataDatabase::~MetadataDatabase()
 {
 }
 
-bool MetadataDatabase::ResetDatabase()
+bool MetadataDatabase::resetDatabase()
 {
     int rc;
     char *error = NULL;
-    sqlite3 *handle = DBInstance.Handle;
+    sqlite3 *handle = db_.handle;
 
-    Logger::Write(Logger::ZONE_INFO, "Metadata", "Erasing");
+    Logger::write(Logger::ZONE_INFO, "Metadata", "Erasing");
 
     std::string sql;
     sql.append("DROP TABLE IF EXISTS Meta;");
@@ -61,18 +61,18 @@ bool MetadataDatabase::ResetDatabase()
     {
         std::stringstream ss;
         ss << "Unable to create Metadata table. Error: " << error;
-        Logger::Write(Logger::ZONE_ERROR, "Metadata", ss.str());
+        Logger::write(Logger::ZONE_ERROR, "Metadata", ss.str());
         return false;
     }
 
-    return Initialize();
+    return initialize();
 }
 
-bool MetadataDatabase::Initialize()
+bool MetadataDatabase::initialize()
 {
     int rc;
     char *error = NULL;
-    sqlite3 *handle = DBInstance.Handle;
+    sqlite3 *handle = db_.handle;
 
     std::string sql;
     sql.append("CREATE TABLE IF NOT EXISTS Meta(");
@@ -93,31 +93,31 @@ bool MetadataDatabase::Initialize()
     {
         std::stringstream ss;
         ss << "Unable to create Metadata table. Error: " << error;
-        Logger::Write(Logger::ZONE_ERROR, "Metadata", ss.str());
+        Logger::write(Logger::ZONE_ERROR, "Metadata", ss.str());
 
         return false;
     }
 
-    if(NeedsRefresh())
+    if(needsRefresh())
     {
-        ImportDirectory();
+        importDirectory();
     }
 
     return true;
 }
 
-bool MetadataDatabase::ImportDirectory()
+bool MetadataDatabase::importDirectory()
 {
     DIR *dp;
     struct dirent *dirp;
-    std::string hyperListPath = Utils::CombinePath(Configuration::AbsolutePath, "meta", "hyperlist");
-    std::string mameListPath = Utils::CombinePath(Configuration::AbsolutePath, "meta", "mamelist");
+    std::string hyperListPath = Utils::combinePath(Configuration::absolutePath, "meta", "hyperlist");
+    std::string mameListPath = Utils::combinePath(Configuration::absolutePath, "meta", "mamelist");
 
     dp = opendir(hyperListPath.c_str());
 
     if(dp == NULL)
     {
-        Logger::Write(Logger::ZONE_INFO, "MetadataDatabase", "Could not read directory \"" + hyperListPath + "\"");
+        Logger::write(Logger::ZONE_INFO, "MetadataDatabase", "Could not read directory \"" + hyperListPath + "\"");
     }
     else
     {
@@ -135,9 +135,9 @@ bool MetadataDatabase::ImportDirectory()
 
                 if(extension == ".xml")
                 {
-                    std::string importFile = Utils::CombinePath(hyperListPath, std::string(dirp->d_name));
-                    Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing hyperlist: " + importFile);
-                    ImportHyperList(importFile, collectionName);
+                    std::string importFile = Utils::combinePath(hyperListPath, std::string(dirp->d_name));
+                    Logger::write(Logger::ZONE_INFO, "Metadata", "Importing hyperlist: " + importFile);
+                    importHyperlist(importFile, collectionName);
                 }
             }
         }
@@ -149,7 +149,7 @@ bool MetadataDatabase::ImportDirectory()
 
     if(dp == NULL)
     {
-        Logger::Write(Logger::ZONE_ERROR, "CollectionInfoBuilder", "Could not read directory \"" + mameListPath + "\"");
+        Logger::write(Logger::ZONE_ERROR, "CollectionInfoBuilder", "Could not read directory \"" + mameListPath + "\"");
     }
     else
     {
@@ -167,10 +167,10 @@ bool MetadataDatabase::ImportDirectory()
 
                 if(extension == ".xml")
                 {
-                    std::string importFile = Utils::CombinePath(mameListPath, std::string(dirp->d_name));
-                    Logger::Write(Logger::ZONE_INFO, "Metadata", "Importing mamelist: " + importFile);
-                    Config.SetProperty("status", "Scraping data from " + importFile);
-                    ImportMameList(importFile, collectionName);
+                    std::string importFile = Utils::combinePath(mameListPath, std::string(dirp->d_name));
+                    Logger::write(Logger::ZONE_INFO, "Metadata", "Importing mamelist: " + importFile);
+                    config_.setProperty("status", "Scraping data from " + importFile);
+                    importMamelist(importFile, collectionName);
                 }
             }
         }
@@ -181,26 +181,26 @@ bool MetadataDatabase::ImportDirectory()
     return true;
 }
 
-void MetadataDatabase::InjectMetadata(CollectionInfo *collection)
+void MetadataDatabase::injectMetadata(CollectionInfo *collection)
 {
-    sqlite3 *handle = DBInstance.Handle;
+    sqlite3 *handle = db_.handle;
     int rc;
     sqlite3_stmt *stmt;
 
     bool showParenthesis = true;
     bool showSquareBrackets = true;
 
-    (void)Config.GetProperty("showParenthesis", showParenthesis);
-    (void)Config.GetProperty("showSquareBrackets", showSquareBrackets);
+    (void)config_.getProperty("showParenthesis", showParenthesis);
+    (void)config_.getProperty("showSquareBrackets", showSquareBrackets);
 
 
     // items into a hash to make it easily searchable
-    std::vector<Item *> *items = &collection->Items;
+    std::vector<Item *> *items = &collection->items;
     std::map<std::string, Item *> itemMap;
 
     for(std::vector<Item *>::iterator it = items->begin(); it != items->end(); it++)
     {
-        itemMap[(*it)->Name] = *it;
+        itemMap[(*it)->name] = *it;
     }
 
     //todo: program crashes if this query fails
@@ -209,7 +209,7 @@ void MetadataDatabase::InjectMetadata(CollectionInfo *collection)
                        "FROM Meta WHERE collectionName=? ORDER BY title ASC;",
                        -1, &stmt, 0);
 
-    sqlite3_bind_text(stmt, 1, collection->MetadataType.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 1, collection->metadataType.c_str(), -1, SQLITE_TRANSIENT);
 
     rc = sqlite3_step(stmt);
 
@@ -265,22 +265,22 @@ void MetadataDatabase::InjectMetadata(CollectionInfo *collection)
         if(it != itemMap.end())
         {
             Item *item = it->second;
-            item->Title = title;
-            item->FullTitle = fullTitle;
-            item->Year = year;
-            item->Manufacturer = manufacturer;
-            item->Genre = genre;
-            item->NumberPlayers = numberPlayers;
-            item->NumberButtons = numberButtons;
-            item->CloneOf = cloneOf;
+            item->title = title;
+            item->fullTitle = fullTitle;
+            item->year = year;
+            item->manufacturer = manufacturer;
+            item->genre = genre;
+            item->numberPlayers = numberPlayers;
+            item->numberButtons = numberButtons;
+            item->cloneof = cloneOf;
         }
         rc = sqlite3_step(stmt);
     }
 }
 
-bool MetadataDatabase::NeedsRefresh()
+bool MetadataDatabase::needsRefresh()
 {
-    sqlite3 *handle = DBInstance.Handle;
+    sqlite3 *handle = db_.handle;
     sqlite3_stmt *stmt;
 
     sqlite3_prepare_v2(handle,
@@ -301,11 +301,11 @@ bool MetadataDatabase::NeedsRefresh()
     }
 }
 
-bool MetadataDatabase::ImportHyperList(std::string hyperlistFile, std::string collectionName)
+bool MetadataDatabase::importHyperlist(std::string hyperlistFile, std::string collectionName)
 {
     char *error = NULL;
 
-    Config.SetProperty("status", "Scraping data from \"" + hyperlistFile + "\"");
+    config_.setProperty("status", "Scraping data from \"" + hyperlistFile + "\"");
     rapidxml::xml_document<> doc;
     std::ifstream file(hyperlistFile.c_str());
     std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
@@ -320,10 +320,10 @@ bool MetadataDatabase::ImportHyperList(std::string hyperlistFile, std::string co
 
         if(!root)
         {
-            Logger::Write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a HyperList file (missing <menu> tag)");
+            Logger::write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a HyperList file (missing <menu> tag)");
             return false;
         }
-        sqlite3 *handle = DBInstance.Handle;
+        sqlite3 *handle = db_.handle;
         sqlite3_exec(handle, "BEGIN IMMEDIATE TRANSACTION;", NULL, NULL, &error);
         for(rapidxml::xml_node<> *game = root->first_node("game"); game; game = game->next_sibling("game"))
         {
@@ -366,7 +366,7 @@ bool MetadataDatabase::ImportHyperList(std::string hyperlistFile, std::string co
                 sqlite3_finalize(stmt);
             }
         }
-        Config.SetProperty("status", "Saving data from \"" + hyperlistFile + "\" to database");
+        config_.setProperty("status", "Saving data from \"" + hyperlistFile + "\" to database");
         sqlite3_exec(handle, "COMMIT TRANSACTION;", NULL, NULL, &error);
 
         return true;
@@ -378,28 +378,28 @@ bool MetadataDatabase::ImportHyperList(std::string hyperlistFile, std::string co
         std::stringstream ss;
         ss << "Could not parse layout file. [Line: " << line << "] Reason: " << e.what();
 
-        Logger::Write(Logger::ZONE_ERROR, "Metadata", ss.str());
+        Logger::write(Logger::ZONE_ERROR, "Metadata", ss.str());
     }
     catch(std::exception &e)
     {
         std::string what = e.what();
-        Logger::Write(Logger::ZONE_ERROR, "Metadata", "Could not parse hyperlist file. Reason: " + what);
+        Logger::write(Logger::ZONE_ERROR, "Metadata", "Could not parse hyperlist file. Reason: " + what);
     }
 
 
     return false;
 }
 
-bool MetadataDatabase::ImportMameList(std::string filename, std::string collectionName)
+bool MetadataDatabase::importMamelist(std::string filename, std::string collectionName)
 {
     rapidxml::xml_document<> doc;
     rapidxml::xml_node<> * rootNode;
     char *error = NULL;
-    sqlite3 *handle = DBInstance.Handle;
+    sqlite3 *handle = db_.handle;
 
-    Config.SetProperty("status", "Scraping data from \"" + filename + "\" (this will take a while)");
+    config_.setProperty("status", "Scraping data from \"" + filename + "\" (this will take a while)");
 
-    Logger::Write(Logger::ZONE_INFO, "Mamelist", "Importing mamelist file \"" + filename + "\" (this will take a while)");
+    Logger::write(Logger::ZONE_INFO, "Mamelist", "Importing mamelist file \"" + filename + "\" (this will take a while)");
     std::ifstream file(filename.c_str());
 
     std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
@@ -412,7 +412,7 @@ bool MetadataDatabase::ImportMameList(std::string filename, std::string collecti
 
     if(!rootNode)
     {
-        Logger::Write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a MameList file (missing <mame> tag)");
+        Logger::write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a MameList file (missing <mame> tag)");
         return false;
     }
 
@@ -478,7 +478,7 @@ bool MetadataDatabase::ImportMameList(std::string filename, std::string collecti
         }
     }
 
-    Config.SetProperty("status", "Saving data from \"" + filename + "\" to database");
+    config_.setProperty("status", "Saving data from \"" + filename + "\" to database");
     sqlite3_exec(handle, "COMMIT TRANSACTION;", NULL, NULL, &error);
 
     return true;

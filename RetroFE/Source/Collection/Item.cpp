@@ -20,7 +20,7 @@
 #include <algorithm>
 
 Item::Item()
-    : Leaf(true)
+    : leaf(true)
 {
 }
 
@@ -28,23 +28,23 @@ Item::~Item()
 {
 }
 
-std::string Item::FileName()
+std::string Item::filename()
 {
-    return Utils::GetFileName(FilePath);
+    return Utils::getFileName(filepath);
 }
 
 
 
-std::string Item::LCTitle()
+std::string Item::lowercaseTitle()
 {
-    std::string lcstr = Title;
+    std::string lcstr = title;
     std::transform(lcstr.begin(), lcstr.end(), lcstr.begin(), ::tolower);
     return lcstr;
 }
 
-std::string Item::LCFullTitle()
+std::string Item::lowercaseFullTitle()
 {
-    std::string lcstr = FullTitle;
+    std::string lcstr = fullTitle;
     std::transform(lcstr.begin(), lcstr.end(), lcstr.begin(), ::tolower);
     return lcstr;
 }

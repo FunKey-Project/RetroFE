@@ -21,31 +21,31 @@
 class Utils
 {
 public:
-    static std::string Replace(std::string subject, const std::string& search,
+    static std::string replace(std::string subject, const std::string& search,
                                const std::string& replace);
 
-    static float ConvertFloat(std::string content);
-    static int ConvertInt(std::string content);
-    static void ReplaceSlashesWithUnderscores(std::string &content);
-    static std::string GetDirectory(std::string filePath);
-    static std::string GetParentDirectory(std::string filePath);
-    static std::string GetFileName(std::string filePath);
-    static bool FindMatchingFile(std::string prefix, std::vector<std::string> &extensions, std::string &file);
-    static std::string ToLower(std::string str);
-    static std::string UppercaseFirst(std::string str);
-    static std::string FilterComments(std::string line);
+    static float convertFloat(std::string content);
+    static int convertInt(std::string content);
+    static void replaceSlashesWithUnderscores(std::string &content);
+    static std::string getDirectory(std::string filePath);
+    static std::string getParentDirectory(std::string filePath);
+    static std::string getFileName(std::string filePath);
+    static bool findMatchingFile(std::string prefix, std::vector<std::string> &extensions, std::string &file);
+    static std::string toLower(std::string str);
+    static std::string uppercaseFirst(std::string str);
+    static std::string filterComments(std::string line);
 
     //todo: there has to be a better way to do this
-    static std::string CombinePath(std::list<std::string> &paths);
-    static std::string CombinePath(std::string path1, std::string path2);
-    static std::string CombinePath(std::string path1, std::string path2, std::string path3);
-    static std::string CombinePath(std::string path1, std::string path2, std::string path3, std::string path4);
-    static std::string CombinePath(std::string path1, std::string path2, std::string path3, std::string path4, std::string path5);
+    static std::string combinePath(std::list<std::string> &paths);
+    static std::string combinePath(std::string path1, std::string path2);
+    static std::string combinePath(std::string path1, std::string path2, std::string path3);
+    static std::string combinePath(std::string path1, std::string path2, std::string path3, std::string path4);
+    static std::string combinePath(std::string path1, std::string path2, std::string path3, std::string path4, std::string path5);
    
 #ifdef WIN32
-    static const char PathSeparator = '\\';
+    static const char pathSeparator = '\\';
 #else
-    static const char PathSeparator = '/';
+    static const char pathSeparator = '/';
 #endif
 
 private:

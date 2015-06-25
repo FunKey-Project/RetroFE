@@ -20,69 +20,69 @@
 #include <SDL2/SDL_image.h>
 
 Image::Image(std::string file, float scaleX, float scaleY)
-    : Texture(NULL)
-    , File(file)
-    , ScaleX(scaleX)
-    , ScaleY(scaleY)
+    : texture_(NULL)
+    , file_(file)
+    , scaleX_(scaleX)
+    , scaleY_(scaleY)
 {
-    AllocateGraphicsMemory();
+    allocateGraphicsMemory();
 }
 
 Image::~Image()
 {
-    FreeGraphicsMemory();
+    freeGraphicsMemory();
 }
 
-void Image::FreeGraphicsMemory()
+void Image::freeGraphicsMemory()
 {
-    Component::FreeGraphicsMemory();
+    Component::freeGraphicsMemory();
 
-    SDL_LockMutex(SDL::GetMutex());
-    if (Texture != NULL)
+    SDL_LockMutex(SDL::getMutex());
+    if (texture_ != NULL)
     {
-        SDL_DestroyTexture(Texture);
-        Texture = NULL;
+        SDL_DestroyTexture(texture_);
+        texture_ = NULL;
     }
-    SDL_UnlockMutex(SDL::GetMutex());
+    SDL_UnlockMutex(SDL::getMutex());
 }
 
-void Image::AllocateGraphicsMemory()
+void Image::allocateGraphicsMemory()
 {
     int width;
     int height;
 
-    Component::AllocateGraphicsMemory();
+    Component::allocateGraphicsMemory();
 
-    if(!Texture)
+    if(!texture_)
     {
-        SDL_LockMutex(SDL::GetMutex());
-        Texture = IMG_LoadTexture(SDL::GetRenderer(), File.c_str());
+        SDL_LockMutex(SDL::getMutex());
+        texture_ = IMG_LoadTexture(SDL::getRenderer(), file_.c_str());
 
-        if (Texture != NULL)
+        if (texture_ != NULL)
         {
-            SDL_SetTextureBlendMode(Texture, SDL_BLENDMODE_BLEND);
-            SDL_QueryTexture(Texture, NULL, NULL, &width, &height);
-            BaseViewInfo.ImageWidth = width * ScaleX;
-            BaseViewInfo.ImageHeight = height * ScaleY;
+            SDL_SetTextureBlendMode(texture_, SDL_BLENDMODE_BLEND);
+            SDL_QueryTexture(texture_, NULL, NULL, &width, &height);
+            baseViewInfo.ImageWidth = width * scaleX_;
+            baseViewInfo.ImageHeight = height * scaleY_;
         }
-        SDL_UnlockMutex(SDL::GetMutex());
+        SDL_UnlockMutex(SDL::getMutex());
 
     }
 }
 
-void Image::Draw()
+void Image::draw()
 {
-    Component::Draw();
+    Component::draw();
 
-    if(Texture)
+    if(texture_)
     {
         SDL_Rect rect;
 
-        rect.x = static_cast<int>(BaseViewInfo.XRelativeToOrigin());
-        rect.y = static_cast<int>(BaseViewInfo.YRelativeToOrigin());
-        rect.h = static_cast<int>(BaseViewInfo.ScaledHeight());
-        rect.w = static_cast<int>(BaseViewInfo.ScaledWidth());
+        rect.x = static_cast<int>(baseViewInfo.XRelativeToOrigin());
+        rect.y = static_cast<int>(baseViewInfo.YRelativeToOrigin());
+        rect.h = static_cast<int>(baseViewInfo.ScaledHeight());
+        rect.w = static_cast<int>(baseViewInfo.ScaledWidth());
 
-        SDL::RenderCopy(Texture, static_cast<char>((BaseViewInfo.Alpha * 255)), NULL, &rect, BaseViewInfo.Angle);
+        SDL::renderCopy(texture_, static_cast<char>((baseViewInfo.Alpha * 255)), NULL, &rect, baseViewInfo.Angle);
     }
 }

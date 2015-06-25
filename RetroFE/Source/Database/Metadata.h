@@ -20,5 +20,5 @@ class Metadata
 {
 public:
     virtual ~Metadata() {}
-    virtual bool Import(std::string file, std::string collectionName) = 0;
+    virtual bool import(std::string file, std::string collectionName) = 0;
 };

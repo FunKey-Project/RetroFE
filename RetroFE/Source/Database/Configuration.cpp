@@ -28,7 +28,7 @@
 #include <unistd.h>
 #endif
 
-std::string Configuration::AbsolutePath;
+std::string Configuration::absolutePath;
 
 Configuration::Configuration()
 {
@@ -38,14 +38,14 @@ Configuration::~Configuration()
 {
 }
 
-void Configuration::Initialize()
+void Configuration::initialize()
 {
     const char *environment = std::getenv("RETROFE_PATH");
     std::string environmentStr;
     if (environment != NULL)
     {
         environmentStr = environment;
-        AbsolutePath = environment;
+        absolutePath = environment;
     }
     else
     {
@@ -54,34 +54,34 @@ void Configuration::Initialize()
         CHAR exe[MAX_PATH];
         GetModuleFileName(hModule, exe, MAX_PATH);
         std::string sPath(exe);
-        sPath = Utils::GetDirectory(sPath);
+        sPath = Utils::getDirectory(sPath);
         sPath = Utils::GetParentDirectory(sPath);
 #else
         char exepath[1024];
         sprintf(exepath, "/proc/%d/exe", getpid());
         readlink(exepath, exepath, sizeof(exepath));
         std::string sPath(exepath);
-        sPath = Utils::GetDirectory(sPath);
+        sPath = Utils::getDirectory(sPath);
 #endif
 
 
-        AbsolutePath = sPath;
+        absolutePath = sPath;
     }
 }
 
-bool Configuration::Import(std::string keyPrefix, std::string file)
+bool Configuration::import(std::string keyPrefix, std::string file)
 {
     bool retVal = true;
     int lineCount = 0;
     std::string line;
 
-    Logger::Write(Logger::ZONE_INFO, "Configuration", "Importing \"" + file + "\"");
+    Logger::write(Logger::ZONE_INFO, "Configuration", "Importing \"" + file + "\"");
 
     std::ifstream ifs(file.c_str());
 
     if (!ifs.is_open())
     {
-        Logger::Write(Logger::ZONE_ERROR, "Configuration", "Could not open " + file + "\"");
+        Logger::write(Logger::ZONE_ERROR, "Configuration", "Could not open " + file + "\"");
 
         return false;
     }
@@ -89,7 +89,7 @@ bool Configuration::Import(std::string keyPrefix, std::string file)
     while (std::getline (ifs, line))
     {
         lineCount++;
-        retVal = retVal && ParseLine(keyPrefix, line, lineCount);
+        retVal = retVal && parseLine(keyPrefix, line, lineCount);
     }
 
     ifs.close();
@@ -97,7 +97,7 @@ bool Configuration::Import(std::string keyPrefix, std::string file)
     return retVal;
 }
 
-bool Configuration::ParseLine(std::string keyPrefix, std::string line, int lineCount)
+bool Configuration::parseLine(std::string keyPrefix, std::string line, int lineCount)
 {
     bool retVal = false;
     std::string key;
@@ -106,7 +106,7 @@ bool Configuration::ParseLine(std::string keyPrefix, std::string line, int lineC
     std::string delimiter = "=";
 
     // strip out any comments
-    line = Utils::FilterComments(line);
+    line = Utils::filterComments(line);
     
     if(line.empty() || (line.find_first_not_of(" \t\r") == std::string::npos))
     {
@@ -122,32 +122,32 @@ bool Configuration::ParseLine(std::string keyPrefix, std::string line, int lineC
 
         key = keyPrefix + line.substr(0, position);
 
-        key = TrimEnds(key);
+        key = trimEnds(key);
 
 
         value = line.substr(position + delimiter.length(), line.length());
-        value = TrimEnds(value);
+        value = trimEnds(value);
 
-        Properties.insert(PropertiesPair(key, value));
+        properties_.insert(PropertiesPair(key, value));
 
         std::stringstream ss;
         ss << "Dump: "  << "\"" << key << "\" = \"" << value << "\"";
 
 
-        Logger::Write(Logger::ZONE_INFO, "Configuration", ss.str());
+        Logger::write(Logger::ZONE_INFO, "Configuration", ss.str());
         retVal = true;
     }
     else
     {
         std::stringstream ss;
         ss << "Missing an assignment operator (=) on line " << lineCount;
-        Logger::Write(Logger::ZONE_ERROR, "Configuration", ss.str());
+        Logger::write(Logger::ZONE_ERROR, "Configuration", ss.str());
     }
 
     return retVal;
 }
 
-std::string Configuration::TrimEnds(std::string str)
+std::string Configuration::trimEnds(std::string str)
 {
     // strip off any initial tabs or spaces
     size_t trimStart = str.find_first_not_of(" \t");
@@ -162,42 +162,42 @@ std::string Configuration::TrimEnds(std::string str)
     return str;
 }
 
-bool Configuration::GetRawProperty(std::string key, std::string &value)
+bool Configuration::getRawProperty(std::string key, std::string &value)
 {
     bool retVal = false;
 
-    if(Properties.find(key) != Properties.end())
+    if(properties_.find(key) != properties_.end())
     {
-        value = Properties[key];
+        value = properties_[key];
 
         retVal = true;
     }
 
     return retVal;
 }
-bool Configuration::GetProperty(std::string key, std::string &value)
+bool Configuration::getProperty(std::string key, std::string &value)
 {
-    bool retVal = GetRawProperty(key, value);
+    bool retVal = getRawProperty(key, value);
 
-    std::string baseMediaPath = AbsolutePath;
-    std::string baseItemPath = AbsolutePath;
+    std::string baseMediaPath = absolutePath;
+    std::string baseItemPath = absolutePath;
     std::string collectionName;
-    GetProperty("currentCollection", collectionName);
+    getProperty("currentCollection", collectionName);
 
-    GetRawProperty("baseMediaPath", baseMediaPath);
-    GetRawProperty("baseItemPath", baseItemPath);
+    getRawProperty("baseMediaPath", baseMediaPath);
+    getRawProperty("baseItemPath", baseItemPath);
 
-    value = Utils::Replace(value, "%BASE_MEDIA_PATH%", baseMediaPath);
-    value = Utils::Replace(value, "%BASE_ITEM_PATH%", baseItemPath);
-    value = Utils::Replace(value, "%ITEM_COLLECTION_NAME%", collectionName);
+    value = Utils::replace(value, "%BASE_MEDIA_PATH%", baseMediaPath);
+    value = Utils::replace(value, "%BASE_ITEM_PATH%", baseItemPath);
+    value = Utils::replace(value, "%ITEM_COLLECTION_NAME%", collectionName);
     return retVal;
 }
 
-bool Configuration::GetProperty(std::string key, int &value)
+bool Configuration::getProperty(std::string key, int &value)
 {
     std::string strValue;
 
-    bool retVal = GetProperty(key, strValue);
+    bool retVal = getProperty(key, strValue);
 
     if(retVal)
     {
@@ -209,11 +209,11 @@ bool Configuration::GetProperty(std::string key, int &value)
     return retVal;
 }
 
-bool Configuration::GetProperty(std::string key, bool &value)
+bool Configuration::getProperty(std::string key, bool &value)
 {
     std::string strValue;
 
-    bool retVal = GetProperty(key, strValue);
+    bool retVal = getProperty(key, strValue);
 
     if(retVal)
     {
@@ -230,21 +230,21 @@ bool Configuration::GetProperty(std::string key, bool &value)
     return retVal;
 }
 
-void Configuration::SetProperty(std::string key, std::string value)
+void Configuration::setProperty(std::string key, std::string value)
 {
-    Properties[key] = value;
+    properties_[key] = value;
 }
 
-bool Configuration::PropertyExists(std::string key)
+bool Configuration::propertyExists(std::string key)
 {
-    return (Properties.find(key) != Properties.end());
+    return (properties_.find(key) != properties_.end());
 }
 
-bool Configuration::PropertyPrefixExists(std::string key)
+bool Configuration::propertyPrefixExists(std::string key)
 {
     PropertiesType::iterator it;
 
-    for(it = Properties.begin(); it != Properties.end(); ++it)
+    for(it = properties_.begin(); it != properties_.end(); ++it)
     {
         std::string search = key + ".";
         if(it->first.compare(0, search.length(), search) == 0)
@@ -256,16 +256,16 @@ bool Configuration::PropertyPrefixExists(std::string key)
     return false;
 }
 
-void Configuration::GetChildKeyCrumbs(std::string parent, std::vector<std::string> &children)
+void Configuration::childKeyCrumbs(std::string parent, std::vector<std::string> &children)
 {
     PropertiesType::iterator it;
 
-    for(it = Properties.begin(); it != Properties.end(); ++it)
+    for(it = properties_.begin(); it != properties_.end(); ++it)
     {
         std::string search = parent + ".";
         if(it->first.compare(0, search.length(), search) == 0)
         {
-            std::string crumb = Utils::Replace(it->first, search, "");
+            std::string crumb = Utils::replace(it->first, search, "");
 
             std::size_t end = crumb.find_first_of(".");
 
@@ -282,7 +282,7 @@ void Configuration::GetChildKeyCrumbs(std::string parent, std::vector<std::strin
     }
 }
 
-std::string Configuration::ConvertToAbsolutePath(std::string prefix, std::string path)
+std::string Configuration::convertToAbsolutePath(std::string prefix, std::string path)
 {
     char first = ' ';
     char second = ' ';
@@ -297,98 +297,98 @@ std::string Configuration::ConvertToAbsolutePath(std::string prefix, std::string
     }
 
     // check to see if it is already an absolute path
-    if((first != Utils::PathSeparator) &&
+    if((first != Utils::pathSeparator) &&
             //(first != '.') &&
             (second != ':'))
     {
-        path = Utils::CombinePath(prefix, path);
+        path = Utils::combinePath(prefix, path);
     }
 
     return path;
 }
 
-bool Configuration::GetPropertyAbsolutePath(std::string key, std::string &value)
+bool Configuration::getPropertyAbsolutePath(std::string key, std::string &value)
 {
-    bool retVal = GetProperty(key, value);
+    bool retVal = getProperty(key, value);
 
     if(retVal)
     {
-        value = ConvertToAbsolutePath(AbsolutePath, value);
+        value = convertToAbsolutePath(absolutePath, value);
     }
 
     return retVal;
 }
 
-void Configuration::GetMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, std::string &value)
+void Configuration::getMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, std::string &value)
 {
-    return GetMediaPropertyAbsolutePath(collectionName, mediaType, false, value);
+    return getMediaPropertyAbsolutePath(collectionName, mediaType, false, value);
 }
 
 
-void Configuration::GetMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, bool system, std::string &value)
+void Configuration::getMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, bool system, std::string &value)
 {
     std::string key = "collections." + collectionName + ".media." + mediaType;
 
     // use user-overridden setting if it exists
-    if(GetPropertyAbsolutePath(key, value))
+    if(getPropertyAbsolutePath(key, value))
     {
         return;
     }
 
     // use user-overridden base media path if it was specified
     std::string baseMediaPath;
-    if(!GetPropertyAbsolutePath("baseMediaPath", baseMediaPath))
+    if(!getPropertyAbsolutePath("baseMediaPath", baseMediaPath))
     {
         // base media path was not specified, assume media files are in the collection
-        baseMediaPath = Utils::CombinePath(AbsolutePath, "collections");
+        baseMediaPath = Utils::combinePath(absolutePath, "collections");
     }
 
     if(mediaType == "manufacturer")
     {
-        value = Utils::CombinePath(baseMediaPath, "_manufacturer");
+        value = Utils::combinePath(baseMediaPath, "_manufacturer");
     }
     else if(mediaType == "genre")
     {
-        value = Utils::CombinePath(baseMediaPath, "_genre");
+        value = Utils::combinePath(baseMediaPath, "_genre");
     }
     else if(mediaType == "year")
     {
-        value = Utils::CombinePath(baseMediaPath, "_year");
+        value = Utils::combinePath(baseMediaPath, "_year");
     }
     else if(mediaType == "number_players")
     {
-        value = Utils::CombinePath(baseMediaPath, "_number_players");
+        value = Utils::combinePath(baseMediaPath, "_number_players");
     }
     else if(mediaType == "number_buttons")
     {
-        value = Utils::CombinePath(baseMediaPath, "_number_buttons");
+        value = Utils::combinePath(baseMediaPath, "_number_buttons");
     }
     else if(system)
     {
-        value = Utils::CombinePath(baseMediaPath, collectionName, "system_artwork");
+        value = Utils::combinePath(baseMediaPath, collectionName, "system_artwork");
     }
     else
     {
-        value = Utils::CombinePath(baseMediaPath, collectionName, "medium_artwork", mediaType);
+        value = Utils::combinePath(baseMediaPath, collectionName, "medium_artwork", mediaType);
     }
 }
 
-void Configuration::GetCollectionAbsolutePath(std::string collectionName, std::string &value)
+void Configuration::getCollectionAbsolutePath(std::string collectionName, std::string &value)
 {
     std::string key = "collections." + collectionName + ".list.path";
 
-    if(GetPropertyAbsolutePath(key, value))
+    if(getPropertyAbsolutePath(key, value))
     {
         return;
     }
 
     std::string baseItemPath;
-    if(GetPropertyAbsolutePath("baseItemPath", baseItemPath))
+    if(getPropertyAbsolutePath("baseItemPath", baseItemPath))
     {
-        value = Utils::CombinePath(baseItemPath, collectionName);
+        value = Utils::combinePath(baseItemPath, collectionName);
         return;
     }
 
-    value = Utils::CombinePath(AbsolutePath, "collections", collectionName, "roms");
+    value = Utils::combinePath(absolutePath, "collections", collectionName, "roms");
 }
 

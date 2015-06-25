@@ -22,20 +22,20 @@ class Item
 public:
     Item();
     virtual ~Item();
-    std::string FileName();
-    std::string LCTitle() ;
-    std::string LCFullTitle();
-    std::string Name;
-    std::string Launcher;
-    std::string FilePath;
-    std::string Title;
-    std::string FullTitle;
-    std::string Year;
-    std::string Manufacturer;
-    std::string Genre;
-    std::string CloneOf;
-    std::string NumberPlayers;
-    std::string NumberButtons;
-    bool Leaf;
+    std::string filename();
+    std::string lowercaseTitle() ;
+    std::string lowercaseFullTitle();
+    std::string name;
+    std::string launcher;
+    std::string filepath;
+    std::string title;
+    std::string fullTitle;
+    std::string year;
+    std::string manufacturer;
+    std::string genre;
+    std::string cloneof;
+    std::string numberPlayers;
+    std::string numberButtons;
+    bool leaf;
 };
 
