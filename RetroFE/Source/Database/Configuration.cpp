@@ -182,8 +182,8 @@ bool Configuration::getProperty(std::string key, std::string &value)
     std::string baseMediaPath = absolutePath;
     std::string baseItemPath = absolutePath;
     std::string collectionName;
-    getProperty("currentCollection", collectionName);
 
+    getRawProperty("currentCollection", collectionName);
     getRawProperty("baseMediaPath", baseMediaPath);
     getRawProperty("baseItemPath", baseItemPath);
 
