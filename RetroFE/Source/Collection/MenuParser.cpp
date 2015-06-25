@@ -16,6 +16,7 @@
 
 #include "MenuParser.h"
 #include "CollectionInfo.h"
+#include "CollectionInfoBuilder.h"
 #include "Item.h"
 #include "../Utility/Log.h"
 #include "../Utility/Utils.h"
@@ -40,7 +41,7 @@ MenuParser::~MenuParser()
 }
 
 //todo: clean up this method, too much nesting
-bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort)
+bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort, CollectionInfoBuilder &builder)
 {
     bool retVal = false;
     //todo: magic string
@@ -99,11 +100,22 @@ bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort)
                 {
                     std::string collectionName = collectionAttribute->value();
                     Logger::write(Logger::ZONE_INFO, "Menu", "Loading collection into menu: " + collectionName);
+                    CollectionInfo *subcollection = builder.buildCollection(collectionName);
+
+                    // todo, there must be a faster way of doing this
+                    collection->items.insert(collection->items.begin(), subcollection->items.begin(), subcollection->items.end());
+
+                    // prevent the temporary collection object from deleting the item pointers
+                    subcollection->items.clear();
+                    delete subcollection;
 
                     //todo: unsupported option with this refactor
                     // need to append the collection
                 }
             }
+
+
+            std::sort( collection->items.begin(), collection->items.end(), VectorSort);
 
             // todo: sorting should occur within the collection itself, not externally
             if(sort)

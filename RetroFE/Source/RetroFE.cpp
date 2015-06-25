@@ -284,7 +284,10 @@ void RetroFE::run()
                     config_.setProperty("currentCollection", firstCollection);
                     CollectionInfo *info = getCollection(firstCollection);
                     MenuParser mp;
-                    mp.buildMenuItems(info, menuSort);
+
+                    CollectionInfoBuilder cib(config_, *metadb_);
+                    mp.buildMenuItems(info, menuSort, cib);
+
                     currentPage_->pushCollection(info);
                 }
                 else
@@ -469,7 +472,8 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
                     CollectionInfo *info = getCollection(nextPageItem_->name);
 
                     MenuParser mp;
-                    mp.buildMenuItems(info, menuSort);
+                    CollectionInfoBuilder cib(config_, *metadb_);
+                    mp.buildMenuItems(info, menuSort, cib);
                     page->pushCollection(info);
 
                     if(rememberMenu && lastMenuOffsets_.find(nextPageItem_->name) != lastMenuOffsets_.end())
