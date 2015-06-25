@@ -25,55 +25,55 @@ AnimationEvents::AnimationEvents()
 
 AnimationEvents::AnimationEvents(AnimationEvents &copy)
 {
-    for(std::map<std::string, std::map<int , Animation *> >::iterator it = copy.AnimationMap.begin(); it != copy.AnimationMap.end(); it++)
+    for(std::map<std::string, std::map<int , Animation *> >::iterator it = copy.animationMap_.begin(); it != copy.animationMap_.end(); it++)
     {
         for(std::map<int, Animation *>::iterator it2 = (it->second).begin(); it2 != (it->second).end(); it2++)
         {
             Animation *t = new Animation(*it2->second);
-            AnimationMap[it->first][it2->first] = t;
+            animationMap_[it->first][it2->first] = t;
         }
     }
 }
 
 AnimationEvents::~AnimationEvents()
 {
-    Clear();
+    clear();
 }
 
-Animation *AnimationEvents::GetAnimation(std::string tween)
+Animation *AnimationEvents::getAnimation(std::string tween)
 {
-    return GetAnimation(tween, -1);
+    return getAnimation(tween, -1);
 }
 
-Animation *AnimationEvents::GetAnimation(std::string tween, int index)
+Animation *AnimationEvents::getAnimation(std::string tween, int index)
 {
-    if(AnimationMap.find(tween) == AnimationMap.end())
+    if(animationMap_.find(tween) == animationMap_.end())
     {
-        AnimationMap[tween][-1] = new Animation();
+        animationMap_[tween][-1] = new Animation();
     }
 
-    if(AnimationMap[tween].find(index) == AnimationMap[tween].end())
+    if(animationMap_[tween].find(index) == animationMap_[tween].end())
     {
         index = -1;
 
-        if(AnimationMap[tween].find(index) == AnimationMap[tween].end())
+        if(animationMap_[tween].find(index) == animationMap_[tween].end())
         {
-            AnimationMap[tween][index] = new Animation();
+            animationMap_[tween][index] = new Animation();
         }
     }
 
-    return AnimationMap[tween][index];
+    return animationMap_[tween][index];
 }
 
-void AnimationEvents::SetAnimation(std::string tween, int index, Animation *animation)
+void AnimationEvents::setAnimation(std::string tween, int index, Animation *animation)
 {
-    AnimationMap[tween][index] = animation;
+    animationMap_[tween][index] = animation;
 }
 
-void AnimationEvents::Clear()
+void AnimationEvents::clear()
 {
-    std::map<std::string, std::map<int, Animation *> >::iterator it = AnimationMap.begin();
-    while(it != AnimationMap.end())
+    std::map<std::string, std::map<int, Animation *> >::iterator it = animationMap_.begin();
+    while(it != animationMap_.end())
     {
         std::map<int, Animation *>::iterator it2 = (it->second).begin();
         while(it2 != (it->second).end())
@@ -83,11 +83,11 @@ void AnimationEvents::Clear()
         }
 
         (it->second).clear();
-        AnimationMap.erase(it);
-        it = AnimationMap.begin();
+        animationMap_.erase(it);
+        it = animationMap_.begin();
     }
 
-    AnimationMap.clear();
+    animationMap_.clear();
 }
 
 

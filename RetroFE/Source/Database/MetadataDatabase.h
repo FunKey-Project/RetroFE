@@ -29,16 +29,16 @@ class MetadataDatabase
 public:
     MetadataDatabase(DB &db, Configuration &c);
     virtual ~MetadataDatabase();
-    bool Initialize();
-    bool ResetDatabase();
+    bool initialize();
+    bool resetDatabase();
 
-    void InjectMetadata(CollectionInfo *collection);
-    bool ImportHyperList(std::string hyperlistFile, std::string collectionName);
-    bool ImportMameList(std::string filename, std::string collectionName);
+    void injectMetadata(CollectionInfo *collection);
+    bool importHyperlist(std::string hyperlistFile, std::string collectionName);
+    bool importMamelist(std::string filename, std::string collectionName);
 
 private:
-    bool ImportDirectory();
-    bool NeedsRefresh();
-    Configuration &Config;
-    DB &DBInstance;
+    bool importDirectory();
+    bool needsRefresh();
+    Configuration &config_;
+    DB &db_;
 };

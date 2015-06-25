@@ -22,29 +22,37 @@
 #include <cstring>
 
 Font::Font()
-    : Texture(NULL)
+    : texture(NULL)
 {
 }
 
 Font::~Font()
 {
-    DeInitialize();
+    deInitialize();
 }
 
-SDL_Texture *Font::GetTexture()
+SDL_Texture *Font::getTexture()
 {
-    return Texture;
+    return texture;
 }
 
-bool Font::GetRect(unsigned int charCode, GlyphInfo &glyph)
+int Font::getHeight()
 {
-    std::map<unsigned int, GlyphInfoBuild *>::iterator it = Atlas.find(charCode);
+    return height;
+}
+int Font::getAscent()
+{
+    return ascent;
+}
+bool Font::getRect(unsigned int charCode, GlyphInfo &glyph)
+{
+    std::map<unsigned int, GlyphInfoBuild *>::iterator it = atlas.find(charCode);
 
-    if(it != Atlas.end())
+    if(it != atlas.end())
     {
         GlyphInfoBuild *info = it->second;
 
-        glyph = info->Glyph;
+        glyph = info->glyph;
 
         return true;
     }
@@ -52,7 +60,7 @@ bool Font::GetRect(unsigned int charCode, GlyphInfo &glyph)
     return false;
 }
 
-bool Font::Initialize(std::string fontPath, int fontSize, SDL_Color color)
+bool Font::initialize(std::string fontPath, int fontSize, SDL_Color color)
 {
     TTF_Font *font = TTF_OpenFont(fontPath.c_str(), fontSize);
 
@@ -60,7 +68,7 @@ bool Font::Initialize(std::string fontPath, int fontSize, SDL_Color color)
     {
         std::stringstream ss;
         ss << "Could not open font: " << TTF_GetError();
-        Logger::Write(Logger::ZONE_ERROR, "FontCache", ss.str());
+        Logger::write(Logger::ZONE_ERROR, "FontCache", ss.str());
         return false;
     }
 
@@ -68,8 +76,8 @@ bool Font::Initialize(std::string fontPath, int fontSize, SDL_Color color)
     int y = 0;
     int atlasHeight = 0;
     int atlasWidth = 0;
-    Height = TTF_FontHeight(font);
-    Ascent = TTF_FontAscent(font);
+    height = TTF_FontHeight(font);
+    ascent = TTF_FontAscent(font);
 
     for(unsigned short int i = 32; i < 128; ++i)
     {
@@ -77,10 +85,13 @@ bool Font::Initialize(std::string fontPath, int fontSize, SDL_Color color)
         memset(info, 0, sizeof(GlyphInfoBuild));
 
         color.a = 255;
-        info->Surface = TTF_RenderGlyph_Blended(font, i, color);
-        TTF_GlyphMetrics(font, i, &info->Glyph.MinX, &info->Glyph.MaxX, &info->Glyph.MinY, &info->Glyph.MaxY, &info->Glyph.Advance);
+        info->surface = TTF_RenderGlyph_Blended(font, i, color);
+        TTF_GlyphMetrics(font, i,
+        		&info->glyph.minX, &info->glyph.maxX,
+        		&info->glyph.minY, &info->glyph.maxY,
+        		&info->glyph.advance);
 
-        if(x + info->Surface->w >= 1024)
+        if(x + info->surface->w >= 1024)
         {
             atlasHeight += y;
             atlasWidth = (atlasWidth >= x) ? atlasWidth : x;
@@ -88,14 +99,14 @@ bool Font::Initialize(std::string fontPath, int fontSize, SDL_Color color)
             y = 0;
         }
 
-        info->Glyph.Rect.w = info->Surface->w;
-        info->Glyph.Rect.h = info->Surface->h;
-        info->Glyph.Rect.x = x;
-        info->Glyph.Rect.y = atlasHeight;
-        Atlas[i] = info;
+        info->glyph.rect.w = info->surface->w;
+        info->glyph.rect.h = info->surface->h;
+        info->glyph.rect.x = x;
+        info->glyph.rect.y = atlasHeight;
+        atlas[i] = info;
 
-        x += info->Glyph.Rect.w;
-        y = (y > info->Glyph.Rect.h) ? y : info->Glyph.Rect.h;
+        x += info->glyph.rect.w;
+        y = (y > info->glyph.rect.h) ? y : info->glyph.rect.h;
         /*
         std::stringstream ss;
         ss << " tw:" << atlasWidth << " th:" << atlasHeight << " x:" << x << " y:" << y << " w:" << info->Glyph.Rect.w << " h:" << info->Glyph.Rect.h;
@@ -124,19 +135,19 @@ bool Font::Initialize(std::string fontPath, int fontSize, SDL_Color color)
 
     SDL_Surface *atlasSurface = SDL_CreateRGBSurface(0, atlasWidth, atlasHeight, 32, rmask, gmask, bmask, amask);
     std::map<unsigned int, GlyphInfoBuild *>::iterator it;
-    for(it = Atlas.begin(); it != Atlas.end(); it++)
+    for(it = atlas.begin(); it != atlas.end(); it++)
     {
         GlyphInfoBuild *info = it->second;
-        SDL_BlitSurface(info->Surface, NULL, atlasSurface, &info->Glyph.Rect);
-        SDL_FreeSurface(info->Surface);
-        info->Surface = NULL;
+        SDL_BlitSurface(info->surface, NULL, atlasSurface, &info->glyph.rect);
+        SDL_FreeSurface(info->surface);
+        info->surface = NULL;
     }
-    SDL_LockMutex(SDL::GetMutex());
+    SDL_LockMutex(SDL::getMutex());
 
-    Texture = SDL_CreateTextureFromSurface(SDL::GetRenderer(), atlasSurface);
-    SDL_SetTextureBlendMode(Texture, SDL_BLENDMODE_ADD);
+    texture = SDL_CreateTextureFromSurface(SDL::getRenderer(), atlasSurface);
+    SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_ADD);
     SDL_FreeSurface(atlasSurface);
-    SDL_UnlockMutex(SDL::GetMutex());
+    SDL_UnlockMutex(SDL::getMutex());
 
     TTF_CloseFont(font);
 
@@ -145,32 +156,24 @@ bool Font::Initialize(std::string fontPath, int fontSize, SDL_Color color)
 
 
 
-void Font::DeInitialize()
+void Font::deInitialize()
 {
-    if(Texture)
+    if(texture)
     {
-        SDL_LockMutex(SDL::GetMutex());
-        SDL_DestroyTexture(Texture);
-        Texture = NULL;
-        SDL_UnlockMutex(SDL::GetMutex());
+        SDL_LockMutex(SDL::getMutex());
+        SDL_DestroyTexture(texture);
+        texture = NULL;
+        SDL_UnlockMutex(SDL::getMutex());
     }
 
-    std::map<unsigned int, GlyphInfoBuild *>::iterator atlasIt = Atlas.begin();
-    while(atlasIt != Atlas.end())
+    std::map<unsigned int, GlyphInfoBuild *>::iterator atlasIt = atlas.begin();
+    while(atlasIt != atlas.end())
     {
         delete atlasIt->second;
-        Atlas.erase(atlasIt);
-        atlasIt = Atlas.begin();
+        atlas.erase(atlasIt);
+        atlasIt = atlas.begin();
     }
 
 }
 
-int Font::GetHeight()
-{
-    return Height;
-}
-int Font::GetAscent()
-{
-    return Ascent;
-}
 

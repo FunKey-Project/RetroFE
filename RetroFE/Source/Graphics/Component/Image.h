@@ -24,13 +24,13 @@ class Image : public Component
 public:
     Image(std::string file, float scaleX, float scaleY);
     virtual ~Image();
-    void FreeGraphicsMemory();
-    void AllocateGraphicsMemory();
-    void Draw();
+    void freeGraphicsMemory();
+    void allocateGraphicsMemory();
+    void draw();
 
 protected:
-    SDL_Texture *Texture;
-    std::string File;
-    float ScaleX;
-    float ScaleY;
+    SDL_Texture *texture_;
+    std::string file_;
+    float scaleX_;
+    float scaleY_;
 };

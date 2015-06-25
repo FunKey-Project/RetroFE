@@ -22,32 +22,32 @@ class Configuration;
 class SDL
 {
 public:
-    static bool Initialize(Configuration &config);
-    static bool DeInitialize();
-    static SDL_Renderer *GetRenderer();
-    static SDL_mutex *GetMutex();
-    static SDL_Window *GetWindow();
-    static bool RenderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, SDL_Rect *dest, double angle);
-    static int GetWindowWidth()
+    static bool initialize(Configuration &config);
+    static bool deInitialize();
+    static SDL_Renderer *getRenderer();
+    static SDL_mutex *getMutex();
+    static SDL_Window *getWindow();
+    static bool renderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, SDL_Rect *dest, double angle);
+    static int getWindowWidth()
     {
-        return WindowWidth;
+        return windowWidth_;
     }
-    static int GetWindowHeight()
+    static int getWindowHeight()
     {
-        return WindowHeight;
+        return windowHeight_;
     }
-    static bool IsFullscreen()
+    static bool isFullscreen()
     {
-        return Fullscreen;
+        return fullscreen_;
     }
 
 private:
-    static SDL_Window *Window;
-    static SDL_Renderer *Renderer;
-    static SDL_mutex *Mutex;
-    static int DisplayWidth;
-    static int DisplayHeight;
-    static int WindowWidth;
-    static int WindowHeight;
-    static bool Fullscreen;
+    static SDL_Window *window_;
+    static SDL_Renderer *renderer_;
+    static SDL_mutex *mutex_;
+    static int displayWidth_;
+    static int displayHeight_;
+    static int windowWidth_;
+    static int windowHeight_;
+    static bool fullscreen_;
 };

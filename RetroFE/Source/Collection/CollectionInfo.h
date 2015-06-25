@@ -25,23 +25,17 @@ class CollectionInfo
 public:
     CollectionInfo(std::string name, std::string listPath, std::string extensions, std::string metadataType, std::string metadataPath);
     virtual ~CollectionInfo();
-    std::string GetName() const;
-    std::string GetSettingsPath() const;
-    std::string GetListPath() const;
-    std::string GetMetadataType() const;
-    std::string GetMetadataPath() const;
-    std::string GetExtensions() const;
-    std::vector<Item *> *GetItems();
-    void SortItems();
-    void GetExtensions(std::vector<std::string> &extensions);
+    std::string settingsPath() const;
+    void sortItems();
+    void extensionList(std::vector<std::string> &extensions);
+    std::string name;
+    std::string listpath;
+    std::string metadataType;
+    std::vector<Item *> items;
 
 private:
-    static bool ItemIsLess(Item const *lhs, Item const *rhs);
+    std::string metadataPath_;
+    std::string extensions_;
+    static bool itemIsLess(Item *lhs, Item *rhs);
 
-    std::string Name;
-    std::string ListPath;
-    std::string Extensions;
-    std::string MetadataType;
-    std::string MetadataPath;
-    std::vector<Item *> Items;
 };

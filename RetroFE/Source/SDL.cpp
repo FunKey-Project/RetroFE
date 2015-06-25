@@ -19,17 +19,17 @@
 #include "Utility/Log.h"
 #include <SDL2/SDL_mixer.h>
 
-SDL_Window *SDL::Window = NULL;
-SDL_Renderer *SDL::Renderer = NULL;
-SDL_mutex *SDL::Mutex = NULL;
-int SDL::DisplayWidth = 0;
-int SDL::DisplayHeight = 0;
-int SDL::WindowWidth = 0;
-int SDL::WindowHeight = 0;
-bool SDL::Fullscreen = false;
+SDL_Window *SDL::window_ = NULL;
+SDL_Renderer *SDL::renderer_ = NULL;
+SDL_mutex *SDL::mutex_ = NULL;
+int SDL::displayWidth_ = 0;
+int SDL::displayHeight_ = 0;
+int SDL::windowWidth_ = 0;
+int SDL::windowHeight_ = 0;
+bool SDL::fullscreen_ = false;
 
 
-bool SDL::Initialize(Configuration &config)
+bool SDL::initialize(Configuration &config)
 {
     bool retVal = true;
     std::string hString;
@@ -41,15 +41,15 @@ bool SDL::Initialize(Configuration &config)
     int audioBuffers = 4096;
     bool hideMouse;
 
-    Logger::Write(Logger::ZONE_INFO, "SDL", "Initializing");
+    Logger::write(Logger::ZONE_INFO, "SDL", "Initializing");
     if (retVal && SDL_Init(SDL_INIT_EVERYTHING) != 0)
     {
         std::string error = SDL_GetError();
-        Logger::Write(Logger::ZONE_ERROR, "SDL", "Initialize failed: " + error);
+        Logger::write(Logger::ZONE_ERROR, "SDL", "Initialize failed: " + error);
         retVal = false;
     }
 
-    if(retVal && config.GetProperty("hideMouse", hideMouse))
+    if(retVal && config.getProperty("hideMouse", hideMouse))
     {
         if(hideMouse)
         {
@@ -70,16 +70,16 @@ bool SDL::Initialize(Configuration &config)
             SDL_DisplayMode mode;
             if(SDL_GetCurrentDisplayMode(i, &mode) == 0)
             {
-                DisplayWidth = mode.w;
-                DisplayHeight = mode.h;
+                displayWidth_ = mode.w;
+                displayHeight_ = mode.h;
                 break;
             }
         }
 
 
-        if(!config.GetProperty("horizontal", hString))
+        if(!config.getProperty("horizontal", hString))
         {
-            Logger::Write(Logger::ZONE_ERROR, "Configuration", "Missing property \"horizontal\"");
+            Logger::write(Logger::ZONE_ERROR, "Configuration", "Missing property \"horizontal\"");
             retVal = false;
         }
         else if(hString == "stretch")
@@ -90,22 +90,22 @@ bool SDL::Initialize(Configuration &config)
                 SDL_DisplayMode mode;
                 if(SDL_GetCurrentDisplayMode(i, &mode) == 0)
                 {
-                    WindowWidth = mode.w;
+                    windowWidth_ = mode.w;
                     break;
                 }
             }
         }
-        else if(!config.GetProperty("horizontal", WindowWidth))
+        else if(!config.getProperty("horizontal", windowWidth_))
         {
-            Logger::Write(Logger::ZONE_ERROR, "Configuration", "Invalid property value for \"horizontal\"");
+            Logger::write(Logger::ZONE_ERROR, "Configuration", "Invalid property value for \"horizontal\"");
         }
     }
 
     if(retVal)
     {
-        if(!config.GetProperty("vertical", vString))
+        if(!config.getProperty("vertical", vString))
         {
-            Logger::Write(Logger::ZONE_ERROR, "Configuration", "Missing property \"vertical\"");
+            Logger::write(Logger::ZONE_ERROR, "Configuration", "Missing property \"vertical\"");
             retVal = false;
         }
         else if(vString == "stretch")
@@ -116,24 +116,24 @@ bool SDL::Initialize(Configuration &config)
                 SDL_DisplayMode mode;
                 if(SDL_GetDesktopDisplayMode(i, &mode) == 0)
                 {
-                    WindowHeight = mode.h;
+                    windowHeight_ = mode.h;
                     break;
                 }
             }
         }
-        else if(!config.GetProperty("vertical", WindowHeight))
+        else if(!config.getProperty("vertical", windowHeight_))
         {
-            Logger::Write(Logger::ZONE_ERROR, "Configuration", "Invalid property value for \"vertical\"");
+            Logger::write(Logger::ZONE_ERROR, "Configuration", "Invalid property value for \"vertical\"");
         }
     }
 
-    if(retVal && !config.GetProperty("fullscreen", Fullscreen))
+    if(retVal && !config.getProperty("fullscreen", fullscreen_))
     {
-        Logger::Write(Logger::ZONE_ERROR, "Configuration", "Missing property: \"fullscreen\"");
+        Logger::write(Logger::ZONE_ERROR, "Configuration", "Missing property: \"fullscreen\"");
         retVal = false;
     }
 
-    if (retVal && Fullscreen)
+    if (retVal && fullscreen_)
     {
 #ifdef WIN32
         windowFlags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
@@ -144,55 +144,55 @@ bool SDL::Initialize(Configuration &config)
 
     if(retVal)
     {
-        std::string fullscreenStr = Fullscreen ? "yes" : "no";
+        std::string fullscreenStr = fullscreen_ ? "yes" : "no";
         std::stringstream ss;
-        ss << "Creating "<< WindowWidth << "x" << WindowHeight << " window (fullscreen: " 
+        ss << "Creating "<< windowWidth_ << "x" << windowHeight_ << " window (fullscreen: " 
            << fullscreenStr << ")";
 
-        Logger::Write(Logger::ZONE_INFO, "SDL", ss.str());
+        Logger::write(Logger::ZONE_INFO, "SDL", ss.str());
 
-        Window = SDL_CreateWindow("RetroFE",
+        window_ = SDL_CreateWindow("RetroFE",
                                   SDL_WINDOWPOS_CENTERED,
                                   SDL_WINDOWPOS_CENTERED,
-                                  WindowWidth,
-                                  WindowHeight,
+                                  windowWidth_,
+                                  windowHeight_,
                                   windowFlags);
 
-        if (Window == NULL)
+        if (window_ == NULL)
         {
             std::string error = SDL_GetError();
-            Logger::Write(Logger::ZONE_ERROR, "SDL", "Create window failed: " + error);
+            Logger::write(Logger::ZONE_ERROR, "SDL", "Create window failed: " + error);
             retVal = false;
         }
     }
 
     if(retVal)
     {
-        Renderer = SDL_CreateRenderer(Window,
+        renderer_ = SDL_CreateRenderer(window_,
                                       -1,
                                       SDL_RENDERER_ACCELERATED);
 
-        if (Renderer == NULL)
+        if (renderer_ == NULL)
         {
             std::string error = SDL_GetError();
-            Logger::Write(Logger::ZONE_ERROR, "SDL", "Create renderer failed: " + error);
+            Logger::write(Logger::ZONE_ERROR, "SDL", "Create renderer failed: " + error);
             retVal = false;
         }
     }
 
     if(SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1") != SDL_TRUE)
     {
-        Logger::Write(Logger::ZONE_ERROR, "SDL", "Improve scale quality. Continuing with low-quality settings.");
+        Logger::write(Logger::ZONE_ERROR, "SDL", "Improve scale quality. Continuing with low-quality settings.");
     }
 
     if(retVal)
     {
-        Mutex = SDL_CreateMutex();
+        mutex_ = SDL_CreateMutex();
 
-        if (Mutex == NULL)
+        if (mutex_ == NULL)
         {
             std::string error = SDL_GetError();
-            Logger::Write(Logger::ZONE_ERROR, "SDL", "Mutex creation failed: " + error);
+            Logger::write(Logger::ZONE_ERROR, "SDL", "Mutex creation failed: " + error);
             retVal = false;
         }
     }
@@ -201,36 +201,36 @@ bool SDL::Initialize(Configuration &config)
     if (retVal && Mix_OpenAudio(audioRate, audioFormat, audioChannels, audioBuffers) == -1)
     {
         std::string error = Mix_GetError();
-        Logger::Write(Logger::ZONE_ERROR, "SDL", "Audio initialize failed: " + error);
+        Logger::write(Logger::ZONE_ERROR, "SDL", "Audio initialize failed: " + error);
         retVal = false;
     }
 
     return retVal;
 }
 
-bool SDL::DeInitialize()
+bool SDL::deInitialize()
 {
     std::string error = SDL_GetError();
-    Logger::Write(Logger::ZONE_INFO, "SDL", "DeInitializing");
+    Logger::write(Logger::ZONE_INFO, "SDL", "DeInitializing");
 
     Mix_CloseAudio();
     Mix_Quit();
-    if(Mutex)
+    if(mutex_)
     {
-        SDL_DestroyMutex(Mutex);
-        Mutex = NULL;
+        SDL_DestroyMutex(mutex_);
+        mutex_ = NULL;
     }
 
-    if(Renderer)
+    if(renderer_)
     {
-        SDL_DestroyRenderer(Renderer);
-        Renderer = NULL;
+        SDL_DestroyRenderer(renderer_);
+        renderer_ = NULL;
     }
 
-    if(Window)
+    if(window_)
     {
-        SDL_DestroyWindow(Window);
-        Window = NULL;
+        SDL_DestroyWindow(window_);
+        window_ = NULL;
     }
 
     SDL_ShowCursor(SDL_TRUE);
@@ -240,31 +240,31 @@ bool SDL::DeInitialize()
     return true;
 }
 
-SDL_Renderer* SDL::GetRenderer()
+SDL_Renderer* SDL::getRenderer()
 {
-    return Renderer;
+    return renderer_;
 }
 
-SDL_mutex* SDL::GetMutex()
+SDL_mutex* SDL::getMutex()
 {
-    return Mutex;
+    return mutex_;
 }
 
-SDL_Window* SDL::GetWindow()
+SDL_Window* SDL::getWindow()
 {
-    return Window;
+    return window_;
 }
 
-bool SDL::RenderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, SDL_Rect *dest, double angle)
+bool SDL::renderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, SDL_Rect *dest, double angle)
 {
     SDL_Rect rotateRect;
     rotateRect.w = dest->w;
     rotateRect.h = dest->h;
 
-    if(Fullscreen)
+    if(fullscreen_)
     {
-        rotateRect.x = dest->x + (DisplayWidth - WindowWidth)/2;
-        rotateRect.y = dest->y + (DisplayHeight - WindowHeight)/2;
+        rotateRect.x = dest->x + (displayWidth_ - windowWidth_)/2;
+        rotateRect.y = dest->y + (displayHeight_ - windowHeight_)/2;
     }
     else
     {
@@ -273,7 +273,7 @@ bool SDL::RenderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, S
     }
 
     SDL_SetTextureAlphaMod(texture, alpha);
-    SDL_RenderCopyEx(GetRenderer(), texture, src, &rotateRect, angle, NULL, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(getRenderer(), texture, src, &rotateRect, angle, NULL, SDL_FLIP_NONE);
 
     return true;
 }

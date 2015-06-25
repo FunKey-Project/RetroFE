@@ -19,7 +19,7 @@
 #include "../Utility/Log.h"
 
 UserInput::UserInput(Configuration &c)
-    : Config(c)
+    : config_(c)
 {
 }
 
@@ -27,7 +27,7 @@ UserInput::~UserInput()
 {
 }
 
-bool UserInput::Initialize()
+bool UserInput::initialize()
 {
     bool retVal = true;
 
@@ -62,12 +62,12 @@ bool UserInput::Initialize()
     return retVal;
 }
 
-SDL_Scancode UserInput::GetScancode(KeyCode_E key)
+SDL_Scancode UserInput::scancode(KeyCode_E key)
 {
     SDL_Scancode scancode = SDL_SCANCODE_UNKNOWN;
-    std::map<KeyCode_E, SDL_Scancode>::iterator it = KeyMap.find(key);
+    std::map<KeyCode_E, SDL_Scancode>::iterator it = keyMap_.find(key);
 
-    if(it != KeyMap.end())
+    if(it != keyMap_.end())
     {
         scancode = it->second;
     }
@@ -76,13 +76,13 @@ SDL_Scancode UserInput::GetScancode(KeyCode_E key)
 }
 
 
-UserInput::KeyCode_E UserInput::GetKeycode(SDL_Scancode scancode)
+UserInput::KeyCode_E UserInput::keycode(SDL_Scancode scancode)
 {
     KeyCode_E keycode = KeyCodeNull;
 
-    std::map<SDL_Scancode, KeyCode_E>::iterator it = ReverseKeyMap.find(scancode);
+    std::map<SDL_Scancode, KeyCode_E>::iterator it = reverseKeyMap_.find(scancode);
 
-    if(it != ReverseKeyMap.end())
+    if(it != reverseKeyMap_.end())
     {
         keycode = it->second;
     }
@@ -90,9 +90,9 @@ UserInput::KeyCode_E UserInput::GetKeycode(SDL_Scancode scancode)
     return keycode;
 }
 
-void UserInput::ResetKeyStates()
+void UserInput::resetKeyStates()
 {
-    for(std::map<KeyCode_E, bool>::iterator it = KeyState.begin(); it != KeyState.end(); it++)
+    for(std::map<KeyCode_E, bool>::iterator it = keyState_.begin(); it != keyState_.end(); it++)
     {
       it->second = false;
     }
@@ -106,9 +106,9 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
 
     std::string configKey = "controls." + keyDescription;
 
-    if(!Config.GetProperty(configKey, description))
+    if(!config_.getProperty(configKey, description))
     {
-        Logger::Write(Logger::ZONE_ERROR, "Configuration", "Missing property " + configKey);
+        Logger::write(Logger::ZONE_ERROR, "Configuration", "Missing property " + configKey);
         return false;
     }
 
@@ -116,31 +116,31 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
 
     if(scanCode == SDL_SCANCODE_UNKNOWN)
     {
-        Logger::Write(Logger::ZONE_ERROR, "Configuration", "Unsupported property value for " + configKey + "(" + description + "). See Documentation/Keycodes.txt for valid inputs");
+        Logger::write(Logger::ZONE_ERROR, "Configuration", "Unsupported property value for " + configKey + "(" + description + "). See Documentation/Keycodes.txt for valid inputs");
         return false;
     }
 
-    KeyMap[key] = scanCode;
-    ReverseKeyMap[scanCode] = key;
-    KeyState[key] = false;
+    keyMap_[key] = scanCode;
+    reverseKeyMap_[scanCode] = key;
+    keyState_[key] = false;
     return true;
 }
 
-bool UserInput::SetKeyState(SDL_Scancode code, bool state)
+bool UserInput::keystate(SDL_Scancode code, bool state)
 {
-    KeyCode_E key = GetKeycode(code);
+    KeyCode_E key = keycode(code);
 
     if(key == KeyCodeNull) { return false; }
-    if(KeyState.find(key) == KeyState.end()) { return false; }
+    if(keyState_.find(key) == keyState_.end()) { return false; }
 
-    KeyState[key] = state;
+    keyState_[key] = state;
     return true;
 
 }
-bool UserInput::GetKeyState(KeyCode_E key)
+bool UserInput::keystate(KeyCode_E key)
 {
-    if(KeyState.find(key) == KeyState.end()) { return false; }
-    return KeyState[key];
+    if(keyState_.find(key) == keyState_.end()) { return false; }
+    return keyState_[key];
 }
 
 

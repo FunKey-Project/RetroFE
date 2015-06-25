@@ -25,28 +25,28 @@ class Launcher
 {
 public:
     Launcher(RetroFE &p, Configuration &c);
-    bool Run(std::string collection, Item *collectionItem);
+    bool run(std::string collection, Item *collectionItem);
 
 private:
-    std::string ReplaceString(
+    std::string replaceString(
         std::string subject,
         const std::string &search,
         const std::string &replace);
 
-    bool GetLauncherName(std::string &launcherName, std::string collection);
-    bool GetLauncherExecutable(std::string &executable, std::string &currentDirectory, std::string launcherName);
-    bool GetLauncherArgs(std::string &args, std::string launcherName);
-    bool GetExtensions(std::string &extensions, std::string launcherName);
-    bool GetCollectionDirectory(std::string &directory, std::string collection);
-    bool ExecuteCommand(std::string executable, std::string arguments, std::string currentDirectory);
-    bool FindFile(std::string &foundFilePath, std::string &foundFilename, std::string directory, std::string filenameWithoutExtension, std::string extensions);
-    std::string ReplaceVariables(std::string str,
+    bool launcherName(std::string &launcherName, std::string collection);
+    bool launcherExecutable(std::string &executable, std::string &currentDirectory, std::string launcherName);
+    bool launcherArgs(std::string &args, std::string launcherName);
+    bool extensions(std::string &extensions, std::string launcherName);
+    bool collectionDirectory(std::string &directory, std::string collection);
+    bool execute(std::string executable, std::string arguments, std::string currentDirectory);
+    bool findFile(std::string &foundFilePath, std::string &foundFilename, std::string directory, std::string filenameWithoutExtension, std::string extensions);
+    std::string replaceVariables(std::string str,
                                  std::string itemFilePath,
                                  std::string itemName,
                                  std::string itemFilename,
                                  std::string itemDirectory,
                                  std::string itemCollectionName);
 
-    Configuration &Config;
-    RetroFE &RetroFEInst;
+    Configuration &config_;
+    RetroFE &retrofe_;
 };

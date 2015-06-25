@@ -26,9 +26,9 @@
 #include <fstream>
 #include <sstream>
 
-bool VectorSort(const Item *d1, const Item *d2)
+bool VectorSort(Item *d1, Item *d2)
 {
-    return d1->GetLCTitle() < d2->GetLCTitle();
+    return d1->lowercaseTitle() < d2->lowercaseTitle();
 }
 
 MenuParser::MenuParser()
@@ -40,15 +40,16 @@ MenuParser::~MenuParser()
 }
 
 //todo: clean up this method, too much nesting
-bool MenuParser::GetMenuItems(CollectionInfo *collection)
+bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort)
 {
     bool retVal = false;
     //todo: magic string
-    std::string menuFilename = Utils::CombinePath(Configuration::GetAbsolutePath(), "collections", collection->GetName(), "menu.xml");
+    std::string menuFilename = Utils::combinePath(Configuration::absolutePath, "collections", collection->name, "menu.xml");
     rapidxml::xml_document<> doc;
     rapidxml::xml_node<> * rootNode;
+    std::vector<Item *> menuItems;
 
-    Logger::Write(Logger::ZONE_INFO, "Menu", "Checking if menu exists at \"" + menuFilename + "\"");
+    Logger::write(Logger::ZONE_INFO, "Menu", "Checking if menu exists at \"" + menuFilename + "\"");
 
     try
     {
@@ -73,7 +74,7 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
                 if(!collectionAttribute)
                 {
                     retVal = false;
-                    Logger::Write(Logger::ZONE_ERROR, "Menu", "Menu item tag is missing collection attribute");
+                    Logger::write(Logger::ZONE_ERROR, "Menu", "Menu item tag is missing collection attribute");
                     break;
                 }
                 //todo: too much nesting! Ack!
@@ -88,17 +89,16 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
                     //todo, check for empty string
                     std::string title = collectionAttribute->value();
                     Item *item = new Item();
-                    item->SetTitle(title);
-                    item->SetFullTitle(title);
-                    item->SetName(collectionAttribute->value());
-                    item->SetIsLeaf(false);
-                    collection->GetItems()->push_back(item);
-
+                    item->title = title;
+                    item->fullTitle = title;
+                    item->name = collectionAttribute->value();
+                    item->leaf = false;
+                    menuItems.push_back(item);
                 }
                 else
                 {
                     std::string collectionName = collectionAttribute->value();
-                    Logger::Write(Logger::ZONE_INFO, "Menu", "Loading collection into menu: " + collectionName);
+                    Logger::write(Logger::ZONE_INFO, "Menu", "Loading collection into menu: " + collectionName);
 
                     //todo: unsupported option with this refactor
                     // need to append the collection
@@ -106,8 +106,13 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
             }
 
             // todo: sorting should occur within the collection itself, not externally
-            std::vector<Item *> *items = collection->GetItems();
-            std::sort( items->begin(), items->end(), VectorSort);
+            if(sort)
+            {
+            	// sort the menu if requested
+                std::sort( menuItems.begin(), menuItems.end(), VectorSort);
+            }
+
+            collection->items.insert(collection->items.begin(), menuItems.begin(), menuItems.end());
 
             retVal = true;
         }
@@ -116,7 +121,7 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
     {
         std::stringstream ss;
         ss << "Unable to open menu file \"" << menuFilename << "\": " << e.what();
-        Logger::Write(Logger::ZONE_ERROR, "Menu", ss.str());
+        Logger::write(Logger::ZONE_ERROR, "Menu", ss.str());
     }
 
     return retVal;

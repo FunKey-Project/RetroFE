@@ -37,17 +37,17 @@ class RetroFE
 public:
     RetroFE(Configuration &c);
     virtual ~RetroFE();
-    bool DeInitialize();
-    void Run();
-    void FreeGraphicsMemory();
-    void AllocateGraphicsMemory();
-    void LaunchEnter();
-    void LaunchExit();
+    bool deInitialize();
+    void run();
+    void freeGraphicsMemory();
+    void allocateGraphicsMemory();
+    void launchEnter();
+    void launchExit();
 private:
-    volatile bool Initialized;
-    volatile bool InitializeError;
-    SDL_Thread *InitializeThread;
-    static int Initialize(void *context);
+    volatile bool initialized;
+    volatile bool initializeError;
+    SDL_Thread *initializeThread;
+    static int initialize(void *context);
 
     enum RETROFE_STATE
     {
@@ -60,25 +60,25 @@ private:
         RETROFE_QUIT,
     };
 
-    void Render();
-    bool Back(bool &exit);
-    void Quit();
-    Page *LoadPage();
-    Page *LoadSplashPage();
-    RETROFE_STATE ProcessUserInput(Page *page);
-    void Update(float dt, bool scrollActive);
-    std::string GetLayout(std::string collectionName);
-    CollectionInfo *GetCollection(std::string collectionName);
-    Configuration &Config;
-    DB *Db;
-    MetadataDatabase *MetaDb;
-    UserInput Input;
-    Page *CurrentPage;
-    float KeyInputDisable;
-    float CurrentTime;
-    Item *NextPageItem;
-    FontCache FC;
-    AttractMode Attract;
-    std::map<std::string, unsigned int> LastMenuOffsets;
+    void render();
+    bool back(bool &exit);
+    void quit();
+    Page *loadPage();
+    Page *loadSplashPage();
+    RETROFE_STATE processUserInput(Page *page);
+    void update(float dt, bool scrollActive);
+    std::string getLayout(std::string collectionName);
+    CollectionInfo *getCollection(std::string collectionName);
+    Configuration &config_;
+    DB *db_;
+    MetadataDatabase *metadb_;
+    UserInput input_;
+    Page *currentPage_;
+    float keyInputDisable_;
+    float currentTime_;
+    Item *nextPageItem_;
+    FontCache fontcache_;
+    AttractMode attract_;
+    std::map<std::string, unsigned int> lastMenuOffsets_;
 
 };

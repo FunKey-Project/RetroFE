@@ -24,13 +24,7 @@ public:
     ComponentItemBinding(Component *c, Item *item);
     ComponentItemBinding(Item *item);
     virtual ~ComponentItemBinding();
-    Item* GetCollectionItem() const;
 
-    void SetComponent(Component *c);
-    Component* GetComponent() const;
-
-
-private:
-    Component *CollectionComponent;
-    Item *CollectionItem;
+    Component *component;
+    Item *item;
 };

@@ -26,60 +26,11 @@ public:
     ViewInfo();
     virtual ~ViewInfo();
 
-    float GetXRelativeToOrigin() const;
-    float GetYRelativeToOrigin() const;
+    float XRelativeToOrigin() const;
+    float YRelativeToOrigin() const;
 
-    float GetHeight() const;
-    float GetWidth() const;
-
-    float GetAngle() const;
-    void SetAngle(float angle);
-    float GetImageHeight() const;
-    void SetImageHeight(float imageheight);
-    float GetImageWidth() const;
-    void SetImageWidth(float imagewidth);
-    unsigned int GetLayer() const;
-    void SetLayer(unsigned int layer);
-    float GetMaxHeight() const;
-    void SetMaxHeight(float maxheight);
-    float GetMaxWidth() const;
-    void SetMaxWidth(float maxwidth);
-    float GetMinHeight() const;
-    void SetMinHeight(float minheight);
-    float GetMinWidth() const;
-    void SetMinWidth(float minwidth);
-    float GetAlpha() const;
-    void SetAlpha(float alpha);
-    float GetX() const;
-    void SetX(float x);
-    float GetXOffset() const;
-    void SetXOffset(float offset);
-    float GetXOrigin() const;
-    void SetXOrigin(float origin);
-    float GetY() const;
-    void SetY(float y);
-    float GetYOffset() const;
-    void SetYOffset(float offset);
-    float GetYOrigin() const;
-    void SetYOrigin(float origin);
-    float GetRawYOrigin();
-    float GetRawXOrigin();
-    float GetRawWidth();
-    float GetRawHeight();
-
-    float GetBackgroundRed();
-    void SetBackgroundRed(float value);
-    float GetBackgroundGreen();
-    void SetBackgroundGreen(float value);
-    float GetBackgroundBlue();
-    void SetBackgroundBlue(float value);
-    float GetBackgroundAlpha();
-    void SetBackgroundAlpha(float value);
-
-    void SetHeight(float height);
-    void SetWidth(float width);
-    float GetFontSize() const;
-    void SetFontSize(float fontSize);
+    float ScaledHeight() const;
+    float ScaledWidth() const;
 
     static const int AlignCenter = -1;
     static const int AlignLeft = -2;
@@ -87,9 +38,6 @@ public:
     static const int AlignRight = -4;
     static const int AlignBottom = -5;
 
-private:
-    float GetAbsoluteHeight() const;
-    float GetAbsoluteWidth() const;
     float X;
     float Y;
     float XOrigin;
@@ -114,4 +62,8 @@ private:
     float BackgroundGreen;
     float BackgroundBlue;
     float BackgroundAlpha;
+
+private:
+    float AbsoluteHeight() const;
+    float AbsoluteWidth() const;
 };

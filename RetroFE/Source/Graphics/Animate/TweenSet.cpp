@@ -21,45 +21,45 @@ TweenSet::TweenSet()
 
 TweenSet::TweenSet(TweenSet &copy)
 {
-    for(std::vector<Tween *>::iterator it = copy.Set.begin(); it != copy.Set.end(); it++)
+    for(std::vector<Tween *>::iterator it = copy.set_.begin(); it != copy.set_.end(); it++)
     {
         Tween *t = new Tween(**it);
-        Set.push_back(t);
+        set_.push_back(t);
     }
 }
 
 TweenSet::~TweenSet()
 {
-    Clear();
+    clear();
 }
 
-void TweenSet::Push(Tween *tween)
+void TweenSet::push(Tween *tween)
 {
-    Set.push_back(tween);
+    set_.push_back(tween);
 }
 
-void TweenSet::Clear()
+void TweenSet::clear()
 {
-    std::vector<Tween *>::iterator it = Set.begin();
-    while(it != Set.end())
+    std::vector<Tween *>::iterator it = set_.begin();
+    while(it != set_.end())
     {
         delete *it;
-        Set.erase(it);
-        it = Set.begin();
+        set_.erase(it);
+        it = set_.begin();
     }
 }
-std::vector<Tween *> *TweenSet::GetTweens()
+std::vector<Tween *> *TweenSet::tweens()
 {
-    return &Set;
+    return &set_;
 }
 
-Tween *TweenSet::GetTween(unsigned int index)
+Tween *TweenSet::getTween(unsigned int index)
 {
-    return Set[index];
+    return set_[index];
 }
 
 
-unsigned int TweenSet::GetSize()
+unsigned int TweenSet::size()
 {
-    return Set.size();
+    return set_.size();
 }

@@ -33,12 +33,12 @@ public:
         ZONE_ERROR
 
     };
-    static bool Initialize(std::string file);
-    static void Write(Zone zone, std::string component, std::string message);
-    static void DeInitialize();
+    static bool initialize(std::string file);
+    static void write(Zone zone, std::string component, std::string message);
+    static void deInitialize();
 private:
 
-    static std::streambuf *CerrStream;
-    static std::streambuf *CoutStream;
-    static std::ofstream WriteFileStream;
+    static std::streambuf *cerrStream_;
+    static std::streambuf *coutStream_;
+    static std::ofstream writeFileStream_;
 };

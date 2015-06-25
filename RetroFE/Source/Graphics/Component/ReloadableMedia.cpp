@@ -29,252 +29,253 @@
 #include <iostream>
 
 ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, std::string type, bool isVideo, Font *font, float scaleX, float scaleY)
-    : Config(config)
-    , SystemMode(systemMode)
-    , LoadedComponent(NULL)
-    , ReloadRequested(false)
-    , FirstLoad(true)
-    , VideoInst(NULL)
-    , IsVideo(isVideo)
-    , FontInst(font)
-    , TextFallback(false)
-    , Type(type)
-    , ScaleX(scaleX)
-    , ScaleY(scaleY)
+    : config_(config)
+    , systemMode_(systemMode)
+    , loadedComponent_(NULL)
+    , reloadRequested_(false)
+    , firstLoad_(true)
+    , videoInst_(NULL)
+    , isVideo_(isVideo)
+    , FfntInst_(font)
+    , textFallback_(false)
+    , type_(type)
+    , scaleX_(scaleX)
+    , scaleY_(scaleY)
 {
-    AllocateGraphicsMemory();
+    allocateGraphicsMemory();
 }
 
 ReloadableMedia::~ReloadableMedia()
 {
-    if (LoadedComponent != NULL)
+    if (loadedComponent_ != NULL)
     {
-        delete LoadedComponent;
+        delete loadedComponent_;
     }
 }
 
-void ReloadableMedia::EnableTextFallback(bool value)
+void ReloadableMedia::enableTextFallback_(bool value)
 {
-    TextFallback = value;
+    textFallback_ = value;
 }
 
-void ReloadableMedia::Update(float dt)
+void ReloadableMedia::update(float dt)
 {
-    if(NewItemSelected)
+    if(newItemSelected)
     {
-        if(!SystemMode || (SystemMode && CurrentCollection != Config.GetCurrentCollection()))
+    	std::string collection;
+    	config_.getProperty("currentCollection", collection);
+
+        if(!systemMode_ || (systemMode_ && currentCollection_ != collection))
         {
-            ReloadRequested = true;
+            reloadRequested_ = true;
         }
     }
     // wait for the right moment to reload the image
-    if (ReloadRequested && (HighlightExitComplete || FirstLoad))
+    if (reloadRequested_ && (highlightExitComplete || firstLoad_))
     {
 
-        ReloadTexture();
-        ReloadRequested = false;
-        FirstLoad = false;
+        reloadTexture();
+        reloadRequested_ = false;
+        firstLoad_ = false;
     }
 
-    if(LoadedComponent)
+    if(loadedComponent_)
     {
 
         // video needs to run a frame to start getting size info
-        if(GetBaseViewInfo()->GetImageHeight() == 0 && GetBaseViewInfo()->GetImageWidth() == 0)
+        if(baseViewInfo.ImageHeight == 0 && baseViewInfo.ImageWidth == 0)
         {
-            GetBaseViewInfo()->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
-            GetBaseViewInfo()->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
+            baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
+            baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
         }
 
-        LoadedComponent->Update(dt);
+        loadedComponent_->update(dt);
     }
 
     // needs to be ran at the end to prevent the NewItemSelected flag from being detected
-    Component::Update(dt);
+    Component::update(dt);
 
 }
 
-void ReloadableMedia::AllocateGraphicsMemory()
+void ReloadableMedia::allocateGraphicsMemory()
 {
-    FirstLoad = true;
+    firstLoad_ = true;
 
-    if(LoadedComponent)
+    if(loadedComponent_)
     {
-        LoadedComponent->AllocateGraphicsMemory();
+        loadedComponent_->allocateGraphicsMemory();
     }
 
     // NOTICE! needs to be done last to prevent flags from being missed
-    Component::AllocateGraphicsMemory();
+    Component::allocateGraphicsMemory();
 }
 
-void ReloadableMedia::LaunchEnter()
+void ReloadableMedia::launchEnter()
 {
-    if(LoadedComponent)
+    if(loadedComponent_)
     {
-        LoadedComponent->LaunchEnter();
+        loadedComponent_->launchEnter();
     }
 }
 
-void ReloadableMedia::LaunchExit()
+void ReloadableMedia::launchExit()
 {
-    if(LoadedComponent)
+    if(loadedComponent_)
     {
-        LoadedComponent->LaunchExit();
+        loadedComponent_->launchExit();
     }
 }
 
-void ReloadableMedia::FreeGraphicsMemory()
+void ReloadableMedia::freeGraphicsMemory()
 {
-    Component::FreeGraphicsMemory();
+    Component::freeGraphicsMemory();
 
-    if(LoadedComponent)
+    if(loadedComponent_)
     {
-        LoadedComponent->FreeGraphicsMemory();
+        loadedComponent_->freeGraphicsMemory();
     }
 }
-void ReloadableMedia::ReloadTexture()
+void ReloadableMedia::reloadTexture()
 {
     bool found = false;
 
-    if(LoadedComponent)
+    if(loadedComponent_)
     {
-        delete LoadedComponent;
-        LoadedComponent = NULL;
+        delete loadedComponent_;
+        loadedComponent_ = NULL;
     }
 
-    Item *selectedItem = GetSelectedItem();
+    Item *selectedItem = getSelectedItem();
 
-    CurrentCollection = Config.GetCurrentCollection();
+    config_.getProperty("currentCollection", currentCollection_);
 
     if (selectedItem != NULL)
     {
         std::vector<std::string> names;
 
-        names.push_back(selectedItem->GetName());
-        names.push_back(selectedItem->GetFullTitle());
+        names.push_back(selectedItem->name);
+        names.push_back(selectedItem->fullTitle);
 
-        if(selectedItem->GetCloneOf().length() > 0)
+        if(selectedItem->cloneof.length() > 0)
         {
-            names.push_back(selectedItem->GetCloneOf());
+            names.push_back(selectedItem->cloneof);
         }
 
         for(unsigned int n = 0; n < names.size() && !found; ++n)
         {
-            if(IsVideo)
+            if(isVideo_)
             {
                 VideoBuilder videoBuild;
                 std::string videoPath;
 
-                if(SystemMode)
+                if(systemMode_)
                 {
-                    Config.GetMediaPropertyAbsolutePath(GetCollectionName(), "video", true, videoPath);
-                    LoadedComponent = videoBuild.CreateVideo(videoPath, "video", ScaleX, ScaleY);
+                    config_.getMediaPropertyAbsolutePath(collectionName, "video", true, videoPath);
+                    loadedComponent_ = videoBuild.createVideo(videoPath, "video", scaleX_, scaleY_);
                 }
                 else
                 {
-                    Config.GetMediaPropertyAbsolutePath(GetCollectionName(), "video", false, videoPath);
-                    LoadedComponent = videoBuild.CreateVideo(videoPath, names[n], ScaleX, ScaleY);
+                    config_.getMediaPropertyAbsolutePath(collectionName, "video", false, videoPath);
+                    loadedComponent_ = videoBuild.createVideo(videoPath, names[n], scaleX_, scaleY_);
                 }
 
-                if(!LoadedComponent && !SystemMode)
+                if(!loadedComponent_ && !systemMode_)
                 {
-                        Config.GetMediaPropertyAbsolutePath(names[n], Type, true, videoPath);
-                        LoadedComponent = videoBuild.CreateVideo(videoPath, "video", ScaleX, ScaleY);
+                        config_.getMediaPropertyAbsolutePath(names[n], type_, true, videoPath);
+                        loadedComponent_ = videoBuild.createVideo(videoPath, "video", scaleX_, scaleY_);
                 }
 
-                if(LoadedComponent)
+                if(loadedComponent_)
                 {
-                    LoadedComponent->AllocateGraphicsMemory();
-                    GetBaseViewInfo()->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
-                    GetBaseViewInfo()->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
+                    loadedComponent_->allocateGraphicsMemory();
+                    baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
+                    baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
                     found = true;
                 }
             }
 
             std::string imageBasename = names[n];
 
-            std::string typeLC = Utils::ToLower(Type);
+            std::string typeLC = Utils::toLower(type_);
 
             if(typeLC == "numberButtons")
             {
-                imageBasename = selectedItem->GetNumberButtons();
+                imageBasename = selectedItem->numberButtons;
             }
             else if(typeLC == "numberPlayers")
             {
-                imageBasename = selectedItem->GetNumberPlayers();
+                imageBasename = selectedItem->numberPlayers;
             }
             else if(typeLC == "year")
             {
-                imageBasename = selectedItem->GetYear();
+                imageBasename = selectedItem->year;
             }
             else if(typeLC == "title")
             {
-                imageBasename = selectedItem->GetTitle();
+                imageBasename = selectedItem->title;
             }
             else if(typeLC == "manufacturer")
             {
-                imageBasename = selectedItem->GetManufacturer();
+                imageBasename = selectedItem->manufacturer;
             }
             else if(typeLC == "genre")
             {
-                imageBasename = selectedItem->GetGenre();
+                imageBasename = selectedItem->genre;
             }
 
-            Utils::ReplaceSlashesWithUnderscores(imageBasename);
+            Utils::replaceSlashesWithUnderscores(imageBasename);
 
-            if(!LoadedComponent)
+            if(!loadedComponent_)
             {
                 std::string imagePath;
 
                 ImageBuilder imageBuild;
 
-                if(SystemMode)
+                if(systemMode_)
                 {
-                    Config.GetMediaPropertyAbsolutePath(GetCollectionName(), Type, true, imagePath);
-                    LoadedComponent = imageBuild.CreateImage(imagePath, Type, ScaleX, ScaleY);
+                    config_.getMediaPropertyAbsolutePath(collectionName, type_, true, imagePath);
+                    loadedComponent_ = imageBuild.CreateImage(imagePath, type_, scaleX_, scaleY_);
                 }
                 else
                 {
-                    Config.GetMediaPropertyAbsolutePath(GetCollectionName(), Type, false, imagePath);
-                    LoadedComponent = imageBuild.CreateImage(imagePath, imageBasename, ScaleX, ScaleY);
+                    config_.getMediaPropertyAbsolutePath(collectionName, type_, false, imagePath);
+                    loadedComponent_ = imageBuild.CreateImage(imagePath, imageBasename, scaleX_, scaleY_);
                 }
 
-                if(!LoadedComponent && !SystemMode)
+                if(!loadedComponent_ && !systemMode_)
                 {
-                     Config.GetMediaPropertyAbsolutePath(imageBasename, Type, true, imagePath);
-                     LoadedComponent = imageBuild.CreateImage(imagePath, Type, ScaleX, ScaleY);
+                     config_.getMediaPropertyAbsolutePath(imageBasename, type_, true, imagePath);
+                     loadedComponent_ = imageBuild.CreateImage(imagePath, type_, scaleX_, scaleY_);
                 }
 
-                if (LoadedComponent != NULL)
+                if (loadedComponent_ != NULL)
                 {
-                     LoadedComponent->AllocateGraphicsMemory();
-                     GetBaseViewInfo()->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
-                     GetBaseViewInfo()->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
+                     loadedComponent_->allocateGraphicsMemory();
+                     baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
+                     baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
                 }
 
             }
 
-            if(!LoadedComponent && TextFallback)
+            if(!loadedComponent_ && textFallback_)
             {
-                LoadedComponent = new Text(imageBasename, FontInst, ScaleX, ScaleY);
-                GetBaseViewInfo()->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
-                GetBaseViewInfo()->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
+                loadedComponent_ = new Text(imageBasename, FfntInst_, scaleX_, scaleY_);
+                baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
+                baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
             }
         }
     }
 }
 
-void ReloadableMedia::Draw()
+void ReloadableMedia::draw()
 {
-    ViewInfo *info = GetBaseViewInfo();
+    Component::draw();
 
-    Component::Draw();
-
-    if(LoadedComponent)
+    if(loadedComponent_)
     {
-        info->SetImageHeight(LoadedComponent->GetBaseViewInfo()->GetImageHeight());
-        info->SetImageWidth(LoadedComponent->GetBaseViewInfo()->GetImageWidth());
-        LoadedComponent->UpdateBaseViewInfo(*info);
-        LoadedComponent->Draw();
+    	baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
+    	baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
+        loadedComponent_->baseViewInfo = baseViewInfo;
+        loadedComponent_->draw();
     }
 }

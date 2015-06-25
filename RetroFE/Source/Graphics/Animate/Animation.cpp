@@ -23,7 +23,7 @@ Animation::Animation()
 
 Animation::Animation(Animation &copy)
 {
-    for(std::vector<TweenSet *>::iterator it = copy.AnimationVector.begin(); it != copy.AnimationVector.end(); it++)
+    for(std::vector<TweenSet *>::iterator it = copy.animationVector_.begin(); it != copy.animationVector_.end(); it++)
     {
         Push(new TweenSet(**it));
     }
@@ -35,34 +35,34 @@ Animation::~Animation()
 
 void Animation::Push(TweenSet *set)
 {
-    AnimationVector.push_back(set);
+    animationVector_.push_back(set);
 }
 
 void Animation::Clear()
 {
-    std::vector<TweenSet *>::iterator it = AnimationVector.begin();
-    while(it != AnimationVector.end())
+    std::vector<TweenSet *>::iterator it = animationVector_.begin();
+    while(it != animationVector_.end())
     {
         delete *it;
-        AnimationVector.erase(it);
-        it = AnimationVector.begin();
+        animationVector_.erase(it);
+        it = animationVector_.begin();
     }
 
-    AnimationVector.clear();
+    animationVector_.clear();
 }
 
-std::vector<TweenSet *> *Animation::GetTweenSets()
+std::vector<TweenSet *> *Animation::tweenSets()
 {
-    return &AnimationVector;
+    return &animationVector_;
 }
 
-TweenSet *Animation::GetTweenSet(unsigned int index)
+TweenSet *Animation::tweenSet(unsigned int index)
 {
-    return AnimationVector[index];
+    return animationVector_[index];
 }
 
 
-unsigned int Animation::GetSize()
+unsigned int Animation::size()
 {
-    return AnimationVector.size();
+    return animationVector_.size();
 }

@@ -36,8 +36,8 @@
 #include <algorithm>
 
 CollectionInfoBuilder::CollectionInfoBuilder(Configuration &c, MetadataDatabase &mdb)
-    : Conf(c)
-    , MetaDB(mdb)
+    : conf_(c)
+    , metaDB_(mdb)
 {
 }
 
@@ -45,24 +45,24 @@ CollectionInfoBuilder::~CollectionInfoBuilder()
 {
 }
 
-bool CollectionInfoBuilder::CreateCollectionDirectory(std::string name)
+bool CollectionInfoBuilder::createCollectionDirectory(std::string name)
 {
-    std::string collectionPath = Utils::CombinePath(Configuration::GetAbsolutePath(), "collections", name);
+    std::string collectionPath = Utils::combinePath(Configuration::absolutePath, "collections", name);
 
     std::vector<std::string> paths;
     paths.push_back(collectionPath);
-    paths.push_back(Utils::CombinePath(collectionPath, "medium_artwork"));
-    paths.push_back(Utils::CombinePath(collectionPath, "medium_artwork", "artwork_back"));
-    paths.push_back(Utils::CombinePath(collectionPath, "medium_artwork", "artwork_front"));
-    paths.push_back(Utils::CombinePath(collectionPath, "medium_artwork", "bezel"));
-    paths.push_back(Utils::CombinePath(collectionPath, "medium_artwork", "logo"));
-    paths.push_back(Utils::CombinePath(collectionPath, "medium_artwork", "medium_back"));
-    paths.push_back(Utils::CombinePath(collectionPath, "medium_artwork", "medium_front"));
-    paths.push_back(Utils::CombinePath(collectionPath, "medium_artwork", "screenshot"));
-    paths.push_back(Utils::CombinePath(collectionPath, "medium_artwork", "screentitle"));
-    paths.push_back(Utils::CombinePath(collectionPath, "medium_artwork", "video"));
-    paths.push_back(Utils::CombinePath(collectionPath, "roms"));
-    paths.push_back(Utils::CombinePath(collectionPath, "system_artwork"));
+    paths.push_back(Utils::combinePath(collectionPath, "medium_artwork"));
+    paths.push_back(Utils::combinePath(collectionPath, "medium_artwork", "artwork_back"));
+    paths.push_back(Utils::combinePath(collectionPath, "medium_artwork", "artwork_front"));
+    paths.push_back(Utils::combinePath(collectionPath, "medium_artwork", "bezel"));
+    paths.push_back(Utils::combinePath(collectionPath, "medium_artwork", "logo"));
+    paths.push_back(Utils::combinePath(collectionPath, "medium_artwork", "medium_back"));
+    paths.push_back(Utils::combinePath(collectionPath, "medium_artwork", "medium_front"));
+    paths.push_back(Utils::combinePath(collectionPath, "medium_artwork", "screenshot"));
+    paths.push_back(Utils::combinePath(collectionPath, "medium_artwork", "screentitle"));
+    paths.push_back(Utils::combinePath(collectionPath, "medium_artwork", "video"));
+    paths.push_back(Utils::combinePath(collectionPath, "roms"));
+    paths.push_back(Utils::combinePath(collectionPath, "system_artwork"));
 
     for(std::vector<std::string>::iterator it = paths.begin(); it != paths.end(); it++)
     {
@@ -89,7 +89,7 @@ bool CollectionInfoBuilder::CreateCollectionDirectory(std::string name)
     #endif
     }
 
-    std::string filename = Utils::CombinePath(collectionPath, "include.txt");
+    std::string filename = Utils::combinePath(collectionPath, "include.txt");
     std::cout << "Creating file \"" << filename << "\"" << std::endl;
 
     std::ofstream includeFile;
@@ -99,7 +99,7 @@ bool CollectionInfoBuilder::CreateCollectionDirectory(std::string name)
     includeFile << "# by settings.conf will be used" << std::endl;
     includeFile.close();
 
-    filename = Utils::CombinePath(collectionPath, "exclude.txt");
+    filename = Utils::combinePath(collectionPath, "exclude.txt");
     std::cout << "Creating file \"" << filename << "\"" << std::endl;
     std::ofstream excludeFile;
     excludeFile.open(filename.c_str());
@@ -107,31 +107,33 @@ bool CollectionInfoBuilder::CreateCollectionDirectory(std::string name)
     includeFile << "# Add a list of files to hide on the menu (one filename per line, without the extension)." << std::endl;
     excludeFile.close();
 
-    filename = Utils::CombinePath(collectionPath, "settings.conf");
+    filename = Utils::combinePath(collectionPath, "settings.conf");
     std::cout << "Creating file \"" << filename << "\"" << std::endl;
     std::ofstream settingsFile;
     settingsFile.open(filename.c_str());
 
     settingsFile << "# Uncomment and edit the following line to use a different ROM path." << std::endl;
-    settingsFile << "#list.path = " << Utils::CombinePath("%BASE_ITEM_PATH%", "%ITEM_COLLECTION_NAME%", "roms") << std::endl;
+    settingsFile << "#list.path = " << Utils::combinePath("%BASE_ITEM_PATH%", "%ITEM_COLLECTION_NAME%", "roms") << std::endl;
     settingsFile << "list.includeMissingItems = false" << std::endl;
     settingsFile << "list.extensions = zip" << std::endl;
+    settingsFile << "list.menuSort = yes" << std::endl;
+    settingsFile << std::endl;
     settingsFile << "launcher = mame" << std::endl;
     settingsFile << "metadata.type = MAME" << std::endl;
     settingsFile << std::endl;
-    settingsFile << "#media.screenshot    = " << Utils::CombinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "screenshot") << std::endl;
-    settingsFile << "#media.screentitle   = " << Utils::CombinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "screentitle") << std::endl;
-    settingsFile << "#media.artwork_back  = " << Utils::CombinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "artwork_back") << std::endl;
-    settingsFile << "#media.artwork_front = " << Utils::CombinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "artwork_front") << std::endl;
-    settingsFile << "#media.logo          = " << Utils::CombinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "logo") << std::endl;
-    settingsFile << "#media.medium_back   = " << Utils::CombinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "medium_back") << std::endl;
-    settingsFile << "#media.medium_front  = " << Utils::CombinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "medium_front") << std::endl;
-    settingsFile << "#media.screenshot    = " << Utils::CombinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "screenshot") << std::endl;
-    settingsFile << "#media.screentitle   = " << Utils::CombinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "screentitle") << std::endl;
-    settingsFile << "#media.video         = " << Utils::CombinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "video") << std::endl;
+    settingsFile << "#media.screenshot    = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "screenshot") << std::endl;
+    settingsFile << "#media.screentitle   = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "screentitle") << std::endl;
+    settingsFile << "#media.artwork_back  = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "artwork_back") << std::endl;
+    settingsFile << "#media.artwork_front = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "artwork_front") << std::endl;
+    settingsFile << "#media.logo          = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "logo") << std::endl;
+    settingsFile << "#media.medium_back   = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "medium_back") << std::endl;
+    settingsFile << "#media.medium_front  = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "medium_front") << std::endl;
+    settingsFile << "#media.screenshot    = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "screenshot") << std::endl;
+    settingsFile << "#media.screentitle   = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "screentitle") << std::endl;
+    settingsFile << "#media.video         = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "video") << std::endl;
     settingsFile.close();
 
-    filename = Utils::CombinePath(collectionPath, "menu.xml");
+    filename = Utils::combinePath(collectionPath, "menu.xml");
     std::cout << "Creating file \"" << filename << "\"" << std::endl;
     std::ofstream menuFile;
     menuFile.open(filename.c_str());
@@ -151,7 +153,7 @@ bool CollectionInfoBuilder::CreateCollectionDirectory(std::string name)
     return true;
 }
 
-CollectionInfo *CollectionInfoBuilder::BuildCollection(std::string name)
+CollectionInfo *CollectionInfoBuilder::buildCollection(std::string name)
 {
     std::string listItemsPathKey = "collections." + name + ".list.path";
     std::string listFilterKey = "collections." + name + ".list.filter";
@@ -168,12 +170,12 @@ CollectionInfo *CollectionInfoBuilder::BuildCollection(std::string name)
     std::string metadataType = name;
     std::string metadataPath;
 
-    Conf.GetCollectionAbsolutePath(name, listItemsPath);
-    (void)Conf.GetProperty(extensionsKey, extensions);
-    (void)Conf.GetProperty(metadataTypeKey, metadataType);
-    (void)Conf.GetProperty(metadataPathKey, metadataPath);
+    conf_.getCollectionAbsolutePath(name, listItemsPath);
+    (void)conf_.getProperty(extensionsKey, extensions);
+    (void)conf_.getProperty(metadataTypeKey, metadataType);
+    (void)conf_.getProperty(metadataPathKey, metadataPath);
 
-    if(!Conf.GetProperty(launcherKey, launcherName))
+    if(!conf_.getProperty(launcherKey, launcherName))
     {
         std::stringstream ss;
         ss        << "\""
@@ -183,7 +185,7 @@ CollectionInfo *CollectionInfoBuilder::BuildCollection(std::string name)
                   << "). Your collection will be viewable, however you will not be able to "
                   << "launch any of the items in your collection.";
 
-        Logger::Write(Logger::ZONE_NOTICE, "Collections", ss.str());
+        Logger::write(Logger::ZONE_NOTICE, "Collections", ss.str());
     }
 
     CollectionInfo *collection = new CollectionInfo(name, listItemsPath, extensions, metadataType, metadataPath);
@@ -207,7 +209,7 @@ bool CollectionInfoBuilder::ImportBasicList(CollectionInfo * /*info*/, std::stri
 
     while(std::getline(includeStream, line))
     {
-        line = Utils::FilterComments(line);
+        line = Utils::filterComments(line);
         
         if(!line.empty() && list.find(line) == list.end())
         {
@@ -215,11 +217,10 @@ bool CollectionInfoBuilder::ImportBasicList(CollectionInfo * /*info*/, std::stri
 
             line.erase( std::remove(line.begin(), line.end(), '\r'), line.end() );
 
-            i->SetFullTitle(line);
-            i->SetName(line);
-            i->SetFullTitle(line);
-            i->SetTitle(line);
-            i->SetLauncher(launcher);
+            i->fullTitle = line;
+            i->name = line;
+            i->title = line;
+            i->launcher = launcher;
 
             list[line] = i;
         }
@@ -232,16 +233,16 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
 {
     DIR *dp;
     struct dirent *dirp;
-    std::string path = info->GetListPath();
+    std::string path = info->listpath;
     std::map<std::string, Item *> includeFilter;
     std::map<std::string, Item *> excludeFilter;
-    std::string includeFile = Utils::CombinePath(Configuration::GetAbsolutePath(), "collections", info->GetName(), "include.txt");
-    std::string excludeFile = Utils::CombinePath(Configuration::GetAbsolutePath(), "collections", info->GetName(), "exclude.txt");
+    std::string includeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "include.txt");
+    std::string excludeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "exclude.txt");
     std::string launcher;
     bool showMissing = false; 
  
-    (void)Conf.GetProperty("collections." + info->GetName() + ".launcher", launcher);
-    (void)Conf.GetProperty("collections." + info->GetName() + ".list.includeMissingItems", showMissing);
+    (void)conf_.getProperty("collections." + info->name + ".launcher", launcher);
+    (void)conf_.getProperty("collections." + info->name + ".list.includeMissingItems", showMissing);
 
     ImportBasicList(info, includeFile, launcher, includeFilter);
     ImportBasicList(info, excludeFile, launcher, excludeFilter);
@@ -249,15 +250,15 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
     std::vector<std::string> extensions;
     std::vector<std::string>::iterator extensionsIt;
 
-    info->GetExtensions(extensions);
+    info->extensionList(extensions);
 
-    Logger::Write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Checking for \"" + includeFile + "\"");
+    Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Checking for \"" + includeFile + "\"");
 
     dp = opendir(path.c_str());
 
     if(dp == NULL)
     {
-        Logger::Write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Could not read directory \"" + path + "\". Ignore if this is a menu.");
+        Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Could not read directory \"" + path + "\". Ignore if this is a menu.");
         return false;
     }
 
@@ -267,7 +268,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
         {
             if(excludeFilter.find(it->first) == excludeFilter.end())
             {
-                info->GetItems()->push_back(it->second);
+                info->items.push_back(it->second);
             }
         }
     }
@@ -295,11 +296,11 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
                     if(file.compare(start, comparator.length(), *extensionsIt) == 0)
                     {
                         Item *i = new Item();
-                        i->SetName(basename);
-                        i->SetFullTitle(basename);
-                        i->SetTitle(basename);
-                        i->SetLauncher(launcher);
-                        info->GetItems()->push_back(i);
+                        i->name = basename;
+                        i->fullTitle = basename;
+                        i->title = basename;
+                        i->launcher = launcher;
+                        info->items.push_back(i);
                     }
                 }
             }
@@ -325,9 +326,9 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
         excludeFilter.erase(it);
     }
 
-    MetaDB.InjectMetadata(info);
+    metaDB_.injectMetadata(info);
     
-    info->SortItems();
+    info->sortItems();
 
     return true;
 }

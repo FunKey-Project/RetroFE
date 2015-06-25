@@ -50,20 +50,20 @@ ViewInfo::~ViewInfo()
 {
 }
 
-float ViewInfo::GetXRelativeToOrigin() const
+float ViewInfo::XRelativeToOrigin() const
 {
-    return X + XOffset - XOrigin*GetWidth();
+    return X + XOffset - XOrigin*ScaledWidth();
 }
 
-float ViewInfo::GetYRelativeToOrigin() const
+float ViewInfo::YRelativeToOrigin() const
 {
-    return Y + YOffset - YOrigin*GetHeight();
+    return Y + YOffset - YOrigin*ScaledHeight();
 }
 
-float ViewInfo::GetHeight() const
+float ViewInfo::ScaledHeight() const
 {
-    float height = GetAbsoluteHeight();
-    float width = GetAbsoluteWidth();
+    float height = AbsoluteHeight();
+    float width = AbsoluteWidth();
 
     if (height < MinHeight || width < MinWidth)
     {
@@ -105,10 +105,10 @@ float ViewInfo::GetHeight() const
     return height;
 }
 
-float ViewInfo::GetWidth() const
+float ViewInfo::ScaledWidth() const
 {
-    float height = GetAbsoluteHeight();
-    float width = GetAbsoluteWidth();
+    float height = AbsoluteHeight();
+    float width = AbsoluteWidth();
 
     if (height < MinHeight || width < MinWidth)
     {
@@ -150,7 +150,7 @@ float ViewInfo::GetWidth() const
     return width;
 }
 
-float ViewInfo::GetAbsoluteHeight() const
+float ViewInfo::AbsoluteHeight() const
 {
     if(Height == -1 && Width == -1)
     {
@@ -165,7 +165,7 @@ float ViewInfo::GetAbsoluteHeight() const
     return Height;
 }
 
-float ViewInfo::GetAbsoluteWidth() const
+float ViewInfo::AbsoluteWidth() const
 {
     if(Height == -1 && Width == -1)
     {
@@ -178,246 +178,4 @@ float ViewInfo::GetAbsoluteWidth() const
     }
 
     return Width;
-}
-
-
-float ViewInfo::GetXOffset() const
-{
-    return XOffset;
-}
-
-
-float ViewInfo::GetXOrigin() const
-{
-    return XOrigin;
-}
-
-
-float ViewInfo::GetYOffset() const
-{
-    return YOffset;
-}
-
-
-float ViewInfo::GetYOrigin() const
-{
-    return YOrigin;
-}
-
-float ViewInfo::GetAngle() const
-{
-    return Angle;
-}
-
-void ViewInfo::SetAngle(float angle)
-{
-    Angle = angle;
-}
-
-float ViewInfo::GetImageHeight() const
-{
-    return ImageHeight;
-}
-
-void ViewInfo::SetImageHeight(float imageheight)
-{
-    ImageHeight = imageheight;
-}
-
-float ViewInfo::GetImageWidth() const
-{
-    return ImageWidth;
-}
-
-void ViewInfo::SetImageWidth(float imagewidth)
-{
-    ImageWidth = imagewidth;
-}
-
-unsigned int ViewInfo::GetLayer() const
-{
-    return Layer;
-}
-
-void ViewInfo::SetLayer(unsigned int layer)
-{
-    Layer = layer;
-}
-
-float ViewInfo::GetMaxHeight() const
-{
-    return MaxHeight;
-}
-
-void ViewInfo::SetMaxHeight(float maxheight)
-{
-    MaxHeight = maxheight;
-}
-
-float ViewInfo::GetMaxWidth() const
-{
-    return MaxWidth;
-}
-
-void ViewInfo::SetMaxWidth(float maxwidth)
-{
-    MaxWidth = maxwidth;
-}
-
-float ViewInfo::GetMinHeight() const
-{
-    return MinHeight;
-}
-
-void ViewInfo::SetMinHeight(float minheight)
-{
-    MinHeight = minheight;
-}
-
-float ViewInfo::GetMinWidth() const
-{
-    return MinWidth;
-}
-
-void ViewInfo::SetMinWidth(float minwidth)
-{
-    MinWidth = minwidth;
-}
-
-float ViewInfo::GetAlpha() const
-{
-    return Alpha;
-}
-
-void ViewInfo::SetAlpha(float alpha)
-{
-    Alpha = alpha;
-}
-
-float ViewInfo::GetX() const
-{
-    return X;
-}
-
-void ViewInfo::SetX(float x)
-{
-    X = x;
-}
-
-void ViewInfo::SetXOffset(float offset)
-{
-    XOffset = offset;
-}
-
-
-void ViewInfo::SetXOrigin(float origin)
-{
-    XOrigin = origin;
-}
-
-float ViewInfo::GetY() const
-{
-    return Y;
-}
-
-void ViewInfo::SetY(float y)
-{
-    Y = y;
-}
-
-void ViewInfo::SetYOffset(float offset)
-{
-    YOffset = offset;
-}
-
-
-void ViewInfo::SetYOrigin(float origin)
-{
-    YOrigin = origin;
-}
-
-float ViewInfo::GetRawYOrigin()
-{
-    return YOrigin;
-}
-float ViewInfo::GetRawXOrigin()
-{
-    return XOrigin;
-}
-
-float ViewInfo::GetRawWidth()
-{
-    return Width;
-}
-
-float ViewInfo::GetRawHeight()
-{
-    return Height;
-}
-
-void ViewInfo::SetHeight(float height)
-{
-    Height = height;
-}
-
-void ViewInfo::SetWidth(float width)
-{
-    Width = width;
-}
-
-float ViewInfo::GetFontSize() const
-{
-    if(FontSize == -1)
-    {
-        return GetHeight();
-    }
-    else
-    {
-        return FontSize;
-    }
-}
-
-void ViewInfo::SetFontSize(float fontSize)
-{
-    FontSize = fontSize;
-}
-
-
-float ViewInfo::GetBackgroundRed()
-{
-    return BackgroundRed;
-}
-
-void ViewInfo::SetBackgroundRed(float value)
-{
-    BackgroundRed = value;
-}
-
-float ViewInfo::GetBackgroundGreen()
-{
-    return BackgroundGreen;
-}
-
-void ViewInfo::SetBackgroundGreen(float value)
-{
-    BackgroundGreen = value;
-}
-float ViewInfo::GetBackgroundBlue()
-{
-    return BackgroundBlue;
-}
-
-void ViewInfo::SetBackgroundBlue(float value)
-{
-    BackgroundBlue = value;
-}
-
-float ViewInfo::GetBackgroundAlpha()
-{
-    return BackgroundAlpha;
-}
-
-void ViewInfo::SetBackgroundAlpha(float value)
-{
-    BackgroundAlpha = value;
 }

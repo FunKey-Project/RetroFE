@@ -31,109 +31,109 @@
 #endif
 
 Launcher::Launcher(RetroFE &p, Configuration &c)
-    : Config(c)
-    , RetroFEInst(p)
+    : config_(c)
+    , retrofe_(p)
 {
 }
 
-bool Launcher::Run(std::string collection, Item *collectionItem)
+bool Launcher::run(std::string collection, Item *collectionItem)
 {
-    std::string launcherName = collectionItem->GetLauncher();
+    std::string launcherName = collectionItem->launcher;
     std::string executablePath;
     std::string selectedItemsDirectory;
     std::string selectedItemsPath;
     std::string currentDirectory;
-    std::string extensions;
+    std::string extensionstr;
     std::string matchedExtension;
     std::string args;
 
-    if(!GetLauncherExecutable(executablePath, currentDirectory, launcherName))
+    if(!launcherExecutable(executablePath, currentDirectory, launcherName))
     {
-        Logger::Write(Logger::ZONE_ERROR, "Launcher", "Failed to find launcher executable (launcher: " + launcherName + " executable: " + executablePath + ")");
+        Logger::write(Logger::ZONE_ERROR, "Launcher", "Failed to find launcher executable (launcher: " + launcherName + " executable: " + executablePath + ")");
         return false;
     }
-    if(!GetExtensions(extensions, collection))
+    if(!extensions(extensionstr, collection))
     {
-        Logger::Write(Logger::ZONE_ERROR, "Launcher", "No file extensions configured for collection \"" + collection + "\"");
+        Logger::write(Logger::ZONE_ERROR, "Launcher", "No file extensions configured for collection \"" + collection + "\"");
         return false;
     }
-    if(!GetCollectionDirectory(selectedItemsDirectory, collection))
+    if(!collectionDirectory(selectedItemsDirectory, collection))
     {
-        Logger::Write(Logger::ZONE_ERROR, "Launcher", "Could not find files in directory \"" + selectedItemsDirectory + "\" for collection \"" + collection + "\"");
+        Logger::write(Logger::ZONE_ERROR, "Launcher", "Could not find files in directory \"" + selectedItemsDirectory + "\" for collection \"" + collection + "\"");
         return false;
     }
-    if(!GetLauncherArgs(args, launcherName))
+    if(!launcherArgs(args, launcherName))
     {
-        Logger::Write(Logger::ZONE_ERROR, "Launcher", "No launcher arguments specified for launcher " + launcherName);
+        Logger::write(Logger::ZONE_ERROR, "Launcher", "No launcher arguments specified for launcher " + launcherName);
         return false;
     }
-    if(!FindFile(selectedItemsPath, matchedExtension, selectedItemsDirectory, collectionItem->GetName(), extensions))
+    if(!findFile(selectedItemsPath, matchedExtension, selectedItemsDirectory, collectionItem->name, extensionstr))
     {
         // FindFile() prints out diagnostic messages for us, no need to print anything here
         return false;
     }
-    args = ReplaceVariables(args,
+    args = replaceVariables(args,
                             selectedItemsPath,
-                            collectionItem->GetName(),
-                            collectionItem->GetFileName(),
+                            collectionItem->name,
+                            collectionItem->filename(),
                             selectedItemsDirectory,
                             collection);
 
-    executablePath = ReplaceVariables(executablePath,
+    executablePath = replaceVariables(executablePath,
                                       selectedItemsPath,
-                                      collectionItem->GetName(),
-                                      collectionItem->GetFileName(),
+                                      collectionItem->name,
+                                      collectionItem->filename(),
                                       selectedItemsDirectory,
                                       collection);
 
-    currentDirectory = ReplaceVariables(currentDirectory,
+    currentDirectory = replaceVariables(currentDirectory,
                                         selectedItemsPath,
-                                        collectionItem->GetName(),
-                                        collectionItem->GetFileName(),
+                                        collectionItem->name,
+                                        collectionItem->filename(),
                                         selectedItemsDirectory,
                                         collection);
 
-    if(!ExecuteCommand(executablePath, args, currentDirectory))
+    if(!execute(executablePath, args, currentDirectory))
     {
-        Logger::Write(Logger::ZONE_ERROR, "Launcher", "Failed to launch.");
+        Logger::write(Logger::ZONE_ERROR, "Launcher", "Failed to launch.");
         return false;
     }
 
     return true;
 }
 
-std::string Launcher::ReplaceVariables(std::string str,
+std::string Launcher::replaceVariables(std::string str,
                                        std::string itemFilePath,
                                        std::string itemName,
                                        std::string itemFilename,
                                        std::string itemDirectory,
                                        std::string itemCollectionName)
 {
-    str = Utils::Replace(str, "%ITEM_FILEPATH%", itemFilePath);
-    str = Utils::Replace(str, "%ITEM_NAME%", itemName);
-    str = Utils::Replace(str, "%ITEM_FILENAME%", itemFilename);
-    str = Utils::Replace(str, "%ITEM_DIRECTORY%", itemDirectory);
-    str = Utils::Replace(str, "%ITEM_COLLECTION_NAME%", itemCollectionName);
-    str = Utils::Replace(str, "%RETROFE_PATH%", Configuration::GetAbsolutePath());
+    str = Utils::replace(str, "%ITEM_FILEPATH%", itemFilePath);
+    str = Utils::replace(str, "%ITEM_NAME%", itemName);
+    str = Utils::replace(str, "%ITEM_FILENAME%", itemFilename);
+    str = Utils::replace(str, "%ITEM_DIRECTORY%", itemDirectory);
+    str = Utils::replace(str, "%ITEM_COLLECTION_NAME%", itemCollectionName);
+    str = Utils::replace(str, "%RETROFE_PATH%", Configuration::absolutePath);
 #ifdef WIN32
-    str = Utils::Replace(str, "%RETROFE_EXEC_PATH%", Utils::CombinePath(Configuration::GetAbsolutePath(), "RetroFE.exe"));
+    str = Utils::replace(str, "%RETROFE_EXEC_PATH%", Utils::combinePath(Configuration::absolutePath, "RetroFE.exe"));
 #else
-    str = Utils::Replace(str, "%RETROFE_EXEC_PATH%", Utils::CombinePath(Configuration::GetAbsolutePath(), "RetroFE"));
+    str = Utils::replace(str, "%RETROFE_EXEC_PATH%", Utils::combinePath(Configuration::absolutePath, "RetroFE"));
 #endif
 
     return str;
 }
 
-bool Launcher::ExecuteCommand(std::string executable, std::string args, std::string currentDirectory)
+bool Launcher::execute(std::string executable, std::string args, std::string currentDirectory)
 {
     bool retVal = false;
     std::string executionString = "\"" + executable + "\" " + args;
 
-    Logger::Write(Logger::ZONE_INFO, "Launcher", "Attempting to launch: " + executionString);
-    Logger::Write(Logger::ZONE_INFO, "Launcher", "     from within folder: " + currentDirectory);
+    Logger::write(Logger::ZONE_INFO, "Launcher", "Attempting to launch: " + executionString);
+    Logger::write(Logger::ZONE_INFO, "Launcher", "     from within folder: " + currentDirectory);
 
     //todo: use delegation instead of depending on knowing the RetroFE class (tie to an interface)
-    RetroFEInst.LaunchEnter();
+    retrofe_.launchEnter();
 
 #ifdef WIN32
     STARTUPINFO startupInfo;
@@ -153,7 +153,7 @@ bool Launcher::ExecuteCommand(std::string executable, std::string args, std::str
 
     if(!CreateProcess(NULL, applicationName, NULL, NULL, FALSE, CREATE_NO_WINDOW, NULL, currDir, &startupInfo, &processInfo))
 #else
-    const std::size_t last_slash_idx = executable.rfind(Utils::PathSeparator);
+    const std::size_t last_slash_idx = executable.rfind(Utils::pathSeparator);
     if (last_slash_idx != std::string::npos)
     {
         std::string applicationName = executable.substr(last_slash_idx + 1);
@@ -162,7 +162,7 @@ bool Launcher::ExecuteCommand(std::string executable, std::string args, std::str
     if(system(executionString.c_str()) != 0)
 #endif
     {
-        Logger::Write(Logger::ZONE_ERROR, "Launcher", "Failed to run: " + executable);
+        Logger::write(Logger::ZONE_ERROR, "Launcher", "Failed to run: " + executable);
     }
 
     else
@@ -183,18 +183,18 @@ bool Launcher::ExecuteCommand(std::string executable, std::string args, std::str
         retVal = true;
     }
 
-    Logger::Write(Logger::ZONE_INFO, "Launcher", "Completed");
-    RetroFEInst.LaunchExit();
+    Logger::write(Logger::ZONE_INFO, "Launcher", "Completed");
+    retrofe_.launchExit();
 
     return retVal;
 }
 
-bool Launcher::GetLauncherName(std::string &launcherName, std::string collection)
+bool Launcher::launcherName(std::string &launcherName, std::string collection)
 {
     std::string launcherKey = "collections." + collection + ".launcher";
 
     // find the launcher for the particular item
-    if(!Config.GetProperty(launcherKey, launcherName))
+    if(!config_.getProperty(launcherKey, launcherName))
     {
         std::stringstream ss;
 
@@ -204,7 +204,7 @@ bool Launcher::GetLauncherName(std::string &launcherName, std::string collection
            << launcherKey
            << "\")";
 
-        Logger::Write(Logger::ZONE_ERROR, "Launcher", ss.str());
+        Logger::write(Logger::ZONE_ERROR, "Launcher", ss.str());
 
         return false;
     }
@@ -216,71 +216,71 @@ bool Launcher::GetLauncherName(std::string &launcherName, std::string collection
               << launcherName
               << "\"";
 
-    Logger::Write(Logger::ZONE_DEBUG, "Launcher", ss.str());
+    Logger::write(Logger::ZONE_DEBUG, "Launcher", ss.str());
 
     return true;
 }
 
 
 
-bool Launcher::GetLauncherExecutable(std::string &executable, std::string &currentDirectory, std::string launcherName)
+bool Launcher::launcherExecutable(std::string &executable, std::string &currentDirectory, std::string launcherName)
 {
     std::string executableKey = "launchers." + launcherName + ".executable";
 
-    if(!Config.GetProperty(executableKey, executable))
+    if(!config_.getProperty(executableKey, executable))
     {
         return false;
     }
 
     std::string currentDirectoryKey = "launchers." + launcherName + ".currentDirectory";
-    currentDirectory = Utils::GetDirectory(executable);
+    currentDirectory = Utils::getDirectory(executable);
 
-    Config.GetProperty(currentDirectoryKey, currentDirectory);
+    config_.getProperty(currentDirectoryKey, currentDirectory);
 
     return true;
 }
 
-bool Launcher::GetLauncherArgs(std::string &args, std::string launcherName)
+bool Launcher::launcherArgs(std::string &args, std::string launcherName)
 {
     std::string argsKey = "launchers." + launcherName + ".arguments";
 
-    if(!Config.GetProperty(argsKey, args))
+    if(!config_.getProperty(argsKey, args))
     {
-        Logger::Write(Logger::ZONE_ERROR, "Launcher", "No arguments specified for: " + argsKey);
+        Logger::write(Logger::ZONE_ERROR, "Launcher", "No arguments specified for: " + argsKey);
 
         return false;
     }
     return true;
 }
 
-bool Launcher::GetExtensions(std::string &extensions, std::string collection)
+bool Launcher::extensions(std::string &extensions, std::string collection)
 {
     std::string extensionsKey = "collections." + collection + ".list.extensions";
 
-    if(!Config.GetProperty(extensionsKey, extensions))
+    if(!config_.getProperty(extensionsKey, extensions))
     {
-        Logger::Write(Logger::ZONE_ERROR, "Launcher", "No extensions specified for: " + extensionsKey);
+        Logger::write(Logger::ZONE_ERROR, "Launcher", "No extensions specified for: " + extensionsKey);
         return false;
     }
 
-    extensions = Utils::Replace(extensions, " ", "");
-    extensions = Utils::Replace(extensions, ".", "");
+    extensions = Utils::replace(extensions, " ", "");
+    extensions = Utils::replace(extensions, ".", "");
 
     return true;
 }
 
-bool Launcher::GetCollectionDirectory(std::string &directory, std::string collection)
+bool Launcher::collectionDirectory(std::string &directory, std::string collection)
 {
     std::string itemsPathValue;
 
     // find the items path folder (i.e. ROM path)
-    Config.GetCollectionAbsolutePath(collection, itemsPathValue);
-    directory += itemsPathValue + Utils::PathSeparator;
+    config_.getCollectionAbsolutePath(collection, itemsPathValue);
+    directory += itemsPathValue + Utils::pathSeparator;
 
     return true;
 }
 
-bool Launcher::FindFile(std::string &foundFilePath, std::string &foundFilename, std::string directory, std::string filenameWithoutExtension, std::string extensions)
+bool Launcher::findFile(std::string &foundFilePath, std::string &foundFilename, std::string directory, std::string filenameWithoutExtension, std::string extensions)
 {
     std::string extension;
     bool fileFound = false;
@@ -301,7 +301,7 @@ bool Launcher::FindFile(std::string &foundFilePath, std::string &foundFilename, 
 
             fileFound = true;
 
-            Logger::Write(Logger::ZONE_INFO, "Launcher", ss.str());
+            Logger::write(Logger::ZONE_INFO, "Launcher", ss.str());
 
             foundFilePath = selectedItemsPath;
             foundFilename = extension;
@@ -313,7 +313,7 @@ bool Launcher::FindFile(std::string &foundFilePath, std::string &foundFilename, 
             ss        << "Checking to see if \""
                       << selectedItemsPath << "\" exists  [No]";
 
-            Logger::Write(Logger::ZONE_WARNING, "Launcher", ss.str());
+            Logger::write(Logger::ZONE_WARNING, "Launcher", ss.str());
         }
 
         f.close();
@@ -328,7 +328,7 @@ bool Launcher::FindFile(std::string &foundFilePath, std::string &foundFilename, 
                   << filenameWithoutExtension << "\" in folder \""
                   << directory;
 
-        Logger::Write(Logger::ZONE_ERROR, "Launcher", ss.str());
+        Logger::write(Logger::ZONE_ERROR, "Launcher", ss.str());
 
     }
 
