@@ -16,6 +16,7 @@
 #pragma once
 
 #include <string>
+#include "CollectionInfo.h"
 
 class Item
 {
@@ -26,7 +27,6 @@ public:
     std::string lowercaseTitle() ;
     std::string lowercaseFullTitle();
     std::string name;
-    std::string launcher;
     std::string filepath;
     std::string title;
     std::string fullTitle;
@@ -36,6 +36,7 @@ public:
     std::string cloneof;
     std::string numberPlayers;
     std::string numberButtons;
+    CollectionInfo *collectionInfo;
     bool leaf;
 };
 

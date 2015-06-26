@@ -172,11 +172,12 @@ void ReloadableMedia::reloadTexture()
                 {
                     config_.getMediaPropertyAbsolutePath(collectionName, "video", true, videoPath);
                     loadedComponent_ = videoBuild.createVideo(videoPath, "video", scaleX_, scaleY_);
-                }
-                else
-                {
-                    config_.getMediaPropertyAbsolutePath(collectionName, "video", false, videoPath);
-                    loadedComponent_ = videoBuild.createVideo(videoPath, names[n], scaleX_, scaleY_);
+
+                    if(!loadedComponent_)
+                    {
+                        config_.getMediaPropertyAbsolutePath(selectedItem->collectionInfo->name, "video", false, videoPath);
+                        loadedComponent_ = videoBuild.createVideo(videoPath, names[n], scaleX_, scaleY_);
+                    }
                 }
 
                 if(!loadedComponent_ && !systemMode_)
@@ -238,7 +239,7 @@ void ReloadableMedia::reloadTexture()
                 }
                 else
                 {
-                    config_.getMediaPropertyAbsolutePath(collectionName, type_, false, imagePath);
+                    config_.getMediaPropertyAbsolutePath(selectedItem->collectionInfo->name, type_, false, imagePath);
                     loadedComponent_ = imageBuild.CreateImage(imagePath, imageBasename, scaleX_, scaleY_);
                 }
 

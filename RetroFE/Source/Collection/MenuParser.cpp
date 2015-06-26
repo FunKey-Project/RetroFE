@@ -94,23 +94,17 @@ bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort, Collectio
                     item->fullTitle = title;
                     item->name = collectionAttribute->value();
                     item->leaf = false;
+                    item->collectionInfo = collection;
+
                     menuItems.push_back(item);
                 }
                 else
                 {
                     std::string collectionName = collectionAttribute->value();
                     Logger::write(Logger::ZONE_INFO, "Menu", "Loading collection into menu: " + collectionName);
+
                     CollectionInfo *subcollection = builder.buildCollection(collectionName);
-
-                    // todo, there must be a faster way of doing this
-                    collection->items.insert(collection->items.begin(), subcollection->items.begin(), subcollection->items.end());
-
-                    // prevent the temporary collection object from deleting the item pointers
-                    subcollection->items.clear();
-                    delete subcollection;
-
-                    //todo: unsupported option with this refactor
-                    // need to append the collection
+                    collection->addSubcollection(subcollection);
                 }
             }
 

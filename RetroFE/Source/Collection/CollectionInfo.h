@@ -27,13 +27,16 @@ public:
     virtual ~CollectionInfo();
     std::string settingsPath() const;
     void sortItems();
+    void addSubcollection(CollectionInfo *info);
     void extensionList(std::vector<std::string> &extensions);
     std::string name;
     std::string listpath;
     std::string metadataType;
+    std::string launcher;
     std::vector<Item *> items;
 
 private:
+    std::vector<CollectionInfo *> subcollections_;
     std::string metadataPath_;
     std::string extensions_;
     static bool itemIsLess(Item *lhs, Item *rhs);

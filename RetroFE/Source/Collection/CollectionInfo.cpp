@@ -35,8 +35,17 @@ CollectionInfo::CollectionInfo(std::string name,
 
 CollectionInfo::~CollectionInfo()
 {
-    std::vector<Item *>::iterator it = items.begin();
+	// remove items from the subcollections so their destructors do not
+	// delete the items since the parent collection will delete them.
+    std::vector<CollectionInfo *>::iterator subit;
+    for (subit != subcollections_.begin(); subit != subcollections_.end(); subit++)
+    {
+    	CollectionInfo *info = *subit;
+    	info->items.clear();
+    }
 
+
+	std::vector<Item *>::iterator it = items.begin();
     while(it != items.end())
     {
         delete *it;
@@ -62,6 +71,12 @@ void CollectionInfo::extensionList(std::vector<std::string> &extensionlist)
     }
 }
 
+void CollectionInfo::addSubcollection(CollectionInfo *newinfo)
+{
+	subcollections_.push_back(newinfo);
+
+    items.insert(items.begin(), newinfo->items.begin(), newinfo->items.end());
+}
 
 bool CollectionInfo::itemIsLess(Item *lhs, Item *rhs)
 {
