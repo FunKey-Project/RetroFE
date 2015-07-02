@@ -28,6 +28,7 @@ public:
     std::string settingsPath() const;
     void sortItems();
     void addSubcollection(CollectionInfo *info);
+    bool hasSubcollections();
     void extensionList(std::vector<std::string> &extensions);
     std::string name;
     std::string listpath;

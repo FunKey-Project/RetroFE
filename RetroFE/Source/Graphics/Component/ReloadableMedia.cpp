@@ -164,11 +164,29 @@ void ReloadableMedia::reloadTexture()
         for(unsigned int n = 0; n < names.size() && !loadedComponent_; ++n)
         {
             std::string basename = names[n];
-            loadedComponent_ = findComponent(collectionName, basename, type_);
-
-            if(!loadedComponent_)
+            if(systemMode_)
             {
-                loadedComponent_ = findComponent(selectedItem->collectionInfo->name, basename, type_);
+                // only look through the master collection for the system artifact
+                loadedComponent_ = findComponent(collectionName, type_, type_, true);
+            }
+            else
+            {
+                // check the master collection for the artifact 
+                loadedComponent_ = findComponent(collectionName, type_, basename, false);
+
+                if(!loadedComponent_ && selectedItem->collectionInfo->hasSubcollections())
+                {
+                    if(selectedItem->leaf)
+                    {
+                        // check the subcollection for artwork artifacts
+                        loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, basename, false);
+                    }
+                    else
+                    {
+                        // item is a submenu, check the subcollection for system artwork artifacts
+                        loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, type_, true);
+                    }
+                }
             }
 
             if(loadedComponent_)
@@ -183,45 +201,62 @@ void ReloadableMedia::reloadTexture()
     // check for images if video could not be found (and was specified)
     for(unsigned int n = 0; n < names.size() && !loadedComponent_; ++n)
     {
-        std::string imageBasename = names[n];
+        std::string basename = names[n];
 
         std::string typeLC = Utils::toLower(type_);
 
         if(typeLC == "numberButtons")
         {
-            imageBasename = selectedItem->numberButtons;
+            basename = selectedItem->numberButtons;
         }
         else if(typeLC == "numberPlayers")
         {
-            imageBasename = selectedItem->numberPlayers;
+            basename = selectedItem->numberPlayers;
         }
         else if(typeLC == "year")
         {
-            imageBasename = selectedItem->year;
+            basename = selectedItem->year;
         }
         else if(typeLC == "title")
         {
-            imageBasename = selectedItem->title;
+            basename = selectedItem->title;
         }
         else if(typeLC == "manufacturer")
         {
-            imageBasename = selectedItem->manufacturer;
+            basename = selectedItem->manufacturer;
         }
         else if(typeLC == "genre")
         {
-            imageBasename = selectedItem->genre;
+            basename = selectedItem->genre;
         }
 
-        Utils::replaceSlashesWithUnderscores(imageBasename);
+        Utils::replaceSlashesWithUnderscores(basename);
 
-        std::string imagePath;
-
-        loadedComponent_ = findComponent(collectionName, imageBasename, type_);
-
-        if(!loadedComponent_)
+        if(systemMode_)
         {
-            loadedComponent_ = findComponent(selectedItem->collectionInfo->name, imageBasename, type_);
+            // only look through the master collection for the system artifact
+            loadedComponent_ = findComponent(collectionName, type_, type_, true);
         }
+        else
+        {
+            // check the master collection for the artifact 
+            loadedComponent_ = findComponent(collectionName, type_, basename, false);
+
+            if(!loadedComponent_ && selectedItem->collectionInfo->hasSubcollections())
+            {
+                if(selectedItem->leaf)
+                {
+                    // check the subcollection for artwork artifacts
+                    loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, basename, false);
+                }
+                else
+                {
+                    // item is a submenu, check the subcollection for system artwork artifacts
+                    loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, type_, true);
+                }
+            }
+        }
+      
 
         if (loadedComponent_ != NULL)
         {
@@ -241,41 +276,27 @@ void ReloadableMedia::reloadTexture()
 }
 
 
-Component *ReloadableMedia::findComponent(std::string collection, std::string basename, std::string type)
+Component *ReloadableMedia::findComponent(std::string collection, std::string type, std::string basename, bool systemMode)
 {
     std::string imagePath;
     Component *component = NULL;
     VideoBuilder videoBuild;
     ImageBuilder imageBuild;
-    // check the current collection
 
-    if(systemMode_)
+    // check the system folder
+    config_.getMediaPropertyAbsolutePath(collection, type, systemMode, imagePath);
+
+    if(type == "video")
     {
-        // check the system folder
-        config_.getMediaPropertyAbsolutePath(collection, type, true, imagePath);
-
-        if(type == "video")
-        {
-            component = videoBuild.createVideo(imagePath, type, scaleX_, scaleY_);
-        }
-        else
-        {
-            component = imageBuild.CreateImage(imagePath, type, scaleX_, scaleY_);
-        }
+        component = videoBuild.createVideo(imagePath, basename, scaleX_, scaleY_);
+if(component)
+{
+std::cout << "Found video!" << std::endl;
+}
     }
     else
     {
-        // check the list folders
-        config_.getMediaPropertyAbsolutePath(collection, type, false, imagePath);
-
-        if(type == "video")
-        {
-            component = videoBuild.createVideo(imagePath, basename, scaleX_, scaleY_);
-        }
-        else
-        {
-            component = imageBuild.CreateImage(imagePath, basename, scaleX_, scaleY_);
-        }
+        component = imageBuild.CreateImage(imagePath, basename, scaleX_, scaleY_);
     }
 
     return component;

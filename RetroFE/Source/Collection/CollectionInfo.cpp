@@ -78,6 +78,11 @@ void CollectionInfo::addSubcollection(CollectionInfo *newinfo)
     items.insert(items.begin(), newinfo->items.begin(), newinfo->items.end());
 }
 
+bool CollectionInfo::hasSubcollections()
+{
+    return (subcollections_.size() > 0);
+}
+
 bool CollectionInfo::itemIsLess(Item *lhs, Item *rhs)
 {
     return lhs->lowercaseFullTitle() < rhs->lowercaseFullTitle();
