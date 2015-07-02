@@ -289,10 +289,6 @@ Component *ReloadableMedia::findComponent(std::string collection, std::string ty
     if(type == "video")
     {
         component = videoBuild.createVideo(imagePath, basename, scaleX_, scaleY_);
-if(component)
-{
-std::cout << "Found video!" << std::endl;
-}
     }
     else
     {
