@@ -308,7 +308,7 @@ void RetroFE::run()
 
         case RETROFE_LAUNCH_REQUEST:
             nextPageItem_ = currentPage_->getSelectedItem();
-            l.run(currentPage_->getCollectionName(), nextPageItem_);
+            l.run(nextPageItem_->collectionInfo->name, nextPageItem_);
             state = RETROFE_IDLE;
             break;
 

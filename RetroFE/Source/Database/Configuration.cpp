@@ -55,7 +55,7 @@ void Configuration::initialize()
         GetModuleFileName(hModule, exe, MAX_PATH);
         std::string sPath(exe);
         sPath = Utils::getDirectory(sPath);
-        sPath = Utils::GetParentDirectory(sPath);
+        sPath = Utils::getParentDirectory(sPath);
 #else
         char exepath[1024];
         sprintf(exepath, "/proc/%d/exe", getpid());
