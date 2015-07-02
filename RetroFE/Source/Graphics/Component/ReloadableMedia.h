@@ -35,6 +35,8 @@ public:
     void allocateGraphicsMemory();
     void launchEnter();
     void launchExit();
+    Component *findComponent(std::string collection, std::string basename, std::string type);
+
     void enableTextFallback_(bool value);
 
 private:

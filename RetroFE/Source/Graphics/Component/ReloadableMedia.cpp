@@ -137,8 +137,6 @@ void ReloadableMedia::freeGraphicsMemory()
 }
 void ReloadableMedia::reloadTexture()
 {
-    bool found = false;
-
     if(loadedComponent_)
     {
         delete loadedComponent_;
@@ -146,126 +144,142 @@ void ReloadableMedia::reloadTexture()
     }
 
     Item *selectedItem = getSelectedItem();
+    if(!selectedItem) return;
 
     config_.getProperty("currentCollection", currentCollection_);
 
-    if (selectedItem != NULL)
+    // build clone list
+    std::vector<std::string> names;
+
+    names.push_back(selectedItem->name);
+    names.push_back(selectedItem->fullTitle);
+
+    if(selectedItem->cloneof.length() > 0)
     {
-        std::vector<std::string> names;
+        names.push_back(selectedItem->cloneof);
+    }
 
-        names.push_back(selectedItem->name);
-        names.push_back(selectedItem->fullTitle);
-
-        if(selectedItem->cloneof.length() > 0)
+    if(isVideo_)
+    {
+        for(unsigned int n = 0; n < names.size() && !loadedComponent_; ++n)
         {
-            names.push_back(selectedItem->cloneof);
-        }
-
-        for(unsigned int n = 0; n < names.size() && !found; ++n)
-        {
-            if(isVideo_)
-            {
-                VideoBuilder videoBuild;
-                std::string videoPath;
-
-                if(systemMode_)
-                {
-                    config_.getMediaPropertyAbsolutePath(collectionName, "video", true, videoPath);
-                    loadedComponent_ = videoBuild.createVideo(videoPath, "video", scaleX_, scaleY_);
-
-                    if(!loadedComponent_)
-                    {
-                        config_.getMediaPropertyAbsolutePath(selectedItem->collectionInfo->name, "video", false, videoPath);
-                        loadedComponent_ = videoBuild.createVideo(videoPath, names[n], scaleX_, scaleY_);
-                    }
-                }
-
-                if(!loadedComponent_ && !systemMode_)
-                {
-                        config_.getMediaPropertyAbsolutePath(names[n], type_, true, videoPath);
-                        loadedComponent_ = videoBuild.createVideo(videoPath, "video", scaleX_, scaleY_);
-                }
-
-                if(loadedComponent_)
-                {
-                    loadedComponent_->allocateGraphicsMemory();
-                    baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
-                    baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
-                    found = true;
-                }
-            }
-
-            std::string imageBasename = names[n];
-
-            std::string typeLC = Utils::toLower(type_);
-
-            if(typeLC == "numberButtons")
-            {
-                imageBasename = selectedItem->numberButtons;
-            }
-            else if(typeLC == "numberPlayers")
-            {
-                imageBasename = selectedItem->numberPlayers;
-            }
-            else if(typeLC == "year")
-            {
-                imageBasename = selectedItem->year;
-            }
-            else if(typeLC == "title")
-            {
-                imageBasename = selectedItem->title;
-            }
-            else if(typeLC == "manufacturer")
-            {
-                imageBasename = selectedItem->manufacturer;
-            }
-            else if(typeLC == "genre")
-            {
-                imageBasename = selectedItem->genre;
-            }
-
-            Utils::replaceSlashesWithUnderscores(imageBasename);
+            std::string basename = names[n];
+            loadedComponent_ = findComponent(collectionName, basename, type_);
 
             if(!loadedComponent_)
             {
-                std::string imagePath;
-
-                ImageBuilder imageBuild;
-
-                if(systemMode_)
-                {
-                    config_.getMediaPropertyAbsolutePath(collectionName, type_, true, imagePath);
-                    loadedComponent_ = imageBuild.CreateImage(imagePath, type_, scaleX_, scaleY_);
-                }
-                else
-                {
-                    config_.getMediaPropertyAbsolutePath(selectedItem->collectionInfo->name, type_, false, imagePath);
-                    loadedComponent_ = imageBuild.CreateImage(imagePath, imageBasename, scaleX_, scaleY_);
-                }
-
-                if(!loadedComponent_ && !systemMode_)
-                {
-                     config_.getMediaPropertyAbsolutePath(imageBasename, type_, true, imagePath);
-                     loadedComponent_ = imageBuild.CreateImage(imagePath, type_, scaleX_, scaleY_);
-                }
-
-                if (loadedComponent_ != NULL)
-                {
-                     loadedComponent_->allocateGraphicsMemory();
-                     baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
-                     baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
-                }
-
+                loadedComponent_ = findComponent(selectedItem->collectionInfo->name, basename, type_);
             }
 
-            if(!loadedComponent_ && textFallback_)
+            if(loadedComponent_)
             {
-                loadedComponent_ = new Text(imageBasename, FfntInst_, scaleX_, scaleY_);
+                loadedComponent_->allocateGraphicsMemory();
                 baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
                 baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
             }
         }
     }
+
+    // check for images if video could not be found (and was specified)
+    for(unsigned int n = 0; n < names.size() && !loadedComponent_; ++n)
+    {
+        std::string imageBasename = names[n];
+
+        std::string typeLC = Utils::toLower(type_);
+
+        if(typeLC == "numberButtons")
+        {
+            imageBasename = selectedItem->numberButtons;
+        }
+        else if(typeLC == "numberPlayers")
+        {
+            imageBasename = selectedItem->numberPlayers;
+        }
+        else if(typeLC == "year")
+        {
+            imageBasename = selectedItem->year;
+        }
+        else if(typeLC == "title")
+        {
+            imageBasename = selectedItem->title;
+        }
+        else if(typeLC == "manufacturer")
+        {
+            imageBasename = selectedItem->manufacturer;
+        }
+        else if(typeLC == "genre")
+        {
+            imageBasename = selectedItem->genre;
+        }
+
+        Utils::replaceSlashesWithUnderscores(imageBasename);
+
+        std::string imagePath;
+
+        loadedComponent_ = findComponent(collectionName, imageBasename, type_);
+
+        if(!loadedComponent_)
+        {
+            loadedComponent_ = findComponent(selectedItem->collectionInfo->name, imageBasename, type_);
+        }
+
+        if (loadedComponent_ != NULL)
+        {
+             loadedComponent_->allocateGraphicsMemory();
+             baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
+             baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
+        }
+    }
+
+    // if image and artwork was not specified, fall back to displaying text
+    if(!loadedComponent_ && textFallback_)
+    {
+        loadedComponent_ = new Text(selectedItem->fullTitle, FfntInst_, scaleX_, scaleY_);
+        baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
+        baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
+    }
+}
+
+
+Component *ReloadableMedia::findComponent(std::string collection, std::string basename, std::string type)
+{
+    std::string imagePath;
+    Component *component = NULL;
+    VideoBuilder videoBuild;
+    ImageBuilder imageBuild;
+    // check the current collection
+
+    if(systemMode_)
+    {
+        // check the system folder
+        config_.getMediaPropertyAbsolutePath(collection, type, true, imagePath);
+
+        if(type == "video")
+        {
+            component = videoBuild.createVideo(imagePath, type, scaleX_, scaleY_);
+        }
+        else
+        {
+            component = imageBuild.CreateImage(imagePath, type, scaleX_, scaleY_);
+        }
+    }
+    else
+    {
+        // check the list folders
+        config_.getMediaPropertyAbsolutePath(collection, type, false, imagePath);
+
+        if(type == "video")
+        {
+            component = videoBuild.createVideo(imagePath, basename, scaleX_, scaleY_);
+        }
+        else
+        {
+            component = imageBuild.CreateImage(imagePath, basename, scaleX_, scaleY_);
+        }
+    }
+
+    return component;
+
 }
 
 void ReloadableMedia::draw()
