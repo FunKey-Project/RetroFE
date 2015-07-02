@@ -167,12 +167,12 @@ void ReloadableMedia::reloadTexture()
             if(systemMode_)
             {
                 // only look through the master collection for the system artifact
-                loadedComponent_ = findComponent(collectionName, type_, type_, true);
+                loadedComponent_ = findComponent(collectionName, "video", "video", true);
             }
             else
             {
                 // check the master collection for the artifact 
-                loadedComponent_ = findComponent(collectionName, type_, basename, false);
+                loadedComponent_ = findComponent(collectionName, "video", basename, false);
 
                 if(!loadedComponent_ && selectedItem->collectionInfo->hasSubcollections())
                 {
@@ -184,7 +184,7 @@ void ReloadableMedia::reloadTexture()
                     else
                     {
                         // item is a submenu, check the subcollection for system artwork artifacts
-                        loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, type_, true);
+                        loadedComponent_ = findComponent(selectedItem->collectionInfo->name, "video", "video", true);
                     }
                 }
             }
@@ -285,6 +285,7 @@ Component *ReloadableMedia::findComponent(std::string collection, std::string ty
 
     // check the system folder
     config_.getMediaPropertyAbsolutePath(collection, type, systemMode, imagePath);
+std::cout << "searching path: " << imagePath << "  =>" << basename << std::endl;
 
     if(type == "video")
     {
