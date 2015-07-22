@@ -808,6 +808,20 @@ bool ScrollingList::allocateTexture(ComponentItemBinding *s)
         t = imageBuild.CreateImage(imagePath, item->fullTitle, scaleX_, scaleY_);
     }
 
+    // check collection path for art based on parent game name
+    if(!t && item->cloneof != "")
+    {
+        config_.getMediaPropertyAbsolutePath(collectionName, imageType_, false, imagePath);
+        t = imageBuild.CreateImage(imagePath, item->cloneof, scaleX_, scaleY_);
+    }
+
+    // check sub-collection path for art based on parent game name
+    if(!t && item->cloneof != "")
+    {
+        config_.getMediaPropertyAbsolutePath(item->collectionInfo->name, imageType_, false, imagePath);
+        t = imageBuild.CreateImage(imagePath, item->cloneof, scaleX_, scaleY_);
+    }
+
     // check collection path for art based on system name
     if(!t)
     {
