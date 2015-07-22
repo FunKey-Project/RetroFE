@@ -135,6 +135,8 @@ void ReloadableMedia::freeGraphicsMemory()
         loadedComponent_->freeGraphicsMemory();
     }
 }
+
+
 void ReloadableMedia::reloadTexture()
 {
     if(loadedComponent_)
@@ -166,27 +168,54 @@ void ReloadableMedia::reloadTexture()
             std::string basename = names[n];
             if(systemMode_)
             {
-                // only look through the master collection for the system artifact
+
+                // check the master collection for the system artifact 
                 loadedComponent_ = findComponent(collectionName, "video", "video", true);
+
+                // check the collection for the system artifact
+                if(!loadedComponent_)
+                {
+                  loadedComponent_ = findComponent(selectedItem->collectionInfo->name, "video", "video", true);
+                }
+
             }
             else
             {
-                // check the master collection for the artifact 
-                loadedComponent_ = findComponent(collectionName, "video", basename, false);
 
-                if(!loadedComponent_ && selectedItem->collectionInfo->hasSubcollections())
+                // are we looking at a leaf or a submenu
+                if (selectedItem->leaf) // item is a leaf
                 {
-                    if(selectedItem->leaf)
-                    {
-                        // check the subcollection for artwork artifacts
-                        loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, basename, false);
-                    }
-                    else
-                    {
-                        // item is a submenu, check the subcollection for system artwork artifacts
-                        loadedComponent_ = findComponent(selectedItem->collectionInfo->name, "video", "video", true);
-                    }
+
+                  // check the master collection for the artifact 
+                  loadedComponent_ = findComponent(collectionName, "video", basename, false);
+
+                  // check the collection for the artifact
+                  if(!loadedComponent_)
+                  {
+                    loadedComponent_ = findComponent(selectedItem->collectionInfo->name, "video", basename, false);
+                  }
+
                 }
+                else // item is a submenu
+                {
+
+                  // check the master collection for the artifact 
+                  loadedComponent_ = findComponent(collectionName, "video", basename, false);
+
+                  // check the collection for the artifact
+                  if(!loadedComponent_)
+                  {
+                    loadedComponent_ = findComponent(selectedItem->collectionInfo->name, "video", basename, false);
+                  }
+
+                  // check the submenu collection for the system artifact
+                  if (!loadedComponent_)
+                  {
+                    loadedComponent_ = findComponent(selectedItem->name, "video", "video", true);
+                  } 
+
+                }
+
             }
 
             if(loadedComponent_)
@@ -234,29 +263,55 @@ void ReloadableMedia::reloadTexture()
 
         if(systemMode_)
         {
-            // only look through the master collection for the system artifact
+
+            // check the master collection for the system artifact 
             loadedComponent_ = findComponent(collectionName, type_, type_, true);
+
+            // check collection for the system artifact
+            if(!loadedComponent_)
+            {
+              loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, type_, true);
+            }
+
         }
         else
         {
-            // check the master collection for the artifact 
-            loadedComponent_ = findComponent(collectionName, type_, basename, false);
 
-            if(!loadedComponent_ && selectedItem->collectionInfo->hasSubcollections())
+            // are we looking at a leaf or a submenu
+            if (selectedItem->leaf) // item is a leaf
             {
-                if(selectedItem->leaf)
-                {
-                    // check the subcollection for artwork artifacts
-                    loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, basename, false);
-                }
-                else
-                {
-                    // item is a submenu, check the subcollection for system artwork artifacts
-                    loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, type_, true);
-                }
+
+              // check the master collection for the artifact 
+              loadedComponent_ = findComponent(collectionName, type_, basename, false);
+
+              // check the collection for the artifact
+              if(!loadedComponent_)
+              {
+                loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, basename, false);
+              }
+
             }
+            else // item is a submenu
+            {
+
+              // check the master collection for the artifact 
+              loadedComponent_ = findComponent(collectionName, type_, basename, false);
+
+              // check the collection for the artifact
+              if(!loadedComponent_)
+              {
+                loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, basename, false);
+              }
+
+              // check the submenu collection for the system artifact
+              if (!loadedComponent_)
+              {
+                loadedComponent_ = findComponent(selectedItem->name, type_, type_, true);
+              } 
+
+            }
+
         }
-      
 
         if (loadedComponent_ != NULL)
         {
