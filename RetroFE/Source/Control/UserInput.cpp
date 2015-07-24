@@ -128,13 +128,20 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
     else if(description.find("joy") == 0)
     {
         std::string joydesc = Utils::replace(Utils::toLower(description), "joy", "");
+        std::stringstream ssjoy;
+        ssjoy << joydesc.at(0);
+        int joynum;
+        ssjoy >> joynum;
+        joydesc = joydesc.erase(0, 1);
+        
+
         if(joydesc.find("button") == 0)
         {
             unsigned int button;
             std::stringstream ss;
             ss << Utils::replace(joydesc, "button", "");
             ss >> button;
-            keyHandlers_[key] = new JoyButtonHandler(button);
+            keyHandlers_[key] = new JoyButtonHandler(joynum, button);
             Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad button " + ss.str() );
             return true;
         }
@@ -143,6 +150,12 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
             Uint8 hat;
 
             joydesc = Utils::replace(joydesc, "hat", "");
+            std::stringstream sshat;
+            sshat << joydesc.at(0);
+            int hatnum;
+            ssjoy >> hatnum;
+            joydesc = joydesc.erase(0, 1);
+
             if(joydesc == "leftup") hat = SDL_HAT_LEFTUP;
             else if(joydesc == "left") hat = SDL_HAT_LEFT;
             else if(joydesc == "leftdown") hat = SDL_HAT_LEFTDOWN;
@@ -153,7 +166,7 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
             else if(joydesc == "right") hat = SDL_HAT_RIGHT;
             else if(joydesc == "rightdown") hat = SDL_HAT_RIGHTDOWN;
 
-            keyHandlers_[key] = new JoyHatHandler(hat);
+            keyHandlers_[key] = new JoyHatHandler(joynum, hatnum, hat);
             Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad hat " + joydesc );
             return true;
         }
@@ -184,7 +197,7 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
             ss << joydesc;
             ss >> axis;
             Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad axis " + ss.str() );
-            keyHandlers_[key] = new JoyAxisHandler(axis, min, max);
+            keyHandlers_[key] = new JoyAxisHandler(joynum, axis, min, max);
             return true;
         }
     }

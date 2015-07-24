@@ -1,7 +1,9 @@
 #include "JoyHatHandler.h"
 
-JoyHatHandler::JoyHatHandler(Uint8 direction)
-: direction_(direction)
+JoyHatHandler::JoyHatHandler(SDL_JoystickID joynum, Uint8 hatnum, Uint8 direction)
+: joynum_(joynum)
+, hatnum_(hatnum)
+, direction_(direction)
 , pressed_(false)
 {
 }
@@ -13,7 +15,7 @@ void JoyHatHandler::reset()
 
 bool JoyHatHandler::update(SDL_Event &e)
 {
-    if(e.type != SDL_JOYHATMOTION) return false;
+    if(e.type != SDL_JOYHATMOTION || e.jhat.which != joynum_ || e.jhat.hat != hatnum_) return false;
 
     pressed_ = (e.jhat.value == direction_);
     return true;

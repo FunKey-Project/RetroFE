@@ -5,12 +5,13 @@
 class JoyButtonHandler : public InputHandler
 {
 public:
-    JoyButtonHandler(Uint8 button);
+    JoyButtonHandler(SDL_JoystickID joynum, Uint8 button);
     bool update(SDL_Event &e);
     bool pressed();
     void reset();
 
 private:
+    SDL_JoystickID joynum_;
     Uint8 button_;
     bool pressed_;
 };
