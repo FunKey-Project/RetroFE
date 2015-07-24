@@ -17,10 +17,18 @@
 #include "UserInput.h"
 #include "../Database/Configuration.h"
 #include "../Utility/Log.h"
+#include "../Utility/Utils.h"
+#include "KeyboardHandler.h"
 
 UserInput::UserInput(Configuration &c)
     : config_(c)
+    , joystick_(NULL)
 {
+    for(unsigned int i = 0; i < KeyCodeMax; ++i)
+    {
+        keyHandlers_[i] = NULL;
+        lastKeyState_[i] = false;
+    }
 }
 
 UserInput::~UserInput()
@@ -59,45 +67,15 @@ bool UserInput::initialize()
 //   retVal = MapKey("admin", KeyCodeAdminMode) && retVal;
 //   retVal = MapKey("remove", KeyCodeHideItem) && retVal;
 
+    for(int i = 0; i < SDL_NumJoysticks(); ++i)
+    {
+        joystick_ = SDL_JoystickOpen(i);
+        break;
+    }
+    
+
     return retVal;
 }
-
-SDL_Scancode UserInput::scancode(KeyCode_E key)
-{
-    SDL_Scancode scancode = SDL_SCANCODE_UNKNOWN;
-    std::map<KeyCode_E, SDL_Scancode>::iterator it = keyMap_.find(key);
-
-    if(it != keyMap_.end())
-    {
-        scancode = it->second;
-    }
-
-    return scancode;
-}
-
-
-UserInput::KeyCode_E UserInput::keycode(SDL_Scancode scancode)
-{
-    KeyCode_E keycode = KeyCodeNull;
-
-    std::map<SDL_Scancode, KeyCode_E>::iterator it = reverseKeyMap_.find(scancode);
-
-    if(it != reverseKeyMap_.end())
-    {
-        keycode = it->second;
-    }
-
-    return keycode;
-}
-
-void UserInput::resetKeyStates()
-{
-    for(std::map<KeyCode_E, bool>::iterator it = keyState_.begin(); it != keyState_.end(); it++)
-    {
-      it->second = false;
-    }
-}
-
 
 bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
 {
@@ -108,40 +86,90 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
 
     if(!config_.getProperty(configKey, description))
     {
-        Logger::write(Logger::ZONE_ERROR, "Configuration", "Missing property " + configKey);
+        Logger::write(Logger::ZONE_ERROR, "Input", "Missing property " + configKey);
         return false;
     }
+
 
     scanCode = SDL_GetScancodeFromName(description.c_str());
 
-    if(scanCode == SDL_SCANCODE_UNKNOWN)
+    if(scanCode != SDL_SCANCODE_UNKNOWN)
     {
-        Logger::write(Logger::ZONE_ERROR, "Configuration", "Unsupported property value for " + configKey + "(" + description + "). See Documentation/Keycodes.txt for valid inputs");
-        return false;
+        Logger::write(Logger::ZONE_INFO, "Input", "Binding key " + configKey);
+        keyHandlers_[key] = new KeyboardHandler(scanCode);
+        return true;
     }
-
-    keyMap_[key] = scanCode;
-    reverseKeyMap_[scanCode] = key;
-    keyState_[key] = false;
-    return true;
+/*
+    else if(description.find("joy") == 0)
+    {
+        std::string joydesc = Utils::replace(Utils::toLower(description), "joy", "");
+        if(joydesc.find("button"))
+        {
+            unsigned int button;
+            std::stringstream ss;
+            ss << Utils::replace(joydesc, "button", "");
+            ss >> button;
+            buttonMap_[key] = button;
+            keyState_[key] = 0;
+            Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad button " + ss.str() );
+        }
+        else if(joydesc.find("axis"))
+        {
+            unsigned int axis;
+            std::stringstream ss;
+            ss << Utils::replace(joydesc, "axis", "");
+            ss >> axis;
+            buttonMap_[key] = axis;
+            keyState_[key] = 0;
+            Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad axis " + ss.str() );
+            keyCallbacks_[key] = new JoyAxisHandler();
+        }
+        else if(joydesc.find("hat"))
+        {
+            joydesc = Utils::replace(joydesc, "hat", "");
+            if(joydesc == "leftup") hatMap_[key] = SDL_HAT_LEFTUP;
+            else if(joydesc == "left") hatMap_[key] = SDL_HAT_LEFT;
+            else if(joydesc == "leftdown") hatMap_[key] = SDL_HAT_LEFT_DOWN;
+            else if(joydesc == "up") hatMap_[key] = SDL_HAT_UP;
+            //else if(joydesc == "centered") hatMap_[key] = SDL_HAT_CENTERED;
+            else if(joydesc == "down") hatMap_[key] = SDL_HAT_DOWN;
+            else if(joydesc == "rightup") hatMap_[key] = SDL_HAT_RIGHTUP;
+            else if(joydesc == "right") hatMap_[key] = SDL_HAT_RIGHT;
+            else if(joydesc == "rightdown") hatMap_[key] = SDL_HAT_RIGHTDOWN;
+            keyState_[key] = 0;
+            Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad hat " + joydesc );
+        }
+    }
+*/
+    Logger::write(Logger::ZONE_ERROR, "Input", "Unsupported property value for " + configKey + "(" + description + "). See Documentation/Keycodes.txt for valid inputs");
+    return false;
 }
 
-bool UserInput::keystate(SDL_Scancode code, bool state)
+void UserInput::resetStates()
 {
-    KeyCode_E key = keycode(code);
-
-    if(key == KeyCodeNull) { return false; }
-    if(keyState_.find(key) == keyState_.end()) { return false; }
-
-    keyState_[key] = state;
-    return true;
-
+    for(unsigned int i = 0; i < KeyCodeMax; ++i)
+    {
+        keyHandlers_[i]->reset();
+    }
 }
-bool UserInput::keystate(KeyCode_E key)
+bool UserInput::update(SDL_Event &e)
 {
-    if(keyState_.find(key) == keyState_.end()) { return false; }
-    return keyState_[key];
+    bool updated = false;
+    for(unsigned int i = 0; i < KeyCodeMax; ++i)
+    {
+        InputHandler *h = keyHandlers_[i];
+        if(h)
+        {
+            if(h->update(e)) updated = true;
+
+            lastKeyState_[i] = h->pressed();
+        }
+    }
+    
+    return updated;
 }
 
-
-
+bool UserInput::keystate(KeyCode_E code)
+{
+    return lastKeyState_[code];
+}
