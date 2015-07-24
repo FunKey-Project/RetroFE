@@ -18,7 +18,11 @@
 #include "../Database/Configuration.h"
 #include "../Utility/Log.h"
 #include "../Utility/Utils.h"
+#include "JoyAxisHandler.h"
+#include "JoyButtonHandler.h"
+#include "JoyHatHandler.h"
 #include "KeyboardHandler.h"
+#include "MouseButtonHandler.h"
 
 UserInput::UserInput(Configuration &c)
     : config_(c)
@@ -99,48 +103,91 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
         keyHandlers_[key] = new KeyboardHandler(scanCode);
         return true;
     }
-/*
+    
+    description = Utils::toLower(description);
+
+    if(description.find("mouse") == 0)
+    {
+        std::string mousedesc = Utils::replace(Utils::toLower(description), "mouse", "");
+        if(mousedesc.find("button") == 0)
+        {
+            int button = 0;
+            std::stringstream ss;
+            mousedesc = Utils::replace(mousedesc, "button", "");
+            if(mousedesc == "left") button = SDL_BUTTON_LEFT;
+            else if(mousedesc == "middle") button = SDL_BUTTON_MIDDLE;
+            else if(mousedesc == "right") button = SDL_BUTTON_RIGHT;
+            else if(mousedesc == "x1") button = SDL_BUTTON_X1;
+            else if(mousedesc == "x2") button = SDL_BUTTON_X2;
+            
+            keyHandlers_[key] = new MouseButtonHandler(button);
+            Logger::write(Logger::ZONE_INFO, "Input", "Binding mouse button " + ss.str() );
+            return true;
+        }
+    }
     else if(description.find("joy") == 0)
     {
         std::string joydesc = Utils::replace(Utils::toLower(description), "joy", "");
-        if(joydesc.find("button"))
+        if(joydesc.find("button") == 0)
         {
             unsigned int button;
             std::stringstream ss;
             ss << Utils::replace(joydesc, "button", "");
             ss >> button;
-            buttonMap_[key] = button;
-            keyState_[key] = 0;
+            keyHandlers_[key] = new JoyButtonHandler(button);
             Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad button " + ss.str() );
-        }
-        else if(joydesc.find("axis"))
-        {
-            unsigned int axis;
-            std::stringstream ss;
-            ss << Utils::replace(joydesc, "axis", "");
-            ss >> axis;
-            buttonMap_[key] = axis;
-            keyState_[key] = 0;
-            Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad axis " + ss.str() );
-            keyCallbacks_[key] = new JoyAxisHandler();
+            return true;
         }
         else if(joydesc.find("hat"))
         {
+            Uint8 hat;
+
             joydesc = Utils::replace(joydesc, "hat", "");
-            if(joydesc == "leftup") hatMap_[key] = SDL_HAT_LEFTUP;
-            else if(joydesc == "left") hatMap_[key] = SDL_HAT_LEFT;
-            else if(joydesc == "leftdown") hatMap_[key] = SDL_HAT_LEFT_DOWN;
-            else if(joydesc == "up") hatMap_[key] = SDL_HAT_UP;
-            //else if(joydesc == "centered") hatMap_[key] = SDL_HAT_CENTERED;
-            else if(joydesc == "down") hatMap_[key] = SDL_HAT_DOWN;
-            else if(joydesc == "rightup") hatMap_[key] = SDL_HAT_RIGHTUP;
-            else if(joydesc == "right") hatMap_[key] = SDL_HAT_RIGHT;
-            else if(joydesc == "rightdown") hatMap_[key] = SDL_HAT_RIGHTDOWN;
-            keyState_[key] = 0;
+            if(joydesc == "leftup") hat = SDL_HAT_LEFTUP;
+            else if(joydesc == "left") hat = SDL_HAT_LEFT;
+            else if(joydesc == "leftdown") hat = SDL_HAT_LEFTDOWN;
+            else if(joydesc == "up") hat = SDL_HAT_UP;
+            //else if(joydesc == "centered") hat = SDL_HAT_CENTERED;
+            else if(joydesc == "down") hat = SDL_HAT_DOWN;
+            else if(joydesc == "rightup") hat = SDL_HAT_RIGHTUP;
+            else if(joydesc == "right") hat = SDL_HAT_RIGHT;
+            else if(joydesc == "rightdown") hat = SDL_HAT_RIGHTDOWN;
+
+            keyHandlers_[key] = new JoyHatHandler(hat);
             Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad hat " + joydesc );
+            return true;
+        }
+        else if(joydesc.find("axis"))
+        {
+            // string is now axis0+
+            unsigned int axis;
+            Sint16 min;
+            Sint16 max;
+            Utils::replace(joydesc, "axis", "");
+
+            // string is now 0+
+            if(joydesc.find("-") != std::string::npos)
+            {
+                min = -32768;
+                max = -1000;
+                Utils::replace(joydesc, "-", "");
+            }
+            else if(joydesc.find("+") != std::string::npos)
+            {
+                min = 1000;
+                max = 32767;
+                Utils::replace(joydesc, "+", "");
+            }
+
+            // string is now just the axis number
+            std::stringstream ss;
+            ss << joydesc;
+            ss >> axis;
+            Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad axis " + ss.str() );
+            keyHandlers_[key] = new JoyAxisHandler(axis, min, max);
+            return true;
         }
     }
-*/
     Logger::write(Logger::ZONE_ERROR, "Input", "Unsupported property value for " + configKey + "(" + description + "). See Documentation/Keycodes.txt for valid inputs");
     return false;
 }

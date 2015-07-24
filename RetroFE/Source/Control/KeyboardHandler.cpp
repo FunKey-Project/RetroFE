@@ -13,10 +13,11 @@ void KeyboardHandler::reset()
 
 bool KeyboardHandler::update(SDL_Event &e)
 {
+    if(e.type != SDL_KEYUP && e.type != SDL_KEYDOWN) return false;
+
     if(e.key.keysym.scancode == scancode_) 
     {
-        if(e.type == SDL_KEYUP) pressed_ = false;
-        if(e.type == SDL_KEYDOWN) pressed_ = true;
+        pressed_ = (e.type == SDL_KEYDOWN);
         return true;
     }
 
