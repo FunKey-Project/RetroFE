@@ -190,13 +190,15 @@ CollectionInfo *CollectionInfoBuilder::buildCollection(std::string name)
 
     CollectionInfo *collection = new CollectionInfo(name, listItemsPath, extensions, metadataType, metadataPath);
 
+    (void)conf_.getProperty("collections." + collection->name + ".launcher", collection->launcher);
+
     ImportDirectory(collection);
 
     return collection;
 }
 
 
-bool CollectionInfoBuilder::ImportBasicList(CollectionInfo * /*info*/, std::string file, std::string launcher, std::map<std::string, Item *> &list)
+bool CollectionInfoBuilder::ImportBasicList(CollectionInfo *info, std::string file, std::map<std::string, Item *> &list)
 {
     std::ifstream includeStream(file.c_str());
 
@@ -220,7 +222,7 @@ bool CollectionInfoBuilder::ImportBasicList(CollectionInfo * /*info*/, std::stri
             i->fullTitle = line;
             i->name = line;
             i->title = line;
-            i->launcher = launcher;
+            i->collectionInfo = info;
 
             list[line] = i;
         }
@@ -241,11 +243,10 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
     std::string launcher;
     bool showMissing = false; 
  
-    (void)conf_.getProperty("collections." + info->name + ".launcher", launcher);
     (void)conf_.getProperty("collections." + info->name + ".list.includeMissingItems", showMissing);
 
-    ImportBasicList(info, includeFile, launcher, includeFilter);
-    ImportBasicList(info, excludeFile, launcher, excludeFilter);
+    ImportBasicList(info, includeFile, includeFilter);
+    ImportBasicList(info, excludeFile, excludeFilter);
 
     std::vector<std::string> extensions;
     std::vector<std::string>::iterator extensionsIt;
@@ -299,7 +300,8 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
                         i->name = basename;
                         i->fullTitle = basename;
                         i->title = basename;
-                        i->launcher = launcher;
+                        i->collectionInfo = info;
+
                         info->items.push_back(i);
                     }
                 }

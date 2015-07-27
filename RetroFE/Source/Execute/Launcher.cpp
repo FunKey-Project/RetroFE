@@ -38,7 +38,7 @@ Launcher::Launcher(RetroFE &p, Configuration &c)
 
 bool Launcher::run(std::string collection, Item *collectionItem)
 {
-    std::string launcherName = collectionItem->launcher;
+    std::string launcherName = collectionItem->collectionInfo->launcher;
     std::string executablePath;
     std::string selectedItemsDirectory;
     std::string selectedItemsPath;

@@ -15,6 +15,7 @@
  */
 #pragma once
 
+#include "CollectionInfoBuilder.h"
 class CollectionInfo;
 
 class MenuParser
@@ -22,6 +23,6 @@ class MenuParser
 public:
     MenuParser();
     virtual ~MenuParser();
-    bool buildMenuItems(CollectionInfo *cdb, bool sort);
+    bool buildMenuItems(CollectionInfo *cdb, bool sort, CollectionInfoBuilder &builder);
 
 };

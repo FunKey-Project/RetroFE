@@ -383,7 +383,7 @@ bool Component::animate(bool loop)
             }
             else
             {
-                elapsedTime = tween->duration;
+                elapsedTime = static_cast<float>(tween->duration);
             }
 
             float value = tween->animate(elapsedTime);

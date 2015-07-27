@@ -20,7 +20,8 @@
 #include <algorithm>
 
 Item::Item()
-    : leaf(true)
+    : collectionInfo(NULL)
+    , leaf(true)
 {
 }
 

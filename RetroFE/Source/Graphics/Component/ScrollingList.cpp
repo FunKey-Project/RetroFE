@@ -782,19 +782,53 @@ bool ScrollingList::allocateTexture(ComponentItemBinding *s)
     Component *t = NULL;
 
     ImageBuilder imageBuild;
+
+    // check collection path for art based on gamename
     config_.getMediaPropertyAbsolutePath(collectionName, imageType_, false, imagePath);
     t = imageBuild.CreateImage(imagePath, item->name, scaleX_, scaleY_);
 
+    // check sub-collection path for art based on gamename
     if(!t)
     {
-            config_.getMediaPropertyAbsolutePath(item->name, imageType_, true, imagePath);
-            t = imageBuild.CreateImage(imagePath, imageType_, scaleX_, scaleY_);
+        config_.getMediaPropertyAbsolutePath(item->collectionInfo->name, imageType_, false, imagePath);
+        t = imageBuild.CreateImage(imagePath, item->name, scaleX_, scaleY_);
     }
 
+    // check collection path for art based on game name (full title)
     if(!t && item->title != item->fullTitle)
     {
+        config_.getMediaPropertyAbsolutePath(collectionName, imageType_, false, imagePath);
         t = imageBuild.CreateImage(imagePath, item->fullTitle, scaleX_, scaleY_);
     }
+
+    // check sub-collection path for art based on game name (full title)
+    if(!t && item->title != item->fullTitle)
+    {
+        config_.getMediaPropertyAbsolutePath(item->collectionInfo->name, imageType_, false, imagePath);
+        t = imageBuild.CreateImage(imagePath, item->fullTitle, scaleX_, scaleY_);
+    }
+
+    // check collection path for art based on parent game name
+    if(!t && item->cloneof != "")
+    {
+        config_.getMediaPropertyAbsolutePath(collectionName, imageType_, false, imagePath);
+        t = imageBuild.CreateImage(imagePath, item->cloneof, scaleX_, scaleY_);
+    }
+
+    // check sub-collection path for art based on parent game name
+    if(!t && item->cloneof != "")
+    {
+        config_.getMediaPropertyAbsolutePath(item->collectionInfo->name, imageType_, false, imagePath);
+        t = imageBuild.CreateImage(imagePath, item->cloneof, scaleX_, scaleY_);
+    }
+
+    // check collection path for art based on system name
+    if(!t)
+    {
+		config_.getMediaPropertyAbsolutePath(item->name, imageType_, true, imagePath);
+		t = imageBuild.CreateImage(imagePath, imageType_, scaleX_, scaleY_);
+    }
+
     if (!t)
     {
         t = new Text(item->title, fontInst_, scaleX_, scaleY_);

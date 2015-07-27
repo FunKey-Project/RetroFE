@@ -16,6 +16,7 @@
 
 #include "MenuParser.h"
 #include "CollectionInfo.h"
+#include "CollectionInfoBuilder.h"
 #include "Item.h"
 #include "../Utility/Log.h"
 #include "../Utility/Utils.h"
@@ -40,7 +41,7 @@ MenuParser::~MenuParser()
 }
 
 //todo: clean up this method, too much nesting
-bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort)
+bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort, CollectionInfoBuilder &builder)
 {
     bool retVal = false;
     //todo: magic string
@@ -93,6 +94,8 @@ bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort)
                     item->fullTitle = title;
                     item->name = collectionAttribute->value();
                     item->leaf = false;
+                    item->collectionInfo = collection;
+
                     menuItems.push_back(item);
                 }
                 else
@@ -100,10 +103,13 @@ bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort)
                     std::string collectionName = collectionAttribute->value();
                     Logger::write(Logger::ZONE_INFO, "Menu", "Loading collection into menu: " + collectionName);
 
-                    //todo: unsupported option with this refactor
-                    // need to append the collection
+                    CollectionInfo *subcollection = builder.buildCollection(collectionName);
+                    collection->addSubcollection(subcollection);
                 }
             }
+
+
+            std::sort( collection->items.begin(), collection->items.end(), VectorSort);
 
             // todo: sorting should occur within the collection itself, not externally
             if(sort)
