@@ -374,7 +374,7 @@ bool Component::animate(bool loop)
         for(unsigned int i = 0; i < tweens->size(); i++)
         {
             Tween *tween = tweens->tweens()->at(i);
-            float elapsedTime = elapsedTweenTime_;
+            double elapsedTime = elapsedTweenTime_;
 
             //todo: too many levels of nesting
             if(elapsedTime < tween->duration)

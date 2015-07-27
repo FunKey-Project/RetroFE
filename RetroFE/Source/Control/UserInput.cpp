@@ -145,7 +145,7 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
             Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad button " + ss.str() );
             return true;
         }
-        else if(joydesc.find("hat"))
+        else if(joydesc.find("hat") == 0)
         {
             Uint8 hat;
 
@@ -170,26 +170,26 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
             Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad hat " + joydesc );
             return true;
         }
-        else if(joydesc.find("axis"))
+        else if(joydesc.find("axis") == 0)
         {
             // string is now axis0+
             unsigned int axis;
             Sint16 min;
             Sint16 max;
-            Utils::replace(joydesc, "axis", "");
+            joydesc = Utils::replace(joydesc, "axis", "");
 
             // string is now 0+
             if(joydesc.find("-") != std::string::npos)
             {
                 min = -32768;
                 max = -1000;
-                Utils::replace(joydesc, "-", "");
+                joydesc = Utils::replace(joydesc, "-", "");
             }
             else if(joydesc.find("+") != std::string::npos)
             {
                 min = 1000;
                 max = 32767;
-                Utils::replace(joydesc, "+", "");
+                joydesc = Utils::replace(joydesc, "+", "");
             }
 
             // string is now just the axis number
