@@ -16,9 +16,11 @@
 #pragma once
 #include <map>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_joystick.h>
 #include <string>
 
 class Configuration;
+class InputHandler;
 
 class UserInput
 {
@@ -38,26 +40,22 @@ public:
         KeyCodeLetterUp,
         KeyCodeAdminMode,
         KeyCodeHideItem,
-        KeyCodeQuit
+        KeyCodeQuit,
+        KeyCodeMax
     };
 
     UserInput(Configuration &c);
     virtual ~UserInput();
     bool initialize();
-    SDL_Scancode scancode(KeyCode_E key);
-    KeyCode_E keycode(SDL_Scancode scancode);
-    bool keystate(SDL_Scancode code, bool state);
-    bool keystate(KeyCode_E key);
-    bool keyStateChanged();
-    void resetKeyStates();
-
-
+    void resetStates();
+    bool update(SDL_Event &e);
+    bool keystate(KeyCode_E);
 
 private:
     bool MapKey(std::string keyDescription, KeyCode_E key);
-    std::map<KeyCode_E, SDL_Scancode> keyMap_;
-    std::map<SDL_Scancode, KeyCode_E> reverseKeyMap_;
-    std::map<KeyCode_E, bool> keyState_;
     Configuration &config_;
-    const Uint8 *sdlkeys_;
+    SDL_Joystick *joystick_;
+    InputHandler *keyHandlers_[KeyCodeMax]; 
+    bool lastKeyState_[KeyCodeMax]; 
+    
 };
