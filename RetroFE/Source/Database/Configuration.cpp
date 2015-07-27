@@ -40,9 +40,6 @@ Configuration::~Configuration()
 
 void Configuration::initialize()
 {
-    absolutePath = "D:/RetroFE";
-    return;
-
     const char *environment = std::getenv("RETROFE_PATH");
     std::string environmentStr;
     if (environment != NULL)
