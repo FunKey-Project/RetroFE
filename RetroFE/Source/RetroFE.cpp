@@ -123,7 +123,7 @@ void RetroFE::launchExit()
     SDL_RestoreWindow(SDL::getWindow());
     SDL_RaiseWindow(SDL::getWindow());
     SDL_SetWindowGrab(SDL::getWindow(), SDL_TRUE);
-    input_.resetKeyStates();
+    input_.resetStates();
     attract_.reset();
 
     currentTime_ = static_cast<float>(SDL_GetTicks()) / 1000;
@@ -400,14 +400,11 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
     bool rememberMenu = false;
     config_.getProperty("rememberMenu", rememberMenu);
 
-    if(e.type == SDL_KEYDOWN || e.type == SDL_KEYUP)
+    if(input_.update(e))
     {
-        SDL_Scancode scancode = SDL_GetScancodeFromKey(e.key.keysym.sym);
-	input_.keystate(scancode, (e.type == SDL_KEYDOWN) ? true : false);
-
         attract_.reset();
 
-	if(page->isHorizontalScroll())
+	    if(page->isHorizontalScroll())
         {
             if (input_.keystate(UserInput::KeyCodeLeft))
             {

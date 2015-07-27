@@ -179,7 +179,7 @@ void ScrollingList::deallocateSpritePoints()
 
     unsigned int spriteIndex = firstSpriteIndex_;
 
-    for(unsigned int i = 0; i < scrollPoints_->size(); ++i)
+    for(unsigned int i = 0; i < scrollPoints_->size() && spriteList_->size() > spriteIndex; ++i)
     {
         deallocateTexture(spriteList_->at(spriteIndex));
         circularIncrement(spriteIndex, spriteList_);
@@ -393,7 +393,7 @@ void ScrollingList::letterUp()
     notifyAllRequested_ = true;
     deallocateSpritePoints();
 
-    if(spriteList_ && scrollPoints_)
+    if(spriteList_ && scrollPoints_ && getSelectedCollectionItemSprite())
     {
         unsigned int i = 0;
 
@@ -438,7 +438,7 @@ void ScrollingList::letterDown()
     notifyAllRequested_ = true;
     deallocateSpritePoints();
 
-    if(spriteList_ && scrollPoints_)
+    if(spriteList_ && scrollPoints_ && getSelectedCollectionItemSprite())
     {
 
         std::string startname = getSelectedCollectionItemSprite()->item->lowercaseFullTitle();
