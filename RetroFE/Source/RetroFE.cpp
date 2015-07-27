@@ -282,13 +282,13 @@ void RetroFE::run()
 
                     currentPage_->start();
                     config_.setProperty("currentCollection", firstCollection);
-                    CollectionInfo *info = getCollection(firstCollection);
+                    CollectionInfo *info = getCollection(firstCollection, "include");
                     MenuParser mp;
 
                     CollectionInfoBuilder cib(config_, *metadb_);
                     mp.buildMenuItems(info, menuSort, cib);
 
-                    currentPage_->pushCollection(info);
+                    currentPage_->pushCollection(info, false);
                 }
                 else
                 {
@@ -466,12 +466,15 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
                     config_.setProperty("currentCollection", nextPageItem_->name);
                     config_.getProperty("collections." + nextPageItem_->name + ".list.menuSort", menuSort);
 
-                    CollectionInfo *info = getCollection(nextPageItem_->name);
+                    CollectionInfo *info = getCollection(nextPageItem_->name, "include");
 
                     MenuParser mp;
                     CollectionInfoBuilder cib(config_, *metadb_);
                     mp.buildMenuItems(info, menuSort, cib);
-                    page->pushCollection(info);
+                    page->pushCollection(info, false);
+                    listnames_.push_back("include");
+                    listnames_.push_back("favorites");
+                    listnameit_ = listnames_.begin();
 
                     if(rememberMenu && lastMenuOffsets_.find(nextPageItem_->name) != lastMenuOffsets_.end())
                     {
@@ -481,6 +484,32 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
                     state = RETROFE_NEXT_PAGE_REQUEST;
                 }
             }
+        }
+        if(input_.keystate(UserInput::KeyCodeNextPlaylist) && page->isMenuIdle())
+        {
+            nextPageItem_ = page->getSelectedItem();
+
+            bool menuSort = true;
+            config_.setProperty("currentCollection", nextPageItem_->name);
+            config_.getProperty("collections." + nextPageItem_->name + ".list.menuSort", menuSort);
+
+            listnameit_++;
+            if(listnameit_ == listnames_.end()) listnameit_ = listnames_.begin(); 
+
+            CollectionInfo *info = getCollection(currentPage_->getCollectionName(), *listnameit_);
+
+            MenuParser mp;
+            CollectionInfoBuilder cib(config_, *metadb_);
+            mp.buildMenuItems(info, menuSort, cib);
+            page->pushCollection(info, true);
+
+            if(rememberMenu && lastMenuOffsets_.find(nextPageItem_->name) != lastMenuOffsets_.end())
+            {
+                page->setScrollOffsetIndex(lastMenuOffsets_[nextPageItem_->name]);
+            }
+            
+            state = RETROFE_NEXT_PAGE_REQUEST;
+
         }
 
         if (input_.keystate(UserInput::KeyCodeBack) && page->isMenuIdle())
@@ -544,12 +573,12 @@ Page *RetroFE::loadSplashPage()
 }
 
 
-CollectionInfo *RetroFE::getCollection(std::string collectionName)
+CollectionInfo *RetroFE::getCollection(std::string collectionName, std::string listname)
 {
     // the page will deallocate this once its done
 
     CollectionInfoBuilder cib(config_, *metadb_);
-    CollectionInfo *collection = cib.buildCollection(collectionName);
+    CollectionInfo *collection = cib.buildCollection(collectionName, listname);
 
     return collection;
 }

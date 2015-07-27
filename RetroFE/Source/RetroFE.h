@@ -68,7 +68,7 @@ private:
     RETROFE_STATE processUserInput(Page *page);
     void update(float dt, bool scrollActive);
     std::string getLayout(std::string collectionName);
-    CollectionInfo *getCollection(std::string collectionName);
+    CollectionInfo *getCollection(std::string collectionName, std::string listname);
     Configuration &config_;
     DB *db_;
     MetadataDatabase *metadb_;
@@ -80,5 +80,7 @@ private:
     FontCache fontcache_;
     AttractMode attract_;
     std::map<std::string, unsigned int> lastMenuOffsets_;
+    std::list<std::string> listnames_;
+    std::list<std::string>::iterator listnameit_;
 
 };

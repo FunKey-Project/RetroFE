@@ -153,7 +153,7 @@ bool CollectionInfoBuilder::createCollectionDirectory(std::string name)
     return true;
 }
 
-CollectionInfo *CollectionInfoBuilder::buildCollection(std::string name)
+CollectionInfo *CollectionInfoBuilder::buildCollection(std::string name, std::string listname)
 {
     std::string listItemsPathKey = "collections." + name + ".list.path";
     std::string listFilterKey = "collections." + name + ".list.filter";
@@ -192,7 +192,7 @@ CollectionInfo *CollectionInfoBuilder::buildCollection(std::string name)
 
     (void)conf_.getProperty("collections." + collection->name + ".launcher", collection->launcher);
 
-    ImportDirectory(collection);
+    ImportDirectory(collection, listname);
 
     return collection;
 }
@@ -231,14 +231,14 @@ bool CollectionInfoBuilder::ImportBasicList(CollectionInfo *info, std::string fi
     return true;
 }
 
-bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
+bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string listname)
 {
     DIR *dp;
     struct dirent *dirp;
     std::string path = info->listpath;
     std::map<std::string, Item *> includeFilter;
     std::map<std::string, Item *> excludeFilter;
-    std::string includeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "include.txt");
+    std::string includeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, listname + ".txt");
     std::string excludeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "exclude.txt");
     std::string launcher;
     bool showMissing = false; 

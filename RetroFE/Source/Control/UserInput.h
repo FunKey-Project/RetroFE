@@ -38,6 +38,7 @@ public:
         KeyCodePageUp,
         KeyCodeLetterDown,
         KeyCodeLetterUp,
+        KeyCodeNextPlaylist,
         KeyCodeAdminMode,
         KeyCodeHideItem,
         KeyCodeQuit,

@@ -408,7 +408,7 @@ void Page::letterScroll(ScrollDirection direction)
 }
 
 
-bool Page::pushCollection(CollectionInfo *collection)
+bool Page::pushCollection(CollectionInfo *collection, bool discardCurrent)
 {
     collections_.push_back(collection);
     std::vector<ComponentItemBinding *> *sprites = ComponentItemBindingBuilder::buildCollectionItems(&collection->items);
@@ -430,6 +430,16 @@ bool Page::pushCollection(CollectionInfo *collection)
     {
         ScrollingList *newList = new ScrollingList(*activeMenu_);
         newList->forceIdle();
+        if(discardCurrent)
+        {
+            if(menus_.size() > 0)
+            {
+                ScrollingList *old = menus_.back();
+                menus_.pop_back();
+                delete old;
+                menuDepth_--;
+            }
+        }
         pushMenu(newList);
     }
 

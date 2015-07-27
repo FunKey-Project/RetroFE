@@ -103,7 +103,7 @@ bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort, Collectio
                     std::string collectionName = collectionAttribute->value();
                     Logger::write(Logger::ZONE_INFO, "Menu", "Loading collection into menu: " + collectionName);
 
-                    CollectionInfo *subcollection = builder.buildCollection(collectionName);
+                    CollectionInfo *subcollection = builder.buildCollection(collectionName, "include");
                     collection->addSubcollection(subcollection);
                 }
             }

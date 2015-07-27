@@ -44,7 +44,7 @@ public:
     Page(Configuration &c);
     virtual ~Page();
     virtual void onNewItemSelected(Item *);
-    bool pushCollection(CollectionInfo *collection);
+    bool pushCollection(CollectionInfo *collection, bool discardCurrent);
     bool popCollection();
     void pushMenu(ScrollingList *s);
     bool isMenusFull();
