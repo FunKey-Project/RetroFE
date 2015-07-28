@@ -251,27 +251,36 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
  
     if(mergedCollectionName != "")
     {
-        includeFile = Utils::combinePath(Configuration::absolutePath, "collections", mergedCollectionName, info->name + ".merge");
+        
+        std::string mergedFile = Utils::combinePath(Configuration::absolutePath, "collections", mergedCollectionName, info->name + ".merge");
+        Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Checking for \"" + mergedFile + "\"");
         (void)conf_.getProperty("collections." + mergedCollectionName + ".list.includeMissingItems", showMissing);
-        ImportBasicList(info, includeFile, includeFilter);
+        ImportBasicList(info, mergedFile, includeFilter);
+
     }
     else
     {
         (void)conf_.getProperty("collections." + info->name + ".list.includeMissingItems", showMissing);
+    }
+
+    // If no merged file exists, or it is empty, attempt to use the include and exclude from the subcollection
+    // If this not a merged collection, the size will be 0 anyways and the code below will still execute
+    if(includeFilter.size() == 0)
+    {
+        Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Checking for \"" + includeFile + "\"");
         ImportBasicList(info, includeFile, includeFilter);
         ImportBasicList(info, excludeFile, excludeFilter);
     }
-
 
     std::vector<std::string> extensions;
     std::vector<std::string>::iterator extensionsIt;
 
     info->extensionList(extensions);
 
-    Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Checking for \"" + includeFile + "\"");
 
     dp = opendir(path.c_str());
 
+    Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Scanning directory \"" + path + "\"");
     if(dp == NULL)
     {
         Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Could not read directory \"" + path + "\". Ignore if this is a menu.");
