@@ -438,6 +438,7 @@ bool Page::pushCollection(CollectionInfo *collection)
     activeMenu_->destroyItems();
     activeMenu_->setItems(sprites);
     activeMenu_->triggerMenuEnterEvent();
+    playlist_ = collection->playlists.begin();
 
     if(menuDepth_ < menus_.size())
     {
@@ -514,9 +515,26 @@ bool Page::popCollection()
         }
     }
 
+    if(collection)
+    {
+        delete collection;
+    }
+
     return true;
 }
 
+void Page::nextPlaylist()
+{
+    CollectionInfo *collection = collections_.back();
+    playlist_++;
+    if(playlist_ == collection->playlists.end()) playlist_ = collection->playlists.begin();
+
+    std::vector<ComponentItemBinding *> *sprites = ComponentItemBindingBuilder::buildCollectionItems(&playlist_->second);
+    
+    activeMenu_->destroyItems();
+    activeMenu_->setItems(sprites);
+    activeMenu_->triggerMenuEnterEvent();
+}
 
 void Page::update(float dt)
 {

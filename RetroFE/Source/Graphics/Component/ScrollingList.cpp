@@ -125,6 +125,7 @@ ScrollingList::~ScrollingList()
     destroyItems();
 }
 
+
 void ScrollingList::setItems(std::vector<ComponentItemBinding *> *spriteList)
 {
     notifyAllRequested_ = true;
@@ -227,6 +228,7 @@ void ScrollingList::destroyItems()
     {
         return;
     }
+    
     std::vector<ComponentItemBinding *>::iterator it  = spriteList_->begin();
 
     while(it != spriteList_->end())
@@ -235,11 +237,7 @@ void ScrollingList::destroyItems()
         {
             deallocateTexture(*it);
 
-            if((*it)->item)
-            {
-                delete (*it)->item;
-            }
-
+            // items are destroyed when collections are destroyed
             delete *it;
         }
 

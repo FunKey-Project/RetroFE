@@ -242,8 +242,10 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     struct dirent *dirp;
     std::string path = info->listpath;
     std::map<std::string, Item *> includeFilter;
+    std::map<std::string, Item *> favoritesFilter;
     std::map<std::string, Item *> excludeFilter;
     std::string includeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "include.txt");
+    std::string favoritesFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "favorites.txt");
     std::string excludeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "exclude.txt");
 
     std::string launcher;
@@ -269,6 +271,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     {
         Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Checking for \"" + includeFile + "\"");
         ImportBasicList(info, includeFile, includeFilter);
+        ImportBasicList(info, favoritesFile, favoritesFilter);
         ImportBasicList(info, excludeFile, excludeFilter);
     }
 
@@ -297,6 +300,10 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
             }
         }
     }
+        for(std::map<std::string, Item *>::iterator it = favoritesFilter.begin(); it != favoritesFilter.end(); it++)
+        {
+            info->playlists["favorites"].push_back(it->second);
+        }
 
     while((dirp = readdir(dp)) != NULL)
     {
@@ -327,6 +334,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
                         i->collectionInfo = info;
 
                         info->items.push_back(i);
+                        info->playlists["include"].push_back(i);
                     }
                 }
             }

@@ -17,6 +17,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 class Item;
 
@@ -35,6 +36,9 @@ public:
     std::string metadataType;
     std::string launcher;
     std::vector<Item *> items;
+
+    typedef std::map<std::string, std::vector <Item *> > Playlists_T;
+    Playlists_T playlists;
 
 private:
     std::vector<CollectionInfo *> subcollections_;

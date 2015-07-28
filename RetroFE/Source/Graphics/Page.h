@@ -16,13 +16,13 @@
 #pragma once
 
 #include "MenuNotifierInterface.h"
+#include "../Collection/CollectionInfo.h"
 
 #include <map>
 #include <string>
 #include <list>
 #include <vector>
 
-class CollectionInfo;
 class Component;
 class Configuration;
 class ScrollingList;
@@ -46,6 +46,7 @@ public:
     virtual void onNewItemSelected(Item *);
     bool pushCollection(CollectionInfo *collection);
     bool popCollection();
+    void nextPlaylist();
     void pushMenu(ScrollingList *s);
     bool isMenusFull();
     void setLoadSound(Sound *chunk);
@@ -105,6 +106,7 @@ private:
     Sound *selectSoundChunk_;
     float minShowTime_;
     float elapsedTime_;
+    CollectionInfo::Playlists_T::iterator playlist_;
 
 
 };

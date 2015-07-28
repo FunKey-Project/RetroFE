@@ -37,11 +37,17 @@ CollectionInfo::~CollectionInfo()
 {
 	// remove items from the subcollections so their destructors do not
 	// delete the items since the parent collection will delete them.
-    std::vector<CollectionInfo *>::iterator subit;
-    for (subit != subcollections_.begin(); subit != subcollections_.end(); subit++)
+    std::vector<CollectionInfo *>::iterator subit = subcollections_.begin();
+    while (subit != subcollections_.end())
     {
     	CollectionInfo *info = *subit;
-    	info->items.clear();
+        subcollections_.erase(subit);
+
+        if(info != this)
+        {
+            delete info;
+        }
+        subit = subcollections_.begin();
     }
 
 
