@@ -340,7 +340,6 @@ Component *ReloadableMedia::findComponent(std::string collection, std::string ty
 
     // check the system folder
     config_.getMediaPropertyAbsolutePath(collection, type, systemMode, imagePath);
-std::cout << "searching path: " << imagePath << "  =>" << basename << std::endl;
 
     if(type == "video")
     {

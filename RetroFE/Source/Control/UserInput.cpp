@@ -209,7 +209,10 @@ void UserInput::resetStates()
 {
     for(unsigned int i = 0; i < KeyCodeMax; ++i)
     {
-        keyHandlers_[i]->reset();
+        if(keyHandlers_[i])
+        {
+            keyHandlers_[i]->reset();
+        }
     }
 }
 bool UserInput::update(SDL_Event &e)
