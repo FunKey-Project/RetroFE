@@ -100,10 +100,11 @@ bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort, Collectio
                 }
                 else
                 {
-                    std::string collectionName = collectionAttribute->value();
-                    Logger::write(Logger::ZONE_INFO, "Menu", "Loading collection into menu: " + collectionName);
+                    std::string subcollectionName = collectionAttribute->value();
+                    Logger::write(Logger::ZONE_INFO, "Menu", "Loading collection into menu: " + collection->name);
 
-                    CollectionInfo *subcollection = builder.buildCollection(collectionName);
+
+                    CollectionInfo *subcollection = builder.buildCollection(subcollectionName, collection->name);
                     collection->addSubcollection(subcollection);
                 }
             }

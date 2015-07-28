@@ -152,8 +152,12 @@ bool CollectionInfoBuilder::createCollectionDirectory(std::string name)
 
     return true;
 }
-
 CollectionInfo *CollectionInfoBuilder::buildCollection(std::string name)
+{
+   return buildCollection(name, "");
+}
+
+CollectionInfo *CollectionInfoBuilder::buildCollection(std::string name, std::string mergedCollectionName)
 {
     std::string listItemsPathKey = "collections." + name + ".list.path";
     std::string listFilterKey = "collections." + name + ".list.filter";
@@ -169,8 +173,7 @@ CollectionInfo *CollectionInfoBuilder::buildCollection(std::string name)
     std::string extensions;
     std::string metadataType = name;
     std::string metadataPath;
-    std::string mergedCollectionName;
-
+    
     conf_.getCollectionAbsolutePath(name, listItemsPath);
 
     (void)conf_.getProperty(extensionsKey, extensions);
@@ -194,7 +197,7 @@ CollectionInfo *CollectionInfoBuilder::buildCollection(std::string name)
 
     (void)conf_.getProperty("collections." + collection->name + ".launcher", collection->launcher);
 
-    ImportDirectory(collection);
+    ImportDirectory(collection, mergedCollectionName);
 
     return collection;
 }
@@ -233,7 +236,7 @@ bool CollectionInfoBuilder::ImportBasicList(CollectionInfo *info, std::string fi
     return true;
 }
 
-bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
+bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string mergedCollectionName)
 {
     DIR *dp;
     struct dirent *dirp;
@@ -242,13 +245,23 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info)
     std::map<std::string, Item *> excludeFilter;
     std::string includeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "include.txt");
     std::string excludeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "exclude.txt");
+
     std::string launcher;
     bool showMissing = false; 
  
-    (void)conf_.getProperty("collections." + info->name + ".list.includeMissingItems", showMissing);
+    if(mergedCollectionName != "")
+    {
+        includeFile = Utils::combinePath(Configuration::absolutePath, "collections", mergedCollectionName, info->name + ".merge");
+        (void)conf_.getProperty("collections." + mergedCollectionName + ".list.includeMissingItems", showMissing);
+        ImportBasicList(info, includeFile, includeFilter);
+    }
+    else
+    {
+        (void)conf_.getProperty("collections." + info->name + ".list.includeMissingItems", showMissing);
+        ImportBasicList(info, includeFile, includeFilter);
+        ImportBasicList(info, excludeFile, excludeFilter);
+    }
 
-    ImportBasicList(info, includeFile, includeFilter);
-    ImportBasicList(info, excludeFile, excludeFilter);
 
     std::vector<std::string> extensions;
     std::vector<std::string>::iterator extensionsIt;
