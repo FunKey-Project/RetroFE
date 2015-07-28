@@ -40,8 +40,67 @@ MenuParser::~MenuParser()
 {
 }
 
-//todo: clean up this method, too much nesting
-bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort, CollectionInfoBuilder &builder)
+bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort)
+{
+
+    if(!buildTextMenu(collection, sort))
+    {
+        return buildLegacyXmlMenu(collection, sort);
+    }
+
+    return true;
+} 
+
+bool MenuParser::buildTextMenu(CollectionInfo *collection, bool sort)
+{
+    std::string file = Utils::combinePath(Configuration::absolutePath, "collections", collection->name, "menu.txt");
+    std::ifstream includeStream(file.c_str());
+    std::vector<Item *> menuItems;
+
+    if (!includeStream.good())
+    {
+        Logger::write(Logger::ZONE_INFO, "Menu", "File does not exist: \"" + file + "\"");
+        return false;
+    }
+
+    Logger::write(Logger::ZONE_INFO, "Menu", "Found: \"" + file + "\"");
+
+    std::string line;
+
+    while(std::getline(includeStream, line))
+    {
+        line = Utils::filterComments(line);
+
+        if(!line.empty())
+        {
+            std::string title = line;
+            Item *item = new Item();
+            item->title = title;
+            item->fullTitle = title;
+            item->name = title;
+            item->leaf = false;
+            item->collectionInfo = collection;
+
+            menuItems.push_back(item);
+        }
+    }
+
+    std::sort(collection->items.begin(), collection->items.end(), VectorSort);
+
+    // todo: sorting should occur within the collection itself, not externally
+    if(sort)
+    {
+        // sort the menu if requested
+        std::sort( menuItems.begin(), menuItems.end(), VectorSort);
+    }
+
+    //todo: sorting
+    collection->items.insert(collection->items.begin(), menuItems.begin(), menuItems.end());
+
+    return true;
+}
+
+bool MenuParser::buildLegacyXmlMenu(CollectionInfo *collection, bool sort)
 {
     bool retVal = false;
     //todo: magic string
@@ -50,8 +109,6 @@ bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort, Collectio
     rapidxml::xml_node<> * rootNode;
     std::vector<Item *> menuItems;
 
-    Logger::write(Logger::ZONE_INFO, "Menu", "Checking if menu exists at \"" + menuFilename + "\"");
-
     try
     {
         std::ifstream file(menuFilename.c_str());
@@ -59,6 +116,8 @@ bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort, Collectio
         // gracefully exit if there is no menu file for the pa
         if(file.good())
         {
+            Logger::write(Logger::ZONE_INFO, "Menu", "Found: \"" + menuFilename + "\"");
+            Logger::write(Logger::ZONE_INFO, "Menu", "Using legacy menu.xml file. Consider using the new menu.txt format");
             std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 
             buffer.push_back('\0');
@@ -70,7 +129,6 @@ bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort, Collectio
             for (rapidxml::xml_node<> * itemNode = rootNode->first_node("item"); itemNode; itemNode = itemNode->next_sibling())
             {
                 rapidxml::xml_attribute<> *collectionAttribute = itemNode->first_attribute("collection");
-                rapidxml::xml_attribute<> *importAttribute = itemNode->first_attribute("import");
 
                 if(!collectionAttribute)
                 {
@@ -78,35 +136,16 @@ bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort, Collectio
                     Logger::write(Logger::ZONE_ERROR, "Menu", "Menu item tag is missing collection attribute");
                     break;
                 }
-                //todo: too much nesting! Ack!
-                std::string import;
-                if(importAttribute)
-                {
-                    import = importAttribute->value();
-                }
+                //todo, check for empty string
+                std::string title = collectionAttribute->value();
+                Item *item = new Item();
+                item->title = title;
+                item->fullTitle = title;
+                item->name = collectionAttribute->value();
+                item->leaf = false;
+                item->collectionInfo = collection;
 
-                if(import != "true")
-                {
-                    //todo, check for empty string
-                    std::string title = collectionAttribute->value();
-                    Item *item = new Item();
-                    item->title = title;
-                    item->fullTitle = title;
-                    item->name = collectionAttribute->value();
-                    item->leaf = false;
-                    item->collectionInfo = collection;
-
-                    menuItems.push_back(item);
-                }
-                else
-                {
-                    std::string subcollectionName = collectionAttribute->value();
-                    Logger::write(Logger::ZONE_INFO, "Menu", "Loading collection into menu: " + collection->name);
-
-
-                    CollectionInfo *subcollection = builder.buildCollection(subcollectionName, collection->name);
-                    collection->addSubcollection(subcollection);
-                }
+                menuItems.push_back(item);
             }
 
 
@@ -132,5 +171,4 @@ bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort, Collectio
     }
 
     return retVal;
-
 }

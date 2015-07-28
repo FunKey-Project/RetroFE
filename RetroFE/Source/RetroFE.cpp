@@ -32,6 +32,15 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <dirent.h>
+
+#ifdef __linux
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <errno.h>
+#include <cstring>
+#endif
+
 #ifdef WIN32
 #include <Windows.h>
 #include <SDL2/SDL_syswm.h>
@@ -285,8 +294,7 @@ void RetroFE::run()
                     CollectionInfo *info = getCollection(firstCollection);
                     MenuParser mp;
 
-                    CollectionInfoBuilder cib(config_, *metadb_);
-                    mp.buildMenuItems(info, menuSort, cib);
+                    mp.buildMenuItems(info, menuSort);
 
                     currentPage_->pushCollection(info);
                 }
@@ -469,8 +477,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
                     CollectionInfo *info = getCollection(nextPageItem_->name);
 
                     MenuParser mp;
-                    CollectionInfoBuilder cib(config_, *metadb_);
-                    mp.buildMenuItems(info, menuSort, cib);
+                    mp.buildMenuItems(info, menuSort);
                     page->pushCollection(info);
 
                     if(rememberMenu && lastMenuOffsets_.find(nextPageItem_->name) != lastMenuOffsets_.end())
@@ -550,6 +557,34 @@ CollectionInfo *RetroFE::getCollection(std::string collectionName)
 
     CollectionInfoBuilder cib(config_, *metadb_);
     CollectionInfo *collection = cib.buildCollection(collectionName);
+    DIR *dp;
+    struct dirent *dirp;
+
+    std::string path = Utils::combinePath(Configuration::absolutePath, "collections", collectionName);
+    dp = opendir(path.c_str());
+
+    while((dirp = readdir(dp)) != NULL)
+    {
+        std::string file = dirp->d_name;
+
+        size_t position = file.find_last_of(".");
+        std::string basename = (std::string::npos == position)? file : file.substr(0, position);
+
+        std::string comparator = ".sub";
+        int start = file.length() - comparator.length();
+
+        if(start >= 0)
+        {
+            if(file.compare(start, comparator.length(), comparator) == 0)
+            {
+                Logger::write(Logger::ZONE_INFO, "RetroFE", "Loading subcollection into menu: " + basename);
+
+                CollectionInfo *subcollection = cib.buildCollection(basename, collectionName);
+                collection->addSubcollection(subcollection);
+            }
+        }
+    }
+
 
     return collection;
 }

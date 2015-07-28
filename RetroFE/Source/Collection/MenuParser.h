@@ -23,6 +23,10 @@ class MenuParser
 public:
     MenuParser();
     virtual ~MenuParser();
-    bool buildMenuItems(CollectionInfo *cdb, bool sort, CollectionInfoBuilder &builder);
+    bool buildMenuItems(CollectionInfo *cdb, bool sort);
+
+private:
+    bool buildTextMenu(CollectionInfo *collection, bool sort);
+    bool buildLegacyXmlMenu(CollectionInfo *collection, bool sort);
 
 };

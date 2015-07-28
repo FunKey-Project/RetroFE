@@ -252,7 +252,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     if(mergedCollectionName != "")
     {
         
-        std::string mergedFile = Utils::combinePath(Configuration::absolutePath, "collections", mergedCollectionName, info->name + ".merge");
+        std::string mergedFile = Utils::combinePath(Configuration::absolutePath, "collections", mergedCollectionName, info->name + ".sub");
         Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Checking for \"" + mergedFile + "\"");
         (void)conf_.getProperty("collections." + mergedCollectionName + ".list.includeMissingItems", showMissing);
         ImportBasicList(info, mergedFile, includeFilter);
