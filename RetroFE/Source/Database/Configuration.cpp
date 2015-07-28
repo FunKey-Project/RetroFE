@@ -71,6 +71,11 @@ void Configuration::initialize()
 
 bool Configuration::import(std::string keyPrefix, std::string file)
 {
+    return import("", keyPrefix, file);
+}
+
+bool Configuration::import(std::string collection, std::string keyPrefix, std::string file)
+{
     bool retVal = true;
     int lineCount = 0;
     std::string line;
@@ -89,7 +94,7 @@ bool Configuration::import(std::string keyPrefix, std::string file)
     while (std::getline (ifs, line))
     {
         lineCount++;
-        retVal = retVal && parseLine(keyPrefix, line, lineCount);
+        retVal = retVal && parseLine(collection, keyPrefix, line, lineCount);
     }
 
     ifs.close();
@@ -97,7 +102,8 @@ bool Configuration::import(std::string keyPrefix, std::string file)
     return retVal;
 }
 
-bool Configuration::parseLine(std::string keyPrefix, std::string line, int lineCount)
+
+bool Configuration::parseLine(std::string collection, std::string keyPrefix, std::string line, int lineCount)
 {
     bool retVal = false;
     std::string key;
@@ -127,6 +133,7 @@ bool Configuration::parseLine(std::string keyPrefix, std::string line, int lineC
 
         value = line.substr(position + delimiter.length(), line.length());
         value = trimEnds(value);
+        value = Utils::replace(value, "%ITEM_COLLECTION_NAME%", collection);
 
         properties_.insert(PropertiesPair(key, value));
 
@@ -181,15 +188,12 @@ bool Configuration::getProperty(std::string key, std::string &value)
 
     std::string baseMediaPath = absolutePath;
     std::string baseItemPath = absolutePath;
-    std::string collectionName;
 
-    getRawProperty("currentCollection", collectionName);
     getRawProperty("baseMediaPath", baseMediaPath);
     getRawProperty("baseItemPath", baseItemPath);
 
     value = Utils::replace(value, "%BASE_MEDIA_PATH%", baseMediaPath);
     value = Utils::replace(value, "%BASE_ITEM_PATH%", baseItemPath);
-    value = Utils::replace(value, "%ITEM_COLLECTION_NAME%", collectionName);
     return retVal;
 }
 

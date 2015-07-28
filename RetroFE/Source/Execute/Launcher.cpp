@@ -274,16 +274,9 @@ bool Launcher::collectionDirectory(std::string &directory, std::string collectio
     std::string itemsPathValue;
     std::string mergedCollectionName;
 
-    // temporarily set currentCollection in case this is a subcollection
-    config_.getProperty("currentCollection", mergedCollectionName);
-    config_.setProperty("currentCollection", collection);
-
     // find the items path folder (i.e. ROM path)
     config_.getCollectionAbsolutePath(collection, itemsPathValue);
     directory += itemsPathValue + Utils::pathSeparator;
-
-    // restore old collection name
-    config_.setProperty("currentCollection", mergedCollectionName);
 
     return true;
 }

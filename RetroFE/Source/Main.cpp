@@ -137,14 +137,14 @@ bool ImportConfiguration(Configuration *c)
 
     while((dirp = readdir(dp)) != NULL)
     {
-        std::string dirName = (dirp->d_name);
-        if (dirp->d_type == DT_DIR && dirName != "." && dirName != ".." && dirName.length() > 0 && dirName[0] != '_')
+        std::string collection = (dirp->d_name);
+        if (dirp->d_type == DT_DIR && collection != "." && collection != ".." && collection.length() > 0 && collection[0] != '_')
         {
-            std::string prefix = "collections." + std::string(dirp->d_name);
+            std::string prefix = "collections." + collection;
 
-            std::string settingsFile = Utils::combinePath(collectionsPath, std::string(dirp->d_name), "settings.conf");
+            std::string settingsFile = Utils::combinePath(collectionsPath, collection, "settings.conf");
 
-            if(!c->import(prefix, settingsFile))
+            if(!c->import(collection, prefix, settingsFile))
             {
                 Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + settingsFile + "\"");
                 closedir(dp);

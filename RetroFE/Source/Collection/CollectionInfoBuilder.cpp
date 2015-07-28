@@ -171,17 +171,11 @@ CollectionInfo *CollectionInfoBuilder::buildCollection(std::string name)
     std::string metadataPath;
     std::string mergedCollectionName;
 
-    // temporarily set currentCollection in case this is a subcollection
-    conf_.getProperty("currentCollection", mergedCollectionName);
-    conf_.setProperty("currentCollection", name);
     conf_.getCollectionAbsolutePath(name, listItemsPath);
 
     (void)conf_.getProperty(extensionsKey, extensions);
     (void)conf_.getProperty(metadataTypeKey, metadataType);
     (void)conf_.getProperty(metadataPathKey, metadataPath);
-
-    // restore old collection name
-    conf_.setProperty("currentCollection", mergedCollectionName);
 
     if(!conf_.getProperty(launcherKey, launcherName))
     {
