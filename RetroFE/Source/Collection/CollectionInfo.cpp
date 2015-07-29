@@ -30,6 +30,7 @@ CollectionInfo::CollectionInfo(std::string name,
     , metadataType(metadataType)
     , metadataPath_(metadataPath)
 	, extensions_(extensions)
+    , menusort(true)
 {
 }
 
@@ -85,8 +86,12 @@ bool CollectionInfo::hasSubcollections()
 
 bool CollectionInfo::itemIsLess(Item *lhs, Item *rhs)
 {
+    if(lhs->leaf && !rhs->leaf) return true;
+    if(!lhs->leaf && rhs->leaf) return false;
+    if(!lhs->collectionInfo->menusort && lhs->leaf && rhs->leaf) return false;
     return lhs->lowercaseFullTitle() < rhs->lowercaseFullTitle();
 }
+
 
 void CollectionInfo::sortItems()
 {

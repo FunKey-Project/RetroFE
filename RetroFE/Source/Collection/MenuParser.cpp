@@ -85,17 +85,10 @@ bool MenuParser::buildTextMenu(CollectionInfo *collection, bool sort)
         }
     }
 
-    std::sort(collection->items.begin(), collection->items.end(), VectorSort);
 
-    // todo: sorting should occur within the collection itself, not externally
-    if(sort)
-    {
-        // sort the menu if requested
-        std::sort( menuItems.begin(), menuItems.end(), VectorSort);
-    }
-
-    //todo: sorting
+    collection->menusort = sort;
     collection->items.insert(collection->items.begin(), menuItems.begin(), menuItems.end());
+    collection->sortItems();
 
     return true;
 }
@@ -147,17 +140,9 @@ bool MenuParser::buildLegacyXmlMenu(CollectionInfo *collection, bool sort)
 
                 menuItems.push_back(item);
             }
+        
 
-
-            std::sort( collection->items.begin(), collection->items.end(), VectorSort);
-
-            // todo: sorting should occur within the collection itself, not externally
-            if(sort)
-            {
-            	// sort the menu if requested
-                std::sort( menuItems.begin(), menuItems.end(), VectorSort);
-            }
-
+            collection->menusort = sort;
             collection->items.insert(collection->items.begin(), menuItems.begin(), menuItems.end());
 
             retVal = true;

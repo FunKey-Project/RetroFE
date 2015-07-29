@@ -35,7 +35,7 @@ public:
     std::string metadataType;
     std::string launcher;
     std::vector<Item *> items;
-
+    bool menusort;
 private:
     std::vector<CollectionInfo *> subcollections_;
     std::string metadataPath_;

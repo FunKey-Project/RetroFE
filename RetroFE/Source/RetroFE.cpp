@@ -585,7 +585,7 @@ CollectionInfo *RetroFE::getCollection(std::string collectionName)
         }
     }
 
-
+    collection->sortItems();
     return collection;
 }
 

@@ -354,7 +354,5 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
 
     metaDB_.injectMetadata(info);
     
-    info->sortItems();
-
     return true;
 }
