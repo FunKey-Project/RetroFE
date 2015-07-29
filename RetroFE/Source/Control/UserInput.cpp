@@ -153,7 +153,7 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
             std::stringstream sshat;
             sshat << joydesc.at(0);
             int hatnum;
-            ssjoy >> hatnum;
+            sshat >> hatnum;
             joydesc = joydesc.erase(0, 1);
 
             if(joydesc == "leftup") hat = SDL_HAT_LEFTUP;
