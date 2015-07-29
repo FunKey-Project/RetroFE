@@ -76,7 +76,7 @@
   </reloadableVideo>
 
 
-  <reloadableImage type="titleshot"             x="397"  y="520" xOrigin="center" yOrigin="center" height="360"    maxWidth="400" layer="2">
+  <reloadableImage type="screentitle"             x="397"  y="520" xOrigin="center" yOrigin="center" height="360"    maxWidth="400" layer="2">
     <onMenuEnter menuIndex="1">
       <set duration=".1">
         <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
