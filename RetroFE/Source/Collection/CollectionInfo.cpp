@@ -28,9 +28,9 @@ CollectionInfo::CollectionInfo(std::string name,
     : name(name)
     , listpath(listPath)
     , metadataType(metadataType)
+    , menusort(true)
     , metadataPath_(metadataPath)
 	, extensions_(extensions)
-    , menusort(true)
 {
 }
 
