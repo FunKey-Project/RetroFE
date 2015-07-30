@@ -76,6 +76,9 @@ private:
     Page *currentPage_;
     float keyInputDisable_;
     float currentTime_;
+    float lastLaunchReturnTime_;
+    float keyLastTime_;
+    float keyDelayTime_;
     Item *nextPageItem_;
     FontCache fontcache_;
     AttractMode attract_;

@@ -58,6 +58,9 @@ RetroFE::RetroFE(Configuration &c)
     , currentPage_(NULL)
     , keyInputDisable_(0)
     , currentTime_(0)
+    , lastLaunchReturnTime_(0)
+    , keyLastTime_(0)
+    , keyDelayTime_(.3) 
 {
 }
 
@@ -140,6 +143,7 @@ void RetroFE::launchExit()
     {
         currentPage_->launchExit();
     }
+    lastLaunchReturnTime_ = currentTime_;
 
 }
 
@@ -244,6 +248,14 @@ void RetroFE::run()
     {
         float lastTime = 0;
         float deltaTime = 0;
+        SDL_Event e;
+        if (SDL_PollEvent(&e))
+        {
+            if(input_.update(e))
+            {
+                attract_.reset();
+            }
+        }
 
         if(!currentPage_)
         {
@@ -251,19 +263,18 @@ void RetroFE::run()
             running = false;
             break;
         }
-        // todo: This could be transformed to use the state design pattern.
         switch(state)
         {
         case RETROFE_IDLE:
             if(currentPage_ && !splashMode)
             {
-                state = processUserInput(currentPage_);
-            }
-            else
-            {
-                // read and discard SDL input to prevent windows from balking at us
-                SDL_Event e;
-                (void)SDL_PollEvent(&e);
+
+                // account for when returning from a menu and the previous key was still "stuck" 
+                if(lastLaunchReturnTime_ == 0 || (currentTime_ - lastLaunchReturnTime_ > .3))
+                { 
+                    state = processUserInput(currentPage_);
+                    lastLaunchReturnTime_ = 0;
+                }
             }
 
             if((initialized || initializeError) && splashMode && currentPage_->getMinShowTime() <= (currentTime_ - preloadTime))
@@ -404,39 +415,50 @@ bool RetroFE::back(bool &exit)
 
 RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
 {
-    SDL_Event e;
     bool exit = false;
     RETROFE_STATE state = RETROFE_IDLE;
-    if (SDL_PollEvent(&e) == 0) return state;
+
     bool rememberMenu = false;
     config_.getProperty("rememberMenu", rememberMenu);
 
-    if(input_.update(e))
+    if(page->isHorizontalScroll())
     {
-        attract_.reset();
-
-	    if(page->isHorizontalScroll())
+        if (input_.keystate(UserInput::KeyCodeLeft))
         {
-            if (input_.keystate(UserInput::KeyCodeLeft))
-            {
-                page->setScrolling(Page::ScrollDirectionBack);
-            }
-            if (input_.keystate(UserInput::KeyCodeRight))
-            {
+            page->setScrolling(Page::ScrollDirectionBack);
+        }
+        if (input_.keystate(UserInput::KeyCodeRight))
+        {
+            page->setScrolling(Page::ScrollDirectionForward);
+        } 
+    }
+    else
+    { 
+        if (input_.keystate(UserInput::KeyCodeUp))
+        {
+            page->setScrolling(Page::ScrollDirectionBack);
+        }
+        if (input_.keystate(UserInput::KeyCodeDown))
+        {
                 page->setScrolling(Page::ScrollDirectionForward);
-            } 
         }
-        else
-        { 
-            if (input_.keystate(UserInput::KeyCodeUp))
-            {
-                page->setScrolling(Page::ScrollDirectionBack);
-            }
-            if (input_.keystate(UserInput::KeyCodeDown))
-            {
-                    page->setScrolling(Page::ScrollDirectionForward);
-            }
-        }
+    }
+
+    if (!input_.keystate(UserInput::KeyCodePageUp) &&
+    !input_.keystate(UserInput::KeyCodePageDown) &&
+    !input_.keystate(UserInput::KeyCodeLetterUp) &&
+    !input_.keystate(UserInput::KeyCodeLetterDown))
+    {
+        keyLastTime_ = 0;
+        keyDelayTime_= 0.3;
+    }
+
+    if((currentTime_ - keyLastTime_) > keyDelayTime_ || keyLastTime_ == 0)
+    {
+        keyLastTime_ = currentTime_;
+        keyDelayTime_-= .05;
+        if(keyDelayTime_< 0.1) keyDelayTime_= 0.1;
+        
         if (input_.keystate(UserInput::KeyCodePageUp))
         {
             page->pageScroll(Page::ScrollDirectionBack);
@@ -453,65 +475,65 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         {
             page->letterScroll(Page::ScrollDirectionForward);
         }
+    }
 
-        if (input_.keystate(UserInput::KeyCodeAdminMode))
-        {
-            //todo: add admin mode support
-        }
-        if (input_.keystate(UserInput::KeyCodeSelect) && page->isMenuIdle())
-        {
-            nextPageItem_ = page->getSelectedItem();
+    if (input_.keystate(UserInput::KeyCodeAdminMode))
+    {
+        //todo: add admin mode support
+    }
+    if (input_.keystate(UserInput::KeyCodeSelect) && page->isMenuIdle())
+    {
+        nextPageItem_ = page->getSelectedItem();
 
-            if(nextPageItem_)
+        if(nextPageItem_)
+        {
+            if(nextPageItem_->leaf)
             {
-                if(nextPageItem_->leaf)
+                state = RETROFE_LAUNCH_REQUEST;
+            }
+            else
+            {
+                bool menuSort = true;
+                config_.setProperty("currentCollection", nextPageItem_->name);
+                config_.getProperty("collections." + nextPageItem_->name + ".list.menuSort", menuSort);
+
+                CollectionInfo *info = getCollection(nextPageItem_->name);
+
+                MenuParser mp;
+                mp.buildMenuItems(info, menuSort);
+                page->pushCollection(info);
+
+                if(rememberMenu && lastMenuOffsets_.find(nextPageItem_->name) != lastMenuOffsets_.end())
                 {
-                    state = RETROFE_LAUNCH_REQUEST;
+                    page->setScrollOffsetIndex(lastMenuOffsets_[nextPageItem_->name]);
                 }
-                else
-                {
-                	bool menuSort = true;
-                    config_.setProperty("currentCollection", nextPageItem_->name);
-                    config_.getProperty("collections." + nextPageItem_->name + ".list.menuSort", menuSort);
-
-                    CollectionInfo *info = getCollection(nextPageItem_->name);
-
-                    MenuParser mp;
-                    mp.buildMenuItems(info, menuSort);
-                    page->pushCollection(info);
-
-                    if(rememberMenu && lastMenuOffsets_.find(nextPageItem_->name) != lastMenuOffsets_.end())
-                    {
-                        page->setScrollOffsetIndex(lastMenuOffsets_[nextPageItem_->name]);
-                    }
-                    
-                    state = RETROFE_NEXT_PAGE_REQUEST;
-                }
+                
+                state = RETROFE_NEXT_PAGE_REQUEST;
             }
         }
+    }
 
-        if (input_.keystate(UserInput::KeyCodeBack) && page->isMenuIdle())
+    if (input_.keystate(UserInput::KeyCodeBack) && page->isMenuIdle())
+    {
+        if(back(exit) || exit)
         {
-            if(back(exit) || exit)
-            {
-                state = (exit) ? RETROFE_QUIT_REQUEST : RETROFE_BACK_REQUEST;
-            }
+            state = (exit) ? RETROFE_QUIT_REQUEST : RETROFE_BACK_REQUEST;
         }
+    }
 
-        if (input_.keystate(UserInput::KeyCodeQuit))
-        {
-            state = RETROFE_QUIT_REQUEST;
-        }
+    if (input_.keystate(UserInput::KeyCodeQuit))
+    {
+        state = RETROFE_QUIT_REQUEST;
+    }
 
-        if(!input_.keystate(UserInput::KeyCodeUp) &&
-                !input_.keystate(UserInput::KeyCodeLeft) &&
-                !input_.keystate(UserInput::KeyCodeDown) &&
-                !input_.keystate(UserInput::KeyCodeRight) &&
-                !input_.keystate(UserInput::KeyCodePageUp) &&
-                !input_.keystate(UserInput::KeyCodePageDown))
-        {
-            page->setScrolling(Page::ScrollDirectionIdle);
-        }
+    if(!input_.keystate(UserInput::KeyCodeUp) &&
+            !input_.keystate(UserInput::KeyCodeLeft) &&
+            !input_.keystate(UserInput::KeyCodeDown) &&
+            !input_.keystate(UserInput::KeyCodeRight) &&
+            !input_.keystate(UserInput::KeyCodePageUp) &&
+            !input_.keystate(UserInput::KeyCodePageDown))
+    {
+        page->setScrolling(Page::ScrollDirectionIdle);
     }
 
     return state;
