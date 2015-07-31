@@ -411,7 +411,6 @@ void Page::letterScroll(ScrollDirection direction)
 bool Page::pushCollection(CollectionInfo *collection)
 {
     collections_.push_back(collection);
-    std::vector<ComponentItemBinding *> *sprites = ComponentItemBindingBuilder::buildCollectionItems(&collection->items);
 
     int menuExitIndex = -1;
     int menuEnterIndex = -1;
@@ -436,7 +435,7 @@ bool Page::pushCollection(CollectionInfo *collection)
     activeMenu_ = menus_[menuDepth_];
     activeMenu_->collectionName = collection->name;
     activeMenu_->destroyItems();
-    activeMenu_->setItems(sprites);
+    activeMenu_->setItems(collection);
     activeMenu_->triggerMenuEnterEvent();
     playlist_ = collection->playlists.begin();
 
@@ -515,10 +514,6 @@ bool Page::popCollection()
         }
     }
 
-    if(collection)
-    {
-        delete collection;
-    }
 
     return true;
 }
@@ -529,10 +524,8 @@ void Page::nextPlaylist()
     playlist_++;
     if(playlist_ == collection->playlists.end()) playlist_ = collection->playlists.begin();
 
-    std::vector<ComponentItemBinding *> *sprites = ComponentItemBindingBuilder::buildCollectionItems(&playlist_->second);
-    
     activeMenu_->destroyItems();
-    activeMenu_->setItems(sprites);
+    activeMenu_->setItems(collection);
     activeMenu_->triggerMenuEnterEvent();
 }
 

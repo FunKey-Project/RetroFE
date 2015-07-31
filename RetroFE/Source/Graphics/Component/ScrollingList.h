@@ -18,7 +18,6 @@
 #include <vector>
 #include "Component.h"
 #include "../Animate/Tween.h"
-#include "../ComponentItemBinding.h"
 #include "../MenuNotifierInterface.h"
 #include "../ViewInfo.h"
 #include "../../Database/Configuration.h"
@@ -55,9 +54,9 @@ public:
     void triggerMenuEnterEvent();
     void triggerMenuExitEvent();
 
-    bool allocateTexture(ComponentItemBinding *s);
-    void deallocateTexture(ComponentItemBinding *s);
-    void setItems(std::vector<ComponentItemBinding *> *spriteList);
+    bool allocateTexture(unsigned int index, Item *i);
+    void deallocateTexture(unsigned int index);
+    void setItems(CollectionInfo *info);
     void destroyItems();
     void setPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<AnimationEvents *> *tweenPoints);
     void setScrollDirection(ScrollDirection direction);
@@ -65,17 +64,14 @@ public:
     void pageDown();
     void letterUp();
     void letterDown();
+    void letterChange(bool increment);
     bool isIdle();
     unsigned int getScrollOffsetIndex();
     void setScrollOffsetIndex(unsigned int index);
     void setSelectedIndex(int selectedIndex);
-    ComponentItemBinding *getSelectedCollectionItemSprite();
-    ComponentItemBinding *getPendingCollectionItemSprite();
-    ComponentItemBinding *getPendingSelectedCollectionItemSprite();
+    Item *getPendingItem();
     void addComponentForNotifications(MenuNotifierInterface *c);
     void removeComponentForNotifications(MenuNotifierInterface *c);
-    std::vector<ComponentItemBinding *> *getCollectionItemSprites();
-    void removeSelectedItem();
     void freeGraphicsMemory();
     void update(float dt);
     void draw();
@@ -84,13 +80,14 @@ public:
     void setStartScrollTime(float value);
     bool horizontalScroll;
 
+
 private:
     void click(double nextScrollTime);
     void deallocateSpritePoints();
     void allocateSpritePoints();
-    void updateSprite(unsigned int spriteIndex, unsigned int pointIndex, bool newScroll, float dt, double nextScrollTime);
-    unsigned int getNextTween(unsigned int currentIndex, std::vector<ViewInfo *> *list);
     void resetTweens(Component *c, AnimationEvents *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime);
+    unsigned int loopIncrement(unsigned int offset, unsigned int i, unsigned int size);
+    unsigned int loopDecrement(unsigned int offset, unsigned int i, unsigned int size);
 
     enum ScrollState
     {
@@ -100,37 +97,38 @@ private:
         ScrollStateIdle
     };
 
-    std::vector<ComponentItemBinding *> *spriteList_;
+    std::vector<Component *> *spriteList_;
     std::vector<ViewInfo *> *scrollPoints_;
     std::vector<AnimationEvents *> *tweenPoints_;
     std::vector<MenuNotifierInterface *> notificationComponents_;
-    float tweenEnterTime_;
     bool focus_;
 
-    unsigned int firstSpriteIndex_;
-    unsigned int selectedSpriteListIndex_;
+    unsigned int itemIndex_;
+    unsigned int componentIndex_;
+    unsigned int selectedOffsetIndex_;
+
     bool scrollStopRequested_;
     bool notifyAllRequested_;
+
     ScrollDirection currentScrollDirection_;
     ScrollDirection requestedScrollDirection_;
     ScrollState currentScrollState_;
+
     float scrollAcceleration_;
     float startScrollTime_;
     float scrollPeriod_;
-
-    int circularIncrement(unsigned int index, unsigned int offset, std::vector<ComponentItemBinding *> *list);
-    void circularIncrement(unsigned &index, std::vector<ComponentItemBinding *> *list);
-    void circularDecrement(unsigned &index, std::vector<ComponentItemBinding *> *list);
-    void circularIncrement(unsigned &index, std::vector<ViewInfo *> *list);
-    void circularDecrement(unsigned &index, std::vector<ViewInfo *> *list);
-    void updateOffset(float dt);
-
-    std::string collection_;
+    
     Configuration &config_;
     float scaleX_;
     float scaleY_;
     Font *fontInst_;
     std::string layoutKey_;
     std::string imageType_;
+    CollectionInfo *collection_;
+
+        
+    std::vector<Item *> *items_;
+    std::vector<Component *> components_;
+    
 };
 
