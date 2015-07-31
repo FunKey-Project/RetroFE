@@ -453,7 +453,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         keyDelayTime_= 0.3;
     }
 
-    if((currentTime_ - keyLastTime_) > keyDelayTime_ || keyLastTime_ == 0)
+    else if((currentTime_ - keyLastTime_) > keyDelayTime_ || keyLastTime_ == 0)
     {
         keyLastTime_ = currentTime_;
         keyDelayTime_-= .05;
