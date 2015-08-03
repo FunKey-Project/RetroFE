@@ -79,8 +79,7 @@ bool UserInput::initialize()
 
     for(int i = 0; i < SDL_NumJoysticks(); ++i)
     {
-        joystick_ = SDL_JoystickOpen(i);
-        break;
+        joysticks_.push_back(SDL_JoystickOpen(i));
     }
     
 
