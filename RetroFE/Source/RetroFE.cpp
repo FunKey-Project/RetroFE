@@ -60,7 +60,7 @@ RetroFE::RetroFE(Configuration &c)
     , currentTime_(0)
     , lastLaunchReturnTime_(0)
     , keyLastTime_(0)
-    , keyDelayTime_(.3) 
+    , keyDelayTime_(.3f) 
 {
 }
 
@@ -450,14 +450,14 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
     !input_.keystate(UserInput::KeyCodeLetterDown))
     {
         keyLastTime_ = 0;
-        keyDelayTime_= 0.3;
+        keyDelayTime_= 0.3f;
     }
 
     else if((currentTime_ - keyLastTime_) > keyDelayTime_ || keyLastTime_ == 0)
     {
         keyLastTime_ = currentTime_;
-        keyDelayTime_-= .05;
-        if(keyDelayTime_< 0.1) keyDelayTime_= 0.1;
+        keyDelayTime_-= .05f;
+        if(keyDelayTime_< 0.1f) keyDelayTime_= 0.1f;
         
         if (input_.keystate(UserInput::KeyCodePageUp))
         {
