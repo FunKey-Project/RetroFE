@@ -21,6 +21,6 @@ class MenuNotifierInterface
 {
 public:
     virtual ~MenuNotifierInterface() {}
-    virtual void OnNewItemSelected(Item *) = 0;
+    virtual void onNewItemSelected(Item *) = 0;
 };
 

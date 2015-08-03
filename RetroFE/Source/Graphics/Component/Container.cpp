@@ -20,25 +20,25 @@
 
 Container::Container()
 {
-    AllocateGraphicsMemory();
+    allocateGraphicsMemory();
 }
 
 Container::~Container()
 {
-    FreeGraphicsMemory();
+    freeGraphicsMemory();
 }
 
-void Container::FreeGraphicsMemory()
+void Container::freeGraphicsMemory()
 {
-    Component::FreeGraphicsMemory();
+    Component::freeGraphicsMemory();
 }
 
-void Container::AllocateGraphicsMemory()
+void Container::allocateGraphicsMemory()
 {
-    Component::AllocateGraphicsMemory();
+    Component::allocateGraphicsMemory();
 }
 
-void Container::Draw()
+void Container::draw()
 {
-    Component::Draw();
+    Component::draw();
 }

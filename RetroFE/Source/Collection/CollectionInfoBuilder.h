@@ -29,12 +29,13 @@ class CollectionInfoBuilder
 public:
     CollectionInfoBuilder(Configuration &c, MetadataDatabase &mdb);
     virtual ~CollectionInfoBuilder();
-    CollectionInfo *BuildCollection(std::string collectionName);
-    static bool CreateCollectionDirectory(std::string collectionName);
+    CollectionInfo *buildCollection(std::string collectionName);
+    CollectionInfo *buildCollection(std::string collectionName, std::string mergedCollectionName);
+    static bool createCollectionDirectory(std::string collectionName);
 
 private:
-    Configuration &Conf;
-    MetadataDatabase &MetaDB;
-    bool ImportBasicList(CollectionInfo *info, std::string file, std::string launcher, std::map<std::string, Item *> &list);
-    bool ImportDirectory(CollectionInfo *info);
+    Configuration &conf_;
+    MetadataDatabase &metaDB_;
+    bool ImportBasicList(CollectionInfo *info, std::string file, std::map<std::string, Item *> &list);
+    bool ImportDirectory(CollectionInfo *info, std::string mergedCollectionName);
 };

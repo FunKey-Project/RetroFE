@@ -33,7 +33,7 @@ Utils::~Utils()
 {
 }
 
-std::string Utils::ToLower(std::string str)
+std::string Utils::toLower(std::string str)
 {
     for(unsigned int i=0; i < str.length(); ++i)
     {
@@ -44,7 +44,7 @@ std::string Utils::ToLower(std::string str)
     return str;
 }
 
-std::string Utils::UppercaseFirst(std::string str)
+std::string Utils::uppercaseFirst(std::string str)
 {
     if(str.length() > 0)
     {
@@ -54,7 +54,7 @@ std::string Utils::UppercaseFirst(std::string str)
 
     return str;
 }
-std::string Utils::FilterComments(std::string line)
+std::string Utils::filterComments(std::string line)
 {
     size_t position;
 
@@ -69,7 +69,7 @@ std::string Utils::FilterComments(std::string line)
     return line;
 }
 
-std::string Utils::CombinePath(std::list<std::string> &paths)
+std::string Utils::combinePath(std::list<std::string> &paths)
 {
     std::list<std::string>::iterator it = paths.begin();
     std::string path;
@@ -83,7 +83,7 @@ std::string Utils::CombinePath(std::list<std::string> &paths)
 
     while(it != paths.end())
     {
-        path += Utils::PathSeparator;
+        path += Utils::pathSeparator;
         path += *it;
         it++;
     }
@@ -91,33 +91,33 @@ std::string Utils::CombinePath(std::list<std::string> &paths)
     return path;
 }
 
-std::string Utils::CombinePath(std::string path1, std::string path2)
+std::string Utils::combinePath(std::string path1, std::string path2)
 {
     std::list<std::string> paths;
     paths.push_back(path1);
     paths.push_back(path2);
-    return CombinePath(paths);
+    return combinePath(paths);
 }
 
-std::string Utils::CombinePath(std::string path1, std::string path2, std::string path3)
+std::string Utils::combinePath(std::string path1, std::string path2, std::string path3)
 {
     std::list<std::string> paths;
     paths.push_back(path1);
     paths.push_back(path2);
     paths.push_back(path3);
-    return CombinePath(paths);
+    return combinePath(paths);
 }
 
-std::string Utils::CombinePath(std::string path1, std::string path2, std::string path3, std::string path4)
+std::string Utils::combinePath(std::string path1, std::string path2, std::string path3, std::string path4)
 {
     std::list<std::string> paths;
     paths.push_back(path1);
     paths.push_back(path2);
     paths.push_back(path3);
     paths.push_back(path4);
-    return CombinePath(paths);
+    return combinePath(paths);
 }
-std::string Utils::CombinePath(std::string path1, std::string path2, std::string path3, std::string path4, std::string path5)
+std::string Utils::combinePath(std::string path1, std::string path2, std::string path3, std::string path4, std::string path5)
 {
     std::list<std::string> paths;
     paths.push_back(path1);
@@ -125,16 +125,16 @@ std::string Utils::CombinePath(std::string path1, std::string path2, std::string
     paths.push_back(path3);
     paths.push_back(path4);
     paths.push_back(path5);
-    return CombinePath(paths);
+    return combinePath(paths);
 }
 
 
-bool Utils::FindMatchingFile(std::string prefix, std::vector<std::string> &extensions, std::string &file)
+bool Utils::findMatchingFile(std::string prefix, std::vector<std::string> &extensions, std::string &file)
 {
     for(unsigned int i = 0; i < extensions.size(); ++i)
     {
         std::string temp = prefix + "." + extensions[i];
-        temp = Configuration::ConvertToAbsolutePath(Configuration::GetAbsolutePath(), temp);
+        temp = Configuration::convertToAbsolutePath(Configuration::absolutePath, temp);
 
         std::ifstream f(temp.c_str());
 
@@ -149,7 +149,7 @@ bool Utils::FindMatchingFile(std::string prefix, std::vector<std::string> &exten
 }
 
 
-std::string Utils::Replace(
+std::string Utils::replace(
     std::string subject,
     const std::string& search,
     const std::string& replace)
@@ -164,7 +164,7 @@ std::string Utils::Replace(
 }
 
 
-float Utils::ConvertFloat(std::string content)
+float Utils::convertFloat(std::string content)
 {
     float retVal = 0;
     std::stringstream ss;
@@ -174,7 +174,7 @@ float Utils::ConvertFloat(std::string content)
     return retVal;
 }
 
-int Utils::ConvertInt(std::string content)
+int Utils::convertInt(std::string content)
 {
     int retVal = 0;
     std::stringstream ss;
@@ -184,19 +184,19 @@ int Utils::ConvertInt(std::string content)
     return retVal;
 }
 
-void Utils::ReplaceSlashesWithUnderscores(std::string &content)
+void Utils::replaceSlashesWithUnderscores(std::string &content)
 {
     std::replace(content.begin(), content.end(), '\\', '_');
     std::replace(content.begin(), content.end(), '/', '_');
 }
 
 
-std::string Utils::GetDirectory(std::string filePath)
+std::string Utils::getDirectory(std::string filePath)
 {
 
     std::string directory = filePath;
 
-    const size_t last_slash_idx = filePath.rfind(PathSeparator);
+    const size_t last_slash_idx = filePath.rfind(pathSeparator);
     if (std::string::npos != last_slash_idx)
     {
         directory = filePath.substr(0, last_slash_idx);
@@ -205,13 +205,13 @@ std::string Utils::GetDirectory(std::string filePath)
     return directory;
 }
 
-std::string Utils::GetParentDirectory(std::string directory)
+std::string Utils::getParentDirectory(std::string directory)
 {
-    size_t last_slash_idx = directory.find_last_of(PathSeparator);
+    size_t last_slash_idx = directory.find_last_of(pathSeparator);
     if(directory.length() - 1 == last_slash_idx)
     {
         directory = directory.erase(last_slash_idx, directory.length()-1);
-        last_slash_idx = directory.find_last_of(PathSeparator);
+        last_slash_idx = directory.find_last_of(pathSeparator);
     }
 
     if (std::string::npos != last_slash_idx)
@@ -223,12 +223,12 @@ std::string Utils::GetParentDirectory(std::string directory)
 }
 
 
-std::string Utils::GetFileName(std::string filePath)
+std::string Utils::getFileName(std::string filePath)
 {
 
     std::string filename = filePath;
 
-    const size_t last_slash_idx = filePath.rfind(PathSeparator);
+    const size_t last_slash_idx = filePath.rfind(pathSeparator);
     if (std::string::npos != last_slash_idx)
     {
         filename = filePath.erase(0, last_slash_idx+1);

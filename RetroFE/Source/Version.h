@@ -20,5 +20,5 @@
 class Version
 {
 public:
-    static std::string GetString();
+    static std::string getString();
 };

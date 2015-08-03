@@ -21,26 +21,26 @@
 
 Component::Component()
 {
-    Tweens = NULL;
-    SelectedItem = NULL;
-    NewItemSelectedSinceEnter = false;
-    BackgroundTexture = NULL;
-    FreeGraphicsMemory();
+    tweens_ = NULL;
+    selectedItem_ = NULL;
+    newItemSelectedSinceEnter = false;
+    backgroundTexture_ = NULL;
+    freeGraphicsMemory();
 
 }
 
 Component::Component(const Component &copy)
 {
-    Tweens = NULL;
-    SelectedItem = NULL;
-    NewItemSelectedSinceEnter = false;
-    BackgroundTexture = NULL;
-    FreeGraphicsMemory();
+    tweens_ = NULL;
+    selectedItem_ = NULL;
+    newItemSelectedSinceEnter = false;
+    backgroundTexture_ = NULL;
+    freeGraphicsMemory();
 
-    if(copy.Tweens)
+    if(copy.tweens_)
     {
-        AnimationEvents *tweens = new AnimationEvents(*copy.Tweens);
-        SetTweens(tweens);
+        AnimationEvents *tweens = new AnimationEvents(*copy.tweens_);
+        setTweens(tweens);
     }
 
 
@@ -48,249 +48,214 @@ Component::Component(const Component &copy)
 
 Component::~Component()
 {
-    FreeGraphicsMemory();
+    freeGraphicsMemory();
 }
 
-void Component::FreeGraphicsMemory()
+void Component::freeGraphicsMemory()
 {
-    CurrentAnimationState = HIDDEN;
-    EnterRequested = false;
-    ExitRequested = false;
-    MenuEnterRequested = false;
-    MenuEnterIndex = -1;
-    MenuScrollRequested = false;
-    MenuExitRequested = false;
-    MenuExitIndex = -1;
+    currentAnimationState = HIDDEN;
+    enterRequested = false;
+    exitRequested = false;
+    menuEnterRequested = false;
+    menuEnterIndex = -1;
+    menuScrollRequested = false;
+    menuExitRequested = false;
+    menuExitIndex = -1;
 
-    NewItemSelected = false;
-    HighlightExitComplete = false;
-    CurrentTweens = NULL;
-    CurrentTweenIndex = 0;
-    CurrentTweenComplete = false;
-    ElapsedTweenTime = 0;
-    ScrollActive = false;
+    newItemSelected = false;
+    highlightExitComplete = false;
+    currentTweens_ = NULL;
+    currentTweenIndex_ = 0;
+    currentTweenComplete_ = false;
+    elapsedTweenTime_ = 0;
+    scrollActive = false;
 
-    if(BackgroundTexture)
+    if(backgroundTexture_)
     {
-        SDL_LockMutex(SDL::GetMutex());
-        SDL_DestroyTexture(BackgroundTexture);
-        SDL_UnlockMutex(SDL::GetMutex());
+        SDL_LockMutex(SDL::getMutex());
+        SDL_DestroyTexture(backgroundTexture_);
+        SDL_UnlockMutex(SDL::getMutex());
 
-        BackgroundTexture = NULL;
+        backgroundTexture_ = NULL;
     }
 }
-void Component::AllocateGraphicsMemory()
+void Component::allocateGraphicsMemory()
 {
-    if(!BackgroundTexture)
+    if(!backgroundTexture_)
     {
         // make a 4x4 pixel wide surface to be stretched during rendering, make it a white background so we can use
         // color  later
         SDL_Surface *surface = SDL_CreateRGBSurface(0, 4, 4, 32, 0, 0, 0, 0);
         SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 255, 255, 255));
 
-        SDL_LockMutex(SDL::GetMutex());
-        BackgroundTexture = SDL_CreateTextureFromSurface(SDL::GetRenderer(), surface);
-        SDL_UnlockMutex(SDL::GetMutex());
+        SDL_LockMutex(SDL::getMutex());
+        backgroundTexture_ = SDL_CreateTextureFromSurface(SDL::getRenderer(), surface);
+        SDL_UnlockMutex(SDL::getMutex());
 
         SDL_FreeSurface(surface);
-        SDL_SetTextureBlendMode(BackgroundTexture, SDL_BLENDMODE_BLEND);
+        SDL_SetTextureBlendMode(backgroundTexture_, SDL_BLENDMODE_BLEND);
     }
 }
 
-Item *Component::GetSelectedItem()
+Item *Component::getSelectedItem()
 {
-    return SelectedItem;
+    return selectedItem_;
 }
 
-void Component::TriggerEnterEvent()
+void Component::triggerEnterEvent()
 {
-    EnterRequested = true;
+    enterRequested = true;
 }
 
-void Component::TriggerExitEvent()
+void Component::triggerExitEvent()
 {
-    ExitRequested = true;
-}
-
-
-
-void Component::TriggerMenuEnterEvent(int menuIndex)
-{
-    MenuEnterRequested = true;
-    MenuEnterIndex = menuIndex;
-}
-
-void Component::TriggerMenuScrollEvent()
-{
-    MenuScrollRequested = true;
+    exitRequested = true;
 }
 
 
-void Component::TriggerMenuExitEvent(int menuIndex)
+
+void Component::triggerMenuEnterEvent(int menuIndex)
 {
-    MenuExitRequested = true;
-    MenuExitIndex = menuIndex;
-}
-void Component::TriggerHighlightEvent(Item *selectedItem)
-{
-    NewItemSelected = true;
-    this->SelectedItem = selectedItem;
+    menuEnterRequested = true;
+    menuEnterIndex = menuIndex;
 }
 
-
-bool Component::IsIdle()
+void Component::triggerMenuScrollEvent()
 {
-    return (CurrentAnimationState == IDLE);
-}
-
-bool Component::IsHidden()
-{
-    return (CurrentAnimationState == HIDDEN);
-}
-bool Component::IsWaiting()
-{
-    return (CurrentAnimationState == HIGHLIGHT_WAIT);
-}
-
-bool Component::IsMenuScrolling()
-{
-    return (CurrentAnimationState == MENU_ENTER || CurrentAnimationState == MENU_SCROLL || CurrentAnimationState == MENU_EXIT || MenuScrollRequested);
+    menuScrollRequested = true;
 }
 
 
-std::string Component::GetCollectionName()
+void Component::triggerMenuExitEvent(int menuIndex)
 {
-    return CollectionName;
+    menuExitRequested = true;
+    menuExitIndex = menuIndex;
 }
-
-void Component::SetCollectionName(std::string collectionName)
+void Component::triggerHighlightEvent(Item *selectedItem)
 {
-    CollectionName = collectionName;
-}
-
-AnimationEvents *Component::GetTweens()
-{
-    return Tweens;
-}
-
-void Component::SetTweens(AnimationEvents *set)
-{
-    Tweens = set;
-    ForceIdle();
-}
-
-void Component::ForceIdle()
-{
-    CurrentAnimationState = IDLE;
-    CurrentTweenIndex = 0;
-    CurrentTweenComplete = false;
-    ElapsedTweenTime = 0;
-    CurrentTweens = NULL;
-}
-
-ViewInfo *Component::GetBaseViewInfo()
-{
-    return &BaseViewInfo;
-}
-void Component::UpdateBaseViewInfo(ViewInfo &info)
-{
-    BaseViewInfo = info;
-}
-
-bool Component::IsScrollActive() const
-{
-    return ScrollActive;
-}
-
-void Component::SetScrollActive(bool scrollActive)
-{
-    ScrollActive = scrollActive;
+    newItemSelected = true;
+    this->selectedItem_ = selectedItem;
 }
 
 
-void Component::Update(float dt)
+bool Component::isIdle()
 {
-    ElapsedTweenTime += dt;
-    HighlightExitComplete = false;
-    if(IsHidden() || IsWaiting() || (IsIdle() && ExitRequested))
+    return (currentAnimationState == IDLE);
+}
+
+bool Component::isHidden()
+{
+    return (currentAnimationState == HIDDEN);
+}
+bool Component::isWaiting()
+{
+    return (currentAnimationState == HIGHLIGHT_WAIT);
+}
+
+bool Component::isMenuScrolling()
+{
+    return (currentAnimationState == MENU_ENTER || currentAnimationState == MENU_SCROLL || currentAnimationState == MENU_EXIT || menuScrollRequested);
+}
+
+void Component::setTweens(AnimationEvents *set)
+{
+    tweens_ = set;
+    forceIdle();
+}
+
+void Component::forceIdle()
+{
+    currentAnimationState = IDLE;
+    currentTweenIndex_ = 0;
+    currentTweenComplete_ = false;
+    elapsedTweenTime_ = 0;
+    currentTweens_ = NULL;
+}
+
+
+void Component::update(float dt)
+{
+    elapsedTweenTime_ += dt;
+    highlightExitComplete = false;
+    if(isHidden() || isWaiting() || (isIdle() && exitRequested))
     {
-        CurrentTweenComplete = true;
+        currentTweenComplete_ = true;
     }
 
-    if(CurrentTweenComplete)
+    if(currentTweenComplete_)
     {
-        CurrentTweens = NULL;
+        currentTweens_ = NULL;
 
         // There was no request to override our state path. Continue on as normal.
         std::stringstream ss;
-        switch(CurrentAnimationState)
+        switch(currentAnimationState)
         {
         case MENU_ENTER:
-            CurrentTweens = NULL;
-            CurrentAnimationState = IDLE;
+            currentTweens_ = NULL;
+            currentAnimationState = IDLE;
             break;
 
         case MENU_SCROLL:
-            CurrentTweens = NULL;
-            CurrentAnimationState = IDLE;
+            currentTweens_ = NULL;
+            currentAnimationState = IDLE;
             break;
 
         case MENU_EXIT:
-            CurrentTweens = NULL;
-            CurrentAnimationState = IDLE;
+            currentTweens_ = NULL;
+            currentAnimationState = IDLE;
             break;
 
 
         case ENTER:
-            CurrentTweens = Tweens->GetAnimation("enter", MenuEnterIndex);
-            CurrentAnimationState = HIGHLIGHT_ENTER;
+            currentTweens_ = tweens_->getAnimation("enter", menuEnterIndex);
+            currentAnimationState = HIGHLIGHT_ENTER;
             break;
 
         case EXIT:
-            CurrentTweens = NULL;
-            CurrentAnimationState = HIDDEN;
+            currentTweens_ = NULL;
+            currentAnimationState = HIDDEN;
             break;
 
         case HIGHLIGHT_ENTER:
-            CurrentTweens = Tweens->GetAnimation("idle", MenuEnterIndex);
-            CurrentAnimationState = IDLE;
+            currentTweens_ = tweens_->getAnimation("idle", menuEnterIndex);
+            currentAnimationState = IDLE;
             break;
 
         case IDLE:
             // prevent us from automatically jumping to the exit tween upon enter
-            if(EnterRequested)
+            if(enterRequested)
             {
-                EnterRequested = false;
-                NewItemSelected = false;
+                enterRequested = false;
+                newItemSelected = false;
             }
-            else if(MenuExitRequested && (!MenuEnterRequested || MenuExitRequested <= MenuEnterRequested))
+            else if(menuExitRequested && (!menuEnterRequested || menuExitRequested <= menuEnterRequested))
             {
-                CurrentTweens = Tweens->GetAnimation("menuExit", MenuExitIndex);
-                CurrentAnimationState = MENU_EXIT;
-                MenuExitRequested = false;
+                currentTweens_ = tweens_->getAnimation("menuExit", menuExitIndex);
+                currentAnimationState = MENU_EXIT;
+                menuExitRequested = false;
             }
-            else if(MenuEnterRequested && (!MenuExitRequested || MenuExitRequested > MenuEnterRequested))
+            else if(menuEnterRequested && (!menuExitRequested || menuExitRequested > menuEnterRequested))
             {
-                CurrentTweens = Tweens->GetAnimation("menuEnter", MenuEnterIndex);
-                CurrentAnimationState = MENU_ENTER;
-                MenuEnterRequested = false;
+                currentTweens_ = tweens_->getAnimation("menuEnter", menuEnterIndex);
+                currentAnimationState = MENU_ENTER;
+                menuEnterRequested = false;
 
             }
-            else if(MenuScrollRequested)
+            else if(menuScrollRequested)
             {
-                MenuScrollRequested = false;
-                CurrentTweens = Tweens->GetAnimation("menuScroll", MenuEnterIndex);
-                CurrentAnimationState = MENU_SCROLL;
+                menuScrollRequested = false;
+                currentTweens_ = tweens_->getAnimation("menuScroll", menuEnterIndex);
+                currentAnimationState = MENU_SCROLL;
             }
-            else if(IsScrollActive() || NewItemSelected || ExitRequested)
+            else if(scrollActive || newItemSelected || exitRequested)
             {
-                CurrentTweens = Tweens->GetAnimation("highlightExit", MenuEnterIndex);
-                CurrentAnimationState = HIGHLIGHT_EXIT;
+                currentTweens_ = tweens_->getAnimation("highlightExit", menuEnterIndex);
+                currentAnimationState = HIGHLIGHT_EXIT;
             }
             else
             {
-                CurrentTweens = Tweens->GetAnimation("idle", MenuEnterIndex);
-                CurrentAnimationState = IDLE;
+                currentTweens_ = tweens_->getAnimation("idle", menuEnterIndex);
+                currentAnimationState = IDLE;
             }
             break;
 
@@ -299,195 +264,194 @@ void Component::Update(float dt)
             // intentionally break down
         case HIGHLIGHT_WAIT:
 
-            if(ExitRequested && (CurrentAnimationState == HIGHLIGHT_WAIT))
+            if(exitRequested && (currentAnimationState == HIGHLIGHT_WAIT))
             {
-                CurrentTweens = Tweens->GetAnimation("highlightExit", MenuEnterIndex);
-                CurrentAnimationState = HIGHLIGHT_EXIT;
+                currentTweens_ = tweens_->getAnimation("highlightExit", menuEnterIndex);
+                currentAnimationState = HIGHLIGHT_EXIT;
 
             }
-            else if(ExitRequested && (CurrentAnimationState == HIGHLIGHT_EXIT))
+            else if(exitRequested && (currentAnimationState == HIGHLIGHT_EXIT))
             {
 
-                CurrentTweens = Tweens->GetAnimation("exit", MenuEnterIndex);
-                CurrentAnimationState = EXIT;
-                ExitRequested = false;
+                currentTweens_ = tweens_->getAnimation("exit", menuEnterIndex);
+                currentAnimationState = EXIT;
+                exitRequested = false;
             }
-            else if(IsScrollActive())
+            else if(scrollActive)
             {
-                CurrentTweens = NULL;
-                CurrentAnimationState = HIGHLIGHT_WAIT;
+                currentTweens_ = NULL;
+                currentAnimationState = HIGHLIGHT_WAIT;
             }
-            else if(NewItemSelected)
+            else if(newItemSelected)
             {
-                CurrentTweens = Tweens->GetAnimation("highlightEnter", MenuEnterIndex);
-                CurrentAnimationState = HIGHLIGHT_ENTER;
-                HighlightExitComplete = true;
-                NewItemSelected = false;
+                currentTweens_ = tweens_->getAnimation("highlightEnter", menuEnterIndex);
+                currentAnimationState = HIGHLIGHT_ENTER;
+                highlightExitComplete = true;
+                newItemSelected = false;
             }
             else
             {
-                CurrentTweens = NULL;
-                CurrentAnimationState = HIGHLIGHT_WAIT;
+                currentTweens_ = NULL;
+                currentAnimationState = HIGHLIGHT_WAIT;
             }
             break;
 
         case HIDDEN:
-            if(EnterRequested || ExitRequested)
+            if(enterRequested || exitRequested)
             {
-                CurrentTweens = Tweens->GetAnimation("enter", MenuEnterIndex);
-                CurrentAnimationState = ENTER;
+                currentTweens_ = tweens_->getAnimation("enter", menuEnterIndex);
+                currentAnimationState = ENTER;
             }
 
-            else if(MenuExitRequested && (!MenuEnterRequested || MenuExitRequested <= MenuEnterRequested))
+            else if(menuExitRequested && (!menuEnterRequested || menuExitRequested <= menuEnterRequested))
             {
-                CurrentTweens = Tweens->GetAnimation("menuExit", MenuExitIndex);
-                CurrentAnimationState = MENU_EXIT;
-                MenuExitRequested = false;
+                currentTweens_ = tweens_->getAnimation("menuExit", menuExitIndex);
+                currentAnimationState = MENU_EXIT;
+                menuExitRequested = false;
             }
-            else if(MenuEnterRequested && (!MenuExitRequested || MenuExitRequested > MenuEnterRequested))
+            else if(menuEnterRequested && (!menuExitRequested || menuExitRequested > menuEnterRequested))
             {
-                CurrentTweens = Tweens->GetAnimation("menuEnter", MenuEnterIndex);
-                CurrentAnimationState = MENU_ENTER;
-                MenuEnterRequested = false;
+                currentTweens_ = tweens_->getAnimation("menuEnter", menuEnterIndex);
+                currentAnimationState = MENU_ENTER;
+                menuEnterRequested = false;
 
             }
-            else if(MenuScrollRequested)
+            else if(menuScrollRequested)
             {
-                MenuScrollRequested = false;
-                CurrentTweens = Tweens->GetAnimation("menuScroll", MenuEnterIndex);
-                CurrentAnimationState = MENU_SCROLL;
+                menuScrollRequested = false;
+                currentTweens_ = tweens_->getAnimation("menuScroll", menuEnterIndex);
+                currentAnimationState = MENU_SCROLL;
             }
             else
             {
-                CurrentTweens = NULL;
-                CurrentAnimationState = HIDDEN;
+                currentTweens_ = NULL;
+                currentAnimationState = HIDDEN;
             }
         }
 
-        CurrentTweenIndex = 0;
-        CurrentTweenComplete = false;
+        currentTweenIndex_ = 0;
+        currentTweenComplete_ = false;
 
-        ElapsedTweenTime = 0;
+        elapsedTweenTime_ = 0;
     }
 
-    CurrentTweenComplete = Animate(IsIdle());
+    currentTweenComplete_ = animate(isIdle());
 }
 
-void Component::Draw()
+void Component::draw()
 {
 
-    if(BackgroundTexture)
+    if(backgroundTexture_)
     {
-        ViewInfo *info = GetBaseViewInfo();
         SDL_Rect rect;
-        rect.h = static_cast<int>(info->GetHeight());
-        rect.w = static_cast<int>(info->GetWidth());
-        rect.x = static_cast<int>(info->GetXRelativeToOrigin());
-        rect.y = static_cast<int>(info->GetYRelativeToOrigin());
+        rect.h = static_cast<int>(baseViewInfo.ScaledHeight());
+        rect.w = static_cast<int>(baseViewInfo.ScaledWidth());
+        rect.x = static_cast<int>(baseViewInfo.XRelativeToOrigin());
+        rect.y = static_cast<int>(baseViewInfo.YRelativeToOrigin());
 
 
-        SDL_SetTextureColorMod(BackgroundTexture,
-                               static_cast<char>(info->GetBackgroundRed()*255),
-                               static_cast<char>(info->GetBackgroundGreen()*255),
-                               static_cast<char>(info->GetBackgroundBlue()*255));
+        SDL_SetTextureColorMod(backgroundTexture_,
+                               static_cast<char>(baseViewInfo.BackgroundRed*255),
+                               static_cast<char>(baseViewInfo.BackgroundGreen*255),
+                               static_cast<char>(baseViewInfo.BackgroundBlue*255));
 
-        SDL::RenderCopy(BackgroundTexture, static_cast<char>(info->GetBackgroundAlpha()*255), NULL, &rect, info->GetAngle());
+        SDL::renderCopy(backgroundTexture_, static_cast<char>(baseViewInfo.BackgroundAlpha*255), NULL, &rect, baseViewInfo.Angle);
     }
 }
 
-bool Component::Animate(bool loop)
+bool Component::animate(bool loop)
 {
     bool completeDone = false;
-    if(!CurrentTweens || CurrentTweenIndex >= CurrentTweens->GetSize())
+    if(!currentTweens_ || currentTweenIndex_ >= currentTweens_->size())
     {
         completeDone = true;
     }
-    else if(CurrentTweens)
+    else if(currentTweens_)
     {
         bool currentDone = true;
-        TweenSet *tweens = CurrentTweens->GetTweenSet(CurrentTweenIndex);
+        TweenSet *tweens = currentTweens_->tweenSet(currentTweenIndex_);
 
-        for(unsigned int i = 0; i < tweens->GetSize(); i++)
+        for(unsigned int i = 0; i < tweens->size(); i++)
         {
-            Tween *tween = tweens->GetTweens()->at(i);
-            float elapsedTime = ElapsedTweenTime;
+            Tween *tween = tweens->tweens()->at(i);
+            double elapsedTime = elapsedTweenTime_;
 
             //todo: too many levels of nesting
-            if(elapsedTime < tween->GetDuration())
+            if(elapsedTime < tween->duration)
             {
                 currentDone = false;
             }
             else
             {
-                elapsedTime = tween->GetDuration();
+                elapsedTime = static_cast<float>(tween->duration);
             }
 
-            float value = tween->Animate(elapsedTime);
+            float value = tween->animate(elapsedTime);
 
-            switch(tween->GetProperty())
+            switch(tween->property)
             {
             case TWEEN_PROPERTY_X:
-                GetBaseViewInfo()->SetX(value);
+                baseViewInfo.X = value;
                 break;
 
             case TWEEN_PROPERTY_Y:
-                GetBaseViewInfo()->SetY(value);
+                baseViewInfo.Y = value;
                 break;
 
             case TWEEN_PROPERTY_HEIGHT:
-                GetBaseViewInfo()->SetHeight(value);
+                baseViewInfo.Height = value;
                 break;
 
             case TWEEN_PROPERTY_WIDTH:
-                GetBaseViewInfo()->SetWidth(value);
+                baseViewInfo.Width = value;
                 break;
 
             case TWEEN_PROPERTY_ANGLE:
-                GetBaseViewInfo()->SetAngle(value);
+                baseViewInfo.Angle = value;
                 break;
 
             case TWEEN_PROPERTY_ALPHA:
-                GetBaseViewInfo()->SetAlpha(value);
+                baseViewInfo.Alpha = value;
                 break;
 
             case TWEEN_PROPERTY_X_ORIGIN:
-                GetBaseViewInfo()->SetXOrigin(value);
+                baseViewInfo.XOrigin = value;
                 break;
 
             case TWEEN_PROPERTY_Y_ORIGIN:
-                GetBaseViewInfo()->SetYOrigin(value);
+                baseViewInfo.YOrigin = value;
                 break;
 
             case TWEEN_PROPERTY_X_OFFSET:
-                GetBaseViewInfo()->SetXOffset(value);
+                baseViewInfo.XOffset = value;
                 break;
 
             case TWEEN_PROPERTY_Y_OFFSET:
-                GetBaseViewInfo()->SetYOffset(value);
+                baseViewInfo.YOffset = value;
                 break;
 
             case TWEEN_PROPERTY_FONT_SIZE:
-                GetBaseViewInfo()->SetFontSize(value);
+                baseViewInfo.FontSize = value;
                 break;
 
             case TWEEN_PROPERTY_BACKGROUND_ALPHA:
-                GetBaseViewInfo()->SetBackgroundAlpha(value);
+                baseViewInfo.BackgroundAlpha = value;
                 break;
             }
         }
 
         if(currentDone)
         {
-            CurrentTweenIndex++;
-            ElapsedTweenTime = 0;
+            currentTweenIndex_++;
+            elapsedTweenTime_ = 0;
         }
     }
 
-    if(!CurrentTweens || CurrentTweenIndex >= CurrentTweens->GetTweenSets()->size())
+    if(!currentTweens_ || currentTweenIndex_ >= currentTweens_->tweenSets()->size())
     {
         if(loop)
         {
-            CurrentTweenIndex = 0;
+            currentTweenIndex_ = 0;
         }
         completeDone = true;
     }

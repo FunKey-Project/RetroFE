@@ -26,18 +26,18 @@ class VideoComponent : public Component
 public:
     VideoComponent(IVideo *videoInst, std::string videoFile, float scaleX, float scaleY);
     virtual ~VideoComponent();
-    void Update(float dt);
-    void Draw();
-    void FreeGraphicsMemory();
-    void AllocateGraphicsMemory();
-    void LaunchEnter();
-    void LaunchExit();
+    void update(float dt);
+    void draw();
+    void freeGraphicsMemory();
+    void allocateGraphicsMemory();
+    void launchEnter();
+    void launchExit();
 
 private:
-    std::string VideoFile;
-    std::string Name;
-    IVideo *VideoInst;
-    float ScaleX;
-    float ScaleY;
-    bool IsPlaying;
+    std::string videoFile_;
+    std::string name_;
+    IVideo *videoInst_;
+    float scaleX_;
+    float scaleY_;
+    bool isPlaying_;
 };

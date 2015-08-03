@@ -19,34 +19,34 @@
 #include <sstream>
 #include <ctime>
 
-std::ofstream Logger::WriteFileStream;
-std::streambuf *Logger::CerrStream = NULL;
-std::streambuf *Logger::CoutStream = NULL;
+std::ofstream Logger::writeFileStream_;
+std::streambuf *Logger::cerrStream_ = NULL;
+std::streambuf *Logger::coutStream_ = NULL;
 
-bool Logger::Initialize(std::string file)
+bool Logger::initialize(std::string file)
 {
-    WriteFileStream.open(file.c_str());
+    writeFileStream_.open(file.c_str());
 
-    CerrStream = std::cerr.rdbuf(WriteFileStream.rdbuf());
-    CoutStream = std::cout.rdbuf(WriteFileStream.rdbuf());
+    cerrStream_ = std::cerr.rdbuf(writeFileStream_.rdbuf());
+    coutStream_ = std::cout.rdbuf(writeFileStream_.rdbuf());
 
-    return WriteFileStream.is_open();
+    return writeFileStream_.is_open();
 }
 
-void Logger::DeInitialize()
+void Logger::deInitialize()
 {
-    if(WriteFileStream.is_open())
+    if(writeFileStream_.is_open())
     {
-        WriteFileStream.close();
+        writeFileStream_.close();
 
     }
 
-    std::cerr.rdbuf(CerrStream);
-    std::cout.rdbuf(CoutStream);
+    std::cerr.rdbuf(cerrStream_);
+    std::cout.rdbuf(coutStream_);
 }
 
 
-void Logger::Write(Zone zone, std::string component, std::string message)
+void Logger::write(Zone zone, std::string component, std::string message)
 {
     std::string zoneStr;
 

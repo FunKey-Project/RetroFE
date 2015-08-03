@@ -16,6 +16,7 @@
 
 #include "MenuParser.h"
 #include "CollectionInfo.h"
+#include "CollectionInfoBuilder.h"
 #include "Item.h"
 #include "../Utility/Log.h"
 #include "../Utility/Utils.h"
@@ -26,9 +27,9 @@
 #include <fstream>
 #include <sstream>
 
-bool VectorSort(const Item *d1, const Item *d2)
+bool VectorSort(Item *d1, Item *d2)
 {
-    return d1->GetLCTitle() < d2->GetLCTitle();
+    return d1->lowercaseTitle() < d2->lowercaseTitle();
 }
 
 MenuParser::MenuParser()
@@ -39,16 +40,67 @@ MenuParser::~MenuParser()
 {
 }
 
-//todo: clean up this method, too much nesting
-bool MenuParser::GetMenuItems(CollectionInfo *collection)
+bool MenuParser::buildMenuItems(CollectionInfo *collection, bool sort)
+{
+
+    if(!buildTextMenu(collection, sort))
+    {
+        return buildLegacyXmlMenu(collection, sort);
+    }
+
+    return true;
+} 
+
+bool MenuParser::buildTextMenu(CollectionInfo *collection, bool sort)
+{
+    std::string file = Utils::combinePath(Configuration::absolutePath, "collections", collection->name, "menu.txt");
+    std::ifstream includeStream(file.c_str());
+    std::vector<Item *> menuItems;
+
+    if (!includeStream.good())
+    {
+        Logger::write(Logger::ZONE_INFO, "Menu", "File does not exist: \"" + file + "\"");
+        return false;
+    }
+
+    Logger::write(Logger::ZONE_INFO, "Menu", "Found: \"" + file + "\"");
+
+    std::string line;
+
+    while(std::getline(includeStream, line))
+    {
+        line = Utils::filterComments(line);
+
+        if(!line.empty())
+        {
+            std::string title = line;
+            Item *item = new Item();
+            item->title = title;
+            item->fullTitle = title;
+            item->name = title;
+            item->leaf = false;
+            item->collectionInfo = collection;
+
+            menuItems.push_back(item);
+        }
+    }
+
+
+    collection->menusort = sort;
+    collection->items.insert(collection->items.begin(), menuItems.begin(), menuItems.end());
+    collection->sortItems();
+
+    return true;
+}
+
+bool MenuParser::buildLegacyXmlMenu(CollectionInfo *collection, bool sort)
 {
     bool retVal = false;
     //todo: magic string
-    std::string menuFilename = Utils::CombinePath(Configuration::GetAbsolutePath(), "collections", collection->GetName(), "menu.xml");
+    std::string menuFilename = Utils::combinePath(Configuration::absolutePath, "collections", collection->name, "menu.xml");
     rapidxml::xml_document<> doc;
     rapidxml::xml_node<> * rootNode;
-
-    Logger::Write(Logger::ZONE_INFO, "Menu", "Checking if menu exists at \"" + menuFilename + "\"");
+    std::vector<Item *> menuItems;
 
     try
     {
@@ -57,6 +109,8 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
         // gracefully exit if there is no menu file for the pa
         if(file.good())
         {
+            Logger::write(Logger::ZONE_INFO, "Menu", "Found: \"" + menuFilename + "\"");
+            Logger::write(Logger::ZONE_INFO, "Menu", "Using legacy menu.xml file. Consider using the new menu.txt format");
             std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 
             buffer.push_back('\0');
@@ -68,46 +122,28 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
             for (rapidxml::xml_node<> * itemNode = rootNode->first_node("item"); itemNode; itemNode = itemNode->next_sibling())
             {
                 rapidxml::xml_attribute<> *collectionAttribute = itemNode->first_attribute("collection");
-                rapidxml::xml_attribute<> *importAttribute = itemNode->first_attribute("import");
 
                 if(!collectionAttribute)
                 {
                     retVal = false;
-                    Logger::Write(Logger::ZONE_ERROR, "Menu", "Menu item tag is missing collection attribute");
+                    Logger::write(Logger::ZONE_ERROR, "Menu", "Menu item tag is missing collection attribute");
                     break;
                 }
-                //todo: too much nesting! Ack!
-                std::string import;
-                if(importAttribute)
-                {
-                    import = importAttribute->value();
-                }
+                //todo, check for empty string
+                std::string title = collectionAttribute->value();
+                Item *item = new Item();
+                item->title = title;
+                item->fullTitle = title;
+                item->name = collectionAttribute->value();
+                item->leaf = false;
+                item->collectionInfo = collection;
 
-                if(import != "true")
-                {
-                    //todo, check for empty string
-                    std::string title = collectionAttribute->value();
-                    Item *item = new Item();
-                    item->SetTitle(title);
-                    item->SetFullTitle(title);
-                    item->SetName(collectionAttribute->value());
-                    item->SetIsLeaf(false);
-                    collection->GetItems()->push_back(item);
-
-                }
-                else
-                {
-                    std::string collectionName = collectionAttribute->value();
-                    Logger::Write(Logger::ZONE_INFO, "Menu", "Loading collection into menu: " + collectionName);
-
-                    //todo: unsupported option with this refactor
-                    // need to append the collection
-                }
+                menuItems.push_back(item);
             }
+        
 
-            // todo: sorting should occur within the collection itself, not externally
-            std::vector<Item *> *items = collection->GetItems();
-            std::sort( items->begin(), items->end(), VectorSort);
+            collection->menusort = sort;
+            collection->items.insert(collection->items.begin(), menuItems.begin(), menuItems.end());
 
             retVal = true;
         }
@@ -116,9 +152,8 @@ bool MenuParser::GetMenuItems(CollectionInfo *collection)
     {
         std::stringstream ss;
         ss << "Unable to open menu file \"" << menuFilename << "\": " << e.what();
-        Logger::Write(Logger::ZONE_ERROR, "Menu", ss.str());
+        Logger::write(Logger::ZONE_ERROR, "Menu", ss.str());
     }
 
     return retVal;
-
 }

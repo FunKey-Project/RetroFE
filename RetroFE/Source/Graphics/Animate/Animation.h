@@ -28,9 +28,9 @@ public:
     ~Animation();
     void Push(TweenSet *set);
     void Clear();
-    std::vector<TweenSet *> *GetTweenSets();
-    TweenSet *GetTweenSet(unsigned int index);
-    unsigned int GetSize();
+    std::vector<TweenSet *> *tweenSets();
+    TweenSet *tweenSet(unsigned int index);
+    unsigned int size();
 private:
-    std::vector<TweenSet *> AnimationVector;
+    std::vector<TweenSet *> animationVector_;
 };

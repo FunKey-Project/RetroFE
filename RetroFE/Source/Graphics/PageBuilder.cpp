@@ -48,39 +48,39 @@ static const int MENU_CENTER = -4;
 
 //todo: this file is starting to become a god class of building. Consider splitting into sub-builders
 PageBuilder::PageBuilder(std::string layoutKey, std::string layoutPage, Configuration &c, FontCache *fc)
-    : LayoutKey(layoutKey)
-    , LayoutPage(layoutPage)
-    , Config(c)
-    , ScaleX(1)
-    , ScaleY(1)
-    , ScreenHeight(0)
-    , ScreenWidth(0)
-    , FontSize(24)
-    , FC(fc)
+    : layoutKey(layoutKey)
+    , layoutPage(layoutPage)
+    , config_(c)
+    , scaleX_(1)
+    , scaleY_(1)
+    , screenHeight_(0)
+    , screenWidth_(0)
+    , fontSize_(24)
+    , fontCache_(fc)
 {
-    ScreenWidth = SDL::GetWindowWidth();
-    ScreenHeight = SDL::GetWindowHeight();
-    FontColor.a = 255;
-    FontColor.r = 0;
-    FontColor.g = 0;
-    FontColor.b = 0;
+    screenWidth_ = SDL::getWindowWidth();
+    screenHeight_ = SDL::getWindowHeight();
+    fontColor_.a = 255;
+    fontColor_.r = 0;
+    fontColor_.g = 0;
+    fontColor_.b = 0;
 }
 
 PageBuilder::~PageBuilder()
 {
 }
 
-Page *PageBuilder::BuildPage()
+Page *PageBuilder::buildPage()
 {
     Page *page = NULL;
 
     std::string layoutFile;
-    std::string layoutName = LayoutKey;
+    std::string layoutName = layoutKey;
 
-    LayoutPath = Utils::CombinePath(Configuration::GetAbsolutePath(), "layouts", layoutName);
-    layoutFile = Utils::CombinePath(LayoutPath, LayoutPage + ".xml");
+    layoutPath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName);
+    layoutFile = Utils::combinePath(layoutPath, layoutPage + ".xml");
 
-    Logger::Write(Logger::ZONE_INFO, "Layout", "Initializing " + layoutFile);
+    Logger::write(Logger::ZONE_INFO, "Layout", "Initializing " + layoutFile);
 
     rapidxml::xml_document<> doc;
     std::ifstream file(layoutFile.c_str());
@@ -88,7 +88,7 @@ Page *PageBuilder::BuildPage()
 
     if(!file.good())
     {
-        Logger::Write(Logger::ZONE_INFO, "Layout", "could not find layout file: " + layoutFile);
+        Logger::write(Logger::ZONE_INFO, "Layout", "could not find layout file: " + layoutFile);
         return NULL;
     }
 
@@ -103,7 +103,7 @@ Page *PageBuilder::BuildPage()
 
         if(!root)
         {
-            Logger::Write(Logger::ZONE_ERROR, "Layout", "Missing <layout> tag");
+            Logger::write(Logger::ZONE_ERROR, "Layout", "Missing <layout> tag");
             return NULL;
         }
         else
@@ -119,13 +119,13 @@ Page *PageBuilder::BuildPage()
             int layoutWidth;
             if(!layoutWidthXml || !layoutHeightXml)
             {
-                Logger::Write(Logger::ZONE_ERROR, "Layout", "<layout> tag must specify a width and height");
+                Logger::write(Logger::ZONE_ERROR, "Layout", "<layout> tag must specify a width and height");
                 return NULL;
             }
             if(fontXml)
             {
-                FontName = Config.ConvertToAbsolutePath(
-                           Utils::CombinePath(Config.GetAbsolutePath(), "layouts", LayoutKey, ""),
+                fontName_ = config_.convertToAbsolutePath(
+                           Utils::combinePath(config_.absolutePath, "layouts", layoutKey, ""),
                            fontXml->value());
             }
 
@@ -136,39 +136,39 @@ Page *PageBuilder::BuildPage()
                 ss << std::hex << fontColorXml->value();
                 ss >> intColor;
 
-                FontColor.b = intColor & 0xFF;
+                fontColor_.b = intColor & 0xFF;
                 intColor >>= 8;
-                FontColor.g = intColor & 0xFF;
+                fontColor_.g = intColor & 0xFF;
                 intColor >>= 8;
-                FontColor.r = intColor & 0xFF;
+                fontColor_.r = intColor & 0xFF;
             }
 
             if(fontSizeXml)
             {
-                FontSize = Utils::ConvertInt(fontSizeXml->value());
+                fontSize_ = Utils::convertInt(fontSizeXml->value());
             }
 
-            layoutWidth = Utils::ConvertInt(layoutWidthXml->value());
-            layoutHeight = Utils::ConvertInt(layoutHeightXml->value());
+            layoutWidth = Utils::convertInt(layoutWidthXml->value());
+            layoutHeight = Utils::convertInt(layoutHeightXml->value());
 
             if(layoutWidth == 0 || layoutHeight == 0)
             {
-                Logger::Write(Logger::ZONE_ERROR, "Layout", "Layout width and height cannot be set to 0");
+                Logger::write(Logger::ZONE_ERROR, "Layout", "Layout width and height cannot be set to 0");
                 return NULL;
             }
 
-            ScaleX = (float)ScreenWidth / (float)layoutWidth;
-            ScaleY = (float)ScreenHeight / (float)layoutHeight;
+            scaleX_ = (float)screenWidth_ / (float)layoutWidth;
+            scaleY_ = (float)screenHeight_ / (float)layoutHeight;
 
             std::stringstream ss;
-            ss << layoutWidth << "x" << layoutHeight << " (scale " << ScaleX << "x" << ScaleY << ")";
-            Logger::Write(Logger::ZONE_INFO, "Layout", "Layout resolution " + ss.str());
+            ss << layoutWidth << "x" << layoutHeight << " (scale " << scaleX_ << "x" << scaleY_ << ")";
+            Logger::write(Logger::ZONE_INFO, "Layout", "Layout resolution " + ss.str());
 
-            page = new Page(Config);
+            page = new Page(config_);
 
             if(minShowTimeXml) 
             {
-                page->SetMinShowTime(Utils::ConvertFloat(minShowTimeXml->value()));
+                page->setMinShowTime(Utils::convertFloat(minShowTimeXml->value()));
             }
 
             // load sounds
@@ -176,10 +176,10 @@ Page *PageBuilder::BuildPage()
             {
                 xml_attribute<> *src = sound->first_attribute("src");
                 xml_attribute<> *type = sound->first_attribute("type");
-                std::string file = Configuration::ConvertToAbsolutePath(LayoutPath, src->value());
+                std::string file = Configuration::convertToAbsolutePath(layoutPath, src->value());
                 if(!type)
                 {
-                    Logger::Write(Logger::ZONE_ERROR, "Layout", "Sound tag missing type attribute");
+                    Logger::write(Logger::ZONE_ERROR, "Layout", "Sound tag missing type attribute");
                 }
                 else
                 {
@@ -188,28 +188,28 @@ Page *PageBuilder::BuildPage()
 
                     if(!soundType.compare("load"))
                     {
-                        page->SetLoadSound(sound);
+                        page->setLoadSound(sound);
                     }
                     else if(!soundType.compare("unload"))
                     {
-                        page->SetUnloadSound(sound);
+                        page->setUnloadSound(sound);
                     }
                     else if(!soundType.compare("highlight"))
                     {
-                        page->SetHighlightSound(sound);
+                        page->setHighlightSound(sound);
                     }
                     else if(!soundType.compare("select"))
                     {
-                        page->SetSelectSound(sound);
+                        page->setSelectSound(sound);
                     }
                     else
                     {
-                        Logger::Write(Logger::ZONE_WARNING, "Layout", "Unsupported sound effect type \"" + soundType + "\"");
+                        Logger::write(Logger::ZONE_WARNING, "Layout", "Unsupported sound effect type \"" + soundType + "\"");
                     }
                 }
             }
 
-            if(!BuildComponents(root, page))
+            if(!buildComponents(root, page))
             {
                 delete page;
                 page = NULL;
@@ -225,21 +225,21 @@ Page *PageBuilder::BuildPage()
         std::stringstream ss;
         ss << "Could not parse layout file. [Line: " << line << "] Reason: " << e.what();
 
-        Logger::Write(Logger::ZONE_ERROR, "Layout", ss.str());
+        Logger::write(Logger::ZONE_ERROR, "Layout", ss.str());
     }
     catch(std::exception &e)
     {
         std::string what = e.what();
-        Logger::Write(Logger::ZONE_ERROR, "Layout", "Could not parse layout file. Reason: " + what);
+        Logger::write(Logger::ZONE_ERROR, "Layout", "Could not parse layout file. Reason: " + what);
     }
 
     if(page)
     {
-        Logger::Write(Logger::ZONE_INFO, "Layout", "Initialized");
+        Logger::write(Logger::ZONE_INFO, "Layout", "Initialized");
     }
     else
     {
-        Logger::Write(Logger::ZONE_ERROR, "Layout", "Could not initialize layout (see previous messages for reason)");
+        Logger::write(Logger::ZONE_ERROR, "Layout", "Could not initialize layout (see previous messages for reason)");
     }
 
     return page;
@@ -247,7 +247,7 @@ Page *PageBuilder::BuildPage()
 
 
 
-float PageBuilder::GetHorizontalAlignment(xml_attribute<> *attribute, float valueIfNull)
+float PageBuilder::getHorizontalAlignment(xml_attribute<> *attribute, float valueIfNull)
 {
     float value;
     std::string str;
@@ -266,22 +266,22 @@ float PageBuilder::GetHorizontalAlignment(xml_attribute<> *attribute, float valu
         }
         else if(!str.compare("center"))
         {
-            value = static_cast<float>(ScreenWidth) / 2;
+            value = static_cast<float>(screenWidth_) / 2;
         }
         else if(!str.compare("right") || !str.compare("stretch"))
         {
-            value = static_cast<float>(ScreenWidth);
+            value = static_cast<float>(screenWidth_);
         }
         else
         {
-            value = Utils::ConvertFloat(str) * ScaleX;
+            value = Utils::convertFloat(str) * scaleX_;
         }
     }
 
     return value;
 }
 
-float PageBuilder::GetVerticalAlignment(xml_attribute<> *attribute, float valueIfNull)
+float PageBuilder::getVerticalAlignment(xml_attribute<> *attribute, float valueIfNull)
 {
     float value;
     std::string str;
@@ -299,15 +299,15 @@ float PageBuilder::GetVerticalAlignment(xml_attribute<> *attribute, float valueI
         }
         else if(!str.compare("center"))
         {
-            value = static_cast<float>(ScreenHeight / 2);
+            value = static_cast<float>(screenHeight_ / 2);
         }
         else if(!str.compare("bottom") || !str.compare("stretch"))
         {
-            value = static_cast<float>(ScreenHeight);
+            value = static_cast<float>(screenHeight_);
         }
         else
         {
-            value = Utils::ConvertFloat(str) * ScaleY;
+            value = Utils::convertFloat(str) * scaleY_;
         }
     }
     return value;
@@ -316,21 +316,20 @@ float PageBuilder::GetVerticalAlignment(xml_attribute<> *attribute, float valueI
 
 
 
-bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
+bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
 {
     for(xml_node<> *componentXml = layout->first_node("menu"); componentXml; componentXml = componentXml->next_sibling("menu"))
     {
-        ScrollingList *scrollingList = BuildMenu(componentXml);
-        page->PushMenu(scrollingList);
+        ScrollingList *scrollingList = buildMenu(componentXml);
+        page->pushMenu(scrollingList);
     }
 
     for(xml_node<> *componentXml = layout->first_node("container"); componentXml; componentXml = componentXml->next_sibling("container"))
     {
         Container *c = new Container();
-        ViewInfo *v = c->GetBaseViewInfo();
-        BuildViewInfo(componentXml, v);
-        LoadTweens(c, componentXml);
-        page->AddComponent(c);
+        buildViewInfo(componentXml, c->baseViewInfo);
+        loadTweens(c, componentXml);
+        page->addComponent(c);
     }
 
 
@@ -340,18 +339,17 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
 
         if (!src)
         {
-            Logger::Write(Logger::ZONE_ERROR, "Layout", "Image component in layout does not specify a source image file");
+            Logger::write(Logger::ZONE_ERROR, "Layout", "Image component in layout does not specify a source image file");
         }
         else
         {
             std::string imagePath;
-            imagePath = Utils::CombinePath(Configuration::ConvertToAbsolutePath(LayoutPath, imagePath), std::string(src->value()));
+            imagePath = Utils::combinePath(Configuration::convertToAbsolutePath(layoutPath, imagePath), std::string(src->value()));
 
-            Image *c = new Image(imagePath, ScaleX, ScaleY);
-            ViewInfo *v = c->GetBaseViewInfo();
-            BuildViewInfo(componentXml, v);
-            LoadTweens(c, componentXml);
-            page->AddComponent(c);
+            Image *c = new Image(imagePath, scaleX_, scaleY_);
+            buildViewInfo(componentXml, c->baseViewInfo);
+            loadTweens(c, componentXml);
+            page->addComponent(c);
         }
     }
 
@@ -362,43 +360,41 @@ bool PageBuilder::BuildComponents(xml_node<> *layout, Page *page)
 
         if (!value)
         {
-            Logger::Write(Logger::ZONE_WARNING, "Layout", "Text component in layout does not specify a value");
+            Logger::write(Logger::ZONE_WARNING, "Layout", "Text component in layout does not specify a value");
         }
         else
         {
-            Font *font = AddFont(componentXml, NULL);
-            Text *c = new Text(value->value(), font, ScaleX, ScaleY);
-            ViewInfo *v = c->GetBaseViewInfo();
+            Font *font = addFont(componentXml, NULL);
+            Text *c = new Text(value->value(), font, scaleX_, scaleY_);
 
-            BuildViewInfo(componentXml, v);
+            buildViewInfo(componentXml, c->baseViewInfo);
 
-            LoadTweens(c, componentXml);
-            page->AddComponent(c);
+            loadTweens(c, componentXml);
+            page->addComponent(c);
         }
     }
 
     for(xml_node<> *componentXml = layout->first_node("statusText"); componentXml; componentXml = componentXml->next_sibling("statusText"))
     {
-        Font *font = AddFont(componentXml, NULL);
-        Text *c = new Text("", font, ScaleX, ScaleY);
-        ViewInfo *v = c->GetBaseViewInfo();
+        Font *font = addFont(componentXml, NULL);
+        Text *c = new Text("", font, scaleX_, scaleY_);
 
-        BuildViewInfo(componentXml, v);
+        buildViewInfo(componentXml, c->baseViewInfo);
 
-        LoadTweens(c, componentXml);
-        page->AddComponent(c);
-        page->SetStatusTextComponent(c);
+        loadTweens(c, componentXml);
+        page->addComponent(c);
+        page->setStatusTextComponent(c);
     }
 
 
-    LoadReloadableImages(layout, "reloadableImage", page);
-    LoadReloadableImages(layout, "reloadableVideo", page);
-    LoadReloadableImages(layout, "reloadableText", page);
+    loadReloadableImages(layout, "reloadableImage", page);
+    loadReloadableImages(layout, "reloadableVideo", page);
+    loadReloadableImages(layout, "reloadableText", page);
 
     return true;
 }
 
-void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, Page *page)
+void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, Page *page)
 {
     
     for(xml_node<> *componentXml = layout->first_node(tagName.c_str()); componentXml; componentXml = componentXml->next_sibling(tagName.c_str()))
@@ -417,11 +413,11 @@ void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, 
 
         if(!type && tagName == "reloadableVideo")
         {
-            Logger::Write(Logger::ZONE_WARNING, "Layout", "<reloadableImage> component in layout does not specify an imageType for when the video does not exist");
+            Logger::write(Logger::ZONE_WARNING, "Layout", "<reloadableImage> component in layout does not specify an imageType for when the video does not exist");
         }
         if(!type && (tagName == "reloadableImage" || tagName == "reloadableText"))
         {
-            Logger::Write(Logger::ZONE_ERROR, "Layout", "Image component in layout does not specify a source image file");
+            Logger::write(Logger::ZONE_ERROR, "Layout", "Image component in layout does not specify a source image file");
         }
 
 
@@ -441,36 +437,36 @@ void PageBuilder::LoadReloadableImages(xml_node<> *layout, std::string tagName, 
         {
             if(type)
             {
-                Font *font = AddFont(componentXml, NULL);
-                c = new ReloadableText(type->value(), font, LayoutKey, ScaleX, ScaleY);
+                Font *font = addFont(componentXml, NULL);
+                c = new ReloadableText(type->value(), font, layoutKey, scaleX_, scaleY_);
             }
         }
         else
         {
-            Font *font = AddFont(componentXml, NULL);
-            c = new ReloadableMedia(Config, systemMode, type->value(), (tagName == "reloadableVideo"), font, ScaleX, ScaleY);
+            Font *font = addFont(componentXml, NULL);
+            c = new ReloadableMedia(config_, systemMode, type->value(), (tagName == "reloadableVideo"), font, scaleX_, scaleY_);
             xml_attribute<> *textFallback = componentXml->first_attribute("textFallback");
 
-            if(textFallback && Utils::ToLower(textFallback->value()) == "true")
+            if(textFallback && Utils::toLower(textFallback->value()) == "true")
             {
-                static_cast<ReloadableMedia *>(c)->EnableTextFallback(true);
+                static_cast<ReloadableMedia *>(c)->enableTextFallback_(true);
             }
             else
             {
-                static_cast<ReloadableMedia *>(c)->EnableTextFallback(false);
+                static_cast<ReloadableMedia *>(c)->enableTextFallback_(false);
             }
         }
 
         if(c)
         {
-            LoadTweens(c, componentXml);
+            loadTweens(c, componentXml);
 
-            page->AddComponent(c);
+            page->addComponent(c);
         }
     }
 }
 
-Font *PageBuilder::AddFont(xml_node<> *component, xml_node<> *defaults)
+Font *PageBuilder::addFont(xml_node<> *component, xml_node<> *defaults)
 {
     xml_attribute<> *fontXml = component->first_attribute("font");
     xml_attribute<> *fontColorXml = component->first_attribute("fontColor");
@@ -496,17 +492,17 @@ Font *PageBuilder::AddFont(xml_node<> *component, xml_node<> *defaults)
 
 
     // use layout defaults unless overridden
-    std::string fontName = FontName;
-    SDL_Color fontColor = FontColor;
-    int fontSize = FontSize;
+    std::string fontName = fontName_;
+    SDL_Color fontColor = fontColor_;
+    int fontSize = fontSize_;
 
     if(fontXml)
     {
-        fontName = Config.ConvertToAbsolutePath(
-                    Utils::CombinePath(Config.GetAbsolutePath(), "layouts", LayoutKey,""),
+        fontName = config_.convertToAbsolutePath(
+                    Utils::combinePath(config_.absolutePath, "layouts", layoutKey,""),
                     fontXml->value());
 
-        Logger::Write(Logger::ZONE_DEBUG, "Layout", "loading font " + fontName );
+        Logger::write(Logger::ZONE_DEBUG, "Layout", "loading font " + fontName );
     }
     if(fontColorXml)
     {
@@ -524,53 +520,51 @@ Font *PageBuilder::AddFont(xml_node<> *component, xml_node<> *defaults)
 
     if(fontSizeXml)
     {
-        fontSize = Utils::ConvertInt(fontSizeXml->value());
+        fontSize = Utils::convertInt(fontSizeXml->value());
     }
 
-    FC->LoadFont(fontName, fontSize, fontColor);
+    fontCache_->loadFont(fontName, fontSize, fontColor);
 
-    return FC->GetFont(fontName, fontSize, fontColor);
+    return fontCache_->getFont(fontName, fontSize, fontColor);
 }
 
-void PageBuilder::LoadTweens(Component *c, xml_node<> *componentXml)
+void PageBuilder::loadTweens(Component *c, xml_node<> *componentXml)
 {
-    ViewInfo *v = c->GetBaseViewInfo();
+    buildViewInfo(componentXml, c->baseViewInfo);
 
-    BuildViewInfo(componentXml, v);
-
-    c->SetTweens(CreateTweenInstance(componentXml));
+    c->setTweens(createTweenInstance(componentXml));
 }
 
-AnimationEvents *PageBuilder::CreateTweenInstance(xml_node<> *componentXml)
+AnimationEvents *PageBuilder::createTweenInstance(xml_node<> *componentXml)
 {
     AnimationEvents *tweens = new AnimationEvents();
 
-    BuildTweenSet(tweens, componentXml, "onEnter", "enter");
-    BuildTweenSet(tweens, componentXml, "onExit", "exit");
-    BuildTweenSet(tweens, componentXml, "onIdle", "idle");
-    BuildTweenSet(tweens, componentXml, "onHighlightEnter", "highlightEnter");
-    BuildTweenSet(tweens, componentXml, "onHighlightExit", "highlightExit");
-    BuildTweenSet(tweens, componentXml, "onMenuEnter", "menuEnter");
-    BuildTweenSet(tweens, componentXml, "onMenuExit", "menuExit");
+    buildTweenSet(tweens, componentXml, "onEnter", "enter");
+    buildTweenSet(tweens, componentXml, "onExit", "exit");
+    buildTweenSet(tweens, componentXml, "onIdle", "idle");
+    buildTweenSet(tweens, componentXml, "onHighlightEnter", "highlightEnter");
+    buildTweenSet(tweens, componentXml, "onHighlightExit", "highlightExit");
+    buildTweenSet(tweens, componentXml, "onMenuEnter", "menuEnter");
+    buildTweenSet(tweens, componentXml, "onMenuExit", "menuExit");
 
     return tweens;
 }
 
-void PageBuilder::BuildTweenSet(AnimationEvents *tweens, xml_node<> *componentXml, std::string tagName, std::string tweenName)
+void PageBuilder::buildTweenSet(AnimationEvents *tweens, xml_node<> *componentXml, std::string tagName, std::string tweenName)
 {
     for(componentXml = componentXml->first_node(tagName.c_str()); componentXml; componentXml = componentXml->next_sibling(tagName.c_str()))
     {
         xml_attribute<> *indexXml = componentXml->first_attribute("menuIndex");
-        int index = (indexXml) ? Utils::ConvertInt(indexXml->value()) : -1;
+        int index = (indexXml) ? Utils::convertInt(indexXml->value()) : -1;
 
         Animation *animation = new Animation();
-        GetTweenSet(componentXml, animation);
-        tweens->SetAnimation(tweenName, index, animation);
+        getTweenSet(componentXml, animation);
+        tweens->setAnimation(tweenName, index, animation);
     }
 }
 
 
-ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
+ScrollingList * PageBuilder::buildMenu(xml_node<> *menuXml)
 {
     ScrollingList *menu = NULL;
     std::string menuType = "vertical";
@@ -591,7 +585,7 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
     // ensure <menu> has an <itemDefaults> tag
     if(!itemDefaults)
     {
-        Logger::Write(Logger::ZONE_WARNING, "Layout", "Menu tag is missing <itemDefaults> tag.");
+        Logger::write(Logger::ZONE_WARNING, "Layout", "Menu tag is missing <itemDefaults> tag.");
     }
 
     if(imageTypeXml)
@@ -600,18 +594,18 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
     }
 
     // on default, text will be rendered to the menu. Preload it into cache.
-    Font *font = AddFont(itemDefaults, NULL);
+    Font *font = addFont(itemDefaults, NULL);
 
-    menu = new ScrollingList(Config, ScaleX, ScaleY, font, LayoutKey, imageType);
+    menu = new ScrollingList(config_, scaleX_, scaleY_, font, layoutKey, imageType);
 
     if(scrollTimeXml)
     {
-        menu->SetStartScrollTime(Utils::ConvertFloat(scrollTimeXml->value()));
+        menu->setStartScrollTime(Utils::convertFloat(scrollTimeXml->value()));
     }
 
     if(scrollAccelerationXml)
     {
-        menu->SetScrollAcceleration(Utils::ConvertFloat(scrollAccelerationXml->value()));
+        menu->setScrollAcceleration(Utils::convertFloat(scrollAccelerationXml->value()));
     }
 
     if(scrollOrientationXml)
@@ -619,29 +613,28 @@ ScrollingList * PageBuilder::BuildMenu(xml_node<> *menuXml)
         std::string scrollOrientation = scrollOrientationXml->value();
 	if(scrollOrientation == "horizontal")
         {
-        	menu->SetScrollOrientation(true);
+        	menu->horizontalScroll = true;
         }
     }
 
-    ViewInfo *v = menu->GetBaseViewInfo();
-    BuildViewInfo(menuXml, v);
+    buildViewInfo(menuXml, menu->baseViewInfo);
 
     if(menuType == "custom")
     {
-        BuildCustomMenu(menu, menuXml, itemDefaults);
+        buildCustomMenu(menu, menuXml, itemDefaults);
     }
     else
     {
-        BuildVerticalMenu(menu, menuXml, itemDefaults);
+        buildVerticalMenu(menu, menuXml, itemDefaults);
     }
 
-    LoadTweens(menu, menuXml);
+    loadTweens(menu, menuXml);
 
     return menu;
 }
 
 
-void PageBuilder::BuildCustomMenu(ScrollingList *menu, xml_node<> *menuXml, xml_node<> *itemDefaults)
+void PageBuilder::buildCustomMenu(ScrollingList *menu, xml_node<> *menuXml, xml_node<> *itemDefaults)
 {
     std::vector<ViewInfo *> *points = new std::vector<ViewInfo *>();
     std::vector<AnimationEvents *> *tweenPoints = new std::vector<AnimationEvents *>();
@@ -651,24 +644,24 @@ void PageBuilder::BuildCustomMenu(ScrollingList *menu, xml_node<> *menuXml, xml_
     for(xml_node<> *componentXml = menuXml->first_node("item"); componentXml; componentXml = componentXml->next_sibling("item"))
     {
         ViewInfo *viewInfo = new ViewInfo();
-        BuildViewInfo(componentXml, viewInfo, itemDefaults);
+        buildViewInfo(componentXml, *viewInfo, itemDefaults);
 
         points->push_back(viewInfo);
-        tweenPoints->push_back(CreateTweenInstance(componentXml));
+        tweenPoints->push_back(createTweenInstance(componentXml));
         xml_attribute<> *selected = componentXml->first_attribute("selected");
 
         if(selected)
         {
-            menu->SetSelectedIndex(i);
+            menu->setSelectedIndex(i);
         }
 
         i++;
     }
 
-    menu->SetPoints(points, tweenPoints);
+    menu->setPoints(points, tweenPoints);
 }
 
-void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xml_node<> *itemDefaults)
+void PageBuilder::buildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xml_node<> *itemDefaults)
 {
     std::vector<ViewInfo *> *points = new std::vector<ViewInfo *>();
     std::vector<AnimationEvents *> *tweenPoints = new std::vector<AnimationEvents *>();
@@ -685,7 +678,7 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
 
         if(xmlIndex)
         {
-            int itemIndex = ParseMenuPosition(xmlIndex->value());
+            int itemIndex = parseMenuPosition(xmlIndex->value());
             overrideItems[itemIndex] = componentXml;
 
             // check to see if the item specified is the selected index
@@ -708,10 +701,10 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
     if(overrideItems.find(MENU_START) != overrideItems.end())
     {
         xml_node<> *component = overrideItems[MENU_START];
-        ViewInfo *viewInfo = CreateMenuItemInfo(component, itemDefaults, menu->GetBaseViewInfo()->GetY() + height);
+        ViewInfo *viewInfo = createMenuItemInfo(component, itemDefaults, menu->baseViewInfo.Y + height);
         points->push_back(viewInfo);
-        tweenPoints->push_back(CreateTweenInstance(component));
-        height += viewInfo->GetHeight();
+        tweenPoints->push_back(createTweenInstance(component));
+        height += viewInfo->Height;
 
         // increment the selected index to account for the new "invisible" menu item
         selectedIndex++;
@@ -728,12 +721,12 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
         }
 
         // calculate the total height of our menu items if we can load any additional items
-        BuildViewInfo(component, viewInfo, itemDefaults);
+        buildViewInfo(component, *viewInfo, itemDefaults);
         xml_attribute<> *itemSpacingXml = component->first_attribute("spacing");
-        int itemSpacing = itemSpacingXml ? Utils::ConvertInt(itemSpacingXml->value()) : 0;
-        float nextHeight = height + viewInfo->GetHeight() + itemSpacing;
+        int itemSpacing = itemSpacingXml ? Utils::convertInt(itemSpacingXml->value()) : 0;
+        float nextHeight = height + viewInfo->Height + itemSpacing;
 
-        if(nextHeight >= menu->GetBaseViewInfo()->GetHeight())
+        if(nextHeight >= menu->baseViewInfo.Height)
         {
             end = true;
         }
@@ -743,15 +736,15 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
         {
             component = overrideItems[MENU_LAST];
 
-            BuildViewInfo(component, viewInfo, itemDefaults);
+            buildViewInfo(component, *viewInfo, itemDefaults);
             xml_attribute<> *itemSpacingXml = component->first_attribute("spacing");
-            int itemSpacing = itemSpacingXml ? Utils::ConvertInt(itemSpacingXml->value()) : 0;
-            nextHeight = height + viewInfo->GetHeight() + itemSpacing;
+            int itemSpacing = itemSpacingXml ? Utils::convertInt(itemSpacingXml->value()) : 0;
+            nextHeight = height + viewInfo->Height + itemSpacing;
         }
 
-        viewInfo->SetY(menu->GetBaseViewInfo()->GetY() + (float)height);
+        viewInfo->Y = menu->baseViewInfo.Y + (float)height;
         points->push_back(viewInfo);
-        tweenPoints->push_back(CreateTweenInstance(component));
+        tweenPoints->push_back(createTweenInstance(component));
         index++;
         height = nextHeight;
     }
@@ -760,9 +753,9 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
     if(overrideItems.find(MENU_END) != overrideItems.end())
     {
         xml_node<> *component = overrideItems[MENU_END];
-        ViewInfo *viewInfo = CreateMenuItemInfo(component, itemDefaults, menu->GetBaseViewInfo()->GetY() + height);
+        ViewInfo *viewInfo = createMenuItemInfo(component, itemDefaults, menu->baseViewInfo.Y + height);
         points->push_back(viewInfo);
-        tweenPoints->push_back(CreateTweenInstance(component));
+        tweenPoints->push_back(createTweenInstance(component));
     }
 
     if(selectedIndex >= ((int)points->size()))
@@ -774,25 +767,25 @@ void PageBuilder::BuildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
            << " although there are only " << points->size()
            << " menu points that can be displayed";
 
-        Logger::Write(Logger::ZONE_ERROR, "Layout", "Design error! \"duration\" attribute");
+        Logger::write(Logger::ZONE_ERROR, "Layout", "Design error! \"duration\" attribute");
 
         selectedIndex = 0;
     }
 
 
-    menu->SetSelectedIndex(selectedIndex);
-    menu->SetPoints(points, tweenPoints);
+    menu->setSelectedIndex(selectedIndex);
+    menu->setPoints(points, tweenPoints);
 }
 
-ViewInfo *PageBuilder::CreateMenuItemInfo(xml_node<> *component, xml_node<> *defaults, float y)
+ViewInfo *PageBuilder::createMenuItemInfo(xml_node<> *component, xml_node<> *defaults, float y)
 {
     ViewInfo *viewInfo = new ViewInfo();
-    BuildViewInfo(component, viewInfo, defaults);
-    viewInfo->SetY(y);
+    buildViewInfo(component, *viewInfo, defaults);
+    viewInfo->Y = y;
     return viewInfo;
 }
 
-int PageBuilder::ParseMenuPosition(std::string strIndex)
+int PageBuilder::parseMenuPosition(std::string strIndex)
 {
     int index = MENU_FIRST;
 
@@ -814,12 +807,12 @@ int PageBuilder::ParseMenuPosition(std::string strIndex)
     }
     else
     {
-        index = Utils::ConvertInt(strIndex);
+        index = Utils::convertInt(strIndex);
     }
     return index;
 }
 
-xml_attribute<> *PageBuilder::FindAttribute(xml_node<> *componentXml, std::string attribute, xml_node<> *defaultXml = NULL)
+xml_attribute<> *PageBuilder::findAttribute(xml_node<> *componentXml, std::string attribute, xml_node<> *defaultXml = NULL)
 {
     xml_attribute<> *attributeXml = componentXml->first_attribute(attribute.c_str());
 
@@ -831,58 +824,58 @@ xml_attribute<> *PageBuilder::FindAttribute(xml_node<> *componentXml, std::strin
     return attributeXml;
 }
 
-void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info, xml_node<> *defaultXml)
+void PageBuilder::buildViewInfo(xml_node<> *componentXml, ViewInfo &info, xml_node<> *defaultXml)
 {
-    xml_attribute<> *x = FindAttribute(componentXml, "x", defaultXml);
-    xml_attribute<> *y = FindAttribute(componentXml, "y", defaultXml);
-    xml_attribute<> *xOffset = FindAttribute(componentXml, "xOffset", defaultXml);
-    xml_attribute<> *yOffset = FindAttribute(componentXml, "yOffset", defaultXml);
-    xml_attribute<> *xOrigin = FindAttribute(componentXml, "xOrigin", defaultXml);
-    xml_attribute<> *yOrigin = FindAttribute(componentXml, "yOrigin", defaultXml);
-    xml_attribute<> *height = FindAttribute(componentXml, "height", defaultXml);
-    xml_attribute<> *width = FindAttribute(componentXml, "width", defaultXml);
-    xml_attribute<> *fontSize = FindAttribute(componentXml, "fontSize", defaultXml);
-    xml_attribute<> *minHeight = FindAttribute(componentXml, "minHeight", defaultXml);
-    xml_attribute<> *minWidth = FindAttribute(componentXml, "minWidth", defaultXml);
-    xml_attribute<> *maxHeight = FindAttribute(componentXml, "maxHeight", defaultXml);
-    xml_attribute<> *maxWidth = FindAttribute(componentXml, "maxWidth", defaultXml);
-    xml_attribute<> *alpha = FindAttribute(componentXml, "alpha", defaultXml);
-    xml_attribute<> *angle = FindAttribute(componentXml, "angle", defaultXml);
-    xml_attribute<> *layer = FindAttribute(componentXml, "layer", defaultXml);
-    xml_attribute<> *backgroundColor = FindAttribute(componentXml, "backgroundColor", defaultXml);
-    xml_attribute<> *backgroundAlpha = FindAttribute(componentXml, "backgroundAlpha", defaultXml);
+    xml_attribute<> *x = findAttribute(componentXml, "x", defaultXml);
+    xml_attribute<> *y = findAttribute(componentXml, "y", defaultXml);
+    xml_attribute<> *xOffset = findAttribute(componentXml, "xOffset", defaultXml);
+    xml_attribute<> *yOffset = findAttribute(componentXml, "yOffset", defaultXml);
+    xml_attribute<> *xOrigin = findAttribute(componentXml, "xOrigin", defaultXml);
+    xml_attribute<> *yOrigin = findAttribute(componentXml, "yOrigin", defaultXml);
+    xml_attribute<> *height = findAttribute(componentXml, "height", defaultXml);
+    xml_attribute<> *width = findAttribute(componentXml, "width", defaultXml);
+    xml_attribute<> *fontSize = findAttribute(componentXml, "fontSize", defaultXml);
+    xml_attribute<> *minHeight = findAttribute(componentXml, "minHeight", defaultXml);
+    xml_attribute<> *minWidth = findAttribute(componentXml, "minWidth", defaultXml);
+    xml_attribute<> *maxHeight = findAttribute(componentXml, "maxHeight", defaultXml);
+    xml_attribute<> *maxWidth = findAttribute(componentXml, "maxWidth", defaultXml);
+    xml_attribute<> *alpha = findAttribute(componentXml, "alpha", defaultXml);
+    xml_attribute<> *angle = findAttribute(componentXml, "angle", defaultXml);
+    xml_attribute<> *layer = findAttribute(componentXml, "layer", defaultXml);
+    xml_attribute<> *backgroundColor = findAttribute(componentXml, "backgroundColor", defaultXml);
+    xml_attribute<> *backgroundAlpha = findAttribute(componentXml, "backgroundAlpha", defaultXml);
 
-    info->SetX(GetHorizontalAlignment(x, 0));
-    info->SetY(GetVerticalAlignment(y, 0));
+    info.X = getHorizontalAlignment(x, 0);
+    info.Y = getVerticalAlignment(y, 0);
 
-    info->SetXOffset( GetHorizontalAlignment(xOffset, 0));
-    info->SetYOffset( GetVerticalAlignment(yOffset, 0));
-    float xOriginRelative = GetHorizontalAlignment(xOrigin, 0);
-    float yOriginRelative = GetVerticalAlignment(yOrigin, 0);
+    info.XOffset =  getHorizontalAlignment(xOffset, 0);
+    info.YOffset =  getVerticalAlignment(yOffset, 0);
+    float xOriginRelative = getHorizontalAlignment(xOrigin, 0);
+    float yOriginRelative = getVerticalAlignment(yOrigin, 0);
 
     // the origins need to be saved as a percent since the heights and widths can be scaled
-    info->SetXOrigin(xOriginRelative / ScreenWidth);
-    info->SetYOrigin(yOriginRelative / ScreenHeight);
+    info.XOrigin = xOriginRelative / screenWidth_;
+    info.YOrigin = yOriginRelative / screenHeight_;
 
 
     if(!height && !width)
     {
-        info->SetHeight(-1);
-        info->SetWidth(-1);
+        info.Height = -1;
+        info.Width = -1;
     }
     else
     {
-        info->SetHeight(GetVerticalAlignment(height, -1));
-        info->SetWidth(GetHorizontalAlignment(width, -1));
+        info.Height = getVerticalAlignment(height, -1);
+        info.Width = getHorizontalAlignment(width, -1);
     }
-    info->SetFontSize(GetVerticalAlignment(fontSize, -1));
-    info->SetMinHeight(GetVerticalAlignment(minHeight, 0));
-    info->SetMinWidth(GetHorizontalAlignment(minWidth, 0));
-    info->SetMaxHeight(GetVerticalAlignment(maxHeight, FLT_MAX));
-    info->SetMaxWidth(GetVerticalAlignment(maxWidth, FLT_MAX));
-    info->SetAlpha( alpha ? Utils::ConvertFloat(alpha->value()) : 1);
-    info->SetAngle( angle ? Utils::ConvertFloat(angle->value()) : 0);
-    info->SetLayer( layer ? Utils::ConvertInt(layer->value()) : 0);
+    info.FontSize = getVerticalAlignment(fontSize, -1);
+    info.MinHeight = getVerticalAlignment(minHeight, 0);
+    info.MinWidth = getHorizontalAlignment(minWidth, 0);
+    info.MaxHeight = getVerticalAlignment(maxHeight, FLT_MAX);
+    info.MaxWidth = getVerticalAlignment(maxWidth, FLT_MAX);
+    info.Alpha =  alpha ? Utils::convertFloat(alpha->value()) : 1.f;
+    info.Angle =  angle ? Utils::convertFloat(angle->value()) : 0.f;
+    info.Layer =  layer ? Utils::convertInt(layer->value()) : 0;
 
     if(backgroundColor)
     {
@@ -893,37 +886,37 @@ void PageBuilder::BuildViewInfo(xml_node<> *componentXml, ViewInfo *info, xml_no
         int green = (num / 0x100) % 0x100;
         int blue = num % 0x100;
 
-        info->SetBackgroundRed(static_cast<float>(red)/255);
-        info->SetBackgroundGreen(static_cast<float>(green)/255);
-        info->SetBackgroundBlue(static_cast<float>(blue)/255);
+        info.BackgroundRed = static_cast<float>(red/255);
+        info.BackgroundGreen = static_cast<float>(green/255);
+        info.BackgroundBlue = static_cast<float>(blue/255);
     }
 
     if(backgroundAlpha)
     {
-        info->SetBackgroundAlpha( backgroundAlpha ? Utils::ConvertFloat(backgroundAlpha->value()) : 1);
+        info.BackgroundAlpha =  backgroundAlpha ? Utils::convertFloat(backgroundAlpha->value()) : 1.f;
     }
 }
 
-void PageBuilder::GetTweenSet(xml_node<> *node, Animation *animation)
+void PageBuilder::getTweenSet(xml_node<> *node, Animation *animation)
 {
     if(node)
     {
         for(xml_node<> *set = node->first_node("set"); set; set = set->next_sibling("set"))
         {
             TweenSet *ts = new TweenSet();
-            GetAnimationEvents(set, *ts);
+            getAnimationEvents(set, *ts);
             animation->Push(ts);
         }
     }
 }
 
-void PageBuilder::GetAnimationEvents(xml_node<> *node, TweenSet &tweens)
+void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
 {
     xml_attribute<> *durationXml = node->first_attribute("duration");
 
     if(!durationXml)
     {
-        Logger::Write(Logger::ZONE_ERROR, "Layout", "Animation set tag missing \"duration\" attribute");
+        Logger::write(Logger::ZONE_ERROR, "Layout", "Animation set tag missing \"duration\" attribute");
     }
     else
     {
@@ -936,60 +929,60 @@ void PageBuilder::GetAnimationEvents(xml_node<> *node, TweenSet &tweens)
 
             if(!type)
             {
-                Logger::Write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"type\" attribute");
+                Logger::write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"type\" attribute");
             }
             else if(!from)
             {
-                Logger::Write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"from\" attribute");
+                Logger::write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"from\" attribute");
             }
             else if(!to)
             {
-                Logger::Write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"to\" attribute");
+                Logger::write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"to\" attribute");
             }
             else
             {
-                float fromValue = Utils::ConvertFloat(from->value());
-                float toValue = Utils::ConvertFloat(to->value());
-                float durationValue = Utils::ConvertFloat(durationXml->value());
+                float fromValue = Utils::convertFloat(from->value());
+                float toValue = Utils::convertFloat(to->value());
+                float durationValue = Utils::convertFloat(durationXml->value());
 
                 TweenAlgorithm algorithm = LINEAR;
                 TweenProperty property;
 
                 if(algorithmXml)
                 {
-                    algorithm = Tween::GetTweenType(algorithmXml->value());
+                    algorithm = Tween::getTweenType(algorithmXml->value());
 
                 }
 
-                if(Tween::GetTweenProperty(type->value(), property))
+                if(Tween::getTweenProperty(type->value(), property))
                 {
                     switch(property)
                     {
                     case TWEEN_PROPERTY_WIDTH:
                     case TWEEN_PROPERTY_X:
                     case TWEEN_PROPERTY_X_OFFSET:
-                        fromValue = GetHorizontalAlignment(from, 0);
-                        toValue = GetHorizontalAlignment(to, 0);
+                        fromValue = getHorizontalAlignment(from, 0);
+                        toValue = getHorizontalAlignment(to, 0);
                         break;
 
                         // x origin gets translated to a percent
                     case TWEEN_PROPERTY_X_ORIGIN:
-                        fromValue = GetHorizontalAlignment(from, 0) / ScreenWidth;
-                        toValue = GetHorizontalAlignment(to, 0) / ScreenWidth;
+                        fromValue = getHorizontalAlignment(from, 0) / screenWidth_;
+                        toValue = getHorizontalAlignment(to, 0) / screenWidth_;
                         break;
 
                     case TWEEN_PROPERTY_HEIGHT:
                     case TWEEN_PROPERTY_Y:
                     case TWEEN_PROPERTY_Y_OFFSET:
                     case TWEEN_PROPERTY_FONT_SIZE:
-                        fromValue = GetVerticalAlignment(from, 0);
-                        toValue = GetVerticalAlignment(to, 0);
+                        fromValue = getVerticalAlignment(from, 0);
+                        toValue = getVerticalAlignment(to, 0);
                         break;
 
                         // y origin gets translated to a percent
                     case TWEEN_PROPERTY_Y_ORIGIN:
-                        fromValue = GetVerticalAlignment(from, 0) / ScreenHeight;
-                        toValue = GetVerticalAlignment(to, 0) / ScreenHeight;
+                        fromValue = getVerticalAlignment(from, 0) / screenHeight_;
+                        toValue = getVerticalAlignment(to, 0) / screenHeight_;
                         break;
 
                     default:
@@ -997,13 +990,13 @@ void PageBuilder::GetAnimationEvents(xml_node<> *node, TweenSet &tweens)
                     }
 
                     Tween *t = new Tween(property, algorithm, fromValue, toValue, durationValue);
-                    tweens.Push(t);
+                    tweens.push(t);
                 }
                 else
                 {
                     std::stringstream ss;
                     ss << "Unsupported tween type attribute \"" << type->value() << "\"";
-                    Logger::Write(Logger::ZONE_ERROR, "Layout", ss.str());
+                    Logger::write(Logger::ZONE_ERROR, "Layout", ss.str());
                 }
             }
         }

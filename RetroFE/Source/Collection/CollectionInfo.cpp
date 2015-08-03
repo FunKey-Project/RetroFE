@@ -25,77 +25,75 @@ CollectionInfo::CollectionInfo(std::string name,
                                std::string extensions,
                                std::string metadataType,
                                std::string metadataPath)
-    : Name(name)
-    , ListPath(listPath)
-    , Extensions(extensions)
-    , MetadataType(metadataType)
-    , MetadataPath(metadataPath)
+    : name(name)
+    , listpath(listPath)
+    , metadataType(metadataType)
+    , menusort(true)
+    , metadataPath_(metadataPath)
+	, extensions_(extensions)
 {
 }
 
 CollectionInfo::~CollectionInfo()
 {
-    std::vector<Item *>::iterator it = Items.begin();
+	// remove items from the subcollections so their destructors do not
+	// delete the items since the parent collection will delete them.
+    std::vector<CollectionInfo *>::iterator subit;
+    for (subit != subcollections_.begin(); subit != subcollections_.end(); subit++)
+    {
+    	CollectionInfo *info = *subit;
+    	info->items.clear();
+    }
 
-    while(it != Items.end())
+
+	std::vector<Item *>::iterator it = items.begin();
+    while(it != items.end())
     {
         delete *it;
-        Items.erase(it);
-        it = Items.begin();
+        items.erase(it);
+        it = items.begin();
     }
 }
 
-std::string CollectionInfo::GetName() const
+std::string CollectionInfo::settingsPath() const
 {
-    return Name;
+    return Utils::combinePath(Configuration::absolutePath, "collections", name);
 }
 
-std::string CollectionInfo::GetSettingsPath() const
-{
-    return Utils::CombinePath(Configuration::GetAbsolutePath(), "collections", GetName());
-}
 
-std::string CollectionInfo::GetListPath() const
+void CollectionInfo::extensionList(std::vector<std::string> &extensionlist)
 {
-    return ListPath;
-}
-
-std::string CollectionInfo::GetMetadataType() const
-{
-    return MetadataType;
-}
-
-std::string CollectionInfo::GetMetadataPath() const
-{
-    return MetadataPath;
-}
-
-std::string CollectionInfo::GetExtensions() const
-{
-    return Extensions;
-}
-
-void CollectionInfo::GetExtensions(std::vector<std::string> &extensions)
-{
-    std::istringstream ss(Extensions);
+    std::istringstream ss(extensions_);
     std::string token;
 
     while(std::getline(ss, token, ','))
     {
-        extensions.push_back(token);
+    	extensionlist.push_back(token);
     }
 }
-std::vector<Item *> *CollectionInfo::GetItems()
+
+void CollectionInfo::addSubcollection(CollectionInfo *newinfo)
 {
-    return &Items;
+	subcollections_.push_back(newinfo);
+
+    items.insert(items.begin(), newinfo->items.begin(), newinfo->items.end());
 }
 
-bool CollectionInfo::ItemIsLess(Item const *lhs, Item const *rhs)
+bool CollectionInfo::hasSubcollections()
 {
-    return lhs->GetLCFullTitle() < rhs->GetLCFullTitle();
+    return (subcollections_.size() > 0);
 }
 
-void CollectionInfo::SortItems()
+bool CollectionInfo::itemIsLess(Item *lhs, Item *rhs)
 {
-    std::sort(Items.begin(), Items.end(), ItemIsLess);
+    if(lhs->leaf && !rhs->leaf) return true;
+    if(!lhs->leaf && rhs->leaf) return false;
+    if(!lhs->collectionInfo->menusort && lhs->leaf && rhs->leaf) return false;
+    return lhs->lowercaseFullTitle() < rhs->lowercaseFullTitle();
+}
+
+
+void CollectionInfo::sortItems()
+{
+    std::sort(items.begin(), items.end(), itemIsLess);
 }

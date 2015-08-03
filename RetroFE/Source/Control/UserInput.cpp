@@ -17,17 +17,35 @@
 #include "UserInput.h"
 #include "../Database/Configuration.h"
 #include "../Utility/Log.h"
+#include "../Utility/Utils.h"
+#include "JoyAxisHandler.h"
+#include "JoyButtonHandler.h"
+#include "JoyHatHandler.h"
+#include "KeyboardHandler.h"
+#include "MouseButtonHandler.h"
 
 UserInput::UserInput(Configuration &c)
-    : Config(c)
+    : config_(c)
 {
+    for(unsigned int i = 0; i < KeyCodeMax; ++i)
+    {
+        keyHandlers_[i] = NULL;
+        lastKeyState_[i] = false;
+    }
 }
 
 UserInput::~UserInput()
 {
+    for(std::vector<SDL_Joystick *>::iterator it = joysticks_.begin(); it != joysticks_.end(); it++)
+    {
+        if(*it)
+        {
+            SDL_JoystickClose(*it);
+        }
+    }
 }
 
-bool UserInput::Initialize()
+bool UserInput::initialize()
 {
     bool retVal = true;
 
@@ -59,45 +77,14 @@ bool UserInput::Initialize()
 //   retVal = MapKey("admin", KeyCodeAdminMode) && retVal;
 //   retVal = MapKey("remove", KeyCodeHideItem) && retVal;
 
+    for(int i = 0; i < SDL_NumJoysticks(); ++i)
+    {
+        joysticks_.push_back(SDL_JoystickOpen(i));
+    }
+    
+
     return retVal;
 }
-
-SDL_Scancode UserInput::GetScancode(KeyCode_E key)
-{
-    SDL_Scancode scancode = SDL_SCANCODE_UNKNOWN;
-    std::map<KeyCode_E, SDL_Scancode>::iterator it = KeyMap.find(key);
-
-    if(it != KeyMap.end())
-    {
-        scancode = it->second;
-    }
-
-    return scancode;
-}
-
-
-UserInput::KeyCode_E UserInput::GetKeycode(SDL_Scancode scancode)
-{
-    KeyCode_E keycode = KeyCodeNull;
-
-    std::map<SDL_Scancode, KeyCode_E>::iterator it = ReverseKeyMap.find(scancode);
-
-    if(it != ReverseKeyMap.end())
-    {
-        keycode = it->second;
-    }
-
-    return keycode;
-}
-
-void UserInput::ResetKeyStates()
-{
-    for(std::map<KeyCode_E, bool>::iterator it = KeyState.begin(); it != KeyState.end(); it++)
-    {
-      it->second = false;
-    }
-}
-
 
 bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
 {
@@ -106,42 +93,151 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
 
     std::string configKey = "controls." + keyDescription;
 
-    if(!Config.GetProperty(configKey, description))
+    if(!config_.getProperty(configKey, description))
     {
-        Logger::Write(Logger::ZONE_ERROR, "Configuration", "Missing property " + configKey);
+        Logger::write(Logger::ZONE_ERROR, "Input", "Missing property " + configKey);
         return false;
     }
+
 
     scanCode = SDL_GetScancodeFromName(description.c_str());
 
-    if(scanCode == SDL_SCANCODE_UNKNOWN)
+    if(scanCode != SDL_SCANCODE_UNKNOWN)
     {
-        Logger::Write(Logger::ZONE_ERROR, "Configuration", "Unsupported property value for " + configKey + "(" + description + "). See Documentation/Keycodes.txt for valid inputs");
-        return false;
+        Logger::write(Logger::ZONE_INFO, "Input", "Binding key " + configKey);
+        keyHandlers_[key] = new KeyboardHandler(scanCode);
+        return true;
     }
+    
+    description = Utils::toLower(description);
 
-    KeyMap[key] = scanCode;
-    ReverseKeyMap[scanCode] = key;
-    KeyState[key] = false;
-    return true;
+    if(description.find("mouse") == 0)
+    {
+        std::string mousedesc = Utils::replace(Utils::toLower(description), "mouse", "");
+        if(mousedesc.find("button") == 0)
+        {
+            int button = 0;
+            std::stringstream ss;
+            mousedesc = Utils::replace(mousedesc, "button", "");
+            if(mousedesc == "left") button = SDL_BUTTON_LEFT;
+            else if(mousedesc == "middle") button = SDL_BUTTON_MIDDLE;
+            else if(mousedesc == "right") button = SDL_BUTTON_RIGHT;
+            else if(mousedesc == "x1") button = SDL_BUTTON_X1;
+            else if(mousedesc == "x2") button = SDL_BUTTON_X2;
+            
+            keyHandlers_[key] = new MouseButtonHandler(button);
+            Logger::write(Logger::ZONE_INFO, "Input", "Binding mouse button " + ss.str() );
+            return true;
+        }
+    }
+    else if(description.find("joy") == 0)
+    {
+        std::string joydesc = Utils::replace(Utils::toLower(description), "joy", "");
+        std::stringstream ssjoy;
+        ssjoy << joydesc.at(0);
+        int joynum;
+        ssjoy >> joynum;
+        joydesc = joydesc.erase(0, 1);
+        
+
+        if(joydesc.find("button") == 0)
+        {
+            unsigned int button;
+            std::stringstream ss;
+            ss << Utils::replace(joydesc, "button", "");
+            ss >> button;
+            keyHandlers_[key] = new JoyButtonHandler(joynum, button);
+            Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad button " + ss.str() );
+            return true;
+        }
+        else if(joydesc.find("hat") == 0)
+        {
+            Uint8 hat;
+
+            joydesc = Utils::replace(joydesc, "hat", "");
+            std::stringstream sshat;
+            sshat << joydesc.at(0);
+            int hatnum;
+            sshat >> hatnum;
+            joydesc = joydesc.erase(0, 1);
+
+            if(joydesc == "leftup") hat = SDL_HAT_LEFTUP;
+            else if(joydesc == "left") hat = SDL_HAT_LEFT;
+            else if(joydesc == "leftdown") hat = SDL_HAT_LEFTDOWN;
+            else if(joydesc == "up") hat = SDL_HAT_UP;
+            //else if(joydesc == "centered") hat = SDL_HAT_CENTERED;
+            else if(joydesc == "down") hat = SDL_HAT_DOWN;
+            else if(joydesc == "rightup") hat = SDL_HAT_RIGHTUP;
+            else if(joydesc == "right") hat = SDL_HAT_RIGHT;
+            else if(joydesc == "rightdown") hat = SDL_HAT_RIGHTDOWN;
+
+            keyHandlers_[key] = new JoyHatHandler(joynum, hatnum, hat);
+            Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad hat " + joydesc );
+            return true;
+        }
+        else if(joydesc.find("axis") == 0)
+        {
+            // string is now axis0+
+            unsigned int axis;
+            Sint16 min;
+            Sint16 max;
+            joydesc = Utils::replace(joydesc, "axis", "");
+
+            // string is now 0+
+            if(joydesc.find("-") != std::string::npos)
+            {
+                min = -32768;
+                max = -1000;
+                joydesc = Utils::replace(joydesc, "-", "");
+            }
+            else if(joydesc.find("+") != std::string::npos)
+            {
+                min = 1000;
+                max = 32767;
+                joydesc = Utils::replace(joydesc, "+", "");
+            }
+
+            // string is now just the axis number
+            std::stringstream ss;
+            ss << joydesc;
+            ss >> axis;
+            Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad axis " + ss.str() );
+            keyHandlers_[key] = new JoyAxisHandler(joynum, axis, min, max);
+            return true;
+        }
+    }
+    Logger::write(Logger::ZONE_ERROR, "Input", "Unsupported property value for " + configKey + "(" + description + "). See Documentation/Keycodes.txt for valid inputs");
+    return false;
 }
 
-bool UserInput::SetKeyState(SDL_Scancode code, bool state)
+void UserInput::resetStates()
 {
-    KeyCode_E key = GetKeycode(code);
-
-    if(key == KeyCodeNull) { return false; }
-    if(KeyState.find(key) == KeyState.end()) { return false; }
-
-    KeyState[key] = state;
-    return true;
-
+    for(unsigned int i = 0; i < KeyCodeMax; ++i)
+    {
+        if(keyHandlers_[i])
+        {
+            keyHandlers_[i]->reset();
+        }
+    }
 }
-bool UserInput::GetKeyState(KeyCode_E key)
+bool UserInput::update(SDL_Event &e)
 {
-    if(KeyState.find(key) == KeyState.end()) { return false; }
-    return KeyState[key];
+    bool updated = false;
+    for(unsigned int i = 0; i < KeyCodeMax; ++i)
+    {
+        InputHandler *h = keyHandlers_[i];
+        if(h)
+        {
+            if(h->update(e)) updated = true;
+
+            lastKeyState_[i] = h->pressed();
+        }
+    }
+    
+    return updated;
 }
 
-
-
+bool UserInput::keystate(KeyCode_E code)
+{
+    return lastKeyState_[code];
+}

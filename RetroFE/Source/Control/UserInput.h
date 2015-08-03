@@ -14,11 +14,14 @@
  * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
 #pragma once
-#include <map>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_joystick.h>
+#include <map>
 #include <string>
+#include <vector>
 
 class Configuration;
+class InputHandler;
 
 class UserInput
 {
@@ -38,26 +41,22 @@ public:
         KeyCodeLetterUp,
         KeyCodeAdminMode,
         KeyCodeHideItem,
-        KeyCodeQuit
+        KeyCodeQuit,
+        KeyCodeMax
     };
 
     UserInput(Configuration &c);
     virtual ~UserInput();
-    bool Initialize();
-    SDL_Scancode GetScancode(KeyCode_E key);
-    KeyCode_E GetKeycode(SDL_Scancode scancode);
-    bool SetKeyState(SDL_Scancode code, bool state);
-    bool GetKeyState(KeyCode_E key);
-    bool KeyStateChanged();
-    void ResetKeyStates();
-
-
+    bool initialize();
+    void resetStates();
+    bool update(SDL_Event &e);
+    bool keystate(KeyCode_E);
 
 private:
     bool MapKey(std::string keyDescription, KeyCode_E key);
-    std::map<KeyCode_E, SDL_Scancode> KeyMap;
-    std::map<SDL_Scancode, KeyCode_E> ReverseKeyMap;
-    std::map<KeyCode_E, bool> KeyState;
-    Configuration &Config;
-    const Uint8 *SDLKeys;
+    Configuration &config_;
+    std::vector<SDL_Joystick *> joysticks_;
+    InputHandler *keyHandlers_[KeyCodeMax]; 
+    bool lastKeyState_[KeyCodeMax]; 
+    
 };

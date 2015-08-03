@@ -29,27 +29,29 @@ class ReloadableMedia : public Component
 public:
     ReloadableMedia(Configuration &config, bool systemMode, std::string type, bool isVideo, Font *font, float scaleX, float scaleY);
     virtual ~ReloadableMedia();
-    void Update(float dt);
-    void Draw();
-    void FreeGraphicsMemory();
-    void AllocateGraphicsMemory();
-    void LaunchEnter();
-    void LaunchExit();
-    void EnableTextFallback(bool value);
+    void update(float dt);
+    void draw();
+    void freeGraphicsMemory();
+    void allocateGraphicsMemory();
+    void launchEnter();
+    void launchExit();
+    Component *findComponent(std::string collection, std::string type, std::string basename, bool systemMode);
+
+    void enableTextFallback_(bool value);
 
 private:
-    void ReloadTexture();
-    Configuration &Config;
-    bool SystemMode;
-    Component *LoadedComponent;
-    bool ReloadRequested;
-    bool FirstLoad;
-    IVideo *VideoInst;
-    bool IsVideo;
-    Font *FontInst;
-    bool TextFallback;
-    std::string Type;
-    float ScaleX;
-    float ScaleY;
-    std::string CurrentCollection;
+    void reloadTexture();
+    Configuration &config_;
+    bool systemMode_;
+    Component *loadedComponent_;
+    bool reloadRequested_;
+    bool firstLoad_;
+    IVideo *videoInst_;
+    bool isVideo_;
+    Font *FfntInst_;
+    bool textFallback_;
+    std::string type_;
+    float scaleX_;
+    float scaleY_;
+    std::string currentCollection_;
 };

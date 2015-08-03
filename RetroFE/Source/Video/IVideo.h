@@ -22,13 +22,13 @@ class IVideo
 {
 public:
     virtual ~IVideo() {}
-    virtual bool Initialize() = 0;
-    virtual bool Play(std::string file) = 0;
-    virtual bool Stop() = 0;
-    virtual bool DeInitialize() = 0;
-    virtual SDL_Texture *GetTexture() const = 0;
-    virtual void Update(float dt) = 0;
-    virtual void Draw() = 0;
-    virtual int GetHeight() = 0;
-    virtual int GetWidth() = 0;
+    virtual bool initialize() = 0;
+    virtual bool play(std::string file) = 0;
+    virtual bool stop() = 0;
+    virtual bool deInitialize() = 0;
+    virtual SDL_Texture *getTexture() const = 0;
+    virtual void update(float dt) = 0;
+    virtual void draw() = 0;
+    virtual int getHeight() = 0;
+    virtual int getWidth() = 0;
 };

@@ -28,11 +28,11 @@ public:
     AnimationEvents(AnimationEvents &copy);
     ~AnimationEvents();
 
-    Animation *GetAnimation(std::string tween);
-    Animation *GetAnimation(std::string tween, int index);
-    void SetAnimation(std::string tween, int index, Animation *animation);
-    void Clear();
+    Animation *getAnimation(std::string tween);
+    Animation *getAnimation(std::string tween, int index);
+    void setAnimation(std::string tween, int index, Animation *animation);
+    void clear();
 
 private:
-    std::map<std::string, std::map<int, Animation *> > AnimationMap;
+    std::map<std::string, std::map<int, Animation *> > animationMap_;
 };

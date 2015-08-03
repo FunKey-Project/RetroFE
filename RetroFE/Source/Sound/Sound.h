@@ -22,10 +22,10 @@ class Sound
 public:
     Sound(std::string file);
     virtual ~Sound();
-    void Play();
-    bool Allocate();
-    bool Free();
+    void play();
+    bool allocate();
+    bool free();
 private:
-    std::string File;
-    Mix_Chunk *Chunk;
+    std::string file_;
+    Mix_Chunk *chunk_;
 };

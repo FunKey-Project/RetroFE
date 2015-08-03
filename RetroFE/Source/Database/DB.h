@@ -21,16 +21,12 @@ class DB
 {
 public:
     DB(std::string dbFile);
-    bool Initialize();
-    void DeInitialize();
+    bool initialize();
+    void deInitialize();
     virtual ~DB();
-    sqlite3 *GetHandle()
-    {
-        return Handle;
-    }
+    sqlite3 *handle;
 
 private:
-    std::string Path;
-    sqlite3 *Handle;
+    std::string path_;
 };
 

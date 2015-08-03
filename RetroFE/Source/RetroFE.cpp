@@ -32,6 +32,15 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <dirent.h>
+
+#ifdef __linux
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <errno.h>
+#include <cstring>
+#endif
+
 #ifdef WIN32
 #include <Windows.h>
 #include <SDL2/SDL_syswm.h>
@@ -39,176 +48,180 @@
 #endif
 
 RetroFE::RetroFE(Configuration &c)
-    : Initialized(false)
-    , InitializeError(false)
-    , InitializeThread(NULL)
-    , Config(c)
-    , Db(NULL)
-    , MetaDb(NULL)
-    , Input(Config)
-    , CurrentPage(NULL)
-    , KeyInputDisable(0)
-    , CurrentTime(0)
+    : initialized(false)
+    , initializeError(false)
+    , initializeThread(NULL)
+    , config_(c)
+    , db_(NULL)
+    , metadb_(NULL)
+    , input_(config_)
+    , currentPage_(NULL)
+    , keyInputDisable_(0)
+    , currentTime_(0)
+    , lastLaunchReturnTime_(0)
+    , keyLastTime_(0)
+    , keyDelayTime_(.3f) 
 {
 }
 
 RetroFE::~RetroFE()
 {
-    DeInitialize();
+    deInitialize();
 }
 
-void RetroFE::Render()
+void RetroFE::render()
 {
-    SDL_LockMutex(SDL::GetMutex());
-    SDL_SetRenderDrawColor(SDL::GetRenderer(), 0x0, 0x0, 0x00, 0xFF);
-    SDL_RenderClear(SDL::GetRenderer());
+    SDL_LockMutex(SDL::getMutex());
+    SDL_SetRenderDrawColor(SDL::getRenderer(), 0x0, 0x0, 0x00, 0xFF);
+    SDL_RenderClear(SDL::getRenderer());
 
-    if(CurrentPage)
+    if(currentPage_)
     {
-        CurrentPage->Draw();
+        currentPage_->draw();
     }
 
-    SDL_RenderPresent(SDL::GetRenderer());
-    SDL_UnlockMutex(SDL::GetMutex());
+    SDL_RenderPresent(SDL::getRenderer());
+    SDL_UnlockMutex(SDL::getMutex());
 }
 
-int RetroFE::Initialize(void *context)
+int RetroFE::initialize(void *context)
 {
     RetroFE *instance = static_cast<RetroFE *>(context);
 
-    Logger::Write(Logger::ZONE_INFO, "RetroFE", "Initializing");
+    Logger::write(Logger::ZONE_INFO, "RetroFE", "Initializing");
 
-    if(!instance->Input.Initialize()) 
+    if(!instance->input_.initialize()) 
     { 
-        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize user controls");
-        instance->InitializeError = true;
+        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize user controls");
+        instance->initializeError = true;
         return -1;
     }
 
-    instance->Db = new DB(Utils::CombinePath(Configuration::GetAbsolutePath(), "meta.db"));
+    instance->db_ = new DB(Utils::combinePath(Configuration::absolutePath, "meta.db"));
 
-    if(!instance->Db->Initialize())
+    if(!instance->db_->initialize())
     {
-        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize database");
-        instance->InitializeError = true;
+        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize database");
+        instance->initializeError = true;
         return -1;
     }
 
-    instance->MetaDb = new MetadataDatabase(*(instance->Db), instance->Config);
+    instance->metadb_ = new MetadataDatabase(*(instance->db_), instance->config_);
 
-    if(!instance->MetaDb->Initialize())
+    if(!instance->metadb_->initialize())
     {
-        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize meta database");
-        instance->InitializeError = true;
+        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize meta database");
+        instance->initializeError = true;
         return -1;
     }
 
-    instance->Initialized = true;
+    instance->initialized = true;
     return 0;
 }
 
-void RetroFE::LaunchEnter()
+void RetroFE::launchEnter()
 {
-    if(CurrentPage)
+    if(currentPage_)
     {
-        CurrentPage->LaunchEnter();
+        currentPage_->launchEnter();
     }
 
-    SDL_SetWindowGrab(SDL::GetWindow(), SDL_FALSE);
+    SDL_SetWindowGrab(SDL::getWindow(), SDL_FALSE);
 
 }
 
-void RetroFE::LaunchExit()
+void RetroFE::launchExit()
 {
-    SDL_RestoreWindow(SDL::GetWindow());
-    SDL_RaiseWindow(SDL::GetWindow());
-    SDL_SetWindowGrab(SDL::GetWindow(), SDL_TRUE);
-    Input.ResetKeyStates();
-    Attract.Reset();
+    SDL_RestoreWindow(SDL::getWindow());
+    SDL_RaiseWindow(SDL::getWindow());
+    SDL_SetWindowGrab(SDL::getWindow(), SDL_TRUE);
+    input_.resetStates();
+    attract_.reset();
 
-    CurrentTime = static_cast<float>(SDL_GetTicks()) / 1000;
-    if(CurrentPage)
+    currentTime_ = static_cast<float>(SDL_GetTicks()) / 1000;
+    if(currentPage_)
     {
-        CurrentPage->LaunchExit();
+        currentPage_->launchExit();
     }
+    lastLaunchReturnTime_ = currentTime_;
 
 }
 
-void RetroFE::FreeGraphicsMemory()
+void RetroFE::freeGraphicsMemory()
 {
-    if(CurrentPage)
+    if(currentPage_)
     {
-        CurrentPage->FreeGraphicsMemory();
+        currentPage_->freeGraphicsMemory();
     }
-    FC.DeInitialize();
+    fontcache_.deInitialize();
 
-    SDL::DeInitialize();
+    SDL::deInitialize();
 }
 
-void RetroFE::AllocateGraphicsMemory()
+void RetroFE::allocateGraphicsMemory()
 {
-    SDL::Initialize(Config);
+    SDL::initialize(config_);
 
-    FC.Initialize();
+    fontcache_.initialize();
 
-    if(CurrentPage)
+    if(currentPage_)
     {
-        CurrentPage->AllocateGraphicsMemory();
-        CurrentPage->Start();
+        currentPage_->allocateGraphicsMemory();
+        currentPage_->start();
     }
 }
 
-bool RetroFE::DeInitialize()
+bool RetroFE::deInitialize()
 {
     bool retVal = true;
-    FreeGraphicsMemory();
+    freeGraphicsMemory();
 
-    if(CurrentPage)
+    if(currentPage_)
     {
-        delete CurrentPage;
-        CurrentPage = NULL;
+        delete currentPage_;
+        currentPage_ = NULL;
     }
-    if(MetaDb)
+    if(metadb_)
     {
-        delete MetaDb;
-        MetaDb = NULL;
-    }
-
-    if(Db)
-    {
-        delete Db;
-        Db = NULL;
+        delete metadb_;
+        metadb_ = NULL;
     }
 
-    Initialized = false;
+    if(db_)
+    {
+        delete db_;
+        db_ = NULL;
+    }
+
+    initialized = false;
     //todo: handle video deallocation
 
-    Logger::Write(Logger::ZONE_INFO, "RetroFE", "Exiting");
+    Logger::write(Logger::ZONE_INFO, "RetroFE", "Exiting");
 
     return retVal;
 }
 
-void RetroFE::Run()
+void RetroFE::run()
 {
-    if(!SDL::Initialize(Config)) return;
+    if(!SDL::initialize(config_)) return;
 
-    FC.Initialize();
+    fontcache_.initialize();
     float preloadTime = 0;
     bool videoEnable = true;
     int videoLoop = 0;
-    Config.GetProperty("videoEnable", videoEnable);
-    Config.GetProperty("videoLoop", videoLoop);
+    config_.getProperty("videoEnable", videoEnable);
+    config_.getProperty("videoLoop", videoLoop);
 
-    VideoFactory::SetEnabled(videoEnable);
-    VideoFactory::SetNumLoops(videoLoop);
-    VideoFactory::CreateVideo(); // pre-initialize the gstreamer engine
+    VideoFactory::setEnabled(videoEnable);
+    VideoFactory::setNumLoops(videoLoop);
+    VideoFactory::createVideo(); // pre-initialize the gstreamer engine
 
 
-    InitializeThread = SDL_CreateThread(Initialize, "RetroFEInit", (void *)this);
+    initializeThread = SDL_CreateThread(initialize, "RetroFEInit", (void *)this);
 
-    if(!InitializeThread)
+    if(!initializeThread)
     {
-        Logger::Write(Logger::ZONE_INFO, "RetroFE", "Could not initialize RetroFE");
+        Logger::write(Logger::ZONE_INFO, "RetroFE", "Could not initialize RetroFE");
         return;
     }
 
@@ -217,72 +230,84 @@ void RetroFE::Run()
     bool running = true;
     RETROFE_STATE state = RETROFE_NEW;
 
-    Config.GetProperty("attractModeTime", attractModeTime);
-    Config.GetProperty("firstCollection", firstCollection);
+    config_.getProperty("attractModeTime", attractModeTime);
+    config_.getProperty("firstCollection", firstCollection);
 
-    Attract.SetIdleTime(static_cast<float>(attractModeTime));
+    attract_.idleTime = static_cast<float>(attractModeTime);
 
     int initializeStatus = 0;
 
     // load the initial splash screen, unload it once it is complete
-    CurrentPage = LoadSplashPage();
+    currentPage_ = loadSplashPage();
     bool splashMode = true;
 
-    Launcher l(*this, Config);
+    Launcher l(*this, config_);
     preloadTime = static_cast<float>(SDL_GetTicks()) / 1000;
 
     while (running)
     {
         float lastTime = 0;
         float deltaTime = 0;
-
-        if(!CurrentPage)
+        SDL_Event e;
+        if (SDL_PollEvent(&e))
         {
-            Logger::Write(Logger::ZONE_WARNING, "RetroFE", "Could not load page");
+            if(input_.update(e))
+            {
+                attract_.reset();
+            }
+        }
+
+        if(!currentPage_)
+        {
+            Logger::write(Logger::ZONE_WARNING, "RetroFE", "Could not load page");
             running = false;
             break;
         }
-        // todo: This could be transformed to use the state design pattern.
         switch(state)
         {
         case RETROFE_IDLE:
-            if(CurrentPage && !splashMode)
+            if(currentPage_ && !splashMode)
             {
-                state = ProcessUserInput(CurrentPage);
-            }
-            else
-            {
-                // read and discard SDL input to prevent windows from balking at us
-                SDL_Event e;
-                (void)SDL_PollEvent(&e);
+
+                // account for when returning from a menu and the previous key was still "stuck" 
+                if(lastLaunchReturnTime_ == 0 || (currentTime_ - lastLaunchReturnTime_ > .3))
+                { 
+                    state = processUserInput(currentPage_);
+                    lastLaunchReturnTime_ = 0;
+                }
             }
 
-            if((Initialized || InitializeError) && splashMode && CurrentPage->GetMinShowTime() <= (CurrentTime - preloadTime))
+            if((initialized || initializeError) && splashMode && currentPage_->getMinShowTime() <= (currentTime_ - preloadTime))
             {
-                SDL_WaitThread(InitializeThread, &initializeStatus);
+                SDL_WaitThread(initializeThread, &initializeStatus);
 
-                if(InitializeError)
+                if(initializeError)
                 {
                     state = RETROFE_QUIT_REQUEST;
                     break;
                 }
 
                 // delete the splash screen and use the standard menu
-                delete CurrentPage;
+                delete currentPage_;
 
-                CurrentPage = LoadPage();
+                currentPage_ = loadPage();
                 splashMode = false;
-                if(CurrentPage)
+                if(currentPage_)
                 {
                     std::string firstCollection = "Main";
-                    Config.GetProperty("firstCollection", firstCollection);
+                    bool menuSort = true;
 
-                    CurrentPage->Start();
-                    Config.SetCurrentCollection(firstCollection);
-                    CollectionInfo *info = GetCollection(firstCollection);
+                    config_.getProperty("firstCollection", firstCollection);
+                    config_.getProperty("collections." + firstCollection + ".list.menuSort", menuSort);
+
+                    currentPage_->start();
+                    config_.setProperty("currentCollection", firstCollection);
+                    CollectionInfo *info = getCollection(firstCollection);
                     MenuParser mp;
-                    mp.GetMenuItems(info);
-                    CurrentPage->PushCollection(info);
+
+                    mp.buildMenuItems(info, menuSort);
+
+                    currentPage_->pushCollection(info);
                 }
                 else
                 {
@@ -294,41 +319,42 @@ void RetroFE::Run()
             break;
 
         case RETROFE_NEXT_PAGE_REQUEST:
-            if(CurrentPage->IsIdle())
+            if(currentPage_->isIdle())
             {
                 state = RETROFE_NEW;
             }
             break;
 
         case RETROFE_LAUNCH_REQUEST:
-            NextPageItem = CurrentPage->GetSelectedItem();
-            l.Run(CurrentPage->GetCollectionName(), NextPageItem);
+            nextPageItem_ = currentPage_->getSelectedItem();
+            l.run(nextPageItem_->collectionInfo->name, nextPageItem_);
             state = RETROFE_IDLE;
             break;
 
         case RETROFE_BACK_REQUEST:
-            LastMenuOffsets[CurrentPage->GetCollectionName()] = CurrentPage->GetScrollOffsetIndex();
-            CurrentPage->PopCollection();
-            Config.SetCurrentCollection(CurrentPage->GetCollectionName());
+
+            lastMenuOffsets_[currentPage_->getCollectionName()] = currentPage_->getScrollOffsetIndex();
+            currentPage_->popCollection();
+            config_.setProperty("currentCollection", currentPage_->getCollectionName());
 
             state = RETROFE_NEW;
 
             break;
 
         case RETROFE_NEW:
-            if(CurrentPage->IsIdle())
+            if(currentPage_->isIdle())
             {
                 state = RETROFE_IDLE;
             }
             break;
 
         case RETROFE_QUIT_REQUEST:
-            CurrentPage->Stop();
+            currentPage_->stop();
             state = RETROFE_QUIT;
             break;
 
         case RETROFE_QUIT:
-            if(CurrentPage->IsHidden())
+            if(currentPage_->isHidden())
             {
                 running = false;
             }
@@ -339,42 +365,42 @@ void RetroFE::Run()
         // the logic below could be done in a helper method
         if(running)
         {
-            lastTime = CurrentTime;
-            CurrentTime = static_cast<float>(SDL_GetTicks()) / 1000;
+            lastTime = currentTime_;
+            currentTime_ = static_cast<float>(SDL_GetTicks()) / 1000;
 
-            if (CurrentTime < lastTime)
+            if (currentTime_ < lastTime)
             {
-                CurrentTime = lastTime;
+                currentTime_ = lastTime;
             }
 
-            deltaTime = CurrentTime - lastTime;
+            deltaTime = currentTime_ - lastTime;
             double sleepTime = 1000.0/60.0 - deltaTime*1000;
             if(sleepTime > 0)
             {
                 SDL_Delay(static_cast<unsigned int>(sleepTime));
             }
 
-            if(CurrentPage)
+            if(currentPage_)
             {
-                Attract.Update(deltaTime, *CurrentPage);
-                CurrentPage->Update(deltaTime);
+                attract_.update(deltaTime, *currentPage_);
+                currentPage_->update(deltaTime);
             }
 
-            Render();
+            render();
         }
     }
 
 }
 
 
-bool RetroFE::Back(bool &exit)
+bool RetroFE::back(bool &exit)
 {
     bool canGoBack = false;
     bool exitOnBack = false;
-    Config.GetProperty("exitOnFirstPageBack", exitOnBack);
+    config_.getProperty("exitOnFirstPageBack", exitOnBack);
     exit = false;
 
-    if(CurrentPage->GetMenuDepth() <= 1)
+    if(currentPage_->getMenuDepth() <= 1)
     {
         exit = exitOnBack;
     }
@@ -387,173 +413,212 @@ bool RetroFE::Back(bool &exit)
 }
 
 
-RetroFE::RETROFE_STATE RetroFE::ProcessUserInput(Page *page)
+RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
 {
-    SDL_Event e;
     bool exit = false;
     RETROFE_STATE state = RETROFE_IDLE;
-    if (SDL_PollEvent(&e) == 0) return state;
+
     bool rememberMenu = false;
-    Config.GetProperty("rememberMenu", rememberMenu);
+    config_.getProperty("rememberMenu", rememberMenu);
 
-    if(e.type == SDL_KEYDOWN || e.type == SDL_KEYUP)
+    if(page->isHorizontalScroll())
     {
-        SDL_Scancode scancode = SDL_GetScancodeFromKey(e.key.keysym.sym);
-	Input.SetKeyState(scancode, (e.type == SDL_KEYDOWN) ? true : false);
-
-        Attract.Reset();
-
-	if(page->IsHorizontalScroll())
+        if (input_.keystate(UserInput::KeyCodeLeft))
         {
-            if (Input.GetKeyState(UserInput::KeyCodeLeft))
+            page->setScrolling(Page::ScrollDirectionBack);
+        }
+        if (input_.keystate(UserInput::KeyCodeRight))
+        {
+            page->setScrolling(Page::ScrollDirectionForward);
+        } 
+    }
+    else
+    { 
+        if (input_.keystate(UserInput::KeyCodeUp))
+        {
+            page->setScrolling(Page::ScrollDirectionBack);
+        }
+        if (input_.keystate(UserInput::KeyCodeDown))
+        {
+                page->setScrolling(Page::ScrollDirectionForward);
+        }
+    }
+
+    if (!input_.keystate(UserInput::KeyCodePageUp) &&
+    !input_.keystate(UserInput::KeyCodePageDown) &&
+    !input_.keystate(UserInput::KeyCodeLetterUp) &&
+    !input_.keystate(UserInput::KeyCodeLetterDown))
+    {
+        keyLastTime_ = 0;
+        keyDelayTime_= 0.3f;
+    }
+
+    else if((currentTime_ - keyLastTime_) > keyDelayTime_ || keyLastTime_ == 0)
+    {
+        keyLastTime_ = currentTime_;
+        keyDelayTime_-= .05f;
+        if(keyDelayTime_< 0.1f) keyDelayTime_= 0.1f;
+        
+        if (input_.keystate(UserInput::KeyCodePageUp))
+        {
+            page->pageScroll(Page::ScrollDirectionBack);
+        }
+        if (input_.keystate(UserInput::KeyCodePageDown))
+        {
+            page->pageScroll(Page::ScrollDirectionForward);
+        }
+        if (input_.keystate(UserInput::KeyCodeLetterUp))
+        {
+            page->letterScroll(Page::ScrollDirectionBack);
+        }
+        if (input_.keystate(UserInput::KeyCodeLetterDown))
+        {
+            page->letterScroll(Page::ScrollDirectionForward);
+        }
+    }
+
+    if (input_.keystate(UserInput::KeyCodeAdminMode))
+    {
+        //todo: add admin mode support
+    }
+    if (input_.keystate(UserInput::KeyCodeSelect) && page->isMenuIdle())
+    {
+        nextPageItem_ = page->getSelectedItem();
+
+        if(nextPageItem_)
+        {
+            if(nextPageItem_->leaf)
             {
-                page->SetScrolling(Page::ScrollDirectionBack);
+                state = RETROFE_LAUNCH_REQUEST;
             }
-            if (Input.GetKeyState(UserInput::KeyCodeRight))
+            else
             {
-                page->SetScrolling(Page::ScrollDirectionForward);
-            } 
-        }
-        else
-        { 
-            if (Input.GetKeyState(UserInput::KeyCodeUp))
-            {
-                page->SetScrolling(Page::ScrollDirectionBack);
-            }
-            if (Input.GetKeyState(UserInput::KeyCodeDown))
-            {
-                    page->SetScrolling(Page::ScrollDirectionForward);
-            }
-        }
-        if (Input.GetKeyState(UserInput::KeyCodePageUp))
-        {
-            page->PageScroll(Page::ScrollDirectionBack);
-        }
-        if (Input.GetKeyState(UserInput::KeyCodePageDown))
-        {
-            page->PageScroll(Page::ScrollDirectionForward);
-        }
-        if (Input.GetKeyState(UserInput::KeyCodeLetterUp))
-        {
-            page->LetterScroll(Page::ScrollDirectionBack);
-        }
-        if (Input.GetKeyState(UserInput::KeyCodeLetterDown))
-        {
-            page->LetterScroll(Page::ScrollDirectionForward);
-        }
+                bool menuSort = true;
+                config_.setProperty("currentCollection", nextPageItem_->name);
+                config_.getProperty("collections." + nextPageItem_->name + ".list.menuSort", menuSort);
 
-        if (Input.GetKeyState(UserInput::KeyCodeAdminMode))
-        {
-            //todo: add admin mode support
-        }
-        if (Input.GetKeyState(UserInput::KeyCodeSelect) && page->IsMenuIdle())
-        {
-            NextPageItem = page->GetSelectedItem();
+                CollectionInfo *info = getCollection(nextPageItem_->name);
 
-            if(NextPageItem)
-            {
-                if(NextPageItem->IsLeaf())
+                MenuParser mp;
+                mp.buildMenuItems(info, menuSort);
+                page->pushCollection(info);
+
+                if(rememberMenu && lastMenuOffsets_.find(nextPageItem_->name) != lastMenuOffsets_.end())
                 {
-                    state = RETROFE_LAUNCH_REQUEST;
+                    page->setScrollOffsetIndex(lastMenuOffsets_[nextPageItem_->name]);
                 }
-                else
-                {
-                    Config.SetCurrentCollection(NextPageItem->GetName());
-                    CollectionInfo *info = GetCollection(NextPageItem->GetName());
-
-                    MenuParser mp;
-                    mp.GetMenuItems(info);
-                    page->PushCollection(info);
-
-                    if(rememberMenu && LastMenuOffsets.find(NextPageItem->GetName()) != LastMenuOffsets.end())
-                    {
-                        page->SetScrollOffsetIndex(LastMenuOffsets[NextPageItem->GetName()]);
-                    }
-                    
-                    state = RETROFE_NEXT_PAGE_REQUEST;
-                }
+                
+                state = RETROFE_NEXT_PAGE_REQUEST;
             }
         }
+    }
 
-        if (Input.GetKeyState(UserInput::KeyCodeBack) && page->IsMenuIdle())
+    if (input_.keystate(UserInput::KeyCodeBack) && page->isMenuIdle())
+    {
+        if(back(exit) || exit)
         {
-            if(Back(exit) || exit)
-            {
-                state = (exit) ? RETROFE_QUIT_REQUEST : RETROFE_BACK_REQUEST;
-            }
+            state = (exit) ? RETROFE_QUIT_REQUEST : RETROFE_BACK_REQUEST;
         }
+    }
 
-        if (Input.GetKeyState(UserInput::KeyCodeQuit))
-        {
-            state = RETROFE_QUIT_REQUEST;
-        }
+    if (input_.keystate(UserInput::KeyCodeQuit))
+    {
+        state = RETROFE_QUIT_REQUEST;
+    }
 
-        if(!Input.GetKeyState(UserInput::KeyCodeUp) &&
-                !Input.GetKeyState(UserInput::KeyCodeLeft) &&
-                !Input.GetKeyState(UserInput::KeyCodeDown) &&
-                !Input.GetKeyState(UserInput::KeyCodeRight) &&
-                !Input.GetKeyState(UserInput::KeyCodePageUp) &&
-                !Input.GetKeyState(UserInput::KeyCodePageDown))
-        {
-            page->SetScrolling(Page::ScrollDirectionIdle);
-        }
+    if(!input_.keystate(UserInput::KeyCodeUp) &&
+            !input_.keystate(UserInput::KeyCodeLeft) &&
+            !input_.keystate(UserInput::KeyCodeDown) &&
+            !input_.keystate(UserInput::KeyCodeRight) &&
+            !input_.keystate(UserInput::KeyCodePageUp) &&
+            !input_.keystate(UserInput::KeyCodePageDown))
+    {
+        page->setScrolling(Page::ScrollDirectionIdle);
     }
 
     return state;
 }
 
-Page *RetroFE::LoadPage()
+Page *RetroFE::loadPage()
 {
     std::string layoutName;
 
-    Config.GetProperty("layout", layoutName);
+    config_.getProperty("layout", layoutName);
 
-    PageBuilder pb(layoutName, "layout", Config, &FC);
-    Page *page = pb.BuildPage();
+    PageBuilder pb(layoutName, "layout", config_, &fontcache_);
+    Page *page = pb.buildPage();
 
     if(!page)
     {
-        Logger::Write(Logger::ZONE_ERROR, "RetroFE", "Could not create page");
+        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not create page");
     }
     else
     {
-        page->Start();
+        page->start();
     }
 
     return page;
 }
 
-Page *RetroFE::LoadSplashPage()
+Page *RetroFE::loadSplashPage()
 {
     std::string layoutName;
-    Config.GetProperty("layout", layoutName);
+    config_.getProperty("layout", layoutName);
 
-    PageBuilder pb(layoutName, "splash", Config, &FC);
-    Page * page = pb.BuildPage();
-    page->Start();
+    PageBuilder pb(layoutName, "splash", config_, &fontcache_);
+    Page * page = pb.buildPage();
+    page->start();
 
     return page;
 }
 
 
-CollectionInfo *RetroFE::GetCollection(std::string collectionName)
+CollectionInfo *RetroFE::getCollection(std::string collectionName)
 {
     // the page will deallocate this once its done
 
-    CollectionInfoBuilder cib(Config, *MetaDb);
-    CollectionInfo *collection = cib.BuildCollection(collectionName);
+    CollectionInfoBuilder cib(config_, *metadb_);
+    CollectionInfo *collection = cib.buildCollection(collectionName);
+    DIR *dp;
+    struct dirent *dirp;
 
+    std::string path = Utils::combinePath(Configuration::absolutePath, "collections", collectionName);
+    dp = opendir(path.c_str());
+
+    while((dirp = readdir(dp)) != NULL)
+    {
+        std::string file = dirp->d_name;
+
+        size_t position = file.find_last_of(".");
+        std::string basename = (std::string::npos == position)? file : file.substr(0, position);
+
+        std::string comparator = ".sub";
+        int start = file.length() - comparator.length();
+
+        if(start >= 0)
+        {
+            if(file.compare(start, comparator.length(), comparator) == 0)
+            {
+                Logger::write(Logger::ZONE_INFO, "RetroFE", "Loading subcollection into menu: " + basename);
+
+                CollectionInfo *subcollection = cib.buildCollection(basename, collectionName);
+                collection->addSubcollection(subcollection);
+            }
+        }
+    }
+
+    collection->sortItems();
     return collection;
 }
 
-std::string RetroFE::GetLayout(std::string collectionName)
+std::string RetroFE::getLayout(std::string collectionName)
 {
     std::string layoutKeyName = "collections." + collectionName + ".layout";
     std::string layoutName = "Default 16x9";
 
-    if(!Config.GetProperty(layoutKeyName, layoutName))
+    if(!config_.getProperty(layoutKeyName, layoutName))
     {
-        Config.GetProperty("layout", layoutName);
+        config_.getProperty("layout", layoutName);
     }
 
     return layoutName;
