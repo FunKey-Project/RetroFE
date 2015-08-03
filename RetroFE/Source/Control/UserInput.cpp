@@ -26,7 +26,6 @@
 
 UserInput::UserInput(Configuration &c)
     : config_(c)
-    , joystick_(NULL)
 {
     for(unsigned int i = 0; i < KeyCodeMax; ++i)
     {
@@ -37,6 +36,13 @@ UserInput::UserInput(Configuration &c)
 
 UserInput::~UserInput()
 {
+    for(std::vector<SDL_Joystick *>::iterator it = joysticks_.begin(); it != joysticks_.end(); it++)
+    {
+        if(*it)
+        {
+            SDL_JoystickClose(*it);
+        }
+    }
 }
 
 bool UserInput::initialize()

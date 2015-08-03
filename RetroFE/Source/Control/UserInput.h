@@ -14,10 +14,11 @@
  * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
 #pragma once
-#include <map>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_joystick.h>
+#include <map>
 #include <string>
+#include <vector>
 
 class Configuration;
 class InputHandler;
@@ -54,7 +55,7 @@ public:
 private:
     bool MapKey(std::string keyDescription, KeyCode_E key);
     Configuration &config_;
-    SDL_Joystick *joystick_;
+    std::vector<SDL_Joystick *> joysticks_;
     InputHandler *keyHandlers_[KeyCodeMax]; 
     bool lastKeyState_[KeyCodeMax]; 
     

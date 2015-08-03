@@ -133,21 +133,10 @@ bool CollectionInfoBuilder::createCollectionDirectory(std::string name)
     settingsFile << "#media.video         = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "video") << std::endl;
     settingsFile.close();
 
-    filename = Utils::combinePath(collectionPath, "menu.xml");
+    filename = Utils::combinePath(collectionPath, "menu.txt");
     std::cout << "Creating file \"" << filename << "\"" << std::endl;
     std::ofstream menuFile;
     menuFile.open(filename.c_str());
-
-    menuFile << "<menu>" << std::endl;
-    menuFile << std::endl;
-    menuFile << "<!-- uncomment this line and edit the example below to have a submenu" << std::endl;
-    menuFile << std::endl;
-    menuFile << "    <item collection=\"Some collection name\"/>" << std::endl;
-    menuFile << "    <item collection=\"Arcade\"/>" << std::endl;
-    menuFile << std::endl;
-    menuFile << "uncomment this line and edit the example above to have a submenu -->" << std::endl;
-    menuFile << std::endl;
-    menuFile << "</menu>" << std::endl;
     menuFile.close();
 
     return true;
