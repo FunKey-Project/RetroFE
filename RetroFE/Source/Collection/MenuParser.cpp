@@ -88,7 +88,6 @@ bool MenuParser::buildTextMenu(CollectionInfo *collection, bool sort)
 
     collection->menusort = sort;
     collection->items.insert(collection->items.begin(), menuItems.begin(), menuItems.end());
-    collection->sortItems();
 
     return true;
 }
