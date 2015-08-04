@@ -305,9 +305,11 @@ std::string Configuration::convertToAbsolutePath(std::string prefix, std::string
     }
 
     // check to see if it is already an absolute path
-    if((first != Utils::pathSeparator) &&
-            //(first != '.') &&
-            (second != ':'))
+#ifdef WIN32
+    if((first != '\\') && (first != '/') && (second != ':'))
+#else
+    if(first != Utils::pathSeparator)
+#endif
     {
         path = Utils::combinePath(prefix, path);
     }
