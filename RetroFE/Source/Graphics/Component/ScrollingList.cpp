@@ -75,6 +75,8 @@ ScrollingList::ScrollingList(const ScrollingList &copy)
     , horizontalScroll(copy.horizontalScroll)
     , spriteList_(NULL)
     , focus_(false)
+    , itemIndex_(0)
+    , componentIndex_(0)
     , scrollStopRequested_(true)
     , notifyAllRequested_(false)
     , currentScrollDirection_(ScrollDirectionIdle)
@@ -237,7 +239,6 @@ void ScrollingList::click(double nextScrollTime)
         // get the previous item
         itemIndex_ = loopDecrement(itemIndex_, 1, items_->size());
         Item *i = items_->at(itemIndex_);
-       
         componentIndex_ = loopDecrement(componentIndex_, 1, components_.size()); 
 
         deallocateTexture(componentIndex_);
@@ -248,6 +249,7 @@ void ScrollingList::click(double nextScrollTime)
         itemIndex_ = loopIncrement(itemIndex_, 1, items_->size());
         Item *i = items_->at(itemIndex_);
        
+
         deallocateTexture(componentIndex_);
         allocateTexture(componentIndex_, i);
 
@@ -402,9 +404,9 @@ void ScrollingList::update(float dt)
     {
         if(currentScrollState_ == ScrollStateStopping)
         {
-            click(0);
             currentScrollState_ = ScrollStateIdle;
             scrollStopped = true;
+            click(0);
 
             for(unsigned int i = 0; i < tweenPoints_->size(); ++i)
             {
@@ -433,11 +435,11 @@ void ScrollingList::update(float dt)
     for(unsigned int i = 0; i < scrollPoints_->size(); i++)
     {
         unsigned int cindex = loopIncrement(componentIndex_, i, components_.size());
+
         Component *c = components_.at(cindex);
 
         if(c && (scrollRequested || scrollChanged))
         {
-            ViewInfo *currentvi = scrollPoints_->at(i);
             unsigned int nextI = 0;
             if(currentScrollDirection_ == ScrollDirectionBack)
             {
@@ -448,6 +450,7 @@ void ScrollingList::update(float dt)
                 nextI = loopDecrement(i, 1, scrollPoints_->size());
             }
 
+            ViewInfo *currentvi = scrollPoints_->at(i);
             ViewInfo *nextvi = scrollPoints_->at(nextI);
 
             resetTweens(c, tweenPoints_->at(i), currentvi, nextvi, scrollPeriod_);
@@ -460,7 +463,9 @@ void ScrollingList::update(float dt)
 
     if(scrollStopped || (notifyAllRequested_ && focus_))
     {
-        Item *item = getPendingItem();
+        Item *item = NULL;
+        unsigned index = loopIncrement(itemIndex_, selectedOffsetIndex_, items_->size());
+        item = items_->at(index);
 
         for(std::vector<MenuNotifierInterface *>::iterator it = notificationComponents_.begin();
                 it != notificationComponents_.end();
@@ -649,30 +654,6 @@ void ScrollingList::removeComponentForNotifications(MenuNotifierInterface *c)
             break;
         }
     }
-}
-
-
-Item* ScrollingList::getPendingItem()
-{
-    Item *item = NULL;
-
-    if(items_ && items_->size() > 0)
-    {
-        unsigned int index = itemIndex_;
-
-        if(currentScrollDirection_ == ScrollDirectionBack)
-        {
-            index = loopDecrement(index, 1, items_->size());
-        }
-        if(currentScrollDirection_ == ScrollDirectionForward)
-        {
-            index = loopIncrement(index, 1, items_->size());
-        }
-
-        item = items_->at(index);
-    }
-
-    return item;
 }
 
 bool ScrollingList::isIdle()

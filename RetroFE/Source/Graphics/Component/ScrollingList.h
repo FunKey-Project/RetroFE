@@ -69,7 +69,6 @@ public:
     unsigned int getScrollOffsetIndex();
     void setScrollOffsetIndex(unsigned int index);
     void setSelectedIndex(int selectedIndex);
-    Item *getPendingItem();
     void addComponentForNotifications(MenuNotifierInterface *c);
     void removeComponentForNotifications(MenuNotifierInterface *c);
     void freeGraphicsMemory();
