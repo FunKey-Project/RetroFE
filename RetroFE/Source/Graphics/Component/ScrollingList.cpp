@@ -91,7 +91,6 @@ ScrollingList::ScrollingList(const ScrollingList &copy)
     , imageType_(copy.imageType_)
     , items_(NULL)
 {
-
     scrollPoints_ = NULL;
     tweenPoints_ = NULL;
 
@@ -125,7 +124,6 @@ ScrollingList::~ScrollingList()
 
 void ScrollingList::setItems(CollectionInfo *info)
 {
-    std::cout << "setItems" << std::endl;
     deallocateSpritePoints();
 
     collection_ = info;
@@ -149,8 +147,7 @@ unsigned int ScrollingList::loopIncrement(unsigned int offset, unsigned int i, u
 unsigned int ScrollingList::loopDecrement(unsigned int offset, unsigned int i, unsigned int size)
 {
     if(size == 0) return 0;
-   // (A - B) % C = ((A % C) - (B % C)) % C 
-   return ((offset % size) - (i % size) ) % size; 
+   return ((offset % size) - (i % size) + size) % size; 
 }
 
 
@@ -170,12 +167,15 @@ void ScrollingList::deallocateSpritePoints()
     {
         deallocateTexture(i);
     }
+
+    componentIndex_ = 0;
 }
 
 void ScrollingList::allocateSpritePoints()
 {
     for(unsigned int i = 0; items_ && i < scrollPoints_->size(); ++i)
     {
+        componentIndex_ = 0;
         unsigned int index = loopIncrement(itemIndex_, i, items_->size());
         Item *item = items_->at(index);
 
@@ -232,35 +232,27 @@ void ScrollingList::setSelectedIndex(int selectedIndex)
 
 void ScrollingList::click(double nextScrollTime)
 {
-    ViewInfo *cur;
-    ViewInfo *next;
     if(currentScrollDirection_ == ScrollDirectionBack)
     {
-        next = scrollPoints_->at(componentIndex_);
-        itemIndex_ = loopIncrement(itemIndex_, 1, items_->size());
-        componentIndex_ = loopIncrement(componentIndex_, 1, components_.size()); 
-        cur = scrollPoints_->at(componentIndex_);
+        // get the previous item
+        itemIndex_ = loopDecrement(itemIndex_, 1, items_->size());
+        Item *i = items_->at(itemIndex_);
+       
+        componentIndex_ = loopDecrement(componentIndex_, 1, components_.size()); 
+
+        deallocateTexture(componentIndex_);
+        allocateTexture(componentIndex_, i);
     }
     else if(currentScrollDirection_ == ScrollDirectionForward)
     {
-        next = scrollPoints_->at(componentIndex_);
-        itemIndex_ = loopDecrement(itemIndex_, 1, items_->size());
-        componentIndex_ = loopDecrement(componentIndex_, 1, components_.size()); 
-        cur = scrollPoints_->at(componentIndex_);
+        itemIndex_ = loopIncrement(itemIndex_, 1, items_->size());
+        Item *i = items_->at(itemIndex_);
+       
+        deallocateTexture(componentIndex_);
+        allocateTexture(componentIndex_, i);
+
+        componentIndex_ = loopIncrement(componentIndex_, 1, components_.size()); 
     }
-    else
-    {
-        return;
-    }
-
-    Item *i = items_->at(itemIndex_);
-
-    deallocateTexture(componentIndex_);
-    allocateTexture(componentIndex_, i);
-    Component *c = components_.at(componentIndex_);
-
-    resetTweens(c, tweenPoints_->at(componentIndex_), cur, next, 0);
-
 }
 
 void ScrollingList::pageUp()
@@ -416,7 +408,8 @@ void ScrollingList::update(float dt)
 
             for(unsigned int i = 0; i < tweenPoints_->size(); ++i)
             {
-                Component *c = components_.at(i);
+                unsigned int cindex = loopIncrement(componentIndex_, i, components_.size());
+                Component *c = components_.at(cindex);
 
                 if(c) c->setTweens(tweenPoints_->at(i));
             }
