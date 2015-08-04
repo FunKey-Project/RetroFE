@@ -130,10 +130,13 @@ bool Configuration::parseLine(std::string collection, std::string keyPrefix, std
 
         key = trimEnds(key);
 
-
-        value = line.substr(position + delimiter.length(), line.length());
-        value = trimEnds(value);
-        value = Utils::replace(value, "%ITEM_COLLECTION_NAME%", collection);
+        // only overwrite the collection name if we know it. We could be parsing a launcher configuration
+        if(collection != "")
+        {
+            value = line.substr(position + delimiter.length(), line.length());
+            value = trimEnds(value);
+            value = Utils::replace(value, "%ITEM_COLLECTION_NAME%", collection);
+        }
 
         properties_.insert(PropertiesPair(key, value));
 
