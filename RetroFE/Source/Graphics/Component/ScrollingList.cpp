@@ -36,7 +36,7 @@
 #include <SDL2/SDL_image.h>
 #include <sstream>
 #include <cctype>
-
+#include <iomanip>
 
 //todo: remove coupling from configuration data (if possible)
 ScrollingList::ScrollingList(Configuration &c,
@@ -246,10 +246,10 @@ void ScrollingList::click(double nextScrollTime)
     }
     else if(currentScrollDirection_ == ScrollDirectionForward)
     {
+        unsigned int itemIncrement = loopIncrement(itemIndex_, scrollPoints_->size(), items_->size());
         itemIndex_ = loopIncrement(itemIndex_, 1, items_->size());
-        Item *i = items_->at(itemIndex_);
+        Item *i = items_->at(itemIncrement);
        
-
         deallocateTexture(componentIndex_);
         allocateTexture(componentIndex_, i);
 
