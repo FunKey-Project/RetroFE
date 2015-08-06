@@ -149,9 +149,6 @@ bool MenuParser::buildLegacyXmlMenu(CollectionInfo *collection, bool sort)
             }
 
 
-            std::sort( collection->items.begin(), collection->items.end(), VectorSort);
-
-            // todo: sorting should occur within the collection itself, not externally
             if(sort)
             {
             	// sort the menu if requested

@@ -84,17 +84,28 @@ private:
     void highlight();
     std::string collectionName_;
     Configuration &config_;
+
+    struct MenuInfo_S
+    {
+        CollectionInfo *collection;
+        ScrollingList *menu;
+        CollectionInfo::Playlists_T::iterator playlist; 
+        bool queueDelete;
+    };
+
     typedef std::vector<ScrollingList *> MenuVector_T;
-    typedef std::vector<CollectionInfo *> CollectionInfo_T;
+    typedef std::list<MenuInfo_S> CollectionVector_T;
 
     ScrollingList *activeMenu_;
     unsigned int menuDepth_;
     MenuVector_T menus_;
-    CollectionInfo_T collections_;
+    CollectionVector_T collections_;
 
     static const unsigned int NUM_LAYERS = 8;
     std::vector<Component *> LayerComponents[NUM_LAYERS];
-    std::vector<Item *> *items_;
+    std::list<ScrollingList *> deleteMenuList_;
+    std::list<CollectionInfo *> deleteCollectionList_;
+
     bool scrollActive_;
 
     Item *selectedItem_;

@@ -51,6 +51,18 @@ CollectionInfo::~CollectionInfo()
     }
 
 
+    Playlists_T::iterator pit = playlists.begin();
+
+    while(pit != playlists.end())
+    {
+        if(pit->second != &items)
+        {
+            delete pit->second;
+        }
+        playlists.erase(pit);
+        pit = playlists.begin();
+    }
+
 	std::vector<Item *>::iterator it = items.begin();
     while(it != items.end())
     {

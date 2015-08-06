@@ -56,7 +56,7 @@ public:
 
     bool allocateTexture(unsigned int index, Item *i);
     void deallocateTexture(unsigned int index);
-    void setItems(CollectionInfo *info);
+    void setItems(std::vector<Item *> *items);
     void destroyItems();
     void setPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<AnimationEvents *> *tweenPoints);
     void setScrollDirection(ScrollDirection direction);
@@ -123,11 +123,11 @@ private:
     Font *fontInst_;
     std::string layoutKey_;
     std::string imageType_;
-    CollectionInfo *collection_;
 
         
     std::vector<Item *> *items_;
     std::vector<Component *> components_;
+    
     
 };
 

@@ -124,15 +124,12 @@ ScrollingList::~ScrollingList()
 }
 
 
-void ScrollingList::setItems(CollectionInfo *info)
+void ScrollingList::setItems(std::vector<Item *> *items)
 {
     deallocateSpritePoints();
 
-    collection_ = info;
-    items_ = &collection_->items;
-
+    items_ = items;
     itemIndex_ = 0;
-    componentIndex_ = 0;
   
     allocateSpritePoints();
 
@@ -175,7 +172,10 @@ void ScrollingList::deallocateSpritePoints()
 
 void ScrollingList::allocateSpritePoints()
 {
-    for(unsigned int i = 0; items_ && i < scrollPoints_->size(); ++i)
+    if(!items_ || items_->size() == 0) return;
+    if(!scrollPoints_) return;
+
+    for(unsigned int i = 0; i < scrollPoints_->size(); ++i)
     {
         componentIndex_ = 0;
         unsigned int index = loopIncrement(itemIndex_, i, items_->size());
@@ -210,10 +210,11 @@ void ScrollingList::setPoints(std::vector<ViewInfo *> *scrollPoints, std::vector
     // empty out the list as we will resize it
     components_.clear();
 
-    if(scrollPoints && scrollPoints_->size() > components_.size())
-    {
-        components_.resize(scrollPoints_->size(), NULL);
-    }
+    int size = 0;
+
+    if(scrollPoints) size = scrollPoints_->size();
+    components_.resize(size);
+
     allocateSpritePoints();
 }
 
@@ -378,12 +379,13 @@ void ScrollingList::update(float dt)
     bool scrollRequested = false;
     bool scrollStopped = false;
 
-    // validate all scroll points are done tweening to the next position
-    for(unsigned int i = 0; i < components_.size(); i++)
-    {
-        Component *c = components_.at(i);
+    if(components_.size() == 0) return;
+    if(!items_ || items_->size() == 0) return;
 
-        if(c && c->isMenuScrolling())
+    // validate all scroll points are done tweening to the next position
+    for(std::vector<Component *>::iterator c = components_.begin(); c != components_.end(); c++)
+    {
+        if(*c && (*c)->isMenuScrolling())
         {
             readyToScroll = false;
             break;
@@ -630,6 +632,8 @@ void ScrollingList::draw()
 void ScrollingList::draw(unsigned int layer)
 {
     
+    if(components_.size() == 0) return;
+
     for(unsigned int i = 0; i < components_.size(); ++i)
     {
         Component *c = components_.at(i);
@@ -666,7 +670,15 @@ void ScrollingList::removeComponentForNotifications(MenuNotifierInterface *c)
 
 bool ScrollingList::isIdle()
 {
-    return (Component::isIdle() && currentScrollState_ == ScrollStateIdle);
+    if(!Component::isIdle() || currentScrollState_ != ScrollStateIdle) return false;
+
+    for(unsigned int i = 0; i < components_.size(); ++i)
+    {
+        Component *c = components_.at(i);
+        if(c && !c->isIdle()) return false;
+    }
+
+    return true;
 }
 
 

@@ -279,6 +279,8 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     std::vector<std::string>::iterator extensionsIt;
 
     info->extensionList(extensions);
+    info->playlists["all"] = &info->items;
+    info->playlists["favorites"] = new std::vector<Item *>();
 
 
     dp = opendir(path.c_str());
@@ -300,10 +302,11 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
             }
         }
     }
-        for(std::map<std::string, Item *>::iterator it = favoritesFilter.begin(); it != favoritesFilter.end(); it++)
-        {
-            info->playlists["favorites"].push_back(it->second);
-        }
+    // add the favorites list 
+    for(std::map<std::string, Item *>::iterator it = favoritesFilter.begin(); it != favoritesFilter.end(); it++)
+    {
+        info->playlists["favorites"]->push_back(it->second);
+    }
 
     while((dirp = readdir(dp)) != NULL)
     {
@@ -334,7 +337,6 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
                         i->collectionInfo = info;
 
                         info->items.push_back(i);
-                        info->playlists["include"].push_back(i);
                     }
                 }
             }
