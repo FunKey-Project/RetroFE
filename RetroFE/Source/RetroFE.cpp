@@ -447,7 +447,8 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
     if (!input_.keystate(UserInput::KeyCodePageUp) &&
     !input_.keystate(UserInput::KeyCodePageDown) &&
     !input_.keystate(UserInput::KeyCodeLetterUp) &&
-    !input_.keystate(UserInput::KeyCodeLetterDown))
+    !input_.keystate(UserInput::KeyCodeLetterDown) &&
+    !input_.keystate(UserInput::KeyCodeNextPlaylist))
     {
         keyLastTime_ = 0;
         keyDelayTime_= 0.3f;
@@ -474,6 +475,10 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         if (input_.keystate(UserInput::KeyCodeLetterDown))
         {
             page->letterScroll(Page::ScrollDirectionForward);
+        }
+        if(input_.keystate(UserInput::KeyCodeNextPlaylist))
+        {
+            page->nextPlaylist();
         }
     }
 
@@ -511,10 +516,6 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
                 state = RETROFE_NEXT_PAGE_REQUEST;
             }
         }
-    }
-    if(input_.keystate(UserInput::KeyCodeNextPlaylist) && page->isMenuIdle())
-    {
-        page->nextPlaylist();
     }
 
     if (input_.keystate(UserInput::KeyCodeBack) && page->isMenuIdle())
