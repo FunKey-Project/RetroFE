@@ -63,6 +63,7 @@ void Component::freeGraphicsMemory()
     menuExitIndex = -1;
 
     newItemSelected = false;
+    playlistChanged = false;
     highlightExitComplete = false;
     currentTweens_ = NULL;
     currentTweenIndex_ = 0;
@@ -137,6 +138,11 @@ void Component::triggerHighlightEvent(Item *selectedItem)
     this->selectedItem_ = selectedItem;
 }
 
+void Component::triggerPlaylistChangeEvent(std::string name)
+{
+    playlistChanged = true;
+    this->playlistName = name;
+}
 
 bool Component::isIdle()
 {

@@ -59,6 +59,10 @@ ReloadableText::ReloadableText(std::string type, Font *font, std::string layoutK
     {
         type_ = TextTypeGenre;
     }
+    else if(type == "playlist")
+    {
+        type_ = TextTypePlaylist;
+    }
 
     allocateGraphicsMemory();
 }
@@ -75,7 +79,8 @@ ReloadableText::~ReloadableText()
 
 void ReloadableText::update(float dt)
 {
-    if(newItemSelected)
+    if((type_ != TextTypePlaylist && newItemSelected) || 
+       (type_ == TextTypePlaylist && playlistChanged))
     {
         reloadRequested_ = true;
     }
@@ -153,6 +158,9 @@ void ReloadableText::ReloadTexture()
             break;
         case TextTypeGenre:
             ss << selectedItem->genre;
+            break;
+        case TextTypePlaylist:
+            ss << playlistName;
             break;
         default:
             break;

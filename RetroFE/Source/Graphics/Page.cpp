@@ -34,6 +34,7 @@ Page::Page(Configuration &config)
     , selectedItem_(NULL)
     , textStatusComponent_(NULL)
     , selectedItemChanged_(false)
+    , playlistChanged_(false)
     , loadSoundChunk_(NULL)
     , unloadSoundChunk_(NULL)
     , highlightSoundChunk_(NULL)
@@ -315,25 +316,39 @@ float Page::getMinShowTime()
     return minShowTime_;
 }
 
+void Page::playlistChange()
+{
+    if(activeMenu_)
+    {
+        activeMenu_->triggerPlaylistChangeEvent(playlist_->first);
+    }
+
+    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    {
+        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
+        {
+            (*it)->triggerPlaylistChangeEvent(playlist_->first);
+        }
+    }
+}
+
 void Page::highlight()
 {
     Item *item = selectedItem_;
 
-    if(item)
+    if(!item) return;
+    if(activeMenu_)
     {
-        if(activeMenu_)
-        {
-            activeMenu_->triggerHighlightEvent(item);
-            activeMenu_->scrollActive = scrollActive_;
-        }
+        activeMenu_->triggerHighlightEvent(item);
+        activeMenu_->scrollActive = scrollActive_;
+    }
 
-        for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    {
+        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
         {
-            for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-            {
-                (*it)->triggerHighlightEvent(item);
-                (*it)->scrollActive = scrollActive_;
-            }
+            (*it)->triggerHighlightEvent(item);
+            (*it)->scrollActive = scrollActive_;
         }
     }
 }
@@ -447,6 +462,7 @@ bool Page::pushCollection(CollectionInfo *collection)
     collections_.push_back(info);
 
     playlist_ = info.playlist;
+    playlistChanged_ = true;
 
     if(menuDepth_ < menus_.size())
     {
@@ -491,6 +507,7 @@ bool Page::popCollection()
     collections_.pop_back();
     info = collections_.back();
     playlist_ = info.playlist;
+    playlistChanged_ = true;
 
     if(activeMenu_)
     {
@@ -544,6 +561,7 @@ void Page::nextPlaylist()
 
     activeMenu_->setItems(playlist_->second);
     activeMenu_->triggerMenuEnterEvent();
+    playlistChanged_ = true;
 }
 
 void Page::update(float dt)
@@ -553,6 +571,12 @@ void Page::update(float dt)
         ScrollingList *menu = *it;
 
         menu->update(dt);
+    }
+    
+    if(playlistChanged_)
+    {
+        playlistChange();
+        playlistChanged_ = false;
     }
 
     if(selectedItemChanged_ && !scrollActive_)

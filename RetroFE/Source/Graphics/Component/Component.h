@@ -40,6 +40,7 @@ public:
     void triggerMenuExitEvent(int menuIndex = -1);
     void triggerMenuScrollEvent();
     void triggerHighlightEvent(Item *selectedItem);
+    void triggerPlaylistChangeEvent(std::string name);
     bool isIdle();
     bool isHidden();
     bool isWaiting();
@@ -78,6 +79,8 @@ protected:
     bool menuExitRequested;
     int menuExitIndex;
     bool newItemSelected;
+    bool playlistChanged;
+    std::string playlistName;
     bool highlightExitComplete;
     bool newItemSelectedSinceEnter;
 private:

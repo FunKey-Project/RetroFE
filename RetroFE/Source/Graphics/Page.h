@@ -82,6 +82,7 @@ public:
 
 private:
     void highlight();
+    void playlistChange();
     std::string collectionName_;
     Configuration &config_;
 
@@ -111,6 +112,7 @@ private:
     Item *selectedItem_;
     Text *textStatusComponent_;
     bool selectedItemChanged_;
+    bool playlistChanged_;
     Sound *loadSoundChunk_;
     Sound *unloadSoundChunk_;
     Sound *highlightSoundChunk_;

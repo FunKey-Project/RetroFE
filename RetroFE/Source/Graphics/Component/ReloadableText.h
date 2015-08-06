@@ -43,6 +43,7 @@ private:
         TextTypeTitle,
         TextTypeManufacturer,
         TextTypeGenre,
+        TextTypePlaylist,
     };
 
     void ReloadTexture();
