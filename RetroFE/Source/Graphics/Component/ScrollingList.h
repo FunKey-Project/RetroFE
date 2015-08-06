@@ -65,6 +65,7 @@ public:
     void letterUp();
     void letterDown();
     void letterChange(bool increment);
+    void random();
     bool isIdle();
     unsigned int getScrollOffsetIndex();
     void setScrollOffsetIndex(unsigned int index);

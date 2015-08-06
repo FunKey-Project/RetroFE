@@ -74,6 +74,7 @@ bool UserInput::initialize()
     retVal = MapKey("back", KeyCodeBack) && retVal;
     retVal = MapKey("quit", KeyCodeQuit) && retVal;
     MapKey("nextPlaylist", KeyCodeNextPlaylist);
+    MapKey("random", KeyCodeRandom);
     // these features will need to be implemented at a later time
 //   retVal = MapKey("admin", KeyCodeAdminMode) && retVal;
 //   retVal = MapKey("remove", KeyCodeHideItem) && retVal;

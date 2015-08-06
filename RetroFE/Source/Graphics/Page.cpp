@@ -407,6 +407,11 @@ void Page::pageScroll(ScrollDirection direction)
     }
 }
 
+void Page::selectRandom()
+{
+    if(activeMenu_) activeMenu_->random(); 
+}
+
 void Page::letterScroll(ScrollDirection direction)
 {
     if(activeMenu_)

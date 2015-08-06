@@ -292,6 +292,14 @@ void ScrollingList::pageDown()
     allocateSpritePoints();
 }
 
+void ScrollingList::random()
+{
+    if(!items_ || items_->size() == 0) return;
+    
+    deallocateSpritePoints();
+    itemIndex_ = rand() % items_->size();
+    allocateSpritePoints();
+}
 
 void ScrollingList::letterUp()
 {

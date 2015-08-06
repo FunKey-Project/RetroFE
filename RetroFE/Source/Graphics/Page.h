@@ -56,6 +56,7 @@ public:
     bool addComponent(Component *c);
     void pageScroll(ScrollDirection direction);
     void letterScroll(ScrollDirection direction);
+    void selectRandom();
     void start();
     void startComponents();
     void stop();

@@ -40,6 +40,7 @@ public:
         KeyCodeLetterDown,
         KeyCodeLetterUp,
         KeyCodeNextPlaylist,
+        KeyCodeRandom,
         KeyCodeAdminMode,
         KeyCodeHideItem,
         KeyCodeQuit,
