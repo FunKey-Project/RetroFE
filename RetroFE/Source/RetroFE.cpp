@@ -512,6 +512,10 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
             }
         }
     }
+    if(input_.keystate(UserInput::KeyCodeNextPlaylist) && page->isMenuIdle())
+    {
+        page->nextPlaylist();
+    }
 
     if (input_.keystate(UserInput::KeyCodeBack) && page->isMenuIdle())
     {

@@ -16,13 +16,13 @@
 #pragma once
 
 #include "MenuNotifierInterface.h"
+#include "../Collection/CollectionInfo.h"
 
 #include <map>
 #include <string>
 #include <list>
 #include <vector>
 
-class CollectionInfo;
 class Component;
 class Configuration;
 class ScrollingList;
@@ -46,6 +46,7 @@ public:
     virtual void onNewItemSelected(Item *);
     bool pushCollection(CollectionInfo *collection);
     bool popCollection();
+    void nextPlaylist();
     void pushMenu(ScrollingList *s);
     bool isMenusFull();
     void setLoadSound(Sound *chunk);
@@ -83,17 +84,28 @@ private:
     void highlight();
     std::string collectionName_;
     Configuration &config_;
+
+    struct MenuInfo_S
+    {
+        CollectionInfo *collection;
+        ScrollingList *menu;
+        CollectionInfo::Playlists_T::iterator playlist; 
+        bool queueDelete;
+    };
+
     typedef std::vector<ScrollingList *> MenuVector_T;
-    typedef std::vector<CollectionInfo *> CollectionInfo_T;
+    typedef std::list<MenuInfo_S> CollectionVector_T;
 
     ScrollingList *activeMenu_;
     unsigned int menuDepth_;
     MenuVector_T menus_;
-    CollectionInfo_T collections_;
+    CollectionVector_T collections_;
 
     static const unsigned int NUM_LAYERS = 8;
     std::vector<Component *> LayerComponents[NUM_LAYERS];
-    std::vector<Item *> *items_;
+    std::list<ScrollingList *> deleteMenuList_;
+    std::list<CollectionInfo *> deleteCollectionList_;
+
     bool scrollActive_;
 
     Item *selectedItem_;
@@ -105,6 +117,7 @@ private:
     Sound *selectSoundChunk_;
     float minShowTime_;
     float elapsedTime_;
+    CollectionInfo::Playlists_T::iterator playlist_;
 
 
 };
