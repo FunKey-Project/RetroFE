@@ -243,6 +243,10 @@ void ScrollingList::click(double nextScrollTime)
 
         deallocateTexture(componentIndex_);
         allocateTexture(componentIndex_, i);
+
+        Component *c = components_.at(componentIndex_);
+        ViewInfo *v = scrollPoints_->at(0);
+        resetTweens(c, tweenPoints_->at(componentIndex_), v, v, 0);
     }
     else if(currentScrollDirection_ == ScrollDirectionForward)
     {
@@ -252,6 +256,10 @@ void ScrollingList::click(double nextScrollTime)
        
         deallocateTexture(componentIndex_);
         allocateTexture(componentIndex_, i);
+
+        Component *c = components_.at(componentIndex_);
+        ViewInfo *v = scrollPoints_->back();
+        resetTweens(c, tweenPoints_->at(componentIndex_), v, v, 0);
 
         componentIndex_ = loopIncrement(componentIndex_, 1, components_.size()); 
     }
