@@ -129,12 +129,14 @@ void ScrollingList::setItems(std::vector<Item *> *items)
     deallocateSpritePoints();
 
     items_ = items;
-    itemIndex_ = 0;
+    if(items_)
+    {
+        itemIndex_ = loopDecrement(0, selectedOffsetIndex_, items_->size());
+    }
   
     allocateSpritePoints();
 
     notifyAllRequested_ = true;
-
 }
 
 unsigned int ScrollingList::loopIncrement(unsigned int offset, unsigned int i, unsigned int size)
@@ -214,6 +216,11 @@ void ScrollingList::setPoints(std::vector<ViewInfo *> *scrollPoints, std::vector
 
     if(scrollPoints) size = scrollPoints_->size();
     components_.resize(size);
+
+    if(items_)
+    {
+        itemIndex_ = loopDecrement(0, selectedOffsetIndex_, items_->size());
+    }
 
     allocateSpritePoints();
 }

@@ -645,6 +645,25 @@ void Page::draw()
 
 }
 
+void Page::addPlaylist()
+{
+    if(!selectedItem_) return;
+
+    MenuInfo_S &info = collections_.back();
+    CollectionInfo *collection = info.collection;
+
+    std::vector<Item *> *items = collection->playlists["favorites"];
+    if(playlist_->first != "favorites" && std::find(items->begin(), items->end(), selectedItem_) == items->end())
+    {
+        items->push_back(selectedItem_);
+        if(activeMenu_) 
+        {
+            activeMenu_->deallocateSpritePoints();
+            activeMenu_->allocateSpritePoints();
+        }
+    }
+}
+
 std::string Page::getCollectionName()
 {
     if(collections_.size() == 0) return "";

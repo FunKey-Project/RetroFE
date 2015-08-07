@@ -80,6 +80,7 @@ public:
     std::string getCollectionName();
     void setMinShowTime(float value);
     float getMinShowTime();
+    void addPlaylist();
 
 private:
     void highlight();

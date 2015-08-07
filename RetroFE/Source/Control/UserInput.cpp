@@ -66,15 +66,17 @@ bool UserInput::initialize()
         retVal = MapKey("down", KeyCodeRight) && retVal;
     }
 
-    retVal = MapKey("pageDown", KeyCodePageDown) && retVal;
-    retVal = MapKey("pageUp", KeyCodePageUp) && retVal;
-    MapKey("letterDown", KeyCodeLetterDown);
-    MapKey("letterUp", KeyCodeLetterUp);
     retVal = MapKey("select", KeyCodeSelect) && retVal;
     retVal = MapKey("back", KeyCodeBack) && retVal;
     retVal = MapKey("quit", KeyCodeQuit) && retVal;
-    MapKey("nextPlaylist", KeyCodeNextPlaylist);
-    MapKey("random", KeyCodeRandom);
+    retVal = MapKey("pageDown", KeyCodePageDown);
+    retVal = MapKey("pageUp", KeyCodePageUp);
+
+    MapKey("letterDown", KeyCodeLetterDown, false);
+    MapKey("letterUp", KeyCodeLetterUp, false);
+    MapKey("nextPlaylist", KeyCodeNextPlaylist, false);
+    MapKey("addPlaylist", KeyCodeAddPlaylist, false);
+    MapKey("random", KeyCodeRandom, false);
     // these features will need to be implemented at a later time
 //   retVal = MapKey("admin", KeyCodeAdminMode) && retVal;
 //   retVal = MapKey("remove", KeyCodeHideItem) && retVal;
@@ -90,6 +92,11 @@ bool UserInput::initialize()
 
 bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
 {
+    return MapKey(keyDescription, key, true);
+}
+
+bool UserInput::MapKey(std::string keyDescription, KeyCode_E key, bool required)
+{
     SDL_Scancode scanCode;
     std::string description;
 
@@ -97,7 +104,8 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
 
     if(!config_.getProperty(configKey, description))
     {
-        Logger::write(Logger::ZONE_ERROR, "Input", "Missing property " + configKey);
+        Logger::Zone zone = (required) ? Logger::ZONE_ERROR : Logger::ZONE_INFO;
+        Logger::write(zone, "Input", "Missing property " + configKey);
         return false;
     }
 

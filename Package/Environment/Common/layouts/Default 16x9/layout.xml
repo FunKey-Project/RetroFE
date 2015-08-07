@@ -12,7 +12,7 @@
 
 <!-----------------MAIN MENU Section----------------->
 <!-- This is the title text that shows at the bottom of the main menu list. -->
-<reloadableText type="title" x="center" y="center" xOrigin="center" yOrigin="center" yOffset="394" fontSize="48" layer="5">
+<reloadableText type="playlist" x="center" y="center" xOrigin="center" yOrigin="center" yOffset="394" fontSize="48" layer="5">
         <onMenuEnter menuIndex="0">
             <set duration=".2">
                 <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>

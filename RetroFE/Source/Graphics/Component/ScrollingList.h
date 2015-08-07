@@ -79,12 +79,12 @@ public:
     void setScrollAcceleration(float value);
     void setStartScrollTime(float value);
     bool horizontalScroll;
+    void deallocateSpritePoints();
+    void allocateSpritePoints();
 
 
 private:
     void click(double nextScrollTime);
-    void deallocateSpritePoints();
-    void allocateSpritePoints();
     void resetTweens(Component *c, AnimationEvents *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime);
     unsigned int loopIncrement(unsigned int offset, unsigned int i, unsigned int size);
     unsigned int loopDecrement(unsigned int offset, unsigned int i, unsigned int size);
