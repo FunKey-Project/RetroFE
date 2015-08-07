@@ -33,6 +33,7 @@ public:
     void extensionList(std::vector<std::string> &extensions);
     std::string name;
     std::string listpath;
+    bool saveRequest;
     std::string metadataType;
     std::string launcher;
     std::vector<Item *> items;

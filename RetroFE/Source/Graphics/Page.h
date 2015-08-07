@@ -104,6 +104,7 @@ private:
     unsigned int menuDepth_;
     MenuVector_T menus_;
     CollectionVector_T collections_;
+    CollectionVector_T deleteCollections_;
 
     static const unsigned int NUM_LAYERS = 8;
     std::vector<Component *> LayerComponents[NUM_LAYERS];

@@ -17,8 +17,11 @@
 #include "Item.h"
 #include "../Database/Configuration.h"
 #include "../Utility/Utils.h"
+#include "../Utility/Log.h"
 #include <sstream>
+#include <fstream>
 #include <algorithm>
+#include <exception>
 
 CollectionInfo::CollectionInfo(std::string name,
                                std::string listPath,
@@ -27,6 +30,7 @@ CollectionInfo::CollectionInfo(std::string name,
                                std::string metadataPath)
     : name(name)
     , listpath(listPath)
+    , saveRequest(false)
     , metadataType(metadataType)
     , menusort(true)
     , metadataPath_(metadataPath)
@@ -38,8 +42,31 @@ CollectionInfo::~CollectionInfo()
 {
 	// remove items from the subcollections so their destructors do not
 	// delete the items since the parent collection will delete them.
+    if(saveRequest)
+    {
+        std::string file = Utils::combinePath(Configuration::absolutePath, "collections", name, "favorites.txt");
+        Logger::write(Logger::ZONE_INFO, "Collection", "Saving " + file);
+
+        std::ofstream filestream;
+        try
+        {
+            filestream.open(file.c_str());
+            std::vector<Item *> *saveitems = playlists["favorites"];
+            for(std::vector<Item *>::iterator it = saveitems->begin(); it != saveitems->end(); it++)
+            {
+                filestream << (*it)->name << std::endl;
+            }
+
+            filestream.close();
+        }
+        catch(std::exception &)
+        {
+            Logger::write(Logger::ZONE_ERROR, "Collection", "Save failed: " + file);
+        }
+    }
+
     std::vector<CollectionInfo *>::iterator subit;
-    for (subit != subcollections_.begin(); subit != subcollections_.end(); subit++)
+    for (subit = subcollections_.begin(); subit != subcollections_.end(); subit++)
     {
     	CollectionInfo *info = *subit;
     	info->items.clear();

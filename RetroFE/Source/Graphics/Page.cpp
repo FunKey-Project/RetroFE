@@ -505,18 +505,20 @@ bool Page::popCollection()
     if(collections_.size() <= 1) return false;
 
     // queue the collection for deletion
-    MenuInfo_S &info = collections_.back();
-    info.queueDelete = true;
+    MenuInfo_S *info = &collections_.back();
+    info->queueDelete = true;
+    deleteCollections_.push_back(*info);
 
     // get the next collection off of the stack
     collections_.pop_back();
-    info = collections_.back();
-    playlist_ = info.playlist;
+    info = &collections_.back();
+    playlist_ = info->playlist;
     playlistChanged_ = true;
 
     if(activeMenu_)
     {
         activeMenu_->triggerMenuExitEvent();
+
     }
 
     menuDepth_--;
@@ -532,7 +534,7 @@ bool Page::popCollection()
     {
         for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
         {
-            (*it)->collectionName = info.collection->name;
+            (*it)->collectionName = info->collection->name;
 
             if(menuEnterIndex >= 0)
             {
@@ -607,9 +609,9 @@ void Page::update(float dt)
 
     // many nodes still have handles on the collection info. We need to delete
     // them once everything is done using them
-    std::list<MenuInfo_S>::iterator del = collections_.begin();
+    std::list<MenuInfo_S>::iterator del = deleteCollections_.begin();
 
-    while(del != collections_.end())
+    while(del != deleteCollections_.end())
     {
         MenuInfo_S &info = *del;
         if(info.queueDelete && info.menu && info.menu->isIdle())
@@ -618,7 +620,8 @@ void Page::update(float dt)
             ++next;
 
             if(info.collection) delete info.collection;
-            collections_.erase(del);
+            deleteCollections_.erase(del);
+            del = next;
         }
         else
         {
@@ -658,6 +661,7 @@ void Page::removePlaylist()
     if(it != items->end())
     {
         items->erase(it);
+        collection->saveRequest = true;
 
         if(activeMenu_) 
         {
@@ -678,6 +682,7 @@ void Page::addPlaylist()
     if(playlist_->first != "favorites" && std::find(items->begin(), items->end(), selectedItem_) == items->end())
     {
         items->push_back(selectedItem_);
+        collection->saveRequest = true;
         if(activeMenu_) 
         {
             activeMenu_->deallocateSpritePoints();
