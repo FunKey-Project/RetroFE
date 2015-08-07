@@ -76,6 +76,7 @@ bool UserInput::initialize()
     MapKey("letterUp", KeyCodeLetterUp, false);
     MapKey("nextPlaylist", KeyCodeNextPlaylist, false);
     MapKey("addPlaylist", KeyCodeAddPlaylist, false);
+    MapKey("removePlaylist", KeyCodeRemovePlaylist, false);
     MapKey("random", KeyCodeRandom, false);
     // these features will need to be implemented at a later time
 //   retVal = MapKey("admin", KeyCodeAdminMode) && retVal;

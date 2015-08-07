@@ -645,6 +645,30 @@ void Page::draw()
 
 }
 
+void Page::removePlaylist()
+{
+    if(!selectedItem_) return;
+
+    MenuInfo_S &info = collections_.back();
+    CollectionInfo *collection = info.collection;
+
+    std::vector<Item *> *items = collection->playlists["favorites"];
+    std::vector<Item *> it = std::find(items->begin(), items->end(), selectedItem_);
+
+    if(it != items->end())
+    {
+        items->erase(it);
+
+        items->shrink_to_fit();
+
+        if(activeMenu_) 
+        {
+            activeMenu_->deallocateSpritePoints();
+            activeMenu_->allocateSpritePoints();
+        }
+    }
+}
+
 void Page::addPlaylist()
 {
     if(!selectedItem_) return;

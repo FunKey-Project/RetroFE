@@ -450,6 +450,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
     !input_.keystate(UserInput::KeyCodeLetterDown) &&
     !input_.keystate(UserInput::KeyCodeNextPlaylist) &&
     !input_.keystate(UserInput::KeyCodeAddPlaylist) &&
+    !input_.keystate(UserInput::KeyCodeRemovePlaylist) &&
     !input_.keystate(UserInput::KeyCodeRandom))
     {
         keyLastTime_ = 0;
@@ -481,6 +482,10 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         if(input_.keystate(UserInput::KeyCodeNextPlaylist))
         {
             page->nextPlaylist();
+        }
+        if(input_.keystate(UserInput::KeyCodeRemovePlaylist))
+        {
+            page->removePlaylist();
         }
         if(input_.keystate(UserInput::KeyCodeAddPlaylist))
         {
