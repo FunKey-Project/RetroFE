@@ -81,6 +81,7 @@ public:
     void setMinShowTime(float value);
     float getMinShowTime();
     void addPlaylist();
+    void removePlaylist();
 
 private:
     void highlight();

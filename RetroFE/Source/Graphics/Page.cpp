@@ -653,13 +653,11 @@ void Page::removePlaylist()
     CollectionInfo *collection = info.collection;
 
     std::vector<Item *> *items = collection->playlists["favorites"];
-    std::vector<Item *> it = std::find(items->begin(), items->end(), selectedItem_);
+    std::vector<Item *>::iterator it = std::find(items->begin(), items->end(), selectedItem_);
 
     if(it != items->end())
     {
         items->erase(it);
-
-        items->shrink_to_fit();
 
         if(activeMenu_) 
         {
