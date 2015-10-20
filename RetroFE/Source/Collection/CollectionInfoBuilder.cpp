@@ -131,6 +131,7 @@ bool CollectionInfoBuilder::createCollectionDirectory(std::string name)
     settingsFile << "#media.screenshot    = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "screenshot") << std::endl;
     settingsFile << "#media.screentitle   = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "screentitle") << std::endl;
     settingsFile << "#media.video         = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "video") << std::endl;
+    settingsFile << "#media.system_artwork  = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "system_artwork") << std::endl;
     settingsFile.close();
 
     filename = Utils::combinePath(collectionPath, "menu.txt");

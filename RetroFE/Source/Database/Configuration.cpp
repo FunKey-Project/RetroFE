@@ -332,6 +332,10 @@ void Configuration::getMediaPropertyAbsolutePath(std::string collectionName, std
 void Configuration::getMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, bool system, std::string &value)
 {
     std::string key = "collections." + collectionName + ".media." + mediaType;
+    if (system) 
+    {
+        key = "collections." + collectionName + ".media.system_artwork";
+    }
 
     // use user-overridden setting if it exists
     if(getPropertyAbsolutePath(key, value))
