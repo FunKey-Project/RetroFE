@@ -134,5 +134,8 @@ bool CollectionInfo::itemIsLess(Item *lhs, Item *rhs)
 
 void CollectionInfo::sortItems()
 {
-    std::sort(items.begin(), items.end(), itemIsLess);
+    for(Playlists_T::iterator it = playlists.begin(); it != playlists.end(); it++)
+    {
+        std::sort(it->second->begin(), it->second->end(), itemIsLess);
+    }
 }
