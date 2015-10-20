@@ -67,11 +67,10 @@ bool Launcher::run(std::string collection, Item *collectionItem)
         Logger::write(Logger::ZONE_ERROR, "Launcher", "No launcher arguments specified for launcher " + launcherName);
         return false;
     }
-    if(!findFile(selectedItemsPath, matchedExtension, selectedItemsDirectory, collectionItem->name, extensionstr))
-    {
-        // FindFile() prints out diagnostic messages for us, no need to print anything here
-        return false;
-    }
+
+    // It is ok to continue if the file could not be found. We could be launching a merged romset
+    findFile(selectedItemsPath, matchedExtension, selectedItemsDirectory, collectionItem->name, extensionstr);
+
     args = replaceVariables(args,
                             selectedItemsPath,
                             collectionItem->name,
@@ -329,7 +328,7 @@ bool Launcher::findFile(std::string &foundFilePath, std::string &foundFilename, 
                   << filenameWithoutExtension << "\" in folder \""
                   << directory;
 
-        Logger::write(Logger::ZONE_ERROR, "Launcher", ss.str());
+        Logger::write(Logger::ZONE_WARNING, "Launcher", ss.str());
 
     }
 
