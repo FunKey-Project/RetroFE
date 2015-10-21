@@ -74,21 +74,21 @@ bool Launcher::run(std::string collection, Item *collectionItem)
     args = replaceVariables(args,
                             selectedItemsPath,
                             collectionItem->name,
-                            collectionItem->filename(),
+                            Utils::getFileName(selectedItemsPath),
                             selectedItemsDirectory,
                             collection);
 
     executablePath = replaceVariables(executablePath,
                                       selectedItemsPath,
                                       collectionItem->name,
-                                      collectionItem->filename(),
+                                      Utils::getFileName(selectedItemsPath),
                                       selectedItemsDirectory,
                                       collection);
 
     currentDirectory = replaceVariables(currentDirectory,
                                         selectedItemsPath,
                                         collectionItem->name,
-                                        collectionItem->filename(),
+                                        Utils::getFileName(selectedItemsPath),
                                         selectedItemsDirectory,
                                         collection);
 
