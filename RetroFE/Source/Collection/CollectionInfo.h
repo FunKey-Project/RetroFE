@@ -27,6 +27,7 @@ public:
     CollectionInfo(std::string name, std::string listPath, std::string extensions, std::string metadataType, std::string metadataPath);
     virtual ~CollectionInfo();
     std::string settingsPath() const;
+    bool Save();
     void sortItems();
     void addSubcollection(CollectionInfo *info);
     bool hasSubcollections();

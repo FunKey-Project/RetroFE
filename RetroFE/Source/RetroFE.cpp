@@ -389,7 +389,6 @@ void RetroFE::run()
             render();
         }
     }
-
 }
 
 

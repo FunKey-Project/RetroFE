@@ -90,6 +90,19 @@ Page::~Page()
         delete selectSoundChunk_;
         selectSoundChunk_ = NULL;
     }
+    CollectionVector_T::iterator itc = collections_.begin();
+
+    while(itc != collections_.end()) 
+    {
+        itc->collection->Save();
+
+        if(itc->collection)
+        {
+            delete itc->collection;
+        }
+        collections_.erase(itc);
+        itc = collections_.begin();
+    }
 }
 
 
@@ -554,6 +567,7 @@ bool Page::popCollection()
 void Page::nextPlaylist()
 {
     MenuInfo_S &info = collections_.back();
+    info.collection->Save();
     unsigned int numlists = info.collection->playlists.size();
 
     for(unsigned int i = 0; i <= numlists; ++i)
@@ -619,7 +633,11 @@ void Page::update(float dt)
             std::list<MenuInfo_S>::iterator next = del;
             ++next;
 
-            if(info.collection) delete info.collection;
+            if(info.collection) 
+            {
+                info.collection->Save();
+                delete info.collection;
+            }
             deleteCollections_.erase(del);
             del = next;
         }
