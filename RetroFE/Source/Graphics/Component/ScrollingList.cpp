@@ -96,25 +96,8 @@ ScrollingList::ScrollingList(const ScrollingList &copy)
     scrollPoints_ = NULL;
     tweenPoints_ = NULL;
 
-    if(copy.scrollPoints_)
-    {
-        scrollPoints_ = new std::vector<ViewInfo *>();
-        for(unsigned int i = 0; i < copy.scrollPoints_->size(); ++i)
-        {
-            ViewInfo *v = new ViewInfo(*copy.scrollPoints_->at(i));
-            scrollPoints_->push_back(v);
-        }
-    }
+    setPoints(copy.scrollPoints_, copy.tweenPoints_);
 
-    if(copy.tweenPoints_)
-    {
-        tweenPoints_ = new std::vector<AnimationEvents *>();
-        for(unsigned int i = 0; i < copy.tweenPoints_->size(); ++i)
-        {
-            AnimationEvents *v = new AnimationEvents(*copy.tweenPoints_->at(i));
-            tweenPoints_->push_back(v);
-        }
-    }
 }
 
 
@@ -176,6 +159,7 @@ void ScrollingList::allocateSpritePoints()
 {
     if(!items_ || items_->size() == 0) return;
     if(!scrollPoints_) return;
+    if(components_.size() == 0) return;
 
     for(unsigned int i = 0; i < scrollPoints_->size(); ++i)
     {

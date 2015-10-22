@@ -447,9 +447,9 @@ bool Page::pushCollection(CollectionInfo *collection)
     // grow the menu as needed
     if(menus_.size() >= menuDepth_ && activeMenu_)
     {
-        ScrollingList *newList = new ScrollingList(*activeMenu_);
-        newList->forceIdle();
-        pushMenu(newList);
+        activeMenu_ = new ScrollingList(*activeMenu_);
+        activeMenu_->forceIdle();
+        pushMenu(activeMenu_);
     }
 
 
