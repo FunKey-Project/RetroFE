@@ -235,7 +235,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     std::map<std::string, Item *> favoritesFilter;
     std::map<std::string, Item *> excludeFilter;
     std::string includeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "include.txt");
-    std::string favoritesFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "favorites.txt");
+    std::string favoritesFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "playlists/favorites.txt");
     std::string excludeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "exclude.txt");
 
     std::string launcher;

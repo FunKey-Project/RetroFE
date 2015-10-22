@@ -44,7 +44,7 @@ CollectionInfo::~CollectionInfo()
 	// delete the items since the parent collection will delete them.
     if(saveRequest)
     {
-        std::string file = Utils::combinePath(Configuration::absolutePath, "collections", name, "favorites.txt");
+        std::string file = Utils::combinePath(Configuration::absolutePath, "collections", name, "playlists/favorites.txt");
         Logger::write(Logger::ZONE_INFO, "Collection", "Saving " + file);
 
         std::ofstream filestream;
