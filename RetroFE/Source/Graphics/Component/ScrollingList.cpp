@@ -289,6 +289,8 @@ void ScrollingList::random()
 {
     if(!items_ || items_->size() == 0) return;
     
+    notifyAllRequested_ = true;
+
     deallocateSpritePoints();
     itemIndex_ = rand() % items_->size();
     allocateSpritePoints();
