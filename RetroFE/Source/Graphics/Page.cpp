@@ -440,6 +440,16 @@ void Page::letterScroll(ScrollDirection direction)
     }
 }
 
+unsigned int Page::getCollectionSize()
+{
+    return activeMenu_->getSize();
+}
+
+unsigned int Page::getSelectedIndex()
+{
+    return activeMenu_->getSelectedIndex();
+}
+
 
 bool Page::pushCollection(CollectionInfo *collection)
 {

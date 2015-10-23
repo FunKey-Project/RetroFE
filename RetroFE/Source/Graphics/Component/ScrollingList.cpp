@@ -501,6 +501,19 @@ void ScrollingList::update(float dt)
     notifyAllRequested_ = false;
 }
 
+unsigned int ScrollingList::getSelectedIndex()
+{
+     if(!items_) return 0;
+    return loopIncrement(itemIndex_, selectedOffsetIndex_, items_->size());
+}
+
+unsigned int ScrollingList::getSize()
+{
+    if(!items_) return 0;
+
+    return items_->size();
+}
+
 void ScrollingList::resetTweens(Component *c, AnimationEvents *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime)
 {
     if(!c) return;

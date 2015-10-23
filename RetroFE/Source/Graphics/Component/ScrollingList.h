@@ -60,6 +60,8 @@ public:
     void destroyItems();
     void setPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<AnimationEvents *> *tweenPoints);
     void setScrollDirection(ScrollDirection direction);
+    unsigned int getSelectedIndex();
+    unsigned int getSize(); 
     void pageUp();
     void pageDown();
     void letterUp();

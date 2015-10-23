@@ -23,8 +23,9 @@
 #include <vector>
 #include <iostream>
 
-ReloadableText::ReloadableText(std::string type, Font *font, std::string layoutKey, float scaleX, float scaleY)
+ReloadableText::ReloadableText(std::string type, Page *page, Font *font, std::string layoutKey, float scaleX, float scaleY)
     : imageInst_(NULL)
+    , page_(page)
     , layoutKey_(layoutKey)
     , reloadRequested_(false)
     , firstLoad_(true)
@@ -63,7 +64,18 @@ ReloadableText::ReloadableText(std::string type, Font *font, std::string layoutK
     {
         type_ = TextTypePlaylist;
     }
-
+    else if(type == "collectionName")
+    {
+        type_ = TextTypeCollectionName;
+    }
+    else if(type == "collectionSize")
+    {
+        type_ = TextTypeCollectionSize;
+    }
+    else if(type == "collectionIndex")
+    {
+        type_ = TextTypeCollectionIndex;
+    }
     allocateGraphicsMemory();
 }
 
@@ -162,6 +174,22 @@ void ReloadableText::ReloadTexture()
         case TextTypePlaylist:
             ss << playlistName;
             break;
+        case TextTypeCollectionName:
+            if (page_ != NULL) {
+                ss << page_->getCollectionName();
+            }
+            break;
+        case TextTypeCollectionSize:
+            if (page_ != NULL) {
+              ss << page_->getCollectionSize();
+            }
+            break;
+        case TextTypeCollectionIndex:
+            if (page_ != NULL) {
+              ss << (1+page_->getSelectedIndex());
+              }
+            break;
+
         default:
             break;
         }
