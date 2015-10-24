@@ -25,7 +25,7 @@
 class ReloadableText : public Component
 {
 public:
-    ReloadableText(std::string type, Page *page, Font *font, std::string layoutKey, float scaleX, float scaleY);
+    ReloadableText(std::string type, Page &page, Font *font, std::string layoutKey, float scaleX, float scaleY);
     virtual ~ReloadableText();
     void update(float dt);
     void draw();
@@ -54,7 +54,6 @@ private:
 
     Text *imageInst_;
     TextType type_;
-    Page *page_;
     std::string layoutKey_;
     bool reloadRequested_;
     bool firstLoad_;

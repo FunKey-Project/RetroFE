@@ -58,7 +58,7 @@ private:
     void loadTweens(Component *c, rapidxml::xml_node<> *componentXml);
     AnimationEvents *createTweenInstance(rapidxml::xml_node<> *componentXml);
     void buildTweenSet(AnimationEvents *tweens, rapidxml::xml_node<> *componentXml, std::string tagName, std::string tweenName);
-    ScrollingList * buildMenu(rapidxml::xml_node<> *menuXml);
+    ScrollingList * buildMenu(rapidxml::xml_node<> *menuXml, Page &p);
     void buildCustomMenu(ScrollingList *menu, rapidxml::xml_node<> *menuXml, rapidxml::xml_node<> *itemDefaults);
     void buildVerticalMenu(ScrollingList *menu, rapidxml::xml_node<> *menuXml, rapidxml::xml_node<> *itemDefaults);
     int parseMenuPosition(std::string strIndex);

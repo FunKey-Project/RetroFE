@@ -43,6 +43,7 @@ public:
 
     Page(Configuration &c);
     virtual ~Page();
+    void DeInitialize();
     virtual void onNewItemSelected(Item *);
     bool pushCollection(CollectionInfo *collection);
     bool popCollection();
@@ -66,6 +67,7 @@ public:
     bool isHorizontalScroll();
     unsigned int getMenuDepth();
     Item *getSelectedItem();
+    Item *getSelectedItem(int offset);
     void removeSelectedItem();
     void setScrollOffsetIndex(unsigned int i);
     unsigned int getScrollOffsetIndex();

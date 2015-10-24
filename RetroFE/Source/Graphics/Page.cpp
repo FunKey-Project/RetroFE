@@ -45,6 +45,11 @@ Page::Page(Configuration &config)
 
 Page::~Page()
 {
+}
+
+
+void Page::DeInitialize()
+{
     MenuVector_T::iterator it = menus_.begin();
     while(it != menus_.end())
     {
@@ -292,6 +297,12 @@ Item *Page::getSelectedItem()
     return selectedItem_;
 }
 
+Item *Page::getSelectedItem(int offset)
+{
+    return activeMenu_->getItemByOffset(offset);
+}
+
+
 void Page::removeSelectedItem()
 {
     /*
@@ -352,7 +363,7 @@ void Page::highlight()
     if(!item) return;
     if(activeMenu_)
     {
-        activeMenu_->triggerHighlightEvent(item);
+        activeMenu_->triggerHighlightEvent();
         activeMenu_->scrollActive = scrollActive_;
     }
 
@@ -360,7 +371,7 @@ void Page::highlight()
     {
         for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
         {
-            (*it)->triggerHighlightEvent(item);
+            (*it)->triggerHighlightEvent();
             (*it)->scrollActive = scrollActive_;
         }
     }

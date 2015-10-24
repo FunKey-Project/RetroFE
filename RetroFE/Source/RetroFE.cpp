@@ -178,6 +178,7 @@ bool RetroFE::deInitialize()
 
     if(currentPage_)
     {
+        currentPage_->DeInitialize();
         delete currentPage_;
         currentPage_ = NULL;
     }
@@ -288,6 +289,7 @@ void RetroFE::run()
                 }
 
                 // delete the splash screen and use the standard menu
+                currentPage_->DeInitialize();
                 delete currentPage_;
 
                 currentPage_ = loadPage();

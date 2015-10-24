@@ -19,10 +19,10 @@
 #include "../../Utility/Log.h"
 #include "../../SDL.h"
 
-Component::Component()
+Component::Component(Page &p)
+: page(p)
 {
     tweens_ = NULL;
-    selectedItem_ = NULL;
     newItemSelectedSinceEnter = false;
     backgroundTexture_ = NULL;
     freeGraphicsMemory();
@@ -30,9 +30,9 @@ Component::Component()
 }
 
 Component::Component(const Component &copy)
+    : page(copy.page)
 {
     tweens_ = NULL;
-    selectedItem_ = NULL;
     newItemSelectedSinceEnter = false;
     backgroundTexture_ = NULL;
     freeGraphicsMemory();
@@ -98,11 +98,6 @@ void Component::allocateGraphicsMemory()
     }
 }
 
-Item *Component::getSelectedItem()
-{
-    return selectedItem_;
-}
-
 void Component::triggerEnterEvent()
 {
     enterRequested = true;
@@ -132,10 +127,9 @@ void Component::triggerMenuExitEvent(int menuIndex)
     menuExitRequested = true;
     menuExitIndex = menuIndex;
 }
-void Component::triggerHighlightEvent(Item *selectedItem)
+void Component::triggerHighlightEvent()
 {
     newItemSelected = true;
-    this->selectedItem_ = selectedItem;
 }
 
 void Component::triggerPlaylistChangeEvent(std::string name)

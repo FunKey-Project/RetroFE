@@ -19,15 +19,15 @@
 
 #include "../../SDL.h"
 #include "../MenuNotifierInterface.h"
+#include "../Page.h"
 #include "../ViewInfo.h"
 #include "../Animate/Tween.h"
 #include "../Animate/AnimationEvents.h"
 #include "../../Collection/Item.h"
-
 class Component
 {
 public:
-    Component();
+    Component(Page &p);
     Component(const Component &copy);
     virtual ~Component();
     virtual void freeGraphicsMemory();
@@ -39,7 +39,7 @@ public:
     void triggerMenuEnterEvent(int menuIndex = -1);
     void triggerMenuExitEvent(int menuIndex = -1);
     void triggerMenuScrollEvent();
-    void triggerHighlightEvent(Item *selectedItem);
+    void triggerHighlightEvent();
     void triggerPlaylistChangeEvent(std::string name);
     bool isIdle();
     bool isHidden();
@@ -55,7 +55,8 @@ public:
     bool scrollActive;
 
 protected:
-    Item *getSelectedItem();
+    Page &page;
+
     enum AnimationState
     {
         IDLE,
@@ -90,7 +91,6 @@ private:
 
     AnimationEvents *tweens_;
     Animation *currentTweens_;
-    Item *selectedItem_;
     SDL_Texture *backgroundTexture_;
 
     unsigned int currentTweenIndex_;

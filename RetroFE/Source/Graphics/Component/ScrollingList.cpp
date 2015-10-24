@@ -14,13 +14,13 @@
  * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "ScrollingList.h"
 #include "../Animate/Tween.h"
 #include "../Animate/TweenSet.h"
 #include "../Animate/Animation.h"
 #include "../Animate/AnimationEvents.h"
 #include "../Animate/TweenTypes.h"
 #include "../Font.h"
-#include "ScrollingList.h"
 #include "ImageBuilder.h"
 #include "VideoBuilder.h"
 #include "VideoComponent.h"
@@ -40,12 +40,14 @@
 
 //todo: remove coupling from configuration data (if possible)
 ScrollingList::ScrollingList(Configuration &c,
+                             Page &p,
                              float scaleX,
                              float scaleY,
                              Font *font,
                              std::string layoutKey,
                              std::string imageType)
-    : horizontalScroll(false)
+    : Component(p)
+    , horizontalScroll(false)
     , spriteList_(NULL)
     , scrollPoints_(NULL)
     , tweenPoints_(NULL)
@@ -224,6 +226,20 @@ void ScrollingList::setScrollOffsetIndex(unsigned int index)
 void ScrollingList::setSelectedIndex(int selectedIndex)
 {
     selectedOffsetIndex_ = selectedIndex;
+}
+
+Item *ScrollingList::getItemByOffset(int offset)
+{
+    if(!items_ || items_->size() == 0) return NULL;
+    unsigned int index = getSelectedIndex();
+    if(offset > 0) {
+        index = loopIncrement(index, offset, items_->size());
+    }
+    else if(offset < 0) {
+        index = loopDecrement(index, offset*-1, items_->size());
+    }
+    
+    return items_->at(index);
 }
 
 void ScrollingList::click(double nextScrollTime)
@@ -569,53 +585,53 @@ bool ScrollingList::allocateTexture(unsigned int index, Item *item)
 
     // check collection path for art based on gamename
     config_.getMediaPropertyAbsolutePath(collectionName, imageType_, false, imagePath);
-    t = imageBuild.CreateImage(imagePath, item->name, scaleX_, scaleY_);
+    t = imageBuild.CreateImage(imagePath, page, item->name, scaleX_, scaleY_);
 
     // check sub-collection path for art based on gamename
     if(!t)
     {
         config_.getMediaPropertyAbsolutePath(item->collectionInfo->name, imageType_, false, imagePath);
-        t = imageBuild.CreateImage(imagePath, item->name, scaleX_, scaleY_);
+        t = imageBuild.CreateImage(imagePath, page, item->name, scaleX_, scaleY_);
     }
 
     // check collection path for art based on game name (full title)
     if(!t && item->title != item->fullTitle)
     {
         config_.getMediaPropertyAbsolutePath(collectionName, imageType_, false, imagePath);
-        t = imageBuild.CreateImage(imagePath, item->fullTitle, scaleX_, scaleY_);
+        t = imageBuild.CreateImage(imagePath, page, item->fullTitle, scaleX_, scaleY_);
     }
 
     // check sub-collection path for art based on game name (full title)
     if(!t && item->title != item->fullTitle)
     {
         config_.getMediaPropertyAbsolutePath(item->collectionInfo->name, imageType_, false, imagePath);
-        t = imageBuild.CreateImage(imagePath, item->fullTitle, scaleX_, scaleY_);
+        t = imageBuild.CreateImage(imagePath, page, item->fullTitle, scaleX_, scaleY_);
     }
 
     // check collection path for art based on parent game name
     if(!t && item->cloneof != "")
     {
         config_.getMediaPropertyAbsolutePath(collectionName, imageType_, false, imagePath);
-        t = imageBuild.CreateImage(imagePath, item->cloneof, scaleX_, scaleY_);
+        t = imageBuild.CreateImage(imagePath, page, item->cloneof, scaleX_, scaleY_);
     }
 
     // check sub-collection path for art based on parent game name
     if(!t && item->cloneof != "")
     {
         config_.getMediaPropertyAbsolutePath(item->collectionInfo->name, imageType_, false, imagePath);
-        t = imageBuild.CreateImage(imagePath, item->cloneof, scaleX_, scaleY_);
+        t = imageBuild.CreateImage(imagePath, page, item->cloneof, scaleX_, scaleY_);
     }
 
     // check collection path for art based on system name
     if(!t)
     {
 		config_.getMediaPropertyAbsolutePath(item->name, imageType_, true, imagePath);
-		t = imageBuild.CreateImage(imagePath, imageType_, scaleX_, scaleY_);
+		t = imageBuild.CreateImage(imagePath, page, imageType_, scaleX_, scaleY_);
     }
 
     if (!t)
     {
-        t = new Text(item->title, fontInst_, scaleX_, scaleY_);
+        t = new Text(item->title, page, fontInst_, scaleX_, scaleY_);
     }
 
     if(t)

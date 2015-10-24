@@ -18,6 +18,7 @@
 #include <vector>
 #include "Component.h"
 #include "../Animate/Tween.h"
+#include "../Page.h"
 #include "../MenuNotifierInterface.h"
 #include "../ViewInfo.h"
 #include "../../Database/Configuration.h"
@@ -43,6 +44,7 @@ public:
     };
 
     ScrollingList(Configuration &c,
+                  Page &p,
                   float scaleX,
                   float scaleY,
                   Font *font,
@@ -72,6 +74,7 @@ public:
     unsigned int getScrollOffsetIndex();
     void setScrollOffsetIndex(unsigned int index);
     void setSelectedIndex(int selectedIndex);
+    Item *getItemByOffset(int offset);
     void addComponentForNotifications(MenuNotifierInterface *c);
     void removeComponentForNotifications(MenuNotifierInterface *c);
     void freeGraphicsMemory();

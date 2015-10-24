@@ -21,7 +21,7 @@
 #include <fstream>
 
 
-VideoComponent * VideoBuilder::createVideo(std::string path, std::string name, float scaleX, float scaleY)
+VideoComponent * VideoBuilder::createVideo(std::string path, Page &page, std::string name, float scaleX, float scaleY)
 {
     VideoComponent *component = NULL;
     std::vector<std::string> extensions;
@@ -40,7 +40,7 @@ VideoComponent * VideoBuilder::createVideo(std::string path, std::string name, f
 
         if(video)
         {
-            component = new VideoComponent(video, file, scaleX, scaleY);
+            component = new VideoComponent(video, page, file, scaleX, scaleY);
         }
     }
 
