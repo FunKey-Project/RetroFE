@@ -480,15 +480,15 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         {
             page->letterScroll(Page::ScrollDirectionForward);
         }
-        if(input_.keystate(UserInput::KeyCodeNextPlaylist))
+        if(input_.newKeyPressed(UserInput::KeyCodeNextPlaylist))
         {
             page->nextPlaylist();
         }
-        if(input_.keystate(UserInput::KeyCodeRemovePlaylist))
+        if(input_.newKeyPressed(UserInput::KeyCodeRemovePlaylist))
         {
             page->removePlaylist();
         }
-        if(input_.keystate(UserInput::KeyCodeAddPlaylist))
+        if(input_.newKeyPressed(UserInput::KeyCodeAddPlaylist))
         {
             page->addPlaylist();
         }

@@ -231,6 +231,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     DIR *dp;
     struct dirent *dirp;
     std::string path = info->listpath;
+    std::map<std::string, Item *> allMap;
     std::map<std::string, Item *> includeFilter;
     std::map<std::string, Item *> favoritesFilter;
     std::map<std::string, Item *> excludeFilter;
@@ -261,7 +262,6 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     {
         Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Checking for \"" + includeFile + "\"");
         ImportBasicList(info, includeFile, includeFilter);
-        ImportBasicList(info, favoritesFile, favoritesFilter);
         ImportBasicList(info, excludeFile, excludeFilter);
     }
 
@@ -269,9 +269,6 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     std::vector<std::string>::iterator extensionsIt;
 
     info->extensionList(extensions);
-    info->playlists["all"] = &info->items;
-    info->playlists["favorites"] = new std::vector<Item *>();
-
 
     dp = opendir(path.c_str());
 
@@ -279,7 +276,6 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     if(dp == NULL)
     {
         Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Could not read directory \"" + path + "\". Ignore if this is a menu.");
-        return false;
     }
 
     if(showMissing)
@@ -292,13 +288,8 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
             }
         }
     }
-    // add the favorites list 
-    for(std::map<std::string, Item *>::iterator it = favoritesFilter.begin(); it != favoritesFilter.end(); it++)
-    {
-        info->playlists["favorites"]->push_back(it->second);
-    }
 
-    while((dirp = readdir(dp)) != NULL)
+    while(dp != NULL && (dirp = readdir(dp)) != NULL)
     {
         std::string file = dirp->d_name;
 
@@ -333,7 +324,10 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
         }
     }
 
-    closedir(dp);
+    if(dp != NULL) 
+    {
+        closedir(dp);
+    }
 
     while(includeFilter.size() > 0)
     {
@@ -351,6 +345,27 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
         delete it->second;
         excludeFilter.erase(it);
     }
+
+    for(std::vector<Item *>::iterator it = info->items.begin(); it != info->items.end(); it++) {
+        allMap[(*it)->fullTitle] = *it;
+    }
+
+
+    ImportBasicList(info, favoritesFile, favoritesFilter);
+    info->playlists["all"] = &info->items;
+    info->playlists["favorites"] = new std::vector<Item *>();
+
+    // add the favorites list 
+    for(std::map<std::string, Item *>::iterator it = favoritesFilter.begin(); it != favoritesFilter.end(); it++)
+    {
+        std::map<std::string, Item *>::iterator itemit = allMap.find(it->first);
+
+        if(itemit != allMap.end())
+        {
+            info->playlists["favorites"]->push_back(itemit->second);
+        }
+    }
+
 
     metaDB_.injectMetadata(info);
     

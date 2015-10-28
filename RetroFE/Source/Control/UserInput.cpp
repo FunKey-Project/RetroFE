@@ -30,6 +30,7 @@ UserInput::UserInput(Configuration &c)
     for(unsigned int i = 0; i < KeyCodeMax; ++i)
     {
         keyHandlers_[i] = NULL;
+        currentKeyState_[i] = false;
         lastKeyState_[i] = false;
     }
 }
@@ -234,6 +235,9 @@ void UserInput::resetStates()
 bool UserInput::update(SDL_Event &e)
 {
     bool updated = false;
+
+    memcpy(lastKeyState_, currentKeyState_, sizeof(lastKeyState_));
+
     for(unsigned int i = 0; i < KeyCodeMax; ++i)
     {
         InputHandler *h = keyHandlers_[i];
@@ -241,7 +245,7 @@ bool UserInput::update(SDL_Event &e)
         {
             if(h->update(e)) updated = true;
 
-            lastKeyState_[i] = h->pressed();
+            currentKeyState_[i] = h->pressed();
         }
     }
     
@@ -250,5 +254,11 @@ bool UserInput::update(SDL_Event &e)
 
 bool UserInput::keystate(KeyCode_E code)
 {
-    return lastKeyState_[code];
+    return currentKeyState_[code];
 }
+
+bool UserInput::newKeyPressed(KeyCode_E code)
+{
+    return currentKeyState_[code] && !lastKeyState_[code];
+}
+

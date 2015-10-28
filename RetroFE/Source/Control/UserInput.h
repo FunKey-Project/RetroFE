@@ -55,6 +55,7 @@ public:
     void resetStates();
     bool update(SDL_Event &e);
     bool keystate(KeyCode_E);
+    bool newKeyPressed(KeyCode_E code);
 
 private:
     bool MapKey(std::string keyDescription, KeyCode_E key);
@@ -63,5 +64,5 @@ private:
     std::vector<SDL_Joystick *> joysticks_;
     InputHandler *keyHandlers_[KeyCodeMax]; 
     bool lastKeyState_[KeyCodeMax]; 
-    
+    bool currentKeyState_[KeyCodeMax]; 
 };
