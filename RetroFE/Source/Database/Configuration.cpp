@@ -133,8 +133,11 @@ bool Configuration::parseLine(std::string collection, std::string keyPrefix, std
 
         value = line.substr(position + delimiter.length(), line.length());
         value = trimEnds(value);
-        value = Utils::replace(value, "%ITEM_COLLECTION_NAME%", collection);
 
+        if(collection != "")
+        {
+            value = Utils::replace(value, "%ITEM_COLLECTION_NAME%", collection);
+        }
         properties_.insert(PropertiesPair(key, value));
 
         std::stringstream ss;

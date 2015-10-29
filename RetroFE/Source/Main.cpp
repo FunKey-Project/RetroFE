@@ -115,7 +115,7 @@ bool ImportConfiguration(Configuration *c)
 
                 std::string importFile = Utils::combinePath(launchersPath, std::string(dirp->d_name));
 
-                if(!c->import(basename, prefix, importFile))
+                if(!c->import(prefix, importFile))
                 {
                     Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + importFile + "\"");
                     closedir(dp);
