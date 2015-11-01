@@ -15,14 +15,12 @@
  */
 #pragma once
 
-class Page;
-
 class AttractMode
 {
 public:
     AttractMode();
     void reset();
-    void update(float dt, Page &page);
+    void update(float dt);
     float idleTime;
 
 private:

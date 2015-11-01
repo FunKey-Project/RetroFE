@@ -16,7 +16,6 @@
 #pragma once
 #include "Component.h"
 #include "Image.h"
-#include "../Page.h"
 #include "../../Collection/Item.h"
 #include "../../Video/IVideo.h"
 #include <SDL2/SDL.h>
@@ -25,7 +24,7 @@
 class VideoComponent : public Component
 {
 public:
-    VideoComponent(IVideo *videoInst, Page &p, std::string videoFile, float scaleX, float scaleY);
+    VideoComponent(IVideo *videoInst, std::string videoFile);
     virtual ~VideoComponent();
     void update(float dt);
     void draw();
@@ -38,7 +37,5 @@ private:
     std::string videoFile_;
     std::string name_;
     IVideo *videoInst_;
-    float scaleX_;
-    float scaleY_;
     bool isPlaying_;
 };

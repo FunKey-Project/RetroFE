@@ -51,9 +51,6 @@ private:
     Font *FfntInst_;
     bool textFallback_;
     std::string type_;
-    float scaleX_;
-    float scaleY_;
     std::string currentCollection_;
-    Page *page_;
     int displayOffset_;
 };

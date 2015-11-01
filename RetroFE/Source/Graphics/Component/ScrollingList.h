@@ -18,7 +18,6 @@
 #include <vector>
 #include "Component.h"
 #include "../Animate/Tween.h"
-#include "../Page.h"
 #include "../MenuNotifierInterface.h"
 #include "../ViewInfo.h"
 #include "../../Database/Configuration.h"
@@ -44,9 +43,6 @@ public:
     };
 
     ScrollingList(Configuration &c,
-                  Page &p,
-                  float scaleX,
-                  float scaleY,
                   Font *font,
                   std::string layoutKey,
                   std::string imageType);
@@ -124,8 +120,6 @@ private:
     float scrollPeriod_;
     
     Configuration &config_;
-    float scaleX_;
-    float scaleY_;
     Font *fontInst_;
     std::string layoutKey_;
     std::string imageType_;

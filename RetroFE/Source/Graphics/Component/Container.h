@@ -22,7 +22,7 @@
 class Container : public Component
 {
 public:
-    Container(Page &p);
+    Container();
     virtual ~Container();
     void freeGraphicsMemory();
     void allocateGraphicsMemory();

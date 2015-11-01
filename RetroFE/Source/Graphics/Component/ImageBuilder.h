@@ -15,7 +15,6 @@
  */
 #pragma once
 
-#include "../Page.h"
 #include "Image.h"
 #include "VideoComponent.h"
 #include "../../Video/VideoFactory.h"
@@ -24,5 +23,5 @@
 class ImageBuilder
 {
 public:
-    Image * CreateImage(std::string path, Page &p, std::string name, float scaleX, float scaleY);
+    Image * CreateImage(std::string path, std::string name);
 };

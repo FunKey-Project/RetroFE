@@ -17,7 +17,6 @@
 #include "Component.h"
 #include "Text.h"
 #include "../Font.h"
-#include "../Page.h"
 #include "../../Collection/Item.h"
 #include <SDL2/SDL.h>
 #include <string>
@@ -25,7 +24,7 @@
 class ReloadableText : public Component
 {
 public:
-    ReloadableText(std::string type, Page &page, Font *font, std::string layoutKey, float scaleX, float scaleY);
+    ReloadableText(std::string type, Font *font, std::string layoutKey);
     virtual ~ReloadableText();
     void update(float dt);
     void draw();
@@ -58,7 +57,4 @@ private:
     bool reloadRequested_;
     bool firstLoad_;
     Font *fontInst_;
-
-    float scaleX_;
-    float scaleY_;
 };

@@ -12,6 +12,7 @@ list(APPEND CMAKE_MODULE_PATH "${RETROFE_DIR}/CMake")
 
 set(SQLITE3_ROOT "${RETROFE_THIRD_PARTY_DIR}/sqlite3")
 set(RAPIDXML_ROOT "${RETROFE_THIRD_PARTY_DIR}/rapidxml-1.13")
+set(LUA_ROOT "${RETROFE_THIRD_PARTY_DIR}/lua-5.3.0/src")
 
 if(WIN32)
 if(MSVC)
@@ -66,6 +67,8 @@ set(RETROFE_INCLUDE_DIRS
 	"${ZLIB_INCLUDE_DIRS}"
 	"${SQLITE3_ROOT}"
 	"${RAPIDXML_ROOT}"
+  "${LUA_ROOT}"
+  
 )
 
 if(MSVC)
@@ -80,6 +83,7 @@ set(RETROFE_LIBRARIES
 	${SDL2_MIXER_LIBRARIES}
 	${SDL2_TTF_LIBRARIES}
 	${ZLIB_LIBRARIES}
+  LUA
 )
 
 if(NOT WIN32)
@@ -87,103 +91,26 @@ if(NOT WIN32)
 endif()
 
 set(RETROFE_HEADERS
-	"${RETROFE_DIR}/Source/Collection/CollectionInfo.h"
-	"${RETROFE_DIR}/Source/Collection/CollectionInfoBuilder.h"
-	"${RETROFE_DIR}/Source/Collection/Item.h"
-	"${RETROFE_DIR}/Source/Collection/MenuParser.h"
-	"${RETROFE_DIR}/Source/Control/UserInput.h"
-	"${RETROFE_DIR}/Source/Control/InputHandler.h"
-	"${RETROFE_DIR}/Source/Control/JoyAxisHandler.h"
-	"${RETROFE_DIR}/Source/Control/JoyButtonHandler.h"
-	"${RETROFE_DIR}/Source/Control/JoyHatHandler.h"
-	"${RETROFE_DIR}/Source/Control/KeyboardHandler.h"
-	"${RETROFE_DIR}/Source/Control/MouseButtonHandler.h"
 	"${RETROFE_DIR}/Source/Database/Configuration.h"
-	"${RETROFE_DIR}/Source/Database/DB.h"
-	"${RETROFE_DIR}/Source/Database/MetadataDatabase.h"
-	"${RETROFE_DIR}/Source/Execute/AttractMode.h"
-	"${RETROFE_DIR}/Source/Execute/Launcher.h"
-	"${RETROFE_DIR}/Source/Graphics/Animate/Tween.h"
-	"${RETROFE_DIR}/Source/Graphics/Animate/TweenTypes.h"
-	"${RETROFE_DIR}/Source/Graphics/Animate/TweenSet.h"
-	"${RETROFE_DIR}/Source/Graphics/Animate/Animation.h"
-	"${RETROFE_DIR}/Source/Graphics/Animate/AnimationEvents.h"
-	"${RETROFE_DIR}/Source/Graphics/ComponentItemBinding.h"
-	"${RETROFE_DIR}/Source/Graphics/Component/Container.h"
-	"${RETROFE_DIR}/Source/Graphics/Component/Component.h"
 	"${RETROFE_DIR}/Source/Graphics/Component/Image.h"
-	"${RETROFE_DIR}/Source/Graphics/Component/ImageBuilder.h"
-	"${RETROFE_DIR}/Source/Graphics/Component/ReloadableMedia.h"
-	"${RETROFE_DIR}/Source/Graphics/Component/ReloadableText.h"
-	"${RETROFE_DIR}/Source/Graphics/Component/ScrollingList.h"
-	"${RETROFE_DIR}/Source/Graphics/Component/Text.h"
-	"${RETROFE_DIR}/Source/Graphics/Component/VideoComponent.h"
-	"${RETROFE_DIR}/Source/Graphics/Component/VideoBuilder.h"
-	"${RETROFE_DIR}/Source/Graphics/Font.h"
-	"${RETROFE_DIR}/Source/Graphics/FontCache.h"
-	"${RETROFE_DIR}/Source/Graphics/PageBuilder.h"
-	"${RETROFE_DIR}/Source/Graphics/MenuNotifierInterface.h"
-	"${RETROFE_DIR}/Source/Graphics/Page.h"
-	"${RETROFE_DIR}/Source/Sound/Sound.h"
-	"${RETROFE_DIR}/Source/Utility/Log.h"
-	"${RETROFE_DIR}/Source/Utility/Utils.h"
-	"${RETROFE_DIR}/Source/Video/IVideo.h"
-	"${RETROFE_DIR}/Source/Video/GStreamerVideo.h"
-	"${RETROFE_DIR}/Source/Video/VideoFactory.h"
-	"${RETROFE_DIR}/Source/Graphics/ComponentItemBindingBuilder.h"
-	"${RETROFE_DIR}/Source/Graphics/ViewInfo.h"
+	"${RETROFE_DIR}/Source/Graphics/Component/Component.h"
+	"${RETROFE_DIR}/Source/Lua.h"
 	"${RETROFE_DIR}/Source/RetroFE.h"
 	"${RETROFE_DIR}/Source/SDL.h"
 	"${RETROFE_DIR}/Source/Version.h"
 )
 
 set(RETROFE_SOURCES
-	"${RETROFE_DIR}/Source/Collection/CollectionInfo.cpp"
-	"${RETROFE_DIR}/Source/Collection/CollectionInfoBuilder.cpp"
-	"${RETROFE_DIR}/Source/Collection/Item.cpp"
-	"${RETROFE_DIR}/Source/Collection/MenuParser.cpp"
-	"${RETROFE_DIR}/Source/Control/UserInput.cpp"
-	"${RETROFE_DIR}/Source/Control/JoyAxisHandler.cpp"
-	"${RETROFE_DIR}/Source/Control/JoyButtonHandler.cpp"
-	"${RETROFE_DIR}/Source/Control/JoyHatHandler.cpp"
-	"${RETROFE_DIR}/Source/Control/KeyboardHandler.cpp"
-	"${RETROFE_DIR}/Source/Control/MouseButtonHandler.cpp"
 	"${RETROFE_DIR}/Source/Database/Configuration.cpp"
-	"${RETROFE_DIR}/Source/Database/DB.cpp"
-	"${RETROFE_DIR}/Source/Database/MetadataDatabase.cpp"
-	"${RETROFE_DIR}/Source/Execute/AttractMode.cpp"
-	"${RETROFE_DIR}/Source/Execute/Launcher.cpp"
-	"${RETROFE_DIR}/Source/Graphics/Font.cpp"
-	"${RETROFE_DIR}/Source/Graphics/FontCache.cpp"
-	"${RETROFE_DIR}/Source/Graphics/PageBuilder.cpp"
-	"${RETROFE_DIR}/Source/Graphics/Page.cpp"
-	"${RETROFE_DIR}/Source/Graphics/ViewInfo.cpp"
-	"${RETROFE_DIR}/Source/Graphics/Animate/Animation.cpp"
-	"${RETROFE_DIR}/Source/Graphics/Animate/AnimationEvents.cpp"
-	"${RETROFE_DIR}/Source/Graphics/Animate/Tween.cpp"
-	"${RETROFE_DIR}/Source/Graphics/Animate/TweenSet.cpp"
-	"${RETROFE_DIR}/Source/Graphics/ComponentItemBindingBuilder.cpp"
-	"${RETROFE_DIR}/Source/Graphics/ComponentItemBinding.cpp"
-	"${RETROFE_DIR}/Source/Graphics/Component/Container.cpp"
-	"${RETROFE_DIR}/Source/Graphics/Component/Component.cpp"
 	"${RETROFE_DIR}/Source/Graphics/Component/Image.cpp"
-	"${RETROFE_DIR}/Source/Graphics/Component/ImageBuilder.cpp"
-	"${RETROFE_DIR}/Source/Graphics/Component/Text.cpp"
-	"${RETROFE_DIR}/Source/Graphics/Component/ReloadableMedia.cpp"
-	"${RETROFE_DIR}/Source/Graphics/Component/ReloadableText.cpp"
-	"${RETROFE_DIR}/Source/Graphics/Component/ScrollingList.cpp"
-	"${RETROFE_DIR}/Source/Graphics/Component/VideoBuilder.cpp"
-	"${RETROFE_DIR}/Source/Graphics/Component/VideoComponent.cpp"
-	"${RETROFE_DIR}/Source/Sound/Sound.cpp"
+	"${RETROFE_DIR}/Source/Graphics/Component/Component.cpp"
 	"${RETROFE_DIR}/Source/Utility/Log.cpp"
 	"${RETROFE_DIR}/Source/Utility/Utils.cpp"
-	"${RETROFE_DIR}/Source/Video/GStreamerVideo.cpp"
-	"${RETROFE_DIR}/Source/Video/VideoFactory.cpp"
+	"${RETROFE_DIR}/Source/Lua.cpp"
 	"${RETROFE_DIR}/Source/Main.cpp"
 	"${RETROFE_DIR}/Source/RetroFE.cpp"
 	"${RETROFE_DIR}/Source/SDL.cpp"
 	"${RETROFE_DIR}/Source/Version.cpp"
-	"${SQLITE3_ROOT}/sqlite3.c"
 )
 
 
@@ -198,6 +125,9 @@ set_target_properties(retrofe PROPERTIES LINKER_LANGUAGE CXX)
 if(MINGW)
   set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -lmingw32 -mwindows")
 endif()
+
+file(GLOB LUA_SRC ${LUA_ROOT}/*.c)
+add_library( LUA STATIC ${LUA_SRC})
 
 add_definitions(-DRETROFE_VERSION_MAJOR=${VERSION_MAJOR})
 add_definitions(-DRETROFE_VERSION_MINOR=${VERSION_MINOR})

@@ -340,8 +340,8 @@ void ScrollingList::letterChange(bool increment)
         // check if we are changing characters from a-z, or changing from alpha character to non-alpha character
         if(isalpha(startname[0]) ^ isalpha(endname[0]))
         {
-           break; 
            itemIndex_ = index;
+           break; 
         }
         else if(isalpha(startname[0]) && isalpha(endname[0]) && startname[0] != endname[0])
         {

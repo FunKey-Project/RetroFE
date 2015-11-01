@@ -22,15 +22,20 @@
 class Image : public Component
 {
 public:
-    Image(std::string file, Page &p, float scaleX, float scaleY);
+    Image(std::string file);
     virtual ~Image();
-    void freeGraphicsMemory();
-    void allocateGraphicsMemory();
+    void Initialize();
+    void DeInitialize();
+    void update(float dt);
     void draw();
+    int width;
+    int height;
+    int x; 
+    int y;
+    int rotate;
+    float alpha;
 
 protected:
     SDL_Texture *texture_;
     std::string file_;
-    float scaleX_;
-    float scaleY_;
 };

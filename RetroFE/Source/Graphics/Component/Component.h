@@ -15,85 +15,9 @@
  */
 #pragma once
 
-#include <vector>
-
-#include "../../SDL.h"
-#include "../MenuNotifierInterface.h"
-#include "../Page.h"
-#include "../ViewInfo.h"
-#include "../Animate/Tween.h"
-#include "../Animate/AnimationEvents.h"
-#include "../../Collection/Item.h"
 class Component
 {
 public:
-    Component(Page &p);
-    Component(const Component &copy);
-    virtual ~Component();
-    virtual void freeGraphicsMemory();
-    virtual void allocateGraphicsMemory();
-    virtual void launchEnter() {}
-    virtual void launchExit() {}
-    void triggerEnterEvent();
-    void triggerExitEvent();
-    void triggerMenuEnterEvent(int menuIndex = -1);
-    void triggerMenuExitEvent(int menuIndex = -1);
-    void triggerMenuScrollEvent();
-    void triggerHighlightEvent();
-    void triggerPlaylistChangeEvent(std::string name);
-    bool isIdle();
-    bool isHidden();
-    bool isWaiting();
-    bool isMenuScrolling();
-
-    virtual void update(float dt);
-    virtual void draw();
-    void setTweens(AnimationEvents *set);
-    void forceIdle();
-    ViewInfo baseViewInfo;
-    std::string collectionName;
-    bool scrollActive;
-
-protected:
-    Page &page;
-
-    enum AnimationState
-    {
-        IDLE,
-        ENTER,
-        HIGHLIGHT_EXIT,
-        HIGHLIGHT_WAIT,
-        HIGHLIGHT_ENTER,
-        EXIT,
-        MENU_ENTER,
-        MENU_SCROLL,
-        MENU_EXIT,
-        HIDDEN
-    };
-
-    AnimationState currentAnimationState;
-    bool enterRequested;
-    bool exitRequested;
-    bool menuEnterRequested;
-    int menuEnterIndex;
-    bool menuScrollRequested;
-    bool menuExitRequested;
-    int menuExitIndex;
-    bool newItemSelected;
-    bool playlistChanged;
-    std::string playlistName;
-    bool highlightExitComplete;
-    bool newItemSelectedSinceEnter;
-private:
-
-    bool animate(bool loop);
-    bool tweenSequencingComplete();
-
-    AnimationEvents *tweens_;
-    Animation *currentTweens_;
-    SDL_Texture *backgroundTexture_;
-
-    unsigned int currentTweenIndex_;
-    bool currentTweenComplete_;
-    float elapsedTweenTime_;
+    virtual void update(float dt) = 0;
+    virtual void draw() = 0;
 };

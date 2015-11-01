@@ -40,6 +40,8 @@ Configuration::~Configuration()
 
 void Configuration::initialize()
 {
+    absolutePath = "C:/Users/Don/Downloads/RetroFE-FTP";
+    return;
     const char *environment = std::getenv("RETROFE_PATH");
     std::string environmentStr;
     if (environment != NULL)

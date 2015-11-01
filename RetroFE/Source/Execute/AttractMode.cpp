@@ -14,7 +14,6 @@
  * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "AttractMode.h"
-#include "../Graphics/Page.h"
 
 #include <cstdlib>
 
@@ -33,7 +32,7 @@ void AttractMode::reset()
     activeTime_ = 0;
 }
 
-void AttractMode::update(float dt, Page &page)
+void AttractMode::update(float dt)
 {
     elapsedTime_ += dt;
 
@@ -47,13 +46,13 @@ void AttractMode::update(float dt, Page &page)
 
     if(isActive_)
     {
-        page.setScrolling(Page::ScrollDirectionForward);
+        //todo: enable scrolling
 
         if(elapsedTime_ > activeTime_)
         {
             elapsedTime_ = 0;
             isActive_ = false;
-            page.setScrolling(Page::ScrollDirectionIdle);
+            //todo: go to idle
         }
     }
 }

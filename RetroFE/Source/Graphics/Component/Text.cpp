@@ -20,12 +20,10 @@
 #include "../Font.h"
 #include <sstream>
 
-Text::Text(std::string text, Page &p, Font *font, float scaleX, float scaleY)
-    : Component(p)
+Text::Text(std::string text, Font *font)
+    : Component()
     , textData_(text)
     , fontInst_(font)
-    , scaleX_(scaleX)
-    , scaleY_(scaleY)
 {
     allocateGraphicsMemory();
 }
@@ -86,7 +84,7 @@ void Text::draw()
 
     baseViewInfo.Width = imageWidth*scale;
     baseViewInfo.Height = baseViewInfo.FontSize;
-    baseViewInfo.ImageWidth = imageWidth;
+    baseViewInfo.ImageWidth = imageWidth;   
     baseViewInfo.ImageHeight = imageHeight;
 
     float xOrigin = baseViewInfo.XRelativeToOrigin();

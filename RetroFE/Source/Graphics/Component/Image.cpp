@@ -14,46 +14,26 @@
  * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "Image.h"
-#include "../ViewInfo.h"
 #include "../../SDL.h"
-#include "../../Utility/Log.h"
 #include <SDL2/SDL_image.h>
 
-Image::Image(std::string file, Page &p, float scaleX, float scaleY)
-    : Component(p)
-    , texture_(NULL)
+Image::Image(std::string file)
+    : texture_(NULL)
     , file_(file)
-    , scaleX_(scaleX)
-    , scaleY_(scaleY)
+    , width(0)
+    , height(0)
+    , x(0)
+    , y(0)
+    , alpha(1)
 {
-    allocateGraphicsMemory();
 }
 
 Image::~Image()
 {
-    freeGraphicsMemory();
 }
 
-void Image::freeGraphicsMemory()
+void Image::Initialize()
 {
-    Component::freeGraphicsMemory();
-
-    SDL_LockMutex(SDL::getMutex());
-    if (texture_ != NULL)
-    {
-        SDL_DestroyTexture(texture_);
-        texture_ = NULL;
-    }
-    SDL_UnlockMutex(SDL::getMutex());
-}
-
-void Image::allocateGraphicsMemory()
-{
-    int width;
-    int height;
-
-    Component::allocateGraphicsMemory();
-
     if(!texture_)
     {
         SDL_LockMutex(SDL::getMutex());
@@ -63,27 +43,47 @@ void Image::allocateGraphicsMemory()
         {
             SDL_SetTextureBlendMode(texture_, SDL_BLENDMODE_BLEND);
             SDL_QueryTexture(texture_, NULL, NULL, &width, &height);
-            baseViewInfo.ImageWidth = width * scaleX_;
-            baseViewInfo.ImageHeight = height * scaleY_;
         }
         SDL_UnlockMutex(SDL::getMutex());
+    }
+}
 
+void Image::DeInitialize()
+{
+    if(texture_)
+    {
+        SDL_DestroyTexture(texture_);
+        texture_ = NULL;
+    }
+}
+
+void Image::update(float dt)
+{
+    if(!texture_)
+    {
+        SDL_LockMutex(SDL::getMutex());
+        texture_ = IMG_LoadTexture(SDL::getRenderer(), file_.c_str());
+
+        if (texture_ != NULL)
+        {
+            SDL_SetTextureBlendMode(texture_, SDL_BLENDMODE_BLEND);
+            SDL_QueryTexture(texture_, NULL, NULL, &width, &height);
+        }
+        SDL_UnlockMutex(SDL::getMutex());
     }
 }
 
 void Image::draw()
 {
-    Component::draw();
-
     if(texture_)
     {
         SDL_Rect rect;
 
-        rect.x = static_cast<int>(baseViewInfo.XRelativeToOrigin());
-        rect.y = static_cast<int>(baseViewInfo.YRelativeToOrigin());
-        rect.h = static_cast<int>(baseViewInfo.ScaledHeight());
-        rect.w = static_cast<int>(baseViewInfo.ScaledWidth());
+        rect.x = x;
+        rect.y = y;
+        rect.h = width;
+        rect.w = height;
 
-        SDL::renderCopy(texture_, static_cast<char>((baseViewInfo.Alpha * 255)), NULL, &rect, baseViewInfo.Angle);
+        SDL::renderCopy(texture_, (unsigned char)(alpha*255), NULL, &rect, 45);
     }
 }
