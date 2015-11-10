@@ -27,18 +27,25 @@ Component::Component()
 }
 void Component::addAnimation(const ComponentData &newInfo)
 {
-    animations.push_back(newInfo);
-    startInfo = &info;
-    endInfo = &animations[0];
-    elapsedTime = 0;
-    animationIndex = 0;
     start = false;
+    animations.push_back(newInfo);
+    elapsedTime = 0;
 }
 
 void Component::animate(bool loop) 
 {
     this->loop = loop;
-    this->start = true;
+    start = true;
+    elapsedTime = 0;
+    animationIndex = -1;
+
+    startInfo = &info;
+    endInfo = &info;
+
+    if(animations.size() > 0)
+    {
+        endInfo = &animations[0];
+    }
 }
 
 double linear(double t, double d, double b, double c)
@@ -48,7 +55,7 @@ double linear(double t, double d, double b, double c)
 }
 void Component::update(float dt)
 {
-    elapsedTime += dt;
+    elapsedTime += dt;  
     bool done = false;
     while(elapsedTime >= endInfo->duration) {
         elapsedTime -= endInfo->duration;

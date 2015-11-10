@@ -221,6 +221,21 @@ void RetroFE::run()
     double deltaTime = 0;
     while(!quit) {
 
+        lastTime = currentTime;
+        currentTime = static_cast<float>(SDL_GetTicks()) / 1000;
+
+        if(lastTime == 0) 
+        {
+           lastTime = currentTime;
+        }
+
+        if (currentTime < lastTime)
+        {
+            currentTime = lastTime;
+        }
+
+        deltaTime = currentTime - lastTime;
+
         SDL_LockMutex(SDL::getMutex());
         SDL_SetRenderDrawColor(SDL::getRenderer(), 0x0, 0x0, 0x00, 0xFF);
         SDL_RenderClear(SDL::getRenderer());
@@ -238,15 +253,6 @@ void RetroFE::run()
         SDL_RenderPresent(SDL::getRenderer());
         SDL_UnlockMutex(SDL::getMutex());
         
-        lastTime = currentTime;
-        currentTime = static_cast<float>(SDL_GetTicks()) / 1000;
-
-        if (currentTime < lastTime)
-        {
-            currentTime = lastTime;
-        }
-
-        deltaTime = currentTime - lastTime;
         double sleepTime = 1000.0/60.0 - deltaTime*1000;
         if(sleepTime > 0)
         {
