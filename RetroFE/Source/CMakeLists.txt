@@ -94,6 +94,7 @@ set(RETROFE_HEADERS
 	"${RETROFE_DIR}/Source/Database/Configuration.h"
 	"${RETROFE_DIR}/Source/Graphics/Component/Image.h"
 	"${RETROFE_DIR}/Source/Graphics/Component/Component.h"
+	"${RETROFE_DIR}/Source/Graphics/Component/ComponentData.h"
 	"${RETROFE_DIR}/Source/Lua.h"
 	"${RETROFE_DIR}/Source/RetroFE.h"
 	"${RETROFE_DIR}/Source/SDL.h"

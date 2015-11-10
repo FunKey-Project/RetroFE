@@ -17,4 +17,65 @@
 #include "../../Utility/Log.h"
 #include "../../SDL.h"
 
+Component::Component()
+    : startInfo(&info)
+    , endInfo(&info)
+    , elapsedTime(0)
+    , loop(false)
+    , start(false)
+{
+}
+void Component::addAnimation(const ComponentData &newInfo)
+{
+    animations.push_back(newInfo);
+    startInfo = &info;
+    endInfo = &animations[0];
+    elapsedTime = 0;
+    animationIndex = 0;
+    start = false;
+}
+
+void Component::animate(bool loop) 
+{
+    this->loop = loop;
+    this->start = true;
+}
+
+double linear(double t, double d, double b, double c)
+{
+    if(d == 0) return b;
+    return c*t/d + b;
+}
+void Component::update(float dt)
+{
+    elapsedTime += dt;
+    bool done = false;
+    while(elapsedTime >= endInfo->duration) {
+        elapsedTime -= endInfo->duration;
+
+        // don't animate if no tweens exist
+        if(animations.size() == 0) {
+            startInfo = &info;
+            endInfo = &info;
+        }
+        else if(loop) {
+            animationIndex = (animationIndex + 1) % animations.size();
+            unsigned int nextAnimationIndex = (animationIndex + 1) % animations.size();
+            done = (animationIndex + 1 >= animations.size());
+            startInfo = &animations[animationIndex];
+            endInfo = &animations[nextAnimationIndex];
+        }
+    }
+
+    if(start) {
+        info.x = (int)linear(elapsedTime, endInfo->duration, startInfo->x, endInfo->x - startInfo->x);
+        info.y = (int)linear(elapsedTime, endInfo->duration, startInfo->y, endInfo->y - startInfo->y);
+        info.alpha = (float)linear(elapsedTime, endInfo->duration, startInfo->alpha, endInfo->alpha - startInfo->alpha);
+        info.rotate = (float)linear(elapsedTime, endInfo->duration, startInfo->rotate, endInfo->rotate - startInfo->rotate);
+
+        if(!loop && done) {
+            start = false;
+        }
+    }
+}
 

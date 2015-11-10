@@ -20,11 +20,6 @@
 Image::Image(std::string file)
     : texture_(NULL)
     , file_(file)
-    , width(0)
-    , height(0)
-    , x(0)
-    , y(0)
-    , alpha(1)
 {
 }
 
@@ -42,7 +37,7 @@ void Image::Initialize()
         if (texture_ != NULL)
         {
             SDL_SetTextureBlendMode(texture_, SDL_BLENDMODE_BLEND);
-            SDL_QueryTexture(texture_, NULL, NULL, &width, &height);
+            SDL_QueryTexture(texture_, NULL, NULL, &info.width, &info.height);
         }
         SDL_UnlockMutex(SDL::getMutex());
     }
@@ -59,6 +54,8 @@ void Image::DeInitialize()
 
 void Image::update(float dt)
 {
+    Component::update(dt);
+
     if(!texture_)
     {
         SDL_LockMutex(SDL::getMutex());
@@ -67,7 +64,7 @@ void Image::update(float dt)
         if (texture_ != NULL)
         {
             SDL_SetTextureBlendMode(texture_, SDL_BLENDMODE_BLEND);
-            SDL_QueryTexture(texture_, NULL, NULL, &width, &height);
+            SDL_QueryTexture(texture_, NULL, NULL, &info.width, &info.height);
         }
         SDL_UnlockMutex(SDL::getMutex());
     }
@@ -79,11 +76,11 @@ void Image::draw()
     {
         SDL_Rect rect;
 
-        rect.x = x;
-        rect.y = y;
-        rect.h = width;
-        rect.w = height;
+        rect.x = info.x;
+        rect.y = info.y;
+        rect.h = info.width;
+        rect.w = info.height;
 
-        SDL::renderCopy(texture_, (unsigned char)(alpha*255), NULL, &rect, 45);
+        SDL::renderCopy(texture_, (unsigned char)(info.alpha*255), NULL, &rect, 45);
     }
 }

@@ -28,12 +28,6 @@ public:
     void DeInitialize();
     void update(float dt);
     void draw();
-    int width;
-    int height;
-    int x; 
-    int y;
-    int rotate;
-    float alpha;
 
 protected:
     SDL_Texture *texture_;
