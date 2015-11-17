@@ -57,7 +57,7 @@ void Component::update(float dt)
 {
     elapsedTime += dt;  
     bool done = false;
-    while(elapsedTime >= endInfo->duration) {
+    while(elapsedTime && endInfo->duration && elapsedTime >= endInfo->duration) {
         elapsedTime -= endInfo->duration;
 
         // don't animate if no tweens exist
@@ -79,6 +79,8 @@ void Component::update(float dt)
         info.y = (int)linear(elapsedTime, endInfo->duration, startInfo->y, endInfo->y - startInfo->y);
         info.alpha = (float)linear(elapsedTime, endInfo->duration, startInfo->alpha, endInfo->alpha - startInfo->alpha);
         info.rotate = (float)linear(elapsedTime, endInfo->duration, startInfo->rotate, endInfo->rotate - startInfo->rotate);
+        info.width = (int)linear(elapsedTime, endInfo->duration, startInfo->width, endInfo->width - startInfo->width);
+        info.height = (int)linear(elapsedTime, endInfo->height, startInfo->height, endInfo->height - startInfo->height);
 
         if(!loop && done) {
             start = false;

@@ -17,9 +17,8 @@
 #include "../../SDL.h"
 #include <SDL2/SDL_image.h>
 
-Image::Image(std::string file)
+Image::Image()
     : texture_(NULL)
-    , file_(file)
 {
 }
 
@@ -27,23 +26,27 @@ Image::~Image()
 {
 }
 
-void Image::Initialize()
+bool Image::load(std::string file)
 {
+    bool retval = false;
     if(!texture_)
     {
         SDL_LockMutex(SDL::getMutex());
-        texture_ = IMG_LoadTexture(SDL::getRenderer(), file_.c_str());
+        texture_ = IMG_LoadTexture(SDL::getRenderer(), file.c_str());
 
         if (texture_ != NULL)
         {
             SDL_SetTextureBlendMode(texture_, SDL_BLENDMODE_BLEND);
             SDL_QueryTexture(texture_, NULL, NULL, &info.width, &info.height);
+            retval = true;
         }
         SDL_UnlockMutex(SDL::getMutex());
     }
+
+    return retval;
 }
 
-void Image::DeInitialize()
+void Image::unload()
 {
     if(texture_)
     {
@@ -55,19 +58,12 @@ void Image::DeInitialize()
 void Image::update(float dt)
 {
     Component::update(dt);
+}
 
-    if(!texture_)
-    {
-        SDL_LockMutex(SDL::getMutex());
-        texture_ = IMG_LoadTexture(SDL::getRenderer(), file_.c_str());
-
-        if (texture_ != NULL)
-        {
-            SDL_SetTextureBlendMode(texture_, SDL_BLENDMODE_BLEND);
-            SDL_QueryTexture(texture_, NULL, NULL, &info.width, &info.height);
-        }
-        SDL_UnlockMutex(SDL::getMutex());
-    }
+bool Image::getOriginalDimensions(int &w, int &h)
+{
+    if(!texture_) return false;
+    return (SDL_QueryTexture(texture_, NULL, NULL, &w, &h) == 0);
 }
 
 void Image::draw()
@@ -81,6 +77,6 @@ void Image::draw()
         rect.h = info.width;
         rect.w = info.height;
 
-        SDL::renderCopy(texture_, (unsigned char)(info.alpha*255), NULL, &rect, 45);
+        SDL::renderCopy(texture_, (unsigned char)(info.alpha*255), NULL, &rect, info.rotate);
     }
 }

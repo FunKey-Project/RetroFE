@@ -15,10 +15,11 @@
  */
 #pragma once
 
-#include "Lua.h"
+#include "Lua/Lua.h"
 #include "Database/Configuration.h"
+#include "Graphics/Component/ComponentFactory.h"
 #include <SDL2/SDL.h>
-
+#include <vector>
 
 class RetroFE
 {
@@ -29,6 +30,8 @@ public:
 private:
     void initializeLua();
     void reloadLuaScripts();
+    ComponentFactory factory_;
     Configuration &config_;
     Lua lua_;
+    static const luaL_Reg luaDisplayFuncs[];
 };

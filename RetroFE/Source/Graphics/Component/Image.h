@@ -22,14 +22,14 @@
 class Image : public Component
 {
 public:
-    Image(std::string file);
+    Image();
     virtual ~Image();
-    void Initialize();
-    void DeInitialize();
+    bool load(std::string file);
+    void unload();
     void update(float dt);
     void draw();
+    bool getOriginalDimensions(int &w, int &h);
 
 protected:
     SDL_Texture *texture_;
-    std::string file_;
 };

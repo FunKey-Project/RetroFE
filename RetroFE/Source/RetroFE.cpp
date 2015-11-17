@@ -20,6 +20,8 @@
 #include "SDL.h"
 #include "Graphics/Component/Image.h"
 #include "Graphics/Component/Component.h"
+#include "Lua/LuaDisplay.h"
+#include "Lua/LuaImage.h"
 #include <vector>
 
 #ifdef __linux
@@ -34,29 +36,17 @@
 #include <Windows.h>
 #include <SDL2/SDL_syswm.h>
 #include <SDL2/SDL_thread.h>
+
 #endif
 
 
-std::map<Component *, Component *> components;
-
-static int lua_getCenter(lua_State *l)
+static int lua_registerOnInit(lua_State *l)
 {
-    int x = SDL::getWindowWidth() / 2;
-    int y = SDL::getWindowHeight() / 2;
-    lua_pushnumber(l, x);
-    lua_pushnumber(l, y);
-    return 2;
+//    std::string function = lua_tostring(l, 1);
+//    events.registerOnInit(function);
+    return 0;
 }
-
-static int lua_getDimensions(lua_State *l)
-{
-    int x = SDL::getWindowWidth();
-    int y = SDL::getWindowHeight();
-    lua_pushnumber(l, x);
-    lua_pushnumber(l, y);
-    return 2;
-}
-
+#if 0
 Image *i = NULL;
 static int lua_imageCreate(lua_State *l)
 {
@@ -74,7 +64,7 @@ static int lua_imageDelete(lua_State *l)
     if(components.find(i) != components.end()) {
         components.erase(i);
     }
-    i->DeInitialize();
+    i->deInitialize();
     delete i;
     return 0;
 }
@@ -150,18 +140,33 @@ static int lua_imageAddAnimation(lua_State *l)
 
     return 0;
 }
-
-
-static const luaL_Reg luaDisplayFuncs[] = {
-  // Creation
-  {"getCenter", lua_getCenter},
-  {"getDimensions", lua_getDimensions},
-  {NULL, NULL}
-};
+#endif
 
 static const luaL_Reg luaImageFuncs[] = {
   // Creation
-  {"create", lua_imageCreate},
+  {"create", LuaImage::create},
+  {"loadFile", LuaImage::loadFile},
+  {"getOriginalWidth", LuaImage::getOriginalWidth},
+  {"getOriginalHeight", LuaImage::getOriginalHeight},
+  {"getOriginalDimensions", LuaImage::getOriginalDimensions},
+  {"getX", LuaImage::getX},
+  {"getY", LuaImage::getY},
+  {"getPosition", LuaImage::getPosition},
+  {"getWidth", LuaImage::getWidth},
+  {"getHeight", LuaImage::getHeight},
+  {"getDimensions", LuaImage::getDimensions},
+  {"getRotate", LuaImage::getRotate},
+  {"getAlpha", LuaImage::getAlpha},
+  {"setX", LuaImage::setX},
+  {"setY", LuaImage::setY},
+  {"setPosition", LuaImage::setPosition},
+  {"setWidth", LuaImage::setWidth},
+  {"setHeight", LuaImage::setHeight},
+  {"setDimensions", LuaImage::setDimensions},
+  {"setRotate", LuaImage::setRotate},
+  {"setAlpha", LuaImage::setAlpha},
+#if 0
+  {"delete", lua_imageDelete},
   {"delete", lua_imageDelete},
   {"setSize", lua_imageSetSize},
   {"setRotate", lua_imageSetRotate},
@@ -169,32 +174,39 @@ static const luaL_Reg luaImageFuncs[] = {
   {"setAlpha", lua_imageSetAlpha},
   {"addAnimation", lua_imageAddAnimation},
   {"animate", lua_imageAnimate},
+#endif
   {NULL, NULL}
 };
+
+const luaL_Reg RetroFE::luaDisplayFuncs[] = {
+    {"getCenter", LuaDisplay::getCenter},
+    {"getDimensions", LuaDisplay::getDimensions},
+    {NULL, NULL}
+};
+
 
 void RetroFE::initializeLua()
 {
     lua_.initialize();
+    LuaImage::initialize(factory_);
 
     lua_newtable(lua_.state);
     luaL_setfuncs (lua_.state, luaDisplayFuncs, 0);
-    lua_pushvalue(lua_.state,-1);        // pluck these lines out if they offend you
-    lua_setglobal(lua_.state,"display"); // for they clobber the Holy _G
+    lua_pushvalue(lua_.state,-1);
+    lua_setglobal(lua_.state, "display");
 
     lua_newtable(lua_.state);
     luaL_setfuncs (lua_.state, luaImageFuncs, 0);
-    lua_pushvalue(lua_.state,-1);        // pluck these lines out if they offend you
-    lua_setglobal(lua_.state,"image"); // for they clobber the Holy _G
+    lua_pushvalue(lua_.state,-1);
+    lua_setglobal(lua_.state, "image");
 }
 
 void RetroFE::reloadLuaScripts()
 {
-    luaL_loadfile(lua_.state, "C:/Users/Don/Downloads/RetroFE-FTP/layouts/LUATest/Page.lua");
+    std::string path = config_.absolutePath + "layouts/LUATest/Page.lua";
+    luaL_loadfile(lua_.state, path.c_str());
     lua_pcall(lua_.state, 0, LUA_MULTRET, 0);
 }
-
-
-
 
 RetroFE::RetroFE(Configuration &c)
 : config_(c)
@@ -214,7 +226,7 @@ void RetroFE::run()
     initializeLua();
 
     reloadLuaScripts();
-
+//    events.triggerOnInit(lua_.state);
     bool quit = false;
     double currentTime = 0;
     double lastTime = 0;
@@ -240,12 +252,12 @@ void RetroFE::run()
         SDL_SetRenderDrawColor(SDL::getRenderer(), 0x0, 0x0, 0x00, 0xFF);
         SDL_RenderClear(SDL::getRenderer());
 
-        for(std::map<Component *, Component *>::iterator it = components.begin(); it != components.end(); it++)
+        for(std::map<Component *, Component *>::iterator it = factory_.components.begin(); it != factory_.components.end(); it++)
         {
             it->second->update((float)deltaTime);
         }
 
-        for(std::map<Component *, Component *>::iterator it = components.begin(); it != components.end(); it++)
+        for(std::map<Component *, Component *>::iterator it = factory_.components.begin(); it != factory_.components.end(); it++)
         {
             it->second->draw();
         }
