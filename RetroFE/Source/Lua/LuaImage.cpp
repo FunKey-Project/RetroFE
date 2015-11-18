@@ -305,6 +305,18 @@ int LuaImage::animate(lua_State *l)
     return 0;
 }
 
+template <class T>
+static void BuildTableComponentInfo(lua_State *l, std::string name, unsigned char mask, ComponentData &newInfo, T &newParam) {
+    lua_pushstring (l, name.c_str());
+    lua_gettable(l, -2);
+    if(!lua_isnil(l, -1)) 
+    {
+        newInfo.setMask(mask);
+        newParam = (T)luaL_checknumber(l, -1);
+    }
+    lua_pop(l, 1);
+}
+
 int LuaImage::addAnimation(lua_State *l)
 {
     Image *i = (Image *)lua_tointeger(l, 1);
@@ -319,35 +331,16 @@ int LuaImage::addAnimation(lua_State *l)
     ComponentData newInfo;
     newInfo.clearMask(COMPONENT_DATA_ALL_MASK);
 
-    lua_pushstring (l, "x");
-    lua_gettable(l, -2);
-    if(!lua_isnil(l, -1)) 
-    {
-        newInfo.setMask(COMPONENT_DATA_X_MASK);
-        newInfo.x = (int)luaL_optinteger(l, -1, i->info.x);
-    }
-    lua_pop(l, 1);
-
-    lua_pushstring (l, "y");
-    lua_gettable(l, -2);
-    if(!lua_isnil(l, -1)) 
-    {
-        newInfo.setMask(COMPONENT_DATA_Y_MASK);
-        newInfo.y = (int)luaL_optinteger(l, -1, i->info.y);
-    }
-    lua_pop(l, 1);
-
-    lua_pushstring (l, "alpha");
-    lua_gettable(l, -2);
-    if(!lua_isnil(l, -1)) 
-    {
-        newInfo.setMask(COMPONENT_DATA_ALPHA_MASK);
-        newInfo.alpha = (float)luaL_optnumber(l, -1, i->info.alpha);
-    }
-    lua_pop(l, 1);
+    BuildTableComponentInfo<int>(l, "x", COMPONENT_DATA_X_MASK, newInfo, newInfo.x);
+    BuildTableComponentInfo<int>(l, "y", COMPONENT_DATA_Y_MASK, newInfo, newInfo.y);
+    BuildTableComponentInfo<int>(l, "height", COMPONENT_DATA_Y_MASK, newInfo, newInfo.height);
+    BuildTableComponentInfo<int>(l, "width", COMPONENT_DATA_Y_MASK, newInfo, newInfo.width);
+    BuildTableComponentInfo<float>(l, "rotate", COMPONENT_DATA_ROTATE_MASK, newInfo, newInfo.rotate);
+    BuildTableComponentInfo<float>(l, "alpha", COMPONENT_DATA_ROTATE_MASK, newInfo, newInfo.alpha);
 
     newInfo.duration = duration;
     i->addAnimation(newInfo);
 
     return 0;
 }
+
