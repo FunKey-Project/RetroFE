@@ -75,12 +75,24 @@ void Component::update(float dt)
     }
 
     if(start) {
-        info.x = (int)linear(elapsedTime, endInfo->duration, startInfo->x, endInfo->x - startInfo->x);
-        info.y = (int)linear(elapsedTime, endInfo->duration, startInfo->y, endInfo->y - startInfo->y);
-        info.alpha = (float)linear(elapsedTime, endInfo->duration, startInfo->alpha, endInfo->alpha - startInfo->alpha);
-        info.rotate = (float)linear(elapsedTime, endInfo->duration, startInfo->rotate, endInfo->rotate - startInfo->rotate);
-        info.width = (int)linear(elapsedTime, endInfo->duration, startInfo->width, endInfo->width - startInfo->width);
-        info.height = (int)linear(elapsedTime, endInfo->height, startInfo->height, endInfo->height - startInfo->height);
+        if(endInfo->isMaskSet(COMPONENT_DATA_X_MASK)) {
+            info.x = (int)linear(elapsedTime, endInfo->duration, startInfo->x, endInfo->x - startInfo->x);
+        }
+        if(endInfo->isMaskSet(COMPONENT_DATA_Y_MASK)) {
+            info.y = (int)linear(elapsedTime, endInfo->duration, startInfo->y, endInfo->y - startInfo->y);
+        }
+        if(endInfo->isMaskSet(COMPONENT_DATA_ALPHA_MASK)) {
+            info.alpha = (float)linear(elapsedTime, endInfo->duration, startInfo->alpha, endInfo->alpha - startInfo->alpha);
+        }
+        if(endInfo->isMaskSet(COMPONENT_DATA_ROTATE_MASK)) {
+            info.rotate = (float)linear(elapsedTime, endInfo->duration, startInfo->rotate, endInfo->rotate - startInfo->rotate);
+        }
+        if(endInfo->isMaskSet(COMPONENT_DATA_WIDTH_MASK)) {
+            info.width = (int)linear(elapsedTime, endInfo->duration, startInfo->width, endInfo->width - startInfo->width);
+        }
+        if(endInfo->isMaskSet(COMPONENT_DATA_HEIGHT_MASK)) {
+            info.height = (int)linear(elapsedTime, endInfo->duration, startInfo->height, endInfo->height - startInfo->height);
+        }
 
         if(!loop && done) {
             start = false;

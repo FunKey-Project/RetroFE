@@ -47,50 +47,6 @@ static int lua_registerOnInit(lua_State *l)
 //    events.registerOnInit(function);
     return 0;
 }
-#if 0
-static int lua_imageAnimate(lua_State *l)
-{
-    Image *i = (Image *)lua_tointeger(l, 1);
-    bool loop = (lua_toboolean(l, 2) != 0);
-
-    i->animate(loop);
-    return 0;
-}
-
-static int lua_imageAddAnimation(lua_State *l)
-{
-//    int argc = lua_gettop(l);
-    Image *i = (Image *)lua_tointeger(l, 1);
-    if(!i) return 0;
-
-    float duration = (float)lua_tonumber(l, 2);
-
-    if (!lua_istable(l, 3)) {
-          return 0;
-     }
-
-    ComponentData newInfo;
-    lua_pushstring (l, "x");
-    lua_gettable(l, -2);
-    newInfo.x = (int)luaL_optinteger(l, -1, i->info.x);
-    lua_pop(l, 1);
-
-    lua_pushstring (l, "y");
-    lua_gettable(l, -2);
-    newInfo.y = (int)luaL_optinteger(l, -1, i->info.y);
-    lua_pop(l, 1);
-
-    lua_pushstring (l, "alpha");
-    lua_gettable(l, -2);
-    newInfo.alpha = (float)luaL_optnumber(l, -1, i->info.alpha);
-    lua_pop(l, 1);
-
-    newInfo.duration = duration;
-    i->addAnimation(newInfo);
-
-    return 0;
-}
-#endif
 
 const luaL_Reg RetroFE::luaImageFuncs[] = {
   // Creation
@@ -115,15 +71,10 @@ const luaL_Reg RetroFE::luaImageFuncs[] = {
   {"setDimensions", LuaImage::setDimensions},
   {"setRotate", LuaImage::setRotate},
   {"setAlpha", LuaImage::setAlpha},
+  {"addAnimation", LuaImage::addAnimation},
+  {"animate", LuaImage::animate},
 #if 0
   {"delete", lua_imageDelete},
-  {"delete", lua_imageDelete},
-  {"setSize", lua_imageSetSize},
-  {"setRotate", lua_imageSetRotate},
-  {"setPosition", lua_imageSetPosition},
-  {"setAlpha", lua_imageSetAlpha},
-  {"addAnimation", lua_imageAddAnimation},
-  {"animate", lua_imageAnimate},
 #endif
   {NULL, NULL}
 };
