@@ -22,6 +22,7 @@
 #include "Graphics/Component/Component.h"
 #include "Lua/LuaDisplay.h"
 #include "Lua/LuaImage.h"
+#include "Lua/LuaLog.h"
 #include <vector>
 
 #ifdef __linux
@@ -47,57 +48,6 @@ static int lua_registerOnInit(lua_State *l)
     return 0;
 }
 #if 0
-Image *i = NULL;
-static int lua_imageCreate(lua_State *l)
-{
-    std::string filename = lua_tostring(l, 1);
-    i = new Image(filename);
-    i->Initialize();
-    lua_pushinteger(l, (int)i);
-    components[i] = i;
-    return 1;
-}
-
-static int lua_imageDelete(lua_State *l)
-{
-    Image *i = (Image *)lua_tointeger(l, 1);
-    if(components.find(i) != components.end()) {
-        components.erase(i);
-    }
-    i->deInitialize();
-    delete i;
-    return 0;
-}
-
-static int lua_imageSetSize(lua_State *l)
-{
-    Image *i = (Image *)lua_tointeger(l, 1);
-    i->info.width = (int)lua_tointeger(l, 2);
-    i->info.height = (int)lua_tointeger(l, 3);
-    return 0;
-}
-
-static int lua_imageSetPosition(lua_State *l)
-{
-    Image *i = (Image *)lua_tointeger(l, 1);
-    i->info.x = (int)lua_tointeger(l, 2);
-    i->info.y = (int)lua_tointeger(l, 3);
-    return 0;
-}
-
-static int lua_imageSetRotate(lua_State *l)
-{
-    Image *i = (Image *)lua_tointeger(l, 1);
-    i->info.rotate = (float)lua_tonumber(l, 2);
-    return 0;
-}
-static int lua_imageSetAlpha(lua_State *l)
-{
-    Image *i = (Image *)lua_tointeger(l, 1);
-    i->info.alpha = (float)lua_tonumber(l, 2);
-    return 0;
-}
-
 static int lua_imageAnimate(lua_State *l)
 {
     Image *i = (Image *)lua_tointeger(l, 1);
@@ -142,7 +92,7 @@ static int lua_imageAddAnimation(lua_State *l)
 }
 #endif
 
-static const luaL_Reg luaImageFuncs[] = {
+const luaL_Reg RetroFE::luaImageFuncs[] = {
   // Creation
   {"create", LuaImage::create},
   {"loadFile", LuaImage::loadFile},
@@ -184,6 +134,14 @@ const luaL_Reg RetroFE::luaDisplayFuncs[] = {
     {NULL, NULL}
 };
 
+const luaL_Reg RetroFE::luaLogFuncs[] = {
+    {"debug", LuaLog::debug},
+    {"info", LuaLog::info},
+    {"notice", LuaLog::notice},
+    {"warning", LuaLog::warning},
+    {"error", LuaLog::error},
+    {NULL, NULL}
+};
 
 void RetroFE::initializeLua()
 {
@@ -192,18 +150,24 @@ void RetroFE::initializeLua()
 
     lua_newtable(lua_.state);
     luaL_setfuncs (lua_.state, luaDisplayFuncs, 0);
-    lua_pushvalue(lua_.state,-1);
+    lua_pushvalue(lua_.state, -1);
     lua_setglobal(lua_.state, "display");
 
     lua_newtable(lua_.state);
     luaL_setfuncs (lua_.state, luaImageFuncs, 0);
-    lua_pushvalue(lua_.state,-1);
+    lua_pushvalue(lua_.state, -1);
     lua_setglobal(lua_.state, "image");
+    
+    lua_newtable(lua_.state);
+    luaL_setfuncs (lua_.state, luaLogFuncs, 0);
+    lua_pushvalue(lua_.state, -1);
+    lua_setglobal(lua_.state, "log");
+    
 }
 
 void RetroFE::reloadLuaScripts()
 {
-    std::string path = config_.absolutePath + "layouts/LUATest/Page.lua";
+    std::string path = config_.absolutePath + "/layouts/LUATest/Page.lua";
     luaL_loadfile(lua_.state, path.c_str());
     lua_pcall(lua_.state, 0, LUA_MULTRET, 0);
 }

@@ -34,4 +34,6 @@ private:
     Configuration &config_;
     Lua lua_;
     static const luaL_Reg luaDisplayFuncs[];
+    static const luaL_Reg luaLogFuncs[];
+    static const luaL_Reg luaImageFuncs[];
 };
