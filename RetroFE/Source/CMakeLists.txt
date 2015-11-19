@@ -98,9 +98,11 @@ set(RETROFE_HEADERS
 	"${RETROFE_DIR}/Source/Graphics/Component/ComponentFactory.h"
 	"${RETROFE_DIR}/Source/Lua/Lua.h"
 	"${RETROFE_DIR}/Source/Lua/LuaDisplay.h"
+	"${RETROFE_DIR}/Source/Lua/LuaEvent.h"
 	"${RETROFE_DIR}/Source/Lua/LuaImage.h"
 	"${RETROFE_DIR}/Source/Lua/LuaLog.h"
 	"${RETROFE_DIR}/Source/RetroFE.h"
+	"${RETROFE_DIR}/Source/StateMachine.h"
 	"${RETROFE_DIR}/Source/SDL.h"
 	"${RETROFE_DIR}/Source/Version.h"
 )
@@ -115,9 +117,11 @@ set(RETROFE_SOURCES
 	"${RETROFE_DIR}/Source/Lua/Lua.cpp"
 	"${RETROFE_DIR}/Source/Lua/LuaDisplay.cpp"
 	"${RETROFE_DIR}/Source/Lua/LuaImage.cpp"
+	"${RETROFE_DIR}/Source/Lua/LuaEvent.cpp"
 	"${RETROFE_DIR}/Source/Lua/LuaLog.cpp"
 	"${RETROFE_DIR}/Source/Main.cpp"
 	"${RETROFE_DIR}/Source/RetroFE.cpp"
+	"${RETROFE_DIR}/Source/StateMachine.cpp"
 	"${RETROFE_DIR}/Source/SDL.cpp"
 	"${RETROFE_DIR}/Source/Version.cpp"
 )

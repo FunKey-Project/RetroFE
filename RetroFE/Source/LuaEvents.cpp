@@ -1,11 +1,11 @@
-#include "LuaEvents.h"
+#include "LuaEvent.h"
 
-void LuaEvents::registerOnInit(std::string functionName)
+void LuaEvent::registerOnInit(std::string functionName)
 {
   onInit_.push_back(functionName);
 }
 
-void LuaEvents::triggerOnInit(lua_State *l)
+void LuaEvent::triggerOnInit(lua_State *l)
 {
   for(unsigned int i = 0;  i < onInit_.size(); ++i) {
     lua_getglobal(l, onInit_[i].c_str());

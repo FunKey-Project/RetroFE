@@ -15,6 +15,7 @@
  */
 
 #include "RetroFE.h"
+#include "StateMachine.h"
 #include "Utility/Log.h"
 #include "Utility/Utils.h"
 #include "SDL.h"
@@ -23,6 +24,7 @@
 #include "Lua/LuaDisplay.h"
 #include "Lua/LuaImage.h"
 #include "Lua/LuaLog.h"
+#include "Lua/LuaEvent.h"
 #include <vector>
 
 #ifdef __linux
@@ -73,9 +75,7 @@ const luaL_Reg RetroFE::luaImageFuncs[] = {
   {"setAlpha", LuaImage::setAlpha},
   {"addAnimation", LuaImage::addAnimation},
   {"animate", LuaImage::animate},
-#if 0
-  {"delete", lua_imageDelete},
-#endif
+  {"destroy", LuaImage::destroy},
   {NULL, NULL}
 };
 
@@ -121,6 +121,9 @@ void RetroFE::reloadLuaScripts()
     std::string path = config_.absolutePath + "/layouts/LUATest/Page.lua";
     luaL_loadfile(lua_.state, path.c_str());
     lua_pcall(lua_.state, 0, LUA_MULTRET, 0);
+
+    luaEvent_.registerCallback("onInitEnter", "onInitEnter", "onInitEnterComplete");
+    luaEvent_.registerCallback("onInitExit", "onInitExit", "onInitExitComplete");
 }
 
 RetroFE::RetroFE(Configuration &c)
@@ -139,6 +142,7 @@ void RetroFE::run()
     if(!SDL::initialize(config_)) return;
 
     initializeLua();
+    StateMachine state(lua_.state, &luaEvent_);
 
     reloadLuaScripts();
 //    events.triggerOnInit(lua_.state);
@@ -147,6 +151,7 @@ void RetroFE::run()
     double lastTime = 0;
     double deltaTime = 0;
     while(!quit) {
+
 
         lastTime = currentTime;
         currentTime = static_cast<float>(SDL_GetTicks()) / 1000;
@@ -162,6 +167,8 @@ void RetroFE::run()
         }
 
         deltaTime = currentTime - lastTime;
+
+        state.update((float)deltaTime);
 
         SDL_LockMutex(SDL::getMutex());
         SDL_SetRenderDrawColor(SDL::getRenderer(), 0x0, 0x0, 0x00, 0xFF);

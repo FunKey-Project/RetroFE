@@ -16,6 +16,7 @@
 #pragma once
 
 #include "Lua/Lua.h"
+#include "Lua/LuaEvent.h"
 #include "Database/Configuration.h"
 #include "Graphics/Component/ComponentFactory.h"
 #include <SDL2/SDL.h>
@@ -33,6 +34,7 @@ private:
     ComponentFactory factory_;
     Configuration &config_;
     Lua lua_;
+    LuaEvent luaEvent_;
     static const luaL_Reg luaDisplayFuncs[];
     static const luaL_Reg luaLogFuncs[];
     static const luaL_Reg luaImageFuncs[];
