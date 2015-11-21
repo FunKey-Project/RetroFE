@@ -21,6 +21,7 @@
 #include "../Database/DB.h"
 #include "../Utility/Log.h"
 #include "../Utility/Utils.h"
+#include "SDL2/SDL_thread.h"
 #include <dirent.h>
 
 #ifdef __linux
@@ -142,6 +143,35 @@ bool CollectionInfoBuilder::createCollectionDirectory(std::string name)
 
     return true;
 }
+
+struct CIBCallbackInfo {
+    std::string collectionName;
+    void (*callback)(void *);
+    void *context;
+    CollectionInfoBuilder *cib;
+};
+
+int CollectionInfoBuilder::buildCollectionThread(void *context)
+{
+    CIBCallbackInfo *info = (CIBCallbackInfo *)context;
+    info->cib->buildCollection(info->collectionName);
+    info->callback(info->context);
+    delete info;
+    return 0;
+}
+
+
+void CollectionInfoBuilder::buildCollection(std::string collectionName, void (*callback)(void *), void *context)
+{
+    CIBCallbackInfo *data = new CIBCallbackInfo();
+    data->collectionName = collectionName;
+    data->callback = callback;
+    data->context = context;
+    data->cib = this;
+
+    SDL_Thread *thread =  SDL_CreateThread(buildCollectionThread, "buildCollection", (void *)data);
+}
+
 CollectionInfo *CollectionInfoBuilder::buildCollection(std::string name)
 {
    return buildCollection(name, "");

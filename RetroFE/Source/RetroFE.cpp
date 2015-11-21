@@ -21,6 +21,7 @@
 #include "SDL.h"
 #include "Graphics/Component/Image.h"
 #include "Graphics/Component/Component.h"
+#include "Lua/LuaCollection.h"
 #include "Lua/LuaDisplay.h"
 #include "Lua/LuaImage.h"
 #include "Lua/LuaLog.h"
@@ -79,6 +80,11 @@ const luaL_Reg RetroFE::luaImageFuncs[] = {
   {NULL, NULL}
 };
 
+const luaL_Reg RetroFE::luaCollectionFuncs[] = {
+    {"load", LuaCollection::load},
+    {NULL, NULL}
+};
+
 const luaL_Reg RetroFE::luaDisplayFuncs[] = {
     {"getCenter", LuaDisplay::getCenter},
     {"getDimensions", LuaDisplay::getDimensions},
@@ -98,6 +104,12 @@ void RetroFE::initializeLua()
 {
     lua_.initialize();
     LuaImage::initialize(factory_);
+    LuaCollection::initialize(&config_, cib_, &luaEvent_);
+
+    lua_newtable(lua_.state);
+    luaL_setfuncs (lua_.state, luaCollectionFuncs, 0);
+    lua_pushvalue(lua_.state, -1);
+    lua_setglobal(lua_.state, "collection");
 
     lua_newtable(lua_.state);
     luaL_setfuncs (lua_.state, luaDisplayFuncs, 0);
@@ -122,17 +134,20 @@ void RetroFE::reloadLuaScripts()
     luaL_loadfile(lua_.state, path.c_str());
     lua_pcall(lua_.state, 0, LUA_MULTRET, 0);
 
-    luaEvent_.registerCallback("onInitEnter", "onInitEnter", "onInitEnterComplete");
-    luaEvent_.registerCallback("onInitExit", "onInitExit", "onInitExitComplete");
 }
 
 RetroFE::RetroFE(Configuration &c)
 : config_(c)
+, db_(c.absolutePath + "/meta.db")
+, mdb_(NULL)
+, cib_(NULL)
 {
 }
 
 RetroFE::~RetroFE()
 {
+    if(cib_) delete cib_;
+    if(mdb_) delete mdb_;
 }
 
 
@@ -140,7 +155,11 @@ RetroFE::~RetroFE()
 void RetroFE::run()
 {
     if(!SDL::initialize(config_)) return;
-
+    
+    db_.initialize();
+    mdb_ = new MetadataDatabase(db_, config_);
+    cib_ = new CollectionInfoBuilder(config_, *mdb_);
+    mdb_->initialize();
     initializeLua();
     StateMachine state(lua_.state, &luaEvent_);
 

@@ -3,9 +3,10 @@ syntax: glob
 *.suo
 .git
 Build/
+Documentation/**
 Documentation/Documentation/*
 Documentation/Artifacts/*
-Documentation/Manual/_build/*
+Documentation/Manual/**
 Configuration/Configuration/bin/**
 Configuration/Configuration/obj/**
 Artifacts/**

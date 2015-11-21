@@ -15,9 +15,12 @@
  */
 #pragma once
 
+#include "Collection/CollectionInfoBuilder.h"
+#include "Database/DB.h"
+#include "Database/Configuration.h"
+#include "Database/MetadataDatabase.h"
 #include "Lua/Lua.h"
 #include "Lua/LuaEvent.h"
-#include "Database/Configuration.h"
 #include "Graphics/Component/ComponentFactory.h"
 #include <SDL2/SDL.h>
 #include <vector>
@@ -38,4 +41,8 @@ private:
     static const luaL_Reg luaDisplayFuncs[];
     static const luaL_Reg luaLogFuncs[];
     static const luaL_Reg luaImageFuncs[];
+    static const luaL_Reg luaCollectionFuncs[];
+    DB db_;
+    MetadataDatabase *mdb_;
+    CollectionInfoBuilder *cib_;
 };

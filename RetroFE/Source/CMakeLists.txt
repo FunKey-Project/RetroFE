@@ -91,12 +91,19 @@ if(NOT WIN32)
 endif()
 
 set(RETROFE_HEADERS
+	"${RETROFE_DIR}/Source/Collection/CollectionInfo.h"
+	"${RETROFE_DIR}/Source/Collection/CollectionInfoBuilder.h"
+	"${RETROFE_DIR}/Source/Collection/Item.h"
 	"${RETROFE_DIR}/Source/Database/Configuration.h"
+	"${RETROFE_DIR}/Source/Database/DB.h"
+	"${RETROFE_DIR}/Source/Database/Metadata.h"
+	"${RETROFE_DIR}/Source/Database/MetadataDatabase.h"
 	"${RETROFE_DIR}/Source/Graphics/Component/Image.h"
 	"${RETROFE_DIR}/Source/Graphics/Component/Component.h"
 	"${RETROFE_DIR}/Source/Graphics/Component/ComponentData.h"
 	"${RETROFE_DIR}/Source/Graphics/Component/ComponentFactory.h"
 	"${RETROFE_DIR}/Source/Lua/Lua.h"
+	"${RETROFE_DIR}/Source/Lua/LuaCollection.h"
 	"${RETROFE_DIR}/Source/Lua/LuaDisplay.h"
 	"${RETROFE_DIR}/Source/Lua/LuaEvent.h"
 	"${RETROFE_DIR}/Source/Lua/LuaImage.h"
@@ -108,7 +115,12 @@ set(RETROFE_HEADERS
 )
 
 set(RETROFE_SOURCES
+	"${RETROFE_DIR}/Source/Collection/CollectionInfo.cpp"
+	"${RETROFE_DIR}/Source/Collection/CollectionInfoBuilder.cpp"
+	"${RETROFE_DIR}/Source/Collection/Item.cpp"
 	"${RETROFE_DIR}/Source/Database/Configuration.cpp"
+	"${RETROFE_DIR}/Source/Database/DB.cpp"
+	"${RETROFE_DIR}/Source/Database/MetadataDatabase.cpp"
 	"${RETROFE_DIR}/Source/Graphics/Component/Image.cpp"
 	"${RETROFE_DIR}/Source/Graphics/Component/Component.cpp"
 	"${RETROFE_DIR}/Source/Graphics/Component/ComponentFactory.cpp"
@@ -117,6 +129,7 @@ set(RETROFE_SOURCES
 	"${RETROFE_DIR}/Source/Lua/Lua.cpp"
 	"${RETROFE_DIR}/Source/Lua/LuaDisplay.cpp"
 	"${RETROFE_DIR}/Source/Lua/LuaImage.cpp"
+	"${RETROFE_DIR}/Source/Lua/LuaCollection.cpp"
 	"${RETROFE_DIR}/Source/Lua/LuaEvent.cpp"
 	"${RETROFE_DIR}/Source/Lua/LuaLog.cpp"
 	"${RETROFE_DIR}/Source/Main.cpp"
@@ -124,6 +137,7 @@ set(RETROFE_SOURCES
 	"${RETROFE_DIR}/Source/StateMachine.cpp"
 	"${RETROFE_DIR}/Source/SDL.cpp"
 	"${RETROFE_DIR}/Source/Version.cpp"
+	"${SQLITE3_ROOT}/sqlite3.c"
 )
 
 

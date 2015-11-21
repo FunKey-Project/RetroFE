@@ -20,7 +20,7 @@ int LuaImage::create(lua_State *l)
 int LuaImage::destroy(lua_State *l)
 {
     Image *i = (Image *)luaL_checkinteger(l, 1);
-    delete i;
+    factory->deleteComponent(i);
     
     return 0; 
 }

@@ -1,27 +1,21 @@
 #include "LuaEvent.h"
 
-void LuaEvent::registerCallback(std::string type, std::string functionName, std::string complete)
-{
-    callbacks_[type] = functionName;
-    completeCallbacks_[type] = complete;
-}
-
-
 void LuaEvent::trigger(lua_State *l, std::string type)
 {
-    lua_getglobal(l, callbacks_[type].c_str());
-    lua_call(l, 0, 0);
+    lua_getglobal(l, type.c_str());
+
+    lua_pcall(l, 0, 0, 0);
 }
 
-bool LuaEvent::isComplete(lua_State *l, std::string type)
+bool LuaEvent::isBusy(lua_State *l, std::string type)
 {
     bool retval = true;
-    lua_getglobal(l, callbacks_[type].c_str());
+    lua_getglobal(l, type.c_str());
     if(lua_pcall(l, 0, 1, 0) == 0) 
     {
-        if(!lua_isnil(l, 1)) 
+        if(lua_isboolean(l, -1)) 
         {
-            if(!lua_toboolean(l, 1)) 
+            if(!lua_toboolean(l, -1)) 
             {
                 retval = false;
             }
