@@ -9,5 +9,7 @@ namespace LuaCollection
 {
     void initialize(Configuration *c, CollectionInfoBuilder *b, LuaEvent *e);
     int load(lua_State *l);
-    void loadCallback(void *context);
+    int destroy(lua_State *l);
+
+    void loadCallback(void *context, CollectionInfo *info);
 };

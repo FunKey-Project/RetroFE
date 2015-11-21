@@ -7,6 +7,16 @@ void LuaEvent::trigger(lua_State *l, std::string type)
     lua_pcall(l, 0, 0, 0);
 }
 
+void LuaEvent::trigger(lua_State *l, std::string type, void *value)
+{
+    lua_getglobal(l, type.c_str());
+    lua_pushinteger(l, (int)value);
+
+    lua_pcall(l, 1, 0, 0);
+}
+
+
+
 bool LuaEvent::isBusy(lua_State *l, std::string type)
 {
     bool retval = true;

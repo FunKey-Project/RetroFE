@@ -16,14 +16,24 @@ void LuaCollection::initialize(Configuration *c, CollectionInfoBuilder *b,  LuaE
 int LuaCollection::load(lua_State *l)
 {
     std::string collection = luaL_checkstring(l, 1);
+    
     cib->buildCollection(collection, loadCallback, (void *)l);
     
     return 0; 
 }
 
-void LuaCollection::loadCallback(void *context)
+int LuaCollection::destroy(lua_State *l)
+{
+    CollectionInfo *i = (CollectionInfo *)luaL_checkinteger(l, 1);
+    cib->destroyCollection(i);
+    
+    return 0; 
+}
+
+
+void LuaCollection::loadCallback(void *context, CollectionInfo *info)
 {
     lua_State *l = (lua_State *)context;
-    events->trigger(l, "onCollectionLoaded");
+    events->trigger(l, "onCollectionLoaded", (void *)info);
 
 }

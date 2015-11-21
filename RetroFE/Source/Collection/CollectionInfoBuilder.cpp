@@ -146,22 +146,25 @@ bool CollectionInfoBuilder::createCollectionDirectory(std::string name)
 
 struct CIBCallbackInfo {
     std::string collectionName;
-    void (*callback)(void *);
+    void (*callback)(void *, CollectionInfo *);
     void *context;
     CollectionInfoBuilder *cib;
 };
 
 int CollectionInfoBuilder::buildCollectionThread(void *context)
 {
-    CIBCallbackInfo *info = (CIBCallbackInfo *)context;
-    info->cib->buildCollection(info->collectionName);
-    info->callback(info->context);
-    delete info;
+    CIBCallbackInfo *cbinfo = (CIBCallbackInfo *)context;
+
+    CollectionInfo *ci = cbinfo->cib->buildCollection(cbinfo->collectionName);
+
+    cbinfo->callback(cbinfo->context, ci);
+
+    delete cbinfo;
     return 0;
 }
 
 
-void CollectionInfoBuilder::buildCollection(std::string collectionName, void (*callback)(void *), void *context)
+void CollectionInfoBuilder::buildCollection(std::string collectionName, void (*callback)(void *, CollectionInfo *), void *context)
 {
     CIBCallbackInfo *data = new CIBCallbackInfo();
     data->collectionName = collectionName;
@@ -219,7 +222,19 @@ CollectionInfo *CollectionInfoBuilder::buildCollection(std::string name, std::st
 
     ImportDirectory(collection, mergedCollectionName);
 
+    //todo: add a critical section
+    allocationMap_[collection] = collection;
+        
     return collection;
+}
+
+void CollectionInfoBuilder::destroyCollection(CollectionInfo *collection) {
+    std::map<CollectionInfo *, CollectionInfo *>::iterator it = allocationMap_.find(collection);
+
+    if(it != allocationMap_.end()) {
+        delete it->second;
+        allocationMap_.erase(it);
+    }
 }
 
 

@@ -29,10 +29,11 @@ class CollectionInfoBuilder
 public:
     CollectionInfoBuilder(Configuration &c, MetadataDatabase &mdb);
     virtual ~CollectionInfoBuilder();
-    void buildCollection(std::string collectionName, void (*callback)(void *), void *context);
+    void buildCollection(std::string collectionName, void (*callback)(void *, CollectionInfo *), void *context);
     CollectionInfo *buildCollection(std::string collectionName);
     CollectionInfo *buildCollection(std::string collectionName, std::string mergedCollectionName);
     static bool createCollectionDirectory(std::string collectionName);
+    void destroyCollection(CollectionInfo *info);
 
 private:
     static int buildCollectionThread(void *context);
@@ -40,4 +41,5 @@ private:
     MetadataDatabase &metaDB_;
     bool ImportBasicList(CollectionInfo *info, std::string file, std::map<std::string, Item *> &list);
     bool ImportDirectory(CollectionInfo *info, std::string mergedCollectionName);
+    std::map<CollectionInfo *, CollectionInfo *> allocationMap_;
 };

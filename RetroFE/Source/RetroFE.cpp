@@ -82,6 +82,7 @@ const luaL_Reg RetroFE::luaImageFuncs[] = {
 
 const luaL_Reg RetroFE::luaCollectionFuncs[] = {
     {"load", LuaCollection::load},
+    {"destroy", LuaCollection::destroy},
     {NULL, NULL}
 };
 
