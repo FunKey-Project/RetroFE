@@ -30,7 +30,9 @@ int main(int argc, char **argv)
 {
     Configuration::initialize();
     Configuration config;
-    config.import("", "C:/Users/Don/Downloads/RetroFE-FTP/settings.conf");
+    if(!ImportConfiguration(&config)) {
+        return -1;
+    }
 
     if(!StartLogging())
     {
@@ -44,6 +46,96 @@ int main(int argc, char **argv)
     Logger::deInitialize();
 
     return 0;
+}
+
+bool ImportConfiguration(Configuration *c)
+{
+    std::string configPath =  Configuration::absolutePath;
+    std::string launchersPath =  Utils::combinePath(Configuration::absolutePath, "launchers");
+    std::string collectionsPath =  Utils::combinePath(Configuration::absolutePath, "collections");
+    DIR *dp;
+    struct dirent *dirp;
+
+    std::string settingsConfPath = Utils::combinePath(configPath, "settings.conf");
+    if(!c->import("", settingsConfPath))
+    {
+        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + settingsConfPath + "\"");
+        return false;
+    }
+    
+    std::string controlsConfPath = Utils::combinePath(configPath, "controls.conf");
+    if(!c->import("controls", controlsConfPath))
+    {
+        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + controlsConfPath + "\"");
+        return false;
+    }
+
+    dp = opendir(launchersPath.c_str());
+
+    if(dp == NULL)
+    {
+        Logger::write(Logger::ZONE_NOTICE, "RetroFE", "Could not read directory \"" + launchersPath + "\"");
+        return false;
+    }
+
+    while((dirp = readdir(dp)) != NULL)
+    {
+        if (dirp->d_type != DT_DIR && std::string(dirp->d_name) != "." && std::string(dirp->d_name) != "..")
+        {
+            std::string basename = dirp->d_name;
+
+            std::string extension = basename.substr(basename.find_last_of("."), basename.size()-1);
+            basename = basename.substr(0, basename.find_last_of("."));
+
+            if(extension == ".conf")
+            {
+                std::string prefix = "launchers." + basename;
+
+                std::string importFile = Utils::combinePath(launchersPath, std::string(dirp->d_name));
+
+                if(!c->import(prefix, importFile))
+                {
+                    Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + importFile + "\"");
+                    closedir(dp);
+                    return false;
+                }
+            }
+        }
+    }
+
+    closedir(dp);
+
+    dp = opendir(collectionsPath.c_str());
+
+    if(dp == NULL)
+    {
+        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not read directory \"" + collectionsPath + "\"");
+        return false;
+    }
+
+    while((dirp = readdir(dp)) != NULL)
+    {
+        std::string collection = (dirp->d_name);
+        if (dirp->d_type == DT_DIR && collection != "." && collection != ".." && collection.length() > 0 && collection[0] != '_')
+        {
+            std::string prefix = "collections." + collection;
+
+            std::string settingsFile = Utils::combinePath(collectionsPath, collection, "settings.conf");
+
+            if(!c->import(collection, prefix, settingsFile))
+            {
+                Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + settingsFile + "\"");
+                closedir(dp);
+                return false;
+            }
+        }
+    }
+
+    closedir(dp);
+
+    Logger::write(Logger::ZONE_INFO, "RetroFE", "Imported configuration");
+
+    return true;
 }
 
 bool StartLogging()

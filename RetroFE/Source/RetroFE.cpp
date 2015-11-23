@@ -83,6 +83,9 @@ const luaL_Reg RetroFE::luaImageFuncs[] = {
 const luaL_Reg RetroFE::luaCollectionFuncs[] = {
     {"load", LuaCollection::load},
     {"destroy", LuaCollection::destroy},
+    {"getSize", LuaCollection::getSize},
+    {"getName", LuaCollection::getName},
+    {"getItemAt", LuaCollection::getItemAt},
     {NULL, NULL}
 };
 
@@ -187,6 +190,8 @@ void RetroFE::run()
         }
 
         deltaTime = currentTime - lastTime;
+
+        LuaCollection::update(lua_.state);
 
         state.update((float)deltaTime);
 
