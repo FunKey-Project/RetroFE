@@ -1,11 +1,15 @@
 #include "LuaImage.h"
 #include "../Utility/Log.h"
+#include "../Utility/Utils.h"
+#include "../Collection/CollectionInfo.h"
 
-ComponentFactory *factory;
+static ComponentFactory *factory = NULL;
+static Configuration *config = NULL;
 
-void LuaImage::initialize(ComponentFactory &f) 
+void LuaImage::initialize(Configuration *c, ComponentFactory &f) 
 {
     factory = &f;
+    config = c;
 }
 
 int LuaImage::create(lua_State *l)
@@ -36,18 +40,40 @@ int LuaImage::loadFile(lua_State *l)
     return 1; 
 }
 
-#if 0
 int LuaImage::loadType(lua_State *l)
 {
+    bool result = false;
     Image *i = (Image *)luaL_checkinteger(l, 1);
-    stdL::string type = luaL_checkstring(l, 2);
-    stdL::string item = luaL_checkstring(l, 3);
+    CollectionInfo *ci = (CollectionInfo *)luaL_checkinteger(l, 2);
+    std::string type = luaL_checkstring(l, 3);
+    std::string name = luaL_checkstring(l, 4);
     
-    bool result = i->loadType(type, item);
+    std::string file;
+    std::vector<std::string> extensions;
+
+    extensions.push_back("png");
+    extensions.push_back("PNG");
+    extensions.push_back("jpg");
+    extensions.push_back("JPG");
+    extensions.push_back("jpeg");
+    extensions.push_back("JPEG");
+
+    std::string path;
+    config->getMediaPropertyAbsolutePath(ci->name, type, false, path);
+
+    std::string prefix = Utils::combinePath(path, name);
+
+    if(Utils::findMatchingFile(prefix, extensions, file))
+    {
+        result = i->load(file);
+    }
+
+
     lua_pushboolean(l, result);
 
     return 2; 
 }
+#if 0
 
 int LuaImage::isLoaded(lua_State *l)
 {

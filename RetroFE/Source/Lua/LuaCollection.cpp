@@ -3,9 +3,9 @@
 #include <string>
 #include "../Collection/Item.h"
 
-Configuration *config;
-CollectionInfoBuilder *cib;
-LuaEvent *events;
+static Configuration *config;
+static CollectionInfoBuilder *cib;
+static LuaEvent *events;
 void LuaCollection::initialize(Configuration *c, CollectionInfoBuilder *b,  LuaEvent *e)
 {
     config = c;

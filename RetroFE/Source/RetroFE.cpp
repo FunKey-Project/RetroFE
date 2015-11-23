@@ -55,6 +55,7 @@ const luaL_Reg RetroFE::luaImageFuncs[] = {
   // Creation
   {"create", LuaImage::create},
   {"loadFile", LuaImage::loadFile},
+  {"loadType", LuaImage::loadType},
   {"getOriginalWidth", LuaImage::getOriginalWidth},
   {"getOriginalHeight", LuaImage::getOriginalHeight},
   {"getOriginalDimensions", LuaImage::getOriginalDimensions},
@@ -107,7 +108,7 @@ const luaL_Reg RetroFE::luaLogFuncs[] = {
 void RetroFE::initializeLua()
 {
     lua_.initialize();
-    LuaImage::initialize(factory_);
+    LuaImage::initialize(&config_, factory_);
     LuaCollection::initialize(&config_, cib_, &luaEvent_);
 
     lua_newtable(lua_.state);

@@ -1,11 +1,11 @@
 #pragma once
 
 #include "Lua.h"
+#include "../Database/Configuration.h"
 #include "../Graphics/Component/ComponentFactory.h"
-
 namespace LuaImage
 {
-    void initialize(ComponentFactory &f); 
+    void initialize(Configuration *c, ComponentFactory &f); 
     int create(lua_State *l);
     int destroy(lua_State *l);
     int loadFile(lua_State *l);

@@ -15,6 +15,7 @@
  */
 #include "Image.h"
 #include "../../SDL.h"
+#include "../../Utility/Utils.h"
 #include <SDL2/SDL_image.h>
 
 Image::Image()
@@ -29,22 +30,21 @@ Image::~Image()
 bool Image::load(std::string file)
 {
     bool retval = false;
-    if(!texture_)
-    {
-        SDL_LockMutex(SDL::getMutex());
-        texture_ = IMG_LoadTexture(SDL::getRenderer(), file.c_str());
+    unload();
+    SDL_LockMutex(SDL::getMutex());
+    texture_ = IMG_LoadTexture(SDL::getRenderer(), file.c_str());
 
-        if (texture_ != NULL)
-        {
-            SDL_SetTextureBlendMode(texture_, SDL_BLENDMODE_BLEND);
-            SDL_QueryTexture(texture_, NULL, NULL, &info.width, &info.height);
-            retval = true;
-        }
-        SDL_UnlockMutex(SDL::getMutex());
+    if (texture_ != NULL)
+    {
+        SDL_SetTextureBlendMode(texture_, SDL_BLENDMODE_BLEND);
+        SDL_QueryTexture(texture_, NULL, NULL, &info.width, &info.height);
+        retval = true;
     }
+    SDL_UnlockMutex(SDL::getMutex());
 
     return retval;
 }
+
 
 void Image::unload()
 {
