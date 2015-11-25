@@ -67,24 +67,25 @@ bool AnimationManager::updateChain(float dt, AnimationChain *chain)
 
         ComponentData *endInfo = &a->end;
         ComponentData *startInfo = &a->start;
-
+        ComponentData *currentInfo = &a->component->info;
+        
         if(endInfo->isMaskSet(COMPONENT_DATA_X_MASK)) {
-            endInfo->x = (int)Tween::calculate(a->algorithm, a->elapsedTime, a->duration, startInfo->x, endInfo->x - startInfo->x);
+            currentInfo->x = (int)Tween::calculate(a->algorithm, a->elapsedTime, a->duration, startInfo->x, endInfo->x - startInfo->x);
         }
         if(endInfo->isMaskSet(COMPONENT_DATA_Y_MASK)) {
-            endInfo->y = (int)Tween::calculate(a->algorithm, a->elapsedTime, a->duration, startInfo->y, endInfo->y - startInfo->y);
+            currentInfo->y = (int)Tween::calculate(a->algorithm, a->elapsedTime, a->duration, startInfo->y, endInfo->y - startInfo->y);
         }
         if(endInfo->isMaskSet(COMPONENT_DATA_ALPHA_MASK)) {
-            endInfo->alpha = (float)Tween::calculate(a->algorithm, a->elapsedTime, a->duration, startInfo->alpha, endInfo->alpha - startInfo->alpha);
+            currentInfo->alpha = (float)Tween::calculate(a->algorithm, a->elapsedTime, a->duration, startInfo->alpha, endInfo->alpha - startInfo->alpha);
         }
         if(endInfo->isMaskSet(COMPONENT_DATA_ROTATE_MASK)) {
-            endInfo->rotate = (float)Tween::calculate(a->algorithm, a->elapsedTime, a->duration, startInfo->rotate, endInfo->rotate - startInfo->rotate);
+            currentInfo->rotate = (float)Tween::calculate(a->algorithm, a->elapsedTime, a->duration, startInfo->rotate, endInfo->rotate - startInfo->rotate);
         }
         if(endInfo->isMaskSet(COMPONENT_DATA_WIDTH_MASK)) {
-            endInfo->width = (int)Tween::calculate(a->algorithm, a->elapsedTime, a->duration, startInfo->width, endInfo->width - startInfo->width);
+            currentInfo->width = (int)Tween::calculate(a->algorithm, a->elapsedTime, a->duration, startInfo->width, endInfo->width - startInfo->width);
         }
         if(endInfo->isMaskSet(COMPONENT_DATA_HEIGHT_MASK)) {
-            endInfo->height = (int)Tween::calculate(a->algorithm, a->elapsedTime, a->duration, startInfo->height, endInfo->height - startInfo->height);
+            currentInfo->height = (int)Tween::calculate(a->algorithm, a->elapsedTime, a->duration, startInfo->height, endInfo->height - startInfo->height);
         }
     }
     else {
