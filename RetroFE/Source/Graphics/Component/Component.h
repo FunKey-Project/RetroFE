@@ -24,16 +24,5 @@ public:
     Component();
     virtual void update(float dt);
     virtual void draw() = 0;
-    virtual void addAnimation(const ComponentData &newInfo);
-    virtual void animate(bool loop);
-    ComponentData *startInfo;
     ComponentData info;
-    ComponentData *endInfo;
-
-private:
-    std::vector<ComponentData> animations;
-    unsigned int animationIndex;
-    float elapsedTime;
-    bool loop;
-    bool start;
 };

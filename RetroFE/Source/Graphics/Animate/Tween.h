@@ -25,13 +25,8 @@ class Tween
 {
 public:
 
-    Tween(TweenProperty name, TweenAlgorithm type, double start, double end, double duration);
-    float animate(double elapsedTime);
-    static float animateSingle(TweenAlgorithm type, double start, double end, double duration, double elapsedTime);
     static TweenAlgorithm getTweenType(std::string name);
-    static bool getTweenProperty(std::string name, TweenProperty &property);
-    TweenProperty property;
-    double duration;
+    static float calculate(TweenAlgorithm type, double start, double end, double duration, double elapsedTime);
 
 private:
     static double easeInQuadratic(double elapsedTime, double duration, double b, double c);
@@ -56,10 +51,5 @@ private:
     static double easeOutCircular(double elapsedTime, double duration, double b, double c);
     static double easeInOutCircular(double elapsedTime, double duration, double b, double c);
     static double linear(double elapsedTime, double duration, double b, double c);
-
     static std::map<std::string, TweenAlgorithm> tweenTypeMap_;
-    static std::map<std::string, TweenProperty> tweenPropertyMap_;
-    TweenAlgorithm type;
-    double start;
-    double end;
 };

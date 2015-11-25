@@ -18,85 +18,10 @@
 #include "../../SDL.h"
 
 Component::Component()
-    : startInfo(&info)
-    , endInfo(&info)
-    , elapsedTime(0)
-    , loop(false)
-    , start(false)
 {
 }
-void Component::addAnimation(const ComponentData &newInfo)
-{
-    start = false;
-    animations.push_back(newInfo);
-    elapsedTime = 0;
-}
 
-void Component::animate(bool loop) 
-{
-    this->loop = loop;
-    start = true;
-    elapsedTime = 0;
-    animationIndex = -1;
-
-    startInfo = &info;
-    endInfo = &info;
-
-    if(animations.size() > 0)
-    {
-        endInfo = &animations[0];
-    }
-}
-
-double linear(double t, double d, double b, double c)
-{
-    if(d == 0) return b;
-    return c*t/d + b;
-}
 void Component::update(float dt)
 {
-    elapsedTime += dt;  
-    bool done = false;
-    while(elapsedTime && endInfo->duration && elapsedTime >= endInfo->duration) {
-        elapsedTime -= endInfo->duration;
-
-        // don't animate if no tweens exist
-        if(animations.size() == 0) {
-            startInfo = &info;
-            endInfo = &info;
-        }
-        else if(loop) {
-            animationIndex = (animationIndex + 1) % animations.size();
-            unsigned int nextAnimationIndex = (animationIndex + 1) % animations.size();
-            done = (animationIndex + 1 >= animations.size());
-            startInfo = &animations[animationIndex];
-            endInfo = &animations[nextAnimationIndex];
-        }
-    }
-
-    if(start) {
-        if(endInfo->isMaskSet(COMPONENT_DATA_X_MASK)) {
-            info.x = (int)linear(elapsedTime, endInfo->duration, startInfo->x, endInfo->x - startInfo->x);
-        }
-        if(endInfo->isMaskSet(COMPONENT_DATA_Y_MASK)) {
-            info.y = (int)linear(elapsedTime, endInfo->duration, startInfo->y, endInfo->y - startInfo->y);
-        }
-        if(endInfo->isMaskSet(COMPONENT_DATA_ALPHA_MASK)) {
-            info.alpha = (float)linear(elapsedTime, endInfo->duration, startInfo->alpha, endInfo->alpha - startInfo->alpha);
-        }
-        if(endInfo->isMaskSet(COMPONENT_DATA_ROTATE_MASK)) {
-            info.rotate = (float)linear(elapsedTime, endInfo->duration, startInfo->rotate, endInfo->rotate - startInfo->rotate);
-        }
-        if(endInfo->isMaskSet(COMPONENT_DATA_WIDTH_MASK)) {
-            info.width = (int)linear(elapsedTime, endInfo->duration, startInfo->width, endInfo->width - startInfo->width);
-        }
-        if(endInfo->isMaskSet(COMPONENT_DATA_HEIGHT_MASK)) {
-            info.height = (int)linear(elapsedTime, endInfo->duration, startInfo->height, endInfo->height - startInfo->height);
-        }
-
-        if(!loop && done) {
-            start = false;
-        }
-    }
 }
 

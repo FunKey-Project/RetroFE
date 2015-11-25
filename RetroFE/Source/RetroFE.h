@@ -14,7 +14,7 @@
  * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
 #pragma once
-
+#include "Graphics/Animate/AnimationManager.h"
 #include "Collection/CollectionInfoBuilder.h"
 #include "Database/DB.h"
 #include "Database/Configuration.h"
@@ -38,10 +38,12 @@ private:
     Configuration &config_;
     Lua lua_;
     LuaEvent luaEvent_;
-    static const luaL_Reg luaDisplayFuncs[];
-    static const luaL_Reg luaLogFuncs[];
-    static const luaL_Reg luaImageFuncs[];
+    AnimationManager animationManager_;
+    static const luaL_Reg luaAnimateFuncs[];
     static const luaL_Reg luaCollectionFuncs[];
+    static const luaL_Reg luaDisplayFuncs[];
+    static const luaL_Reg luaImageFuncs[];
+    static const luaL_Reg luaLogFuncs[];
     DB db_;
     MetadataDatabase *mdb_;
     CollectionInfoBuilder *cib_;

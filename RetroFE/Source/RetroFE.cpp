@@ -21,6 +21,7 @@
 #include "SDL.h"
 #include "Graphics/Component/Image.h"
 #include "Graphics/Component/Component.h"
+#include "Lua/LuaAnimate.h"
 #include "Lua/LuaCollection.h"
 #include "Lua/LuaDisplay.h"
 #include "Lua/LuaImage.h"
@@ -51,6 +52,13 @@ static int lua_registerOnInit(lua_State *l)
     return 0;
 }
 
+const luaL_Reg RetroFE::luaAnimateFuncs[] = {
+    {"start", LuaAnimate::start},
+    {"startChain", LuaAnimate::startChain},
+    {"destroy", LuaAnimate::destroy},
+    {NULL, NULL}
+};
+
 const luaL_Reg RetroFE::luaImageFuncs[] = {
   // Creation
   {"create", LuaImage::create},
@@ -75,8 +83,6 @@ const luaL_Reg RetroFE::luaImageFuncs[] = {
   {"setDimensions", LuaImage::setDimensions},
   {"setRotate", LuaImage::setRotate},
   {"setAlpha", LuaImage::setAlpha},
-  {"addAnimation", LuaImage::addAnimation},
-  {"animate", LuaImage::animate},
   {"destroy", LuaImage::destroy},
   {NULL, NULL}
 };
@@ -110,6 +116,11 @@ void RetroFE::initializeLua()
     lua_.initialize();
     LuaImage::initialize(&config_, factory_);
     LuaCollection::initialize(&config_, cib_, &luaEvent_);
+    LuaAnimate::initialize(&animationManager_);
+    lua_newtable(lua_.state);
+    luaL_setfuncs (lua_.state, luaAnimateFuncs, 0);
+    lua_pushvalue(lua_.state, -1);
+    lua_setglobal(lua_.state, "animate");
 
     lua_newtable(lua_.state);
     luaL_setfuncs (lua_.state, luaCollectionFuncs, 0);
@@ -199,6 +210,8 @@ void RetroFE::run()
         SDL_LockMutex(SDL::getMutex());
         SDL_SetRenderDrawColor(SDL::getRenderer(), 0x0, 0x0, 0x00, 0xFF);
         SDL_RenderClear(SDL::getRenderer());
+
+        animationManager_.update((float)deltaTime);
 
         for(std::map<Component *, Component *>::iterator it = factory_.components.begin(); it != factory_.components.end(); it++)
         {

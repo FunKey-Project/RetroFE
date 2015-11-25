@@ -35,6 +35,4 @@ namespace LuaImage
     int setAlpha(lua_State *l);
     int setLayer(lua_State *l);
     int setHeight(lua_State *l);    
-    int animate(lua_State *l);
-    int addAnimation(lua_State *l);
 };

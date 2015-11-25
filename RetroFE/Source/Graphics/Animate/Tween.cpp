@@ -20,48 +20,6 @@
 #include <string>
 
 std::map<std::string, TweenAlgorithm> Tween::tweenTypeMap_;
-std::map<std::string, TweenProperty> Tween::tweenPropertyMap_;
-
-Tween::Tween(TweenProperty property, TweenAlgorithm type, double start, double end, double duration)
-    : property(property)
-, duration(duration)
-    , type(type)
-    , start(start)
-    , end(end)
-{
-}
-
-
-bool Tween::getTweenProperty(std::string name, TweenProperty &property)
-{
-    bool retVal = false;
-
-    if(tweenPropertyMap_.size() == 0)
-    {
-        tweenPropertyMap_["x"] = TWEEN_PROPERTY_X;
-        tweenPropertyMap_["y"] = TWEEN_PROPERTY_Y;
-        tweenPropertyMap_["angle"] = TWEEN_PROPERTY_ANGLE;
-        tweenPropertyMap_["alpha"] = TWEEN_PROPERTY_ALPHA;
-        tweenPropertyMap_["width"] = TWEEN_PROPERTY_WIDTH;
-        tweenPropertyMap_["height"] = TWEEN_PROPERTY_HEIGHT;
-        tweenPropertyMap_["xorigin"] = TWEEN_PROPERTY_X_ORIGIN;
-        tweenPropertyMap_["yorigin"] = TWEEN_PROPERTY_Y_ORIGIN;
-        tweenPropertyMap_["xoffset"] = TWEEN_PROPERTY_X_OFFSET;
-        tweenPropertyMap_["yoffset"] = TWEEN_PROPERTY_Y_OFFSET;
-        tweenPropertyMap_["fontSize"] = TWEEN_PROPERTY_FONT_SIZE;
-        tweenPropertyMap_["backgroundalpha"] = TWEEN_PROPERTY_BACKGROUND_ALPHA;
-    }
-
-    std::transform(name.begin(), name.end(), name.begin(), ::tolower);
-
-    if(tweenPropertyMap_.find(name) != tweenPropertyMap_.end())
-    {
-        property = tweenPropertyMap_[name];
-        retVal = true;
-    }
-
-    return retVal;
-}
 
 
 TweenAlgorithm Tween::getTweenType(std::string name)
@@ -105,13 +63,7 @@ TweenAlgorithm Tween::getTweenType(std::string name)
 }
 
 
-float Tween::animate(double elapsedTime)
-{
-    return animateSingle(type, start, end, duration, elapsedTime);
-}
-
-//todo: SDL likes floats, consider having casting being performed elsewhere
-float Tween::animateSingle(TweenAlgorithm type, double start, double end, double duration, double elapsedTime)
+float Tween::calculate(TweenAlgorithm type, double start, double end, double duration, double elapsedTime)
 {
     double a = start;
     double b = end - start;

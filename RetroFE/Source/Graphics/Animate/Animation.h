@@ -1,36 +1,15 @@
-/* This file is part of RetroFE.
- *
- * RetroFE is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * RetroFE is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
- */
 #pragma once
-
-#include "TweenSet.h"
+#include "../Component/Component.h"
+#include "../Component/ComponentData.h"
+#include "TweenTypes.h"
 #include <string>
-#include <vector>
-#include <map>
 
-class Animation
-{
+class Animation {
 public:
-    Animation();
-    Animation(Animation &copy);
-    ~Animation();
-    void Push(TweenSet *set);
-    void Clear();
-    std::vector<TweenSet *> *tweenSets();
-    TweenSet *tweenSet(unsigned int index);
-    unsigned int size();
-private:
-    std::vector<TweenSet *> animationVector_;
+    Component *component;
+    ComponentData start;
+    ComponentData end;
+    float elapsedTime; 
+    float duration;
+    TweenAlgorithm algorithm;
 };
