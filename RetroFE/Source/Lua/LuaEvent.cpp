@@ -19,15 +19,15 @@ void LuaEvent::trigger(lua_State *l, std::string type, void *value)
 
 bool LuaEvent::isBusy(lua_State *l, std::string type)
 {
-    bool retval = true;
+    bool retval = false;
     lua_getglobal(l, type.c_str());
     if(lua_pcall(l, 0, 1, 0) == 0) 
     {
         if(lua_isboolean(l, -1)) 
         {
-            if(!lua_toboolean(l, -1)) 
+            if(lua_toboolean(l, -1)) 
             {
-                retval = false;
+                retval = true;
             }
         }
         lua_pop(l, 1);

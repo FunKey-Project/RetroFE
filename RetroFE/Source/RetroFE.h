@@ -16,12 +16,14 @@
 #pragma once
 #include "Graphics/Animate/AnimationManager.h"
 #include "Collection/CollectionInfoBuilder.h"
+
 #include "Database/DB.h"
 #include "Database/Configuration.h"
 #include "Database/MetadataDatabase.h"
+#include "Graphics/Component/ComponentFactory.h"
 #include "Lua/Lua.h"
 #include "Lua/LuaEvent.h"
-#include "Graphics/Component/ComponentFactory.h"
+#include "Control/UserInput.h"
 #include <SDL2/SDL.h>
 #include <vector>
 
@@ -47,4 +49,5 @@ private:
     DB db_;
     MetadataDatabase *mdb_;
     CollectionInfoBuilder *cib_;
+    UserInput input_;
 };

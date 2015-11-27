@@ -15,10 +15,8 @@
  */
 
 #include "RetroFE.h"
-#include "StateMachine.h"
-#include "Utility/Log.h"
-#include "Utility/Utils.h"
 #include "SDL.h"
+#include "StateMachine.h"
 #include "Graphics/Component/Image.h"
 #include "Graphics/Component/Component.h"
 #include "Lua/LuaAnimate.h"
@@ -27,6 +25,8 @@
 #include "Lua/LuaImage.h"
 #include "Lua/LuaLog.h"
 #include "Lua/LuaEvent.h"
+#include "Utility/Log.h"
+#include "Utility/Utils.h"
 #include <vector>
 
 #ifdef __linux
@@ -157,6 +157,7 @@ RetroFE::RetroFE(Configuration &c)
 , db_(c.absolutePath + "/meta.db")
 , mdb_(NULL)
 , cib_(NULL)
+, input_(c)
 {
 }
 
@@ -171,13 +172,13 @@ RetroFE::~RetroFE()
 void RetroFE::run()
 {
     if(!SDL::initialize(config_)) return;
-    
+    input_.initialize();
     db_.initialize();
     mdb_ = new MetadataDatabase(db_, config_);
     cib_ = new CollectionInfoBuilder(config_, *mdb_);
     mdb_->initialize();
     initializeLua();
-    StateMachine state(lua_.state, &luaEvent_);
+    StateMachine state(lua_.state, &luaEvent_, &input_);
 
     reloadLuaScripts();
 //    events.triggerOnInit(lua_.state);
@@ -185,7 +186,18 @@ void RetroFE::run()
     double currentTime = 0;
     double lastTime = 0;
     double deltaTime = 0;
+
     while(!quit) {
+         SDL_Event e;
+
+        if (SDL_PollEvent(&e))
+        {
+//            if(input_.update(e))
+//            {
+//                attract_.reset();
+//            }
+        }
+
 
 
         lastTime = currentTime;
@@ -205,7 +217,7 @@ void RetroFE::run()
 
         LuaCollection::update(lua_.state);
 
-        state.update((float)deltaTime);
+        state.update((float)deltaTime, &e);
 
         SDL_LockMutex(SDL::getMutex());
         SDL_SetRenderDrawColor(SDL::getRenderer(), 0x0, 0x0, 0x00, 0xFF);
