@@ -16,14 +16,14 @@ int LuaImage::create(lua_State *l)
 {
     Image *i = factory->createImage();
     
-    lua_pushinteger(l, (int)i);
+    lua_pushlightuserdata(l, i);
     
     return 1; 
 }
 
 int LuaImage::destroy(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     factory->deleteComponent(i);
     
     return 0; 
@@ -31,10 +31,11 @@ int LuaImage::destroy(lua_State *l)
 
 int LuaImage::loadFile(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     std::string file = luaL_checkstring(l, 2);
     
     bool result = i->load(file);
+    i->getOriginalDimensions(i->info.width, i->info.height);
     lua_pushboolean(l, result);
 
     return 1; 
@@ -43,7 +44,7 @@ int LuaImage::loadFile(lua_State *l)
 int LuaImage::loadType(lua_State *l)
 {
     bool result = false;
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     CollectionInfo *ci = (CollectionInfo *)luaL_checkinteger(l, 2);
     std::string type = luaL_checkstring(l, 3);
     std::string name = luaL_checkstring(l, 4);
@@ -66,6 +67,7 @@ int LuaImage::loadType(lua_State *l)
     if(Utils::findMatchingFile(prefix, extensions, file))
     {
         result = i->load(file);
+        i->getOriginalDimensions(i->info.width, i->info.height);
     }
 
 
@@ -77,7 +79,7 @@ int LuaImage::loadType(lua_State *l)
 
 int LuaImage::isLoaded(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     
     lua_pushboolean(l, i->isLoaded());
 
@@ -87,7 +89,7 @@ int LuaImage::isLoaded(lua_State *l)
 
 int LuaImage::unload(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     i->unload();
     
     return 0; 
@@ -96,7 +98,7 @@ int LuaImage::unload(lua_State *l)
 
 int LuaImage::getOriginalWidth(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     int w = 0;
     int h = 0;
 
@@ -109,7 +111,7 @@ int LuaImage::getOriginalWidth(lua_State *l)
 
 int LuaImage::getOriginalHeight(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     int w = 0;
     int h = 0;
 
@@ -122,7 +124,7 @@ int LuaImage::getOriginalHeight(lua_State *l)
 
 int LuaImage::getOriginalDimensions(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     int w = 0;
     int h = 0;
 
@@ -135,7 +137,7 @@ int LuaImage::getOriginalDimensions(lua_State *l)
 
 int LuaImage::getX(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     
     lua_pushnumber(l, i->info.x);
     
@@ -145,7 +147,7 @@ int LuaImage::getX(lua_State *l)
 
 int LuaImage::getY(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     
     lua_pushnumber(l, i->info.y);
     
@@ -155,7 +157,7 @@ int LuaImage::getY(lua_State *l)
 
 int LuaImage::getPosition(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     
     lua_pushnumber(l, i->info.x);
     lua_pushnumber(l, i->info.y);
@@ -165,7 +167,7 @@ int LuaImage::getPosition(lua_State *l)
 
 int LuaImage::getWidth(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     
     lua_pushnumber(l, i->info.width);
     
@@ -175,7 +177,7 @@ int LuaImage::getWidth(lua_State *l)
 
 int LuaImage::getHeight(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     
     lua_pushnumber(l, i->info.height);
     
@@ -185,7 +187,7 @@ int LuaImage::getHeight(lua_State *l)
 
 int LuaImage::getDimensions(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     
     lua_pushnumber(l, i->info.width);
     lua_pushnumber(l, i->info.height);
@@ -195,7 +197,7 @@ int LuaImage::getDimensions(lua_State *l)
 
 int LuaImage::getRotate(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     
     lua_pushnumber(l, i->info.rotate);
     
@@ -205,7 +207,7 @@ int LuaImage::getRotate(lua_State *l)
 
 int LuaImage::getAlpha(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     
     lua_pushnumber(l, i->info.alpha);
     
@@ -214,7 +216,7 @@ int LuaImage::getAlpha(lua_State *l)
 
 int LuaImage::getLayer(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     
     lua_pushnumber(l, !i->info.layer);
     
@@ -223,7 +225,7 @@ int LuaImage::getLayer(lua_State *l)
 
 int LuaImage::setX(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     int val = (int)luaL_checknumber(l, 2);
     
     i->info.x = val;
@@ -234,7 +236,7 @@ int LuaImage::setX(lua_State *l)
 
 int LuaImage::setY(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     int val = (int)luaL_checknumber(l, 2);
     
     i->info.y = val;
@@ -245,7 +247,7 @@ int LuaImage::setY(lua_State *l)
 
 int LuaImage::setPosition(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     int x = (int)luaL_checknumber(l, 2);
     int y = (int)luaL_checknumber(l, 3);
     
@@ -258,7 +260,7 @@ int LuaImage::setPosition(lua_State *l)
 
 int LuaImage::setWidth(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     int val = (int)luaL_checknumber(l, 2);
     
     i->info.width = val;
@@ -269,7 +271,7 @@ int LuaImage::setWidth(lua_State *l)
 
 int LuaImage::setHeight(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     int val = (int)luaL_checknumber(l, 2);
     
     i->info.height = val;
@@ -280,7 +282,7 @@ int LuaImage::setHeight(lua_State *l)
 
 int LuaImage::setDimensions(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     int w = (int)luaL_checknumber(l, 2);
     int h = (int)luaL_checknumber(l, 3);
     
@@ -293,7 +295,7 @@ int LuaImage::setDimensions(lua_State *l)
 
 int LuaImage::setRotate(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     float val = (float)luaL_checknumber(l, 2);
     
     i->info.rotate = val;
@@ -304,7 +306,7 @@ int LuaImage::setRotate(lua_State *l)
 
 int LuaImage::setAlpha(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     float val = (float)luaL_checknumber(l, 2);
     
     i->info.alpha = val;
@@ -314,7 +316,7 @@ int LuaImage::setAlpha(lua_State *l)
 
 int LuaImage::setLayer(lua_State *l)
 {
-    Image *i = (Image *)luaL_checkinteger(l, 1);
+    Image *i = (Image *)lua_touserdata(l, 1);
     int val = (int)luaL_checknumber(l, 2);
     
     i->info.layer = val;

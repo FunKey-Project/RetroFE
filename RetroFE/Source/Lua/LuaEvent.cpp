@@ -10,7 +10,7 @@ void LuaEvent::trigger(lua_State *l, std::string type)
 void LuaEvent::trigger(lua_State *l, std::string type, void *value)
 {
     lua_getglobal(l, type.c_str());
-    lua_pushinteger(l, (int)value);
+    lua_pushlightuserdata(l, value);
 
     lua_pcall(l, 1, 0, 0);
 }
@@ -34,12 +34,5 @@ bool LuaEvent::isBusy(lua_State *l, std::string type)
     }
 
     return retval;
-  // arguments
-	//lua_pushnumber(l, x);
-	//lua_pushnumber(l, y);
-	// call the function with 2 arguments, return 1 result
-	//lua_call(L, 2, 1);
-	//sum = (int)lua_tointeger(L, -1);
-	//lua_pop(L, 1);
 }
 

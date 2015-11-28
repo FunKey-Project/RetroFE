@@ -64,7 +64,11 @@ Animation *LuaAnimate::create(lua_State *l)
 //todo: NEED MEMORY TYPE CHECKING LIKE OTHER LUA CLASSES
 int LuaAnimate::start(lua_State *l)
 {
-    Component *component  = (Component *)lua_tointeger(l, 1) ;
+    Component *component  = (Component *)lua_touserdata(l, 1) ;
+
+    Logger::write(Logger::ZONE_ERROR, "LuaAnimate", "Invalid component id");
+    if(!component) return 0;
+
     bool loop = (lua_toboolean(l, 2) != 0);
     //todo: make sure it is a component
     Animation *a = (Animation *)create(l);
@@ -72,9 +76,11 @@ int LuaAnimate::start(lua_State *l)
     if(a) {
         a->component = component;
         AnimationChain *chain = manager->start(a, loop, false);
-        lua_pushinteger(l, (int)chain);
+        lua_pushlightuserdata(l, chain);
+        return 1; 
     }
-    return 1; 
+
+    return 0;
 }
 
 int LuaAnimate::startChain(lua_State *l)
@@ -85,7 +91,7 @@ int LuaAnimate::startChain(lua_State *l)
 
 int LuaAnimate::destroy(lua_State *l)
 {
-    Animation *a = (Animation *)luaL_checkinteger(l, 1);
+    Animation *a = (Animation *)lua_touserdata(l, 1);
     delete a;
 
     return 1;

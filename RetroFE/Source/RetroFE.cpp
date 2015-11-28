@@ -147,8 +147,16 @@ void RetroFE::initializeLua()
 void RetroFE::reloadLuaScripts()
 {
     std::string path = config_.absolutePath + "/layouts/LUATest/Page.lua";
-    luaL_loadfile(lua_.state, path.c_str());
-    lua_pcall(lua_.state, 0, LUA_MULTRET, 0);
+
+    int status = luaL_loadfile(lua_.state, path.c_str());
+	 if (status) {
+         std::string errorMsg = std::string(lua_tostring(lua_.state, -1));
+         Logger::write(Logger::ZONE_ERROR, "LUA", "Error loading lua script: " + errorMsg);
+     }
+     else {
+        lua_pcall(lua_.state, 0, LUA_MULTRET, 0);
+    }
+
 
 }
 

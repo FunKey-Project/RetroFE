@@ -74,8 +74,8 @@ void Image::draw()
 
         rect.x = info.x;
         rect.y = info.y;
-        rect.h = info.width;
-        rect.w = info.height;
+        rect.w = info.width;
+        rect.h = info.height;
 
         SDL::renderCopy(texture_, (unsigned char)(info.alpha*255), NULL, &rect, info.rotate);
     }

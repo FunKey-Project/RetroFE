@@ -24,7 +24,7 @@ int LuaCollection::load(lua_State *l)
 
 int LuaCollection::getSize(lua_State *l)
 {
-    CollectionInfo *i = (CollectionInfo *)luaL_checkinteger(l, 1);
+    CollectionInfo *i = (CollectionInfo *)lua_touserdata(l, 1);
 
     lua_pushinteger(l, (int)i->items.size());
 
@@ -33,7 +33,7 @@ int LuaCollection::getSize(lua_State *l)
 
 int LuaCollection::getName(lua_State *l)
 {
-    CollectionInfo *i = (CollectionInfo *)luaL_checkinteger(l, 1);
+    CollectionInfo *i = (CollectionInfo *)lua_touserdata(l, 1);
 
     lua_pushstring(l, i->name.c_str());
 
@@ -42,7 +42,7 @@ int LuaCollection::getName(lua_State *l)
 
 int LuaCollection::getItemAt(lua_State *l)
 {
-    CollectionInfo *i = (CollectionInfo *)luaL_checkinteger(l, 1);
+    CollectionInfo *i = (CollectionInfo *)lua_touserdata(l, 1);
     int index = (int)luaL_checkinteger(l, 2);
     Item *item = i->items.at(index);
 
@@ -76,7 +76,7 @@ int LuaCollection::getItemAt(lua_State *l)
 
 int LuaCollection::destroy(lua_State *l)
 {
-    CollectionInfo *i = (CollectionInfo *)luaL_checkinteger(l, 1);
+    CollectionInfo *i = (CollectionInfo *)lua_touserdata(l, 1);
     cib->destroyCollection(i);
     
     return 0; 
