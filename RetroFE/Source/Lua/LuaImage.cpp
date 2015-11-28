@@ -45,7 +45,7 @@ int LuaImage::loadType(lua_State *l)
 {
     bool result = false;
     Image *i = (Image *)lua_touserdata(l, 1);
-    CollectionInfo *ci = (CollectionInfo *)luaL_checkinteger(l, 2);
+    CollectionInfo *ci = (CollectionInfo *)lua_touserdata(l, 2);
     std::string type = luaL_checkstring(l, 3);
     std::string name = luaL_checkstring(l, 4);
     
@@ -73,7 +73,7 @@ int LuaImage::loadType(lua_State *l)
 
     lua_pushboolean(l, result);
 
-    return 2; 
+    return 1; 
 }
 #if 0
 
