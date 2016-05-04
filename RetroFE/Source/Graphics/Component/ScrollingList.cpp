@@ -327,7 +327,7 @@ void ScrollingList::letterChange(bool increment)
     notifyAllRequested_ = true;
     deallocateSpritePoints();
 
-    std::string startname = items_->at(itemIndex_)->lowercaseFullTitle();
+    std::string startname = items_->at((itemIndex_+selectedOffsetIndex_)%items_->size())->lowercaseFullTitle();
 
     for(unsigned int i = 0; i < items_->size(); ++i)
     {
@@ -335,18 +335,34 @@ void ScrollingList::letterChange(bool increment)
         if(increment) index = loopIncrement(itemIndex_, i, items_->size());
         else index = loopDecrement(itemIndex_, i, items_->size());
 
-        std::string endname = items_->at(index)->lowercaseFullTitle();
+        std::string endname = items_->at((index+selectedOffsetIndex_)%items_->size())->lowercaseFullTitle();
 
         // check if we are changing characters from a-z, or changing from alpha character to non-alpha character
-        if(isalpha(startname[0]) ^ isalpha(endname[0]))
-        {
-           break; 
-           itemIndex_ = index;
-        }
-        else if(isalpha(startname[0]) && isalpha(endname[0]) && startname[0] != endname[0])
+        if((isalpha(startname[0]) ^ isalpha(endname[0])) ||
+           (isalpha(startname[0]) && isalpha(endname[0]) && startname[0] != endname[0]))
         {
             itemIndex_ = index;
             break;
+        }
+    }
+
+    if (!increment) // For decrement, find the first game of the new letter
+    {
+        startname = items_->at((itemIndex_+selectedOffsetIndex_)%items_->size())->lowercaseFullTitle();
+
+        for(unsigned int i = 0; i < items_->size(); ++i)
+        {
+            unsigned int index = loopDecrement(itemIndex_, i, items_->size());
+
+            std::string endname = items_->at((index+selectedOffsetIndex_)%items_->size())->lowercaseFullTitle();
+
+            // check if we are changing characters from a-z, or changing from alpha character to non-alpha character
+            if((isalpha(startname[0]) ^ isalpha(endname[0])) ||
+               (isalpha(startname[0]) && isalpha(endname[0]) && startname[0] != endname[0]))
+            {
+                itemIndex_ = loopIncrement(index,1,items_->size());
+                break;
+            }
         }
     }
 
