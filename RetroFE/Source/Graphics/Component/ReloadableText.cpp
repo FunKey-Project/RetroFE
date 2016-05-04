@@ -23,8 +23,9 @@
 #include <vector>
 #include <iostream>
 
-ReloadableText::ReloadableText(std::string type, Page &page, Font *font, std::string layoutKey, float scaleX, float scaleY)
+ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, float scaleX, float scaleY)
     : Component(page)
+    , config_(config)
     , imageInst_(NULL)
     , layoutKey_(layoutKey)
     , reloadRequested_(false)
@@ -160,16 +161,28 @@ void ReloadableText::ReloadTexture()
             ss << selectedItem->numberPlayers;
             break;
         case TextTypeYear:
-            ss << selectedItem->year;
+            if (selectedItem->leaf) // item is a leaf
+              text = selectedItem->year;
+            else // item is a collection
+              (void)config_.getProperty("collections." + selectedItem->name + ".year", text );
+            ss << text;
             break;
         case TextTypeTitle:
             ss << selectedItem->title;
             break;
         case TextTypeManufacturer:
-            ss << selectedItem->manufacturer;
+            if (selectedItem->leaf) // item is a leaf
+              text = selectedItem->manufacturer;
+            else // item is a collection
+              (void)config_.getProperty("collections." + selectedItem->name + ".manufacturer", text );
+            ss << text;
             break;
         case TextTypeGenre:
-            ss << selectedItem->genre;
+            if (selectedItem->leaf) // item is a leaf
+              text = selectedItem->genre;
+            else // item is a collection
+              (void)config_.getProperty("collections." + selectedItem->name + ".genre", text );
+            ss << text;
             break;
         case TextTypePlaylist:
             ss << playlistName;

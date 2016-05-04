@@ -446,7 +446,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
             if(type)
             {
                 Font *font = addFont(componentXml, NULL);
-                c = new ReloadableText(type->value(), *page, font, layoutKey, scaleX_, scaleY_);
+                c = new ReloadableText(type->value(), *page, config_, font, layoutKey, scaleX_, scaleY_);
             }
         }
         else
