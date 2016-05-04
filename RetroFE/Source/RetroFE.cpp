@@ -529,6 +529,12 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
                     page->setScrollOffsetIndex(lastMenuOffsets_[nextPageItem_->name]);
                 }
                 
+                bool autoFavorites = true;
+                config_.getProperty("autoFavorites", autoFavorites);
+
+                if (autoFavorites)
+                  page->nextPlaylist(); // Switch to favorites if it exists
+
                 state = RETROFE_NEXT_PAGE_REQUEST;
             }
         }
