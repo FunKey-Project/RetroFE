@@ -255,7 +255,10 @@ void ReloadableMedia::reloadTexture()
         }
         else if(typeLC == "manufacturer")
         {
+          if ( selectedItem->leaf ) // item is a leaf
             basename = selectedItem->manufacturer;
+          else // item is a collection
+            (void)config_.getProperty("collections." + selectedItem->name + ".manufacturer", basename );
         }
         else if(typeLC == "genre")
         {
