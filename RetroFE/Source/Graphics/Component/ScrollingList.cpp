@@ -685,7 +685,7 @@ void ScrollingList::draw(unsigned int layer)
     for(unsigned int i = 0; i < components_.size(); ++i)
     {
         Component *c = components_.at(i);
-        if(c) c->draw();
+        if(c && c->baseViewInfo.Layer == layer) c->draw();
     }
 }
 
