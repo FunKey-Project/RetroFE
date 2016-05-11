@@ -81,7 +81,7 @@ bool CollectionInfoBuilder::createCollectionDirectory(std::string name)
 #if defined(__MINGW32__)
         if(mkdir(it->c_str()) == -1)
 #else
-        if(mkdir(it->c_str(), 0744) == -1)
+        if(mkdir(it->c_str(), 0755) == -1)
 #endif        
         {
            std::cout << "Could not create folder \"" << *it << "\":" << errno << std::endl;
