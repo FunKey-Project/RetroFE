@@ -111,7 +111,7 @@ private:
     CollectionVector_T collections_;
     CollectionVector_T deleteCollections_;
 
-    static const unsigned int NUM_LAYERS = 8;
+    static const unsigned int NUM_LAYERS = 20;
     std::vector<Component *> LayerComponents[NUM_LAYERS];
     std::list<ScrollingList *> deleteMenuList_;
     std::list<CollectionInfo *> deleteCollectionList_;

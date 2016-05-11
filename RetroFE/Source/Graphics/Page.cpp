@@ -703,7 +703,7 @@ void Page::draw()
     {
         for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
         {
-            if(*it) (*it)->draw();
+            if(*it && (*it)->baseViewInfo.Layer == i) (*it)->draw();
         }
 
         for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
