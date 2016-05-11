@@ -625,8 +625,8 @@ void Page::favPlaylist()
         if(playlist_->second->size() != 0 && playlist_->first == "favorites") break;
     }
 
-    // Do not change playlist if favorites does not exist
-    if ( playlist_->first != "favorites" )
+    // Do not change playlist if favorites does not exist or if it's empty
+    if ( playlist_->second->size() == 0 || playlist_->first != "favorites")
       playlist_ = playlist_store;
 
     activeMenu_->setItems(playlist_->second);
