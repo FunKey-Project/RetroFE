@@ -92,14 +92,14 @@ bool CollectionInfo::Save()
         {
             // Create playlists directory if it does not exist yet.
             struct stat info;
-            if ( stat( dir.c_str(), &info ) != 0 && (info.st_mode & S_IFDIR) )
+            if ( stat( dir.c_str(), &info ) != 0 )
             {
 #if defined(_WIN32) && !defined(__GNUC__)
                 if(!CreateDirectory(dir, NULL))
                 {
                     if(ERROR_ALREADY_EXISTS != GetLastError())
                     {
-                        std::cout << "Could not create folder \"" << *it << "\"" << std::endl;
+                        Logger::write(Logger::ZONE_WARNING, "Collection", "Could not create directory " + dir);
                         return false;
                     }
                 }
@@ -110,9 +110,15 @@ bool CollectionInfo::Save()
                 if(mkdir(dir.c_str(), 0755) == -1)
 #endif        
                 {
-                   std::cout << "Could not create folder \"" << dir << "\":" << errno << std::endl;
+                    Logger::write(Logger::ZONE_WARNING, "Collection", "Could not create directory " + dir);
+                    return false;
                 }
 #endif
+            }
+            else if ( !(info.st_mode & S_IFDIR) )
+            {
+                Logger::write(Logger::ZONE_WARNING, "Collection", dir + " exists, but is not a directory.");
+                return false;
             }
 
             filestream.open(file.c_str());
