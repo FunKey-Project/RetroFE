@@ -606,6 +606,34 @@ void Page::nextPlaylist()
     playlistChanged_ = true;
 }
 
+void Page::favPlaylist()
+{
+    MenuInfo_S &info = collections_.back();
+    info.collection->Save();
+    unsigned int numlists = info.collection->playlists.size();
+
+    // Store current playlist
+    CollectionInfo::Playlists_T::iterator playlist_store = playlist_;
+
+    for(unsigned int i = 0; i <= numlists; ++i)
+    {
+        playlist_++;
+        // wrap
+        if(playlist_ == info.collection->playlists.end()) playlist_ = info.collection->playlists.begin();
+        
+        // find the first playlist
+        if(playlist_->second->size() != 0 && playlist_->first == "favorites") break;
+    }
+
+    // Do not change playlist if favorites does not exist
+    if ( playlist_->first != "favorites" )
+      playlist_ = playlist_store;
+
+    activeMenu_->setItems(playlist_->second);
+    activeMenu_->triggerMenuEnterEvent();
+    playlistChanged_ = true;
+}
+
 void Page::update(float dt)
 {
     for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
@@ -690,6 +718,7 @@ void Page::draw()
 void Page::removePlaylist()
 {
     if(!selectedItem_) return;
+    if(!selectedItem_->leaf) return;
 
     MenuInfo_S &info = collections_.back();
     CollectionInfo *collection = info.collection;
@@ -713,6 +742,7 @@ void Page::removePlaylist()
 void Page::addPlaylist()
 {
     if(!selectedItem_) return;
+    if(!selectedItem_->leaf) return;
 
     MenuInfo_S &info = collections_.back();
     CollectionInfo *collection = info.collection;

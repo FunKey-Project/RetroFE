@@ -48,6 +48,7 @@ public:
     bool pushCollection(CollectionInfo *collection);
     bool popCollection();
     void nextPlaylist();
+    void favPlaylist();
     void pushMenu(ScrollingList *s);
     bool isMenusFull();
     void setLoadSound(Sound *chunk);

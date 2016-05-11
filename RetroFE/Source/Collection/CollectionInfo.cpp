@@ -23,6 +23,13 @@
 #include <algorithm>
 #include <exception>
 
+#ifdef __linux
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <errno.h>
+#include <cstring>
+#endif
+
 CollectionInfo::CollectionInfo(std::string name,
                                std::string listPath,
                                std::string extensions,
@@ -76,12 +83,38 @@ bool CollectionInfo::Save()
     bool retval = true;
     if(saveRequest)
     {
+        std::string dir  = Utils::combinePath(Configuration::absolutePath, "collections", name, "playlists");
         std::string file = Utils::combinePath(Configuration::absolutePath, "collections", name, "playlists/favorites.txt");
         Logger::write(Logger::ZONE_INFO, "Collection", "Saving " + file);
 
         std::ofstream filestream;
         try
         {
+            // Create playlists directory if it does not exist yet.
+            struct stat info;
+            if ( stat( dir.c_str(), &info ) != 0 && (info.st_mode & S_IFDIR) )
+            {
+#if defined(_WIN32) && !defined(__GNUC__)
+                if(!CreateDirectory(dir, NULL))
+                {
+                    if(ERROR_ALREADY_EXISTS != GetLastError())
+                    {
+                        std::cout << "Could not create folder \"" << *it << "\"" << std::endl;
+                        return false;
+                    }
+                }
+#else 
+#if defined(__MINGW32__)
+                if(mkdir(dir.c_str()) == -1)
+#else
+                if(mkdir(dir.c_str(), 0755) == -1)
+#endif        
+                {
+                   std::cout << "Could not create folder \"" << dir << "\":" << errno << std::endl;
+                }
+#endif
+            }
+
             filestream.open(file.c_str());
             std::vector<Item *> *saveitems = playlists["favorites"];
             for(std::vector<Item *>::iterator it = saveitems->begin(); it != saveitems->end(); it++)

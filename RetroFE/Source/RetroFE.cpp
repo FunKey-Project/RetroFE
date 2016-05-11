@@ -533,7 +533,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
                 config_.getProperty("autoFavorites", autoFavorites);
 
                 if (autoFavorites)
-                  page->nextPlaylist(); // Switch to favorites if it exists
+                  page->favPlaylist(); // Switch to favorites if it exists
 
                 state = RETROFE_NEXT_PAGE_REQUEST;
             }
