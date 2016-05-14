@@ -16,7 +16,7 @@
 #pragma once
 
 #include "Component.h"
-
+#include "../Page.h"
 #include <SDL2/SDL.h>
 #include <vector>
 
@@ -26,7 +26,7 @@ class Text : public Component
 {
 public:
     //todo: should have a Font flass that references fontcache, pass that in as an argument
-    Text(std::string text, Font *font, float scaleX, float scaleY);
+    Text(std::string text, Page &p, Font *font, float scaleX, float scaleY);
     virtual ~Text();
     void setText(std::string text);
     void allocateGraphicsMemory();

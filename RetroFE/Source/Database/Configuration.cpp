@@ -130,15 +130,14 @@ bool Configuration::parseLine(std::string collection, std::string keyPrefix, std
 
         key = trimEnds(key);
 
+
         value = line.substr(position + delimiter.length(), line.length());
         value = trimEnds(value);
 
-        // only overwrite the collection name if we know it. We could be parsing a launcher configuration
         if(collection != "")
         {
             value = Utils::replace(value, "%ITEM_COLLECTION_NAME%", collection);
         }
-
         properties_.insert(PropertiesPair(key, value));
 
         std::stringstream ss;
@@ -305,11 +304,9 @@ std::string Configuration::convertToAbsolutePath(std::string prefix, std::string
     }
 
     // check to see if it is already an absolute path
-#ifdef WIN32
-    if((first != '\\') && (first != '/') && (second != ':'))
-#else
-    if(first != Utils::pathSeparator)
-#endif
+    if((first != Utils::pathSeparator) &&
+            //(first != '.') &&
+            (second != ':'))
     {
         path = Utils::combinePath(prefix, path);
     }
@@ -338,6 +335,10 @@ void Configuration::getMediaPropertyAbsolutePath(std::string collectionName, std
 void Configuration::getMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, bool system, std::string &value)
 {
     std::string key = "collections." + collectionName + ".media." + mediaType;
+    if (system) 
+    {
+        key = "collections." + collectionName + ".media.system_artwork";
+    }
 
     // use user-overridden setting if it exists
     if(getPropertyAbsolutePath(key, value))

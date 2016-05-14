@@ -17,8 +17,22 @@
 #include "Item.h"
 #include "../Database/Configuration.h"
 #include "../Utility/Utils.h"
+#include "../Utility/Log.h"
 #include <sstream>
+#include <fstream>
 #include <algorithm>
+#include <exception>
+#include <sys/stat.h>
+#include <sys/types.h>
+
+#ifdef _WIN32
+#include <Windows.h>
+#endif
+
+#ifdef __linux
+#include <errno.h>
+#include <cstring>
+#endif
 
 CollectionInfo::CollectionInfo(std::string name,
                                std::string listPath,
@@ -27,6 +41,7 @@ CollectionInfo::CollectionInfo(std::string name,
                                std::string metadataPath)
     : name(name)
     , listpath(listPath)
+    , saveRequest(false)
     , metadataType(metadataType)
     , menusort(true)
     , metadataPath_(metadataPath)
@@ -39,12 +54,24 @@ CollectionInfo::~CollectionInfo()
 	// remove items from the subcollections so their destructors do not
 	// delete the items since the parent collection will delete them.
     std::vector<CollectionInfo *>::iterator subit;
-    for (subit != subcollections_.begin(); subit != subcollections_.end(); subit++)
+    for (subit = subcollections_.begin(); subit != subcollections_.end(); subit++)
     {
     	CollectionInfo *info = *subit;
     	info->items.clear();
     }
 
+
+    Playlists_T::iterator pit = playlists.begin();
+
+    while(pit != playlists.end())
+    {
+        if(pit->second != &items)
+        {
+            delete pit->second;
+        }
+        playlists.erase(pit);
+        pit = playlists.begin();
+    }
 
 	std::vector<Item *>::iterator it = items.begin();
     while(it != items.end())
@@ -53,6 +80,68 @@ CollectionInfo::~CollectionInfo()
         items.erase(it);
         it = items.begin();
     }
+}
+
+bool CollectionInfo::Save() 
+{
+    bool retval = true;
+    if(saveRequest)
+    {
+        std::string dir  = Utils::combinePath(Configuration::absolutePath, "collections", name, "playlists");
+        std::string file = Utils::combinePath(Configuration::absolutePath, "collections", name, "playlists/favorites.txt");
+        Logger::write(Logger::ZONE_INFO, "Collection", "Saving " + file);
+
+        std::ofstream filestream;
+        try
+        {
+            // Create playlists directory if it does not exist yet.
+            struct stat info;
+            if ( stat( dir.c_str(), &info ) != 0 )
+            {
+#if defined(_WIN32) && !defined(__GNUC__)
+                if(!CreateDirectory(dir.c_str(), NULL))
+                {
+                    if(ERROR_ALREADY_EXISTS != GetLastError())
+                    {
+                        Logger::write(Logger::ZONE_WARNING, "Collection", "Could not create directory " + dir);
+                        return false;
+                    }
+                }
+#else 
+#if defined(__MINGW32__)
+                if(mkdir(dir.c_str()) == -1)
+#else
+                if(mkdir(dir.c_str(), 0755) == -1)
+#endif        
+                {
+                    Logger::write(Logger::ZONE_WARNING, "Collection", "Could not create directory " + dir);
+                    return false;
+                }
+#endif
+            }
+            else if ( !(info.st_mode & S_IFDIR) )
+            {
+                Logger::write(Logger::ZONE_WARNING, "Collection", dir + " exists, but is not a directory.");
+                return false;
+            }
+
+            filestream.open(file.c_str());
+            std::vector<Item *> *saveitems = playlists["favorites"];
+            for(std::vector<Item *>::iterator it = saveitems->begin(); it != saveitems->end(); it++)
+            {
+                filestream << (*it)->name << std::endl;
+            }
+
+            filestream.close();
+        }
+        catch(std::exception &)
+        {
+            Logger::write(Logger::ZONE_ERROR, "Collection", "Save failed: " + file);
+            retval = false;
+        }
+    }
+    
+    return retval;
 }
 
 std::string CollectionInfo::settingsPath() const
@@ -95,5 +184,8 @@ bool CollectionInfo::itemIsLess(Item *lhs, Item *rhs)
 
 void CollectionInfo::sortItems()
 {
-    std::sort(items.begin(), items.end(), itemIsLess);
+    for(Playlists_T::iterator it = playlists.begin(); it != playlists.end(); it++)
+    {
+        std::sort(it->second->begin(), it->second->end(), itemIsLess);
+    }
 }

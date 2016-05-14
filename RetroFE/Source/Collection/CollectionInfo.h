@@ -17,6 +17,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 class Item;
 
@@ -26,15 +27,21 @@ public:
     CollectionInfo(std::string name, std::string listPath, std::string extensions, std::string metadataType, std::string metadataPath);
     virtual ~CollectionInfo();
     std::string settingsPath() const;
+    bool Save();
     void sortItems();
     void addSubcollection(CollectionInfo *info);
     bool hasSubcollections();
     void extensionList(std::vector<std::string> &extensions);
     std::string name;
     std::string listpath;
+    bool saveRequest;
     std::string metadataType;
     std::string launcher;
     std::vector<Item *> items;
+
+    typedef std::map<std::string, std::vector <Item *> *> Playlists_T;
+    Playlists_T playlists;
+
     bool menusort;
 private:
     std::vector<CollectionInfo *> subcollections_;

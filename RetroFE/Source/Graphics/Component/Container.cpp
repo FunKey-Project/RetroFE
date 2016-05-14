@@ -18,7 +18,8 @@
 #include "../ViewInfo.h"
 #include "../../SDL.h"
 
-Container::Container()
+Container::Container(Page &p)
+: Component(p)
 {
     allocateGraphicsMemory();
 }

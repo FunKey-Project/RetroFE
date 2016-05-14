@@ -417,7 +417,14 @@ bool MetadataDatabase::importMamelist(std::string filename, std::string collecti
     }
 
     sqlite3_exec(handle, "BEGIN IMMEDIATE TRANSACTION;", NULL, NULL, &error);
-    for (rapidxml::xml_node<> * game = rootNode->first_node("game"); game; game = game->next_sibling())
+    std::string gameNodeName = "game";
+
+    // support new mame formats
+    if(rootNode->first_node(gameNodeName.c_str()) == NULL) {
+        gameNodeName = "machine";
+    }
+
+    for (rapidxml::xml_node<> * game = rootNode->first_node(gameNodeName.c_str()); game; game = game->next_sibling())
     {
         rapidxml::xml_attribute<> *nameNode = game->first_attribute("name");
         rapidxml::xml_attribute<> *cloneOfXml = game->first_attribute("cloneof");

@@ -19,8 +19,9 @@
 #include "../../Utility/Log.h"
 #include <SDL2/SDL_image.h>
 
-Image::Image(std::string file, float scaleX, float scaleY)
-    : texture_(NULL)
+Image::Image(std::string file, Page &p, float scaleX, float scaleY)
+    : Component(p)
+    , texture_(NULL)
     , file_(file)
     , scaleX_(scaleX)
     , scaleY_(scaleY)

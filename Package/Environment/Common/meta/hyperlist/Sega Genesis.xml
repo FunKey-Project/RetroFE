@@ -1227,7 +1227,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Chi Chi&apos;s Pro Challenge Golf (USA)" index="" image="">
-		<description>Chi Chi\&apos;s Pro Challenge Golf (USA)</description>
+		<description>Chi Chi&apos;s Pro Challenge Golf (USA)</description>
 		<cloneof></cloneof>
 		<crc>9c3973a4</crc>
 		<manufacturer>Coconuts Japan</manufacturer>
@@ -1337,7 +1337,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="College Football&apos;s National Championship (USA)" index="" image="">
-		<description>College Football\&apos;s National Championship (USA)</description>
+		<description>College Football&apos;s National Championship (USA)</description>
 		<cloneof></cloneof>
 		<crc>172c5dbb</crc>
 		<manufacturer>Bluesky Innovations</manufacturer>
@@ -1347,7 +1347,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="College Football&apos;s National Championship II (USA)" index="" image="">
-		<description>College Football\&apos;s National Championship II (USA)</description>
+		<description>College Football&apos;s National Championship II (USA)</description>
 		<cloneof></cloneof>
 		<crc>65b64413</crc>
 		<manufacturer>Bluesky Innovations</manufacturer>
@@ -1477,7 +1477,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Crystal&apos;s Pony Tale (USA)" index="" image="">
-		<description>Crystal\&apos;s Pony Tale (USA)</description>
+		<description>Crystal&apos;s Pony Tale (USA)</description>
 		<cloneof></cloneof>
 		<crc>6cf7a4df</crc>
 		<manufacturer>Artech Studios</manufacturer>
@@ -1547,7 +1547,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Dashin&apos; Desperadoes (USA)" index="" image="">
-		<description>Dashin\&apos; Desperadoes (USA)</description>
+		<description>Dashin&apos; Desperadoes (USA)</description>
 		<cloneof></cloneof>
 		<crc>dcb76fb7</crc>
 		<manufacturer>Data East</manufacturer>
@@ -1557,7 +1557,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="David Crane&apos;s Amazing Tennis (USA)" index="" image="">
-		<description>David Crane\&apos;s Amazing Tennis (USA)</description>
+		<description>David Crane&apos;s Amazing Tennis (USA)</description>
 		<cloneof></cloneof>
 		<crc>9177088c</crc>
 		<manufacturer>Absolute Entertainment</manufacturer>
@@ -1567,7 +1567,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="David Robinson&apos;s Supreme Court (USA, Europe)" index="" image="">
-		<description>David Robinson\&apos;s Supreme Court (USA, Europe)</description>
+		<description>David Robinson&apos;s Supreme Court (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>512b7599</crc>
 		<manufacturer>Sega</manufacturer>
@@ -1677,7 +1677,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Dick Vitale&apos;s &apos;Awesome, Baby!&apos; College Hoops (USA)" index="" image="">
-		<description>Dick Vitale\&apos;s \&apos;Awesome, Baby!\&apos; College Hoops (USA)</description>
+		<description>Dick Vitale&apos;s &apos;Awesome, Baby!&apos; College Hoops (USA)</description>
 		<cloneof></cloneof>
 		<crc>1312cf22</crc>
 		<manufacturer>Time Warner Interactive</manufacturer>
@@ -1687,7 +1687,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Dino Dini&apos;s Soccer (Europe)" index="" image="">
-		<description>Dino Dini\&apos;s Soccer (Europe)</description>
+		<description>Dino Dini&apos;s Soccer (Europe)</description>
 		<cloneof></cloneof>
 		<crc>4608f53a</crc>
 		<manufacturer>Dini and Dini Productions</manufacturer>
@@ -1717,7 +1717,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Dinosaur&apos;s Tale, A (USA)" index="" image="">
-		<description>Dinosaur\&apos;s Tale, A (USA)</description>
+		<description>Dinosaur&apos;s Tale, A (USA)</description>
 		<cloneof></cloneof>
 		<crc>70155b5b</crc>
 		<manufacturer>Malibu</manufacturer>
@@ -1817,7 +1817,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Dr. Robotnik&apos;s Mean Bean Machine (USA)" index="" image="">
-		<description>Dr. Robotnik\&apos;s Mean Bean Machine (USA)</description>
+		<description>Dr. Robotnik&apos;s Mean Bean Machine (USA)</description>
 		<cloneof></cloneof>
 		<crc>c7ca517f</crc>
 		<manufacturer>Sega</manufacturer>
@@ -1837,7 +1837,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Dragon&apos;s Fury (USA, Europe)" index="" image="">
-		<description>Dragon\&apos;s Fury (USA, Europe)</description>
+		<description>Dragon&apos;s Fury (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>58037bc6</crc>
 		<manufacturer>TechnoSoft</manufacturer>
@@ -1847,7 +1847,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Dragon&apos;s Revenge (USA, Europe)" index="" image="">
-		<description>Dragon\&apos;s Revenge (USA, Europe)</description>
+		<description>Dragon&apos;s Revenge (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>841edbc0</crc>
 		<manufacturer>Tengen</manufacturer>
@@ -2057,7 +2057,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Evander Holyfield&apos;s &apos;Real Deal&apos; Boxing (World)" index="" image="">
-		<description>Evander Holyfield\&apos;s \&apos;Real Deal\&apos; Boxing (World)</description>
+		<description>Evander Holyfield&apos;s &apos;Real Deal&apos; Boxing (World)</description>
 		<cloneof></cloneof>
 		<crc>4fef37c8</crc>
 		<manufacturer>ACME Interactive</manufacturer>
@@ -2407,7 +2407,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Fun &apos;N&apos; Games (USA)" index="" image="">
-		<description>Fun \&apos;N\&apos; Games (USA)</description>
+		<description>Fun &apos;N&apos; Games (USA)</description>
 		<cloneof></cloneof>
 		<crc>b5ae351d</crc>
 		<manufacturer>Leland Interactive Media</manufacturer>
@@ -2547,7 +2547,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="George Foreman&apos;s KO Boxing (USA)" index="" image="">
-		<description>George Foreman\&apos;s KO Boxing (USA)</description>
+		<description>George Foreman&apos;s KO Boxing (USA)</description>
 		<cloneof></cloneof>
 		<crc>e1fdc787</crc>
 		<manufacturer>Beam Software</manufacturer>
@@ -2567,7 +2567,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Ghouls &apos;n Ghosts (USA, Europe) (Rev A)" index="" image="">
-		<description>Ghouls \&apos;n Ghosts (USA, Europe) (Rev A)</description>
+		<description>Ghouls &apos;n Ghosts (USA, Europe) (Rev A)</description>
 		<cloneof></cloneof>
 		<crc>4f2561d5</crc>
 		<manufacturer>AM8</manufacturer>
@@ -2607,7 +2607,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Goofy&apos;s Hysterical History Tour (USA)" index="" image="">
-		<description>Goofy\&apos;s Hysterical History Tour (USA)</description>
+		<description>Goofy&apos;s Hysterical History Tour (USA)</description>
 		<cloneof></cloneof>
 		<crc>4e1cc833</crc>
 		<manufacturer>Imagineering</manufacturer>
@@ -2707,7 +2707,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Hard Drivin&apos; (World)" index="true" image="h">
-		<description>Hard Drivin\&apos; (World)</description>
+		<description>Hard Drivin&apos; (World)</description>
 		<cloneof></cloneof>
 		<crc>3225baaf</crc>
 		<manufacturer>Sterling Silver Software</manufacturer>
@@ -2727,7 +2727,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="HardBall &apos;94 (USA, Europe)" index="" image="">
-		<description>HardBall \&apos;94 (USA, Europe)</description>
+		<description>HardBall &apos;94 (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>ea9c4878</crc>
 		<manufacturer>MindSpan</manufacturer>
@@ -2737,7 +2737,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="HardBall &apos;95 (USA)" index="" image="">
-		<description>HardBall \&apos;95 (USA)</description>
+		<description>HardBall &apos;95 (USA)</description>
 		<cloneof></cloneof>
 		<crc>ed10bc9e</crc>
 		<manufacturer>MindSpan</manufacturer>
@@ -2977,7 +2977,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Izzy&apos;s Quest for the Olympic Rings (USA, Europe)" index="" image="">
-		<description>Izzy\&apos;s Quest for the Olympic Rings (USA, Europe)</description>
+		<description>Izzy&apos;s Quest for the Olympic Rings (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>77b416e4</crc>
 		<manufacturer>Alexandria</manufacturer>
@@ -2987,7 +2987,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Jack Nicklaus&apos; Power Challenge Golf (USA, Europe)" index="true" image="j">
-		<description>Jack Nicklaus\&apos; Power Challenge Golf (USA, Europe)</description>
+		<description>Jack Nicklaus&apos; Power Challenge Golf (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>5545e909</crc>
 		<manufacturer>Accolade</manufacturer>
@@ -3037,7 +3037,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="James &apos;Buster&apos; Douglas Knockout Boxing (USA, Europe)" index="" image="">
-		<description>James \&apos;Buster\&apos; Douglas Knockout Boxing (USA, Europe)</description>
+		<description>James &apos;Buster&apos; Douglas Knockout Boxing (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>87bbcf2a</crc>
 		<manufacturer>Domark</manufacturer>
@@ -3097,7 +3097,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Jerry Glanville&apos;s Pigskin Footbrawl (USA)" index="" image="">
-		<description>Jerry Glanville\&apos;s Pigskin Footbrawl (USA)</description>
+		<description>Jerry Glanville&apos;s Pigskin Footbrawl (USA)</description>
 		<cloneof></cloneof>
 		<crc>e7f48d30</crc>
 		<manufacturer>Developer Resources</manufacturer>
@@ -3117,7 +3117,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Jimmy White&apos;s Whirlwind Snooker (Europe)" index="" image="">
-		<description>Jimmy White\&apos;s Whirlwind Snooker (Europe)</description>
+		<description>Jimmy White&apos;s Whirlwind Snooker (Europe)</description>
 		<cloneof></cloneof>
 		<crc>0aef5b1f</crc>
 		<manufacturer>Virgin Interactive</manufacturer>
@@ -3177,7 +3177,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="John Madden Football &apos;92 (USA, Europe)" index="" image="">
-		<description>John Madden Football \&apos;92 (USA, Europe)</description>
+		<description>John Madden Football &apos;92 (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>046e3945</crc>
 		<manufacturer>Park Place Productions</manufacturer>
@@ -3187,7 +3187,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="John Madden Football &apos;93 (USA, Europe)" index="" image="">
-		<description>John Madden Football \&apos;93 (USA, Europe)</description>
+		<description>John Madden Football &apos;93 (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>ca323b3e</crc>
 		<manufacturer>Park Place Productions</manufacturer>
@@ -3357,7 +3357,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="King&apos;s Bounty - The Conqueror&apos;s Quest (USA, Europe)" index="" image="">
-		<description>King\&apos;s Bounty - The Conqueror\&apos;s Quest (USA, Europe)</description>
+		<description>King&apos;s Bounty - The Conqueror&apos;s Quest (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>aa68a92e</crc>
 		<manufacturer>New World Computing</manufacturer>
@@ -3377,7 +3377,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Krusty&apos;s Super Fun House (USA, Europe) (v1.1)" index="" image="">
-		<description>Krusty\&apos;s Super Fun House (USA, Europe) (v1.1)</description>
+		<description>Krusty&apos;s Super Fun House (USA, Europe) (v1.1)</description>
 		<cloneof></cloneof>
 		<crc>56976261</crc>
 		<manufacturer>Audiogenic</manufacturer>
@@ -3637,7 +3637,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Madden NFL &apos;94 (USA, Europe)" index="" image="">
-		<description>Madden NFL \&apos;94 (USA, Europe)</description>
+		<description>Madden NFL &apos;94 (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>d14b811b</crc>
 		<manufacturer>High Score Productions</manufacturer>
@@ -3727,7 +3727,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Mary Shelley&apos;s Frankenstein (USA)" index="" image="">
-		<description>Mary Shelley\&apos;s Frankenstein (USA)</description>
+		<description>Mary Shelley&apos;s Frankenstein (USA)</description>
 		<cloneof></cloneof>
 		<crc>48993dc3</crc>
 		<manufacturer>Bits Studios</manufacturer>
@@ -3767,7 +3767,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="McDonald&apos;s Treasure Land Adventure (USA)" index="" image="">
-		<description>McDonald\&apos;s Treasure Land Adventure (USA)</description>
+		<description>McDonald&apos;s Treasure Land Adventure (USA)</description>
 		<cloneof></cloneof>
 		<crc>04ef4899</crc>
 		<manufacturer>Treasure</manufacturer>
@@ -3897,7 +3897,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Michael Jackson&apos;s Moonwalker (World) (Rev A)" index="" image="">
-		<description>Michael Jackson\&apos;s Moonwalker (World) (Rev A)</description>
+		<description>Michael Jackson&apos;s Moonwalker (World) (Rev A)</description>
 		<cloneof></cloneof>
 		<crc>11ce1f9e</crc>
 		<manufacturer>Ultimate Productions</manufacturer>
@@ -3927,7 +3927,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Mickey&apos;s Ultimate Challenge (USA)" index="" image="">
-		<description>Mickey\&apos;s Ultimate Challenge (USA)</description>
+		<description>Mickey&apos;s Ultimate Challenge (USA)</description>
 		<cloneof></cloneof>
 		<crc>30b512ee</crc>
 		<manufacturer>Designer Software</manufacturer>
@@ -4177,7 +4177,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="NBA Action &apos;94 (USA)" index="true" image="n">
-		<description>NBA Action \&apos;94 (USA)</description>
+		<description>NBA Action &apos;94 (USA)</description>
 		<cloneof></cloneof>
 		<crc>99c348ba</crc>
 		<manufacturer>Sega</manufacturer>
@@ -4187,7 +4187,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="NBA Action &apos;95 Starring David Robinson (USA, Europe)" index="" image="">
-		<description>NBA Action \&apos;95 Starring David Robinson (USA, Europe)</description>
+		<description>NBA Action &apos;95 Starring David Robinson (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>aa7006d6</crc>
 		<manufacturer>Sega</manufacturer>
@@ -4277,7 +4277,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="NBA Showdown &apos;94 (USA, Europe)" index="" image="">
-		<description>NBA Showdown \&apos;94 (USA, Europe)</description>
+		<description>NBA Showdown &apos;94 (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>160b7090</crc>
 		<manufacturer>Electronic Arts</manufacturer>
@@ -4337,7 +4337,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="NFL Football &apos;94 Starring Joe Montana (USA)" index="" image="">
-		<description>NFL Football \&apos;94 Starring Joe Montana (USA)</description>
+		<description>NFL Football &apos;94 Starring Joe Montana (USA)</description>
 		<cloneof></cloneof>
 		<crc>0d486ed5</crc>
 		<manufacturer>Bluesky Innovations</manufacturer>
@@ -4367,7 +4367,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="NFL Sports Talk Football &apos;93 Starring Joe Montana (USA, Europe)" index="" image="">
-		<description>NFL Sports Talk Football \&apos;93 Starring Joe Montana (USA, Europe)</description>
+		<description>NFL Sports Talk Football &apos;93 Starring Joe Montana (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>ce0b1fe1</crc>
 		<manufacturer>Bluesky Innovations</manufacturer>
@@ -4377,7 +4377,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="NFL &apos;95 (USA, Europe)" index="" image="">
-		<description>NFL \&apos;95 (USA, Europe)</description>
+		<description>NFL &apos;95 (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>b58e4a81</crc>
 		<manufacturer>Sega</manufacturer>
@@ -4427,7 +4427,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="NHL All-Star Hockey &apos;95 (USA)" index="" image="">
-		<description>NHL All-Star Hockey \&apos;95 (USA)</description>
+		<description>NHL All-Star Hockey &apos;95 (USA)</description>
 		<cloneof></cloneof>
 		<crc>e6c0218b</crc>
 		<manufacturer>Sega</manufacturer>
@@ -4447,7 +4447,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="NHL &apos;94 (USA, Europe)" index="" image="">
-		<description>NHL \&apos;94 (USA, Europe)</description>
+		<description>NHL &apos;94 (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>9438f5dd</crc>
 		<manufacturer>High Score Productions</manufacturer>
@@ -4467,7 +4467,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Nigel Mansell&apos;s World Championship Racing (USA)" index="" image="">
-		<description>Nigel Mansell\&apos;s World Championship Racing (USA)</description>
+		<description>Nigel Mansell&apos;s World Championship Racing (USA)</description>
 		<cloneof></cloneof>
 		<crc>6bc57b2c</crc>
 		<manufacturer>Gremlin Interactive</manufacturer>
@@ -4487,7 +4487,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Nobunaga&apos;s Ambition (USA)" index="" image="">
-		<description>Nobunaga\&apos;s Ambition (USA)</description>
+		<description>Nobunaga&apos;s Ambition (USA)</description>
 		<cloneof></cloneof>
 		<crc>b9bc07bc</crc>
 		<manufacturer>Koei</manufacturer>
@@ -4497,7 +4497,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Normy&apos;s Beach Babe-O-Rama (USA, Europe)" index="" image="">
-		<description>Normy\&apos;s Beach Babe-O-Rama (USA, Europe)</description>
+		<description>Normy&apos;s Beach Babe-O-Rama (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>b56a8220</crc>
 		<manufacturer>Realtime Associates</manufacturer>
@@ -5087,7 +5087,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="R.B.I. Baseball &apos;93 (USA)" index="" image="">
-		<description>R.B.I. Baseball \&apos;93 (USA)</description>
+		<description>R.B.I. Baseball &apos;93 (USA)</description>
 		<cloneof></cloneof>
 		<crc>beafce84</crc>
 		<manufacturer>Tengen</manufacturer>
@@ -5097,7 +5097,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="R.B.I. Baseball &apos;94 (USA, Europe)" index="" image="">
-		<description>R.B.I. Baseball \&apos;94 (USA, Europe)</description>
+		<description>R.B.I. Baseball &apos;94 (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>4eb4d5e4</crc>
 		<manufacturer>Tengen</manufacturer>
@@ -5107,7 +5107,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Race Drivin&apos; (USA)" index="" image="">
-		<description>Race Drivin\&apos; (USA)</description>
+		<description>Race Drivin&apos; (USA)</description>
 		<cloneof></cloneof>
 		<crc>d737cf3d</crc>
 		<manufacturer>Polygames</manufacturer>
@@ -5187,7 +5187,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Ren &amp; Stimpy Show Presents Stimpy&apos;s Invention, The (USA)" index="" image="">
-		<description>Ren &amp; Stimpy Show Presents Stimpy\&apos;s Invention, The (USA)</description>
+		<description>Ren &amp; Stimpy Show Presents Stimpy&apos;s Invention, The (USA)</description>
 		<cloneof></cloneof>
 		<crc>d9503ba5</crc>
 		<manufacturer>Blue Sky Software</manufacturer>
@@ -5217,7 +5217,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Richard Scarry&apos;s BusyTown (USA)" index="" image="">
-		<description>Richard Scarry\&apos;s BusyTown (USA)</description>
+		<description>Richard Scarry&apos;s BusyTown (USA)</description>
 		<cloneof></cloneof>
 		<crc>7bb60c3f</crc>
 		<manufacturer>Novotrade</manufacturer>
@@ -5337,7 +5337,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Rock n&apos; Roll Racing (USA)" index="" image="">
-		<description>Rock n\&apos; Roll Racing (USA)</description>
+		<description>Rock n&apos; Roll Racing (USA)</description>
 		<cloneof></cloneof>
 		<crc>6abab577</crc>
 		<manufacturer>Blizzard Entertainment</manufacturer>
@@ -5597,7 +5597,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Shanghai II - Dragon&apos;s Eye (USA)" index="" image="">
-		<description>Shanghai II - Dragon\&apos;s Eye (USA)</description>
+		<description>Shanghai II - Dragon&apos;s Eye (USA)</description>
 		<cloneof></cloneof>
 		<crc>ebe9e840</crc>
 		<manufacturer>Activision</manufacturer>
@@ -5687,7 +5687,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Simpsons, The - Bart&apos;s Nightmare (USA, Europe)" index="" image="">
-		<description>Simpsons, The - Bart\&apos;s Nightmare (USA, Europe)</description>
+		<description>Simpsons, The - Bart&apos;s Nightmare (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>24d7507c</crc>
 		<manufacturer>Sculptured Software</manufacturer>
@@ -5707,7 +5707,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Skitchin&apos; (USA, Europe)" index="" image="">
-		<description>Skitchin\&apos; (USA, Europe)</description>
+		<description>Skitchin&apos; (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>f785f9d7</crc>
 		<manufacturer>Electronic Arts</manufacturer>
@@ -5887,7 +5887,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Sorcerer&apos;s Kingdom (USA) (v1.1)" index="" image="">
-		<description>Sorcerer\&apos;s Kingdom (USA) (v1.1)</description>
+		<description>Sorcerer&apos;s Kingdom (USA) (v1.1)</description>
 		<cloneof></cloneof>
 		<crc>bb1fc9ce</crc>
 		<manufacturer>Treco</manufacturer>
@@ -5907,7 +5907,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Space Invaders &apos;91 (USA)" index="" image="">
-		<description>Space Invaders \&apos;91 (USA)</description>
+		<description>Space Invaders &apos;91 (USA)</description>
 		<cloneof></cloneof>
 		<crc>bb83b528</crc>
 		<manufacturer>Taito</manufacturer>
@@ -5977,7 +5977,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Spider-Man and X-Men - Arcade&apos;s Revenge (USA, Europe)" index="" image="">
-		<description>Spider-Man and X-Men - Arcade\&apos;s Revenge (USA, Europe)</description>
+		<description>Spider-Man and X-Men - Arcade&apos;s Revenge (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>4a4414ea</crc>
 		<manufacturer>Software Creations</manufacturer>
@@ -6127,7 +6127,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Street Fighter II&apos; - Special Champion Edition (USA)" index="" image="">
-		<description>Street Fighter II\&apos; - Special Champion Edition (USA)</description>
+		<description>Street Fighter II&apos; - Special Champion Edition (USA)</description>
 		<cloneof></cloneof>
 		<crc>13fe08a1</crc>
 		<manufacturer>Capcom</manufacturer>
@@ -6767,7 +6767,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Tiny Toon Adventures - Buster&apos;s Hidden Treasure (USA)" index="" image="">
-		<description>Tiny Toon Adventures - Buster\&apos;s Hidden Treasure (USA)</description>
+		<description>Tiny Toon Adventures - Buster&apos;s Hidden Treasure (USA)</description>
 		<cloneof></cloneof>
 		<crc>a26d3ae0</crc>
 		<manufacturer>Konami</manufacturer>
@@ -6787,7 +6787,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="TNN Outdoors Bass Tournament &apos;96 (USA)" index="" image="">
-		<description>TNN Outdoors Bass Tournament \&apos;96 (USA)</description>
+		<description>TNN Outdoors Bass Tournament &apos;96 (USA)</description>
 		<cloneof></cloneof>
 		<crc>5c523c0b</crc>
 		<manufacturer>Imagitec Design</manufacturer>
@@ -6797,7 +6797,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Todd&apos;s Adventures in Slime World (USA)" index="" image="">
-		<description>Todd\&apos;s Adventures in Slime World (USA)</description>
+		<description>Todd&apos;s Adventures in Slime World (USA)</description>
 		<cloneof></cloneof>
 		<crc>652e8b7d</crc>
 		<manufacturer>Epyx</manufacturer>
@@ -7127,7 +7127,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Unnecessary Roughness &apos;95 (USA)" index="" image="">
-		<description>Unnecessary Roughness \&apos;95 (USA)</description>
+		<description>Unnecessary Roughness &apos;95 (USA)</description>
 		<cloneof></cloneof>
 		<crc>9920e7b7</crc>
 		<manufacturer>Accolade</manufacturer>
@@ -7337,7 +7337,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Wayne&apos;s World (USA)" index="" image="">
-		<description>Wayne\&apos;s World (USA)</description>
+		<description>Wayne&apos;s World (USA)</description>
 		<cloneof></cloneof>
 		<crc>d2cf6ebe</crc>
 		<manufacturer>Gray Matter</manufacturer>
@@ -7407,7 +7407,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Williams Arcade&apos;s Greatest Hits (USA)" index="" image="">
-		<description>Williams Arcade\&apos;s Greatest Hits (USA)</description>
+		<description>Williams Arcade&apos;s Greatest Hits (USA)</description>
 		<cloneof></cloneof>
 		<crc>d68e9c00</crc>
 		<manufacturer>Digital Eclipse</manufacturer>
@@ -7457,7 +7457,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Wiz&apos;n&apos;Liz (USA)" index="" image="">
-		<description>Wiz\&apos;n\&apos;Liz (USA)</description>
+		<description>Wiz&apos;n&apos;Liz (USA)</description>
 		<cloneof></cloneof>
 		<crc>df036b62</crc>
 		<manufacturer>Raising Hell</manufacturer>
@@ -7587,7 +7587,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="World Series Baseball &apos;95 (USA)" index="" image="">
-		<description>World Series Baseball \&apos;95 (USA)</description>
+		<description>World Series Baseball &apos;95 (USA)</description>
 		<cloneof></cloneof>
 		<crc>25130077</crc>
 		<manufacturer>Blue Sky Software</manufacturer>
@@ -7597,7 +7597,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="World Series Baseball &apos;96 (USA)" index="" image="">
-		<description>World Series Baseball \&apos;96 (USA)</description>
+		<description>World Series Baseball &apos;96 (USA)</description>
 		<cloneof></cloneof>
 		<crc>04ee8272</crc>
 		<manufacturer>Blue Sky Software</manufacturer>
@@ -7787,7 +7787,7 @@
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Zool - Ninja of the &apos;Nth&apos; Dimension (USA)" index="" image="">
-		<description>Zool - Ninja of the \&apos;Nth\&apos; Dimension (USA)</description>
+		<description>Zool - Ninja of the &apos;Nth&apos; Dimension (USA)</description>
 		<cloneof></cloneof>
 		<crc>cb2939f1</crc>
 		<manufacturer>Gremlin Interactive</manufacturer>

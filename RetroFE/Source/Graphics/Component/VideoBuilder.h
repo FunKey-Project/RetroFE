@@ -17,13 +17,14 @@
 
 #include "Image.h"
 #include "VideoComponent.h"
+#include "../Page.h"
 #include "../../Video/VideoFactory.h"
 
 //todo: this is more of a factory than a builder
 class VideoBuilder
 {
 public:
-    VideoComponent * createVideo(std::string path, std::string name, float scaleX, float scaleY);
+    VideoComponent * createVideo(std::string path, Page &page, std::string name, float scaleX, float scaleY);
 
 private:
     VideoFactory factory_;

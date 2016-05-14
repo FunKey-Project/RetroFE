@@ -22,7 +22,7 @@
 class Image : public Component
 {
 public:
-    Image(std::string file, float scaleX, float scaleY);
+    Image(std::string file, Page &p, float scaleX, float scaleY);
     virtual ~Image();
     void freeGraphicsMemory();
     void allocateGraphicsMemory();

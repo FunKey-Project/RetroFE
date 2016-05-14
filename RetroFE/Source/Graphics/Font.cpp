@@ -145,7 +145,7 @@ bool Font::initialize(std::string fontPath, int fontSize, SDL_Color color)
     SDL_LockMutex(SDL::getMutex());
 
     texture = SDL_CreateTextureFromSurface(SDL::getRenderer(), atlasSurface);
-    SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_ADD);
+    SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
     SDL_FreeSurface(atlasSurface);
     SDL_UnlockMutex(SDL::getMutex());
 

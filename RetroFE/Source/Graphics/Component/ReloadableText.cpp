@@ -23,8 +23,10 @@
 #include <vector>
 #include <iostream>
 
-ReloadableText::ReloadableText(std::string type, Font *font, std::string layoutKey, float scaleX, float scaleY)
-    : imageInst_(NULL)
+ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, float scaleX, float scaleY)
+    : Component(page)
+    , config_(config)
+    , imageInst_(NULL)
     , layoutKey_(layoutKey)
     , reloadRequested_(false)
     , firstLoad_(true)
@@ -59,7 +61,22 @@ ReloadableText::ReloadableText(std::string type, Font *font, std::string layoutK
     {
         type_ = TextTypeGenre;
     }
-
+    else if(type == "playlist")
+    {
+        type_ = TextTypePlaylist;
+    }
+    else if(type == "collectionName")
+    {
+        type_ = TextTypeCollectionName;
+    }
+    else if(type == "collectionSize")
+    {
+        type_ = TextTypeCollectionSize;
+    }
+    else if(type == "collectionIndex")
+    {
+        type_ = TextTypeCollectionIndex;
+    }
     allocateGraphicsMemory();
 }
 
@@ -75,7 +92,8 @@ ReloadableText::~ReloadableText()
 
 void ReloadableText::update(float dt)
 {
-    if(newItemSelected)
+    if((type_ != TextTypePlaylist && newItemSelected) || 
+       (type_ == TextTypePlaylist && playlistChanged))
     {
         reloadRequested_ = true;
     }
@@ -128,7 +146,7 @@ void ReloadableText::ReloadTexture()
         imageInst_ = NULL;
     }
 
-    Item *selectedItem = getSelectedItem();
+    Item *selectedItem = page.getSelectedItem();
 
     if (selectedItem != NULL)
     {
@@ -143,22 +161,47 @@ void ReloadableText::ReloadTexture()
             ss << selectedItem->numberPlayers;
             break;
         case TextTypeYear:
-            ss << selectedItem->year;
+            if (selectedItem->leaf) // item is a leaf
+              text = selectedItem->year;
+            else // item is a collection
+              (void)config_.getProperty("collections." + selectedItem->name + ".year", text );
+            ss << text;
             break;
         case TextTypeTitle:
             ss << selectedItem->title;
             break;
         case TextTypeManufacturer:
-            ss << selectedItem->manufacturer;
+            if (selectedItem->leaf) // item is a leaf
+              text = selectedItem->manufacturer;
+            else // item is a collection
+              (void)config_.getProperty("collections." + selectedItem->name + ".manufacturer", text );
+            ss << text;
             break;
         case TextTypeGenre:
-            ss << selectedItem->genre;
+            if (selectedItem->leaf) // item is a leaf
+              text = selectedItem->genre;
+            else // item is a collection
+              (void)config_.getProperty("collections." + selectedItem->name + ".genre", text );
+            ss << text;
             break;
+        case TextTypePlaylist:
+            ss << playlistName;
+            break;
+        case TextTypeCollectionName:
+            ss << page.getCollectionName();
+            break;
+        case TextTypeCollectionSize:
+            ss << page.getCollectionSize();
+            break;
+        case TextTypeCollectionIndex:
+              ss << (1+page.getSelectedIndex());
+            break;
+
         default:
             break;
         }
 
-        imageInst_ = new Text(ss.str(), fontInst_, scaleX_, scaleY_);
+        imageInst_ = new Text(ss.str(), page, fontInst_, scaleX_, scaleY_);
     }
 }
 

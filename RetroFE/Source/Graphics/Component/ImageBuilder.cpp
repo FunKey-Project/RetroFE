@@ -18,7 +18,7 @@
 #include "../../Utility/Log.h"
 #include <fstream>
 
-Image * ImageBuilder::CreateImage(std::string path, std::string name, float scaleX, float scaleY)
+Image * ImageBuilder::CreateImage(std::string path, Page &p, std::string name, float scaleX, float scaleY)
 {
     Image *image = NULL;
     std::vector<std::string> extensions;
@@ -35,7 +35,7 @@ Image * ImageBuilder::CreateImage(std::string path, std::string name, float scal
 
     if(Utils::findMatchingFile(prefix, extensions, file))
     {
-        image = new Image(file, scaleX, scaleY);
+        image = new Image(file, p, scaleX, scaleY);
     }
 
     return image;

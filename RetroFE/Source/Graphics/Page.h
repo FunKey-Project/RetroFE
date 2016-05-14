@@ -16,13 +16,13 @@
 #pragma once
 
 #include "MenuNotifierInterface.h"
+#include "../Collection/CollectionInfo.h"
 
 #include <map>
 #include <string>
 #include <list>
 #include <vector>
 
-class CollectionInfo;
 class Component;
 class Configuration;
 class ScrollingList;
@@ -43,9 +43,12 @@ public:
 
     Page(Configuration &c);
     virtual ~Page();
+    void DeInitialize();
     virtual void onNewItemSelected(Item *);
     bool pushCollection(CollectionInfo *collection);
     bool popCollection();
+    void nextPlaylist();
+    void favPlaylist();
     void pushMenu(ScrollingList *s);
     bool isMenusFull();
     void setLoadSound(Sound *chunk);
@@ -55,6 +58,9 @@ public:
     bool addComponent(Component *c);
     void pageScroll(ScrollDirection direction);
     void letterScroll(ScrollDirection direction);
+    unsigned int getCollectionSize();
+    unsigned int getSelectedIndex();
+    void selectRandom();
     void start();
     void startComponents();
     void stop();
@@ -62,6 +68,7 @@ public:
     bool isHorizontalScroll();
     unsigned int getMenuDepth();
     Item *getSelectedItem();
+    Item *getSelectedItem(int offset);
     void removeSelectedItem();
     void setScrollOffsetIndex(unsigned int i);
     unsigned int getScrollOffsetIndex();
@@ -78,33 +85,50 @@ public:
     std::string getCollectionName();
     void setMinShowTime(float value);
     float getMinShowTime();
+    void addPlaylist();
+    void removePlaylist();
 
 private:
     void highlight();
+    void playlistChange();
     std::string collectionName_;
     Configuration &config_;
+
+    struct MenuInfo_S
+    {
+        CollectionInfo *collection;
+        ScrollingList *menu;
+        CollectionInfo::Playlists_T::iterator playlist; 
+        bool queueDelete;
+    };
+
     typedef std::vector<ScrollingList *> MenuVector_T;
-    typedef std::vector<CollectionInfo *> CollectionInfo_T;
+    typedef std::list<MenuInfo_S> CollectionVector_T;
 
     ScrollingList *activeMenu_;
     unsigned int menuDepth_;
     MenuVector_T menus_;
-    CollectionInfo_T collections_;
+    CollectionVector_T collections_;
+    CollectionVector_T deleteCollections_;
 
-    static const unsigned int NUM_LAYERS = 8;
+    static const unsigned int NUM_LAYERS = 20;
     std::vector<Component *> LayerComponents[NUM_LAYERS];
-    std::vector<Item *> *items_;
+    std::list<ScrollingList *> deleteMenuList_;
+    std::list<CollectionInfo *> deleteCollectionList_;
+
     bool scrollActive_;
 
     Item *selectedItem_;
     Text *textStatusComponent_;
     bool selectedItemChanged_;
+    bool playlistChanged_;
     Sound *loadSoundChunk_;
     Sound *unloadSoundChunk_;
     Sound *highlightSoundChunk_;
     Sound *selectSoundChunk_;
     float minShowTime_;
     float elapsedTime_;
+    CollectionInfo::Playlists_T::iterator playlist_;
 
 
 };

@@ -20,8 +20,9 @@
 #include "../Font.h"
 #include <sstream>
 
-Text::Text(std::string text, Font *font, float scaleX, float scaleY)
-    : textData_(text)
+Text::Text(std::string text, Page &p, Font *font, float scaleX, float scaleY)
+    : Component(p)
+    , textData_(text)
     , fontInst_(font)
     , scaleX_(scaleX)
     , scaleY_(scaleY)

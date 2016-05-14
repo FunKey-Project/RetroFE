@@ -23,17 +23,18 @@
 #include "Component/ScrollingList.h"
 #include "../Sound/Sound.h"
 #include "ComponentItemBindingBuilder.h"
+#include <algorithm>
 #include <sstream>
 
 Page::Page(Configuration &config)
     : config_(config)
     , activeMenu_(NULL)
     , menuDepth_(0)
-    , items_(NULL)
     , scrollActive_(false)
     , selectedItem_(NULL)
     , textStatusComponent_(NULL)
     , selectedItemChanged_(false)
+    , playlistChanged_(false)
     , loadSoundChunk_(NULL)
     , unloadSoundChunk_(NULL)
     , highlightSoundChunk_(NULL)
@@ -43,6 +44,11 @@ Page::Page(Configuration &config)
 }
 
 Page::~Page()
+{
+}
+
+
+void Page::DeInitialize()
 {
     MenuVector_T::iterator it = menus_.begin();
     while(it != menus_.end())
@@ -88,6 +94,19 @@ Page::~Page()
     {
         delete selectSoundChunk_;
         selectSoundChunk_ = NULL;
+    }
+    CollectionVector_T::iterator itc = collections_.begin();
+
+    while(itc != collections_.end()) 
+    {
+        itc->collection->Save();
+
+        if(itc->collection)
+        {
+            delete itc->collection;
+        }
+        collections_.erase(itc);
+        itc = collections_.begin();
     }
 }
 
@@ -278,6 +297,12 @@ Item *Page::getSelectedItem()
     return selectedItem_;
 }
 
+Item *Page::getSelectedItem(int offset)
+{
+    return activeMenu_->getItemByOffset(offset);
+}
+
+
 void Page::removeSelectedItem()
 {
     /*
@@ -315,25 +340,39 @@ float Page::getMinShowTime()
     return minShowTime_;
 }
 
+void Page::playlistChange()
+{
+    if(activeMenu_)
+    {
+        activeMenu_->triggerPlaylistChangeEvent(playlist_->first);
+    }
+
+    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    {
+        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
+        {
+            (*it)->triggerPlaylistChangeEvent(playlist_->first);
+        }
+    }
+}
+
 void Page::highlight()
 {
     Item *item = selectedItem_;
 
-    if(item)
+    if(!item) return;
+    if(activeMenu_)
     {
-        if(activeMenu_)
-        {
-            activeMenu_->triggerHighlightEvent(item);
-            activeMenu_->scrollActive = scrollActive_;
-        }
+        activeMenu_->triggerHighlightEvent();
+        activeMenu_->scrollActive = scrollActive_;
+    }
 
-        for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    {
+        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
         {
-            for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-            {
-                (*it)->triggerHighlightEvent(item);
-                (*it)->scrollActive = scrollActive_;
-            }
+            (*it)->triggerHighlightEvent();
+            (*it)->scrollActive = scrollActive_;
         }
     }
 }
@@ -392,6 +431,11 @@ void Page::pageScroll(ScrollDirection direction)
     }
 }
 
+void Page::selectRandom()
+{
+    if(activeMenu_) activeMenu_->random(); 
+}
+
 void Page::letterScroll(ScrollDirection direction)
 {
     if(activeMenu_)
@@ -407,11 +451,19 @@ void Page::letterScroll(ScrollDirection direction)
     }
 }
 
+unsigned int Page::getCollectionSize()
+{
+    return activeMenu_->getSize();
+}
+
+unsigned int Page::getSelectedIndex()
+{
+    return activeMenu_->getSelectedIndex();
+}
+
 
 bool Page::pushCollection(CollectionInfo *collection)
 {
-    collections_.push_back(collection);
-    std::vector<ComponentItemBinding *> *sprites = ComponentItemBindingBuilder::buildCollectionItems(&collection->items);
 
     int menuExitIndex = -1;
     int menuEnterIndex = -1;
@@ -426,18 +478,30 @@ bool Page::pushCollection(CollectionInfo *collection)
         menuExitIndex = menuDepth_ - 1;
     }
 
+    // grow the menu as needed
     if(menus_.size() >= menuDepth_ && activeMenu_)
     {
-        ScrollingList *newList = new ScrollingList(*activeMenu_);
-        newList->forceIdle();
-        pushMenu(newList);
+        activeMenu_ = new ScrollingList(*activeMenu_);
+        activeMenu_->forceIdle();
+        pushMenu(activeMenu_);
     }
+
 
     activeMenu_ = menus_[menuDepth_];
     activeMenu_->collectionName = collection->name;
-    activeMenu_->destroyItems();
-    activeMenu_->setItems(sprites);
+    activeMenu_->setItems(&collection->items);
     activeMenu_->triggerMenuEnterEvent();
+
+    // build the collection info instance
+    MenuInfo_S info;
+    info.collection = collection;
+    info.menu = activeMenu_;
+    info.playlist = collection->playlists.begin();
+    info.queueDelete = false;
+    collections_.push_back(info);
+
+    playlist_ = info.playlist;
+    playlistChanged_ = true;
 
     if(menuDepth_ < menus_.size())
     {
@@ -469,22 +533,26 @@ bool Page::popCollection()
 {
     int menuExitIndex = -1;
     int menuEnterIndex = -1;
-    CollectionInfo *collection = NULL;
-    if(menuDepth_ <= 1)
-    {
-        return false;
-    }
-    if(collections_.size() <= 1)
-    {
-        return false;
-    }
 
+    if(!activeMenu_) return false;
+    if(menuDepth_ <= 1) return false;
+    if(collections_.size() <= 1) return false;
+
+    // queue the collection for deletion
+    MenuInfo_S *info = &collections_.back();
+    info->queueDelete = true;
+    deleteCollections_.push_back(*info);
+
+    // get the next collection off of the stack
     collections_.pop_back();
-    collection = collections_.back();
+    info = &collections_.back();
+    playlist_ = info->playlist;
+    playlistChanged_ = true;
 
     if(activeMenu_)
     {
         activeMenu_->triggerMenuExitEvent();
+
     }
 
     menuDepth_--;
@@ -500,7 +568,7 @@ bool Page::popCollection()
     {
         for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
         {
-            (*it)->collectionName = collection->name;
+            (*it)->collectionName = info->collection->name;
 
             if(menuEnterIndex >= 0)
             {
@@ -517,6 +585,54 @@ bool Page::popCollection()
     return true;
 }
 
+void Page::nextPlaylist()
+{
+    MenuInfo_S &info = collections_.back();
+    info.collection->Save();
+    unsigned int numlists = info.collection->playlists.size();
+
+    for(unsigned int i = 0; i <= numlists; ++i)
+    {
+        playlist_++;
+        // wrap
+        if(playlist_ == info.collection->playlists.end()) playlist_ = info.collection->playlists.begin();
+       
+        // find the first playlist
+        if(playlist_->second->size() != 0) break;
+    }
+
+    activeMenu_->setItems(playlist_->second);
+    activeMenu_->triggerMenuEnterEvent();
+    playlistChanged_ = true;
+}
+
+void Page::favPlaylist()
+{
+    MenuInfo_S &info = collections_.back();
+    info.collection->Save();
+    unsigned int numlists = info.collection->playlists.size();
+
+    // Store current playlist
+    CollectionInfo::Playlists_T::iterator playlist_store = playlist_;
+
+    for(unsigned int i = 0; i <= numlists; ++i)
+    {
+        playlist_++;
+        // wrap
+        if(playlist_ == info.collection->playlists.end()) playlist_ = info.collection->playlists.begin();
+        
+        // find the first playlist
+        if(playlist_->second->size() != 0 && playlist_->first == "favorites") break;
+    }
+
+    // Do not change playlist if favorites does not exist or if it's empty
+    if ( playlist_->second->size() == 0 || playlist_->first != "favorites")
+      playlist_ = playlist_store;
+
+    activeMenu_->setItems(playlist_->second);
+    activeMenu_->triggerMenuEnterEvent();
+    playlistChanged_ = true;
+}
 
 void Page::update(float dt)
 {
@@ -525,6 +641,12 @@ void Page::update(float dt)
         ScrollingList *menu = *it;
 
         menu->update(dt);
+    }
+    
+    if(playlistChanged_)
+    {
+        playlistChange();
+        playlistChanged_ = false;
     }
 
     if(selectedItemChanged_ && !scrollActive_)
@@ -544,7 +666,33 @@ void Page::update(float dt)
     {
         for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
         {
-            (*it)->update(dt);
+            if(*it) (*it)->update(dt);
+        }
+    }
+
+    // many nodes still have handles on the collection info. We need to delete
+    // them once everything is done using them
+    std::list<MenuInfo_S>::iterator del = deleteCollections_.begin();
+
+    while(del != deleteCollections_.end())
+    {
+        MenuInfo_S &info = *del;
+        if(info.queueDelete && info.menu && info.menu->isIdle())
+        {   
+            std::list<MenuInfo_S>::iterator next = del;
+            ++next;
+
+            if(info.collection) 
+            {
+                info.collection->Save();
+                delete info.collection;
+            }
+            deleteCollections_.erase(del);
+            del = next;
+        }
+        else
+        {
+            ++del;
         }
     }
 }
@@ -555,7 +703,7 @@ void Page::draw()
     {
         for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
         {
-            (*it)->draw();
+            if(*it && (*it)->baseViewInfo.Layer == i) (*it)->draw();
         }
 
         for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
@@ -567,16 +715,58 @@ void Page::draw()
 
 }
 
+void Page::removePlaylist()
+{
+    if(!selectedItem_) return;
+    if(!selectedItem_->leaf) return;
+
+    MenuInfo_S &info = collections_.back();
+    CollectionInfo *collection = info.collection;
+
+    std::vector<Item *> *items = collection->playlists["favorites"];
+    std::vector<Item *>::iterator it = std::find(items->begin(), items->end(), selectedItem_);
+
+    if(it != items->end())
+    {
+        items->erase(it);
+        collection->saveRequest = true;
+
+        if(activeMenu_) 
+        {
+            activeMenu_->deallocateSpritePoints();
+            activeMenu_->allocateSpritePoints();
+        }
+    }
+}
+
+void Page::addPlaylist()
+{
+    if(!selectedItem_) return;
+    if(!selectedItem_->leaf) return;
+
+    MenuInfo_S &info = collections_.back();
+    CollectionInfo *collection = info.collection;
+
+    std::vector<Item *> *items = collection->playlists["favorites"];
+    if(playlist_->first != "favorites" && std::find(items->begin(), items->end(), selectedItem_) == items->end())
+    {
+        items->push_back(selectedItem_);
+        collection->saveRequest = true;
+        if(activeMenu_) 
+        {
+            activeMenu_->deallocateSpritePoints();
+            activeMenu_->allocateSpritePoints();
+        }
+    }
+}
+
 std::string Page::getCollectionName()
 {
-    CollectionInfo *info = collections_.back();
+    if(collections_.size() == 0) return "";
 
-    if(info)
-    {
-        return info->name;
-    }
+    MenuInfo_S &info = collections_.back();
+    return info.collection->name;
 
-    return "";
 }
 
 void Page::freeGraphicsMemory()

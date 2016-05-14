@@ -194,11 +194,8 @@ void Utils::replaceSlashesWithUnderscores(std::string &content)
 std::string Utils::getDirectory(std::string filePath)
 {
 
-#ifdef WIN32
-    filePath = Utils::replace(filePath, "/", "\\");    
-#endif
-
     std::string directory = filePath;
+
     const size_t last_slash_idx = filePath.rfind(pathSeparator);
     if (std::string::npos != last_slash_idx)
     {
@@ -210,9 +207,6 @@ std::string Utils::getDirectory(std::string filePath)
 
 std::string Utils::getParentDirectory(std::string directory)
 {
-#ifdef WIN32
-    directory = Utils::replace(directory, "/", "\\");    
-#endif
     size_t last_slash_idx = directory.find_last_of(pathSeparator);
     if(directory.length() - 1 == last_slash_idx)
     {
@@ -231,9 +225,6 @@ std::string Utils::getParentDirectory(std::string directory)
 
 std::string Utils::getFileName(std::string filePath)
 {
-#ifdef WIN32
-    filePath = Utils::replace(filePath, "/", "\\");    
-#endif
 
     std::string filename = filePath;
 

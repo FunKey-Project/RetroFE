@@ -20,8 +20,9 @@
 #include "../../Utility/Log.h"
 #include "../../SDL.h"
 
-VideoComponent::VideoComponent(IVideo *videoInst, std::string videoFile, float scaleX, float scaleY)
-    : videoFile_(videoFile)
+VideoComponent::VideoComponent(IVideo *videoInst, Page &p, std::string videoFile, float scaleX, float scaleY)
+    : Component(p)
+    , videoFile_(videoFile)
     , videoInst_(videoInst)
     , scaleX_(scaleX)
     , scaleY_(scaleY)

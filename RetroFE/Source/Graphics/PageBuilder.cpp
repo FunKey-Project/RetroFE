@@ -320,13 +320,13 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
 {
     for(xml_node<> *componentXml = layout->first_node("menu"); componentXml; componentXml = componentXml->next_sibling("menu"))
     {
-        ScrollingList *scrollingList = buildMenu(componentXml);
+        ScrollingList *scrollingList = buildMenu(componentXml,*page);
         page->pushMenu(scrollingList);
     }
 
     for(xml_node<> *componentXml = layout->first_node("container"); componentXml; componentXml = componentXml->next_sibling("container"))
     {
-        Container *c = new Container();
+        Container *c = new Container(*page);
         buildViewInfo(componentXml, c->baseViewInfo);
         loadTweens(c, componentXml);
         page->addComponent(c);
@@ -346,7 +346,7 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
             std::string imagePath;
             imagePath = Utils::combinePath(Configuration::convertToAbsolutePath(layoutPath, imagePath), std::string(src->value()));
 
-            Image *c = new Image(imagePath, scaleX_, scaleY_);
+            Image *c = new Image(imagePath, *page, scaleX_, scaleY_);
             buildViewInfo(componentXml, c->baseViewInfo);
             loadTweens(c, componentXml);
             page->addComponent(c);
@@ -365,7 +365,7 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
         else
         {
             Font *font = addFont(componentXml, NULL);
-            Text *c = new Text(value->value(), font, scaleX_, scaleY_);
+            Text *c = new Text(value->value(), *page, font, scaleX_, scaleY_);
 
             buildViewInfo(componentXml, c->baseViewInfo);
 
@@ -377,7 +377,7 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
     for(xml_node<> *componentXml = layout->first_node("statusText"); componentXml; componentXml = componentXml->next_sibling("statusText"))
     {
         Font *font = addFont(componentXml, NULL);
-        Text *c = new Text("", font, scaleX_, scaleY_);
+        Text *c = new Text("", *page, font, scaleX_, scaleY_);
 
         buildViewInfo(componentXml, c->baseViewInfo);
 
@@ -403,8 +403,9 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
         std::string reloadableVideoPath;
         xml_attribute<> *type = componentXml->first_attribute("type");
         xml_attribute<> *mode = componentXml->first_attribute("mode");
+        xml_attribute<> *selectedOffsetXml = componentXml->first_attribute("selectedOffset");
         bool systemMode = false;
-
+        int selectedOffset = 0;
         if(tagName == "reloadableVideo")
         {
             type = componentXml->first_attribute("imageType");
@@ -430,6 +431,13 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
             }
         }
 
+        if(selectedOffsetXml) 
+        {
+            std::stringstream ss;
+            ss << selectedOffsetXml->value();
+            ss >> selectedOffset;
+        }
+
 
         Component *c = NULL;
 
@@ -438,13 +446,13 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
             if(type)
             {
                 Font *font = addFont(componentXml, NULL);
-                c = new ReloadableText(type->value(), font, layoutKey, scaleX_, scaleY_);
+                c = new ReloadableText(type->value(), *page, config_, font, layoutKey, scaleX_, scaleY_);
             }
         }
         else
         {
             Font *font = addFont(componentXml, NULL);
-            c = new ReloadableMedia(config_, systemMode, type->value(), (tagName == "reloadableVideo"), font, scaleX_, scaleY_);
+            c = new ReloadableMedia(config_, systemMode, type->value(), *page, selectedOffset, (tagName == "reloadableVideo"), font, scaleX_, scaleY_);
             xml_attribute<> *textFallback = componentXml->first_attribute("textFallback");
 
             if(textFallback && Utils::toLower(textFallback->value()) == "true")
@@ -564,7 +572,7 @@ void PageBuilder::buildTweenSet(AnimationEvents *tweens, xml_node<> *componentXm
 }
 
 
-ScrollingList * PageBuilder::buildMenu(xml_node<> *menuXml)
+ScrollingList * PageBuilder::buildMenu(xml_node<> *menuXml, Page &page)
 {
     ScrollingList *menu = NULL;
     std::string menuType = "vertical";
@@ -596,7 +604,7 @@ ScrollingList * PageBuilder::buildMenu(xml_node<> *menuXml)
     // on default, text will be rendered to the menu. Preload it into cache.
     Font *font = addFont(itemDefaults, NULL);
 
-    menu = new ScrollingList(config_, scaleX_, scaleY_, font, layoutKey, imageType);
+    menu = new ScrollingList(config_, page, scaleX_, scaleY_, font, layoutKey, imageType);
 
     if(scrollTimeXml)
     {

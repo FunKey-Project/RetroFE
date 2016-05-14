@@ -178,6 +178,7 @@ bool RetroFE::deInitialize()
 
     if(currentPage_)
     {
+        currentPage_->DeInitialize();
         delete currentPage_;
         currentPage_ = NULL;
     }
@@ -288,6 +289,7 @@ void RetroFE::run()
                 }
 
                 // delete the splash screen and use the standard menu
+                currentPage_->DeInitialize();
                 delete currentPage_;
 
                 currentPage_ = loadPage();
@@ -389,7 +391,6 @@ void RetroFE::run()
             render();
         }
     }
-
 }
 
 
@@ -447,7 +448,11 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
     if (!input_.keystate(UserInput::KeyCodePageUp) &&
     !input_.keystate(UserInput::KeyCodePageDown) &&
     !input_.keystate(UserInput::KeyCodeLetterUp) &&
-    !input_.keystate(UserInput::KeyCodeLetterDown))
+    !input_.keystate(UserInput::KeyCodeLetterDown) &&
+    !input_.keystate(UserInput::KeyCodeNextPlaylist) &&
+    !input_.keystate(UserInput::KeyCodeAddPlaylist) &&
+    !input_.keystate(UserInput::KeyCodeRemovePlaylist) &&
+    !input_.keystate(UserInput::KeyCodeRandom))
     {
         keyLastTime_ = 0;
         keyDelayTime_= 0.3f;
@@ -474,6 +479,22 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         if (input_.keystate(UserInput::KeyCodeLetterDown))
         {
             page->letterScroll(Page::ScrollDirectionForward);
+        }
+        if(input_.newKeyPressed(UserInput::KeyCodeNextPlaylist))
+        {
+            page->nextPlaylist();
+        }
+        if(input_.newKeyPressed(UserInput::KeyCodeRemovePlaylist))
+        {
+            page->removePlaylist();
+        }
+        if(input_.newKeyPressed(UserInput::KeyCodeAddPlaylist))
+        {
+            page->addPlaylist();
+        }
+        if(input_.keystate(UserInput::KeyCodeRandom))
+        {
+            page->selectRandom();
         }
     }
 
@@ -508,6 +529,12 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
                     page->setScrollOffsetIndex(lastMenuOffsets_[nextPageItem_->name]);
                 }
                 
+                bool autoFavorites = true;
+                config_.getProperty("autoFavorites", autoFavorites);
+
+                if (autoFavorites)
+                  page->favPlaylist(); // Switch to favorites if it exists
+
                 state = RETROFE_NEXT_PAGE_REQUEST;
             }
         }

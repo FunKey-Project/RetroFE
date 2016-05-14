@@ -24,12 +24,16 @@
 #include <cstdlib>
 #include <fstream>
 #include <dirent.h>
+#include <time.h>
 
 static bool ImportConfiguration(Configuration *c);
 static bool StartLogging();
 
 int main(int argc, char **argv)
 {
+    // Initialize random seed
+    srand(static_cast<unsigned int>(time(0)));
+
     Configuration::initialize();
 
     Configuration config;

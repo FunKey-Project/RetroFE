@@ -39,6 +39,10 @@ public:
         KeyCodePageUp,
         KeyCodeLetterDown,
         KeyCodeLetterUp,
+        KeyCodeNextPlaylist,
+        KeyCodeRandom,
+        KeyCodeAddPlaylist,
+        KeyCodeRemovePlaylist,
         KeyCodeAdminMode,
         KeyCodeHideItem,
         KeyCodeQuit,
@@ -51,12 +55,14 @@ public:
     void resetStates();
     bool update(SDL_Event &e);
     bool keystate(KeyCode_E);
+    bool newKeyPressed(KeyCode_E code);
 
 private:
     bool MapKey(std::string keyDescription, KeyCode_E key);
+    bool MapKey(std::string keyDescription, KeyCode_E key, bool required);
     Configuration &config_;
     std::vector<SDL_Joystick *> joysticks_;
     InputHandler *keyHandlers_[KeyCodeMax]; 
     bool lastKeyState_[KeyCodeMax]; 
-    
+    bool currentKeyState_[KeyCodeMax]; 
 };

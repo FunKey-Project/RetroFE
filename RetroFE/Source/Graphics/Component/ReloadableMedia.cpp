@@ -28,8 +28,9 @@
 #include <vector>
 #include <iostream>
 
-ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, std::string type, bool isVideo, Font *font, float scaleX, float scaleY)
-    : config_(config)
+ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, std::string type, Page &p, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY)
+    : Component(p)
+    , config_(config)
     , systemMode_(systemMode)
     , loadedComponent_(NULL)
     , reloadRequested_(false)
@@ -41,6 +42,8 @@ ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, std::st
     , type_(type)
     , scaleX_(scaleX)
     , scaleY_(scaleY)
+    , displayOffset_(displayOffset)
+
 {
     allocateGraphicsMemory();
 }
@@ -145,7 +148,7 @@ void ReloadableMedia::reloadTexture()
         loadedComponent_ = NULL;
     }
 
-    Item *selectedItem = getSelectedItem();
+    Item *selectedItem = page.getSelectedItem(displayOffset_);
     if(!selectedItem) return;
 
     config_.getProperty("currentCollection", currentCollection_);
@@ -252,7 +255,10 @@ void ReloadableMedia::reloadTexture()
         }
         else if(typeLC == "manufacturer")
         {
+          if ( selectedItem->leaf ) // item is a leaf
             basename = selectedItem->manufacturer;
+          else // item is a collection
+            (void)config_.getProperty("collections." + selectedItem->name + ".manufacturer", basename );
         }
         else if(typeLC == "genre")
         {
@@ -324,7 +330,7 @@ void ReloadableMedia::reloadTexture()
     // if image and artwork was not specified, fall back to displaying text
     if(!loadedComponent_ && textFallback_)
     {
-        loadedComponent_ = new Text(selectedItem->fullTitle, FfntInst_, scaleX_, scaleY_);
+        loadedComponent_ = new Text(selectedItem->fullTitle, page, FfntInst_, scaleX_, scaleY_);
         baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
         baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
     }
@@ -343,11 +349,11 @@ Component *ReloadableMedia::findComponent(std::string collection, std::string ty
 
     if(type == "video")
     {
-        component = videoBuild.createVideo(imagePath, basename, scaleX_, scaleY_);
+        component = videoBuild.createVideo(imagePath, page, basename, scaleX_, scaleY_);
     }
     else
     {
-        component = imageBuild.CreateImage(imagePath, basename, scaleX_, scaleY_);
+        component = imageBuild.CreateImage(imagePath, page, basename, scaleX_, scaleY_);
     }
 
     return component;

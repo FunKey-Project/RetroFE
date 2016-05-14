@@ -30,6 +30,7 @@ UserInput::UserInput(Configuration &c)
     for(unsigned int i = 0; i < KeyCodeMax; ++i)
     {
         keyHandlers_[i] = NULL;
+        currentKeyState_[i] = false;
         lastKeyState_[i] = false;
     }
 }
@@ -66,13 +67,18 @@ bool UserInput::initialize()
         retVal = MapKey("down", KeyCodeRight) && retVal;
     }
 
-    retVal = MapKey("pageDown", KeyCodePageDown) && retVal;
-    retVal = MapKey("pageUp", KeyCodePageUp) && retVal;
-    MapKey("letterDown", KeyCodeLetterDown);
-    MapKey("letterUp", KeyCodeLetterUp);
     retVal = MapKey("select", KeyCodeSelect) && retVal;
     retVal = MapKey("back", KeyCodeBack) && retVal;
     retVal = MapKey("quit", KeyCodeQuit) && retVal;
+    retVal = MapKey("pageDown", KeyCodePageDown);
+    retVal = MapKey("pageUp", KeyCodePageUp);
+
+    MapKey("letterDown", KeyCodeLetterDown, false);
+    MapKey("letterUp", KeyCodeLetterUp, false);
+    MapKey("nextPlaylist", KeyCodeNextPlaylist, false);
+    MapKey("addPlaylist", KeyCodeAddPlaylist, false);
+    MapKey("removePlaylist", KeyCodeRemovePlaylist, false);
+    MapKey("random", KeyCodeRandom, false);
     // these features will need to be implemented at a later time
 //   retVal = MapKey("admin", KeyCodeAdminMode) && retVal;
 //   retVal = MapKey("remove", KeyCodeHideItem) && retVal;
@@ -88,6 +94,11 @@ bool UserInput::initialize()
 
 bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
 {
+    return MapKey(keyDescription, key, true);
+}
+
+bool UserInput::MapKey(std::string keyDescription, KeyCode_E key, bool required)
+{
     SDL_Scancode scanCode;
     std::string description;
 
@@ -95,7 +106,8 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
 
     if(!config_.getProperty(configKey, description))
     {
-        Logger::write(Logger::ZONE_ERROR, "Input", "Missing property " + configKey);
+        Logger::Zone zone = (required) ? Logger::ZONE_ERROR : Logger::ZONE_INFO;
+        Logger::write(zone, "Input", "Missing property " + configKey);
         return false;
     }
 
@@ -223,6 +235,9 @@ void UserInput::resetStates()
 bool UserInput::update(SDL_Event &e)
 {
     bool updated = false;
+
+    memcpy(lastKeyState_, currentKeyState_, sizeof(lastKeyState_));
+
     for(unsigned int i = 0; i < KeyCodeMax; ++i)
     {
         InputHandler *h = keyHandlers_[i];
@@ -230,7 +245,7 @@ bool UserInput::update(SDL_Event &e)
         {
             if(h->update(e)) updated = true;
 
-            lastKeyState_[i] = h->pressed();
+            currentKeyState_[i] = h->pressed();
         }
     }
     
@@ -239,5 +254,11 @@ bool UserInput::update(SDL_Event &e)
 
 bool UserInput::keystate(KeyCode_E code)
 {
-    return lastKeyState_[code];
+    return currentKeyState_[code];
 }
+
+bool UserInput::newKeyPressed(KeyCode_E code)
+{
+    return currentKeyState_[code] && !lastKeyState_[code];
+}
+
