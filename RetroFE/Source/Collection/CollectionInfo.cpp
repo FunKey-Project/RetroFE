@@ -22,10 +22,14 @@
 #include <fstream>
 #include <algorithm>
 #include <exception>
-
-#ifdef __linux
 #include <sys/stat.h>
 #include <sys/types.h>
+
+#ifdef _WIN32
+#include <Windows.h>
+#endif
+
+#ifdef __linux
 #include <errno.h>
 #include <cstring>
 #endif
@@ -95,7 +99,7 @@ bool CollectionInfo::Save()
             if ( stat( dir.c_str(), &info ) != 0 )
             {
 #if defined(_WIN32) && !defined(__GNUC__)
-                if(!CreateDirectory(dir, NULL))
+                if(!CreateDirectory(dir.c_str(), NULL))
                 {
                     if(ERROR_ALREADY_EXISTS != GetLastError())
                     {

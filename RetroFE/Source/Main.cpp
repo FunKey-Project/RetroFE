@@ -32,7 +32,7 @@ static bool StartLogging();
 int main(int argc, char **argv)
 {
     // Initialize random seed
-    srand( time( NULL ) );
+    srand(static_cast<unsigned int>(time(0)));
 
     Configuration::initialize();
 
