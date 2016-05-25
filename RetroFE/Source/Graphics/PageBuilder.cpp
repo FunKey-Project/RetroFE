@@ -482,17 +482,17 @@ Font *PageBuilder::addFont(xml_node<> *component, xml_node<> *defaults)
 
     if(defaults)
     {
-        if(defaults->first_attribute("font"))
+        if(!fontXml && defaults->first_attribute("font"))
         {
             fontXml = defaults->first_attribute("font");
         }
 
-        if(defaults->first_attribute("fontColor"))
+        if(!fontColorXml && defaults->first_attribute("fontColor"))
         {
             fontColorXml = defaults->first_attribute("fontColor");
         }
 
-        if(defaults->first_attribute("loadFontSize"))
+        if(!fontSizeXml && defaults->first_attribute("loadFontSize"))
         {
             fontSizeXml = defaults->first_attribute("loadFontSize");
         }
@@ -843,6 +843,7 @@ void PageBuilder::buildViewInfo(xml_node<> *componentXml, ViewInfo &info, xml_no
     xml_attribute<> *height = findAttribute(componentXml, "height", defaultXml);
     xml_attribute<> *width = findAttribute(componentXml, "width", defaultXml);
     xml_attribute<> *fontSize = findAttribute(componentXml, "fontSize", defaultXml);
+    xml_attribute<> *fontColor = findAttribute(componentXml, "fontColor", defaultXml);
     xml_attribute<> *minHeight = findAttribute(componentXml, "minHeight", defaultXml);
     xml_attribute<> *minWidth = findAttribute(componentXml, "minWidth", defaultXml);
     xml_attribute<> *maxHeight = findAttribute(componentXml, "maxHeight", defaultXml);
@@ -884,6 +885,12 @@ void PageBuilder::buildViewInfo(xml_node<> *componentXml, ViewInfo &info, xml_no
     info.Alpha =  alpha ? Utils::convertFloat(alpha->value()) : 1.f;
     info.Angle =  angle ? Utils::convertFloat(angle->value()) : 0.f;
     info.Layer =  layer ? Utils::convertInt(layer->value()) : 0;
+
+    if(fontColor)
+    {
+      Font *font = addFont(componentXml, defaultXml);
+      info.font = font;
+    }
 
     if(backgroundColor)
     {

@@ -499,6 +499,7 @@ void ScrollingList::update(float dt)
             ViewInfo *nextvi = scrollPoints_->at(nextI);
 
             resetTweens(c, tweenPoints_->at(i), currentvi, nextvi, scrollPeriod_);
+            c->baseViewInfo.font = nextvi->font; // Use the font settings of the next index
             c->triggerMenuScrollEvent();
         }
 

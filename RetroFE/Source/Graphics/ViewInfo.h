@@ -19,6 +19,8 @@
 #include <string>
 #include <map>
 
+class Font;
+
 class ViewInfo
 {
 public:
@@ -53,6 +55,7 @@ public:
     float ImageWidth;
     float ImageHeight;
     float FontSize;
+    Font *font;
     float Angle;
     float Alpha;
     unsigned int Layer;

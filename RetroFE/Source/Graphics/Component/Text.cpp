@@ -55,7 +55,13 @@ void Text::draw()
 {
     Component::draw();
 
-    SDL_Texture *t = fontInst_->getTexture();
+    Font *font;
+    if (baseViewInfo.font) // Use font of this specific item if available
+      font = baseViewInfo.font;
+    else                   // If not, use the general font settings
+      font = fontInst_;
+
+    SDL_Texture *t = font->getTexture();
 
     float imageHeight = 0;
     float imageWidth = 0;
@@ -64,7 +70,7 @@ void Text::draw()
     for(unsigned int i = 0; i < textData_.size(); ++i)
     {
         Font::GlyphInfo glyph;
-        if(fontInst_->getRect(textData_[i], glyph))
+        if(font->getRect(textData_[i], glyph))
         {
             if(glyph.minX < 0)
             {
@@ -76,7 +82,7 @@ void Text::draw()
 
     }
 
-    imageHeight = (float)fontInst_->getHeight();
+    imageHeight = (float)font->getHeight();
     float scale = (float)baseViewInfo.FontSize / (float)imageHeight;
 
     float oldWidth = baseViewInfo.Width;
@@ -105,7 +111,7 @@ void Text::draw()
     {
         Font::GlyphInfo glyph;
 
-        if(fontInst_->getRect(textData_[i], glyph) && glyph.rect.h > 0)
+        if(font->getRect(textData_[i], glyph) && glyph.rect.h > 0)
         {
             SDL_Rect charRect = glyph.rect;
             float h = static_cast<float>(charRect.h * scale);
@@ -118,9 +124,9 @@ void Text::draw()
             {
                 rect.x += static_cast<int>((float)(glyph.minX) * scale);
             }
-            if(fontInst_->getAscent() < glyph.maxY)
+            if(font->getAscent() < glyph.maxY)
             {
-                rect.y += static_cast<int>((fontInst_->getAscent() - glyph.maxY)*scale);
+                rect.y += static_cast<int>((font->getAscent() - glyph.maxY)*scale);
             }
 
 
