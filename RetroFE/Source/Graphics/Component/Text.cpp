@@ -66,6 +66,9 @@ void Text::draw()
     float imageHeight = 0;
     float imageWidth = 0;
 
+    imageHeight = (float)font->getHeight();
+    float scale = (float)baseViewInfo.FontSize / (float)imageHeight;
+
     // determine image width
     for(unsigned int i = 0; i < textData_.size(); ++i)
     {
@@ -77,13 +80,13 @@ void Text::draw()
                 imageWidth += glyph.minX;
             }
 
+            if ((imageWidth + glyph.advance)*scale > baseViewInfo.MaxWidth )
+              break;
+
             imageWidth += glyph.advance;
         }
 
     }
-
-    imageHeight = (float)font->getHeight();
-    float scale = (float)baseViewInfo.FontSize / (float)imageHeight;
 
     float oldWidth = baseViewInfo.Width;
     float oldHeight = baseViewInfo.Height;
