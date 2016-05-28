@@ -191,20 +191,27 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key, bool required)
         {
             // string is now axis0+
             unsigned int axis;
-            Sint16 min;
-            Sint16 max;
+            Sint16       min;
+            Sint16       max;
+            int          deadZone;
+
             joydesc = Utils::replace(joydesc, "axis", "");
+
+            if(!config_.getProperty("controls.deadZone", deadZone))
+            {
+                deadZone = 3;
+            }
 
             // string is now 0+
             if(joydesc.find("-") != std::string::npos)
             {
                 min = -32768;
-                max = -1000;
+                max = -32768 / 100 * deadZone;
                 joydesc = Utils::replace(joydesc, "-", "");
             }
             else if(joydesc.find("+") != std::string::npos)
             {
-                min = 1000;
+                min = 32767 / 100 * deadZone;
                 max = 32767;
                 joydesc = Utils::replace(joydesc, "+", "");
             }
@@ -213,7 +220,7 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key, bool required)
             std::stringstream ss;
             ss << joydesc;
             ss >> axis;
-            Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad axis " + ss.str() );
+            Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad axis " + ss.str());
             keyHandlers_[key] = new JoyAxisHandler(joynum, axis, min, max);
             return true;
         }
