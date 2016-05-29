@@ -177,7 +177,7 @@ void Component::update(float dt)
 {
     elapsedTweenTime_ += dt;
     highlightExitComplete = false;
-    if(isHidden() || isWaiting() || (isIdle() && exitRequested))
+    if(isHidden() || isWaiting() || (isIdle() && (exitRequested || menuExitRequested || enterRequested || menuEnterRequested)))
     {
         currentTweenComplete_ = true;
     }
