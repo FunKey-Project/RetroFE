@@ -35,26 +35,11 @@ public:
     void launchExit();
 
 private:
-    enum TextType
-    {
-        TextTypeUnknown = 0,
-        TextTypeNumberButtons,
-        TextTypeNumberPlayers,
-        TextTypeYear,
-        TextTypeTitle,
-        TextTypeManufacturer,
-        TextTypeGenre,
-        TextTypePlaylist,
-        TextTypeCollectionName,
-        TextTypeCollectionSize,
-        TextTypeCollectionIndex
-    };
-
     void ReloadTexture();
 
     Configuration &config_;
     Text *imageInst_;
-    TextType type_;
+    std::string type_;
     std::string layoutKey_;
     bool reloadRequested_;
     bool firstLoad_;

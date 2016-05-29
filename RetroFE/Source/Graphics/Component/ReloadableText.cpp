@@ -27,6 +27,7 @@ ReloadableText::ReloadableText(std::string type, Page &page, Configuration &conf
     : Component(page)
     , config_(config)
     , imageInst_(NULL)
+    , type_(type)
     , layoutKey_(layoutKey)
     , reloadRequested_(false)
     , firstLoad_(true)
@@ -34,49 +35,6 @@ ReloadableText::ReloadableText(std::string type, Page &page, Configuration &conf
     , scaleX_(scaleX)
     , scaleY_(scaleY)
 {
-
-    type_ = TextTypeUnknown;
-
-    if(type == "numberButtons")
-    {
-        type_ = TextTypeNumberButtons;
-    }
-    else if(type == "numberPlayers")
-    {
-        type_ = TextTypeNumberPlayers;
-    }
-    else if(type == "year")
-    {
-        type_ = TextTypeYear;
-    }
-    else if(type == "title")
-    {
-        type_ = TextTypeTitle;
-    }
-    else if(type == "manufacturer")
-    {
-        type_ = TextTypeManufacturer;
-    }
-    else if(type == "genre")
-    {
-        type_ = TextTypeGenre;
-    }
-    else if(type == "playlist")
-    {
-        type_ = TextTypePlaylist;
-    }
-    else if(type == "collectionName")
-    {
-        type_ = TextTypeCollectionName;
-    }
-    else if(type == "collectionSize")
-    {
-        type_ = TextTypeCollectionSize;
-    }
-    else if(type == "collectionIndex")
-    {
-        type_ = TextTypeCollectionIndex;
-    }
     allocateGraphicsMemory();
 }
 
@@ -92,8 +50,8 @@ ReloadableText::~ReloadableText()
 
 void ReloadableText::update(float dt)
 {
-    if((type_ != TextTypePlaylist && newItemSelected) || 
-       (type_ == TextTypePlaylist && playlistChanged))
+    if((type_ != "playlist" && newItemSelected) || 
+       (type_ == "playlist" && playlistChanged))
     {
         reloadRequested_ = true;
     }
@@ -152,53 +110,61 @@ void ReloadableText::ReloadTexture()
     {
         std::stringstream ss;
         std::string text;
-        switch(type_)
+        if (type_ == "numberButtons")
         {
-        case TextTypeNumberButtons:
             ss << selectedItem->numberButtons;
-            break;
-        case TextTypeNumberPlayers:
+        }
+        else if (type_ == "numberPlayers")
+        {
             ss << selectedItem->numberPlayers;
-            break;
-        case TextTypeYear:
+        }
+        else if (type_ == "year")
+        {
             if (selectedItem->leaf) // item is a leaf
               text = selectedItem->year;
             else // item is a collection
               (void)config_.getProperty("collections." + selectedItem->name + ".year", text );
             ss << text;
-            break;
-        case TextTypeTitle:
+        }
+        else if (type_ == "title")
+        {
             ss << selectedItem->title;
-            break;
-        case TextTypeManufacturer:
+        }
+        else if (type_ == "manufacturer")
+        {
             if (selectedItem->leaf) // item is a leaf
               text = selectedItem->manufacturer;
             else // item is a collection
               (void)config_.getProperty("collections." + selectedItem->name + ".manufacturer", text );
             ss << text;
-            break;
-        case TextTypeGenre:
+        }
+        else if (type_ == "genre")
+        {
             if (selectedItem->leaf) // item is a leaf
               text = selectedItem->genre;
             else // item is a collection
               (void)config_.getProperty("collections." + selectedItem->name + ".genre", text );
             ss << text;
-            break;
-        case TextTypePlaylist:
+        }
+        else if (type_ == "playlist")
+        {
             ss << playlistName;
-            break;
-        case TextTypeCollectionName:
+        }
+        else if (type_ == "collectionName")
+        {
             ss << page.getCollectionName();
-            break;
-        case TextTypeCollectionSize:
+        }
+        else if (type_ == "collectionSize")
+        {
             ss << page.getCollectionSize();
-            break;
-        case TextTypeCollectionIndex:
+        }
+        else if (type_ == "collectionIndex")
+        {
               ss << (1+page.getSelectedIndex());
-            break;
-
-        default:
-            break;
+        } else if (!selectedItem->leaf) // item is not a leaf
+        {
+            (void)config_.getProperty("collections." + selectedItem->name + "." + type_, text );
+            ss << text;
         }
 
         imageInst_ = new Text(ss.str(), page, fontInst_, scaleX_, scaleY_);
