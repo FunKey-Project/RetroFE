@@ -118,6 +118,23 @@ void ReloadableText::ReloadTexture()
         {
             ss << selectedItem->numberPlayers;
         }
+        else if (type_ == "numberPlayersRange")
+        {
+          if (selectedItem->numberPlayers != ""  &&
+              selectedItem->numberPlayers != "0" &&
+              selectedItem->numberPlayers != "1")
+            ss << "1-" << selectedItem->numberPlayers;
+          else
+            ss << selectedItem->numberPlayers;
+        }
+        else if (type_ == "numberJoyWays")
+        {
+            ss << selectedItem->joyWays;
+        }
+        else if (type_ == "rating")
+        {
+            ss << selectedItem->rating;
+        }
         else if (type_ == "year")
         {
             if (selectedItem->leaf) // item is a leaf

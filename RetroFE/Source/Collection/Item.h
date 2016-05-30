@@ -36,6 +36,8 @@ public:
     std::string cloneof;
     std::string numberPlayers;
     std::string numberButtons;
+    std::string joyWays;
+    std::string rating;
     CollectionInfo *collectionInfo;
     bool leaf;
 };

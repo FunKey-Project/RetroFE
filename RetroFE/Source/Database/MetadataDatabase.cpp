@@ -84,7 +84,9 @@ bool MetadataDatabase::initialize()
     sql.append("genre TEXT NOT NULL DEFAULT '',");
     sql.append("cloneOf TEXT NOT NULL DEFAULT '',");
     sql.append("players TEXT NOT NULL DEFAULT '',");
-    sql.append("buttons TEXT NOT NULL DEFAULT '');");
+    sql.append("buttons TEXT NOT NULL DEFAULT '',");
+    sql.append("joyways TEXT NOT NULL DEFAULT '',");
+    sql.append("rating TEXT NOT NULL DEFAULT '');");
     sql.append("CREATE UNIQUE INDEX IF NOT EXISTS MetaUniqueId ON Meta(collectionName, name);");
 
     rc = sqlite3_exec(handle, sql.c_str(), NULL, 0, &error);
@@ -205,7 +207,7 @@ void MetadataDatabase::injectMetadata(CollectionInfo *collection)
 
     //todo: program crashes if this query fails
     sqlite3_prepare_v2(handle,
-                       "SELECT DISTINCT Meta.name, Meta.title, Meta.year, Meta.manufacturer, Meta.genre, Meta.players, Meta.buttons, Meta.cloneOf "
+                       "SELECT DISTINCT Meta.name, Meta.title, Meta.year, Meta.manufacturer, Meta.genre, Meta.players, Meta.buttons, Meta.joyways, Meta.cloneOf, Meta.rating "
                        "FROM Meta WHERE collectionName=? ORDER BY title ASC;",
                        -1, &stmt, 0);
 
@@ -222,7 +224,9 @@ void MetadataDatabase::injectMetadata(CollectionInfo *collection)
         std::string genre = (char *)sqlite3_column_text(stmt, 4);
         std::string numberPlayers = (char *)sqlite3_column_text(stmt, 5);
         std::string numberButtons = (char *)sqlite3_column_text(stmt, 6);
-        std::string cloneOf = (char *)sqlite3_column_text(stmt, 7);
+        std::string joyWays = (char *)sqlite3_column_text(stmt, 7);
+        std::string cloneOf = (char *)sqlite3_column_text(stmt, 8);
+        std::string rating = (char *)sqlite3_column_text(stmt, 9);
         std::string launcher;
         std::string title = fullTitle;
 
@@ -272,7 +276,9 @@ void MetadataDatabase::injectMetadata(CollectionInfo *collection)
             item->genre = genre;
             item->numberPlayers = numberPlayers;
             item->numberButtons = numberButtons;
+            item->joyWays = joyWays;
             item->cloneof = cloneOf;
+            item->rating = rating;
         }
         rc = sqlite3_step(stmt);
     }
@@ -335,6 +341,9 @@ bool MetadataDatabase::importHyperlist(std::string hyperlistFile, std::string co
             rapidxml::xml_node<> *yearXml = game->first_node("year");
             rapidxml::xml_node<> *genreXml = game->first_node("genre");
             rapidxml::xml_node<> *ratingXml = game->first_node("rating");
+            rapidxml::xml_node<> *numberPlayersXml = game->first_node("players");
+            rapidxml::xml_node<> *numberButtonsXml = game->first_node("buttons");
+            rapidxml::xml_node<> *numberJoyWaysXml = game->first_node("joyways");
             rapidxml::xml_node<> *enabledXml = game->first_node("enabled");
             std::string name = (nameXml) ? nameXml->value() : "";
             std::string description = (descriptionXml) ? descriptionXml->value() : "";
@@ -344,6 +353,9 @@ bool MetadataDatabase::importHyperlist(std::string hyperlistFile, std::string co
             std::string year = (yearXml) ? yearXml->value() : "";
             std::string genre = (genreXml) ? genreXml->value() : "";
             std::string rating = (ratingXml) ? ratingXml->value() : "";
+            std::string numberPlayers = (numberPlayersXml) ? numberPlayersXml->value() : "";
+            std::string numberButtons = (numberButtonsXml) ? numberButtonsXml->value() : "";
+            std::string numberJoyWays = (numberJoyWaysXml) ? numberJoyWaysXml->value() : "";
             std::string enabled = (enabledXml) ? enabledXml->value() : "";
 
             if(name.length() > 0)
@@ -351,16 +363,20 @@ bool MetadataDatabase::importHyperlist(std::string hyperlistFile, std::string co
                 sqlite3_stmt *stmt;
 
                 sqlite3_prepare_v2(handle,
-                                   "INSERT OR REPLACE INTO Meta (name, title, year, manufacturer, genre, cloneOf, collectionName) VALUES (?,?,?,?,?,?,?)",
+                                   "INSERT OR REPLACE INTO Meta (name, title, year, manufacturer, genre, players, buttons, joyways, cloneOf, collectionName, rating) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
                                    -1, &stmt, 0);
 
-                sqlite3_bind_text(stmt, 1, name.c_str(), -1, SQLITE_TRANSIENT);
-                sqlite3_bind_text(stmt, 2, description.c_str(), -1, SQLITE_TRANSIENT);
-                sqlite3_bind_text(stmt, 3, year.c_str(), -1, SQLITE_TRANSIENT);
-                sqlite3_bind_text(stmt, 4, manufacturer.c_str(), -1, SQLITE_TRANSIENT);
-                sqlite3_bind_text(stmt, 5, genre.c_str(), -1, SQLITE_TRANSIENT);
-                sqlite3_bind_text(stmt, 6, cloneOf.c_str(), -1, SQLITE_TRANSIENT);
-                sqlite3_bind_text(stmt, 7, collectionName.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  1, name.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  2, description.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  3, year.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  4, manufacturer.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  5, genre.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  6, numberPlayers.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  7, numberButtons.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  8, numberJoyWays.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  9, cloneOf.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt, 10, collectionName.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt, 11, rating.c_str(), -1, SQLITE_TRANSIENT);
 
                 sqlite3_step(stmt);
                 sqlite3_finalize(stmt);
@@ -466,7 +482,7 @@ bool MetadataDatabase::importMamelist(std::string filename, std::string collecti
             sqlite3_stmt *stmt;
 
             sqlite3_prepare_v2(handle,
-                               "INSERT OR REPLACE INTO Meta (name, title, year, manufacturer, genre, players, buttons, cloneOf, collectionName) VALUES (?,?,?,?,?,?,?,?,?)",
+                               "INSERT OR REPLACE INTO Meta (name, title, year, manufacturer, genre, players, buttons, cloneOf, collectionName) VALUES (?,?,?,?,?,?,?,?,?,?)",
                                -1, &stmt, 0);
 
 
