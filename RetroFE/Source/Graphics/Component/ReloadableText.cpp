@@ -127,6 +127,33 @@ void ReloadableText::ReloadTexture()
           else
             ss << selectedItem->numberPlayers;
         }
+        else if (type_ == "numberPlayersPlayers")
+        {
+            ss << selectedItem->numberPlayers;
+            if (selectedItem->numberPlayers != "")
+            {
+              if (selectedItem->numberPlayers == "1")
+                ss << " Player";
+              else
+                ss << " Players";
+            }
+        }
+        else if (type_ == "numberPlayersRangePlayers")
+        {
+          if (selectedItem->numberPlayers != ""  &&
+              selectedItem->numberPlayers != "0" &&
+              selectedItem->numberPlayers != "1")
+            ss << "1-" << selectedItem->numberPlayers;
+          else
+            ss << selectedItem->numberPlayers;
+          if (selectedItem->numberPlayers != "")
+          {
+            if (selectedItem->numberPlayers == "1")
+              ss << " Player";
+            else
+              ss << " Players";
+          }
+        }
         else if (type_ == "numberJoyWays")
         {
             ss << selectedItem->joyWays;
