@@ -22,6 +22,9 @@
 #include <fstream>
 #include <vector>
 #include <iostream>
+#include <iomanip>
+#include <ctime>
+#include <chrono>
 
 ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, float scaleX, float scaleY)
     : Component(page)
@@ -51,12 +54,13 @@ ReloadableText::~ReloadableText()
 void ReloadableText::update(float dt)
 {
     if((type_ != "playlist" && newItemSelected) || 
-       (type_ == "playlist" && playlistChanged))
+       (type_ == "playlist" && playlistChanged) ||
+       (type_ == "time"))
     {
         reloadRequested_ = true;
     }
     // wait for the right moment to reload the image
-    if (reloadRequested_ && (highlightExitComplete || firstLoad_))
+    if (reloadRequested_ && (type_ == "time" || highlightExitComplete || firstLoad_))
     {
         ReloadTexture();
         reloadRequested_ = false;
@@ -110,6 +114,12 @@ void ReloadableText::ReloadTexture()
     {
         std::stringstream ss;
         std::string text;
+        if (type_ == "time")
+        {
+          std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+          std::time_t now_c = std::chrono::system_clock::to_time_t(now);
+          ss << std::put_time(std::localtime(&now_c), "%r");
+        }
         if (type_ == "numberButtons")
         {
             ss << selectedItem->numberButtons;
