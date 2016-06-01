@@ -22,9 +22,7 @@
 #include <fstream>
 #include <vector>
 #include <iostream>
-#include <iomanip>
-#include <ctime>
-#include <chrono>
+#include <time.h>
 
 ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, float scaleX, float scaleY)
     : Component(page)
@@ -116,9 +114,12 @@ void ReloadableText::ReloadTexture()
         std::string text;
         if (type_ == "time")
         {
-          std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
-          std::time_t now_c = std::chrono::system_clock::to_time_t(now);
-          ss << std::put_time(std::localtime(&now_c), "%r");
+          time_t    now = time(0);
+          struct tm tstruct;
+          char      buf[80];
+          tstruct = *localtime(&now);
+          strftime(buf, sizeof(buf), "%r", &tstruct);
+          ss << buf;
         }
         if (type_ == "numberButtons")
         {
