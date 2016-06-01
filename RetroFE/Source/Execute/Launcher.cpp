@@ -137,8 +137,8 @@ bool Launcher::execute(std::string executable, std::string args, std::string cur
 #ifdef WIN32
     STARTUPINFO startupInfo;
     PROCESS_INFORMATION processInfo;
-    char applicationName[256];
-    char currDir[256];
+    char applicationName[2048];
+    char currDir[2048];
     memset(&applicationName, 0, sizeof(applicationName));
     memset(&startupInfo, 0, sizeof(startupInfo));
     memset(&processInfo, 0, sizeof(processInfo));
