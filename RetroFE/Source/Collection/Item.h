@@ -36,6 +36,7 @@ public:
     std::string cloneof;
     std::string numberPlayers;
     std::string numberButtons;
+    std::string ctrlType;
     std::string joyWays;
     std::string rating;
     CollectionInfo *collectionInfo;

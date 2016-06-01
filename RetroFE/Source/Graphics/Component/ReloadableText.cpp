@@ -164,6 +164,10 @@ void ReloadableText::ReloadTexture()
               ss << " Players";
           }
         }
+        else if (type_ == "ctrlType")
+        {
+            ss << selectedItem->ctrlType;
+        }
         else if (type_ == "numberJoyWays")
         {
             ss << selectedItem->joyWays;
