@@ -24,7 +24,7 @@
 #include <iostream>
 #include <time.h>
 
-ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, float scaleX, float scaleY)
+ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, std::string timeFormat, float scaleX, float scaleY)
     : Component(page)
     , config_(config)
     , imageInst_(NULL)
@@ -33,6 +33,7 @@ ReloadableText::ReloadableText(std::string type, Page &page, Configuration &conf
     , reloadRequested_(false)
     , firstLoad_(true)
     , fontInst_(font)
+    , timeFormat_(timeFormat)
     , scaleX_(scaleX)
     , scaleY_(scaleY)
 {
@@ -118,7 +119,7 @@ void ReloadableText::ReloadTexture()
           struct tm tstruct;
           char      buf[80];
           tstruct = *localtime(&now);
-          strftime(buf, sizeof(buf), "%r", &tstruct);
+          strftime(buf, sizeof(buf), timeFormat_.c_str(), &tstruct);
           ss << buf;
         }
         if (type_ == "numberButtons")

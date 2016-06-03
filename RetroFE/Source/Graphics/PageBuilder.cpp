@@ -403,6 +403,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
         std::string reloadableVideoPath;
         xml_attribute<> *type = componentXml->first_attribute("type");
         xml_attribute<> *mode = componentXml->first_attribute("mode");
+        xml_attribute<> *timeFormatXml = componentXml->first_attribute("timeFormat");
         xml_attribute<> *selectedOffsetXml = componentXml->first_attribute("selectedOffset");
         bool systemMode = false;
         int selectedOffset = 0;
@@ -446,7 +447,12 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
             if(type)
             {
                 Font *font = addFont(componentXml, NULL);
-                c = new ReloadableText(type->value(), *page, config_, font, layoutKey, scaleX_, scaleY_);
+                std::string timeFormat = "%H:%M";
+                if (timeFormatXml)
+                {
+                  timeFormat = timeFormatXml->value();
+                }
+                c = new ReloadableText(type->value(), *page, config_, font, layoutKey, timeFormat, scaleX_, scaleY_);
             }
         }
         else

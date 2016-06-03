@@ -25,7 +25,7 @@
 class ReloadableText : public Component
 {
 public:
-    ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, float scaleX, float scaleY);
+    ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, std::string timeFormat, float scaleX, float scaleY);
     virtual ~ReloadableText();
     void update(float dt);
     void draw();
@@ -44,6 +44,7 @@ private:
     bool reloadRequested_;
     bool firstLoad_;
     Font *fontInst_;
+    std::string timeFormat_;
 
     float scaleX_;
     float scaleY_;
