@@ -33,7 +33,7 @@ public:
     static bool getTweenProperty(std::string name, TweenProperty &property);
     TweenProperty property;
     double duration;
-    double getStart();
+    bool   startDefined;
 
 private:
     static double easeInQuadratic(double elapsedTime, double duration, double b, double c);

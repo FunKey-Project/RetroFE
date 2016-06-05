@@ -18,7 +18,6 @@
 #include "../../Graphics/ViewInfo.h"
 #include "../../Utility/Log.h"
 #include "../../SDL.h"
-#include <cmath>
 
 Component::Component(Page &p)
 : page(p)
@@ -206,87 +205,87 @@ bool Component::animate()
             switch(tween->property)
             {
             case TWEEN_PROPERTY_X:
-                if (std::isnan( tween->getStart() ))
-                    baseViewInfo.X = tween->animate(elapsedTime, storeViewInfo_.X);
-                else
+                if (tween->startDefined)
                     baseViewInfo.X = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.X = tween->animate(elapsedTime, storeViewInfo_.X);
                 break;
 
             case TWEEN_PROPERTY_Y:
-                if (std::isnan( tween->getStart() ))
-                    baseViewInfo.Y = tween->animate(elapsedTime, storeViewInfo_.Y);
-                else
+                if (tween->startDefined)
                     baseViewInfo.Y = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.Y = tween->animate(elapsedTime, storeViewInfo_.Y);
                 break;
 
             case TWEEN_PROPERTY_HEIGHT:
-                if (std::isnan( tween->getStart() ))
-                    baseViewInfo.Height = tween->animate(elapsedTime, storeViewInfo_.Height);
-                else
+                if (tween->startDefined)
                     baseViewInfo.Height = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.Height = tween->animate(elapsedTime, storeViewInfo_.Height);
                 break;
 
             case TWEEN_PROPERTY_WIDTH:
-                if (std::isnan( tween->getStart() ))
-                    baseViewInfo.Width = tween->animate(elapsedTime, storeViewInfo_.Width);
-                else
+                if (tween->startDefined)
                     baseViewInfo.Width = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.Width = tween->animate(elapsedTime, storeViewInfo_.Width);
                 break;
 
             case TWEEN_PROPERTY_ANGLE:
-                if (std::isnan( tween->getStart() ))
-                    baseViewInfo.Angle = tween->animate(elapsedTime, storeViewInfo_.Angle);
-                else
+                if (tween->startDefined)
                     baseViewInfo.Angle = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.Angle = tween->animate(elapsedTime, storeViewInfo_.Angle);
                 break;
 
             case TWEEN_PROPERTY_ALPHA:
-                if (std::isnan( tween->getStart() ))
-                    baseViewInfo.Alpha = tween->animate(elapsedTime, storeViewInfo_.Alpha);
-                else
+                if (tween->startDefined)
                     baseViewInfo.Alpha = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.Alpha = tween->animate(elapsedTime, storeViewInfo_.Alpha);
                 break;
 
             case TWEEN_PROPERTY_X_ORIGIN:
-                if (std::isnan( tween->getStart() ))
-                    baseViewInfo.XOrigin = tween->animate(elapsedTime, storeViewInfo_.XOrigin);
-                else
+                if (tween->startDefined)
                     baseViewInfo.XOrigin = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.XOrigin = tween->animate(elapsedTime, storeViewInfo_.XOrigin);
                 break;
 
             case TWEEN_PROPERTY_Y_ORIGIN:
-                if (std::isnan( tween->getStart() ))
-                    baseViewInfo.YOrigin = tween->animate(elapsedTime, storeViewInfo_.YOrigin);
-                else
+                if (tween->startDefined)
                     baseViewInfo.YOrigin = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.YOrigin = tween->animate(elapsedTime, storeViewInfo_.YOrigin);
                 break;
 
             case TWEEN_PROPERTY_X_OFFSET:
-                if (std::isnan( tween->getStart() ))
-                    baseViewInfo.XOffset = tween->animate(elapsedTime, storeViewInfo_.XOffset);
-                else
+                if (tween->startDefined)
                     baseViewInfo.XOffset = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.XOffset = tween->animate(elapsedTime, storeViewInfo_.XOffset);
                 break;
 
             case TWEEN_PROPERTY_Y_OFFSET:
-                if (std::isnan( tween->getStart() ))
-                    baseViewInfo.YOffset = tween->animate(elapsedTime, storeViewInfo_.YOffset);
-                else
+                if (tween->startDefined)
                     baseViewInfo.YOffset = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.YOffset = tween->animate(elapsedTime, storeViewInfo_.YOffset);
                 break;
 
             case TWEEN_PROPERTY_FONT_SIZE:
-                if (std::isnan( tween->getStart() ))
-                    baseViewInfo.FontSize = tween->animate(elapsedTime, storeViewInfo_.FontSize);
-                else
+                if (tween->startDefined)
                     baseViewInfo.FontSize = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.FontSize = tween->animate(elapsedTime, storeViewInfo_.FontSize);
                 break;
 
             case TWEEN_PROPERTY_BACKGROUND_ALPHA:
-                if (std::isnan( tween->getStart() ))
-                    baseViewInfo.BackgroundAlpha = tween->animate(elapsedTime, storeViewInfo_.BackgroundAlpha);
-                else
+                if (tween->startDefined)
                     baseViewInfo.BackgroundAlpha = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.BackgroundAlpha = tween->animate(elapsedTime, storeViewInfo_.BackgroundAlpha);
                 break;
             }
         }

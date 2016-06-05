@@ -24,10 +24,11 @@ std::map<std::string, TweenProperty> Tween::tweenPropertyMap_;
 
 Tween::Tween(TweenProperty property, TweenAlgorithm type, double start, double end, double duration)
     : property(property)
-, duration(duration)
+    , duration(duration)
     , type(type)
     , start(start)
     , end(end)
+    , startDefined(true)
 {
 }
 
@@ -373,10 +374,4 @@ double Tween::easeInOutCircular(double t, double d, double b, double c)
     if (t < 1) return -c/2 * (sqrt(1 - t*t) - 1) + b;
     t -= 2;
     return c/2 * (sqrt(1 - t*t) + 1) + b;
-}
-
-
-double Tween::getStart()
-{
-    return start;
 }

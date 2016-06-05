@@ -37,7 +37,6 @@
 #include <stdexcept>
 #include <vector>
 #include <map>
-#include <limits>
 
 using namespace rapidxml;
 
@@ -959,15 +958,12 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
             }
             else
             {
-                float fromValue;
+                float fromValue = 0.0f;
+                bool  fromDefined = true;
                 if (from)
-                {
                     fromValue = Utils::convertFloat(from->value());
-                }
                 else
-                {
-                    fromValue = std::numeric_limits<double>::quiet_NaN();
-                }
+                   fromDefined = false;
                 float toValue = Utils::convertFloat(to->value());
                 float durationValue = Utils::convertFloat(durationXml->value());
 
@@ -1016,6 +1012,8 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
                     }
 
                     Tween *t = new Tween(property, algorithm, fromValue, toValue, durationValue);
+                    if (!fromDefined)
+                      t->startDefined = false;
                     tweens.push(t);
                 }
                 else
