@@ -37,6 +37,7 @@
 #include <stdexcept>
 #include <vector>
 #include <map>
+#include <limits>
 
 using namespace rapidxml;
 
@@ -952,17 +953,21 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
             {
                 Logger::write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"type\" attribute");
             }
-            else if(!from)
-            {
-                Logger::write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"from\" attribute");
-            }
             else if(!to)
             {
                 Logger::write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"to\" attribute");
             }
             else
             {
-                float fromValue = Utils::convertFloat(from->value());
+                float fromValue;
+                if (from)
+                {
+                    fromValue = Utils::convertFloat(from->value());
+                }
+                else
+                {
+                    fromValue = std::numeric_limits<double>::quiet_NaN();
+                }
                 float toValue = Utils::convertFloat(to->value());
                 float durationValue = Utils::convertFloat(durationXml->value());
 

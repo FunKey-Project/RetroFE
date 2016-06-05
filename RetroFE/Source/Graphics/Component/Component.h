@@ -60,6 +60,7 @@ private:
     Animation *currentTweens_;
     SDL_Texture *backgroundTexture_;
 
+    ViewInfo     storeViewInfo_;
     unsigned int currentTweenIndex_;
     bool         currentTweenComplete_;
     float        elapsedTweenTime_;

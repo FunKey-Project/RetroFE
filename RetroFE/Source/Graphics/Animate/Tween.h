@@ -27,11 +27,13 @@ public:
 
     Tween(TweenProperty name, TweenAlgorithm type, double start, double end, double duration);
     float animate(double elapsedTime);
+    float animate(double elapsedTime, double startValue);
     static float animateSingle(TweenAlgorithm type, double start, double end, double duration, double elapsedTime);
     static TweenAlgorithm getTweenType(std::string name);
     static bool getTweenProperty(std::string name, TweenProperty &property);
     TweenProperty property;
     double duration;
+    double getStart();
 
 private:
     static double easeInQuadratic(double elapsedTime, double duration, double b, double c);

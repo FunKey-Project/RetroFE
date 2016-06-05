@@ -110,6 +110,11 @@ float Tween::animate(double elapsedTime)
     return animateSingle(type, start, end, duration, elapsedTime);
 }
 
+float Tween::animate(double elapsedTime, double startValue)
+{
+    return animateSingle(type, startValue, end, duration, elapsedTime);
+}
+
 //todo: SDL likes floats, consider having casting being performed elsewhere
 float Tween::animateSingle(TweenAlgorithm type, double start, double end, double duration, double elapsedTime)
 {
@@ -368,4 +373,10 @@ double Tween::easeInOutCircular(double t, double d, double b, double c)
     if (t < 1) return -c/2 * (sqrt(1 - t*t) - 1) + b;
     t -= 2;
     return c/2 * (sqrt(1 - t*t) + 1) + b;
+}
+
+
+double Tween::getStart()
+{
+    return start;
 }
