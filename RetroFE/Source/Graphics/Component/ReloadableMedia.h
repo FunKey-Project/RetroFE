@@ -44,8 +44,6 @@ private:
     Configuration &config_;
     bool systemMode_;
     Component *loadedComponent_;
-    bool reloadRequested_;
-    bool firstLoad_;
     IVideo *videoInst_;
     bool isVideo_;
     Font *FfntInst_;

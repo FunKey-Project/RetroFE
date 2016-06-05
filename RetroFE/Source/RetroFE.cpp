@@ -60,7 +60,7 @@ RetroFE::RetroFE(Configuration &c)
     , currentTime_(0)
     , lastLaunchReturnTime_(0)
     , keyLastTime_(0)
-    , keyDelayTime_(.3f) 
+    , keyDelayTime_(.3f)
 {
 }
 
@@ -90,8 +90,8 @@ int RetroFE::initialize(void *context)
 
     Logger::write(Logger::ZONE_INFO, "RetroFE", "Initializing");
 
-    if(!instance->input_.initialize()) 
-    { 
+    if(!instance->input_.initialize())
+    {
         Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize user controls");
         instance->initializeError = true;
         return -1;
@@ -167,7 +167,6 @@ void RetroFE::allocateGraphicsMemory()
     if(currentPage_)
     {
         currentPage_->allocateGraphicsMemory();
-        currentPage_->start();
     }
 }
 
@@ -239,7 +238,8 @@ void RetroFE::run()
     int initializeStatus = 0;
 
     // load the initial splash screen, unload it once it is complete
-    currentPage_ = loadSplashPage();
+    currentPage_    = loadSplashPage();
+    state           = RETROFE_ENTER;
     bool splashMode = true;
 
     Launcher l(*this, config_);
@@ -270,9 +270,9 @@ void RetroFE::run()
             if(currentPage_ && !splashMode)
             {
 
-                // account for when returning from a menu and the previous key was still "stuck" 
+                // account for when returning from a menu and the previous key was still "stuck"
                 if(lastLaunchReturnTime_ == 0 || (currentTime_ - lastLaunchReturnTime_ > .3))
-                { 
+                {
                     state = processUserInput(currentPage_);
                     lastLaunchReturnTime_ = 0;
                 }
@@ -288,6 +288,22 @@ void RetroFE::run()
                     break;
                 }
 
+                currentPage_->stop();
+                state = RETROFE_EXIT;
+
+            }
+            break;
+
+        case RETROFE_ENTER:
+            if(currentPage_->isIdle())
+            {
+                state = RETROFE_IDLE;
+            }
+            break;
+
+        case RETROFE_EXIT:
+            if(currentPage_->isIdle())
+            {
                 // delete the splash screen and use the standard menu
                 currentPage_->DeInitialize();
                 delete currentPage_;
@@ -301,8 +317,6 @@ void RetroFE::run()
 
                     config_.getProperty("firstCollection", firstCollection);
                     config_.getProperty("collections." + firstCollection + ".list.menuSort", menuSort);
-
-                    currentPage_->start();
                     config_.setProperty("currentCollection", firstCollection);
                     CollectionInfo *info = getCollection(firstCollection);
                     MenuParser mp;
@@ -310,22 +324,62 @@ void RetroFE::run()
                     mp.buildMenuItems(info, menuSort);
 
                     currentPage_->pushCollection(info);
+
+                    state = RETROFE_ENTER;
                 }
                 else
                 {
                     state = RETROFE_QUIT_REQUEST;
                 }
-
             }
-
             break;
 
         case RETROFE_NEXT_PAGE_REQUEST:
+            currentPage_->exitMenu();
+            state = RETROFE_NEXT_PAGE_MENU_EXIT;
+            break;
+
+        case RETROFE_NEXT_PAGE_MENU_EXIT:
             if(currentPage_->isIdle())
             {
-                state = RETROFE_NEW;
-            }
-            break;
+                bool menuSort = true;
+                config_.setProperty("currentCollection", nextPageItem_->name);
+                config_.getProperty("collections." + nextPageItem_->name + ".list.menuSort", menuSort);
+
+                CollectionInfo *info = getCollection(nextPageItem_->name);
+
+                MenuParser mp;
+                mp.buildMenuItems(info, menuSort);
+                currentPage_->pushCollection(info);
+
+                bool rememberMenu = false;
+                config_.getProperty("rememberMenu", rememberMenu);
+
+                if(rememberMenu && lastMenuOffsets_.find(nextPageItem_->name) != lastMenuOffsets_.end())
+                {
+                    currentPage_->setScrollOffsetIndex(lastMenuOffsets_[nextPageItem_->name]);
+                }
+
+                bool autoFavorites = true;
+                config_.getProperty("autoFavorites", autoFavorites);
+
+                if (autoFavorites)
+                  currentPage_->favPlaylist(); // Switch to favorites if it exists
+
+                currentPage_->setNewItemSelected();
+                currentPage_->enterMenu();
+
+                state = RETROFE_NEXT_PAGE_MENU_ENTER;
+
+             }
+             break;
+
+        case RETROFE_NEXT_PAGE_MENU_ENTER:
+          if(currentPage_->isIdle())
+          {
+            state = RETROFE_IDLE;
+          }
+          break;
 
         case RETROFE_LAUNCH_REQUEST:
             nextPageItem_ = currentPage_->getSelectedItem();
@@ -334,14 +388,28 @@ void RetroFE::run()
             break;
 
         case RETROFE_BACK_REQUEST:
+            currentPage_->exitMenu();
+            state = RETROFE_BACK_MENU_EXIT;
+            break;
 
+        case RETROFE_BACK_MENU_EXIT:
+          if(currentPage_->isIdle())
+          {
             lastMenuOffsets_[currentPage_->getCollectionName()] = currentPage_->getScrollOffsetIndex();
             currentPage_->popCollection();
             config_.setProperty("currentCollection", currentPage_->getCollectionName());
+            currentPage_->setNewItemSelected();
+            currentPage_->enterMenu();
+            state = RETROFE_BACK_MENU_ENTER;
+          }
+          break;
 
-            state = RETROFE_NEW;
-
-            break;
+        case RETROFE_BACK_MENU_ENTER:
+          if(currentPage_->isIdle())
+          {
+            state = RETROFE_IDLE;
+          }
+          break;
 
         case RETROFE_NEW:
             if(currentPage_->isIdle())
@@ -356,11 +424,10 @@ void RetroFE::run()
             break;
 
         case RETROFE_QUIT:
-            if(currentPage_->isHidden())
+            if(currentPage_->isIdle())
             {
-                running = false;
+              running = false;
             }
-
             break;
         }
 
@@ -419,9 +486,6 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
     bool exit = false;
     RETROFE_STATE state = RETROFE_IDLE;
 
-    bool rememberMenu = false;
-    config_.getProperty("rememberMenu", rememberMenu);
-
     if(page->isHorizontalScroll())
     {
         if (input_.keystate(UserInput::KeyCodeLeft))
@@ -431,17 +495,17 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         if (input_.keystate(UserInput::KeyCodeRight))
         {
             page->setScrolling(Page::ScrollDirectionForward);
-        } 
+        }
     }
     else
-    { 
+    {
         if (input_.keystate(UserInput::KeyCodeUp))
         {
             page->setScrolling(Page::ScrollDirectionBack);
         }
         if (input_.keystate(UserInput::KeyCodeDown))
         {
-                page->setScrolling(Page::ScrollDirectionForward);
+            page->setScrolling(Page::ScrollDirectionForward);
         }
     }
 
@@ -463,7 +527,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         keyLastTime_ = currentTime_;
         keyDelayTime_-= .05f;
         if(keyDelayTime_< 0.1f) keyDelayTime_= 0.1f;
-        
+
         if (input_.keystate(UserInput::KeyCodePageUp))
         {
             page->pageScroll(Page::ScrollDirectionBack);
@@ -514,27 +578,6 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
             }
             else
             {
-                bool menuSort = true;
-                config_.setProperty("currentCollection", nextPageItem_->name);
-                config_.getProperty("collections." + nextPageItem_->name + ".list.menuSort", menuSort);
-
-                CollectionInfo *info = getCollection(nextPageItem_->name);
-
-                MenuParser mp;
-                mp.buildMenuItems(info, menuSort);
-                page->pushCollection(info);
-
-                if(rememberMenu && lastMenuOffsets_.find(nextPageItem_->name) != lastMenuOffsets_.end())
-                {
-                    page->setScrollOffsetIndex(lastMenuOffsets_[nextPageItem_->name]);
-                }
-                
-                bool autoFavorites = true;
-                config_.getProperty("autoFavorites", autoFavorites);
-
-                if (autoFavorites)
-                  page->favPlaylist(); // Switch to favorites if it exists
-
                 state = RETROFE_NEXT_PAGE_REQUEST;
             }
         }

@@ -381,7 +381,7 @@ void ScrollingList::freeGraphicsMemory()
     deallocateSpritePoints();
 }
 
-void ScrollingList::triggerMenuEnterEvent()
+void ScrollingList::triggerMenuEnterEvent( int menuIndex )
 {
     focus_ = true;
     notifyAllRequested_ = true;
@@ -389,11 +389,11 @@ void ScrollingList::triggerMenuEnterEvent()
     for(unsigned int i = 0; i < components_.size(); ++i)
     {
         Component *c = components_.at(i);
-        if(c) c->triggerMenuEnterEvent();
+        if(c) c->triggerEvent( "menuEnter", menuIndex );
     }
 }
 
-void ScrollingList::triggerMenuExitEvent()
+void ScrollingList::triggerMenuExitEvent( int menuIndex )
 {
     focus_ = false;
     notifyAllRequested_ = true;
@@ -401,7 +401,7 @@ void ScrollingList::triggerMenuExitEvent()
     for(unsigned int i = 0; i < components_.size(); ++i)
     {
         Component *c = components_.at(i);
-        if(c) c->triggerMenuExitEvent();
+        if(c) c->triggerEvent( "menuExit", menuIndex );
     }
 }
 
@@ -500,7 +500,7 @@ void ScrollingList::update(float dt)
 
             resetTweens(c, tweenPoints_->at(i), currentvi, nextvi, scrollPeriod_);
             c->baseViewInfo.font = nextvi->font; // Use the font settings of the next index
-            c->triggerMenuScrollEvent();
+            c->triggerEvent( "menuScroll" );
         }
 
         if(c) c->update(dt);

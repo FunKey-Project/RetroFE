@@ -30,8 +30,6 @@ ReloadableText::ReloadableText(std::string type, Page &page, Configuration &conf
     , imageInst_(NULL)
     , type_(type)
     , layoutKey_(layoutKey)
-    , reloadRequested_(false)
-    , firstLoad_(true)
     , fontInst_(font)
     , timeFormat_(timeFormat)
     , scaleX_(scaleX)
@@ -52,18 +50,10 @@ ReloadableText::~ReloadableText()
 
 void ReloadableText::update(float dt)
 {
-    if((type_ != "playlist" && newItemSelected) || 
-       (type_ == "playlist" && playlistChanged) ||
-       (type_ == "time"))
-    {
-        reloadRequested_ = true;
-    }
-    // wait for the right moment to reload the image
-    if (reloadRequested_ && (type_ == "time" || highlightExitComplete || firstLoad_))
+    if (newItemSelected || type_ == "time")
     {
         ReloadTexture();
-        reloadRequested_ = false;
-        firstLoad_ = false;
+        newItemSelected = false;
     }
 
     // needs to be ran at the end to prevent the NewItemSelected flag from being detected
@@ -73,8 +63,6 @@ void ReloadableText::update(float dt)
 
 void ReloadableText::allocateGraphicsMemory()
 {
-    firstLoad_ = true;
-
     ReloadTexture();
 
     // NOTICE! needs to be done last to prevent flags from being missed

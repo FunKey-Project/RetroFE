@@ -47,6 +47,8 @@ public:
     virtual void onNewItemSelected(Item *);
     bool pushCollection(CollectionInfo *collection);
     bool popCollection();
+    void enterMenu();
+    void exitMenu();
     void nextPlaylist();
     void favPlaylist();
     void pushMenu(ScrollingList *s);
@@ -67,6 +69,7 @@ public:
     void setScrolling(ScrollDirection direction);
     bool isHorizontalScroll();
     unsigned int getMenuDepth();
+    void setNewItemSelected();
     Item *getSelectedItem();
     Item *getSelectedItem(int offset);
     void removeSelectedItem();
@@ -74,7 +77,6 @@ public:
     unsigned int getScrollOffsetIndex();
     bool isIdle();
     bool isMenuIdle();
-    bool isHidden();
     void setStatusTextComponent(Text *t);
     void update(float dt);
     void draw();
@@ -89,7 +91,8 @@ public:
     void removePlaylist();
 
 private:
-    void highlight();
+    void highlightEnter();
+    void highlightExit();
     void playlistChange();
     std::string collectionName_;
     Configuration &config_;
@@ -120,8 +123,6 @@ private:
 
     Item *selectedItem_;
     Text *textStatusComponent_;
-    bool selectedItemChanged_;
-    bool playlistChanged_;
     Sound *loadSoundChunk_;
     Sound *unloadSoundChunk_;
     Sound *highlightSoundChunk_;

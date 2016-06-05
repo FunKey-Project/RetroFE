@@ -41,8 +41,6 @@ private:
     Text *imageInst_;
     std::string type_;
     std::string layoutKey_;
-    bool reloadRequested_;
-    bool firstLoad_;
     Font *fontInst_;
     std::string timeFormat_;
 

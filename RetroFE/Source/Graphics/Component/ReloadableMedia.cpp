@@ -33,8 +33,6 @@ ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, std::st
     , config_(config)
     , systemMode_(systemMode)
     , loadedComponent_(NULL)
-    , reloadRequested_(false)
-    , firstLoad_(true)
     , videoInst_(NULL)
     , isVideo_(isVideo)
     , FfntInst_(font)
@@ -63,23 +61,11 @@ void ReloadableMedia::enableTextFallback_(bool value)
 
 void ReloadableMedia::update(float dt)
 {
-    if(newItemSelected)
-    {
-    	std::string collection;
-    	config_.getProperty("currentCollection", collection);
-
-        if(!systemMode_ || (systemMode_ && currentCollection_ != collection))
-        {
-            reloadRequested_ = true;
-        }
-    }
-    // wait for the right moment to reload the image
-    if (reloadRequested_ && (highlightExitComplete || firstLoad_))
+    if (newItemSelected)
     {
 
         reloadTexture();
-        reloadRequested_ = false;
-        firstLoad_ = false;
+        newItemSelected = false;
     }
 
     if(loadedComponent_)
@@ -102,8 +88,6 @@ void ReloadableMedia::update(float dt)
 
 void ReloadableMedia::allocateGraphicsMemory()
 {
-    firstLoad_ = true;
-
     if(loadedComponent_)
     {
         loadedComponent_->allocateGraphicsMemory();

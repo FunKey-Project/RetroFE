@@ -22,9 +22,8 @@
 Component::Component(Page &p)
 : page(p)
 {
-    tweens_ = NULL;
-    newItemSelectedSinceEnter = false;
-    backgroundTexture_ = NULL;
+    tweens_                   = NULL;
+    backgroundTexture_        = NULL;
     freeGraphicsMemory();
 
 }
@@ -33,7 +32,6 @@ Component::Component(const Component &copy)
     : page(copy.page)
 {
     tweens_ = NULL;
-    newItemSelectedSinceEnter = false;
     backgroundTexture_ = NULL;
     freeGraphicsMemory();
 
@@ -53,23 +51,16 @@ Component::~Component()
 
 void Component::freeGraphicsMemory()
 {
-    currentAnimationState = HIDDEN;
-    enterRequested = false;
-    exitRequested = false;
-    menuEnterRequested = false;
-    menuEnterIndex = -1;
-    menuScrollRequested = false;
-    menuExitRequested = false;
-    menuExitIndex = -1;
+    animationRequestedType_ = "";
+    animationType_          = "";
+    animationRequested_     = false;
+    newItemSelected         = false;
+    menuIndex_              = -1;
 
-    newItemSelected = false;
-    playlistChanged = false;
-    highlightExitComplete = false;
-    currentTweens_ = NULL;
-    currentTweenIndex_ = 0;
-    currentTweenComplete_ = false;
-    elapsedTweenTime_ = 0;
-    scrollActive = false;
+    currentTweens_        = NULL;
+    currentTweenIndex_    = 0;
+    currentTweenComplete_ = true;
+    elapsedTweenTime_     = 0;
 
     if(backgroundTexture_)
     {
@@ -98,244 +89,71 @@ void Component::allocateGraphicsMemory()
     }
 }
 
-void Component::triggerEnterEvent()
+void Component::triggerEvent(std::string event, int menuIndex)
 {
-    enterRequested = true;
+    animationRequestedType_ = event;
+    animationRequested_     = true;
+    menuIndex_              = menuIndex;
 }
 
-void Component::triggerExitEvent()
+void Component::setPlaylist(std::string name)
 {
-    exitRequested = true;
-}
-
-
-
-void Component::triggerMenuEnterEvent(int menuIndex)
-{
-    menuEnterRequested = true;
-    menuEnterIndex = menuIndex;
-}
-
-void Component::triggerMenuScrollEvent()
-{
-    menuScrollRequested = true;
-}
-
-
-void Component::triggerMenuExitEvent(int menuIndex)
-{
-    menuExitRequested = true;
-    menuExitIndex = menuIndex;
-}
-void Component::triggerHighlightEvent()
-{
-    newItemSelected = true;
-}
-
-void Component::triggerPlaylistChangeEvent(std::string name)
-{
-    playlistChanged = true;
     this->playlistName = name;
+}
+
+void Component::setNewItemSelected()
+{
+  newItemSelected = true;
 }
 
 bool Component::isIdle()
 {
-    return (currentAnimationState == IDLE);
-}
-
-bool Component::isHidden()
-{
-    return (currentAnimationState == HIDDEN);
-}
-bool Component::isWaiting()
-{
-    return (currentAnimationState == HIGHLIGHT_WAIT);
+    return (currentTweenComplete_ || animationType_ == "idle");
 }
 
 bool Component::isMenuScrolling()
 {
-    return (currentAnimationState == MENU_ENTER || currentAnimationState == MENU_SCROLL || currentAnimationState == MENU_EXIT || menuScrollRequested);
+    return (!currentTweenComplete_ && animationType_ == "menuScroll");
 }
 
 void Component::setTweens(AnimationEvents *set)
 {
     tweens_ = set;
-    forceIdle();
 }
-
-void Component::forceIdle()
-{
-    currentAnimationState = IDLE;
-    currentTweenIndex_ = 0;
-    currentTweenComplete_ = false;
-    elapsedTweenTime_ = 0;
-    currentTweens_ = NULL;
-}
-
 
 void Component::update(float dt)
 {
     elapsedTweenTime_ += dt;
-    highlightExitComplete = false;
-    if(isHidden() || isWaiting() || (isIdle() && (exitRequested || menuExitRequested || enterRequested || menuEnterRequested)))
+
+    if(animationRequested_ && animationRequestedType_ != "")
     {
-        currentTweenComplete_ = true;
+      Animation *newTweens  = tweens_->getAnimation( animationRequestedType_, menuIndex_ );
+      if (newTweens)
+      {
+        animationType_        = animationRequestedType_;
+        currentTweens_        = newTweens;
+        currentTweenIndex_    = 0;
+        elapsedTweenTime_     = 0;
+        currentTweenComplete_ = false;
+      }
+      animationRequested_   = false;
+    }
+    else if (tweens_ && currentTweenComplete_)
+    {
+      animationType_          = "idle";
+      currentTweens_          = tweens_->getAnimation( "idle", menuIndex_ );
+      currentTweenIndex_      = 0;
+      elapsedTweenTime_       = 0;
+      currentTweenComplete_   = false;
+      animationRequested_     = false;
     }
 
+    currentTweenComplete_ = animate();
     if(currentTweenComplete_)
     {
-        currentTweens_ = NULL;
-
-        // There was no request to override our state path. Continue on as normal.
-        std::stringstream ss;
-        switch(currentAnimationState)
-        {
-        case MENU_ENTER:
-            currentTweens_ = NULL;
-            currentAnimationState = IDLE;
-            break;
-
-        case MENU_SCROLL:
-            currentTweens_ = NULL;
-            currentAnimationState = IDLE;
-            break;
-
-        case MENU_EXIT:
-            currentTweens_ = NULL;
-            currentAnimationState = IDLE;
-            break;
-
-
-        case ENTER:
-            currentTweens_ = tweens_->getAnimation("enter", menuEnterIndex);
-            currentAnimationState = HIGHLIGHT_ENTER;
-            break;
-
-        case EXIT:
-            currentTweens_ = NULL;
-            currentAnimationState = HIDDEN;
-            break;
-
-        case HIGHLIGHT_ENTER:
-            currentTweens_ = tweens_->getAnimation("idle", menuEnterIndex);
-            currentAnimationState = IDLE;
-            break;
-
-        case IDLE:
-            // prevent us from automatically jumping to the exit tween upon enter
-            if(enterRequested)
-            {
-                enterRequested = false;
-                newItemSelected = false;
-            }
-            else if(menuExitRequested && (!menuEnterRequested || menuExitRequested <= menuEnterRequested))
-            {
-                currentTweens_ = tweens_->getAnimation("menuExit", menuExitIndex);
-                currentAnimationState = MENU_EXIT;
-                menuExitRequested = false;
-            }
-            else if(menuEnterRequested && (!menuExitRequested || menuExitRequested > menuEnterRequested))
-            {
-                currentTweens_ = tweens_->getAnimation("menuEnter", menuEnterIndex);
-                currentAnimationState = MENU_ENTER;
-                menuEnterRequested = false;
-
-            }
-            else if(menuScrollRequested)
-            {
-                menuScrollRequested = false;
-                currentTweens_ = tweens_->getAnimation("menuScroll", menuEnterIndex);
-                currentAnimationState = MENU_SCROLL;
-            }
-            else if(scrollActive || newItemSelected || exitRequested)
-            {
-                currentTweens_ = tweens_->getAnimation("highlightExit", menuEnterIndex);
-                currentAnimationState = HIGHLIGHT_EXIT;
-            }
-            else
-            {
-                currentTweens_ = tweens_->getAnimation("idle", menuEnterIndex);
-                currentAnimationState = IDLE;
-            }
-            break;
-
-        case HIGHLIGHT_EXIT:
-
-            // intentionally break down
-        case HIGHLIGHT_WAIT:
-
-            if(exitRequested && (currentAnimationState == HIGHLIGHT_WAIT))
-            {
-                currentTweens_ = tweens_->getAnimation("highlightExit", menuEnterIndex);
-                currentAnimationState = HIGHLIGHT_EXIT;
-
-            }
-            else if(exitRequested && (currentAnimationState == HIGHLIGHT_EXIT))
-            {
-
-                currentTweens_ = tweens_->getAnimation("exit", menuEnterIndex);
-                currentAnimationState = EXIT;
-                exitRequested = false;
-            }
-            else if(scrollActive)
-            {
-                currentTweens_ = NULL;
-                currentAnimationState = HIGHLIGHT_WAIT;
-            }
-            else if(newItemSelected)
-            {
-                currentTweens_ = tweens_->getAnimation("highlightEnter", menuEnterIndex);
-                currentAnimationState = HIGHLIGHT_ENTER;
-                highlightExitComplete = true;
-                newItemSelected = false;
-            }
-            else
-            {
-                currentTweens_ = NULL;
-                currentAnimationState = HIGHLIGHT_WAIT;
-            }
-            break;
-
-        case HIDDEN:
-            if(enterRequested || exitRequested)
-            {
-                currentTweens_ = tweens_->getAnimation("enter", menuEnterIndex);
-                currentAnimationState = ENTER;
-            }
-
-            else if(menuExitRequested && (!menuEnterRequested || menuExitRequested <= menuEnterRequested))
-            {
-                currentTweens_ = tweens_->getAnimation("menuExit", menuExitIndex);
-                currentAnimationState = MENU_EXIT;
-                menuExitRequested = false;
-            }
-            else if(menuEnterRequested && (!menuExitRequested || menuExitRequested > menuEnterRequested))
-            {
-                currentTweens_ = tweens_->getAnimation("menuEnter", menuEnterIndex);
-                currentAnimationState = MENU_ENTER;
-                menuEnterRequested = false;
-
-            }
-            else if(menuScrollRequested)
-            {
-                menuScrollRequested = false;
-                currentTweens_ = tweens_->getAnimation("menuScroll", menuEnterIndex);
-                currentAnimationState = MENU_SCROLL;
-            }
-            else
-            {
-                currentTweens_ = NULL;
-                currentAnimationState = HIDDEN;
-            }
-        }
-
-        currentTweenIndex_ = 0;
-        currentTweenComplete_ = false;
-
-        elapsedTweenTime_ = 0;
+      currentTweens_     = NULL;
+      currentTweenIndex_ = 0;
     }
-
-    currentTweenComplete_ = animate(isIdle());
 }
 
 void Component::draw()
@@ -359,7 +177,7 @@ void Component::draw()
     }
 }
 
-bool Component::animate(bool loop)
+bool Component::animate()
 {
     bool completeDone = false;
     if(!currentTweens_ || currentTweenIndex_ >= currentTweens_->size())
@@ -449,10 +267,6 @@ bool Component::animate(bool loop)
 
     if(!currentTweens_ || currentTweenIndex_ >= currentTweens_->tweenSets()->size())
     {
-        if(loop)
-        {
-            currentTweenIndex_ = 0;
-        }
         completeDone = true;
     }
 
