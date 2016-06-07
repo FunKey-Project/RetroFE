@@ -142,11 +142,6 @@ void Page::onNewItemSelected(Item *item)
         menu->setNewItemSelected();
     }
 
-    if(unloadSoundChunk_)
-    {
-        unloadSoundChunk_->play();
-    }
-
     for(unsigned int i = 0; i < NUM_LAYERS; ++i)
     {
         for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
