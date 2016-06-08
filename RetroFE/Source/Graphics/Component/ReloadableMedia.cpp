@@ -28,10 +28,11 @@
 #include <vector>
 #include <iostream>
 
-ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, std::string type, Page &p, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY)
+ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, bool layoutMode, std::string type, Page &p, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY)
     : Component(p)
     , config_(config)
     , systemMode_(systemMode)
+    , layoutMode_(layoutMode)
     , loadedComponent_(NULL)
     , videoInst_(NULL)
     , isVideo_(isVideo)
@@ -329,7 +330,20 @@ Component *ReloadableMedia::findComponent(std::string collection, std::string ty
     ImageBuilder imageBuild;
 
     // check the system folder
-    config_.getMediaPropertyAbsolutePath(collection, type, systemMode, imagePath);
+    if (layoutMode_)
+    {
+        std::string layoutName;
+        config_.getProperty("layout", layoutName);
+        imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", collection);
+        if (systemMode)
+            imagePath = Utils::combinePath(imagePath, "system_artwork");
+        else
+            imagePath = Utils::combinePath(imagePath, "medium_artwork");
+    }
+    else
+    {
+        config_.getMediaPropertyAbsolutePath(collection, type, systemMode, imagePath);
+    }
 
     if(type == "video")
     {
