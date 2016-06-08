@@ -294,6 +294,7 @@ bool Component::animate()
         {
             currentTweenIndex_++;
             elapsedTweenTime_ = 0;
+            storeViewInfo_    = baseViewInfo;
         }
     }
 
