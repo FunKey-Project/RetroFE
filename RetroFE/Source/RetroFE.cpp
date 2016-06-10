@@ -324,6 +324,7 @@ void RetroFE::run()
                     mp.buildMenuItems(info, menuSort);
 
                     currentPage_->pushCollection(info);
+                    currentPage_->start();
 
                     state = RETROFE_ENTER;
                 }

@@ -51,7 +51,7 @@ ScrollingList::ScrollingList(Configuration &c,
     , spriteList_(NULL)
     , scrollPoints_(NULL)
     , tweenPoints_(NULL)
-    , focus_(false)
+    , focus_(true)
     , itemIndex_(0)
     , componentIndex_(0)
     , selectedOffsetIndex_(0)
