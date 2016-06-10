@@ -25,7 +25,7 @@
 #include "Video/VideoFactory.h"
 #include <SDL2/SDL.h>
 #include <list>
-#include <vector>
+#include <stack>
 #include <map>
 
 class CollectionInfo;
@@ -80,6 +80,7 @@ private:
     MetadataDatabase *metadb_;
     UserInput input_;
     Page *currentPage_;
+    std::stack<Page *> pages_;
     float keyInputDisable_;
     float currentTime_;
     float lastLaunchReturnTime_;

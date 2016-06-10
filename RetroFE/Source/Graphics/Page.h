@@ -89,6 +89,7 @@ public:
     float getMinShowTime();
     void addPlaylist();
     void removePlaylist();
+    void resetMenuItems();
 
 private:
     void highlightEnter();

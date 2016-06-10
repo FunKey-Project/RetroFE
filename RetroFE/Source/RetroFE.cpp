@@ -342,11 +342,25 @@ void RetroFE::run()
         case RETROFE_NEXT_PAGE_MENU_EXIT:
             if(currentPage_->isIdle())
             {
-                bool menuSort = true;
-                config_.setProperty("currentCollection", nextPageItem_->name);
-                config_.getProperty("collections." + nextPageItem_->name + ".list.menuSort", menuSort);
+                // Load new layout if available
+                std::string layoutName;
+                config_.getProperty("layout", layoutName);
+                PageBuilder pb(layoutName, "layout", config_, &fontcache_);
+                Page *page = pb.buildPage( nextPageItem_->name);
+                std::string nextPageName = nextPageItem_->name;
+                if(page)
+                {
+                    currentPage_->freeGraphicsMemory();
+                    pages_.push( currentPage_ );
+                    currentPage_ = page;
+                    currentPage_->start();
+                }
 
-                CollectionInfo *info = getCollection(nextPageItem_->name);
+                bool menuSort = true;
+                config_.setProperty("currentCollection", nextPageName);
+                config_.getProperty("collections." + nextPageName + ".list.menuSort", menuSort);
+
+                CollectionInfo *info = getCollection(nextPageName);
 
                 MenuParser mp;
                 mp.buildMenuItems(info, menuSort);
@@ -355,9 +369,9 @@ void RetroFE::run()
                 bool rememberMenu = false;
                 config_.getProperty("rememberMenu", rememberMenu);
 
-                if(rememberMenu && lastMenuOffsets_.find(nextPageItem_->name) != lastMenuOffsets_.end())
+                if(rememberMenu && lastMenuOffsets_.find(nextPageName) != lastMenuOffsets_.end())
                 {
-                    currentPage_->setScrollOffsetIndex(lastMenuOffsets_[nextPageItem_->name]);
+                    currentPage_->setScrollOffsetIndex(lastMenuOffsets_[nextPageName]);
                 }
 
                 bool autoFavorites = true;
@@ -388,7 +402,14 @@ void RetroFE::run()
             break;
 
         case RETROFE_BACK_REQUEST:
-            currentPage_->exitMenu();
+            if (currentPage_->getMenuDepth() == 1 )
+            {
+                currentPage_->stop();
+            }
+            else
+            {
+                currentPage_->exitMenu();
+            }
             state = RETROFE_BACK_MENU_EXIT;
             break;
 
@@ -396,8 +417,20 @@ void RetroFE::run()
           if(currentPage_->isIdle())
           {
             lastMenuOffsets_[currentPage_->getCollectionName()] = currentPage_->getScrollOffsetIndex();
-            currentPage_->popCollection();
+            if (currentPage_->getMenuDepth() == 1)
+            {
+                currentPage_->DeInitialize();
+                delete currentPage_;
+                currentPage_ = pages_.top();
+                pages_.pop();
+                currentPage_->allocateGraphicsMemory();
+            }
+            else
+            {
+                currentPage_->popCollection();
+            }
             config_.setProperty("currentCollection", currentPage_->getCollectionName());
+            currentPage_->resetMenuItems();
             currentPage_->setNewItemSelected();
             currentPage_->enterMenu();
             state = RETROFE_BACK_MENU_ENTER;
@@ -468,7 +501,7 @@ bool RetroFE::back(bool &exit)
     config_.getProperty("exitOnFirstPageBack", exitOnBack);
     exit = false;
 
-    if(currentPage_->getMenuDepth() <= 1)
+    if(currentPage_->getMenuDepth() <= 1 && pages_.empty())
     {
         exit = exitOnBack;
     }

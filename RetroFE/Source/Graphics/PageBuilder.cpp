@@ -70,14 +70,22 @@ PageBuilder::~PageBuilder()
 {
 }
 
-Page *PageBuilder::buildPage()
+Page *PageBuilder::buildPage( std::string collectionName )
 {
     Page *page = NULL;
 
     std::string layoutFile;
     std::string layoutName = layoutKey;
 
-    layoutPath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName);
+    if ( collectionName == "" )
+    {
+        layoutPath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName);
+    }
+    else
+    {
+        layoutPath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", collectionName);
+        layoutPath = Utils::combinePath(layoutPath, "layout");
+    }
     layoutFile = Utils::combinePath(layoutPath, layoutPage + ".xml");
 
     Logger::write(Logger::ZONE_INFO, "Layout", "Initializing " + layoutFile);

@@ -855,3 +855,10 @@ void Page::launchExit()
         }
     }
 }
+
+
+void Page::resetMenuItems()
+{
+    activeMenu_->deallocateSpritePoints();
+    activeMenu_->allocateSpritePoints();
+}
