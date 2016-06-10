@@ -502,7 +502,6 @@ bool Page::pushCollection(CollectionInfo *collection)
     activeMenu_ = menus_[menuDepth_];
     activeMenu_->collectionName = collection->name;
     activeMenu_->setItems(&collection->items);
-    activeMenu_->triggerMenuEnterEvent();
 
     // build the collection info instance
     MenuInfo_S info;
