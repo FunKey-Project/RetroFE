@@ -87,13 +87,14 @@ public:
     std::string getCollectionName();
     void setMinShowTime(float value);
     float getMinShowTime();
+    void highlightEnter();
+    void highlightExit();
     void addPlaylist();
     void removePlaylist();
     void resetMenuItems();
+    bool isMenuScrolling();
 
 private:
-    void highlightEnter();
-    void highlightExit();
     void playlistChange();
     std::string collectionName_;
     Configuration &config_;

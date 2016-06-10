@@ -643,9 +643,9 @@ ScrollingList * PageBuilder::buildMenu(xml_node<> *menuXml, Page &page)
     if(scrollOrientationXml)
     {
         std::string scrollOrientation = scrollOrientationXml->value();
-	if(scrollOrientation == "horizontal")
+        if(scrollOrientation == "horizontal")
         {
-        	menu->horizontalScroll = true;
+            menu->horizontalScroll = true;
         }
     }
 
@@ -966,11 +966,18 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
             xml_attribute<> *to = animate->first_attribute("to");
             xml_attribute<> *algorithmXml = animate->first_attribute("algorithm");
 
+            std::string animateType;
+            if (type)
+            {
+                animateType = type->value();
+            }
+
+
             if(!type)
             {
                 Logger::write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"type\" attribute");
             }
-            else if(!to)
+            else if(!to && animateType != "nop")
             {
                 Logger::write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"to\" attribute");
             }
@@ -979,10 +986,18 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
                 float fromValue = 0.0f;
                 bool  fromDefined = true;
                 if (from)
+                {
                     fromValue = Utils::convertFloat(from->value());
+                }
                 else
+                {
                    fromDefined = false;
-                float toValue = Utils::convertFloat(to->value());
+                }
+                float toValue = 0.0f;
+                if (to)
+                {
+                    toValue = Utils::convertFloat(to->value());
+                }
                 float durationValue = Utils::convertFloat(durationXml->value());
 
                 TweenAlgorithm algorithm = LINEAR;
@@ -1024,6 +1039,11 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
                         fromValue = getVerticalAlignment(from, 0) / screenHeight_;
                         toValue = getVerticalAlignment(to, 0) / screenHeight_;
                         break;
+
+                    case TWEEN_PROPERTY_MAX_WIDTH:
+                    case TWEEN_PROPERTY_MAX_HEIGHT:
+                      fromValue = getVerticalAlignment(from, FLT_MAX);
+                      toValue   = getVerticalAlignment(to,   FLT_MAX);
 
                     default:
                         break;

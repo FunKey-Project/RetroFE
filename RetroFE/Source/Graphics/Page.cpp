@@ -372,14 +372,14 @@ void Page::highlightEnter()
     if(!item) return;
     if(activeMenu_)
     {
-        activeMenu_->triggerEvent( "highlightEnter" );
+        activeMenu_->triggerEvent( "highlightEnter", menuDepth_ - 1 );
     }
 
     for(unsigned int i = 0; i < NUM_LAYERS; ++i)
     {
         for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
         {
-            (*it)->triggerEvent( "highlightEnter" );
+            (*it)->triggerEvent( "highlightEnter", menuDepth_ - 1 );
         }
     }
 }
@@ -392,14 +392,14 @@ void Page::highlightExit()
     if(!item) return;
     if(activeMenu_)
     {
-        activeMenu_->triggerEvent( "highlightExit" );
+        activeMenu_->triggerEvent( "highlightExit", menuDepth_ - 1 );
     }
 
     for(unsigned int i = 0; i < NUM_LAYERS; ++i)
     {
         for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
         {
-            (*it)->triggerEvent( "highlightExit" );
+            (*it)->triggerEvent( "highlightExit", menuDepth_ - 1 );
         }
     }
 }
@@ -861,4 +861,10 @@ void Page::resetMenuItems()
 {
     activeMenu_->deallocateSpritePoints();
     activeMenu_->allocateSpritePoints();
+}
+
+
+bool Page::isMenuScrolling()
+{
+    return scrollActive_;
 }

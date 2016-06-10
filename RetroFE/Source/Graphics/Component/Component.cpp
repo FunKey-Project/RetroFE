@@ -287,6 +287,23 @@ bool Component::animate()
                 else
                     baseViewInfo.BackgroundAlpha = tween->animate(elapsedTime, storeViewInfo_.BackgroundAlpha);
                 break;
+
+            case TWEEN_PROPERTY_MAX_WIDTH:
+                if (tween->startDefined)
+                    baseViewInfo.MaxWidth = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.MaxWidth = tween->animate(elapsedTime, storeViewInfo_.MaxWidth);
+                break;
+
+            case TWEEN_PROPERTY_MAX_HEIGHT:
+                if (tween->startDefined)
+                    baseViewInfo.MaxHeight = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.MaxHeight = tween->animate(elapsedTime, storeViewInfo_.MaxHeight);
+                break;
+
+            case TWEEN_PROPERTY_NOP:
+                break;
             }
         }
 

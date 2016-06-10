@@ -334,6 +334,26 @@ void RetroFE::run()
             }
             break;
 
+        case RETROFE_HIGHLIGHT_REQUEST:
+            currentPage_->highlightExit();
+            state = RETROFE_HIGHLIGHT_EXIT;
+            break;
+
+        case RETROFE_HIGHLIGHT_EXIT:
+            if (currentPage_->isIdle())
+            {
+                currentPage_->highlightEnter();
+                state = RETROFE_HIGHLIGHT_ENTER;
+            }
+            break;
+
+        case RETROFE_HIGHLIGHT_ENTER:
+            if (currentPage_->isIdle())
+            {
+                state = RETROFE_IDLE;
+            }
+            break;
+
         case RETROFE_NEXT_PAGE_REQUEST:
             currentPage_->exitMenu();
             state = RETROFE_NEXT_PAGE_MENU_EXIT;
@@ -636,6 +656,8 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
             !input_.keystate(UserInput::KeyCodePageUp) &&
             !input_.keystate(UserInput::KeyCodePageDown))
     {
+        if (page->isMenuScrolling())
+            state = RETROFE_HIGHLIGHT_REQUEST;
         page->setScrolling(Page::ScrollDirectionIdle);
     }
 
