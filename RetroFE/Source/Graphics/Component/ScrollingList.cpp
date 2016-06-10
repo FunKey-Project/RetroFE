@@ -51,7 +51,7 @@ ScrollingList::ScrollingList(Configuration &c,
     , spriteList_(NULL)
     , scrollPoints_(NULL)
     , tweenPoints_(NULL)
-    , focus_(true)
+    , focus_(false)
     , itemIndex_(0)
     , componentIndex_(0)
     , selectedOffsetIndex_(0)
@@ -379,6 +379,30 @@ void ScrollingList::freeGraphicsMemory()
     scrollPeriod_ = 0;
     
     deallocateSpritePoints();
+}
+
+void ScrollingList::triggerEnterEvent()
+{
+    focus_ = true;
+    notifyAllRequested_ = true;
+
+    for(unsigned int i = 0; i < components_.size(); ++i)
+    {
+        Component *c = components_.at(i);
+        if(c) c->triggerEvent( "enter" );
+    }
+}
+
+void ScrollingList::triggerExitEvent()
+{
+    focus_ = false;
+    notifyAllRequested_ = true;
+
+    for(unsigned int i = 0; i < components_.size(); ++i)
+    {
+        Component *c = components_.at(i);
+        if(c) c->triggerEvent( "exit" );
+    }
 }
 
 void ScrollingList::triggerMenuEnterEvent( int menuIndex )

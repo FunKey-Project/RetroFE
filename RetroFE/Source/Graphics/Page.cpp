@@ -235,6 +235,7 @@ void Page::start()
     {
         ScrollingList *menu = *it;
         menu->triggerEvent( "enter" );
+        menu->triggerEnterEvent();
     }
 
     if(loadSoundChunk_)
@@ -263,6 +264,7 @@ void Page::stop()
     {
         ScrollingList *menu = *it;
         menu->triggerEvent( "exit" );
+        menu->triggerExitEvent();
     }
 
     if(unloadSoundChunk_)

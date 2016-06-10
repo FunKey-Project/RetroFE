@@ -53,6 +53,8 @@ public:
 
     ScrollingList(const ScrollingList &copy);
     virtual ~ScrollingList();
+    void triggerEnterEvent();
+    void triggerExitEvent();
     void triggerMenuEnterEvent(int menuIndex = -1);
     void triggerMenuExitEvent(int menuIndex = -1);
 
