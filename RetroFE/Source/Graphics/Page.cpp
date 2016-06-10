@@ -604,6 +604,12 @@ void Page::exitMenu()
 }
 
 
+std::string Page::getPlaylistName()
+{
+   return playlist_->first;
+}
+
+
 void Page::nextPlaylist()
 {
     MenuInfo_S &info = collections_.back();
@@ -625,7 +631,7 @@ void Page::nextPlaylist()
     playlistChange();
 }
 
-void Page::favPlaylist()
+void Page::selectPlaylist(std::string playlist)
 {
     MenuInfo_S &info = collections_.back();
     info.collection->Save();
@@ -641,11 +647,11 @@ void Page::favPlaylist()
         if(playlist_ == info.collection->playlists.end()) playlist_ = info.collection->playlists.begin();
 
         // find the first playlist
-        if(playlist_->second->size() != 0 && playlist_->first == "favorites") break;
+        if(playlist_->second->size() != 0 && playlist_->first == playlist) break;
     }
 
-    // Do not change playlist if favorites does not exist or if it's empty
-    if ( playlist_->second->size() == 0 || playlist_->first != "favorites")
+    // Do not change playlist if it does not exist or if it's empty
+    if ( playlist_->second->size() == 0 || playlist_->first != playlist)
       playlist_ = playlist_store;
 
     activeMenu_->setItems(playlist_->second);

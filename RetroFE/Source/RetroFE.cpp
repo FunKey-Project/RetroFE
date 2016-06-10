@@ -388,18 +388,24 @@ void RetroFE::run()
 
                 bool rememberMenu = false;
                 config_.getProperty("rememberMenu", rememberMenu);
+                bool autoFavorites = true;
+                config_.getProperty("autoFavorites", autoFavorites);
+
+                if (rememberMenu && lastMenuPlaylists_.find(nextPageName) != lastMenuPlaylists_.end())
+                {
+                  currentPage_->selectPlaylist(lastMenuPlaylists_[nextPageName]); // Switch to last playlist
+                }
+                else if (autoFavorites)
+                {
+                  currentPage_->selectPlaylist("favorites"); // Switch to favorites playlist
+                }
 
                 if(rememberMenu && lastMenuOffsets_.find(nextPageName) != lastMenuOffsets_.end())
                 {
                     currentPage_->setScrollOffsetIndex(lastMenuOffsets_[nextPageName]);
                 }
 
-                bool autoFavorites = true;
-                config_.getProperty("autoFavorites", autoFavorites);
-
-                if (autoFavorites)
-                  currentPage_->favPlaylist(); // Switch to favorites if it exists
-
+                currentPage_->resetMenuItems();
                 currentPage_->setNewItemSelected();
                 currentPage_->enterMenu();
 
@@ -436,7 +442,8 @@ void RetroFE::run()
         case RETROFE_BACK_MENU_EXIT:
           if(currentPage_->isIdle())
           {
-            lastMenuOffsets_[currentPage_->getCollectionName()] = currentPage_->getScrollOffsetIndex();
+            lastMenuOffsets_[currentPage_->getCollectionName()]   = currentPage_->getScrollOffsetIndex();
+            lastMenuPlaylists_[currentPage_->getCollectionName()] = currentPage_->getPlaylistName();
             if (currentPage_->getMenuDepth() == 1)
             {
                 currentPage_->DeInitialize();

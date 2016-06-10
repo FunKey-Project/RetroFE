@@ -49,8 +49,9 @@ public:
     bool popCollection();
     void enterMenu();
     void exitMenu();
+    std::string getPlaylistName();
     void nextPlaylist();
-    void favPlaylist();
+    void selectPlaylist(std::string playlist);
     void pushMenu(ScrollingList *s);
     bool isMenusFull();
     void setLoadSound(Sound *chunk);
