@@ -52,7 +52,6 @@ void Page::DeInitialize()
     while(it != menus_.end())
     {
         ScrollingList *menu = *it;
-        menu->removeComponentForNotifications(this);
         menus_.erase(it);
         delete menu;
         it = menus_.begin();
@@ -132,9 +131,9 @@ void Page::setSelectSound(Sound *chunk)
 }
 
 
-void Page::onNewItemSelected(Item *item)
+void Page::onNewItemSelected()
 {
-    selectedItem_ = item;
+    selectedItem_ = activeMenu_->getSelectedItem();
 
     for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
@@ -156,11 +155,6 @@ void Page::onNewItemSelected(Item *item)
 void Page::pushMenu(ScrollingList *s)
 {
     menus_.push_back(s);
-
-    if(s)
-    {
-        s->addComponentForNotifications(this);
-    }
 }
 
 unsigned int Page::getMenuDepth()
@@ -279,26 +273,6 @@ void Page::stop()
             (*it)->triggerEvent( "exit" );
         }
     }
-}
-
-
-void Page::setNewItemSelected()
-{
-
-    if(activeMenu_)
-    {
-        activeMenu_->setNewItemSelected();
-    }
-
-    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
-    {
-        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-        {
-            (*it)->setNewItemSelected();
-        }
-    }
-
-    return;
 }
 
 

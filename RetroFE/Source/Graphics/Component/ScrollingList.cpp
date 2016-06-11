@@ -51,12 +51,9 @@ ScrollingList::ScrollingList(Configuration &c,
     , spriteList_(NULL)
     , scrollPoints_(NULL)
     , tweenPoints_(NULL)
-    , focus_(false)
     , itemIndex_(0)
     , componentIndex_(0)
     , selectedOffsetIndex_(0)
-    , scrollStopRequested_(true)
-    , notifyAllRequested_(false)
     , currentScrollDirection_(ScrollDirectionIdle)
     , requestedScrollDirection_(ScrollDirectionIdle)
     , currentScrollState_(ScrollStateIdle)
@@ -77,12 +74,9 @@ ScrollingList::ScrollingList(const ScrollingList &copy)
     : Component(copy)
     , horizontalScroll(copy.horizontalScroll)
     , spriteList_(NULL)
-    , focus_(false)
     , itemIndex_(0)
     , componentIndex_(0)
     , selectedOffsetIndex_(copy.selectedOffsetIndex_)
-    , scrollStopRequested_(true)
-    , notifyAllRequested_(false)
     , currentScrollDirection_(ScrollDirectionIdle)
     , requestedScrollDirection_(ScrollDirectionIdle)
     , currentScrollState_(ScrollStateIdle)
@@ -122,8 +116,6 @@ void ScrollingList::setItems(std::vector<Item *> *items)
     }
   
     allocateSpritePoints();
-
-    notifyAllRequested_ = true;
 }
 
 unsigned int ScrollingList::loopIncrement(unsigned int offset, unsigned int i, unsigned int size)
@@ -242,6 +234,15 @@ Item *ScrollingList::getItemByOffset(int offset)
     return items_->at(index);
 }
 
+
+Item *ScrollingList::getSelectedItem()
+{
+    if(!items_ || items_->size() == 0) return NULL;
+    unsigned index = loopIncrement(itemIndex_, selectedOffsetIndex_, items_->size());
+    return items_->at(index);
+}
+
+
 void ScrollingList::click(double nextScrollTime)
 {
     if(currentScrollDirection_ == ScrollDirectionBack)
@@ -277,8 +278,6 @@ void ScrollingList::click(double nextScrollTime)
 
 void ScrollingList::pageUp()
 {
-    notifyAllRequested_ = true;
-
     if(components_.size() == 0) return;
 
     deallocateSpritePoints();
@@ -290,8 +289,6 @@ void ScrollingList::pageUp()
 
 void ScrollingList::pageDown()
 {
-    notifyAllRequested_ = true;
-
     if(components_.size() == 0) return;
 
     deallocateSpritePoints();
@@ -305,8 +302,6 @@ void ScrollingList::random()
 {
     if(!items_ || items_->size() == 0) return;
     
-    notifyAllRequested_ = true;
-
     deallocateSpritePoints();
     itemIndex_ = rand() % items_->size();
     allocateSpritePoints();
@@ -324,7 +319,6 @@ void ScrollingList::letterDown()
 
 void ScrollingList::letterChange(bool increment)
 {
-    notifyAllRequested_ = true;
     deallocateSpritePoints();
 
     std::string startname = items_->at((itemIndex_+selectedOffsetIndex_)%items_->size())->lowercaseFullTitle();
@@ -383,9 +377,6 @@ void ScrollingList::freeGraphicsMemory()
 
 void ScrollingList::triggerEnterEvent()
 {
-    focus_ = true;
-    notifyAllRequested_ = true;
-
     for(unsigned int i = 0; i < components_.size(); ++i)
     {
         Component *c = components_.at(i);
@@ -395,9 +386,6 @@ void ScrollingList::triggerEnterEvent()
 
 void ScrollingList::triggerExitEvent()
 {
-    focus_ = false;
-    notifyAllRequested_ = true;
-
     for(unsigned int i = 0; i < components_.size(); ++i)
     {
         Component *c = components_.at(i);
@@ -407,9 +395,6 @@ void ScrollingList::triggerExitEvent()
 
 void ScrollingList::triggerMenuEnterEvent( int menuIndex )
 {
-    focus_ = true;
-    notifyAllRequested_ = true;
-
     for(unsigned int i = 0; i < components_.size(); ++i)
     {
         Component *c = components_.at(i);
@@ -419,9 +404,6 @@ void ScrollingList::triggerMenuEnterEvent( int menuIndex )
 
 void ScrollingList::triggerMenuExitEvent( int menuIndex )
 {
-    focus_ = false;
-    notifyAllRequested_ = true;
-
     for(unsigned int i = 0; i < components_.size(); ++i)
     {
         Component *c = components_.at(i);
@@ -531,31 +513,13 @@ void ScrollingList::update(float dt)
         
     }
 
-    if(scrollStopped || (notifyAllRequested_ && focus_))
+    if(scrollStopped)
     {
-        Item *item = NULL;
-        unsigned index = loopIncrement(itemIndex_, selectedOffsetIndex_, items_->size());
-        item = items_->at(index);
-
-        for(std::vector<MenuNotifierInterface *>::iterator it = notificationComponents_.begin();
-                it != notificationComponents_.end();
-                it++)
-        {
-            MenuNotifierInterface *c = *it;
-
-            if(c && item)
-            {
-                c->onNewItemSelected(item);
-            }
-        }
-
         if(currentScrollState_ == ScrollStatePageChange)
         {
             currentScrollState_ = ScrollStateIdle;
         }
     }
-
-    notifyAllRequested_ = false;
 }
 
 unsigned int ScrollingList::getSelectedIndex()
@@ -720,28 +684,8 @@ void ScrollingList::draw(unsigned int layer)
 void ScrollingList::setScrollDirection(ScrollDirection direction)
 {
     requestedScrollDirection_ = direction;
-
-    scrollStopRequested_ = (direction == ScrollDirectionIdle);
 }
 
-
-void ScrollingList::addComponentForNotifications(MenuNotifierInterface *c)
-{
-    notificationComponents_.push_back(c);
-}
-void ScrollingList::removeComponentForNotifications(MenuNotifierInterface *c)
-{
-    for(std::vector<MenuNotifierInterface *>::iterator it = notificationComponents_.begin();
-            it != notificationComponents_.end();
-            it++)
-    {
-        if(c == *it)
-        {
-            notificationComponents_.erase(it);
-            break;
-        }
-    }
-}
 
 bool ScrollingList::isIdle()
 {

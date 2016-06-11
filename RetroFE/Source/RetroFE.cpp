@@ -289,7 +289,7 @@ void RetroFE::run()
                 }
 
                 currentPage_->stop();
-                state = RETROFE_EXIT;
+                state = RETROFE_SPLASH_EXIT;
 
             }
             break;
@@ -301,7 +301,7 @@ void RetroFE::run()
             }
             break;
 
-        case RETROFE_EXIT:
+        case RETROFE_SPLASH_EXIT:
             if(currentPage_->isIdle())
             {
                 // delete the splash screen and use the standard menu
@@ -324,6 +324,7 @@ void RetroFE::run()
                     mp.buildMenuItems(info, menuSort);
 
                     currentPage_->pushCollection(info);
+                    currentPage_->onNewItemSelected();
                     currentPage_->start();
 
                     state = RETROFE_ENTER;
@@ -343,6 +344,7 @@ void RetroFE::run()
         case RETROFE_HIGHLIGHT_EXIT:
             if (currentPage_->isIdle())
             {
+                currentPage_->onNewItemSelected();
                 currentPage_->highlightEnter();
                 state = RETROFE_HIGHLIGHT_ENTER;
             }
@@ -407,7 +409,7 @@ void RetroFE::run()
                 }
 
                 currentPage_->resetMenuItems();
-                currentPage_->setNewItemSelected();
+                currentPage_->onNewItemSelected();
                 currentPage_->enterMenu();
 
                 state = RETROFE_NEXT_PAGE_MENU_ENTER;
@@ -459,7 +461,7 @@ void RetroFE::run()
             }
             config_.setProperty("currentCollection", currentPage_->getCollectionName());
             currentPage_->resetMenuItems();
-            currentPage_->setNewItemSelected();
+            currentPage_->onNewItemSelected();
             currentPage_->enterMenu();
             state = RETROFE_BACK_MENU_ENTER;
           }
@@ -592,22 +594,27 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         if (input_.keystate(UserInput::KeyCodePageUp))
         {
             page->pageScroll(Page::ScrollDirectionBack);
+            state = RETROFE_HIGHLIGHT_REQUEST;
         }
         if (input_.keystate(UserInput::KeyCodePageDown))
         {
             page->pageScroll(Page::ScrollDirectionForward);
+            state = RETROFE_HIGHLIGHT_REQUEST;
         }
         if (input_.keystate(UserInput::KeyCodeLetterUp))
         {
             page->letterScroll(Page::ScrollDirectionBack);
+            state = RETROFE_HIGHLIGHT_REQUEST;
         }
         if (input_.keystate(UserInput::KeyCodeLetterDown))
         {
             page->letterScroll(Page::ScrollDirectionForward);
+            state = RETROFE_HIGHLIGHT_REQUEST;
         }
         if(input_.newKeyPressed(UserInput::KeyCodeNextPlaylist))
         {
             page->nextPlaylist();
+            state = RETROFE_HIGHLIGHT_REQUEST;
         }
         if(input_.newKeyPressed(UserInput::KeyCodeRemovePlaylist))
         {
@@ -620,6 +627,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         if(input_.keystate(UserInput::KeyCodeRandom))
         {
             page->selectRandom();
+            state = RETROFE_HIGHLIGHT_REQUEST;
         }
     }
 
@@ -684,10 +692,6 @@ Page *RetroFE::loadPage()
     if(!page)
     {
         Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not create page");
-    }
-    else
-    {
-        page->start();
     }
 
     return page;

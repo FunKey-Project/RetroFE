@@ -15,7 +15,6 @@
  */
 #pragma once
 
-#include "MenuNotifierInterface.h"
 #include "../Collection/CollectionInfo.h"
 
 #include <map>
@@ -30,7 +29,7 @@ class Text;
 class Item;
 class Sound;
 
-class Page : public MenuNotifierInterface
+class Page
 {
 public:
     enum ScrollDirection
@@ -44,7 +43,7 @@ public:
     Page(Configuration &c);
     virtual ~Page();
     void DeInitialize();
-    virtual void onNewItemSelected(Item *);
+    virtual void onNewItemSelected();
     bool pushCollection(CollectionInfo *collection);
     bool popCollection();
     void enterMenu();
@@ -70,7 +69,6 @@ public:
     void setScrolling(ScrollDirection direction);
     bool isHorizontalScroll();
     unsigned int getMenuDepth();
-    void setNewItemSelected();
     Item *getSelectedItem();
     Item *getSelectedItem(int offset);
     void removeSelectedItem();

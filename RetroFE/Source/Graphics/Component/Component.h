@@ -18,7 +18,6 @@
 #include <vector>
 
 #include "../../SDL.h"
-#include "../MenuNotifierInterface.h"
 #include "../Page.h"
 #include "../ViewInfo.h"
 #include "../Animate/Tween.h"
