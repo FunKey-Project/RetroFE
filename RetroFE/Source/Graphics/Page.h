@@ -64,7 +64,6 @@ public:
     unsigned int getSelectedIndex();
     void selectRandom();
     void start();
-    void startComponents();
     void stop();
     void setScrolling(ScrollDirection direction);
     bool isHorizontalScroll();

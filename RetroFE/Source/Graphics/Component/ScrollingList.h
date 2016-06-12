@@ -56,6 +56,8 @@ public:
     void triggerExitEvent();
     void triggerMenuEnterEvent(int menuIndex = -1);
     void triggerMenuExitEvent(int menuIndex = -1);
+    void triggerHighlightEnterEvent(int menuIndex = -1);
+    void triggerHighlightExitEvent(int menuIndex = -1);
 
     bool allocateTexture(unsigned int index, Item *i);
     void deallocateTexture(unsigned int index);

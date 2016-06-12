@@ -237,12 +237,6 @@ void Page::start()
         loadSoundChunk_->play();
     }
 
-    startComponents();
-}
-
-
-void Page::startComponents()
-{
     for(unsigned int i = 0; i < NUM_LAYERS; ++i)
     {
         for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
@@ -251,6 +245,7 @@ void Page::startComponents()
         }
     }
 }
+
 
 void Page::stop()
 {
@@ -346,9 +341,11 @@ void Page::highlightEnter()
     Item *item = selectedItem_;
 
     if(!item) return;
-    if(activeMenu_)
+    for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
-        activeMenu_->triggerEvent( "highlightEnter", menuDepth_ - 1 );
+        ScrollingList *menu = *it;
+        menu->triggerEvent( "highlightEnter", menuDepth_ - 1 );
+        menu->triggerHighlightEnterEvent( menuDepth_ - 1 );
     }
 
     for(unsigned int i = 0; i < NUM_LAYERS; ++i)
@@ -366,9 +363,11 @@ void Page::highlightExit()
     Item *item = selectedItem_;
 
     if(!item) return;
-    if(activeMenu_)
+    for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
-        activeMenu_->triggerEvent( "highlightExit", menuDepth_ - 1 );
+        ScrollingList *menu = *it;
+        menu->triggerEvent( "highlightExit", menuDepth_ - 1 );
+        menu->triggerHighlightExitEvent( menuDepth_ - 1 );
     }
 
     for(unsigned int i = 0; i < NUM_LAYERS; ++i)
@@ -542,9 +541,11 @@ bool Page::popCollection()
 void Page::enterMenu()
 {
 
-    if(activeMenu_)
+    for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
-        activeMenu_->triggerMenuEnterEvent( menuDepth_ - 1 );
+        ScrollingList *menu = *it;
+        menu->triggerEvent( "menuEnter", menuDepth_ - 1 );
+        menu->triggerMenuEnterEvent( menuDepth_ - 1 );
     }
 
     for(unsigned int i = 0; i < NUM_LAYERS; ++i)
@@ -562,9 +563,11 @@ void Page::enterMenu()
 void Page::exitMenu()
 {
 
-    if(activeMenu_)
+    for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
-        activeMenu_->triggerMenuExitEvent( menuDepth_ - 1 );
+        ScrollingList *menu = *it;
+        menu->triggerEvent( "menuExit" );
+        menu->triggerMenuExitEvent( menuDepth_ - 1 );
     }
 
     for(unsigned int i = 0; i < NUM_LAYERS; ++i)
@@ -602,7 +605,6 @@ void Page::nextPlaylist()
     }
 
     activeMenu_->setItems(playlist_->second);
-    activeMenu_->triggerMenuEnterEvent();
     playlistChange();
 }
 
@@ -630,7 +632,6 @@ void Page::selectPlaylist(std::string playlist)
       playlist_ = playlist_store;
 
     activeMenu_->setItems(playlist_->second);
-    activeMenu_->triggerMenuEnterEvent();
     playlistChange();
 }
 
