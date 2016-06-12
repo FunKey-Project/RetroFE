@@ -302,6 +302,13 @@ bool Component::animate()
                     baseViewInfo.MaxHeight = tween->animate(elapsedTime, storeViewInfo_.MaxHeight);
                 break;
 
+            case TWEEN_PROPERTY_LAYER:
+                if (tween->startDefined)
+                    baseViewInfo.Layer = static_cast<unsigned int>(tween->animate(elapsedTime));
+                else
+                    baseViewInfo.Layer = static_cast<unsigned int>(tween->animate(elapsedTime, storeViewInfo_.Layer));
+                break;
+
             case TWEEN_PROPERTY_NOP:
                 break;
             }

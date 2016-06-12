@@ -53,6 +53,7 @@ bool Tween::getTweenProperty(std::string name, TweenProperty &property)
         tweenPropertyMap_["backgroundalpha"] = TWEEN_PROPERTY_BACKGROUND_ALPHA;
         tweenPropertyMap_["maxwidth"]        = TWEEN_PROPERTY_MAX_WIDTH;
         tweenPropertyMap_["maxheight"]       = TWEEN_PROPERTY_MAX_HEIGHT;
+        tweenPropertyMap_["layer"]           = TWEEN_PROPERTY_LAYER;
         tweenPropertyMap_["nop"]             = TWEEN_PROPERTY_NOP;
     }
 
