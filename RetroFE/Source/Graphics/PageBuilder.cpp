@@ -412,6 +412,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
         xml_attribute<> *type = componentXml->first_attribute("type");
         xml_attribute<> *mode = componentXml->first_attribute("mode");
         xml_attribute<> *timeFormatXml = componentXml->first_attribute("timeFormat");
+        xml_attribute<> *textFormatXml = componentXml->first_attribute("textFormat");
         xml_attribute<> *selectedOffsetXml = componentXml->first_attribute("selectedOffset");
         bool systemMode = false;
         bool layoutMode = false;
@@ -470,7 +471,12 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                 {
                   timeFormat = timeFormatXml->value();
                 }
-                c = new ReloadableText(type->value(), *page, config_, font, layoutKey, timeFormat, scaleX_, scaleY_);
+                std::string textFormat = "";
+                if (textFormatXml)
+                {
+                  textFormat = textFormatXml->value();
+                }
+                c = new ReloadableText(type->value(), *page, config_, font, layoutKey, timeFormat, textFormat, scaleX_, scaleY_);
             }
         }
         else

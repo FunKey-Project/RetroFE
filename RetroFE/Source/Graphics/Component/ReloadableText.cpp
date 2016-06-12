@@ -23,8 +23,9 @@
 #include <vector>
 #include <iostream>
 #include <time.h>
+#include <algorithm>
 
-ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, std::string timeFormat, float scaleX, float scaleY)
+ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, std::string timeFormat, std::string textFormat, float scaleX, float scaleY)
     : Component(page)
     , config_(config)
     , imageInst_(NULL)
@@ -32,6 +33,7 @@ ReloadableText::ReloadableText(std::string type, Page &page, Configuration &conf
     , layoutKey_(layoutKey)
     , fontInst_(font)
     , timeFormat_(timeFormat)
+    , textFormat_(textFormat)
     , scaleX_(scaleX)
     , scaleY_(scaleY)
 {
@@ -100,7 +102,7 @@ void ReloadableText::ReloadTexture()
     if (selectedItem != NULL)
     {
         std::stringstream ss;
-        std::string text;
+        std::string text = "";
         if (type_ == "time")
         {
           time_t    now = time(0);
@@ -133,9 +135,9 @@ void ReloadableText::ReloadTexture()
             if (selectedItem->numberPlayers != "")
             {
               if (selectedItem->numberPlayers == "1")
-                ss << " Player";
+                text = " Player";
               else
-                ss << " Players";
+                text = " Players";
             }
         }
         else if (type_ == "numberPlayersRangePlayers")
@@ -149,9 +151,9 @@ void ReloadableText::ReloadTexture()
           if (selectedItem->numberPlayers != "")
           {
             if (selectedItem->numberPlayers == "1")
-              ss << " Player";
+              text = " Player";
             else
-              ss << " Players";
+              text = " Players";
           }
         }
         else if (type_ == "ctrlType")
@@ -172,7 +174,6 @@ void ReloadableText::ReloadTexture()
               text = selectedItem->year;
             else // item is a collection
               (void)config_.getProperty("collections." + selectedItem->name + ".year", text );
-            ss << text;
         }
         else if (type_ == "title")
         {
@@ -184,7 +185,6 @@ void ReloadableText::ReloadTexture()
               text = selectedItem->manufacturer;
             else // item is a collection
               (void)config_.getProperty("collections." + selectedItem->name + ".manufacturer", text );
-            ss << text;
         }
         else if (type_ == "genre")
         {
@@ -192,7 +192,6 @@ void ReloadableText::ReloadTexture()
               text = selectedItem->genre;
             else // item is a collection
               (void)config_.getProperty("collections." + selectedItem->name + ".genre", text );
-            ss << text;
         }
         else if (type_ == "playlist")
         {
@@ -212,6 +211,18 @@ void ReloadableText::ReloadTexture()
         } else if (!selectedItem->leaf) // item is not a leaf
         {
             (void)config_.getProperty("collections." + selectedItem->name + "." + type_, text );
+        }
+
+        if (text != "")
+        {
+            if (textFormat_ == "uppercase")
+            {
+                std::transform(text.begin(), text.end(), text.begin(), ::toupper);
+            }
+            if (textFormat_ == "lowercase")
+            {
+                std::transform(text.begin(), text.end(), text.begin(), ::tolower);
+            }
             ss << text;
         }
 
