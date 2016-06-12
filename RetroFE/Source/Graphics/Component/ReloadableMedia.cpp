@@ -338,7 +338,7 @@ Component *ReloadableMedia::findComponent(std::string collection, std::string ty
         if (systemMode)
             imagePath = Utils::combinePath(imagePath, "system_artwork");
         else
-            imagePath = Utils::combinePath(imagePath, "medium_artwork");
+            imagePath = Utils::combinePath(imagePath, "medium_artwork", type);
     }
     else
     {
