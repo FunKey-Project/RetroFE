@@ -556,8 +556,8 @@ void ScrollingList::resetTweens(Component *c, AnimationEvents *sets, ViewInfo *c
     c->baseViewInfo = *currentViewInfo;
 
     TweenSet *set = new TweenSet();
-    set->push(new Tween(TWEEN_PROPERTY_HEIGHT, EASE_INOUT_QUADRATIC, currentViewInfo->ScaledHeight(), nextViewInfo->ScaledHeight(), scrollTime));
-    set->push(new Tween(TWEEN_PROPERTY_WIDTH, EASE_INOUT_QUADRATIC, currentViewInfo->ScaledWidth(), nextViewInfo->ScaledWidth(), scrollTime));
+    set->push(new Tween(TWEEN_PROPERTY_HEIGHT, EASE_INOUT_QUADRATIC, currentViewInfo->Height, nextViewInfo->Height, scrollTime));
+    set->push(new Tween(TWEEN_PROPERTY_WIDTH, EASE_INOUT_QUADRATIC, currentViewInfo->Width, nextViewInfo->Width, scrollTime));
     set->push(new Tween(TWEEN_PROPERTY_ANGLE, EASE_INOUT_QUADRATIC, currentViewInfo->Angle, nextViewInfo->Angle, scrollTime));
     set->push(new Tween(TWEEN_PROPERTY_ALPHA, EASE_INOUT_QUADRATIC, currentViewInfo->Alpha, nextViewInfo->Alpha, scrollTime));
     set->push(new Tween(TWEEN_PROPERTY_X, EASE_INOUT_QUADRATIC, currentViewInfo->X, nextViewInfo->X, scrollTime));
