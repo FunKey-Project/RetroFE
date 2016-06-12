@@ -128,7 +128,7 @@ void Component::update(float dt)
     if(animationRequested_ && animationRequestedType_ != "")
     {
       Animation *newTweens  = tweens_->getAnimation( animationRequestedType_, menuIndex_ );
-      if (newTweens)
+      if (newTweens && newTweens->size() > 0)
       {
         animationType_        = animationRequestedType_;
         currentTweens_        = newTweens;
