@@ -89,7 +89,7 @@ public:
     void highlightExit();
     void addPlaylist();
     void removePlaylist();
-    void resetMenuItems();
+    void reallocateMenuSpritePoints();
     bool isMenuScrolling();
 
 private:

@@ -719,12 +719,6 @@ void Page::removePlaylist()
     {
         items->erase(it);
         collection->saveRequest = true;
-
-        if(activeMenu_)
-        {
-            activeMenu_->deallocateSpritePoints();
-            activeMenu_->allocateSpritePoints();
-        }
     }
 }
 
@@ -741,11 +735,6 @@ void Page::addPlaylist()
     {
         items->push_back(selectedItem_);
         collection->saveRequest = true;
-        if(activeMenu_)
-        {
-            activeMenu_->deallocateSpritePoints();
-            activeMenu_->allocateSpritePoints();
-        }
     }
 }
 
@@ -839,10 +828,13 @@ void Page::launchExit()
 }
 
 
-void Page::resetMenuItems()
+void Page::reallocateMenuSpritePoints()
 {
-    activeMenu_->deallocateSpritePoints();
-    activeMenu_->allocateSpritePoints();
+    if (activeMenu_)
+    {
+        activeMenu_->deallocateSpritePoints();
+        activeMenu_->allocateSpritePoints();
+    }
 }
 
 

@@ -107,15 +107,11 @@ ScrollingList::~ScrollingList()
 
 void ScrollingList::setItems(std::vector<Item *> *items)
 {
-    deallocateSpritePoints();
-
     items_ = items;
     if(items_)
     {
         itemIndex_ = loopDecrement(0, selectedOffsetIndex_, items_->size());
     }
-  
-    allocateSpritePoints();
 }
 
 unsigned int ScrollingList::loopIncrement(unsigned int offset, unsigned int i, unsigned int size)
@@ -184,8 +180,6 @@ void ScrollingList::destroyItems()
 
 void ScrollingList::setPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<AnimationEvents *> *tweenPoints)
 {
-    deallocateSpritePoints();
-
     scrollPoints_ = scrollPoints;
     tweenPoints_ = tweenPoints;
 
@@ -201,8 +195,6 @@ void ScrollingList::setPoints(std::vector<ViewInfo *> *scrollPoints, std::vector
     {
         itemIndex_ = loopDecrement(0, selectedOffsetIndex_, items_->size());
     }
-
-    allocateSpritePoints();
 }
 
 unsigned int ScrollingList::getScrollOffsetIndex()
@@ -279,32 +271,19 @@ void ScrollingList::click(double nextScrollTime)
 void ScrollingList::pageUp()
 {
     if(components_.size() == 0) return;
-
-    deallocateSpritePoints();
-
     itemIndex_ = loopDecrement(itemIndex_, components_.size(), items_->size());
-    
-    allocateSpritePoints();
 }
 
 void ScrollingList::pageDown()
 {
     if(components_.size() == 0) return;
-
-    deallocateSpritePoints();
-
     itemIndex_ = loopIncrement(itemIndex_, components_.size(), items_->size());
-
-    allocateSpritePoints();
 }
 
 void ScrollingList::random()
 {
     if(!items_ || items_->size() == 0) return;
-    
-    deallocateSpritePoints();
     itemIndex_ = rand() % items_->size();
-    allocateSpritePoints();
 }
 
 void ScrollingList::letterUp()
@@ -319,8 +298,6 @@ void ScrollingList::letterDown()
 
 void ScrollingList::letterChange(bool increment)
 {
-    deallocateSpritePoints();
-
     std::string startname = items_->at((itemIndex_+selectedOffsetIndex_)%items_->size())->lowercaseFullTitle();
 
     for(unsigned int i = 0; i < items_->size(); ++i)
@@ -360,7 +337,6 @@ void ScrollingList::letterChange(bool increment)
         }
     }
 
-    allocateSpritePoints();
 }
 
 

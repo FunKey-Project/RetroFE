@@ -327,6 +327,8 @@ void RetroFE::run()
                     currentPage_->onNewItemSelected();
                     currentPage_->start();
 
+                    currentPage_->reallocateMenuSpritePoints();
+
                     state = RETROFE_ENTER;
                 }
                 else
@@ -408,9 +410,10 @@ void RetroFE::run()
                     currentPage_->setScrollOffsetIndex(lastMenuOffsets_[nextPageName]);
                 }
 
-                currentPage_->resetMenuItems();
                 currentPage_->onNewItemSelected();
                 currentPage_->enterMenu();
+
+                currentPage_->reallocateMenuSpritePoints();
 
                 state = RETROFE_NEXT_PAGE_MENU_ENTER;
 
@@ -460,9 +463,9 @@ void RetroFE::run()
                 currentPage_->popCollection();
             }
             config_.setProperty("currentCollection", currentPage_->getCollectionName());
-            currentPage_->resetMenuItems();
             currentPage_->onNewItemSelected();
             currentPage_->enterMenu();
+            currentPage_->reallocateMenuSpritePoints();
             state = RETROFE_BACK_MENU_ENTER;
           }
           break;
@@ -594,39 +597,47 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         if (input_.keystate(UserInput::KeyCodePageUp))
         {
             page->pageScroll(Page::ScrollDirectionBack);
+            page->reallocateMenuSpritePoints();
             state = RETROFE_HIGHLIGHT_REQUEST;
         }
         if (input_.keystate(UserInput::KeyCodePageDown))
         {
             page->pageScroll(Page::ScrollDirectionForward);
+            page->reallocateMenuSpritePoints();
             state = RETROFE_HIGHLIGHT_REQUEST;
         }
         if (input_.keystate(UserInput::KeyCodeLetterUp))
         {
             page->letterScroll(Page::ScrollDirectionBack);
+            page->reallocateMenuSpritePoints();
             state = RETROFE_HIGHLIGHT_REQUEST;
         }
         if (input_.keystate(UserInput::KeyCodeLetterDown))
         {
             page->letterScroll(Page::ScrollDirectionForward);
+            page->reallocateMenuSpritePoints();
             state = RETROFE_HIGHLIGHT_REQUEST;
         }
         if(input_.newKeyPressed(UserInput::KeyCodeNextPlaylist))
         {
             page->nextPlaylist();
+            page->reallocateMenuSpritePoints();
             state = RETROFE_HIGHLIGHT_REQUEST;
         }
         if(input_.newKeyPressed(UserInput::KeyCodeRemovePlaylist))
         {
             page->removePlaylist();
+            page->reallocateMenuSpritePoints();
         }
         if(input_.newKeyPressed(UserInput::KeyCodeAddPlaylist))
         {
             page->addPlaylist();
+            page->reallocateMenuSpritePoints();
         }
         if(input_.keystate(UserInput::KeyCodeRandom))
         {
             page->selectRandom();
+            page->reallocateMenuSpritePoints();
             state = RETROFE_HIGHLIGHT_REQUEST;
         }
     }
