@@ -864,25 +864,29 @@ xml_attribute<> *PageBuilder::findAttribute(xml_node<> *componentXml, std::strin
 
 void PageBuilder::buildViewInfo(xml_node<> *componentXml, ViewInfo &info, xml_node<> *defaultXml)
 {
-    xml_attribute<> *x = findAttribute(componentXml, "x", defaultXml);
-    xml_attribute<> *y = findAttribute(componentXml, "y", defaultXml);
-    xml_attribute<> *xOffset = findAttribute(componentXml, "xOffset", defaultXml);
-    xml_attribute<> *yOffset = findAttribute(componentXml, "yOffset", defaultXml);
-    xml_attribute<> *xOrigin = findAttribute(componentXml, "xOrigin", defaultXml);
-    xml_attribute<> *yOrigin = findAttribute(componentXml, "yOrigin", defaultXml);
-    xml_attribute<> *height = findAttribute(componentXml, "height", defaultXml);
-    xml_attribute<> *width = findAttribute(componentXml, "width", defaultXml);
-    xml_attribute<> *fontSize = findAttribute(componentXml, "fontSize", defaultXml);
-    xml_attribute<> *fontColor = findAttribute(componentXml, "fontColor", defaultXml);
-    xml_attribute<> *minHeight = findAttribute(componentXml, "minHeight", defaultXml);
-    xml_attribute<> *minWidth = findAttribute(componentXml, "minWidth", defaultXml);
-    xml_attribute<> *maxHeight = findAttribute(componentXml, "maxHeight", defaultXml);
-    xml_attribute<> *maxWidth = findAttribute(componentXml, "maxWidth", defaultXml);
-    xml_attribute<> *alpha = findAttribute(componentXml, "alpha", defaultXml);
-    xml_attribute<> *angle = findAttribute(componentXml, "angle", defaultXml);
-    xml_attribute<> *layer = findAttribute(componentXml, "layer", defaultXml);
-    xml_attribute<> *backgroundColor = findAttribute(componentXml, "backgroundColor", defaultXml);
-    xml_attribute<> *backgroundAlpha = findAttribute(componentXml, "backgroundAlpha", defaultXml);
+    xml_attribute<> *x                  = findAttribute(componentXml, "x", defaultXml);
+    xml_attribute<> *y                  = findAttribute(componentXml, "y", defaultXml);
+    xml_attribute<> *xOffset            = findAttribute(componentXml, "xOffset", defaultXml);
+    xml_attribute<> *yOffset            = findAttribute(componentXml, "yOffset", defaultXml);
+    xml_attribute<> *xOrigin            = findAttribute(componentXml, "xOrigin", defaultXml);
+    xml_attribute<> *yOrigin            = findAttribute(componentXml, "yOrigin", defaultXml);
+    xml_attribute<> *height             = findAttribute(componentXml, "height", defaultXml);
+    xml_attribute<> *width              = findAttribute(componentXml, "width", defaultXml);
+    xml_attribute<> *fontSize           = findAttribute(componentXml, "fontSize", defaultXml);
+    xml_attribute<> *fontColor          = findAttribute(componentXml, "fontColor", defaultXml);
+    xml_attribute<> *minHeight          = findAttribute(componentXml, "minHeight", defaultXml);
+    xml_attribute<> *minWidth           = findAttribute(componentXml, "minWidth", defaultXml);
+    xml_attribute<> *maxHeight          = findAttribute(componentXml, "maxHeight", defaultXml);
+    xml_attribute<> *maxWidth           = findAttribute(componentXml, "maxWidth", defaultXml);
+    xml_attribute<> *alpha              = findAttribute(componentXml, "alpha", defaultXml);
+    xml_attribute<> *angle              = findAttribute(componentXml, "angle", defaultXml);
+    xml_attribute<> *layer              = findAttribute(componentXml, "layer", defaultXml);
+    xml_attribute<> *backgroundColor    = findAttribute(componentXml, "backgroundColor", defaultXml);
+    xml_attribute<> *backgroundAlpha    = findAttribute(componentXml, "backgroundAlpha", defaultXml);
+    xml_attribute<> *reflection         = findAttribute(componentXml, "reflection", defaultXml);
+    xml_attribute<> *reflectionDistance = findAttribute(componentXml, "reflectionDistance", defaultXml);
+    xml_attribute<> *reflectionScale    = findAttribute(componentXml, "reflectionScale", defaultXml);
+    xml_attribute<> *reflectionAlpha    = findAttribute(componentXml, "reflectionAlpha", defaultXml);
 
     info.X = getHorizontalAlignment(x, 0);
     info.Y = getVerticalAlignment(y, 0);
@@ -907,14 +911,18 @@ void PageBuilder::buildViewInfo(xml_node<> *componentXml, ViewInfo &info, xml_no
         info.Height = getVerticalAlignment(height, -1);
         info.Width = getHorizontalAlignment(width, -1);
     }
-    info.FontSize = getVerticalAlignment(fontSize, -1);
-    info.MinHeight = getVerticalAlignment(minHeight, 0);
-    info.MinWidth = getHorizontalAlignment(minWidth, 0);
-    info.MaxHeight = getVerticalAlignment(maxHeight, FLT_MAX);
-    info.MaxWidth = getVerticalAlignment(maxWidth, FLT_MAX);
-    info.Alpha =  alpha ? Utils::convertFloat(alpha->value()) : 1.f;
-    info.Angle =  angle ? Utils::convertFloat(angle->value()) : 0.f;
-    info.Layer =  layer ? Utils::convertInt(layer->value()) : 0;
+    info.FontSize           = getVerticalAlignment(fontSize, -1);
+    info.MinHeight          = getVerticalAlignment(minHeight, 0);
+    info.MinWidth           = getHorizontalAlignment(minWidth, 0);
+    info.MaxHeight          = getVerticalAlignment(maxHeight, FLT_MAX);
+    info.MaxWidth           = getVerticalAlignment(maxWidth, FLT_MAX);
+    info.Alpha              = alpha              ? Utils::convertFloat(alpha->value())            : 1.f;
+    info.Angle              = angle              ? Utils::convertFloat(angle->value())            : 0.f;
+    info.Layer              = layer              ? Utils::convertInt(layer->value())              : 0;
+    info.Reflection         = reflection         ? reflection->value()                            : "";
+    info.ReflectionDistance = reflectionDistance ? Utils::convertInt(reflectionDistance->value()) : 0;
+    info.ReflectionScale    = reflectionScale    ? Utils::convertFloat(reflectionScale->value())  : 0.25f;
+    info.ReflectionAlpha    = reflectionAlpha    ? Utils::convertFloat(reflectionAlpha->value())  : 1.f;
 
     if(fontColor)
     {

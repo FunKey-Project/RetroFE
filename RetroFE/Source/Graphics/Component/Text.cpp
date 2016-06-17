@@ -133,7 +133,7 @@ void Text::draw()
             }
 
 
-            SDL::renderCopy(t, static_cast<char>(baseViewInfo.Alpha * 255), &charRect, &rect, baseViewInfo.Angle);
+            SDL::renderCopy(t, static_cast<char>(baseViewInfo.Alpha * 255), &charRect, &rect, baseViewInfo.Angle, baseViewInfo.Reflection, baseViewInfo.ReflectionDistance, baseViewInfo.ReflectionScale, static_cast<char>(baseViewInfo.ReflectionAlpha*255));
 
             rect.x += static_cast<int>(glyph.advance * scale);
 

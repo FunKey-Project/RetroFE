@@ -84,6 +84,6 @@ void Image::draw()
         rect.h = static_cast<int>(baseViewInfo.ScaledHeight());
         rect.w = static_cast<int>(baseViewInfo.ScaledWidth());
 
-        SDL::renderCopy(texture_, static_cast<char>((baseViewInfo.Alpha * 255)), NULL, &rect, baseViewInfo.Angle);
+        SDL::renderCopy(texture_, static_cast<char>((baseViewInfo.Alpha * 255)), NULL, &rect, baseViewInfo.Angle, baseViewInfo.Reflection, baseViewInfo.ReflectionDistance, baseViewInfo.ReflectionScale, static_cast<char>(baseViewInfo.ReflectionAlpha*255));
     }
 }

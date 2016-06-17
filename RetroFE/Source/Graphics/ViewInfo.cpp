@@ -43,6 +43,10 @@ ViewInfo::ViewInfo()
     , BackgroundGreen(0)
     , BackgroundBlue(0)
     , BackgroundAlpha(0)
+    , Reflection("")
+    , ReflectionDistance(0)
+    , ReflectionScale(.25)
+    , ReflectionAlpha(1)
 {
 }
 
