@@ -158,15 +158,15 @@ void ReloadableText::ReloadTexture()
         }
         else if (type_ == "ctrlType")
         {
-            ss << selectedItem->ctrlType;
+            text = selectedItem->ctrlType;
         }
         else if (type_ == "numberJoyWays")
         {
-            ss << selectedItem->joyWays;
+            text = selectedItem->joyWays;
         }
         else if (type_ == "rating")
         {
-            ss << selectedItem->rating;
+            text = selectedItem->rating;
         }
         else if (type_ == "year")
         {
@@ -177,7 +177,7 @@ void ReloadableText::ReloadTexture()
         }
         else if (type_ == "title")
         {
-            ss << selectedItem->title;
+            text = selectedItem->title;
         }
         else if (type_ == "manufacturer")
         {
@@ -195,11 +195,11 @@ void ReloadableText::ReloadTexture()
         }
         else if (type_ == "playlist")
         {
-            ss << playlistName;
+            text = playlistName;
         }
         else if (type_ == "collectionName")
         {
-            ss << page.getCollectionName();
+            text = page.getCollectionName();
         }
         else if (type_ == "collectionSize")
         {
