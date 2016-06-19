@@ -277,7 +277,7 @@ bool SDL::renderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, S
 
     if (reflection == "top")
     {
-        rotateRect.h = rotateRect.h * reflectionScale;
+        rotateRect.h = static_cast<unsigned int>(static_cast<float>(rotateRect.h) * reflectionScale);
         rotateRect.y = rotateRect.y - rotateRect.h - reflectionDistance;
         SDL_SetTextureAlphaMod(texture, reflectionAlpha * alpha);
         SDL_RenderCopyEx(getRenderer(), texture, src, &rotateRect, angle, NULL, SDL_FLIP_VERTICAL);
@@ -286,14 +286,14 @@ bool SDL::renderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, S
     if (reflection == "bottom")
     {
         rotateRect.y = rotateRect.y + rotateRect.h + reflectionDistance;
-        rotateRect.h = rotateRect.h * reflectionScale;
+        rotateRect.h = static_cast<unsigned int>(static_cast<float>(rotateRect.h) * reflectionScale);
         SDL_SetTextureAlphaMod(texture, reflectionAlpha * alpha);
         SDL_RenderCopyEx(getRenderer(), texture, src, &rotateRect, angle, NULL, SDL_FLIP_VERTICAL);
     }
 
     if (reflection == "left")
     {
-        rotateRect.w = rotateRect.w * reflectionScale;
+        rotateRect.w = static_cast<unsigned int>(static_cast<float>(rotateRect.w) * reflectionScale);
         rotateRect.x = rotateRect.x - rotateRect.w - reflectionDistance;
         SDL_SetTextureAlphaMod(texture, reflectionAlpha * alpha);
         SDL_RenderCopyEx(getRenderer(), texture, src, &rotateRect, angle, NULL, SDL_FLIP_HORIZONTAL);
@@ -302,7 +302,7 @@ bool SDL::renderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, S
     if (reflection == "right")
     {
         rotateRect.x = rotateRect.x + rotateRect.w + reflectionDistance;
-        rotateRect.w = rotateRect.w * reflectionScale;
+        rotateRect.w = static_cast<unsigned int>(static_cast<float>(rotateRect.w) * reflectionScale);
         SDL_SetTextureAlphaMod(texture, reflectionAlpha * alpha);
         SDL_RenderCopyEx(getRenderer(), texture, src, &rotateRect, angle, NULL, SDL_FLIP_HORIZONTAL);
     }
