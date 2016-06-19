@@ -353,8 +353,12 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
         {
             std::string imagePath;
             imagePath = Utils::combinePath(Configuration::convertToAbsolutePath(layoutPath, imagePath), std::string(src->value()));
+            std::string layoutName;
+            config_.getProperty("layout", layoutName);
+            std::string altImagePath;
+            altImagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, std::string(src->value()));
 
-            Image *c = new Image(imagePath, *page, scaleX_, scaleY_);
+            Image *c = new Image(imagePath, altImagePath, *page, scaleX_, scaleY_);
             buildViewInfo(componentXml, c->baseViewInfo);
             loadTweens(c, componentXml);
             page->addComponent(c);

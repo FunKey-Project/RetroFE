@@ -19,10 +19,11 @@
 #include "../../Utility/Log.h"
 #include <SDL2/SDL_image.h>
 
-Image::Image(std::string file, Page &p, float scaleX, float scaleY)
+Image::Image(std::string file, std::string altFile, Page &p, float scaleX, float scaleY)
     : Component(p)
     , texture_(NULL)
     , file_(file)
+    , altFile_(altFile)
     , scaleX_(scaleX)
     , scaleY_(scaleY)
 {
@@ -58,6 +59,10 @@ void Image::allocateGraphicsMemory()
     {
         SDL_LockMutex(SDL::getMutex());
         texture_ = IMG_LoadTexture(SDL::getRenderer(), file_.c_str());
+        if (!texture_ && altFile_ != "")
+        {
+            texture_ = IMG_LoadTexture(SDL::getRenderer(), altFile_.c_str());
+        }
 
         if (texture_ != NULL)
         {
