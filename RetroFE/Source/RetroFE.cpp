@@ -411,9 +411,8 @@ void RetroFE::run()
                 }
 
                 currentPage_->onNewItemSelected();
-                currentPage_->enterMenu();
-
                 currentPage_->reallocateMenuSpritePoints();
+                currentPage_->enterMenu();
 
                 state = RETROFE_NEXT_PAGE_MENU_ENTER;
 
@@ -464,8 +463,8 @@ void RetroFE::run()
             }
             config_.setProperty("currentCollection", currentPage_->getCollectionName());
             currentPage_->onNewItemSelected();
-            currentPage_->enterMenu();
             currentPage_->reallocateMenuSpritePoints();
+            currentPage_->enterMenu();
             state = RETROFE_BACK_MENU_ENTER;
           }
           break;
