@@ -255,7 +255,7 @@ SDL_Window* SDL::getWindow()
     return window_;
 }
 
-bool SDL::renderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, SDL_Rect *dest, double angle, std::string reflection, unsigned int reflectionDistance, double reflectionScale, unsigned char reflectionAlpha)
+bool SDL::renderCopy(SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, double angle, std::string reflection, unsigned int reflectionDistance, double reflectionScale, float reflectionAlpha)
 {
     SDL_Rect rotateRect;
     rotateRect.w = dest->w;
@@ -272,14 +272,14 @@ bool SDL::renderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, S
         rotateRect.y = dest->y;
     }
 
-    SDL_SetTextureAlphaMod(texture, alpha);
+    SDL_SetTextureAlphaMod(texture, static_cast<char>(alpha * 255));
     SDL_RenderCopyEx(getRenderer(), texture, src, &rotateRect, angle, NULL, SDL_FLIP_NONE);
 
     if (reflection == "top")
     {
         rotateRect.h = static_cast<unsigned int>(static_cast<float>(rotateRect.h) * reflectionScale);
         rotateRect.y = rotateRect.y - rotateRect.h - reflectionDistance;
-        SDL_SetTextureAlphaMod(texture, reflectionAlpha * alpha);
+        SDL_SetTextureAlphaMod(texture, static_cast<char>(reflectionAlpha * alpha * 255));
         SDL_RenderCopyEx(getRenderer(), texture, src, &rotateRect, angle, NULL, SDL_FLIP_VERTICAL);
     }
 
@@ -287,7 +287,7 @@ bool SDL::renderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, S
     {
         rotateRect.y = rotateRect.y + rotateRect.h + reflectionDistance;
         rotateRect.h = static_cast<unsigned int>(static_cast<float>(rotateRect.h) * reflectionScale);
-        SDL_SetTextureAlphaMod(texture, reflectionAlpha * alpha);
+        SDL_SetTextureAlphaMod(texture, static_cast<char>(reflectionAlpha * alpha * 255));
         SDL_RenderCopyEx(getRenderer(), texture, src, &rotateRect, angle, NULL, SDL_FLIP_VERTICAL);
     }
 
@@ -295,7 +295,7 @@ bool SDL::renderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, S
     {
         rotateRect.w = static_cast<unsigned int>(static_cast<float>(rotateRect.w) * reflectionScale);
         rotateRect.x = rotateRect.x - rotateRect.w - reflectionDistance;
-        SDL_SetTextureAlphaMod(texture, reflectionAlpha * alpha);
+        SDL_SetTextureAlphaMod(texture, static_cast<char>(reflectionAlpha * alpha * 255));
         SDL_RenderCopyEx(getRenderer(), texture, src, &rotateRect, angle, NULL, SDL_FLIP_HORIZONTAL);
     }
 
@@ -303,7 +303,7 @@ bool SDL::renderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, S
     {
         rotateRect.x = rotateRect.x + rotateRect.w + reflectionDistance;
         rotateRect.w = static_cast<unsigned int>(static_cast<float>(rotateRect.w) * reflectionScale);
-        SDL_SetTextureAlphaMod(texture, reflectionAlpha * alpha);
+        SDL_SetTextureAlphaMod(texture, static_cast<char>(reflectionAlpha * alpha * 255));
         SDL_RenderCopyEx(getRenderer(), texture, src, &rotateRect, angle, NULL, SDL_FLIP_HORIZONTAL);
     }
 

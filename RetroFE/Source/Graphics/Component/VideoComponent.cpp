@@ -100,6 +100,6 @@ void VideoComponent::draw()
 
     if(texture)
     {
-        SDL::renderCopy(texture, static_cast<int>(baseViewInfo.Alpha * 255), NULL, &rect, static_cast<int>(baseViewInfo.Angle), baseViewInfo.Reflection, baseViewInfo.ReflectionDistance, baseViewInfo.ReflectionScale, static_cast<char>(baseViewInfo.ReflectionAlpha*255));
+        SDL::renderCopy(texture, baseViewInfo.Alpha, NULL, &rect, static_cast<int>(baseViewInfo.Angle), baseViewInfo.Reflection, baseViewInfo.ReflectionDistance, baseViewInfo.ReflectionScale, baseViewInfo.ReflectionAlpha);
     }
 }

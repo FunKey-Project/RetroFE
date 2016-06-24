@@ -28,7 +28,7 @@ public:
     static SDL_Renderer *getRenderer();
     static SDL_mutex *getMutex();
     static SDL_Window *getWindow();
-    static bool renderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, SDL_Rect *dest, double angle, std::string reflection = "", unsigned int reflectionDistance = 0, double reflectionScale = 0.25, unsigned char reflectionAlpha = '0');
+    static bool renderCopy(SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, double angle, std::string reflection = "", unsigned int reflectionDistance = 0, double reflectionScale = 0.25, float reflectionAlpha = 0.0f);
     static int getWindowWidth()
     {
         return windowWidth_;
