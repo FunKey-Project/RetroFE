@@ -690,6 +690,7 @@ void Page::addPlaylist()
     if(playlist_->first != "favorites" && std::find(items->begin(), items->end(), selectedItem_) == items->end())
     {
         items->push_back(selectedItem_);
+        collection->sortItems();
         collection->saveRequest = true;
     }
 }

@@ -626,6 +626,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         if(input_.newKeyPressed(UserInput::KeyCodeRemovePlaylist))
         {
             page->removePlaylist();
+            page->onNewItemSelected();
             page->reallocateMenuSpritePoints();
         }
         if(input_.newKeyPressed(UserInput::KeyCodeAddPlaylist))
