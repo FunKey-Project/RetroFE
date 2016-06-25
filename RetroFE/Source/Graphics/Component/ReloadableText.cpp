@@ -25,7 +25,7 @@
 #include <time.h>
 #include <algorithm>
 
-ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, std::string timeFormat, std::string textFormat, float scaleX, float scaleY)
+ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, std::string timeFormat, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, float scaleX, float scaleY)
     : Component(page)
     , config_(config)
     , imageInst_(NULL)
@@ -34,6 +34,10 @@ ReloadableText::ReloadableText(std::string type, Page &page, Configuration &conf
     , fontInst_(font)
     , timeFormat_(timeFormat)
     , textFormat_(textFormat)
+    , singlePrefix_(singlePrefix)
+    , singlePostfix_(singlePostfix)
+    , pluralPrefix_(pluralPrefix)
+    , pluralPostfix_(pluralPostfix)
     , scaleX_(scaleX)
     , scaleY_(scaleY)
 {
@@ -114,47 +118,11 @@ void ReloadableText::ReloadTexture()
         }
         if (type_ == "numberButtons")
         {
-            ss << selectedItem->numberButtons;
+            text = selectedItem->numberButtons;
         }
         else if (type_ == "numberPlayers")
         {
-            ss << selectedItem->numberPlayers;
-        }
-        else if (type_ == "numberPlayersRange")
-        {
-          if (selectedItem->numberPlayers != ""  &&
-              selectedItem->numberPlayers != "0" &&
-              selectedItem->numberPlayers != "1")
-            ss << "1-" << selectedItem->numberPlayers;
-          else
-            ss << selectedItem->numberPlayers;
-        }
-        else if (type_ == "numberPlayersPlayers")
-        {
-            ss << selectedItem->numberPlayers;
-            if (selectedItem->numberPlayers != "")
-            {
-              if (selectedItem->numberPlayers == "1")
-                text = " Player";
-              else
-                text = " Players";
-            }
-        }
-        else if (type_ == "numberPlayersRangePlayers")
-        {
-          if (selectedItem->numberPlayers != ""  &&
-              selectedItem->numberPlayers != "0" &&
-              selectedItem->numberPlayers != "1")
-            ss << "1-" << selectedItem->numberPlayers;
-          else
-            ss << selectedItem->numberPlayers;
-          if (selectedItem->numberPlayers != "")
-          {
-            if (selectedItem->numberPlayers == "1")
-              text = " Player";
-            else
-              text = " Players";
-          }
+            text = selectedItem->numberPlayers;
         }
         else if (type_ == "ctrlType")
         {
@@ -203,14 +171,49 @@ void ReloadableText::ReloadTexture()
         }
         else if (type_ == "collectionSize")
         {
-            ss << page.getCollectionSize();
+            if (page.getCollectionSize() == 0)
+            {
+                ss << singlePrefix_ << page.getCollectionSize() << pluralPostfix_;
+            }
+            else if (page.getCollectionSize() == 1)
+            {
+                ss << singlePrefix_ << page.getCollectionSize() << singlePostfix_;
+            }
+            else
+            {
+                ss << pluralPrefix_ << page.getCollectionSize() << pluralPostfix_;
+            }
         }
         else if (type_ == "collectionIndex")
         {
-              ss << (1+page.getSelectedIndex());
+            if (page.getSelectedIndex() == 0)
+            {
+                ss << singlePrefix_ << page.getSelectedIndex() << pluralPostfix_;
+            }
+            else if (page.getSelectedIndex() == 1)
+            {
+                ss << singlePrefix_ << page.getSelectedIndex() << singlePostfix_;
+            }
+            else
+            {
+                ss << pluralPrefix_ << page.getSelectedIndex() << pluralPostfix_;
+            }
         } else if (!selectedItem->leaf) // item is not a leaf
         {
             (void)config_.getProperty("collections." + selectedItem->name + "." + type_, text );
+        }
+
+        if (text == "0")
+        {
+            text = singlePrefix_ + text + pluralPostfix_;
+        }
+        else if (text == "1")
+        {
+            text = singlePrefix_ + text + singlePostfix_;
+        }
+        else if (text != "")
+        {
+            text = pluralPrefix_ + text + pluralPostfix_;
         }
 
         if (text != "")

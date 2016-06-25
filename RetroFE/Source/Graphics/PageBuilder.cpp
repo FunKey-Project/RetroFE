@@ -413,10 +413,14 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
     {
         std::string reloadableImagePath;
         std::string reloadableVideoPath;
-        xml_attribute<> *type = componentXml->first_attribute("type");
-        xml_attribute<> *mode = componentXml->first_attribute("mode");
-        xml_attribute<> *timeFormatXml = componentXml->first_attribute("timeFormat");
-        xml_attribute<> *textFormatXml = componentXml->first_attribute("textFormat");
+        xml_attribute<> *type              = componentXml->first_attribute("type");
+        xml_attribute<> *mode              = componentXml->first_attribute("mode");
+        xml_attribute<> *timeFormatXml     = componentXml->first_attribute("timeFormat");
+        xml_attribute<> *textFormatXml     = componentXml->first_attribute("textFormat");
+        xml_attribute<> *singlePrefixXml   = componentXml->first_attribute("singlePrefix");
+        xml_attribute<> *singlePostfixXml  = componentXml->first_attribute("singlePostfix");
+        xml_attribute<> *pluralPrefixXml   = componentXml->first_attribute("pluralPrefix");
+        xml_attribute<> *pluralPostfixXml  = componentXml->first_attribute("pluralPostfix");
         xml_attribute<> *selectedOffsetXml = componentXml->first_attribute("selectedOffset");
         bool systemMode = false;
         bool layoutMode = false;
@@ -473,14 +477,34 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                 std::string timeFormat = "%H:%M";
                 if (timeFormatXml)
                 {
-                  timeFormat = timeFormatXml->value();
+                    timeFormat = timeFormatXml->value();
                 }
                 std::string textFormat = "";
                 if (textFormatXml)
                 {
-                  textFormat = textFormatXml->value();
+                    textFormat = textFormatXml->value();
                 }
-                c = new ReloadableText(type->value(), *page, config_, font, layoutKey, timeFormat, textFormat, scaleX_, scaleY_);
+                std::string singlePrefix = "";
+                if (singlePrefixXml)
+                {
+                    singlePrefix = singlePrefixXml->value();
+                }
+                std::string singlePostfix = "";
+                if (singlePostfixXml)
+                {
+                    singlePostfix = singlePostfixXml->value();
+                }
+                std::string pluralPrefix = "";
+                if (pluralPrefixXml)
+                {
+                    pluralPrefix = pluralPrefixXml->value();
+                }
+                std::string pluralPostfix = "";
+                if (pluralPostfixXml)
+                {
+                    pluralPostfix = pluralPostfixXml->value();
+                }
+                c = new ReloadableText(type->value(), *page, config_, font, layoutKey, timeFormat, textFormat, singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, scaleX_, scaleY_);
             }
         }
         else
