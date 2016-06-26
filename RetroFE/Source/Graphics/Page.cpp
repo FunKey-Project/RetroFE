@@ -787,3 +787,18 @@ bool Page::isMenuScrolling()
 {
     return scrollActive_;
 }
+
+
+bool Page::isPlaying()
+{
+
+    bool retVal = false;
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        retVal |= (*it)->isPlaying();
+    }
+
+    return retVal;
+
+}

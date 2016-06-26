@@ -329,3 +329,9 @@ bool Component::animate()
 
     return completeDone;
 }
+
+
+bool Component::isPlaying()
+{
+    return false;
+}

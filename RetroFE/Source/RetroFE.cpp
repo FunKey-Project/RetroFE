@@ -238,9 +238,10 @@ void RetroFE::run()
     int initializeStatus = 0;
 
     // load the initial splash screen, unload it once it is complete
-    currentPage_    = loadSplashPage();
-    state           = RETROFE_ENTER;
-    bool splashMode = true;
+    currentPage_        = loadSplashPage();
+    state               = RETROFE_ENTER;
+    bool splashMode     = true;
+    bool exitSplashMode = false;
 
     Launcher l(*this, config_);
     preloadTime = static_cast<float>(SDL_GetTicks()) / 1000;
@@ -254,6 +255,7 @@ void RetroFE::run()
         {
             if(input_.update(e))
             {
+                exitSplashMode = true;
                 attract_.reset();
             }
         }
@@ -278,7 +280,7 @@ void RetroFE::run()
                 }
             }
 
-            if((initialized || initializeError) && splashMode && currentPage_->getMinShowTime() <= (currentTime_ - preloadTime))
+            if((initialized || initializeError) && splashMode && (exitSplashMode || (currentPage_->getMinShowTime() <= (currentTime_ - preloadTime) && !(currentPage_->isPlaying()))))
             {
                 SDL_WaitThread(initializeThread, &initializeStatus);
 
@@ -516,7 +518,10 @@ void RetroFE::run()
 
             if(currentPage_)
             {
-                attract_.update(deltaTime, *currentPage_);
+                if (!splashMode)
+                {
+                    attract_.update(deltaTime, *currentPage_);
+                }
                 currentPage_->update(deltaTime);
             }
 

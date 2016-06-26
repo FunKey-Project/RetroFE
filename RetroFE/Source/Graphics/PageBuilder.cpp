@@ -23,6 +23,7 @@
 #include "Component/ReloadableText.h"
 #include "Component/ReloadableMedia.h"
 #include "Component/ScrollingList.h"
+#include "Component/Video.h"
 #include "Animate/AnimationEvents.h"
 #include "Animate/TweenTypes.h"
 #include "../Sound/Sound.h"
@@ -359,6 +360,33 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
             altImagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, std::string(src->value()));
 
             Image *c = new Image(imagePath, altImagePath, *page, scaleX_, scaleY_);
+            buildViewInfo(componentXml, c->baseViewInfo);
+            loadTweens(c, componentXml);
+            page->addComponent(c);
+        }
+    }
+
+
+    for(xml_node<> *componentXml = layout->first_node("video"); componentXml; componentXml = componentXml->next_sibling("video"))
+    {
+        xml_attribute<> *srcXml      = componentXml->first_attribute("src");
+        xml_attribute<> *numLoopsXml = componentXml->first_attribute("numLoops");
+
+        if (!srcXml)
+        {
+            Logger::write(Logger::ZONE_ERROR, "Layout", "Video component in layout does not specify a source video file");
+        }
+        else
+        {
+            std::string videoPath;
+            videoPath = Utils::combinePath(Configuration::convertToAbsolutePath(layoutPath, videoPath), std::string(srcXml->value()));
+            std::string layoutName;
+            config_.getProperty("layout", layoutName);
+            std::string altVideoPath;
+            altVideoPath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, std::string(srcXml->value()));
+            int numLoops = numLoopsXml ? Utils::convertInt(numLoopsXml->value()) : 1;
+
+            Video *c = new Video(videoPath, altVideoPath, numLoops, *page, scaleX_, scaleY_);
             buildViewInfo(componentXml, c->baseViewInfo);
             loadTweens(c, componentXml);
             page->addComponent(c);

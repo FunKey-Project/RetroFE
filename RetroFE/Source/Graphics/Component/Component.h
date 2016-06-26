@@ -43,6 +43,7 @@ public:
     virtual void update(float dt);
     virtual void draw();
     void setTweens(AnimationEvents *set);
+    virtual bool isPlaying();
     ViewInfo baseViewInfo;
     std::string collectionName;
 

@@ -40,6 +40,7 @@ public:
     void freeElements();
     int getHeight();
     int getWidth();
+    bool isPlaying();
 
 private:
     static void processNewBuffer (GstElement *fakesink, GstBuffer *buf, GstPad *pad, gpointer data);

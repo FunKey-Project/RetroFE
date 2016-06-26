@@ -15,31 +15,26 @@
  */
 #pragma once
 #include "Component.h"
-#include "Image.h"
-#include "../Page.h"
-#include "../../Collection/Item.h"
 #include "../../Video/IVideo.h"
 #include <SDL2/SDL.h>
 #include <string>
 
-class VideoComponent : public Component
+class Video : public Component
 {
 public:
-    VideoComponent(IVideo *videoInst, Page &p, std::string videoFile, float scaleX, float scaleY);
-    virtual ~VideoComponent();
+    Video( std::string file, std::string altFile, int numLoops, Page &page, float scaleX, float scaleY );
+    virtual ~Video( );
     void update(float dt);
-    void draw();
-    void freeGraphicsMemory();
-    void allocateGraphicsMemory();
-    void launchEnter();
-    void launchExit();
-    virtual bool isPlaying();
+    void freeGraphicsMemory( );
+    void allocateGraphicsMemory( );
+    void draw( );
+    virtual bool isPlaying( );
 
-private:
-    std::string videoFile_;
-    std::string name_;
-    IVideo *videoInst_;
-    float scaleX_;
-    float scaleY_;
-    bool isPlaying_;
+protected:
+    Component  *video_;
+    std::string file_;
+    std::string altFile_;
+    int         numLoops_;
+    float       scaleX_;
+    float       scaleY_;
 };

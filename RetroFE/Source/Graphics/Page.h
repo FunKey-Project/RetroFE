@@ -91,6 +91,7 @@ public:
     void removePlaylist();
     void reallocateMenuSpritePoints();
     bool isMenuScrolling();
+    bool isPlaying();
 
 private:
     void playlistChange();

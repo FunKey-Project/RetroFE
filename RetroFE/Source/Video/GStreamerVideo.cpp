@@ -390,6 +390,10 @@ void GStreamerVideo::update(float /* dt */)
                                      GST_SEEK_TYPE_NONE,
                                      GST_CLOCK_TIME_NONE);
                 }
+                else
+                {
+                    isPlaying_ = false;
+                }
             }
 
             gst_message_unref(msg);
@@ -397,3 +401,8 @@ void GStreamerVideo::update(float /* dt */)
     }
 }
 
+
+bool GStreamerVideo::isPlaying()
+{
+    return isPlaying_;
+}
