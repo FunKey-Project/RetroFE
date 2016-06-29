@@ -20,7 +20,7 @@
 class Sound
 {
 public:
-    Sound(std::string file);
+    Sound(std::string file, std::string altfile);
     virtual ~Sound();
     void play();
     bool allocate();

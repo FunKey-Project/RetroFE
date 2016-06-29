@@ -183,16 +183,19 @@ Page *PageBuilder::buildPage( std::string collectionName )
             // load sounds
             for(xml_node<> *sound = root->first_node("sound"); sound; sound = sound->next_sibling("sound"))
             {
-                xml_attribute<> *src = sound->first_attribute("src");
+                xml_attribute<> *src  = sound->first_attribute("src");
                 xml_attribute<> *type = sound->first_attribute("type");
-                std::string file = Configuration::convertToAbsolutePath(layoutPath, src->value());
+                std::string file      = Configuration::convertToAbsolutePath(layoutPath, src->value());
+                std::string layoutName;
+                config_.getProperty("layout", layoutName);
+                std::string altfile   = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, std::string(src->value()));
                 if(!type)
                 {
                     Logger::write(Logger::ZONE_ERROR, "Layout", "Sound tag missing type attribute");
                 }
                 else
                 {
-                    Sound *sound = new Sound(file);
+                    Sound *sound = new Sound(file, altfile);
                     std::string soundType = type->value();
 
                     if(!soundType.compare("load"))

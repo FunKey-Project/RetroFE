@@ -18,13 +18,17 @@
 
 #include "../Utility/Log.h"
 
-Sound::Sound(std::string file)
+Sound::Sound(std::string file, std::string altfile)
     : file_(file)
     , chunk_(NULL)
 {
     if(!allocate())
     {
-        Logger::write(Logger::ZONE_ERROR, "Sound", "Cannot load " + file_);
+        file_ = altfile;
+        if (!allocate())
+        {
+            Logger::write(Logger::ZONE_ERROR, "Sound", "Cannot load " + file_);
+        }
     }
 }
 

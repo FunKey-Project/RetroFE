@@ -414,7 +414,10 @@ void RetroFE::run()
 
                 currentPage_->onNewItemSelected();
                 currentPage_->reallocateMenuSpritePoints();
-                currentPage_->enterMenu();
+                if (currentPage_->getMenuDepth() != 1 )
+                {
+                    currentPage_->enterMenu();
+                }
 
                 state = RETROFE_NEXT_PAGE_MENU_ENTER;
 
