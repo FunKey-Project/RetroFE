@@ -188,17 +188,33 @@ void ReloadableText::ReloadTexture()
         {
             if (page.getSelectedIndex() == 0)
             {
-                ss << singlePrefix_ << page.getSelectedIndex() << pluralPostfix_;
+                ss << singlePrefix_ << (page.getSelectedIndex()+1) << pluralPostfix_;
             }
             else if (page.getSelectedIndex() == 1)
             {
-                ss << singlePrefix_ << page.getSelectedIndex() << singlePostfix_;
+                ss << singlePrefix_ << (page.getSelectedIndex()+1) << singlePostfix_;
             }
             else
             {
-                ss << pluralPrefix_ << page.getSelectedIndex() << pluralPostfix_;
+                ss << pluralPrefix_ << (page.getSelectedIndex()+1) << pluralPostfix_;
             }
-        } else if (!selectedItem->leaf) // item is not a leaf
+        }
+        else if (type_ == "collectionIndexSize")
+        {
+            if (page.getSelectedIndex() == 0)
+            {
+                ss << singlePrefix_ << (page.getSelectedIndex()+1) << "/" << page.getCollectionSize() << pluralPostfix_;
+            }
+            else if (page.getSelectedIndex() == 1)
+            {
+                ss << singlePrefix_ << (page.getSelectedIndex()+1) << "/" << page.getCollectionSize() << singlePostfix_;
+            }
+            else
+            {
+                ss << pluralPrefix_ << (page.getSelectedIndex()+1) << "/" << page.getCollectionSize() << pluralPostfix_;
+            }
+        }
+        else if (!selectedItem->leaf) // item is not a leaf
         {
             (void)config_.getProperty("collections." + selectedItem->name + "." + type_, text );
         }
