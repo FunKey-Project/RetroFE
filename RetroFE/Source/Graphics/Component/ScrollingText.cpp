@@ -337,7 +337,7 @@ void ScrollingText::draw( )
                         // Check if glyph falls partially outside the box at the back end
                         if ((rect.x + static_cast<int>( glyph.advance * scale * scaleX_ )) >= (static_cast<int>( xOrigin ) + imageMaxWidth))
                         {
-                            rect.w     = static_cast<int>( xOrigin ) + imageMaxWidth - rect.x;
+                            rect.w     = static_cast<int>( xOrigin ) + static_cast<int>( imageMaxWidth ) - rect.x;
                             charRect.w = static_cast<int>( rect.w / scale / scaleX_ );
                         }
 
@@ -498,8 +498,8 @@ void ScrollingText::draw( )
                 std::istringstream iss(text[l]);
                 std::string        word;
                 unsigned int       wordCount = textWords[l];
-                unsigned int       spaceFill = imageMaxWidth - textWidth[l];
-                unsigned int       yAdvance  = font->getHeight( ) * scale * scaleY_;
+                unsigned int       spaceFill = static_cast<int>( imageMaxWidth ) - textWidth[l];
+                unsigned int       yAdvance  = static_cast<int>( font->getHeight( ) * scale * scaleY_ );
                 while (iss >> word)
                 {
 
@@ -512,12 +512,12 @@ void ScrollingText::draw( )
                             SDL_Rect charRect = glyph.rect;
                             rect.h   = static_cast<int>( charRect.h * scale * scaleY_ );
                             rect.w   = static_cast<int>( charRect.w * scale * scaleX_ );
-                            yAdvance = font->getHeight( ) * scale * scaleY_;
+                            yAdvance = static_cast<int>( font->getHeight( ) * scale * scaleY_ );
 
                             // Check if glyph falls partially outside the box at the bottom end
                             if ((rect.y + rect.h) >= (static_cast<int>( yOrigin ) + imageMaxHeight))
                             {
-                                rect.h     = static_cast<int>( yOrigin ) + imageMaxHeight - rect.y;
+                                rect.h     = static_cast<int>( yOrigin ) + static_cast<int>( imageMaxHeight ) - rect.y;
                                 charRect.h = static_cast<int>( rect.h / scale / scaleY_ );
                             }
 
