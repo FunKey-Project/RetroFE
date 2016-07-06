@@ -22,6 +22,7 @@
 #include "Component/Text.h"
 #include "Component/ReloadableText.h"
 #include "Component/ReloadableMedia.h"
+#include "Component/ScrollingText.h"
 #include "Component/ScrollingList.h"
 #include "Component/Video.h"
 #include "Animate/AnimationEvents.h"
@@ -432,7 +433,8 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
 
     loadReloadableImages(layout, "reloadableImage", page);
     loadReloadableImages(layout, "reloadableVideo", page);
-    loadReloadableImages(layout, "reloadableText", page);
+    loadReloadableImages(layout, "reloadableText",  page);
+    loadReloadableImages(layout, "scrollingText",   page);
 
     return true;
 }
@@ -453,6 +455,12 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
         xml_attribute<> *pluralPrefixXml   = componentXml->first_attribute("pluralPrefix");
         xml_attribute<> *pluralPostfixXml  = componentXml->first_attribute("pluralPostfix");
         xml_attribute<> *selectedOffsetXml = componentXml->first_attribute("selectedOffset");
+        xml_attribute<> *directionXml      = componentXml->first_attribute("direction");
+        xml_attribute<> *scrollingSpeedXml = componentXml->first_attribute("scrollingSpeed");
+        xml_attribute<> *startPositionXml  = componentXml->first_attribute("startPosition");
+        xml_attribute<> *startTimeXml      = componentXml->first_attribute("startTime");
+        xml_attribute<> *endTimeXml        = componentXml->first_attribute("endTime");
+        xml_attribute<> *alignmentXml      = componentXml->first_attribute("alignment");
         bool systemMode = false;
         bool layoutMode = false;
         int selectedOffset = 0;
@@ -469,6 +477,10 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
         if(!type && (tagName == "reloadableImage" || tagName == "reloadableText"))
         {
             Logger::write(Logger::ZONE_ERROR, "Layout", "Image component in layout does not specify a source image file");
+        }
+        if(!type && tagName == "scrollingText")
+        {
+            Logger::write(Logger::ZONE_ERROR, "Layout", "Scroling Text component in layout does not specify a type");
         }
 
 
@@ -536,6 +548,49 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                     pluralPostfix = pluralPostfixXml->value();
                 }
                 c = new ReloadableText(type->value(), *page, config_, font, layoutKey, timeFormat, textFormat, singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, scaleX_, scaleY_);
+            }
+        }
+        else if(tagName == "scrollingText")
+        {
+            if(type)
+            {
+                Font *font = addFont(componentXml, NULL);
+                std::string direction = "horizontal";
+                std::string textFormat = "";
+                if (textFormatXml)
+                {
+                    textFormat = textFormatXml->value();
+                }
+                if (directionXml)
+                {
+                    direction = directionXml->value();
+                }
+                float scrollingSpeed = 1.0f;
+                if (scrollingSpeedXml)
+                {
+                    scrollingSpeed = Utils::convertFloat(scrollingSpeedXml->value());
+                }
+                float startPosition = 0.0f;
+                if (startPositionXml)
+                {
+                    startPosition = Utils::convertFloat(startPositionXml->value());
+                }
+                float startTime = 0.0f;
+                if (startTimeXml)
+                {
+                    startTime = Utils::convertFloat(startTimeXml->value());
+                }
+                float endTime = 0.0f;
+                if (endTimeXml)
+                {
+                    endTime = Utils::convertFloat(endTimeXml->value());
+                }
+                std::string alignment = "";
+                if (alignmentXml)
+                {
+                    alignment = alignmentXml->value();
+                }
+                c = new ScrollingText(config_, systemMode, layoutMode, type->value(), textFormat, alignment, *page, selectedOffset, font, scaleX_, scaleY_, direction, scrollingSpeed, startPosition, startTime, endTime);
             }
         }
         else
