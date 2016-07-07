@@ -104,7 +104,14 @@ void ScrollingText::freeGraphicsMemory( )
 void ScrollingText::reloadTexture( )
 {
 
-    currentPosition_ = -startPosition_ * scaleX_;
+    if (direction_ == "horizontal")
+    {
+        currentPosition_ = -startPosition_ * scaleX_;
+    }
+    else if (direction_ == "vertical")
+    {
+        currentPosition_ = -startPosition_ * scaleY_;
+    }
     waitStartTime_   = startTime_;
     waitEndTime_     = 0.0f;
 
@@ -467,12 +474,17 @@ void ScrollingText::draw( )
             // Print reformatted text
             rect.y = static_cast<int>( yOrigin );
 
+            if (currentPosition_ < 0)
+            {
+                rect.y -= static_cast<int>( currentPosition_ );
+            }
+
             // Do not scroll if the text fits fully inside the box, and start position is 0
             if (text.size() * font->getHeight( ) * scale * scaleY_ <= imageMaxHeight && startPosition_ == 0.0f)
             {
                 currentPosition_ = 0.0f;
-                startTime_       = 0.0f;
-                endTime_         = 0.0f;
+                waitStartTime_   = 0.0f;
+                waitEndTime_     = 0.0f;
             }
 
             for (unsigned int l = 0; l < text.size( ); ++l)
