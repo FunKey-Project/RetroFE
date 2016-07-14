@@ -342,6 +342,7 @@ void RetroFE::run()
 
         case RETROFE_HIGHLIGHT_REQUEST:
             currentPage_->highlightExit();
+            currentPage_->setScrolling(Page::ScrollDirectionIdle);
             state = RETROFE_HIGHLIGHT_EXIT;
             break;
 
@@ -559,37 +560,39 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
     bool exit = false;
     RETROFE_STATE state = RETROFE_IDLE;
 
-    if(page->isHorizontalScroll())
+    if(page->isMenuIdle())
     {
-        if (input_.keystate(UserInput::KeyCodeLeft))
+        if(page->isHorizontalScroll())
         {
-            page->setScrolling(Page::ScrollDirectionBack);
+            if (input_.keystate(UserInput::KeyCodeLeft))
+            {
+                page->setScrolling(Page::ScrollDirectionBack);
+            }
+            if (input_.keystate(UserInput::KeyCodeRight))
+            {
+                page->setScrolling(Page::ScrollDirectionForward);
+            }
         }
-        if (input_.keystate(UserInput::KeyCodeRight))
+        else
         {
-            page->setScrolling(Page::ScrollDirectionForward);
+            if (input_.keystate(UserInput::KeyCodeUp))
+            {
+                page->setScrolling(Page::ScrollDirectionBack);
+            }
+            if (input_.keystate(UserInput::KeyCodeDown))
+            {
+                page->setScrolling(Page::ScrollDirectionForward);
+            }
         }
-    }
-    else
-    {
-        if (input_.keystate(UserInput::KeyCodeUp))
-        {
-            page->setScrolling(Page::ScrollDirectionBack);
-        }
-        if (input_.keystate(UserInput::KeyCodeDown))
-        {
-            page->setScrolling(Page::ScrollDirectionForward);
-        }
-    }
 
     if (!input_.keystate(UserInput::KeyCodePageUp) &&
-    !input_.keystate(UserInput::KeyCodePageDown) &&
-    !input_.keystate(UserInput::KeyCodeLetterUp) &&
-    !input_.keystate(UserInput::KeyCodeLetterDown) &&
-    !input_.keystate(UserInput::KeyCodeNextPlaylist) &&
-    !input_.keystate(UserInput::KeyCodeAddPlaylist) &&
-    !input_.keystate(UserInput::KeyCodeRemovePlaylist) &&
-    !input_.keystate(UserInput::KeyCodeRandom))
+        !input_.keystate(UserInput::KeyCodePageDown) &&
+        !input_.keystate(UserInput::KeyCodeLetterUp) &&
+        !input_.keystate(UserInput::KeyCodeLetterDown) &&
+        !input_.keystate(UserInput::KeyCodeNextPlaylist) &&
+        !input_.keystate(UserInput::KeyCodeAddPlaylist) &&
+        !input_.keystate(UserInput::KeyCodeRemovePlaylist) &&
+        !input_.keystate(UserInput::KeyCodeRandom))
     {
         keyLastTime_ = 0;
         keyDelayTime_= 0.3f;
@@ -654,7 +657,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
     {
         //todo: add admin mode support
     }
-    if (input_.keystate(UserInput::KeyCodeSelect) && page->isMenuIdle())
+    if (input_.keystate(UserInput::KeyCodeSelect))
     {
         nextPageItem_ = page->getSelectedItem();
 
@@ -671,7 +674,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         }
     }
 
-    if (input_.keystate(UserInput::KeyCodeBack) && page->isMenuIdle())
+    if (input_.keystate(UserInput::KeyCodeBack))
     {
         if(back(exit) || exit)
         {
@@ -683,17 +686,17 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
     {
         state = RETROFE_QUIT_REQUEST;
     }
+    }
 
     if(!input_.keystate(UserInput::KeyCodeUp) &&
-            !input_.keystate(UserInput::KeyCodeLeft) &&
-            !input_.keystate(UserInput::KeyCodeDown) &&
-            !input_.keystate(UserInput::KeyCodeRight) &&
-            !input_.keystate(UserInput::KeyCodePageUp) &&
-            !input_.keystate(UserInput::KeyCodePageDown))
+       !input_.keystate(UserInput::KeyCodeLeft) &&
+       !input_.keystate(UserInput::KeyCodeDown) &&
+       !input_.keystate(UserInput::KeyCodeRight) &&
+       !input_.keystate(UserInput::KeyCodePageUp) &&
+       !input_.keystate(UserInput::KeyCodePageDown))
     {
         if (page->isMenuScrolling())
             state = RETROFE_HIGHLIGHT_REQUEST;
-        page->setScrolling(Page::ScrollDirectionIdle);
     }
 
     return state;
