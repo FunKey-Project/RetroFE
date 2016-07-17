@@ -28,11 +28,12 @@
 #include <vector>
 #include <iostream>
 
-ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, bool layoutMode, std::string type, Page &p, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY)
+ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, bool layoutMode, bool commonMode, std::string type, Page &p, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY)
     : Component(p)
     , config_(config)
     , systemMode_(systemMode)
     , layoutMode_(layoutMode)
+    , commonMode_(commonMode)
     , loadedComponent_(NULL)
     , videoInst_(NULL)
     , isVideo_(isVideo)
@@ -222,11 +223,11 @@ void ReloadableMedia::reloadTexture()
 
         std::string typeLC = Utils::toLower(type_);
 
-        if(typeLC == "numberButtons")
+        if(typeLC == "numberbuttons")
         {
             basename = selectedItem->numberButtons;
         }
-        else if(typeLC == "numberPlayers")
+        else if(typeLC == "numberplayers")
         {
             basename = selectedItem->numberPlayers;
         }
@@ -248,6 +249,18 @@ void ReloadableMedia::reloadTexture()
         else if(typeLC == "genre")
         {
             basename = selectedItem->genre;
+        }
+        else if(typeLC == "ctrltype")
+        {
+            basename = selectedItem->ctrlType;
+        }
+        else if(typeLC == "joyways")
+        {
+            basename = selectedItem->joyWays;
+        }
+        else if(typeLC == "rating")
+        {
+            basename = selectedItem->rating;
         }
 
         Utils::replaceSlashesWithUnderscores(basename);
@@ -334,7 +347,14 @@ Component *ReloadableMedia::findComponent(std::string collection, std::string ty
     {
         std::string layoutName;
         config_.getProperty("layout", layoutName);
-        imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", collection);
+        if (commonMode_)
+        {
+            imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", "_common");
+        }
+        else
+        {
+            imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", collection);
+        }
         if (systemMode)
             imagePath = Utils::combinePath(imagePath, "system_artwork");
         else
@@ -342,7 +362,18 @@ Component *ReloadableMedia::findComponent(std::string collection, std::string ty
     }
     else
     {
-        config_.getMediaPropertyAbsolutePath(collection, type, systemMode, imagePath);
+        if (commonMode_)
+        {
+            imagePath = Utils::combinePath(Configuration::absolutePath, "collections", "_common" );
+            if (systemMode)
+                imagePath = Utils::combinePath(imagePath, "system_artwork");
+            else
+                imagePath = Utils::combinePath(imagePath, "medium_artwork", type);
+        }
+        else
+        {
+            config_.getMediaPropertyAbsolutePath(collection, type, systemMode, imagePath);
+        }
     }
 
     if(type == "video")

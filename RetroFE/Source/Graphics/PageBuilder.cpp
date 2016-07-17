@@ -463,6 +463,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
         xml_attribute<> *alignmentXml      = componentXml->first_attribute("alignment");
         bool systemMode = false;
         bool layoutMode = false;
+        bool commonMode = false;
         int selectedOffset = 0;
         if(tagName == "reloadableVideo")
         {
@@ -494,6 +495,15 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
             if(sysMode == "layout")
             {
                 layoutMode = true;
+            }
+            if(sysMode == "common")
+            {
+                commonMode = true;
+            }
+            if(sysMode == "commonlayout")
+            {
+                layoutMode = true;
+                commonMode = true;
             }
             if(sysMode == "systemlayout")
             {
@@ -596,7 +606,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
         else
         {
             Font *font = addFont(componentXml, NULL);
-            c = new ReloadableMedia(config_, systemMode, layoutMode, type->value(), *page, selectedOffset, (tagName == "reloadableVideo"), font, scaleX_, scaleY_);
+            c = new ReloadableMedia(config_, systemMode, layoutMode, commonMode, type->value(), *page, selectedOffset, (tagName == "reloadableVideo"), font, scaleX_, scaleY_);
             xml_attribute<> *textFallback = componentXml->first_attribute("textFallback");
 
             if(textFallback && Utils::toLower(textFallback->value()) == "true")
