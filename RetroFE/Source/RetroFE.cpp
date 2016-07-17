@@ -127,7 +127,6 @@ void RetroFE::launchEnter()
     }
 
     SDL_SetWindowGrab(SDL::getWindow(), SDL_FALSE);
-
 }
 
 void RetroFE::launchExit()
@@ -434,7 +433,9 @@ void RetroFE::run()
 
         case RETROFE_LAUNCH_REQUEST:
             nextPageItem_ = currentPage_->getSelectedItem();
+            launchEnter();
             l.run(nextPageItem_->collectionInfo->name, nextPageItem_);
+            launchExit();
             state = RETROFE_IDLE;
             break;
 
