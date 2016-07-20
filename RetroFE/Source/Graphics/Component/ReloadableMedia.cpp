@@ -240,6 +240,15 @@ void ReloadableMedia::reloadTexture()
         {
             basename = selectedItem->title;
         }
+        else if(typeLC == "developer")
+        {
+            basename = selectedItem->developer;
+            // Overwrite in case developer has not been specified
+            if (basename == "")
+            {
+                basename = selectedItem->manufacturer;
+            }
+        }
         else if(typeLC == "manufacturer")
         {
           if ( selectedItem->leaf ) // item is a leaf
@@ -262,6 +271,10 @@ void ReloadableMedia::reloadTexture()
         else if(typeLC == "rating")
         {
             basename = selectedItem->rating;
+        }
+        else if(typeLC == "score")
+        {
+            basename = selectedItem->score;
         }
 
         Utils::replaceSlashesWithUnderscores(basename);

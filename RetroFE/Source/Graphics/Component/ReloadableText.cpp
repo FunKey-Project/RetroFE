@@ -136,6 +136,10 @@ void ReloadableText::ReloadTexture()
         {
             text = selectedItem->rating;
         }
+        else if (type_ == "score")
+        {
+            text = selectedItem->score;
+        }
         else if (type_ == "year")
         {
             if (selectedItem->leaf) // item is a leaf
@@ -146,6 +150,15 @@ void ReloadableText::ReloadTexture()
         else if (type_ == "title")
         {
             text = selectedItem->title;
+        }
+        else if(type_ == "developer")
+        {
+            text = selectedItem->developer;
+            // Overwrite in case developer has not been specified
+            if (text == "")
+            {
+                text = selectedItem->manufacturer;
+            }
         }
         else if (type_ == "manufacturer")
         {
