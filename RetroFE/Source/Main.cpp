@@ -146,6 +146,10 @@ bool ImportConfiguration(Configuration *c)
         {
             std::string prefix = "collections." + collection;
 
+            std::string infoFile = Utils::combinePath(collectionsPath, collection, "info.conf");
+
+            c->import(collection, prefix, infoFile, false);
+
             std::string settingsFile = Utils::combinePath(collectionsPath, collection, "settings.conf");
 
             if(!c->import(collection, prefix, settingsFile))
@@ -154,6 +158,7 @@ bool ImportConfiguration(Configuration *c)
                 closedir(dp);
                 return false;
             }
+
         }
     }
 

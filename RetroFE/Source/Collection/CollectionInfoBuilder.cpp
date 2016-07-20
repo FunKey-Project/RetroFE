@@ -121,9 +121,6 @@ bool CollectionInfoBuilder::createCollectionDirectory(std::string name)
     settingsFile << "launcher = mame" << std::endl;
     settingsFile << "#metadata.type = MAME" << std::endl;
     settingsFile << std::endl;
-    settingsFile << "#manufacturer = " << std::endl;
-    settingsFile << "#year         = " << std::endl;
-    settingsFile << "#genre        = " << std::endl;
     settingsFile << std::endl;
     settingsFile << "#media.screenshot      = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "screenshot") << std::endl;
     settingsFile << "#media.screentitle     = " << Utils::combinePath("%BASE_MEDIA_PATH%", "%ITEM_COLLECTION_NAME%", "medium_artwork", "screentitle") << std::endl;

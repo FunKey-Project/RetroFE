@@ -28,7 +28,7 @@ public:
     static std::string convertToAbsolutePath(std::string prefix, std::string path);
     // gets the global configuration
     bool import(std::string keyPrefix, std::string file);
-    bool import(std::string collection, std::string keyPrefix, std::string file);
+    bool import(std::string collection, std::string keyPrefix, std::string file, bool mustExist = true);
     bool getProperty(std::string key, std::string &value);
     bool getProperty(std::string key, int &value);
     bool getProperty(std::string key, bool &value);

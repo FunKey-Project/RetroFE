@@ -74,7 +74,7 @@ bool Configuration::import(std::string keyPrefix, std::string file)
     return import("", keyPrefix, file);
 }
 
-bool Configuration::import(std::string collection, std::string keyPrefix, std::string file)
+bool Configuration::import(std::string collection, std::string keyPrefix, std::string file, bool mustExist)
 {
     bool retVal = true;
     int lineCount = 0;
@@ -86,7 +86,14 @@ bool Configuration::import(std::string collection, std::string keyPrefix, std::s
 
     if (!ifs.is_open())
     {
-        Logger::write(Logger::ZONE_ERROR, "Configuration", "Could not open " + file + "\"");
+        if (mustExist)
+        {
+            Logger::write(Logger::ZONE_ERROR, "Configuration", "Could not open " + file + "\"");
+        }
+        else
+        {
+            Logger::write(Logger::ZONE_INFO, "Configuration", "Could not open " + file + "\"");
+        }
 
         return false;
     }
