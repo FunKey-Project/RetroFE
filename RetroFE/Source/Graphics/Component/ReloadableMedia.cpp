@@ -144,6 +144,7 @@ void ReloadableMedia::reloadTexture()
 
     names.push_back(selectedItem->name);
     names.push_back(selectedItem->fullTitle);
+    names.push_back("default");
 
     if(selectedItem->cloneof.length() > 0)
     {
