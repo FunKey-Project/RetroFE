@@ -175,7 +175,7 @@ void Component::draw()
                                static_cast<char>(baseViewInfo.BackgroundGreen*255),
                                static_cast<char>(baseViewInfo.BackgroundBlue*255));
 
-        SDL::renderCopy(backgroundTexture_, baseViewInfo.BackgroundAlpha, NULL, &rect, baseViewInfo.Angle, baseViewInfo.Reflection, baseViewInfo.ReflectionDistance, baseViewInfo.ReflectionScale, baseViewInfo.ReflectionAlpha);
+        SDL::renderCopy(backgroundTexture_, baseViewInfo.BackgroundAlpha, NULL, &rect, baseViewInfo);
     }
 }
 

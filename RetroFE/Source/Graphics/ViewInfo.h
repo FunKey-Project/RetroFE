@@ -69,6 +69,10 @@ public:
     unsigned int ReflectionDistance;
     float        ReflectionScale;
     float        ReflectionAlpha;
+    float        ContainerX;
+    float        ContainerY;
+    float        ContainerWidth;
+    float        ContainerHeight;
 
 private:
     float AbsoluteHeight() const;

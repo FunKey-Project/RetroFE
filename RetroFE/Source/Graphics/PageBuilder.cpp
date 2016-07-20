@@ -1011,6 +1011,10 @@ void PageBuilder::buildViewInfo(xml_node<> *componentXml, ViewInfo &info, xml_no
     xml_attribute<> *reflectionDistance = findAttribute(componentXml, "reflectionDistance", defaultXml);
     xml_attribute<> *reflectionScale    = findAttribute(componentXml, "reflectionScale", defaultXml);
     xml_attribute<> *reflectionAlpha    = findAttribute(componentXml, "reflectionAlpha", defaultXml);
+    xml_attribute<> *containerX         = findAttribute(componentXml, "containerX", defaultXml);
+    xml_attribute<> *containerY         = findAttribute(componentXml, "containerY", defaultXml);
+    xml_attribute<> *containerWidth     = findAttribute(componentXml, "containerWidth", defaultXml);
+    xml_attribute<> *containerHeight    = findAttribute(componentXml, "containerHeight", defaultXml);
 
     info.X = getHorizontalAlignment(x, 0);
     info.Y = getVerticalAlignment(y, 0);
@@ -1040,13 +1044,17 @@ void PageBuilder::buildViewInfo(xml_node<> *componentXml, ViewInfo &info, xml_no
     info.MinWidth           = getHorizontalAlignment(minWidth, 0);
     info.MaxHeight          = getVerticalAlignment(maxHeight, FLT_MAX);
     info.MaxWidth           = getVerticalAlignment(maxWidth, FLT_MAX);
-    info.Alpha              = alpha              ? Utils::convertFloat(alpha->value())            : 1.f;
-    info.Angle              = angle              ? Utils::convertFloat(angle->value())            : 0.f;
-    info.Layer              = layer              ? Utils::convertInt(layer->value())              : 0;
-    info.Reflection         = reflection         ? reflection->value()                            : "";
-    info.ReflectionDistance = reflectionDistance ? Utils::convertInt(reflectionDistance->value()) : 0;
-    info.ReflectionScale    = reflectionScale    ? Utils::convertFloat(reflectionScale->value())  : 0.25f;
-    info.ReflectionAlpha    = reflectionAlpha    ? Utils::convertFloat(reflectionAlpha->value())  : 1.f;
+    info.Alpha              = alpha              ? Utils::convertFloat(alpha->value())                     : 1.f;
+    info.Angle              = angle              ? Utils::convertFloat(angle->value())                     : 0.f;
+    info.Layer              = layer              ? Utils::convertInt(layer->value())                       : 0;
+    info.Reflection         = reflection         ? reflection->value()                                     : "";
+    info.ReflectionDistance = reflectionDistance ? Utils::convertInt(reflectionDistance->value())          : 0;
+    info.ReflectionScale    = reflectionScale    ? Utils::convertFloat(reflectionScale->value())           : 0.25f;
+    info.ReflectionAlpha    = reflectionAlpha    ? Utils::convertFloat(reflectionAlpha->value())           : 1.f;
+    info.ContainerX         = containerX         ? Utils::convertFloat(containerX->value())      * scaleX_ :  0.f;
+    info.ContainerY         = containerY         ? Utils::convertFloat(containerY->value())      * scaleY_ :  0.f;
+    info.ContainerWidth     = containerWidth     ? Utils::convertFloat(containerWidth->value())  * scaleX_ : -1.f;
+    info.ContainerHeight    = containerHeight    ? Utils::convertFloat(containerHeight->value()) * scaleY_ : -1.f;
 
     if(fontColor)
     {

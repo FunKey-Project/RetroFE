@@ -47,6 +47,10 @@ ViewInfo::ViewInfo()
     , ReflectionDistance(0)
     , ReflectionScale(.25)
     , ReflectionAlpha(1)
+    , ContainerX(0)
+    , ContainerY(0)
+    , ContainerWidth(-1)
+    , ContainerHeight(-1)
 {
 }
 
