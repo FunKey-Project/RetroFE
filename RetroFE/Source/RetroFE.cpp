@@ -346,7 +346,11 @@ void RetroFE::run()
             break;
 
         case RETROFE_HIGHLIGHT_EXIT:
-            if (currentPage_->isIdle())
+            if ( processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
+            {
+                state = RETROFE_HIGHLIGHT_REQUEST;
+            }
+            else if (currentPage_->isGraphicsIdle())
             {
                 currentPage_->onNewItemSelected();
                 currentPage_->highlightEnter();
@@ -355,7 +359,11 @@ void RetroFE::run()
             break;
 
         case RETROFE_HIGHLIGHT_ENTER:
-            if (currentPage_->isIdle())
+            if ( processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
+            {
+                state = RETROFE_HIGHLIGHT_REQUEST;
+            }
+            else if (currentPage_->isGraphicsIdle())
             {
                 state = RETROFE_IDLE;
             }

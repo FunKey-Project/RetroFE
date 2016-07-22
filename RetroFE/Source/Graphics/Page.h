@@ -74,6 +74,7 @@ public:
     void setScrollOffsetIndex(unsigned int i);
     unsigned int getScrollOffsetIndex();
     bool isIdle();
+    bool isGraphicsIdle();
     bool isMenuIdle();
     void setStatusTextComponent(Text *t);
     void update(float dt);

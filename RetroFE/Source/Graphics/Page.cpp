@@ -208,6 +208,18 @@ bool Page::isIdle()
     return idle;
 }
 
+bool Page::isGraphicsIdle()
+{
+    bool idle = true;
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end() && idle; ++it)
+    {
+        idle = (*it)->isIdle();
+    }
+
+    return idle;
+}
+
 
 void Page::start()
 {
