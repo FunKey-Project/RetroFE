@@ -575,132 +575,133 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
     bool exit = false;
     RETROFE_STATE state = RETROFE_IDLE;
 
+    if(page->isHorizontalScroll())
+    {
+        if (input_.keystate(UserInput::KeyCodeLeft))
+        {
+            page->setScrolling(Page::ScrollDirectionBack);
+        }
+        if (input_.keystate(UserInput::KeyCodeRight))
+        {
+            page->setScrolling(Page::ScrollDirectionForward);
+        }
+    }
+    else
+    {
+        if (input_.keystate(UserInput::KeyCodeUp))
+        {
+            page->setScrolling(Page::ScrollDirectionBack);
+        }
+        if (input_.keystate(UserInput::KeyCodeDown))
+        {
+            page->setScrolling(Page::ScrollDirectionForward);
+        }
+    }
+
     if(page->isMenuIdle())
     {
-        if(page->isHorizontalScroll())
+
+        if (!input_.keystate(UserInput::KeyCodePageUp) &&
+            !input_.keystate(UserInput::KeyCodePageDown) &&
+            !input_.keystate(UserInput::KeyCodeLetterUp) &&
+            !input_.keystate(UserInput::KeyCodeLetterDown) &&
+            !input_.keystate(UserInput::KeyCodeNextPlaylist) &&
+            !input_.keystate(UserInput::KeyCodeAddPlaylist) &&
+            !input_.keystate(UserInput::KeyCodeRemovePlaylist) &&
+            !input_.keystate(UserInput::KeyCodeRandom))
         {
-            if (input_.keystate(UserInput::KeyCodeLeft))
-            {
-                page->setScrolling(Page::ScrollDirectionBack);
-            }
-            if (input_.keystate(UserInput::KeyCodeRight))
-            {
-                page->setScrolling(Page::ScrollDirectionForward);
-            }
-        }
-        else
-        {
-            if (input_.keystate(UserInput::KeyCodeUp))
-            {
-                page->setScrolling(Page::ScrollDirectionBack);
-            }
-            if (input_.keystate(UserInput::KeyCodeDown))
-            {
-                page->setScrolling(Page::ScrollDirectionForward);
-            }
+            keyLastTime_ = 0;
+            keyDelayTime_= 0.3f;
         }
 
-    if (!input_.keystate(UserInput::KeyCodePageUp) &&
-        !input_.keystate(UserInput::KeyCodePageDown) &&
-        !input_.keystate(UserInput::KeyCodeLetterUp) &&
-        !input_.keystate(UserInput::KeyCodeLetterDown) &&
-        !input_.keystate(UserInput::KeyCodeNextPlaylist) &&
-        !input_.keystate(UserInput::KeyCodeAddPlaylist) &&
-        !input_.keystate(UserInput::KeyCodeRemovePlaylist) &&
-        !input_.keystate(UserInput::KeyCodeRandom))
-    {
-        keyLastTime_ = 0;
-        keyDelayTime_= 0.3f;
-    }
+        else if((currentTime_ - keyLastTime_) > keyDelayTime_ || keyLastTime_ == 0)
+        {
+            keyLastTime_ = currentTime_;
+            keyDelayTime_-= .05f;
+            if(keyDelayTime_< 0.1f) keyDelayTime_= 0.1f;
 
-    else if((currentTime_ - keyLastTime_) > keyDelayTime_ || keyLastTime_ == 0)
-    {
-        keyLastTime_ = currentTime_;
-        keyDelayTime_-= .05f;
-        if(keyDelayTime_< 0.1f) keyDelayTime_= 0.1f;
-
-        if (input_.keystate(UserInput::KeyCodePageUp))
-        {
-            page->pageScroll(Page::ScrollDirectionBack);
-            page->reallocateMenuSpritePoints();
-            state = RETROFE_HIGHLIGHT_REQUEST;
-        }
-        if (input_.keystate(UserInput::KeyCodePageDown))
-        {
-            page->pageScroll(Page::ScrollDirectionForward);
-            page->reallocateMenuSpritePoints();
-            state = RETROFE_HIGHLIGHT_REQUEST;
-        }
-        if (input_.keystate(UserInput::KeyCodeLetterUp))
-        {
-            page->letterScroll(Page::ScrollDirectionBack);
-            page->reallocateMenuSpritePoints();
-            state = RETROFE_HIGHLIGHT_REQUEST;
-        }
-        if (input_.keystate(UserInput::KeyCodeLetterDown))
-        {
-            page->letterScroll(Page::ScrollDirectionForward);
-            page->reallocateMenuSpritePoints();
-            state = RETROFE_HIGHLIGHT_REQUEST;
-        }
-        if(input_.newKeyPressed(UserInput::KeyCodeNextPlaylist))
-        {
-            page->nextPlaylist();
-            page->reallocateMenuSpritePoints();
-            state = RETROFE_HIGHLIGHT_REQUEST;
-        }
-        if(input_.newKeyPressed(UserInput::KeyCodeRemovePlaylist))
-        {
-            page->removePlaylist();
-            page->onNewItemSelected();
-            page->reallocateMenuSpritePoints();
-        }
-        if(input_.newKeyPressed(UserInput::KeyCodeAddPlaylist))
-        {
-            page->addPlaylist();
-            page->reallocateMenuSpritePoints();
-        }
-        if(input_.keystate(UserInput::KeyCodeRandom))
-        {
-            page->selectRandom();
-            page->reallocateMenuSpritePoints();
-            state = RETROFE_HIGHLIGHT_REQUEST;
-        }
-    }
-
-    if (input_.keystate(UserInput::KeyCodeAdminMode))
-    {
-        //todo: add admin mode support
-    }
-    if (input_.keystate(UserInput::KeyCodeSelect))
-    {
-        nextPageItem_ = page->getSelectedItem();
-
-        if(nextPageItem_)
-        {
-            if(nextPageItem_->leaf)
+            if (input_.keystate(UserInput::KeyCodePageUp))
             {
-                state = RETROFE_LAUNCH_REQUEST;
+                page->pageScroll(Page::ScrollDirectionBack);
+                page->reallocateMenuSpritePoints();
+                state = RETROFE_HIGHLIGHT_REQUEST;
             }
-            else
+            if (input_.keystate(UserInput::KeyCodePageDown))
             {
-                state = RETROFE_NEXT_PAGE_REQUEST;
+                page->pageScroll(Page::ScrollDirectionForward);
+                page->reallocateMenuSpritePoints();
+                state = RETROFE_HIGHLIGHT_REQUEST;
+            }
+            if (input_.keystate(UserInput::KeyCodeLetterUp))
+            {
+                page->letterScroll(Page::ScrollDirectionBack);
+                page->reallocateMenuSpritePoints();
+                state = RETROFE_HIGHLIGHT_REQUEST;
+            }
+            if (input_.keystate(UserInput::KeyCodeLetterDown))
+            {
+                page->letterScroll(Page::ScrollDirectionForward);
+                page->reallocateMenuSpritePoints();
+                state = RETROFE_HIGHLIGHT_REQUEST;
+            }
+            if(input_.newKeyPressed(UserInput::KeyCodeNextPlaylist))
+            {
+                page->nextPlaylist();
+                page->reallocateMenuSpritePoints();
+                state = RETROFE_HIGHLIGHT_REQUEST;
+            }
+            if(input_.newKeyPressed(UserInput::KeyCodeRemovePlaylist))
+            {
+                page->removePlaylist();
+                page->onNewItemSelected();
+                page->reallocateMenuSpritePoints();
+            }
+            if(input_.newKeyPressed(UserInput::KeyCodeAddPlaylist))
+            {
+                page->addPlaylist();
+                page->reallocateMenuSpritePoints();
+            }
+            if(input_.keystate(UserInput::KeyCodeRandom))
+            {
+                page->selectRandom();
+                page->reallocateMenuSpritePoints();
+                state = RETROFE_HIGHLIGHT_REQUEST;
             }
         }
-    }
 
-    if (input_.keystate(UserInput::KeyCodeBack))
-    {
-        if(back(exit) || exit)
+        if (input_.keystate(UserInput::KeyCodeAdminMode))
         {
-            state = (exit) ? RETROFE_QUIT_REQUEST : RETROFE_BACK_REQUEST;
+            //todo: add admin mode support
         }
-    }
+        if (input_.keystate(UserInput::KeyCodeSelect))
+        {
+            nextPageItem_ = page->getSelectedItem();
 
-    if (input_.keystate(UserInput::KeyCodeQuit))
-    {
-        state = RETROFE_QUIT_REQUEST;
-    }
+            if(nextPageItem_)
+            {
+                if(nextPageItem_->leaf)
+                {
+                    state = RETROFE_LAUNCH_REQUEST;
+                }
+                else
+                {
+                    state = RETROFE_NEXT_PAGE_REQUEST;
+                }
+            }
+        }
+
+        if (input_.keystate(UserInput::KeyCodeBack))
+        {
+            if(back(exit) || exit)
+            {
+                state = (exit) ? RETROFE_QUIT_REQUEST : RETROFE_BACK_REQUEST;
+            }
+        }
+
+        if (input_.keystate(UserInput::KeyCodeQuit))
+        {
+            state = RETROFE_QUIT_REQUEST;
+        }
     }
 
     if(!input_.keystate(UserInput::KeyCodeUp) &&
