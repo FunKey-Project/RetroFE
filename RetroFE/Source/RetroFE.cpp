@@ -510,7 +510,7 @@ void RetroFE::run()
             break;
 
         case RETROFE_QUIT:
-            if(currentPage_->isIdle())
+            if(currentPage_->isGraphicsIdle())
             {
               running = false;
             }
