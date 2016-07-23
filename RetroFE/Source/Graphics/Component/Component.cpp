@@ -309,6 +309,34 @@ bool Component::animate()
                     baseViewInfo.Layer = static_cast<unsigned int>(tween->animate(elapsedTime, storeViewInfo_.Layer));
                 break;
 
+            case TWEEN_PROPERTY_CONTAINER_X:
+                if (tween->startDefined)
+                    baseViewInfo.ContainerX = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.ContainerX = tween->animate(elapsedTime, storeViewInfo_.ContainerX);
+                break;
+
+            case TWEEN_PROPERTY_CONTAINER_Y:
+                if (tween->startDefined)
+                    baseViewInfo.ContainerY = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.ContainerY = tween->animate(elapsedTime, storeViewInfo_.ContainerY);
+                break;
+
+            case TWEEN_PROPERTY_CONTAINER_WIDTH:
+                if (tween->startDefined)
+                    baseViewInfo.ContainerWidth = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.ContainerWidth = tween->animate(elapsedTime, storeViewInfo_.ContainerWidth);
+                break;
+
+            case TWEEN_PROPERTY_CONTAINER_HEIGHT:
+                if (tween->startDefined)
+                    baseViewInfo.ContainerHeight = tween->animate(elapsedTime);
+                else
+                    baseViewInfo.ContainerHeight = tween->animate(elapsedTime, storeViewInfo_.ContainerHeight);
+                break;
+
             case TWEEN_PROPERTY_NOP:
                 break;
             }

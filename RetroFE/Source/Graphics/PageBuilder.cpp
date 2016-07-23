@@ -1162,6 +1162,8 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
                     case TWEEN_PROPERTY_WIDTH:
                     case TWEEN_PROPERTY_X:
                     case TWEEN_PROPERTY_X_OFFSET:
+                    case TWEEN_PROPERTY_CONTAINER_X:
+                    case TWEEN_PROPERTY_CONTAINER_WIDTH:
                         fromValue = getHorizontalAlignment(from, 0);
                         toValue = getHorizontalAlignment(to, 0);
                         break;
@@ -1176,6 +1178,8 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
                     case TWEEN_PROPERTY_Y:
                     case TWEEN_PROPERTY_Y_OFFSET:
                     case TWEEN_PROPERTY_FONT_SIZE:
+                    case TWEEN_PROPERTY_CONTAINER_Y:
+                    case TWEEN_PROPERTY_CONTAINER_HEIGHT:
                         fromValue = getVerticalAlignment(from, 0);
                         toValue = getVerticalAlignment(to, 0);
                         break;

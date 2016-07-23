@@ -54,6 +54,10 @@ bool Tween::getTweenProperty(std::string name, TweenProperty &property)
         tweenPropertyMap_["maxwidth"]        = TWEEN_PROPERTY_MAX_WIDTH;
         tweenPropertyMap_["maxheight"]       = TWEEN_PROPERTY_MAX_HEIGHT;
         tweenPropertyMap_["layer"]           = TWEEN_PROPERTY_LAYER;
+        tweenPropertyMap_["containerx"]      = TWEEN_PROPERTY_CONTAINER_X;
+        tweenPropertyMap_["containery"]      = TWEEN_PROPERTY_CONTAINER_Y;
+        tweenPropertyMap_["containerwidth"]  = TWEEN_PROPERTY_CONTAINER_WIDTH;
+        tweenPropertyMap_["containerheight"] = TWEEN_PROPERTY_CONTAINER_HEIGHT;
         tweenPropertyMap_["nop"]             = TWEEN_PROPERTY_NOP;
     }
 
