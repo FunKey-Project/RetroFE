@@ -297,7 +297,7 @@ void ScrollingText::draw( )
             imageMaxHeight = baseViewInfo.MaxHeight;
         }
 
-        float scale = (float)baseViewInfo.FontSize / (float)font->getHeight( );
+        float scale = (float)baseViewInfo.FontSize / (float)font->getHeight( ) / scaleY_;
 
         float xOrigin = baseViewInfo.XRelativeToOrigin( );
         float yOrigin = baseViewInfo.YRelativeToOrigin( );
