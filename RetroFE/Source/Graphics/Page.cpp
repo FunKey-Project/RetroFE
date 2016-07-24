@@ -769,6 +769,11 @@ void Page::launchEnter()
     {
         (*it)->launchEnter();
     }
+
+    if(selectSoundChunk_)
+    {
+        selectSoundChunk_->play();
+    }
 }
 
 void Page::launchExit()
