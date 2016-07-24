@@ -21,11 +21,11 @@
 #include <string>
 
 
-class ScrollingText : public Component
+class ReloadableScrollingText : public Component
 {
 public:
-    ScrollingText(Configuration &config, bool systemMode, bool layoutMode, std::string type, std::string textFormat, std::string alignment, Page &page, int displayOffset, Font *font, float scaleX, float scaleY, std::string direction, float scrollingSpeed, float startPosition, float startTime, float endTime );
-    virtual ~ScrollingText( );
+    ReloadableScrollingText(Configuration &config, bool systemMode, bool layoutMode, std::string type, std::string textFormat, std::string alignment, Page &page, int displayOffset, Font *font, float scaleX, float scaleY, std::string direction, float scrollingSpeed, float startPosition, float startTime, float endTime );
+    virtual ~ReloadableScrollingText( );
     void     update(float dt);
     void     draw( );
     void     freeGraphicsMemory( );

@@ -22,7 +22,7 @@
 #include "Component/Text.h"
 #include "Component/ReloadableText.h"
 #include "Component/ReloadableMedia.h"
-#include "Component/ScrollingText.h"
+#include "Component/ReloadableScrollingText.h"
 #include "Component/ScrollingList.h"
 #include "Component/Video.h"
 #include "Animate/AnimationEvents.h"
@@ -431,10 +431,10 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
     }
 
 
-    loadReloadableImages(layout, "reloadableImage", page);
-    loadReloadableImages(layout, "reloadableVideo", page);
-    loadReloadableImages(layout, "reloadableText",  page);
-    loadReloadableImages(layout, "scrollingText",   page);
+    loadReloadableImages(layout, "reloadableImage",         page);
+    loadReloadableImages(layout, "reloadableVideo",         page);
+    loadReloadableImages(layout, "reloadableText",          page);
+    loadReloadableImages(layout, "reloadableScrollingText", page);
 
     return true;
 }
@@ -479,9 +479,9 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
         {
             Logger::write(Logger::ZONE_ERROR, "Layout", "Image component in layout does not specify a source image file");
         }
-        if(!type && tagName == "scrollingText")
+        if(!type && tagName == "reloadableScrollingText")
         {
-            Logger::write(Logger::ZONE_ERROR, "Layout", "Scroling Text component in layout does not specify a type");
+            Logger::write(Logger::ZONE_ERROR, "Layout", "Reloadable scroling text component in layout does not specify a type");
         }
 
 
@@ -560,7 +560,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                 c = new ReloadableText(type->value(), *page, config_, font, layoutKey, timeFormat, textFormat, singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, scaleX_, scaleY_);
             }
         }
-        else if(tagName == "scrollingText")
+        else if(tagName == "reloadableScrollingText")
         {
             if(type)
             {
@@ -600,7 +600,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                 {
                     alignment = alignmentXml->value();
                 }
-                c = new ScrollingText(config_, systemMode, layoutMode, type->value(), textFormat, alignment, *page, selectedOffset, font, scaleX_, scaleY_, direction, scrollingSpeed, startPosition, startTime, endTime);
+                c = new ReloadableScrollingText(config_, systemMode, layoutMode, type->value(), textFormat, alignment, *page, selectedOffset, font, scaleX_, scaleY_, direction, scrollingSpeed, startPosition, startTime, endTime);
             }
         }
         else

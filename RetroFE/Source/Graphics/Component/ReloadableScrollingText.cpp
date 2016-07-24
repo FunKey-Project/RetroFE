@@ -14,7 +14,7 @@
  * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "ScrollingText.h"
+#include "ReloadableScrollingText.h"
 #include "../ViewInfo.h"
 #include "../../Database/Configuration.h"
 #include "../../Utility/Log.h"
@@ -28,7 +28,7 @@
 #include <algorithm>
 
 
-ScrollingText::ScrollingText(Configuration &config, bool systemMode, bool layoutMode, std::string type, std::string textFormat, std::string alignment, Page &p, int displayOffset, Font *font, float scaleX, float scaleY, std::string direction, float scrollingSpeed, float startPosition, float startTime, float endTime )
+ReloadableScrollingText::ReloadableScrollingText(Configuration &config, bool systemMode, bool layoutMode, std::string type, std::string textFormat, std::string alignment, Page &p, int displayOffset, Font *font, float scaleX, float scaleY, std::string direction, float scrollingSpeed, float startPosition, float startTime, float endTime )
     : Component(p)
     , config_(config)
     , systemMode_(systemMode)
@@ -56,12 +56,12 @@ ScrollingText::ScrollingText(Configuration &config, bool systemMode, bool layout
 }
 
 
-ScrollingText::~ScrollingText( )
+ReloadableScrollingText::~ReloadableScrollingText( )
 {
 }
 
 
-void ScrollingText::update(float dt)
+void ReloadableScrollingText::update(float dt)
 {
 
     if (waitEndTime_ > 0)
@@ -94,14 +94,14 @@ void ScrollingText::update(float dt)
 }
 
 
-void ScrollingText::freeGraphicsMemory( )
+void ReloadableScrollingText::freeGraphicsMemory( )
 {
     Component::freeGraphicsMemory( );
     text_.clear( );
 }
 
 
-void ScrollingText::reloadTexture( )
+void ReloadableScrollingText::reloadTexture( )
 {
 
     if (direction_ == "horizontal")
@@ -200,7 +200,7 @@ void ScrollingText::reloadTexture( )
 }
 
 
-void ScrollingText::loadText( std::string collection, std::string type, std::string basename, bool systemMode )
+void ReloadableScrollingText::loadText( std::string collection, std::string type, std::string basename, bool systemMode )
 {
 
     std::string textPath = "";
@@ -262,7 +262,7 @@ void ScrollingText::loadText( std::string collection, std::string type, std::str
 }
 
 
-void ScrollingText::draw( )
+void ReloadableScrollingText::draw( )
 {
     Component::draw( );
 
