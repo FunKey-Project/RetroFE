@@ -74,7 +74,7 @@ bool Configuration::import(std::string keyPrefix, std::string file)
     return import("", keyPrefix, file);
 }
 
-bool Configuration::import(std::string collection, std::string keyPrefix, std::string file)
+bool Configuration::import(std::string collection, std::string keyPrefix, std::string file, bool mustExist)
 {
     bool retVal = true;
     int lineCount = 0;
@@ -86,7 +86,14 @@ bool Configuration::import(std::string collection, std::string keyPrefix, std::s
 
     if (!ifs.is_open())
     {
-        Logger::write(Logger::ZONE_ERROR, "Configuration", "Could not open " + file + "\"");
+        if (mustExist)
+        {
+            Logger::write(Logger::ZONE_ERROR, "Configuration", "Could not open " + file + "\"");
+        }
+        else
+        {
+            Logger::write(Logger::ZONE_INFO, "Configuration", "Could not open " + file + "\"");
+        }
 
         return false;
     }
@@ -354,27 +361,7 @@ void Configuration::getMediaPropertyAbsolutePath(std::string collectionName, std
         baseMediaPath = Utils::combinePath(absolutePath, "collections");
     }
 
-    if(mediaType == "manufacturer")
-    {
-        value = Utils::combinePath(baseMediaPath, "_manufacturer");
-    }
-    else if(mediaType == "genre")
-    {
-        value = Utils::combinePath(baseMediaPath, "_genre");
-    }
-    else if(mediaType == "year")
-    {
-        value = Utils::combinePath(baseMediaPath, "_year");
-    }
-    else if(mediaType == "number_players")
-    {
-        value = Utils::combinePath(baseMediaPath, "_number_players");
-    }
-    else if(mediaType == "number_buttons")
-    {
-        value = Utils::combinePath(baseMediaPath, "_number_buttons");
-    }
-    else if(system)
+    if(system)
     {
         value = Utils::combinePath(baseMediaPath, collectionName, "system_artwork");
     }

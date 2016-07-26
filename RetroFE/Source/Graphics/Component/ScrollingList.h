@@ -19,7 +19,6 @@
 #include "Component.h"
 #include "../Animate/Tween.h"
 #include "../Page.h"
-#include "../MenuNotifierInterface.h"
 #include "../ViewInfo.h"
 #include "../../Database/Configuration.h"
 #include <SDL2/SDL.h>
@@ -53,8 +52,12 @@ public:
 
     ScrollingList(const ScrollingList &copy);
     virtual ~ScrollingList();
-    void triggerMenuEnterEvent();
-    void triggerMenuExitEvent();
+    void triggerEnterEvent();
+    void triggerExitEvent();
+    void triggerMenuEnterEvent(int menuIndex = -1);
+    void triggerMenuExitEvent(int menuIndex = -1);
+    void triggerHighlightEnterEvent(int menuIndex = -1);
+    void triggerHighlightExitEvent(int menuIndex = -1);
 
     bool allocateTexture(unsigned int index, Item *i);
     void deallocateTexture(unsigned int index);
@@ -75,8 +78,7 @@ public:
     void setScrollOffsetIndex(unsigned int index);
     void setSelectedIndex(int selectedIndex);
     Item *getItemByOffset(int offset);
-    void addComponentForNotifications(MenuNotifierInterface *c);
-    void removeComponentForNotifications(MenuNotifierInterface *c);
+    Item *getSelectedItem();
     void freeGraphicsMemory();
     void update(float dt);
     void draw();
@@ -105,15 +107,10 @@ private:
     std::vector<Component *> *spriteList_;
     std::vector<ViewInfo *> *scrollPoints_;
     std::vector<AnimationEvents *> *tweenPoints_;
-    std::vector<MenuNotifierInterface *> notificationComponents_;
-    bool focus_;
 
     unsigned int itemIndex_;
     unsigned int componentIndex_;
     unsigned int selectedOffsetIndex_;
-
-    bool scrollStopRequested_;
-    bool notifyAllRequested_;
 
     ScrollDirection currentScrollDirection_;
     ScrollDirection requestedScrollDirection_;

@@ -28,13 +28,13 @@
 #include <vector>
 #include <iostream>
 
-ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, std::string type, Page &p, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY)
+ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, bool layoutMode, bool commonMode, std::string type, Page &p, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY)
     : Component(p)
     , config_(config)
     , systemMode_(systemMode)
+    , layoutMode_(layoutMode)
+    , commonMode_(commonMode)
     , loadedComponent_(NULL)
-    , reloadRequested_(false)
-    , firstLoad_(true)
     , videoInst_(NULL)
     , isVideo_(isVideo)
     , FfntInst_(font)
@@ -63,23 +63,11 @@ void ReloadableMedia::enableTextFallback_(bool value)
 
 void ReloadableMedia::update(float dt)
 {
-    if(newItemSelected)
-    {
-    	std::string collection;
-    	config_.getProperty("currentCollection", collection);
-
-        if(!systemMode_ || (systemMode_ && currentCollection_ != collection))
-        {
-            reloadRequested_ = true;
-        }
-    }
-    // wait for the right moment to reload the image
-    if (reloadRequested_ && (highlightExitComplete || firstLoad_))
+    if (newItemSelected)
     {
 
         reloadTexture();
-        reloadRequested_ = false;
-        firstLoad_ = false;
+        newItemSelected = false;
     }
 
     if(loadedComponent_)
@@ -102,8 +90,6 @@ void ReloadableMedia::update(float dt)
 
 void ReloadableMedia::allocateGraphicsMemory()
 {
-    firstLoad_ = true;
-
     if(loadedComponent_)
     {
         loadedComponent_->allocateGraphicsMemory();
@@ -158,6 +144,7 @@ void ReloadableMedia::reloadTexture()
 
     names.push_back(selectedItem->name);
     names.push_back(selectedItem->fullTitle);
+    names.push_back("default");
 
     if(selectedItem->cloneof.length() > 0)
     {
@@ -237,11 +224,11 @@ void ReloadableMedia::reloadTexture()
 
         std::string typeLC = Utils::toLower(type_);
 
-        if(typeLC == "numberButtons")
+        if(typeLC == "numberbuttons")
         {
             basename = selectedItem->numberButtons;
         }
-        else if(typeLC == "numberPlayers")
+        else if(typeLC == "numberplayers")
         {
             basename = selectedItem->numberPlayers;
         }
@@ -253,6 +240,15 @@ void ReloadableMedia::reloadTexture()
         {
             basename = selectedItem->title;
         }
+        else if(typeLC == "developer")
+        {
+            basename = selectedItem->developer;
+            // Overwrite in case developer has not been specified
+            if (basename == "")
+            {
+                basename = selectedItem->manufacturer;
+            }
+        }
         else if(typeLC == "manufacturer")
         {
           if ( selectedItem->leaf ) // item is a leaf
@@ -263,6 +259,22 @@ void ReloadableMedia::reloadTexture()
         else if(typeLC == "genre")
         {
             basename = selectedItem->genre;
+        }
+        else if(typeLC == "ctrltype")
+        {
+            basename = selectedItem->ctrlType;
+        }
+        else if(typeLC == "joyways")
+        {
+            basename = selectedItem->joyWays;
+        }
+        else if(typeLC == "rating")
+        {
+            basename = selectedItem->rating;
+        }
+        else if(typeLC == "score")
+        {
+            basename = selectedItem->score;
         }
 
         Utils::replaceSlashesWithUnderscores(basename);
@@ -345,7 +357,38 @@ Component *ReloadableMedia::findComponent(std::string collection, std::string ty
     ImageBuilder imageBuild;
 
     // check the system folder
-    config_.getMediaPropertyAbsolutePath(collection, type, systemMode, imagePath);
+    if (layoutMode_)
+    {
+        std::string layoutName;
+        config_.getProperty("layout", layoutName);
+        if (commonMode_)
+        {
+            imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", "_common");
+        }
+        else
+        {
+            imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", collection);
+        }
+        if (systemMode)
+            imagePath = Utils::combinePath(imagePath, "system_artwork");
+        else
+            imagePath = Utils::combinePath(imagePath, "medium_artwork", type);
+    }
+    else
+    {
+        if (commonMode_)
+        {
+            imagePath = Utils::combinePath(Configuration::absolutePath, "collections", "_common" );
+            if (systemMode)
+                imagePath = Utils::combinePath(imagePath, "system_artwork");
+            else
+                imagePath = Utils::combinePath(imagePath, "medium_artwork", type);
+        }
+        else
+        {
+            config_.getMediaPropertyAbsolutePath(collection, type, systemMode, imagePath);
+        }
+    }
 
     if(type == "video")
     {

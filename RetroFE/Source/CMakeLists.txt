@@ -115,14 +115,15 @@ set(RETROFE_HEADERS
 	"${RETROFE_DIR}/Source/Graphics/Component/ImageBuilder.h"
 	"${RETROFE_DIR}/Source/Graphics/Component/ReloadableMedia.h"
 	"${RETROFE_DIR}/Source/Graphics/Component/ReloadableText.h"
+	"${RETROFE_DIR}/Source/Graphics/Component/ReloadableScrollingText.h"
 	"${RETROFE_DIR}/Source/Graphics/Component/ScrollingList.h"
 	"${RETROFE_DIR}/Source/Graphics/Component/Text.h"
 	"${RETROFE_DIR}/Source/Graphics/Component/VideoComponent.h"
 	"${RETROFE_DIR}/Source/Graphics/Component/VideoBuilder.h"
+	"${RETROFE_DIR}/Source/Graphics/Component/Video.h"
 	"${RETROFE_DIR}/Source/Graphics/Font.h"
 	"${RETROFE_DIR}/Source/Graphics/FontCache.h"
 	"${RETROFE_DIR}/Source/Graphics/PageBuilder.h"
-	"${RETROFE_DIR}/Source/Graphics/MenuNotifierInterface.h"
 	"${RETROFE_DIR}/Source/Graphics/Page.h"
 	"${RETROFE_DIR}/Source/Sound/Sound.h"
 	"${RETROFE_DIR}/Source/Utility/Log.h"
@@ -171,9 +172,11 @@ set(RETROFE_SOURCES
 	"${RETROFE_DIR}/Source/Graphics/Component/Text.cpp"
 	"${RETROFE_DIR}/Source/Graphics/Component/ReloadableMedia.cpp"
 	"${RETROFE_DIR}/Source/Graphics/Component/ReloadableText.cpp"
+	"${RETROFE_DIR}/Source/Graphics/Component/ReloadableScrollingText.cpp"
 	"${RETROFE_DIR}/Source/Graphics/Component/ScrollingList.cpp"
 	"${RETROFE_DIR}/Source/Graphics/Component/VideoBuilder.cpp"
 	"${RETROFE_DIR}/Source/Graphics/Component/VideoComponent.cpp"
+	"${RETROFE_DIR}/Source/Graphics/Component/Video.cpp"
 	"${RETROFE_DIR}/Source/Sound/Sound.cpp"
 	"${RETROFE_DIR}/Source/Utility/Log.cpp"
 	"${RETROFE_DIR}/Source/Utility/Utils.cpp"
@@ -213,6 +216,6 @@ if(MSVC)
 
 	set_target_properties(retrofe PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
 else()
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
   set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 endif()

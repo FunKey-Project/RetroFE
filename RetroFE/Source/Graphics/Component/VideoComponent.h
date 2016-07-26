@@ -33,6 +33,7 @@ public:
     void allocateGraphicsMemory();
     void launchEnter();
     void launchExit();
+    virtual bool isPlaying();
 
 private:
     std::string videoFile_;

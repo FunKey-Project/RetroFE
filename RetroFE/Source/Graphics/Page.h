@@ -15,7 +15,6 @@
  */
 #pragma once
 
-#include "MenuNotifierInterface.h"
 #include "../Collection/CollectionInfo.h"
 
 #include <map>
@@ -30,7 +29,7 @@ class Text;
 class Item;
 class Sound;
 
-class Page : public MenuNotifierInterface
+class Page
 {
 public:
     enum ScrollDirection
@@ -44,11 +43,14 @@ public:
     Page(Configuration &c);
     virtual ~Page();
     void DeInitialize();
-    virtual void onNewItemSelected(Item *);
+    virtual void onNewItemSelected();
     bool pushCollection(CollectionInfo *collection);
     bool popCollection();
+    void enterMenu();
+    void exitMenu();
+    std::string getPlaylistName();
     void nextPlaylist();
-    void favPlaylist();
+    void selectPlaylist(std::string playlist);
     void pushMenu(ScrollingList *s);
     bool isMenusFull();
     void setLoadSound(Sound *chunk);
@@ -62,7 +64,6 @@ public:
     unsigned int getSelectedIndex();
     void selectRandom();
     void start();
-    void startComponents();
     void stop();
     void setScrolling(ScrollDirection direction);
     bool isHorizontalScroll();
@@ -73,8 +74,8 @@ public:
     void setScrollOffsetIndex(unsigned int i);
     unsigned int getScrollOffsetIndex();
     bool isIdle();
+    bool isGraphicsIdle();
     bool isMenuIdle();
-    bool isHidden();
     void setStatusTextComponent(Text *t);
     void update(float dt);
     void draw();
@@ -85,11 +86,15 @@ public:
     std::string getCollectionName();
     void setMinShowTime(float value);
     float getMinShowTime();
+    void highlightEnter();
+    void highlightExit();
     void addPlaylist();
     void removePlaylist();
+    void reallocateMenuSpritePoints();
+    bool isMenuScrolling();
+    bool isPlaying();
 
 private:
-    void highlight();
     void playlistChange();
     std::string collectionName_;
     Configuration &config_;
@@ -112,7 +117,7 @@ private:
     CollectionVector_T deleteCollections_;
 
     static const unsigned int NUM_LAYERS = 20;
-    std::vector<Component *> LayerComponents[NUM_LAYERS];
+    std::vector<Component *> LayerComponents;
     std::list<ScrollingList *> deleteMenuList_;
     std::list<CollectionInfo *> deleteCollectionList_;
 
@@ -120,8 +125,6 @@ private:
 
     Item *selectedItem_;
     Text *textStatusComponent_;
-    bool selectedItemChanged_;
-    bool playlistChanged_;
     Sound *loadSoundChunk_;
     Sound *unloadSoundChunk_;
     Sound *highlightSoundChunk_;

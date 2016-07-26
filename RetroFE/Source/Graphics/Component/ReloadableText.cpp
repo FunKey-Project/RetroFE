@@ -22,61 +22,25 @@
 #include <fstream>
 #include <vector>
 #include <iostream>
+#include <time.h>
+#include <algorithm>
 
-ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, float scaleX, float scaleY)
+ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, std::string timeFormat, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, float scaleX, float scaleY)
     : Component(page)
     , config_(config)
     , imageInst_(NULL)
+    , type_(type)
     , layoutKey_(layoutKey)
-    , reloadRequested_(false)
-    , firstLoad_(true)
     , fontInst_(font)
+    , timeFormat_(timeFormat)
+    , textFormat_(textFormat)
+    , singlePrefix_(singlePrefix)
+    , singlePostfix_(singlePostfix)
+    , pluralPrefix_(pluralPrefix)
+    , pluralPostfix_(pluralPostfix)
     , scaleX_(scaleX)
     , scaleY_(scaleY)
 {
-
-    type_ = TextTypeUnknown;
-
-    if(type == "numberButtons")
-    {
-        type_ = TextTypeNumberButtons;
-    }
-    else if(type == "numberPlayers")
-    {
-        type_ = TextTypeNumberPlayers;
-    }
-    else if(type == "year")
-    {
-        type_ = TextTypeYear;
-    }
-    else if(type == "title")
-    {
-        type_ = TextTypeTitle;
-    }
-    else if(type == "manufacturer")
-    {
-        type_ = TextTypeManufacturer;
-    }
-    else if(type == "genre")
-    {
-        type_ = TextTypeGenre;
-    }
-    else if(type == "playlist")
-    {
-        type_ = TextTypePlaylist;
-    }
-    else if(type == "collectionName")
-    {
-        type_ = TextTypeCollectionName;
-    }
-    else if(type == "collectionSize")
-    {
-        type_ = TextTypeCollectionSize;
-    }
-    else if(type == "collectionIndex")
-    {
-        type_ = TextTypeCollectionIndex;
-    }
     allocateGraphicsMemory();
 }
 
@@ -92,17 +56,10 @@ ReloadableText::~ReloadableText()
 
 void ReloadableText::update(float dt)
 {
-    if((type_ != TextTypePlaylist && newItemSelected) || 
-       (type_ == TextTypePlaylist && playlistChanged))
-    {
-        reloadRequested_ = true;
-    }
-    // wait for the right moment to reload the image
-    if (reloadRequested_ && (highlightExitComplete || firstLoad_))
+    if (newItemSelected || type_ == "time")
     {
         ReloadTexture();
-        reloadRequested_ = false;
-        firstLoad_ = false;
+        newItemSelected = false;
     }
 
     // needs to be ran at the end to prevent the NewItemSelected flag from being detected
@@ -112,8 +69,6 @@ void ReloadableText::update(float dt)
 
 void ReloadableText::allocateGraphicsMemory()
 {
-    firstLoad_ = true;
-
     ReloadTexture();
 
     // NOTICE! needs to be done last to prevent flags from being missed
@@ -151,54 +106,156 @@ void ReloadableText::ReloadTexture()
     if (selectedItem != NULL)
     {
         std::stringstream ss;
-        std::string text;
-        switch(type_)
+        std::string text = "";
+        if (type_ == "time")
         {
-        case TextTypeNumberButtons:
-            ss << selectedItem->numberButtons;
-            break;
-        case TextTypeNumberPlayers:
-            ss << selectedItem->numberPlayers;
-            break;
-        case TextTypeYear:
+          time_t    now = time(0);
+          struct tm tstruct;
+          char      buf[80];
+          tstruct = *localtime(&now);
+          strftime(buf, sizeof(buf), timeFormat_.c_str(), &tstruct);
+          ss << buf;
+        }
+        if (type_ == "numberButtons")
+        {
+            text = selectedItem->numberButtons;
+        }
+        else if (type_ == "numberPlayers")
+        {
+            text = selectedItem->numberPlayers;
+        }
+        else if (type_ == "ctrlType")
+        {
+            text = selectedItem->ctrlType;
+        }
+        else if (type_ == "numberJoyWays")
+        {
+            text = selectedItem->joyWays;
+        }
+        else if (type_ == "rating")
+        {
+            text = selectedItem->rating;
+        }
+        else if (type_ == "score")
+        {
+            text = selectedItem->score;
+        }
+        else if (type_ == "year")
+        {
             if (selectedItem->leaf) // item is a leaf
               text = selectedItem->year;
             else // item is a collection
               (void)config_.getProperty("collections." + selectedItem->name + ".year", text );
-            ss << text;
-            break;
-        case TextTypeTitle:
-            ss << selectedItem->title;
-            break;
-        case TextTypeManufacturer:
+        }
+        else if (type_ == "title")
+        {
+            text = selectedItem->title;
+        }
+        else if(type_ == "developer")
+        {
+            text = selectedItem->developer;
+            // Overwrite in case developer has not been specified
+            if (text == "")
+            {
+                text = selectedItem->manufacturer;
+            }
+        }
+        else if (type_ == "manufacturer")
+        {
             if (selectedItem->leaf) // item is a leaf
               text = selectedItem->manufacturer;
             else // item is a collection
               (void)config_.getProperty("collections." + selectedItem->name + ".manufacturer", text );
-            ss << text;
-            break;
-        case TextTypeGenre:
+        }
+        else if (type_ == "genre")
+        {
             if (selectedItem->leaf) // item is a leaf
               text = selectedItem->genre;
             else // item is a collection
               (void)config_.getProperty("collections." + selectedItem->name + ".genre", text );
-            ss << text;
-            break;
-        case TextTypePlaylist:
-            ss << playlistName;
-            break;
-        case TextTypeCollectionName:
-            ss << page.getCollectionName();
-            break;
-        case TextTypeCollectionSize:
-            ss << page.getCollectionSize();
-            break;
-        case TextTypeCollectionIndex:
-              ss << (1+page.getSelectedIndex());
-            break;
+        }
+        else if (type_ == "playlist")
+        {
+            text = playlistName;
+        }
+        else if (type_ == "collectionName")
+        {
+            text = page.getCollectionName();
+        }
+        else if (type_ == "collectionSize")
+        {
+            if (page.getCollectionSize() == 0)
+            {
+                ss << singlePrefix_ << page.getCollectionSize() << pluralPostfix_;
+            }
+            else if (page.getCollectionSize() == 1)
+            {
+                ss << singlePrefix_ << page.getCollectionSize() << singlePostfix_;
+            }
+            else
+            {
+                ss << pluralPrefix_ << page.getCollectionSize() << pluralPostfix_;
+            }
+        }
+        else if (type_ == "collectionIndex")
+        {
+            if (page.getSelectedIndex() == 0)
+            {
+                ss << singlePrefix_ << (page.getSelectedIndex()+1) << pluralPostfix_;
+            }
+            else if (page.getSelectedIndex() == 1)
+            {
+                ss << singlePrefix_ << (page.getSelectedIndex()+1) << singlePostfix_;
+            }
+            else
+            {
+                ss << pluralPrefix_ << (page.getSelectedIndex()+1) << pluralPostfix_;
+            }
+        }
+        else if (type_ == "collectionIndexSize")
+        {
+            if (page.getSelectedIndex() == 0)
+            {
+                ss << singlePrefix_ << (page.getSelectedIndex()+1) << "/" << page.getCollectionSize() << pluralPostfix_;
+            }
+            else if (page.getSelectedIndex() == 1)
+            {
+                ss << singlePrefix_ << (page.getSelectedIndex()+1) << "/" << page.getCollectionSize() << singlePostfix_;
+            }
+            else
+            {
+                ss << pluralPrefix_ << (page.getSelectedIndex()+1) << "/" << page.getCollectionSize() << pluralPostfix_;
+            }
+        }
+        else if (!selectedItem->leaf) // item is not a leaf
+        {
+            (void)config_.getProperty("collections." + selectedItem->name + "." + type_, text );
+        }
 
-        default:
-            break;
+        if (text == "0")
+        {
+            text = singlePrefix_ + text + pluralPostfix_;
+        }
+        else if (text == "1")
+        {
+            text = singlePrefix_ + text + singlePostfix_;
+        }
+        else if (text != "")
+        {
+            text = pluralPrefix_ + text + pluralPostfix_;
+        }
+
+        if (text != "")
+        {
+            if (textFormat_ == "uppercase")
+            {
+                std::transform(text.begin(), text.end(), text.begin(), ::toupper);
+            }
+            if (textFormat_ == "lowercase")
+            {
+                std::transform(text.begin(), text.end(), text.begin(), ::tolower);
+            }
+            ss << text;
         }
 
         imageInst_ = new Text(ss.str(), page, fontInst_, scaleX_, scaleY_);

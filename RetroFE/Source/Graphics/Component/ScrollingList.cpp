@@ -51,12 +51,9 @@ ScrollingList::ScrollingList(Configuration &c,
     , spriteList_(NULL)
     , scrollPoints_(NULL)
     , tweenPoints_(NULL)
-    , focus_(false)
     , itemIndex_(0)
     , componentIndex_(0)
     , selectedOffsetIndex_(0)
-    , scrollStopRequested_(true)
-    , notifyAllRequested_(false)
     , currentScrollDirection_(ScrollDirectionIdle)
     , requestedScrollDirection_(ScrollDirectionIdle)
     , currentScrollState_(ScrollStateIdle)
@@ -77,12 +74,9 @@ ScrollingList::ScrollingList(const ScrollingList &copy)
     : Component(copy)
     , horizontalScroll(copy.horizontalScroll)
     , spriteList_(NULL)
-    , focus_(false)
     , itemIndex_(0)
     , componentIndex_(0)
     , selectedOffsetIndex_(copy.selectedOffsetIndex_)
-    , scrollStopRequested_(true)
-    , notifyAllRequested_(false)
     , currentScrollDirection_(ScrollDirectionIdle)
     , requestedScrollDirection_(ScrollDirectionIdle)
     , currentScrollState_(ScrollStateIdle)
@@ -113,17 +107,11 @@ ScrollingList::~ScrollingList()
 
 void ScrollingList::setItems(std::vector<Item *> *items)
 {
-    deallocateSpritePoints();
-
     items_ = items;
     if(items_)
     {
         itemIndex_ = loopDecrement(0, selectedOffsetIndex_, items_->size());
     }
-  
-    allocateSpritePoints();
-
-    notifyAllRequested_ = true;
 }
 
 unsigned int ScrollingList::loopIncrement(unsigned int offset, unsigned int i, unsigned int size)
@@ -192,8 +180,6 @@ void ScrollingList::destroyItems()
 
 void ScrollingList::setPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<AnimationEvents *> *tweenPoints)
 {
-    deallocateSpritePoints();
-
     scrollPoints_ = scrollPoints;
     tweenPoints_ = tweenPoints;
 
@@ -209,8 +195,6 @@ void ScrollingList::setPoints(std::vector<ViewInfo *> *scrollPoints, std::vector
     {
         itemIndex_ = loopDecrement(0, selectedOffsetIndex_, items_->size());
     }
-
-    allocateSpritePoints();
 }
 
 unsigned int ScrollingList::getScrollOffsetIndex()
@@ -241,6 +225,15 @@ Item *ScrollingList::getItemByOffset(int offset)
     
     return items_->at(index);
 }
+
+
+Item *ScrollingList::getSelectedItem()
+{
+    if(!items_ || items_->size() == 0) return NULL;
+    unsigned index = loopIncrement(itemIndex_, selectedOffsetIndex_, items_->size());
+    return items_->at(index);
+}
+
 
 void ScrollingList::click(double nextScrollTime)
 {
@@ -277,39 +270,20 @@ void ScrollingList::click(double nextScrollTime)
 
 void ScrollingList::pageUp()
 {
-    notifyAllRequested_ = true;
-
     if(components_.size() == 0) return;
-
-    deallocateSpritePoints();
-
     itemIndex_ = loopDecrement(itemIndex_, components_.size(), items_->size());
-    
-    allocateSpritePoints();
 }
 
 void ScrollingList::pageDown()
 {
-    notifyAllRequested_ = true;
-
     if(components_.size() == 0) return;
-
-    deallocateSpritePoints();
-
     itemIndex_ = loopIncrement(itemIndex_, components_.size(), items_->size());
-
-    allocateSpritePoints();
 }
 
 void ScrollingList::random()
 {
     if(!items_ || items_->size() == 0) return;
-    
-    notifyAllRequested_ = true;
-
-    deallocateSpritePoints();
     itemIndex_ = rand() % items_->size();
-    allocateSpritePoints();
 }
 
 void ScrollingList::letterUp()
@@ -324,9 +298,6 @@ void ScrollingList::letterDown()
 
 void ScrollingList::letterChange(bool increment)
 {
-    notifyAllRequested_ = true;
-    deallocateSpritePoints();
-
     std::string startname = items_->at((itemIndex_+selectedOffsetIndex_)%items_->size())->lowercaseFullTitle();
 
     for(unsigned int i = 0; i < items_->size(); ++i)
@@ -366,7 +337,6 @@ void ScrollingList::letterChange(bool increment)
         }
     }
 
-    allocateSpritePoints();
 }
 
 
@@ -381,27 +351,57 @@ void ScrollingList::freeGraphicsMemory()
     deallocateSpritePoints();
 }
 
-void ScrollingList::triggerMenuEnterEvent()
+void ScrollingList::triggerEnterEvent()
 {
-    focus_ = true;
-    notifyAllRequested_ = true;
-
     for(unsigned int i = 0; i < components_.size(); ++i)
     {
         Component *c = components_.at(i);
-        if(c) c->triggerMenuEnterEvent();
+        if(c) c->triggerEvent( "enter" );
     }
 }
 
-void ScrollingList::triggerMenuExitEvent()
+void ScrollingList::triggerExitEvent()
 {
-    focus_ = false;
-    notifyAllRequested_ = true;
-
     for(unsigned int i = 0; i < components_.size(); ++i)
     {
         Component *c = components_.at(i);
-        if(c) c->triggerMenuExitEvent();
+        if(c) c->triggerEvent( "exit" );
+    }
+}
+
+void ScrollingList::triggerMenuEnterEvent( int menuIndex )
+{
+    for(unsigned int i = 0; i < components_.size(); ++i)
+    {
+        Component *c = components_.at(i);
+        if(c) c->triggerEvent( "menuEnter", menuIndex );
+    }
+}
+
+void ScrollingList::triggerMenuExitEvent( int menuIndex )
+{
+    for(unsigned int i = 0; i < components_.size(); ++i)
+    {
+        Component *c = components_.at(i);
+        if(c) c->triggerEvent( "menuExit", menuIndex );
+    }
+}
+
+void ScrollingList::triggerHighlightEnterEvent( int menuIndex )
+{
+    for(unsigned int i = 0; i < components_.size(); ++i)
+    {
+        Component *c = components_.at(i);
+        if(c) c->triggerEvent( "highlightEnter", menuIndex );
+    }
+}
+
+void ScrollingList::triggerHighlightExitEvent( int menuIndex )
+{
+    for(unsigned int i = 0; i < components_.size(); ++i)
+    {
+        Component *c = components_.at(i);
+        if(c) c->triggerEvent( "highlightExit", menuIndex );
     }
 }
 
@@ -500,38 +500,20 @@ void ScrollingList::update(float dt)
 
             resetTweens(c, tweenPoints_->at(i), currentvi, nextvi, scrollPeriod_);
             c->baseViewInfo.font = nextvi->font; // Use the font settings of the next index
-            c->triggerMenuScrollEvent();
+            c->triggerEvent( "menuScroll" );
         }
 
         if(c) c->update(dt);
         
     }
 
-    if(scrollStopped || (notifyAllRequested_ && focus_))
+    if(scrollStopped)
     {
-        Item *item = NULL;
-        unsigned index = loopIncrement(itemIndex_, selectedOffsetIndex_, items_->size());
-        item = items_->at(index);
-
-        for(std::vector<MenuNotifierInterface *>::iterator it = notificationComponents_.begin();
-                it != notificationComponents_.end();
-                it++)
-        {
-            MenuNotifierInterface *c = *it;
-
-            if(c && item)
-            {
-                c->onNewItemSelected(item);
-            }
-        }
-
         if(currentScrollState_ == ScrollStatePageChange)
         {
             currentScrollState_ = ScrollStateIdle;
         }
     }
-
-    notifyAllRequested_ = false;
 }
 
 unsigned int ScrollingList::getSelectedIndex()
@@ -568,8 +550,8 @@ void ScrollingList::resetTweens(Component *c, AnimationEvents *sets, ViewInfo *c
     c->baseViewInfo = *currentViewInfo;
 
     TweenSet *set = new TweenSet();
-    set->push(new Tween(TWEEN_PROPERTY_HEIGHT, EASE_INOUT_QUADRATIC, currentViewInfo->ScaledHeight(), nextViewInfo->ScaledHeight(), scrollTime));
-    set->push(new Tween(TWEEN_PROPERTY_WIDTH, EASE_INOUT_QUADRATIC, currentViewInfo->ScaledWidth(), nextViewInfo->ScaledWidth(), scrollTime));
+    set->push(new Tween(TWEEN_PROPERTY_HEIGHT, EASE_INOUT_QUADRATIC, currentViewInfo->Height, nextViewInfo->Height, scrollTime));
+    set->push(new Tween(TWEEN_PROPERTY_WIDTH, EASE_INOUT_QUADRATIC, currentViewInfo->Width, nextViewInfo->Width, scrollTime));
     set->push(new Tween(TWEEN_PROPERTY_ANGLE, EASE_INOUT_QUADRATIC, currentViewInfo->Angle, nextViewInfo->Angle, scrollTime));
     set->push(new Tween(TWEEN_PROPERTY_ALPHA, EASE_INOUT_QUADRATIC, currentViewInfo->Alpha, nextViewInfo->Alpha, scrollTime));
     set->push(new Tween(TWEEN_PROPERTY_X, EASE_INOUT_QUADRATIC, currentViewInfo->X, nextViewInfo->X, scrollTime));
@@ -580,6 +562,9 @@ void ScrollingList::resetTweens(Component *c, AnimationEvents *sets, ViewInfo *c
     set->push(new Tween(TWEEN_PROPERTY_Y_OFFSET, EASE_INOUT_QUADRATIC, currentViewInfo->YOffset, nextViewInfo->YOffset, scrollTime));
     set->push(new Tween(TWEEN_PROPERTY_FONT_SIZE, EASE_INOUT_QUADRATIC, currentViewInfo->FontSize, nextViewInfo->FontSize, scrollTime));
     set->push(new Tween(TWEEN_PROPERTY_BACKGROUND_ALPHA, EASE_INOUT_QUADRATIC, currentViewInfo->BackgroundAlpha, nextViewInfo->BackgroundAlpha, scrollTime));
+    set->push(new Tween(TWEEN_PROPERTY_MAX_WIDTH, EASE_INOUT_QUADRATIC, currentViewInfo->MaxWidth, nextViewInfo->MaxWidth, scrollTime));
+    set->push(new Tween(TWEEN_PROPERTY_MAX_HEIGHT, EASE_INOUT_QUADRATIC, currentViewInfo->MaxHeight, nextViewInfo->MaxHeight, scrollTime));
+    set->push(new Tween(TWEEN_PROPERTY_LAYER, EASE_INOUT_QUADRATIC, currentViewInfo->Layer, nextViewInfo->Layer, scrollTime));
     scrollTween->Push(set);
 }
 
@@ -694,28 +679,8 @@ void ScrollingList::draw(unsigned int layer)
 void ScrollingList::setScrollDirection(ScrollDirection direction)
 {
     requestedScrollDirection_ = direction;
-
-    scrollStopRequested_ = (direction == ScrollDirectionIdle);
 }
 
-
-void ScrollingList::addComponentForNotifications(MenuNotifierInterface *c)
-{
-    notificationComponents_.push_back(c);
-}
-void ScrollingList::removeComponentForNotifications(MenuNotifierInterface *c)
-{
-    for(std::vector<MenuNotifierInterface *>::iterator it = notificationComponents_.begin();
-            it != notificationComponents_.end();
-            it++)
-    {
-        if(c == *it)
-        {
-            notificationComponents_.erase(it);
-            break;
-        }
-    }
-}
 
 bool ScrollingList::isIdle()
 {

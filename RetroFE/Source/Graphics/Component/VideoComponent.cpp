@@ -18,6 +18,7 @@
 #include "../ViewInfo.h"
 #include "../../Database/Configuration.h"
 #include "../../Utility/Log.h"
+#include "../../Video/GStreamerVideo.h"
 #include "../../SDL.h"
 
 VideoComponent::VideoComponent(IVideo *videoInst, Page &p, std::string videoFile, float scaleX, float scaleY)
@@ -43,6 +44,10 @@ VideoComponent::~VideoComponent()
 
 void VideoComponent::update(float dt)
 {
+    if (videoInst_)
+    {
+        isPlaying_ = ((GStreamerVideo *)(videoInst_))->isPlaying();
+    }
     if(isPlaying_)
     {
         videoInst_->update(dt);
@@ -100,6 +105,11 @@ void VideoComponent::draw()
 
     if(texture)
     {
-        SDL::renderCopy(texture, static_cast<int>(baseViewInfo.Alpha * 255), NULL, &rect, static_cast<int>(baseViewInfo.Angle));
+        SDL::renderCopy(texture, baseViewInfo.Alpha, NULL, &rect, baseViewInfo);
     }
+}
+
+bool VideoComponent::isPlaying()
+{
+    return isPlaying_;
 }

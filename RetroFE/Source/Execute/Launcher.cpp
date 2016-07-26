@@ -42,12 +42,11 @@ bool Launcher::run(std::string collection, Item *collectionItem)
     std::string executablePath;
     std::string selectedItemsDirectory;
     std::string selectedItemsPath;
-    std::string currentDirectory;
     std::string extensionstr;
     std::string matchedExtension;
     std::string args;
 
-    if(!launcherExecutable(executablePath, currentDirectory, launcherName))
+    if(!launcherExecutable(executablePath, launcherName))
     {
         Logger::write(Logger::ZONE_ERROR, "Launcher", "Failed to find launcher executable (launcher: " + launcherName + " executable: " + executablePath + ")");
         return false;
@@ -84,6 +83,11 @@ bool Launcher::run(std::string collection, Item *collectionItem)
                                       Utils::getFileName(selectedItemsPath),
                                       selectedItemsDirectory,
                                       collection);
+
+    std::string currentDirectoryKey = "launchers." + launcherName + ".currentDirectory";
+    std::string currentDirectory    = Utils::getDirectory(executablePath);
+
+    config_.getProperty(currentDirectoryKey, currentDirectory);
 
     currentDirectory = replaceVariables(currentDirectory,
                                         selectedItemsPath,
@@ -137,8 +141,8 @@ bool Launcher::execute(std::string executable, std::string args, std::string cur
 #ifdef WIN32
     STARTUPINFO startupInfo;
     PROCESS_INFORMATION processInfo;
-    char applicationName[256];
-    char currDir[256];
+    char applicationName[2048];
+    char currDir[2048];
     memset(&applicationName, 0, sizeof(applicationName));
     memset(&startupInfo, 0, sizeof(startupInfo));
     memset(&processInfo, 0, sizeof(processInfo));
@@ -222,7 +226,7 @@ bool Launcher::launcherName(std::string &launcherName, std::string collection)
 
 
 
-bool Launcher::launcherExecutable(std::string &executable, std::string &currentDirectory, std::string launcherName)
+bool Launcher::launcherExecutable(std::string &executable, std::string launcherName)
 {
     std::string executableKey = "launchers." + launcherName + ".executable";
 
@@ -230,11 +234,6 @@ bool Launcher::launcherExecutable(std::string &executable, std::string &currentD
     {
         return false;
     }
-
-    std::string currentDirectoryKey = "launchers." + launcherName + ".currentDirectory";
-    currentDirectory = Utils::getDirectory(executable);
-
-    config_.getProperty(currentDirectoryKey, currentDirectory);
 
     return true;
 }

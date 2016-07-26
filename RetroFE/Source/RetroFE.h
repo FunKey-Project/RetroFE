@@ -25,7 +25,7 @@
 #include "Video/VideoFactory.h"
 #include <SDL2/SDL.h>
 #include <list>
-#include <vector>
+#include <stack>
 #include <map>
 
 class CollectionInfo;
@@ -52,9 +52,18 @@ private:
     enum RETROFE_STATE
     {
         RETROFE_IDLE,
+        RETROFE_ENTER,
+        RETROFE_SPLASH_EXIT,
+        RETROFE_HIGHLIGHT_REQUEST,
+        RETROFE_HIGHLIGHT_EXIT,
+        RETROFE_HIGHLIGHT_ENTER,
         RETROFE_NEXT_PAGE_REQUEST,
+        RETROFE_NEXT_PAGE_MENU_EXIT,
+        RETROFE_NEXT_PAGE_MENU_ENTER,
         RETROFE_LAUNCH_REQUEST,
         RETROFE_BACK_REQUEST,
+        RETROFE_BACK_MENU_EXIT,
+        RETROFE_BACK_MENU_ENTER,
         RETROFE_NEW,
         RETROFE_QUIT_REQUEST,
         RETROFE_QUIT,
@@ -74,6 +83,7 @@ private:
     MetadataDatabase *metadb_;
     UserInput input_;
     Page *currentPage_;
+    std::stack<Page *> pages_;
     float keyInputDisable_;
     float currentTime_;
     float lastLaunchReturnTime_;
@@ -83,5 +93,6 @@ private:
     FontCache fontcache_;
     AttractMode attract_;
     std::map<std::string, unsigned int> lastMenuOffsets_;
+    std::map<std::string, std::string> lastMenuPlaylists_;
 
 };

@@ -255,8 +255,12 @@ SDL_Window* SDL::getWindow()
     return window_;
 }
 
-bool SDL::renderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, SDL_Rect *dest, double angle)
+bool SDL::renderCopy(SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo)
 {
+
+    SDL_Rect srcRect;
+    SDL_Rect dstRect;
+
     SDL_Rect rotateRect;
     rotateRect.w = dest->w;
     rotateRect.h = dest->h;
@@ -272,8 +276,98 @@ bool SDL::renderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, S
         rotateRect.y = dest->y;
     }
 
-    SDL_SetTextureAlphaMod(texture, alpha);
-    SDL_RenderCopyEx(getRenderer(), texture, src, &rotateRect, angle, NULL, SDL_FLIP_NONE);
+    // Create the base fields to check against the container.
+    if (src)
+    {
+        srcRect.x = src->x;
+        srcRect.y = src->y;
+        srcRect.w = src->w;
+        srcRect.h = src->h;
+    }
+    else
+    {
+        srcRect.x = 0;
+        srcRect.y = 0;
+        int w = 0;
+        int h = 0;
+        SDL_QueryTexture(texture, NULL, NULL, &w, &h);
+        srcRect.w = w;
+        srcRect.h = h;
+    }
+    dstRect.x = rotateRect.x;
+    dstRect.y = rotateRect.y;
+    dstRect.w = rotateRect.w;
+    dstRect.h = rotateRect.h;
+
+    // If a container has been defined, limit the display to the container boundaries.
+    if (viewInfo.ContainerWidth > 0 && viewInfo.ContainerHeight > 0 &&
+        rotateRect.w            > 0 && rotateRect.h             > 0)
+    {
+
+        // Correct if the image falls to the left of the container
+        if (dstRect.x < viewInfo.ContainerX)
+        {
+            dstRect.x = static_cast<int>(viewInfo.ContainerX);
+            srcRect.x = srcRect.x + srcRect.w * (dstRect.x - rotateRect.x) / rotateRect.w;
+        }
+
+        // Correct if the image falls to the right of the container
+        if (rotateRect.x + rotateRect.w > viewInfo.ContainerX + viewInfo.ContainerWidth)
+        {
+            dstRect.w = static_cast<int>(viewInfo.ContainerX + viewInfo.ContainerWidth) - dstRect.x;
+            srcRect.w = srcRect.w * dstRect.w / rotateRect.w;
+        }
+
+        // Correct if the image falls to the top of the container
+        if (dstRect.y < viewInfo.ContainerY)
+        {
+            dstRect.y = static_cast<int>(viewInfo.ContainerY);
+            srcRect.y = srcRect.y + srcRect.h * (dstRect.y - rotateRect.y) / rotateRect.h;
+        }
+
+        // Correct if the image falls to the bottom of the container
+        if (rotateRect.y + rotateRect.h > viewInfo.ContainerY + viewInfo.ContainerHeight)
+        {
+            dstRect.h = static_cast<int>(viewInfo.ContainerY + viewInfo.ContainerHeight) - dstRect.y;
+            srcRect.h = srcRect.h * dstRect.h / rotateRect.h;
+        }
+
+    }
+
+    SDL_SetTextureAlphaMod(texture, static_cast<char>(alpha * 255));
+    SDL_RenderCopyEx(getRenderer(), texture, &srcRect, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_NONE);
+
+    if (viewInfo.Reflection == "top")
+    {
+        rotateRect.h = static_cast<unsigned int>(static_cast<float>(rotateRect.h) * viewInfo.ReflectionScale);
+        rotateRect.y = rotateRect.y - rotateRect.h - viewInfo.ReflectionDistance;
+        SDL_SetTextureAlphaMod(texture, static_cast<char>(viewInfo.ReflectionAlpha * alpha * 255));
+        SDL_RenderCopyEx(getRenderer(), texture, src, &rotateRect, viewInfo.Angle, NULL, SDL_FLIP_VERTICAL);
+    }
+
+    if (viewInfo.Reflection == "bottom")
+    {
+        rotateRect.y = rotateRect.y + rotateRect.h + viewInfo.ReflectionDistance;
+        rotateRect.h = static_cast<unsigned int>(static_cast<float>(rotateRect.h) * viewInfo.ReflectionScale);
+        SDL_SetTextureAlphaMod(texture, static_cast<char>(viewInfo.ReflectionAlpha * alpha * 255));
+        SDL_RenderCopyEx(getRenderer(), texture, src, &rotateRect, viewInfo.Angle, NULL, SDL_FLIP_VERTICAL);
+    }
+
+    if (viewInfo.Reflection == "left")
+    {
+        rotateRect.w = static_cast<unsigned int>(static_cast<float>(rotateRect.w) * viewInfo.ReflectionScale);
+        rotateRect.x = rotateRect.x - rotateRect.w - viewInfo.ReflectionDistance;
+        SDL_SetTextureAlphaMod(texture, static_cast<char>(viewInfo.ReflectionAlpha * alpha * 255));
+        SDL_RenderCopyEx(getRenderer(), texture, src, &rotateRect, viewInfo.Angle, NULL, SDL_FLIP_HORIZONTAL);
+    }
+
+    if (viewInfo.Reflection == "right")
+    {
+        rotateRect.x = rotateRect.x + rotateRect.w + viewInfo.ReflectionDistance;
+        rotateRect.w = static_cast<unsigned int>(static_cast<float>(rotateRect.w) * viewInfo.ReflectionScale);
+        SDL_SetTextureAlphaMod(texture, static_cast<char>(viewInfo.ReflectionAlpha * alpha * 255));
+        SDL_RenderCopyEx(getRenderer(), texture, src, &rotateRect, viewInfo.Angle, NULL, SDL_FLIP_HORIZONTAL);
+    }
 
     return true;
 }

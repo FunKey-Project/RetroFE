@@ -25,7 +25,7 @@
 class ReloadableText : public Component
 {
 public:
-    ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, float scaleX, float scaleY);
+    ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, std::string timeFormat, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, float scaleX, float scaleY);
     virtual ~ReloadableText();
     void update(float dt);
     void draw();
@@ -35,30 +35,19 @@ public:
     void launchExit();
 
 private:
-    enum TextType
-    {
-        TextTypeUnknown = 0,
-        TextTypeNumberButtons,
-        TextTypeNumberPlayers,
-        TextTypeYear,
-        TextTypeTitle,
-        TextTypeManufacturer,
-        TextTypeGenre,
-        TextTypePlaylist,
-        TextTypeCollectionName,
-        TextTypeCollectionSize,
-        TextTypeCollectionIndex
-    };
-
     void ReloadTexture();
 
     Configuration &config_;
     Text *imageInst_;
-    TextType type_;
+    std::string type_;
     std::string layoutKey_;
-    bool reloadRequested_;
-    bool firstLoad_;
     Font *fontInst_;
+    std::string timeFormat_;
+    std::string textFormat_;
+    std::string singlePrefix_;
+    std::string singlePostfix_;
+    std::string pluralPrefix_;
+    std::string pluralPostfix_;
 
     float scaleX_;
     float scaleY_;

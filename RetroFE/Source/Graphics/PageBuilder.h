@@ -33,7 +33,7 @@ class PageBuilder
 public:
     PageBuilder(std::string layoutKey, std::string layoutPage, Configuration &c, FontCache *fc);
     virtual ~PageBuilder();
-    Page *buildPage();
+    Page *buildPage( std::string collectionName = "" );
 
 private:
     std::string layoutKey;

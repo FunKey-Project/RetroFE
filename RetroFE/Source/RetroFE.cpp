@@ -60,7 +60,7 @@ RetroFE::RetroFE(Configuration &c)
     , currentTime_(0)
     , lastLaunchReturnTime_(0)
     , keyLastTime_(0)
-    , keyDelayTime_(.3f) 
+    , keyDelayTime_(.3f)
 {
 }
 
@@ -90,8 +90,8 @@ int RetroFE::initialize(void *context)
 
     Logger::write(Logger::ZONE_INFO, "RetroFE", "Initializing");
 
-    if(!instance->input_.initialize()) 
-    { 
+    if(!instance->input_.initialize())
+    {
         Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not initialize user controls");
         instance->initializeError = true;
         return -1;
@@ -127,7 +127,6 @@ void RetroFE::launchEnter()
     }
 
     SDL_SetWindowGrab(SDL::getWindow(), SDL_FALSE);
-
 }
 
 void RetroFE::launchExit()
@@ -167,7 +166,6 @@ void RetroFE::allocateGraphicsMemory()
     if(currentPage_)
     {
         currentPage_->allocateGraphicsMemory();
-        currentPage_->start();
     }
 }
 
@@ -239,8 +237,10 @@ void RetroFE::run()
     int initializeStatus = 0;
 
     // load the initial splash screen, unload it once it is complete
-    currentPage_ = loadSplashPage();
-    bool splashMode = true;
+    currentPage_        = loadSplashPage();
+    state               = RETROFE_ENTER;
+    bool splashMode     = true;
+    bool exitSplashMode = false;
 
     Launcher l(*this, config_);
     preloadTime = static_cast<float>(SDL_GetTicks()) / 1000;
@@ -254,6 +254,7 @@ void RetroFE::run()
         {
             if(input_.update(e))
             {
+                exitSplashMode = true;
                 attract_.reset();
             }
         }
@@ -270,15 +271,15 @@ void RetroFE::run()
             if(currentPage_ && !splashMode)
             {
 
-                // account for when returning from a menu and the previous key was still "stuck" 
+                // account for when returning from a menu and the previous key was still "stuck"
                 if(lastLaunchReturnTime_ == 0 || (currentTime_ - lastLaunchReturnTime_ > .3))
-                { 
+                {
                     state = processUserInput(currentPage_);
                     lastLaunchReturnTime_ = 0;
                 }
             }
 
-            if((initialized || initializeError) && splashMode && currentPage_->getMinShowTime() <= (currentTime_ - preloadTime))
+            if((initialized || initializeError) && splashMode && (exitSplashMode || (currentPage_->getMinShowTime() <= (currentTime_ - preloadTime) && !(currentPage_->isPlaying()))))
             {
                 SDL_WaitThread(initializeThread, &initializeStatus);
 
@@ -288,6 +289,22 @@ void RetroFE::run()
                     break;
                 }
 
+                currentPage_->stop();
+                state = RETROFE_SPLASH_EXIT;
+
+            }
+            break;
+
+        case RETROFE_ENTER:
+            if(currentPage_->isIdle())
+            {
+                state = RETROFE_IDLE;
+            }
+            break;
+
+        case RETROFE_SPLASH_EXIT:
+            if(currentPage_->isIdle())
+            {
                 // delete the splash screen and use the standard menu
                 currentPage_->DeInitialize();
                 delete currentPage_;
@@ -301,8 +318,6 @@ void RetroFE::run()
 
                     config_.getProperty("firstCollection", firstCollection);
                     config_.getProperty("collections." + firstCollection + ".list.menuSort", menuSort);
-
-                    currentPage_->start();
                     config_.setProperty("currentCollection", firstCollection);
                     CollectionInfo *info = getCollection(firstCollection);
                     MenuParser mp;
@@ -310,38 +325,177 @@ void RetroFE::run()
                     mp.buildMenuItems(info, menuSort);
 
                     currentPage_->pushCollection(info);
+                    currentPage_->onNewItemSelected();
+                    currentPage_->start();
+
+                    currentPage_->reallocateMenuSpritePoints();
+
+                    state = RETROFE_ENTER;
                 }
                 else
                 {
                     state = RETROFE_QUIT_REQUEST;
                 }
-
             }
+            break;
 
+        case RETROFE_HIGHLIGHT_REQUEST:
+            currentPage_->highlightExit();
+            currentPage_->setScrolling(Page::ScrollDirectionIdle);
+            state = RETROFE_HIGHLIGHT_EXIT;
+            break;
+
+        case RETROFE_HIGHLIGHT_EXIT:
+            if ( processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
+            {
+                state = RETROFE_HIGHLIGHT_ENTER;
+            }
+            else if (currentPage_->isGraphicsIdle() && currentPage_->isMenuScrolling())
+            {
+                currentPage_->onNewItemSelected();
+                currentPage_->highlightEnter();
+                state = RETROFE_HIGHLIGHT_ENTER;
+            }
+            else if (currentPage_->isIdle())
+            {
+                currentPage_->onNewItemSelected();
+                currentPage_->highlightEnter();
+                state = RETROFE_HIGHLIGHT_ENTER;
+            }
+            break;
+
+        case RETROFE_HIGHLIGHT_ENTER:
+            if ( processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
+            {
+                state = RETROFE_HIGHLIGHT_REQUEST;
+            }
+            else if (currentPage_->isGraphicsIdle())
+            {
+                state = RETROFE_IDLE;
+            }
             break;
 
         case RETROFE_NEXT_PAGE_REQUEST:
+            currentPage_->exitMenu();
+            state = RETROFE_NEXT_PAGE_MENU_EXIT;
+            break;
+
+        case RETROFE_NEXT_PAGE_MENU_EXIT:
             if(currentPage_->isIdle())
             {
-                state = RETROFE_NEW;
-            }
-            break;
+                // Load new layout if available
+                std::string layoutName;
+                config_.getProperty("layout", layoutName);
+                PageBuilder pb(layoutName, "layout", config_, &fontcache_);
+                Page *page = pb.buildPage( nextPageItem_->name);
+                std::string nextPageName = nextPageItem_->name;
+                if(page)
+                {
+                    currentPage_->freeGraphicsMemory();
+                    pages_.push( currentPage_ );
+                    currentPage_ = page;
+                    currentPage_->start();
+                }
+
+                bool menuSort = true;
+                config_.setProperty("currentCollection", nextPageName);
+                config_.getProperty("collections." + nextPageName + ".list.menuSort", menuSort);
+
+                CollectionInfo *info = getCollection(nextPageName);
+
+                MenuParser mp;
+                mp.buildMenuItems(info, menuSort);
+                currentPage_->pushCollection(info);
+
+                bool rememberMenu = false;
+                config_.getProperty("rememberMenu", rememberMenu);
+                bool autoFavorites = true;
+                config_.getProperty("autoFavorites", autoFavorites);
+
+                if (rememberMenu && lastMenuPlaylists_.find(nextPageName) != lastMenuPlaylists_.end())
+                {
+                  currentPage_->selectPlaylist(lastMenuPlaylists_[nextPageName]); // Switch to last playlist
+                }
+                else if (autoFavorites)
+                {
+                  currentPage_->selectPlaylist("favorites"); // Switch to favorites playlist
+                }
+
+                if(rememberMenu && lastMenuOffsets_.find(nextPageName) != lastMenuOffsets_.end())
+                {
+                    currentPage_->setScrollOffsetIndex(lastMenuOffsets_[nextPageName]);
+                }
+
+                currentPage_->onNewItemSelected();
+                currentPage_->reallocateMenuSpritePoints();
+                if (currentPage_->getMenuDepth() != 1 )
+                {
+                    currentPage_->enterMenu();
+                }
+
+                state = RETROFE_NEXT_PAGE_MENU_ENTER;
+
+             }
+             break;
+
+        case RETROFE_NEXT_PAGE_MENU_ENTER:
+          if(currentPage_->isIdle())
+          {
+            state = RETROFE_IDLE;
+          }
+          break;
 
         case RETROFE_LAUNCH_REQUEST:
             nextPageItem_ = currentPage_->getSelectedItem();
+            launchEnter();
             l.run(nextPageItem_->collectionInfo->name, nextPageItem_);
+            launchExit();
             state = RETROFE_IDLE;
             break;
 
         case RETROFE_BACK_REQUEST:
-
-            lastMenuOffsets_[currentPage_->getCollectionName()] = currentPage_->getScrollOffsetIndex();
-            currentPage_->popCollection();
-            config_.setProperty("currentCollection", currentPage_->getCollectionName());
-
-            state = RETROFE_NEW;
-
+            if (currentPage_->getMenuDepth() == 1 )
+            {
+                currentPage_->stop();
+            }
+            else
+            {
+                currentPage_->exitMenu();
+            }
+            state = RETROFE_BACK_MENU_EXIT;
             break;
+
+        case RETROFE_BACK_MENU_EXIT:
+          if(currentPage_->isIdle())
+          {
+            lastMenuOffsets_[currentPage_->getCollectionName()]   = currentPage_->getScrollOffsetIndex();
+            lastMenuPlaylists_[currentPage_->getCollectionName()] = currentPage_->getPlaylistName();
+            if (currentPage_->getMenuDepth() == 1)
+            {
+                currentPage_->DeInitialize();
+                delete currentPage_;
+                currentPage_ = pages_.top();
+                pages_.pop();
+                currentPage_->allocateGraphicsMemory();
+            }
+            else
+            {
+                currentPage_->popCollection();
+            }
+            config_.setProperty("currentCollection", currentPage_->getCollectionName());
+            currentPage_->onNewItemSelected();
+            currentPage_->reallocateMenuSpritePoints();
+            currentPage_->enterMenu();
+            state = RETROFE_BACK_MENU_ENTER;
+          }
+          break;
+
+        case RETROFE_BACK_MENU_ENTER:
+          if(currentPage_->isIdle())
+          {
+            state = RETROFE_IDLE;
+          }
+          break;
 
         case RETROFE_NEW:
             if(currentPage_->isIdle())
@@ -356,11 +510,10 @@ void RetroFE::run()
             break;
 
         case RETROFE_QUIT:
-            if(currentPage_->isHidden())
+            if(currentPage_->isGraphicsIdle())
             {
-                running = false;
+              running = false;
             }
-
             break;
         }
 
@@ -384,7 +537,10 @@ void RetroFE::run()
 
             if(currentPage_)
             {
-                attract_.update(deltaTime, *currentPage_);
+                if (!splashMode)
+                {
+                    attract_.update(deltaTime, *currentPage_);
+                }
                 currentPage_->update(deltaTime);
             }
 
@@ -401,7 +557,7 @@ bool RetroFE::back(bool &exit)
     config_.getProperty("exitOnFirstPageBack", exitOnBack);
     exit = false;
 
-    if(currentPage_->getMenuDepth() <= 1)
+    if(currentPage_->getMenuDepth() <= 1 && pages_.empty())
     {
         exit = exitOnBack;
     }
@@ -419,9 +575,6 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
     bool exit = false;
     RETROFE_STATE state = RETROFE_IDLE;
 
-    bool rememberMenu = false;
-    config_.getProperty("rememberMenu", rememberMenu);
-
     if(page->isHorizontalScroll())
     {
         if (input_.keystate(UserInput::KeyCodeLeft))
@@ -431,136 +584,135 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         if (input_.keystate(UserInput::KeyCodeRight))
         {
             page->setScrolling(Page::ScrollDirectionForward);
-        } 
+        }
     }
     else
-    { 
+    {
         if (input_.keystate(UserInput::KeyCodeUp))
         {
             page->setScrolling(Page::ScrollDirectionBack);
         }
         if (input_.keystate(UserInput::KeyCodeDown))
         {
-                page->setScrolling(Page::ScrollDirectionForward);
+            page->setScrolling(Page::ScrollDirectionForward);
         }
     }
 
-    if (!input_.keystate(UserInput::KeyCodePageUp) &&
-    !input_.keystate(UserInput::KeyCodePageDown) &&
-    !input_.keystate(UserInput::KeyCodeLetterUp) &&
-    !input_.keystate(UserInput::KeyCodeLetterDown) &&
-    !input_.keystate(UserInput::KeyCodeNextPlaylist) &&
-    !input_.keystate(UserInput::KeyCodeAddPlaylist) &&
-    !input_.keystate(UserInput::KeyCodeRemovePlaylist) &&
-    !input_.keystate(UserInput::KeyCodeRandom))
+    if(page->isMenuIdle())
     {
-        keyLastTime_ = 0;
-        keyDelayTime_= 0.3f;
-    }
 
-    else if((currentTime_ - keyLastTime_) > keyDelayTime_ || keyLastTime_ == 0)
-    {
-        keyLastTime_ = currentTime_;
-        keyDelayTime_-= .05f;
-        if(keyDelayTime_< 0.1f) keyDelayTime_= 0.1f;
-        
-        if (input_.keystate(UserInput::KeyCodePageUp))
+        if (!input_.keystate(UserInput::KeyCodePageUp) &&
+            !input_.keystate(UserInput::KeyCodePageDown) &&
+            !input_.keystate(UserInput::KeyCodeLetterUp) &&
+            !input_.keystate(UserInput::KeyCodeLetterDown) &&
+            !input_.keystate(UserInput::KeyCodeNextPlaylist) &&
+            !input_.keystate(UserInput::KeyCodeAddPlaylist) &&
+            !input_.keystate(UserInput::KeyCodeRemovePlaylist) &&
+            !input_.keystate(UserInput::KeyCodeRandom))
         {
-            page->pageScroll(Page::ScrollDirectionBack);
+            keyLastTime_ = 0;
+            keyDelayTime_= 0.3f;
         }
-        if (input_.keystate(UserInput::KeyCodePageDown))
-        {
-            page->pageScroll(Page::ScrollDirectionForward);
-        }
-        if (input_.keystate(UserInput::KeyCodeLetterUp))
-        {
-            page->letterScroll(Page::ScrollDirectionBack);
-        }
-        if (input_.keystate(UserInput::KeyCodeLetterDown))
-        {
-            page->letterScroll(Page::ScrollDirectionForward);
-        }
-        if(input_.newKeyPressed(UserInput::KeyCodeNextPlaylist))
-        {
-            page->nextPlaylist();
-        }
-        if(input_.newKeyPressed(UserInput::KeyCodeRemovePlaylist))
-        {
-            page->removePlaylist();
-        }
-        if(input_.newKeyPressed(UserInput::KeyCodeAddPlaylist))
-        {
-            page->addPlaylist();
-        }
-        if(input_.keystate(UserInput::KeyCodeRandom))
-        {
-            page->selectRandom();
-        }
-    }
 
-    if (input_.keystate(UserInput::KeyCodeAdminMode))
-    {
-        //todo: add admin mode support
-    }
-    if (input_.keystate(UserInput::KeyCodeSelect) && page->isMenuIdle())
-    {
-        nextPageItem_ = page->getSelectedItem();
-
-        if(nextPageItem_)
+        else if((currentTime_ - keyLastTime_) > keyDelayTime_ || keyLastTime_ == 0)
         {
-            if(nextPageItem_->leaf)
+            keyLastTime_ = currentTime_;
+            keyDelayTime_-= .05f;
+            if(keyDelayTime_< 0.1f) keyDelayTime_= 0.1f;
+
+            if (input_.keystate(UserInput::KeyCodePageUp))
             {
-                state = RETROFE_LAUNCH_REQUEST;
+                page->pageScroll(Page::ScrollDirectionBack);
+                page->reallocateMenuSpritePoints();
+                state = RETROFE_HIGHLIGHT_REQUEST;
             }
-            else
+            if (input_.keystate(UserInput::KeyCodePageDown))
             {
-                bool menuSort = true;
-                config_.setProperty("currentCollection", nextPageItem_->name);
-                config_.getProperty("collections." + nextPageItem_->name + ".list.menuSort", menuSort);
+                page->pageScroll(Page::ScrollDirectionForward);
+                page->reallocateMenuSpritePoints();
+                state = RETROFE_HIGHLIGHT_REQUEST;
+            }
+            if (input_.keystate(UserInput::KeyCodeLetterUp))
+            {
+                page->letterScroll(Page::ScrollDirectionBack);
+                page->reallocateMenuSpritePoints();
+                state = RETROFE_HIGHLIGHT_REQUEST;
+            }
+            if (input_.keystate(UserInput::KeyCodeLetterDown))
+            {
+                page->letterScroll(Page::ScrollDirectionForward);
+                page->reallocateMenuSpritePoints();
+                state = RETROFE_HIGHLIGHT_REQUEST;
+            }
+            if(input_.newKeyPressed(UserInput::KeyCodeNextPlaylist))
+            {
+                page->nextPlaylist();
+                page->reallocateMenuSpritePoints();
+                state = RETROFE_HIGHLIGHT_REQUEST;
+            }
+            if(input_.newKeyPressed(UserInput::KeyCodeRemovePlaylist))
+            {
+                page->removePlaylist();
+                page->onNewItemSelected();
+                page->reallocateMenuSpritePoints();
+            }
+            if(input_.newKeyPressed(UserInput::KeyCodeAddPlaylist))
+            {
+                page->addPlaylist();
+                page->reallocateMenuSpritePoints();
+            }
+            if(input_.keystate(UserInput::KeyCodeRandom))
+            {
+                page->selectRandom();
+                page->reallocateMenuSpritePoints();
+                state = RETROFE_HIGHLIGHT_REQUEST;
+            }
+        }
 
-                CollectionInfo *info = getCollection(nextPageItem_->name);
+        if (input_.keystate(UserInput::KeyCodeAdminMode))
+        {
+            //todo: add admin mode support
+        }
+        if (input_.keystate(UserInput::KeyCodeSelect))
+        {
+            nextPageItem_ = page->getSelectedItem();
 
-                MenuParser mp;
-                mp.buildMenuItems(info, menuSort);
-                page->pushCollection(info);
-
-                if(rememberMenu && lastMenuOffsets_.find(nextPageItem_->name) != lastMenuOffsets_.end())
+            if(nextPageItem_)
+            {
+                if(nextPageItem_->leaf)
                 {
-                    page->setScrollOffsetIndex(lastMenuOffsets_[nextPageItem_->name]);
+                    state = RETROFE_LAUNCH_REQUEST;
                 }
-                
-                bool autoFavorites = true;
-                config_.getProperty("autoFavorites", autoFavorites);
-
-                if (autoFavorites)
-                  page->favPlaylist(); // Switch to favorites if it exists
-
-                state = RETROFE_NEXT_PAGE_REQUEST;
+                else
+                {
+                    state = RETROFE_NEXT_PAGE_REQUEST;
+                }
             }
         }
-    }
 
-    if (input_.keystate(UserInput::KeyCodeBack) && page->isMenuIdle())
-    {
-        if(back(exit) || exit)
+        if (input_.keystate(UserInput::KeyCodeBack))
         {
-            state = (exit) ? RETROFE_QUIT_REQUEST : RETROFE_BACK_REQUEST;
+            if(back(exit) || exit)
+            {
+                state = (exit) ? RETROFE_QUIT_REQUEST : RETROFE_BACK_REQUEST;
+            }
         }
-    }
 
-    if (input_.keystate(UserInput::KeyCodeQuit))
-    {
-        state = RETROFE_QUIT_REQUEST;
+        if (input_.keystate(UserInput::KeyCodeQuit))
+        {
+            state = RETROFE_QUIT_REQUEST;
+        }
     }
 
     if(!input_.keystate(UserInput::KeyCodeUp) &&
-            !input_.keystate(UserInput::KeyCodeLeft) &&
-            !input_.keystate(UserInput::KeyCodeDown) &&
-            !input_.keystate(UserInput::KeyCodeRight) &&
-            !input_.keystate(UserInput::KeyCodePageUp) &&
-            !input_.keystate(UserInput::KeyCodePageDown))
+       !input_.keystate(UserInput::KeyCodeLeft) &&
+       !input_.keystate(UserInput::KeyCodeDown) &&
+       !input_.keystate(UserInput::KeyCodeRight) &&
+       !input_.keystate(UserInput::KeyCodePageUp) &&
+       !input_.keystate(UserInput::KeyCodePageDown))
     {
-        page->setScrolling(Page::ScrollDirectionIdle);
+        if (page->isMenuScrolling())
+            state = RETROFE_HIGHLIGHT_REQUEST;
     }
 
     return state;
@@ -578,10 +730,6 @@ Page *RetroFE::loadPage()
     if(!page)
     {
         Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not create page");
-    }
-    else
-    {
-        page->start();
     }
 
     return page;

@@ -34,7 +34,7 @@ private:
         const std::string &replace);
 
     bool launcherName(std::string &launcherName, std::string collection);
-    bool launcherExecutable(std::string &executable, std::string &currentDirectory, std::string launcherName);
+    bool launcherExecutable(std::string &executable, std::string launcherName);
     bool launcherArgs(std::string &args, std::string launcherName);
     bool extensions(std::string &extensions, std::string launcherName);
     bool collectionDirectory(std::string &directory, std::string collection);

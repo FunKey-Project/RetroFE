@@ -65,6 +65,21 @@ void Text::draw()
 
     float imageHeight = 0;
     float imageWidth = 0;
+    float imageMaxWidth = 0;
+    if (baseViewInfo.Width < baseViewInfo.MaxWidth && baseViewInfo.Width > 0)
+    {
+        imageMaxWidth = baseViewInfo.Width;
+    }
+    else
+    {
+        imageMaxWidth = baseViewInfo.MaxWidth;
+    }
+
+    imageHeight = (float)font->getHeight();
+    float scale = (float)baseViewInfo.FontSize / (float)imageHeight;
+
+    unsigned int textIndexMax = 0;
+    unsigned int emptySpace = 0;
 
     // determine image width
     for(unsigned int i = 0; i < textData_.size(); ++i)
@@ -77,13 +92,18 @@ void Text::draw()
                 imageWidth += glyph.minX;
             }
 
-            imageWidth += glyph.advance;
+            if ((imageWidth + glyph.advance)*scale > imageMaxWidth )
+            {
+                imageWidth -= emptySpace;
+                break;
+            }
+
+            textIndexMax = i;
+            emptySpace   = glyph.advance - glyph.maxX;
+            imageWidth  += glyph.advance;
         }
 
     }
-
-    imageHeight = (float)font->getHeight();
-    float scale = (float)baseViewInfo.FontSize / (float)imageHeight;
 
     float oldWidth = baseViewInfo.Width;
     float oldHeight = baseViewInfo.Height;
@@ -107,7 +127,7 @@ void Text::draw()
     SDL_Rect rect;
     rect.x = static_cast<int>(xOrigin);
 
-    for(unsigned int i = 0; i < textData_.size(); ++i)
+    for(unsigned int i = 0; i <= textIndexMax; ++i)
     {
         Font::GlyphInfo glyph;
 
@@ -130,14 +150,10 @@ void Text::draw()
             }
 
 
-            SDL::renderCopy(t, static_cast<char>(baseViewInfo.Alpha * 255), &charRect, &rect, baseViewInfo.Angle);
+            SDL::renderCopy(t, baseViewInfo.Alpha, &charRect, &rect, baseViewInfo);
 
             rect.x += static_cast<int>(glyph.advance * scale);
 
-            if((static_cast<float>(rect.x) - xOrigin) > baseViewInfo.MaxWidth)
-            {
-                break;
-            }
         }
     }
 }

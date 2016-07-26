@@ -22,7 +22,9 @@
 #include "Component/Text.h"
 #include "Component/ReloadableText.h"
 #include "Component/ReloadableMedia.h"
+#include "Component/ReloadableScrollingText.h"
 #include "Component/ScrollingList.h"
+#include "Component/Video.h"
 #include "Animate/AnimationEvents.h"
 #include "Animate/TweenTypes.h"
 #include "../Sound/Sound.h"
@@ -70,14 +72,22 @@ PageBuilder::~PageBuilder()
 {
 }
 
-Page *PageBuilder::buildPage()
+Page *PageBuilder::buildPage( std::string collectionName )
 {
     Page *page = NULL;
 
     std::string layoutFile;
     std::string layoutName = layoutKey;
 
-    layoutPath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName);
+    if ( collectionName == "" )
+    {
+        layoutPath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName);
+    }
+    else
+    {
+        layoutPath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", collectionName);
+        layoutPath = Utils::combinePath(layoutPath, "layout");
+    }
     layoutFile = Utils::combinePath(layoutPath, layoutPage + ".xml");
 
     Logger::write(Logger::ZONE_INFO, "Layout", "Initializing " + layoutFile);
@@ -174,16 +184,19 @@ Page *PageBuilder::buildPage()
             // load sounds
             for(xml_node<> *sound = root->first_node("sound"); sound; sound = sound->next_sibling("sound"))
             {
-                xml_attribute<> *src = sound->first_attribute("src");
+                xml_attribute<> *src  = sound->first_attribute("src");
                 xml_attribute<> *type = sound->first_attribute("type");
-                std::string file = Configuration::convertToAbsolutePath(layoutPath, src->value());
+                std::string file      = Configuration::convertToAbsolutePath(layoutPath, src->value());
+                std::string layoutName;
+                config_.getProperty("layout", layoutName);
+                std::string altfile   = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, std::string(src->value()));
                 if(!type)
                 {
                     Logger::write(Logger::ZONE_ERROR, "Layout", "Sound tag missing type attribute");
                 }
                 else
                 {
-                    Sound *sound = new Sound(file);
+                    Sound *sound = new Sound(file, altfile);
                     std::string soundType = type->value();
 
                     if(!soundType.compare("load"))
@@ -345,8 +358,39 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
         {
             std::string imagePath;
             imagePath = Utils::combinePath(Configuration::convertToAbsolutePath(layoutPath, imagePath), std::string(src->value()));
+            std::string layoutName;
+            config_.getProperty("layout", layoutName);
+            std::string altImagePath;
+            altImagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, std::string(src->value()));
 
-            Image *c = new Image(imagePath, *page, scaleX_, scaleY_);
+            Image *c = new Image(imagePath, altImagePath, *page, scaleX_, scaleY_);
+            buildViewInfo(componentXml, c->baseViewInfo);
+            loadTweens(c, componentXml);
+            page->addComponent(c);
+        }
+    }
+
+
+    for(xml_node<> *componentXml = layout->first_node("video"); componentXml; componentXml = componentXml->next_sibling("video"))
+    {
+        xml_attribute<> *srcXml      = componentXml->first_attribute("src");
+        xml_attribute<> *numLoopsXml = componentXml->first_attribute("numLoops");
+
+        if (!srcXml)
+        {
+            Logger::write(Logger::ZONE_ERROR, "Layout", "Video component in layout does not specify a source video file");
+        }
+        else
+        {
+            std::string videoPath;
+            videoPath = Utils::combinePath(Configuration::convertToAbsolutePath(layoutPath, videoPath), std::string(srcXml->value()));
+            std::string layoutName;
+            config_.getProperty("layout", layoutName);
+            std::string altVideoPath;
+            altVideoPath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, std::string(srcXml->value()));
+            int numLoops = numLoopsXml ? Utils::convertInt(numLoopsXml->value()) : 1;
+
+            Video *c = new Video(videoPath, altVideoPath, numLoops, *page, scaleX_, scaleY_);
             buildViewInfo(componentXml, c->baseViewInfo);
             loadTweens(c, componentXml);
             page->addComponent(c);
@@ -387,9 +431,10 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
     }
 
 
-    loadReloadableImages(layout, "reloadableImage", page);
-    loadReloadableImages(layout, "reloadableVideo", page);
-    loadReloadableImages(layout, "reloadableText", page);
+    loadReloadableImages(layout, "reloadableImage",         page);
+    loadReloadableImages(layout, "reloadableVideo",         page);
+    loadReloadableImages(layout, "reloadableText",          page);
+    loadReloadableImages(layout, "reloadableScrollingText", page);
 
     return true;
 }
@@ -401,10 +446,24 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
     {
         std::string reloadableImagePath;
         std::string reloadableVideoPath;
-        xml_attribute<> *type = componentXml->first_attribute("type");
-        xml_attribute<> *mode = componentXml->first_attribute("mode");
+        xml_attribute<> *type              = componentXml->first_attribute("type");
+        xml_attribute<> *mode              = componentXml->first_attribute("mode");
+        xml_attribute<> *timeFormatXml     = componentXml->first_attribute("timeFormat");
+        xml_attribute<> *textFormatXml     = componentXml->first_attribute("textFormat");
+        xml_attribute<> *singlePrefixXml   = componentXml->first_attribute("singlePrefix");
+        xml_attribute<> *singlePostfixXml  = componentXml->first_attribute("singlePostfix");
+        xml_attribute<> *pluralPrefixXml   = componentXml->first_attribute("pluralPrefix");
+        xml_attribute<> *pluralPostfixXml  = componentXml->first_attribute("pluralPostfix");
         xml_attribute<> *selectedOffsetXml = componentXml->first_attribute("selectedOffset");
+        xml_attribute<> *directionXml      = componentXml->first_attribute("direction");
+        xml_attribute<> *scrollingSpeedXml = componentXml->first_attribute("scrollingSpeed");
+        xml_attribute<> *startPositionXml  = componentXml->first_attribute("startPosition");
+        xml_attribute<> *startTimeXml      = componentXml->first_attribute("startTime");
+        xml_attribute<> *endTimeXml        = componentXml->first_attribute("endTime");
+        xml_attribute<> *alignmentXml      = componentXml->first_attribute("alignment");
         bool systemMode = false;
+        bool layoutMode = false;
+        bool commonMode = false;
         int selectedOffset = 0;
         if(tagName == "reloadableVideo")
         {
@@ -420,6 +479,10 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
         {
             Logger::write(Logger::ZONE_ERROR, "Layout", "Image component in layout does not specify a source image file");
         }
+        if(!type && tagName == "reloadableScrollingText")
+        {
+            Logger::write(Logger::ZONE_ERROR, "Layout", "Reloadable scroling text component in layout does not specify a type");
+        }
 
 
         if(mode)
@@ -428,6 +491,24 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
             if(sysMode == "system")
             {
                 systemMode = true;
+            }
+            if(sysMode == "layout")
+            {
+                layoutMode = true;
+            }
+            if(sysMode == "common")
+            {
+                commonMode = true;
+            }
+            if(sysMode == "commonlayout")
+            {
+                layoutMode = true;
+                commonMode = true;
+            }
+            if(sysMode == "systemlayout")
+            {
+                systemMode = true;
+                layoutMode = true;
             }
         }
 
@@ -446,13 +527,86 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
             if(type)
             {
                 Font *font = addFont(componentXml, NULL);
-                c = new ReloadableText(type->value(), *page, config_, font, layoutKey, scaleX_, scaleY_);
+                std::string timeFormat = "%H:%M";
+                if (timeFormatXml)
+                {
+                    timeFormat = timeFormatXml->value();
+                }
+                std::string textFormat = "";
+                if (textFormatXml)
+                {
+                    textFormat = textFormatXml->value();
+                }
+                std::string singlePrefix = "";
+                if (singlePrefixXml)
+                {
+                    singlePrefix = singlePrefixXml->value();
+                }
+                std::string singlePostfix = "";
+                if (singlePostfixXml)
+                {
+                    singlePostfix = singlePostfixXml->value();
+                }
+                std::string pluralPrefix = "";
+                if (pluralPrefixXml)
+                {
+                    pluralPrefix = pluralPrefixXml->value();
+                }
+                std::string pluralPostfix = "";
+                if (pluralPostfixXml)
+                {
+                    pluralPostfix = pluralPostfixXml->value();
+                }
+                c = new ReloadableText(type->value(), *page, config_, font, layoutKey, timeFormat, textFormat, singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, scaleX_, scaleY_);
+            }
+        }
+        else if(tagName == "reloadableScrollingText")
+        {
+            if(type)
+            {
+                Font *font = addFont(componentXml, NULL);
+                std::string direction = "horizontal";
+                std::string textFormat = "";
+                if (textFormatXml)
+                {
+                    textFormat = textFormatXml->value();
+                }
+                if (directionXml)
+                {
+                    direction = directionXml->value();
+                }
+                float scrollingSpeed = 1.0f;
+                if (scrollingSpeedXml)
+                {
+                    scrollingSpeed = Utils::convertFloat(scrollingSpeedXml->value());
+                }
+                float startPosition = 0.0f;
+                if (startPositionXml)
+                {
+                    startPosition = Utils::convertFloat(startPositionXml->value());
+                }
+                float startTime = 0.0f;
+                if (startTimeXml)
+                {
+                    startTime = Utils::convertFloat(startTimeXml->value());
+                }
+                float endTime = 0.0f;
+                if (endTimeXml)
+                {
+                    endTime = Utils::convertFloat(endTimeXml->value());
+                }
+                std::string alignment = "";
+                if (alignmentXml)
+                {
+                    alignment = alignmentXml->value();
+                }
+                c = new ReloadableScrollingText(config_, systemMode, layoutMode, type->value(), textFormat, alignment, *page, selectedOffset, font, scaleX_, scaleY_, direction, scrollingSpeed, startPosition, startTime, endTime);
             }
         }
         else
         {
             Font *font = addFont(componentXml, NULL);
-            c = new ReloadableMedia(config_, systemMode, type->value(), *page, selectedOffset, (tagName == "reloadableVideo"), font, scaleX_, scaleY_);
+            c = new ReloadableMedia(config_, systemMode, layoutMode, commonMode, type->value(), *page, selectedOffset, (tagName == "reloadableVideo"), font, scaleX_, scaleY_);
             xml_attribute<> *textFallback = componentXml->first_attribute("textFallback");
 
             if(textFallback && Utils::toLower(textFallback->value()) == "true")
@@ -619,9 +773,9 @@ ScrollingList * PageBuilder::buildMenu(xml_node<> *menuXml, Page &page)
     if(scrollOrientationXml)
     {
         std::string scrollOrientation = scrollOrientationXml->value();
-	if(scrollOrientation == "horizontal")
+        if(scrollOrientation == "horizontal")
         {
-        	menu->horizontalScroll = true;
+            menu->horizontalScroll = true;
         }
     }
 
@@ -834,25 +988,33 @@ xml_attribute<> *PageBuilder::findAttribute(xml_node<> *componentXml, std::strin
 
 void PageBuilder::buildViewInfo(xml_node<> *componentXml, ViewInfo &info, xml_node<> *defaultXml)
 {
-    xml_attribute<> *x = findAttribute(componentXml, "x", defaultXml);
-    xml_attribute<> *y = findAttribute(componentXml, "y", defaultXml);
-    xml_attribute<> *xOffset = findAttribute(componentXml, "xOffset", defaultXml);
-    xml_attribute<> *yOffset = findAttribute(componentXml, "yOffset", defaultXml);
-    xml_attribute<> *xOrigin = findAttribute(componentXml, "xOrigin", defaultXml);
-    xml_attribute<> *yOrigin = findAttribute(componentXml, "yOrigin", defaultXml);
-    xml_attribute<> *height = findAttribute(componentXml, "height", defaultXml);
-    xml_attribute<> *width = findAttribute(componentXml, "width", defaultXml);
-    xml_attribute<> *fontSize = findAttribute(componentXml, "fontSize", defaultXml);
-    xml_attribute<> *fontColor = findAttribute(componentXml, "fontColor", defaultXml);
-    xml_attribute<> *minHeight = findAttribute(componentXml, "minHeight", defaultXml);
-    xml_attribute<> *minWidth = findAttribute(componentXml, "minWidth", defaultXml);
-    xml_attribute<> *maxHeight = findAttribute(componentXml, "maxHeight", defaultXml);
-    xml_attribute<> *maxWidth = findAttribute(componentXml, "maxWidth", defaultXml);
-    xml_attribute<> *alpha = findAttribute(componentXml, "alpha", defaultXml);
-    xml_attribute<> *angle = findAttribute(componentXml, "angle", defaultXml);
-    xml_attribute<> *layer = findAttribute(componentXml, "layer", defaultXml);
-    xml_attribute<> *backgroundColor = findAttribute(componentXml, "backgroundColor", defaultXml);
-    xml_attribute<> *backgroundAlpha = findAttribute(componentXml, "backgroundAlpha", defaultXml);
+    xml_attribute<> *x                  = findAttribute(componentXml, "x", defaultXml);
+    xml_attribute<> *y                  = findAttribute(componentXml, "y", defaultXml);
+    xml_attribute<> *xOffset            = findAttribute(componentXml, "xOffset", defaultXml);
+    xml_attribute<> *yOffset            = findAttribute(componentXml, "yOffset", defaultXml);
+    xml_attribute<> *xOrigin            = findAttribute(componentXml, "xOrigin", defaultXml);
+    xml_attribute<> *yOrigin            = findAttribute(componentXml, "yOrigin", defaultXml);
+    xml_attribute<> *height             = findAttribute(componentXml, "height", defaultXml);
+    xml_attribute<> *width              = findAttribute(componentXml, "width", defaultXml);
+    xml_attribute<> *fontSize           = findAttribute(componentXml, "fontSize", defaultXml);
+    xml_attribute<> *fontColor          = findAttribute(componentXml, "fontColor", defaultXml);
+    xml_attribute<> *minHeight          = findAttribute(componentXml, "minHeight", defaultXml);
+    xml_attribute<> *minWidth           = findAttribute(componentXml, "minWidth", defaultXml);
+    xml_attribute<> *maxHeight          = findAttribute(componentXml, "maxHeight", defaultXml);
+    xml_attribute<> *maxWidth           = findAttribute(componentXml, "maxWidth", defaultXml);
+    xml_attribute<> *alpha              = findAttribute(componentXml, "alpha", defaultXml);
+    xml_attribute<> *angle              = findAttribute(componentXml, "angle", defaultXml);
+    xml_attribute<> *layer              = findAttribute(componentXml, "layer", defaultXml);
+    xml_attribute<> *backgroundColor    = findAttribute(componentXml, "backgroundColor", defaultXml);
+    xml_attribute<> *backgroundAlpha    = findAttribute(componentXml, "backgroundAlpha", defaultXml);
+    xml_attribute<> *reflection         = findAttribute(componentXml, "reflection", defaultXml);
+    xml_attribute<> *reflectionDistance = findAttribute(componentXml, "reflectionDistance", defaultXml);
+    xml_attribute<> *reflectionScale    = findAttribute(componentXml, "reflectionScale", defaultXml);
+    xml_attribute<> *reflectionAlpha    = findAttribute(componentXml, "reflectionAlpha", defaultXml);
+    xml_attribute<> *containerX         = findAttribute(componentXml, "containerX", defaultXml);
+    xml_attribute<> *containerY         = findAttribute(componentXml, "containerY", defaultXml);
+    xml_attribute<> *containerWidth     = findAttribute(componentXml, "containerWidth", defaultXml);
+    xml_attribute<> *containerHeight    = findAttribute(componentXml, "containerHeight", defaultXml);
 
     info.X = getHorizontalAlignment(x, 0);
     info.Y = getVerticalAlignment(y, 0);
@@ -877,14 +1039,22 @@ void PageBuilder::buildViewInfo(xml_node<> *componentXml, ViewInfo &info, xml_no
         info.Height = getVerticalAlignment(height, -1);
         info.Width = getHorizontalAlignment(width, -1);
     }
-    info.FontSize = getVerticalAlignment(fontSize, -1);
-    info.MinHeight = getVerticalAlignment(minHeight, 0);
-    info.MinWidth = getHorizontalAlignment(minWidth, 0);
-    info.MaxHeight = getVerticalAlignment(maxHeight, FLT_MAX);
-    info.MaxWidth = getVerticalAlignment(maxWidth, FLT_MAX);
-    info.Alpha =  alpha ? Utils::convertFloat(alpha->value()) : 1.f;
-    info.Angle =  angle ? Utils::convertFloat(angle->value()) : 0.f;
-    info.Layer =  layer ? Utils::convertInt(layer->value()) : 0;
+    info.FontSize           = getVerticalAlignment(fontSize, -1);
+    info.MinHeight          = getVerticalAlignment(minHeight, 0);
+    info.MinWidth           = getHorizontalAlignment(minWidth, 0);
+    info.MaxHeight          = getVerticalAlignment(maxHeight, FLT_MAX);
+    info.MaxWidth           = getVerticalAlignment(maxWidth, FLT_MAX);
+    info.Alpha              = alpha              ? Utils::convertFloat(alpha->value())                     : 1.f;
+    info.Angle              = angle              ? Utils::convertFloat(angle->value())                     : 0.f;
+    info.Layer              = layer              ? Utils::convertInt(layer->value())                       : 0;
+    info.Reflection         = reflection         ? reflection->value()                                     : "";
+    info.ReflectionDistance = reflectionDistance ? Utils::convertInt(reflectionDistance->value())          : 0;
+    info.ReflectionScale    = reflectionScale    ? Utils::convertFloat(reflectionScale->value())           : 0.25f;
+    info.ReflectionAlpha    = reflectionAlpha    ? Utils::convertFloat(reflectionAlpha->value())           : 1.f;
+    info.ContainerX         = containerX         ? Utils::convertFloat(containerX->value())      * scaleX_ :  0.f;
+    info.ContainerY         = containerY         ? Utils::convertFloat(containerY->value())      * scaleY_ :  0.f;
+    info.ContainerWidth     = containerWidth     ? Utils::convertFloat(containerWidth->value())  * scaleX_ : -1.f;
+    info.ContainerHeight    = containerHeight    ? Utils::convertFloat(containerHeight->value()) * scaleY_ : -1.f;
 
     if(fontColor)
     {
@@ -942,22 +1112,38 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
             xml_attribute<> *to = animate->first_attribute("to");
             xml_attribute<> *algorithmXml = animate->first_attribute("algorithm");
 
+            std::string animateType;
+            if (type)
+            {
+                animateType = type->value();
+            }
+
+
             if(!type)
             {
                 Logger::write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"type\" attribute");
             }
-            else if(!from)
-            {
-                Logger::write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"from\" attribute");
-            }
-            else if(!to)
+            else if(!to && animateType != "nop")
             {
                 Logger::write(Logger::ZONE_ERROR, "Layout", "Animate tag missing \"to\" attribute");
             }
             else
             {
-                float fromValue = Utils::convertFloat(from->value());
-                float toValue = Utils::convertFloat(to->value());
+                float fromValue = 0.0f;
+                bool  fromDefined = true;
+                if (from)
+                {
+                    fromValue = Utils::convertFloat(from->value());
+                }
+                else
+                {
+                   fromDefined = false;
+                }
+                float toValue = 0.0f;
+                if (to)
+                {
+                    toValue = Utils::convertFloat(to->value());
+                }
                 float durationValue = Utils::convertFloat(durationXml->value());
 
                 TweenAlgorithm algorithm = LINEAR;
@@ -976,6 +1162,8 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
                     case TWEEN_PROPERTY_WIDTH:
                     case TWEEN_PROPERTY_X:
                     case TWEEN_PROPERTY_X_OFFSET:
+                    case TWEEN_PROPERTY_CONTAINER_X:
+                    case TWEEN_PROPERTY_CONTAINER_WIDTH:
                         fromValue = getHorizontalAlignment(from, 0);
                         toValue = getHorizontalAlignment(to, 0);
                         break;
@@ -990,6 +1178,8 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
                     case TWEEN_PROPERTY_Y:
                     case TWEEN_PROPERTY_Y_OFFSET:
                     case TWEEN_PROPERTY_FONT_SIZE:
+                    case TWEEN_PROPERTY_CONTAINER_Y:
+                    case TWEEN_PROPERTY_CONTAINER_HEIGHT:
                         fromValue = getVerticalAlignment(from, 0);
                         toValue = getVerticalAlignment(to, 0);
                         break;
@@ -1000,11 +1190,18 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
                         toValue = getVerticalAlignment(to, 0) / screenHeight_;
                         break;
 
+                    case TWEEN_PROPERTY_MAX_WIDTH:
+                    case TWEEN_PROPERTY_MAX_HEIGHT:
+                      fromValue = getVerticalAlignment(from, FLT_MAX);
+                      toValue   = getVerticalAlignment(to,   FLT_MAX);
+
                     default:
                         break;
                     }
 
                     Tween *t = new Tween(property, algorithm, fromValue, toValue, durationValue);
+                    if (!fromDefined)
+                      t->startDefined = false;
                     tweens.push(t);
                 }
                 else

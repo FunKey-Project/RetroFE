@@ -33,8 +33,6 @@ Page::Page(Configuration &config)
     , scrollActive_(false)
     , selectedItem_(NULL)
     , textStatusComponent_(NULL)
-    , selectedItemChanged_(false)
-    , playlistChanged_(false)
     , loadSoundChunk_(NULL)
     , unloadSoundChunk_(NULL)
     , highlightSoundChunk_(NULL)
@@ -54,21 +52,16 @@ void Page::DeInitialize()
     while(it != menus_.end())
     {
         ScrollingList *menu = *it;
-        menu->removeComponentForNotifications(this);
         menus_.erase(it);
         delete menu;
         it = menus_.begin();
     }
 
-    for(unsigned int i = 0; i < sizeof(LayerComponents)/sizeof(LayerComponents[0]); ++i)
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
-        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-        {
-            delete *it;
-        }
-
-        LayerComponents[i].clear();
+        delete *it;
     }
+    LayerComponents.clear();
 
 
     if(loadSoundChunk_)
@@ -97,7 +90,7 @@ void Page::DeInitialize()
     }
     CollectionVector_T::iterator itc = collections_.begin();
 
-    while(itc != collections_.end()) 
+    while(itc != collections_.end())
     {
         itc->collection->Save();
 
@@ -132,20 +125,29 @@ void Page::setSelectSound(Sound *chunk)
 {
   selectSoundChunk_ = chunk;
 }
-void Page::onNewItemSelected(Item *item)
+
+
+void Page::onNewItemSelected()
 {
-    selectedItem_ = item;
-    selectedItemChanged_ = true;
+    selectedItem_ = activeMenu_->getSelectedItem();
+
+    for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
+    {
+        ScrollingList *menu = *it;
+        menu->setNewItemSelected();
+    }
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        (*it)->setNewItemSelected();
+    }
+
 }
+
 
 void Page::pushMenu(ScrollingList *s)
 {
     menus_.push_back(s);
-
-    if(s)
-    {
-        s->addComponentForNotifications(this);
-    }
 }
 
 unsigned int Page::getMenuDepth()
@@ -162,19 +164,15 @@ bool Page::addComponent(Component *c)
 {
     bool retVal = false;
 
-    unsigned int layer = c->baseViewInfo.Layer;
-
-
-    if(layer < NUM_LAYERS)
+    if(c->baseViewInfo.Layer < NUM_LAYERS)
     {
-        LayerComponents[layer].push_back(c);
-
+        LayerComponents.push_back(c);
         retVal = true;
     }
     else
     {
         std::stringstream ss;
-        ss << "Component layer too large Layer: " << layer;
+        ss << "Component layer too large Layer: " << c->baseViewInfo.Layer;
         Logger::write(Logger::ZONE_ERROR, "Page", ss.str());
     }
 
@@ -201,51 +199,34 @@ bool Page::isMenuIdle()
 bool Page::isIdle()
 {
     bool idle = isMenuIdle();
-    
-    for(unsigned int i = 0; i < NUM_LAYERS && idle; ++i)
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end() && idle; ++it)
     {
-        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end() && idle; ++it)
-        {
-            idle = (*it)->isIdle();
-        }
+        idle = (*it)->isIdle();
+    }
+
+    return idle;
+}
+
+bool Page::isGraphicsIdle()
+{
+    bool idle = true;
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end() && idle; ++it)
+    {
+        idle = (*it)->isIdle();
     }
 
     return idle;
 }
 
 
-bool Page::isHidden()
-{
-    bool hidden = true;
-
-    for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
-    {
-        ScrollingList *menu = *it;
-
-        if(!menu->isHidden())
-        {
-            hidden = false;
-            break;
-        }
-    }
-
-
-    for(unsigned int i = 0; hidden && i < NUM_LAYERS; ++i)
-    {
-        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); hidden && it != LayerComponents[i].end(); ++it)
-        {
-            hidden = (*it)->isHidden();
-        }
-    }
-
-    return hidden;
-}
-
 void Page::start()
 {
     for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
         ScrollingList *menu = *it;
+        menu->triggerEvent( "enter" );
         menu->triggerEnterEvent();
     }
 
@@ -254,26 +235,19 @@ void Page::start()
         loadSoundChunk_->play();
     }
 
-    startComponents();
-}
-
-
-void Page::startComponents()
-{
-    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
-        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-        {
-            (*it)->triggerEnterEvent();
-        }
+        (*it)->triggerEvent( "enter" );
     }
 }
+
 
 void Page::stop()
 {
     for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
         ScrollingList *menu = *it;
+        menu->triggerEvent( "exit" );
         menu->triggerExitEvent();
     }
 
@@ -282,12 +256,9 @@ void Page::stop()
         unloadSoundChunk_->play();
     }
 
-    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
-        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-        {
-            (*it)->triggerExitEvent();
-        }
+        (*it)->triggerEvent( "exit" );
     }
 }
 
@@ -344,36 +315,50 @@ void Page::playlistChange()
 {
     if(activeMenu_)
     {
-        activeMenu_->triggerPlaylistChangeEvent(playlist_->first);
+        activeMenu_->setPlaylist(playlist_->first);
     }
 
-    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
-        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-        {
-            (*it)->triggerPlaylistChangeEvent(playlist_->first);
-        }
+        (*it)->setPlaylist(playlist_->first);
     }
 }
 
-void Page::highlight()
+
+void Page::highlightEnter()
 {
     Item *item = selectedItem_;
 
     if(!item) return;
-    if(activeMenu_)
+    for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
-        activeMenu_->triggerHighlightEvent();
-        activeMenu_->scrollActive = scrollActive_;
+        ScrollingList *menu = *it;
+        menu->triggerEvent( "highlightEnter", menuDepth_ - 1 );
+        menu->triggerHighlightEnterEvent( menuDepth_ - 1 );
     }
 
-    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
-        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-        {
-            (*it)->triggerHighlightEvent();
-            (*it)->scrollActive = scrollActive_;
-        }
+        (*it)->triggerEvent( "highlightEnter", menuDepth_ - 1 );
+    }
+}
+
+
+void Page::highlightExit()
+{
+    Item *item = selectedItem_;
+
+    if(!item) return;
+    for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
+    {
+        ScrollingList *menu = *it;
+        menu->triggerEvent( "highlightExit", menuDepth_ - 1 );
+        menu->triggerHighlightExitEvent( menuDepth_ - 1 );
+    }
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        (*it)->triggerEvent( "highlightExit", menuDepth_ - 1 );
     }
 }
 
@@ -433,7 +418,7 @@ void Page::pageScroll(ScrollDirection direction)
 
 void Page::selectRandom()
 {
-    if(activeMenu_) activeMenu_->random(); 
+    if(activeMenu_) activeMenu_->random();
 }
 
 void Page::letterScroll(ScrollDirection direction)
@@ -465,32 +450,16 @@ unsigned int Page::getSelectedIndex()
 bool Page::pushCollection(CollectionInfo *collection)
 {
 
-    int menuExitIndex = -1;
-    int menuEnterIndex = -1;
-
-    if(activeMenu_)
-    {
-        activeMenu_->triggerMenuExitEvent();
-    }
-
-    if(menuDepth_ > 0)
-    {
-        menuExitIndex = menuDepth_ - 1;
-    }
-
     // grow the menu as needed
     if(menus_.size() >= menuDepth_ && activeMenu_)
     {
         activeMenu_ = new ScrollingList(*activeMenu_);
-        activeMenu_->forceIdle();
         pushMenu(activeMenu_);
     }
-
 
     activeMenu_ = menus_[menuDepth_];
     activeMenu_->collectionName = collection->name;
     activeMenu_->setItems(&collection->items);
-    activeMenu_->triggerMenuEnterEvent();
 
     // build the collection info instance
     MenuInfo_S info;
@@ -501,29 +470,16 @@ bool Page::pushCollection(CollectionInfo *collection)
     collections_.push_back(info);
 
     playlist_ = info.playlist;
-    playlistChanged_ = true;
+    playlistChange();
 
     if(menuDepth_ < menus_.size())
     {
-        menuEnterIndex = menuDepth_;
         menuDepth_++;
     }
 
-    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
-        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-        {
-            (*it)->collectionName = collection->name;
-            if(menuEnterIndex >= 0)
-            {
-                (*it)->triggerMenuEnterEvent(menuEnterIndex);
-            }
-
-            if(menuExitIndex >= 0)
-            {
-                (*it)->triggerMenuExitEvent(menuExitIndex);
-            }
-        }
+        (*it)->collectionName = collection->name;
     }
 
     return true;
@@ -531,8 +487,6 @@ bool Page::pushCollection(CollectionInfo *collection)
 
 bool Page::popCollection()
 {
-    int menuExitIndex = -1;
-    int menuEnterIndex = -1;
 
     if(!activeMenu_) return false;
     if(menuDepth_ <= 1) return false;
@@ -547,43 +501,63 @@ bool Page::popCollection()
     collections_.pop_back();
     info = &collections_.back();
     playlist_ = info->playlist;
-    playlistChanged_ = true;
-
-    if(activeMenu_)
-    {
-        activeMenu_->triggerMenuExitEvent();
-
-    }
+    playlistChange();
 
     menuDepth_--;
-    menuExitIndex = menuDepth_;
-    menuEnterIndex = menuExitIndex - 1;
     activeMenu_ = menus_[menuDepth_ - 1];
-    if(activeMenu_)
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
-        activeMenu_->triggerMenuEnterEvent();
-    }
-
-    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
-    {
-        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-        {
-            (*it)->collectionName = info->collection->name;
-
-            if(menuEnterIndex >= 0)
-            {
-                (*it)->triggerMenuEnterEvent(menuEnterIndex);
-            }
-
-            if(menuExitIndex >= 0)
-            {
-                (*it)->triggerMenuExitEvent(menuExitIndex);
-            }
-        }
+        (*it)->collectionName = info->collection->name;
     }
 
     return true;
 }
+
+
+void Page::enterMenu()
+{
+
+    for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
+    {
+        ScrollingList *menu = *it;
+        menu->triggerEvent( "menuEnter", menuDepth_ - 1 );
+        menu->triggerMenuEnterEvent( menuDepth_ - 1 );
+    }
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        (*it)->triggerEvent( "menuEnter", menuDepth_ - 1 );
+    }
+
+    return;
+}
+
+
+void Page::exitMenu()
+{
+
+    for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
+    {
+        ScrollingList *menu = *it;
+        menu->triggerEvent( "menuExit" );
+        menu->triggerMenuExitEvent( menuDepth_ - 1 );
+    }
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        (*it)->triggerEvent( "menuExit", menuDepth_ - 1 );
+    }
+
+    return;
+}
+
+
+std::string Page::getPlaylistName()
+{
+   return playlist_->first;
+}
+
 
 void Page::nextPlaylist()
 {
@@ -596,17 +570,16 @@ void Page::nextPlaylist()
         playlist_++;
         // wrap
         if(playlist_ == info.collection->playlists.end()) playlist_ = info.collection->playlists.begin();
-       
+
         // find the first playlist
         if(playlist_->second->size() != 0) break;
     }
 
     activeMenu_->setItems(playlist_->second);
-    activeMenu_->triggerMenuEnterEvent();
-    playlistChanged_ = true;
+    playlistChange();
 }
 
-void Page::favPlaylist()
+void Page::selectPlaylist(std::string playlist)
 {
     MenuInfo_S &info = collections_.back();
     info.collection->Save();
@@ -620,18 +593,17 @@ void Page::favPlaylist()
         playlist_++;
         // wrap
         if(playlist_ == info.collection->playlists.end()) playlist_ = info.collection->playlists.begin();
-        
+
         // find the first playlist
-        if(playlist_->second->size() != 0 && playlist_->first == "favorites") break;
+        if(playlist_->second->size() != 0 && playlist_->first == playlist) break;
     }
 
-    // Do not change playlist if favorites does not exist or if it's empty
-    if ( playlist_->second->size() == 0 || playlist_->first != "favorites")
+    // Do not change playlist if it does not exist or if it's empty
+    if ( playlist_->second->size() == 0 || playlist_->first != playlist)
       playlist_ = playlist_store;
 
     activeMenu_->setItems(playlist_->second);
-    activeMenu_->triggerMenuEnterEvent();
-    playlistChanged_ = true;
+    playlistChange();
 }
 
 void Page::update(float dt)
@@ -642,18 +614,6 @@ void Page::update(float dt)
 
         menu->update(dt);
     }
-    
-    if(playlistChanged_)
-    {
-        playlistChange();
-        playlistChanged_ = false;
-    }
-
-    if(selectedItemChanged_ && !scrollActive_)
-    {
-        highlight();
-        selectedItemChanged_ = false;
-    }
 
     if(textStatusComponent_)
     {
@@ -662,12 +622,9 @@ void Page::update(float dt)
         textStatusComponent_->setText(status);
     }
 
-    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
-        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-        {
-            if(*it) (*it)->update(dt);
-        }
+        if(*it) (*it)->update(dt);
     }
 
     // many nodes still have handles on the collection info. We need to delete
@@ -678,11 +635,11 @@ void Page::update(float dt)
     {
         MenuInfo_S &info = *del;
         if(info.queueDelete && info.menu && info.menu->isIdle())
-        {   
+        {
             std::list<MenuInfo_S>::iterator next = del;
             ++next;
 
-            if(info.collection) 
+            if(info.collection)
             {
                 info.collection->Save();
                 delete info.collection;
@@ -701,7 +658,7 @@ void Page::draw()
 {
     for(unsigned int i = 0; i < NUM_LAYERS; ++i)
     {
-        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
+        for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
         {
             if(*it && (*it)->baseViewInfo.Layer == i) (*it)->draw();
         }
@@ -730,12 +687,6 @@ void Page::removePlaylist()
     {
         items->erase(it);
         collection->saveRequest = true;
-
-        if(activeMenu_) 
-        {
-            activeMenu_->deallocateSpritePoints();
-            activeMenu_->allocateSpritePoints();
-        }
     }
 }
 
@@ -751,12 +702,8 @@ void Page::addPlaylist()
     if(playlist_->first != "favorites" && std::find(items->begin(), items->end(), selectedItem_) == items->end())
     {
         items->push_back(selectedItem_);
+        collection->sortItems();
         collection->saveRequest = true;
-        if(activeMenu_) 
-        {
-            activeMenu_->deallocateSpritePoints();
-            activeMenu_->allocateSpritePoints();
-        }
     }
 }
 
@@ -782,12 +729,9 @@ void Page::freeGraphicsMemory()
     if(highlightSoundChunk_) highlightSoundChunk_->free();
     if(selectSoundChunk_) selectSoundChunk_->free();
 
-    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
-        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-        {
-            (*it)->freeGraphicsMemory();
-        }
+        (*it)->freeGraphicsMemory();
     }
 }
 
@@ -807,12 +751,9 @@ void Page::allocateGraphicsMemory()
     if(highlightSoundChunk_) highlightSoundChunk_->allocate();
     if(selectSoundChunk_) selectSoundChunk_->allocate();
 
-    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
-        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-        {
-            (*it)->allocateGraphicsMemory();
-        }
+        (*it)->allocateGraphicsMemory();
     }
     Logger::write(Logger::ZONE_DEBUG, "Page", "Allocate graphics memory complete");
 }
@@ -824,12 +765,14 @@ void Page::launchEnter()
         activeMenu_->launchEnter();
     }
 
-    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
-        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-        {
-            (*it)->launchEnter();
-        }
+        (*it)->launchEnter();
+    }
+
+    if(selectSoundChunk_)
+    {
+        selectSoundChunk_->play();
     }
 }
 
@@ -840,11 +783,39 @@ void Page::launchExit()
         activeMenu_->launchExit();
     }
 
-    for(unsigned int i = 0; i < NUM_LAYERS; ++i)
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
-        for(std::vector<Component *>::iterator it = LayerComponents[i].begin(); it != LayerComponents[i].end(); ++it)
-        {
-            (*it)->launchExit();
-        }
+        (*it)->launchExit();
     }
+}
+
+
+void Page::reallocateMenuSpritePoints()
+{
+    if (activeMenu_)
+    {
+        activeMenu_->deallocateSpritePoints();
+        activeMenu_->allocateSpritePoints();
+    }
+}
+
+
+bool Page::isMenuScrolling()
+{
+    return scrollActive_;
+}
+
+
+bool Page::isPlaying()
+{
+
+    bool retVal = false;
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        retVal |= (*it)->isPlaying();
+    }
+
+    return retVal;
+
 }

@@ -15,6 +15,8 @@
  */
 #pragma once
 #include <SDL2/SDL.h>
+#include <string>
+#include "Graphics/ViewInfo.h"
 
 // todo: this wrapper could be cleaned up
 class Configuration;
@@ -27,7 +29,7 @@ public:
     static SDL_Renderer *getRenderer();
     static SDL_mutex *getMutex();
     static SDL_Window *getWindow();
-    static bool renderCopy(SDL_Texture *texture, unsigned char alpha, SDL_Rect *src, SDL_Rect *dest, double angle);
+    static bool renderCopy(SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo);
     static int getWindowWidth()
     {
         return windowWidth_;

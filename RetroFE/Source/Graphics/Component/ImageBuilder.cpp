@@ -35,7 +35,7 @@ Image * ImageBuilder::CreateImage(std::string path, Page &p, std::string name, f
 
     if(Utils::findMatchingFile(prefix, extensions, file))
     {
-        image = new Image(file, p, scaleX, scaleY);
+        image = new Image(file, "", p, scaleX, scaleY);
     }
 
     return image;

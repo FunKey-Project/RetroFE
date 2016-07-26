@@ -32,11 +32,15 @@ public:
     std::string fullTitle;
     std::string year;
     std::string manufacturer;
+    std::string developer;
     std::string genre;
     std::string cloneof;
     std::string numberPlayers;
     std::string numberButtons;
+    std::string ctrlType;
+    std::string joyWays;
+    std::string rating;
+    std::string score;
     CollectionInfo *collectionInfo;
     bool leaf;
 };
-

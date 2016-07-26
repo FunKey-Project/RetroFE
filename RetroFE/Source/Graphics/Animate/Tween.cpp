@@ -24,7 +24,8 @@ std::map<std::string, TweenProperty> Tween::tweenPropertyMap_;
 
 Tween::Tween(TweenProperty property, TweenAlgorithm type, double start, double end, double duration)
     : property(property)
-, duration(duration)
+    , duration(duration)
+    , startDefined(true)
     , type(type)
     , start(start)
     , end(end)
@@ -38,18 +39,26 @@ bool Tween::getTweenProperty(std::string name, TweenProperty &property)
 
     if(tweenPropertyMap_.size() == 0)
     {
-        tweenPropertyMap_["x"] = TWEEN_PROPERTY_X;
-        tweenPropertyMap_["y"] = TWEEN_PROPERTY_Y;
-        tweenPropertyMap_["angle"] = TWEEN_PROPERTY_ANGLE;
-        tweenPropertyMap_["alpha"] = TWEEN_PROPERTY_ALPHA;
-        tweenPropertyMap_["width"] = TWEEN_PROPERTY_WIDTH;
-        tweenPropertyMap_["height"] = TWEEN_PROPERTY_HEIGHT;
-        tweenPropertyMap_["xorigin"] = TWEEN_PROPERTY_X_ORIGIN;
-        tweenPropertyMap_["yorigin"] = TWEEN_PROPERTY_Y_ORIGIN;
-        tweenPropertyMap_["xoffset"] = TWEEN_PROPERTY_X_OFFSET;
-        tweenPropertyMap_["yoffset"] = TWEEN_PROPERTY_Y_OFFSET;
-        tweenPropertyMap_["fontSize"] = TWEEN_PROPERTY_FONT_SIZE;
+        tweenPropertyMap_["x"]               = TWEEN_PROPERTY_X;
+        tweenPropertyMap_["y"]               = TWEEN_PROPERTY_Y;
+        tweenPropertyMap_["angle"]           = TWEEN_PROPERTY_ANGLE;
+        tweenPropertyMap_["alpha"]           = TWEEN_PROPERTY_ALPHA;
+        tweenPropertyMap_["width"]           = TWEEN_PROPERTY_WIDTH;
+        tweenPropertyMap_["height"]          = TWEEN_PROPERTY_HEIGHT;
+        tweenPropertyMap_["xorigin"]         = TWEEN_PROPERTY_X_ORIGIN;
+        tweenPropertyMap_["yorigin"]         = TWEEN_PROPERTY_Y_ORIGIN;
+        tweenPropertyMap_["xoffset"]         = TWEEN_PROPERTY_X_OFFSET;
+        tweenPropertyMap_["yoffset"]         = TWEEN_PROPERTY_Y_OFFSET;
+        tweenPropertyMap_["fontSize"]        = TWEEN_PROPERTY_FONT_SIZE;
         tweenPropertyMap_["backgroundalpha"] = TWEEN_PROPERTY_BACKGROUND_ALPHA;
+        tweenPropertyMap_["maxwidth"]        = TWEEN_PROPERTY_MAX_WIDTH;
+        tweenPropertyMap_["maxheight"]       = TWEEN_PROPERTY_MAX_HEIGHT;
+        tweenPropertyMap_["layer"]           = TWEEN_PROPERTY_LAYER;
+        tweenPropertyMap_["containerx"]      = TWEEN_PROPERTY_CONTAINER_X;
+        tweenPropertyMap_["containery"]      = TWEEN_PROPERTY_CONTAINER_Y;
+        tweenPropertyMap_["containerwidth"]  = TWEEN_PROPERTY_CONTAINER_WIDTH;
+        tweenPropertyMap_["containerheight"] = TWEEN_PROPERTY_CONTAINER_HEIGHT;
+        tweenPropertyMap_["nop"]             = TWEEN_PROPERTY_NOP;
     }
 
     std::transform(name.begin(), name.end(), name.begin(), ::tolower);
@@ -108,6 +117,11 @@ TweenAlgorithm Tween::getTweenType(std::string name)
 float Tween::animate(double elapsedTime)
 {
     return animateSingle(type, start, end, duration, elapsedTime);
+}
+
+float Tween::animate(double elapsedTime, double startValue)
+{
+    return animateSingle(type, startValue, end, duration, elapsedTime);
 }
 
 //todo: SDL likes floats, consider having casting being performed elsewhere

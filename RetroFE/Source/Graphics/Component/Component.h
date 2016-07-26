@@ -18,7 +18,6 @@
 #include <vector>
 
 #include "../../SDL.h"
-#include "../MenuNotifierInterface.h"
 #include "../Page.h"
 #include "../ViewInfo.h"
 #include "../Animate/Tween.h"
@@ -34,66 +33,39 @@ public:
     virtual void allocateGraphicsMemory();
     virtual void launchEnter() {}
     virtual void launchExit() {}
-    void triggerEnterEvent();
-    void triggerExitEvent();
-    void triggerMenuEnterEvent(int menuIndex = -1);
-    void triggerMenuExitEvent(int menuIndex = -1);
-    void triggerMenuScrollEvent();
-    void triggerHighlightEvent();
-    void triggerPlaylistChangeEvent(std::string name);
+    void triggerEvent(std::string event, int menuIndex = -1);
+    void setPlaylist(std::string name );
+    void setNewItemSelected();
     bool isIdle();
-    bool isHidden();
-    bool isWaiting();
     bool isMenuScrolling();
+    bool newItemSelected;
 
     virtual void update(float dt);
     virtual void draw();
     void setTweens(AnimationEvents *set);
-    void forceIdle();
+    virtual bool isPlaying();
     ViewInfo baseViewInfo;
     std::string collectionName;
-    bool scrollActive;
 
 protected:
     Page &page;
 
-    enum AnimationState
-    {
-        IDLE,
-        ENTER,
-        HIGHLIGHT_EXIT,
-        HIGHLIGHT_WAIT,
-        HIGHLIGHT_ENTER,
-        EXIT,
-        MENU_ENTER,
-        MENU_SCROLL,
-        MENU_EXIT,
-        HIDDEN
-    };
-
-    AnimationState currentAnimationState;
-    bool enterRequested;
-    bool exitRequested;
-    bool menuEnterRequested;
-    int menuEnterIndex;
-    bool menuScrollRequested;
-    bool menuExitRequested;
-    int menuExitIndex;
-    bool newItemSelected;
-    bool playlistChanged;
     std::string playlistName;
-    bool highlightExitComplete;
-    bool newItemSelectedSinceEnter;
 private:
 
-    bool animate(bool loop);
+    bool animate();
     bool tweenSequencingComplete();
 
     AnimationEvents *tweens_;
     Animation *currentTweens_;
     SDL_Texture *backgroundTexture_;
 
+    ViewInfo     storeViewInfo_;
     unsigned int currentTweenIndex_;
-    bool currentTweenComplete_;
-    float elapsedTweenTime_;
+    bool         currentTweenComplete_;
+    float        elapsedTweenTime_;
+    std::string  animationRequestedType_;
+    std::string  animationType_;
+    bool         animationRequested_;
+    int          menuIndex_;
 };
