@@ -185,6 +185,19 @@ bool SDL::initialize(Configuration &config)
         Logger::write(Logger::ZONE_ERROR, "SDL", "Improve scale quality. Continuing with low-quality settings.");
     }
 
+    bool minimize_on_focus_loss_;
+    if(config.getProperty("minimize_on_focus_loss", minimize_on_focus_loss_))
+    {
+        if(minimize_on_focus_loss_)
+        {
+            SDL_SetHintWithPriority(SDL_HINT_VIDEO_MINIMIZE_ON_FOCUS_LOSS, "1", SDL_HINT_OVERRIDE);
+        }
+        else
+        {
+            SDL_SetHintWithPriority(SDL_HINT_VIDEO_MINIMIZE_ON_FOCUS_LOSS, "0", SDL_HINT_OVERRIDE);
+        }
+    }
+
     if(retVal)
     {
         mutex_ = SDL_CreateMutex();
