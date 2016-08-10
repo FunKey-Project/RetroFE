@@ -346,11 +346,8 @@ void RetroFE::run()
             break;
 
         case RETROFE_HIGHLIGHT_EXIT:
-            if ( processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
-            {
-                state = RETROFE_HIGHLIGHT_ENTER;
-            }
-            else if (currentPage_->isGraphicsIdle() && currentPage_->isMenuScrolling())
+            if ((processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST) ||
+                (currentPage_->isGraphicsIdle() && currentPage_->isMenuScrolling()))
             {
                 currentPage_->onNewItemSelected();
                 currentPage_->highlightEnter();
