@@ -704,6 +704,7 @@ AnimationEvents *PageBuilder::createTweenInstance(xml_node<> *componentXml)
     buildTweenSet(tweens, componentXml, "onEnter", "enter");
     buildTweenSet(tweens, componentXml, "onExit", "exit");
     buildTweenSet(tweens, componentXml, "onIdle", "idle");
+    buildTweenSet(tweens, componentXml, "onMenuScroll", "menuScroll");
     buildTweenSet(tweens, componentXml, "onHighlightEnter", "highlightEnter");
     buildTweenSet(tweens, componentXml, "onHighlightExit", "highlightExit");
     buildTweenSet(tweens, componentXml, "onMenuEnter", "menuEnter");
