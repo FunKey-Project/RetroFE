@@ -1097,7 +1097,7 @@
                 </set>
             </onMenuExit>
         </item>
-        <item xOffset="1440"/>
+        <item xOffset="1440" alpha="0"/>
     </menu>
 
 
