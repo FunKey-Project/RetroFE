@@ -7764,6 +7764,8 @@
 		<year>1994</year>
 		<genre>Shooter</genre>
 		<rating>HSRS - GA (General Audience)</rating>
+                <score>3.1</score>
+                <players>1 Player</players>
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Zero Wing (Europe)" index="" image="">
