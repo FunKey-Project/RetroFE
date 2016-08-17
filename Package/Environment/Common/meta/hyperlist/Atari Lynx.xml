@@ -26,6 +26,16 @@
 		<rating>HSRS - GA (General Audience)</rating>
 		<enabled>Yes</enabled>
 	</game>
+	<game name="Baseball Heroes (USA, Europe)" index="true" image="b">
+		<description>Baseball Heroes (USA, Europe)</description>
+		<cloneof></cloneof>
+		<crc>bb5de237</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1992</year>
+		<genre>Baseball/Sports</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
 	<game name="Basketbrawl (USA, Europe)" index="true" image="b">
 		<description>Basketbrawl (USA, Europe)</description>
 		<cloneof></cloneof>
