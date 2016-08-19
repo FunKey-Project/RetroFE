@@ -9,6 +9,10 @@
 |  readme.txt                            This Document contains the directory structure
 |  layout.xml                            Defines the look and feel for your frontend. optimized for 16X9 layout
 |  splash.xml                            Used to display message when the theme is loading the meta.db  / plays a intro video
+|  layout 16x9.xml                       Copy this file to layout.xml if you want the default 16x9 theme.
+|  layout LSR 16x9.xml                   Copy this file to layout.xml if you want the default 16x9 theme for low system requirements.
+|  layout 4x3.xml                        Copy this file to layout.xml if you want the default 4x3 theme.
+|  layout LSR 4x3.xml                    Copy this file to layout.xml if you want the default 4x3 theme for low system requirements.
 |
 +---fonts
 |       BebasNeue.ttf                    This is a sans serif font family based on the original Bebas Neue free font by Ryoichi Tsunekawa
