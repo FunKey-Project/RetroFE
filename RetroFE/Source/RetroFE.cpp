@@ -326,9 +326,8 @@ void RetroFE::run()
 
                     currentPage_->pushCollection(info);
                     currentPage_->onNewItemSelected();
-                    currentPage_->start();
-
                     currentPage_->reallocateMenuSpritePoints();
+                    currentPage_->start();
 
                     state = RETROFE_ENTER;
                 }
