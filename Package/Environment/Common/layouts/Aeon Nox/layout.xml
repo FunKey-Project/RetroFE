@@ -1512,7 +1512,7 @@
     </reloadableImage>
 
     <!-- Selected Developer -->
-    <reloadableText type="manufacturer" alpha="0" x="620" y="175" maxWidth="400" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" layer="10">
+    <reloadableText type="developer" alpha="0" x="620" y="175" maxWidth="400" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" layer="10">
         <onExit>
             <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
