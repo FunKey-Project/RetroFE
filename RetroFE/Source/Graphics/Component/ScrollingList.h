@@ -44,6 +44,7 @@ public:
 
     ScrollingList(Configuration &c,
                   Page &p,
+                  bool layoutMode,
                   float scaleX,
                   float scaleY,
                   Font *font,
@@ -104,6 +105,7 @@ private:
         ScrollStateIdle
     };
 
+    bool layoutMode_;
     std::vector<Component *> *spriteList_;
     std::vector<ViewInfo *> *scrollPoints_;
     std::vector<AnimationEvents *> *tweenPoints_;

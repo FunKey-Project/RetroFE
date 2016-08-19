@@ -733,12 +733,13 @@ ScrollingList * PageBuilder::buildMenu(xml_node<> *menuXml, Page &page)
     std::string menuType = "vertical";
     std::string imageType = "null";
     std::map<int, xml_node<> *> overrideItems;
-    xml_node<> *itemDefaults = menuXml->first_node("itemDefaults");
-    xml_attribute<> *imageTypeXml = menuXml->first_attribute("imageType");
-    xml_attribute<> *menuTypeXml = menuXml->first_attribute("type");
-    xml_attribute<> *scrollTimeXml = menuXml->first_attribute("scrollTime");
+    xml_node<> *itemDefaults               = menuXml->first_node("itemDefaults");
+    xml_attribute<> *modeXml               = menuXml->first_attribute("mode");
+    xml_attribute<> *imageTypeXml          = menuXml->first_attribute("imageType");
+    xml_attribute<> *menuTypeXml           = menuXml->first_attribute("type");
+    xml_attribute<> *scrollTimeXml         = menuXml->first_attribute("scrollTime");
     xml_attribute<> *scrollAccelerationXml = menuXml->first_attribute("scrollAcceleration");
-    xml_attribute<> *scrollOrientationXml = menuXml->first_attribute("orientation");
+    xml_attribute<> *scrollOrientationXml  = menuXml->first_attribute("orientation");
 
     if(menuTypeXml)
     {
@@ -756,10 +757,20 @@ ScrollingList * PageBuilder::buildMenu(xml_node<> *menuXml, Page &page)
         imageType = imageTypeXml->value();
     }
 
+    bool layoutMode = false;
+    if(modeXml)
+    {
+        std::string sysMode = modeXml->value();
+        if(sysMode == "layout")
+        {
+            layoutMode = true;
+        }
+    }
+
     // on default, text will be rendered to the menu. Preload it into cache.
     Font *font = addFont(itemDefaults, NULL);
 
-    menu = new ScrollingList(config_, page, scaleX_, scaleY_, font, layoutKey, imageType);
+    menu = new ScrollingList(config_, page, layoutMode, scaleX_, scaleY_, font, layoutKey, imageType);
 
     if(scrollTimeXml)
     {

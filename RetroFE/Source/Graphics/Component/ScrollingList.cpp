@@ -41,6 +41,7 @@
 //todo: remove coupling from configuration data (if possible)
 ScrollingList::ScrollingList(Configuration &c,
                              Page &p,
+                             bool layoutMode,
                              float scaleX,
                              float scaleY,
                              Font *font,
@@ -48,6 +49,7 @@ ScrollingList::ScrollingList(Configuration &c,
                              std::string imageType)
     : Component(p)
     , horizontalScroll(false)
+    , layoutMode_(layoutMode)
     , spriteList_(NULL)
     , scrollPoints_(NULL)
     , tweenPoints_(NULL)
@@ -585,50 +587,109 @@ bool ScrollingList::allocateTexture(unsigned int index, Item *item)
 
     ImageBuilder imageBuild;
 
+    std::string layoutName;
+    config_.getProperty("layout", layoutName);
+
     // check collection path for art based on gamename
-    config_.getMediaPropertyAbsolutePath(collectionName, imageType_, false, imagePath);
+    if (layoutMode_)
+    {
+        imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", collectionName);
+        imagePath = Utils::combinePath(imagePath, "medium_artwork", imageType_);
+    }
+    else
+    {
+        config_.getMediaPropertyAbsolutePath(collectionName, imageType_, false, imagePath);
+    }
     t = imageBuild.CreateImage(imagePath, page, item->name, scaleX_, scaleY_);
 
     // check sub-collection path for art based on gamename
     if(!t)
     {
-        config_.getMediaPropertyAbsolutePath(item->collectionInfo->name, imageType_, false, imagePath);
+        if (layoutMode_)
+        {
+            imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", item->collectionInfo->name);
+            imagePath = Utils::combinePath(imagePath, "medium_artwork", imageType_);
+        }
+        else
+        {
+            config_.getMediaPropertyAbsolutePath(item->collectionInfo->name, imageType_, false, imagePath);
+        }
         t = imageBuild.CreateImage(imagePath, page, item->name, scaleX_, scaleY_);
     }
 
     // check collection path for art based on game name (full title)
     if(!t && item->title != item->fullTitle)
     {
-        config_.getMediaPropertyAbsolutePath(collectionName, imageType_, false, imagePath);
+        if (layoutMode_)
+        {
+            imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", collectionName);
+            imagePath = Utils::combinePath(imagePath, "medium_artwork", imageType_);
+        }
+        else
+        {
+            config_.getMediaPropertyAbsolutePath(collectionName, imageType_, false, imagePath);
+        }
         t = imageBuild.CreateImage(imagePath, page, item->fullTitle, scaleX_, scaleY_);
     }
 
     // check sub-collection path for art based on game name (full title)
     if(!t && item->title != item->fullTitle)
     {
-        config_.getMediaPropertyAbsolutePath(item->collectionInfo->name, imageType_, false, imagePath);
+        if (layoutMode_)
+        {
+            imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", item->collectionInfo->name);
+            imagePath = Utils::combinePath(imagePath, "medium_artwork", imageType_);
+        }
+        else
+        {
+            config_.getMediaPropertyAbsolutePath(item->collectionInfo->name, imageType_, false, imagePath);
+        }
         t = imageBuild.CreateImage(imagePath, page, item->fullTitle, scaleX_, scaleY_);
     }
 
     // check collection path for art based on parent game name
     if(!t && item->cloneof != "")
     {
-        config_.getMediaPropertyAbsolutePath(collectionName, imageType_, false, imagePath);
+        if (layoutMode_)
+        {
+            imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", collectionName);
+            imagePath = Utils::combinePath(imagePath, "medium_artwork", imageType_);
+        }
+        else
+        {
+            config_.getMediaPropertyAbsolutePath(collectionName, imageType_, false, imagePath);
+        }
         t = imageBuild.CreateImage(imagePath, page, item->cloneof, scaleX_, scaleY_);
     }
 
     // check sub-collection path for art based on parent game name
     if(!t && item->cloneof != "")
     {
-        config_.getMediaPropertyAbsolutePath(item->collectionInfo->name, imageType_, false, imagePath);
+        if (layoutMode_)
+        {
+            imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", item->collectionInfo->name);
+            imagePath = Utils::combinePath(imagePath, "medium_artwork", imageType_);
+        }
+        else
+        {
+            config_.getMediaPropertyAbsolutePath(item->collectionInfo->name, imageType_, false, imagePath);
+        }
         t = imageBuild.CreateImage(imagePath, page, item->cloneof, scaleX_, scaleY_);
     }
 
     // check collection path for art based on system name
     if(!t)
     {
-		config_.getMediaPropertyAbsolutePath(item->name, imageType_, true, imagePath);
-		t = imageBuild.CreateImage(imagePath, page, imageType_, scaleX_, scaleY_);
+        if (layoutMode_)
+        {
+            imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", item->name);
+            imagePath = Utils::combinePath(imagePath, "system_artwork");
+        }
+        else
+        {
+            config_.getMediaPropertyAbsolutePath(item->name, imageType_, true, imagePath);
+        }
+        t = imageBuild.CreateImage(imagePath, page, imageType_, scaleX_, scaleY_);
     }
 
     if (!t)
