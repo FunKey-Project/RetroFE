@@ -1194,7 +1194,7 @@
     </reloadableText>
 
     <!-- Selected Publisher -->
-    <reloadableText type="manufacturer" alpha="0" x="90" y="180" maxWidth="400" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" layer="10">
+    <reloadableText type="manufacturer" alpha="0" x="90" y="180" maxWidth="420" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" layer="10">
         <onExit>
             <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
@@ -1310,7 +1310,7 @@
     </reloadableImage>
 
     <!-- Selected Developer -->
-    <reloadableText type="developer" alpha="0" x="510" y="180" maxWidth="400" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" layer="10">
+    <reloadableText type="developer" alpha="0" x="510" y="180" maxWidth="420" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" layer="10">
         <onExit>
             <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
@@ -1339,7 +1339,7 @@
     </reloadableText>
 
     <!-- Selected Genre -->
-    <reloadableText type="genre" alpha="0" x="90" y="265" maxWidth="400" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" layer="10">
+    <reloadableText type="genre" alpha="0" x="90" y="265" maxWidth="420" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" layer="10">
         <onExit>
             <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
@@ -1368,7 +1368,7 @@
     </reloadableText>
 
     <!-- Selected Rating -->
-    <reloadableText type="rating" alpha="0" x="510" y="265" maxWidth="400" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" layer="10">
+    <reloadableText type="rating" alpha="0" x="510" y="265" maxWidth="420" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" layer="10">
         <onExit>
             <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
