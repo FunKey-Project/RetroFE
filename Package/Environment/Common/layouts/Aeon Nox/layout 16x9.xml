@@ -218,12 +218,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -252,12 +252,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -286,12 +286,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -320,12 +320,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -353,12 +353,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -386,12 +386,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -405,12 +405,12 @@
             </set>
         </onExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -441,12 +441,12 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".30">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
@@ -456,12 +456,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".30">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -489,12 +489,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -507,12 +507,12 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".30">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
@@ -522,12 +522,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".30">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -555,12 +555,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -573,12 +573,12 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".30">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
@@ -588,12 +588,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".30">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -621,12 +621,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -639,12 +639,12 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".30">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
@@ -654,12 +654,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".30">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -687,12 +687,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -705,12 +705,12 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".30">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
@@ -720,12 +720,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".30">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -753,12 +753,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -771,12 +771,12 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".30">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
@@ -786,12 +786,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".30">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -819,12 +819,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -853,12 +853,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -887,12 +887,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -921,12 +921,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to=".2" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -955,12 +955,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -1354,7 +1354,7 @@
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="1">
-            <set duration=".01">
+            <set duration=".25">
                 <animate type="y" from="25" to="-68"/>
             </set>
         </onMenuExit>
@@ -1384,12 +1384,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -1413,12 +1413,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -1442,12 +1442,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -1471,12 +1471,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -1500,12 +1500,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -1529,12 +1529,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -1558,12 +1558,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -1587,12 +1587,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -1616,12 +1616,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -1645,12 +1645,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -1674,12 +1674,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -1709,12 +1709,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -1738,12 +1738,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -1924,12 +1924,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -1958,12 +1958,12 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to=".9" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="1">
-            <set duration=".15">
+            <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
