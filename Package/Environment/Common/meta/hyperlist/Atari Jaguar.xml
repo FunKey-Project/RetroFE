@@ -106,9 +106,19 @@
 		<rating>ESRB - E (Everyone)</rating>
 		<enabled>Yes</enabled>
 	</game>
+	<game name="Cybermorph (World) (Rev 1)" index="" image="">
+		<description>Cybermorph (World) (Rev 1)</description>
+		<cloneof></cloneof>
+		<crc>BDE67498</crc>
+		<manufacturer>Atari</manufacturer>
+		<year>1993</year>
+		<genre>Shooter</genre>
+		<rating>HSRS - GA (General Audience)</rating>
+		<enabled>Yes</enabled>
+	</game>
 	<game name="Cybermorph (World) (Rev 2)" index="" image="">
 		<description>Cybermorph (World) (Rev 2)</description>
-		<cloneof></cloneof>
+		<cloneof>Cybermorph (World) (Rev 1)</cloneof>
 		<crc>ECF854E7</crc>
 		<manufacturer>Atari</manufacturer>
 		<year>1993</year>
@@ -186,6 +196,16 @@
 		<rating>ESRB - T (Teen)</rating>
 		<enabled>Yes</enabled>
 	</game>
+	<game name="Fight for Life (World) (Alt 1)" index="" image="">
+		<description>Fight for Life (World) (Alt 1)</description>
+		<cloneof>Fight for Life (World)</cloneof>
+		<crc>C6C7BA62</crc>
+		<manufacturer>Atari Games</manufacturer>
+		<year>1996</year>
+		<genre>Fighter</genre>
+		<rating>ESRB - T (Teen)</rating>
+		<enabled>Yes</enabled>
+	</game>
 	<game name="Flashback - The Quest for Identity (World) (En,Fr)" index="" image="">
 		<description>Flashback - The Quest for Identity (World) (En,Fr)</description>
 		<cloneof></cloneof>
@@ -242,6 +262,16 @@
 		<crc>08F15576</crc>
 		<manufacturer>Atari Games</manufacturer>
 		<year>1994</year>
+		<genre>Simulation</genre>
+		<rating>ESRB - E (Everyone)</rating>
+		<enabled>Yes</enabled>
+	</game>
+	<game name="Iron Soldier 2 (World)" index="" image="">
+		<description>Iron Soldier 2 (World)</description>
+		<cloneof></cloneof>
+		<crc>D6C19E34</crc>
+		<manufacturer>Atari Games</manufacturer>
+		<year>1997</year>
 		<genre>Simulation</genre>
 		<rating>ESRB - E (Everyone)</rating>
 		<enabled>Yes</enabled>

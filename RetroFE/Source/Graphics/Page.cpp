@@ -325,6 +325,19 @@ void Page::playlistChange()
 }
 
 
+void Page::menuScroll()
+{
+    Item *item = selectedItem_;
+
+    if(!item) return;
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        (*it)->triggerEvent( "menuScroll", menuDepth_ - 1 );
+    }
+}
+
+
 void Page::highlightEnter()
 {
     Item *item = selectedItem_;
@@ -371,10 +384,18 @@ void Page::setScrolling(ScrollDirection direction)
     switch(direction)
     {
     case ScrollDirectionForward:
+        if(!scrollActive_)
+        {
+            menuScroll();
+        }
         menuDirection = ScrollingList::ScrollDirectionForward;
         scrollActive_ = true;
         break;
     case ScrollDirectionBack:
+        if(!scrollActive_)
+        {
+            menuScroll();
+        }
         menuDirection = ScrollingList::ScrollDirectionBack;
         scrollActive_ = true;
         break;

@@ -86,6 +86,7 @@ public:
     std::string getCollectionName();
     void setMinShowTime(float value);
     float getMinShowTime();
+    void menuScroll();
     void highlightEnter();
     void highlightExit();
     void addPlaylist();

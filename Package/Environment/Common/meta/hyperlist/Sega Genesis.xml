@@ -7760,13 +7760,12 @@
 		<description>Zero Tolerance (USA, Europe)</description>
 		<cloneof></cloneof>
 		<crc>23f603f5</crc>
-		<manufacturer>Accolade, Inc.</manufacturer>
-		<developer>Technopop, Inc.</developer>
+		<manufacturer>Technopop</manufacturer>
 		<year>1994</year>
 		<genre>Shooter</genre>
 		<rating>HSRS - GA (General Audience)</rating>
-		<players>1</players>
-		<score>3.1</score>
+                <score>3.1</score>
+                <players>1 Player</players>
 		<enabled>Yes</enabled>
 	</game>
 	<game name="Zero Wing (Europe)" index="" image="">

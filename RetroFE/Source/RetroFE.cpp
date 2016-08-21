@@ -326,9 +326,8 @@ void RetroFE::run()
 
                     currentPage_->pushCollection(info);
                     currentPage_->onNewItemSelected();
-                    currentPage_->start();
-
                     currentPage_->reallocateMenuSpritePoints();
+                    currentPage_->start();
 
                     state = RETROFE_ENTER;
                 }
@@ -346,11 +345,8 @@ void RetroFE::run()
             break;
 
         case RETROFE_HIGHLIGHT_EXIT:
-            if ( processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
-            {
-                state = RETROFE_HIGHLIGHT_ENTER;
-            }
-            else if (currentPage_->isGraphicsIdle() && currentPage_->isMenuScrolling())
+            if ((processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST) ||
+                (currentPage_->isGraphicsIdle() && currentPage_->isMenuScrolling()))
             {
                 currentPage_->onNewItemSelected();
                 currentPage_->highlightEnter();
