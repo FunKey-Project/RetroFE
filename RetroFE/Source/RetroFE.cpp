@@ -295,6 +295,11 @@ void RetroFE::run()
             }
             break;
 
+        case RETROFE_LOAD_ART:
+            currentPage_->start();
+            state = RETROFE_ENTER;
+            break;
+
         case RETROFE_ENTER:
             if(currentPage_->isIdle())
             {
@@ -327,9 +332,8 @@ void RetroFE::run()
                     currentPage_->pushCollection(info);
                     currentPage_->onNewItemSelected();
                     currentPage_->reallocateMenuSpritePoints();
-                    currentPage_->start();
 
-                    state = RETROFE_ENTER;
+                    state = RETROFE_LOAD_ART;
                 }
                 else
                 {
@@ -346,15 +350,19 @@ void RetroFE::run()
 
         case RETROFE_HIGHLIGHT_EXIT:
             if ((processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST) ||
-                (currentPage_->isGraphicsIdle() && currentPage_->isMenuScrolling()))
+                (currentPage_->isGraphicsIdle() && currentPage_->isMenuScrolling()) ||
+                (currentPage_->isIdle()))
             {
                 currentPage_->onNewItemSelected();
-                currentPage_->highlightEnter();
-                state = RETROFE_HIGHLIGHT_ENTER;
+                state = RETROFE_HIGHLIGHT_LOAD_ART;
             }
-            else if (currentPage_->isIdle())
+            break;
+
+        case RETROFE_HIGHLIGHT_LOAD_ART:
+            if ((processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST) ||
+                (currentPage_->isGraphicsIdle() && currentPage_->isMenuScrolling()) ||
+                (currentPage_->isIdle()))
             {
-                currentPage_->onNewItemSelected();
                 currentPage_->highlightEnter();
                 state = RETROFE_HIGHLIGHT_ENTER;
             }
@@ -390,7 +398,6 @@ void RetroFE::run()
                     currentPage_->freeGraphicsMemory();
                     pages_.push( currentPage_ );
                     currentPage_ = page;
-                    currentPage_->start();
                 }
 
                 bool menuSort = true;
@@ -424,21 +431,29 @@ void RetroFE::run()
 
                 currentPage_->onNewItemSelected();
                 currentPage_->reallocateMenuSpritePoints();
-                if (currentPage_->getMenuDepth() != 1 )
-                {
-                    currentPage_->enterMenu();
-                }
 
-                state = RETROFE_NEXT_PAGE_MENU_ENTER;
+                state = RETROFE_NEXT_PAGE_MENU_LOAD_ART;
 
              }
              break;
 
+        case RETROFE_NEXT_PAGE_MENU_LOAD_ART:
+            if (currentPage_->getMenuDepth() != 1 )
+            {
+                currentPage_->enterMenu();
+            }
+            else
+            {
+                currentPage_->start();
+            }
+            state = RETROFE_NEXT_PAGE_MENU_ENTER;
+            break;
+
         case RETROFE_NEXT_PAGE_MENU_ENTER:
-          if(currentPage_->isIdle())
-          {
-            state = RETROFE_IDLE;
-          }
+            if(currentPage_->isIdle())
+            {
+              state = RETROFE_IDLE;
+            }
           break;
 
         case RETROFE_LAUNCH_REQUEST:
@@ -462,36 +477,40 @@ void RetroFE::run()
             break;
 
         case RETROFE_BACK_MENU_EXIT:
-          if(currentPage_->isIdle())
-          {
-            lastMenuOffsets_[currentPage_->getCollectionName()]   = currentPage_->getScrollOffsetIndex();
-            lastMenuPlaylists_[currentPage_->getCollectionName()] = currentPage_->getPlaylistName();
-            if (currentPage_->getMenuDepth() == 1)
+            if(currentPage_->isIdle())
             {
-                currentPage_->DeInitialize();
-                delete currentPage_;
-                currentPage_ = pages_.top();
-                pages_.pop();
-                currentPage_->allocateGraphicsMemory();
+                lastMenuOffsets_[currentPage_->getCollectionName()]   = currentPage_->getScrollOffsetIndex();
+                lastMenuPlaylists_[currentPage_->getCollectionName()] = currentPage_->getPlaylistName();
+                if (currentPage_->getMenuDepth() == 1)
+                {
+                    currentPage_->DeInitialize();
+                    delete currentPage_;
+                    currentPage_ = pages_.top();
+                    pages_.pop();
+                    currentPage_->allocateGraphicsMemory();
+                }
+                else
+                {
+                    currentPage_->popCollection();
+                }
+                config_.setProperty("currentCollection", currentPage_->getCollectionName());
+                currentPage_->onNewItemSelected();
+                currentPage_->reallocateMenuSpritePoints();
+                state = RETROFE_BACK_MENU_LOAD_ART;
             }
-            else
-            {
-                currentPage_->popCollection();
-            }
-            config_.setProperty("currentCollection", currentPage_->getCollectionName());
-            currentPage_->onNewItemSelected();
-            currentPage_->reallocateMenuSpritePoints();
+            break;
+
+        case RETROFE_BACK_MENU_LOAD_ART:
             currentPage_->enterMenu();
             state = RETROFE_BACK_MENU_ENTER;
-          }
-          break;
+            break;
 
         case RETROFE_BACK_MENU_ENTER:
-          if(currentPage_->isIdle())
-          {
-            state = RETROFE_IDLE;
-          }
-          break;
+            if(currentPage_->isIdle())
+            {
+                state = RETROFE_IDLE;
+            }
+            break;
 
         case RETROFE_NEW:
             if(currentPage_->isIdle())
