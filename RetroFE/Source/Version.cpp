@@ -15,36 +15,16 @@
  */
 
 #include "Version.h"
-#include <sstream>
+#include <string>
 
-#ifndef RETROFE_VERSION_MAJOR
-#define RETROFE_VERSION_MAJOR 0
-#endif
 
-#ifndef RETROFE_VERSION_MINOR
-#define RETROFE_VERSION_MINOR 0
-#endif
+std::string retrofe_version_major = "0";
+std::string retrofe_version_minor = "7";
+std::string retrofe_version_build = "3";
 
-#ifndef RETROFE_VERSION_BUILD
-#define RETROFE_VERSION_BUILD 0
-#endif
-
-#ifndef RETROFE_VERSION_PROD
-#define RETROFE_VERSION_BETA
-#endif
 
 std::string Version::getString()
 {
-    std::stringstream version;
-    version << RETROFE_VERSION_MAJOR;
-    version << ".";
-    version << RETROFE_VERSION_MINOR;
-    version << ".";
-    version << RETROFE_VERSION_BUILD;
-
-#ifdef RETROFE_VERSION_BETA
-    version << "-beta";
-#endif
-
-    return version.str();
+    std::string return_string = retrofe_version_major + "." + retrofe_version_minor + "." + retrofe_version_build;
+    return return_string;
 }

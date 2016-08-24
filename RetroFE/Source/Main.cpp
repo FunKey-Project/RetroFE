@@ -31,6 +31,32 @@ static bool StartLogging();
 
 int main(int argc, char **argv)
 {
+
+    // check to see if version or help was requested
+    if(argc > 1)
+    {
+        std::string program = argv[0];
+        std::string param   = argv[1];
+
+        if(argc == 3 && param == "-createcollection")
+        {
+            // Do nothing; we handle that later
+        }
+        else if(param == "-version")
+        {
+            std::cout << "RetroFE version " << Version::getString( ) << std::endl;
+            return 0;
+        }
+        else
+        {
+            std::cout << "Usage:" << std::endl;
+            std::cout << program  << "                                           Run RetroFE"                              << std::endl;
+            std::cout << program  << " -version                                  Print the version of RetroFE."            << std::endl;
+            std::cout << program  << " -createcollection <collection name>       Create a collection directory structure." << std::endl;
+            return 0;
+        }
+    }
+
     // Initialize random seed
     srand(static_cast<unsigned int>(time(0)));
 
