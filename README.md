@@ -14,7 +14,7 @@ Install necessary dependencies:
 ## Download and compile the source code ##
 Download the source code:
 
-	hg clone https://bitbucket.org/teamretro/retrofe
+	hg clone https://phulshof@bitbucket.org/phulshof/retrofe
 
 Generate your gcc make files:
 
@@ -48,7 +48,8 @@ Copy your live RetroFE system to any folder of your choosing:
 
 Download the source code
 
-	hg clone https://bitbucket.org/teamretro/retrofe
+	hg clone https://phulshof@bitbucket.org/phulshof/retrofe
+
 
 Setup Environment (to setup necessary variables and paths to compile in visual studio)
 
