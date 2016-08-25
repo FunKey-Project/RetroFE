@@ -53,7 +53,12 @@ void AttractMode::update(float dt, Page &page)
         {
             elapsedTime_ = 0;
             isActive_ = false;
-            page.setScrolling(Page::ScrollDirectionIdle);
         }
     }
+}
+
+
+bool AttractMode::isActive()
+{
+    return isActive_;
 }

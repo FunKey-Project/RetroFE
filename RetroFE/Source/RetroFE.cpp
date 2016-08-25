@@ -724,7 +724,8 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
        !input_.keystate(UserInput::KeyCodeDown) &&
        !input_.keystate(UserInput::KeyCodeRight) &&
        !input_.keystate(UserInput::KeyCodePageUp) &&
-       !input_.keystate(UserInput::KeyCodePageDown))
+       !input_.keystate(UserInput::KeyCodePageDown) &&
+       !attract_.isActive())
     {
         if (page->isMenuScrolling())
             state = RETROFE_HIGHLIGHT_REQUEST;

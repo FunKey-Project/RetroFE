@@ -24,6 +24,7 @@ public:
     void reset();
     void update(float dt, Page &page);
     float idleTime;
+    bool  isActive();
 
 private:
     bool isActive_;
