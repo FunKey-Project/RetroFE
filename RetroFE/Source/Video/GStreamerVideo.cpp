@@ -199,6 +199,8 @@ bool GStreamerVideo::play(std::string file)
         return false;
     }
 
+    stop();
+
     currentFile_ = file;
 
     const gchar *uriFile = gst_filename_to_uri (file.c_str(), NULL);
