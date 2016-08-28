@@ -28,6 +28,7 @@
 #include "Graphics/PageBuilder.h"
 #include "Graphics/Page.h"
 #include "Graphics/Component/ScrollingList.h"
+#include "Graphics/Component/Video.h"
 #include "Video/VideoFactory.h"
 #include <vector>
 #include <string>
@@ -214,6 +215,7 @@ void RetroFE::run()
     VideoFactory::setEnabled(videoEnable);
     VideoFactory::setNumLoops(videoLoop);
     VideoFactory::createVideo(); // pre-initialize the gstreamer engine
+    Video::setEnabled(videoEnable);
 
 
     initializeThread = SDL_CreateThread(initialize, "RetroFEInit", (void *)this);
