@@ -252,7 +252,7 @@ void RetroFE::run()
         float lastTime = 0;
         float deltaTime = 0;
         SDL_Event e;
-        if (SDL_PollEvent(&e))
+        while (SDL_PollEvent(&e))
         {
             if(input_.update(e))
             {
