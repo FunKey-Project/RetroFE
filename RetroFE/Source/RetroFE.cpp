@@ -510,6 +510,7 @@ void RetroFE::run()
         case RETROFE_BACK_MENU_ENTER:
             if(currentPage_->isIdle())
             {
+                currentPage_->cleanup();
                 state = RETROFE_IDLE;
             }
             break;

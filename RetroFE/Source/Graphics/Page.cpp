@@ -648,14 +648,17 @@ void Page::update(float dt)
         if(*it) (*it)->update(dt);
     }
 
-    // many nodes still have handles on the collection info. We need to delete
-    // them once everything is done using them
+}
+
+
+void Page::cleanup()
+{
     std::list<MenuInfo_S>::iterator del = deleteCollections_.begin();
 
     while(del != deleteCollections_.end())
     {
         MenuInfo_S &info = *del;
-        if(info.queueDelete && info.menu && info.menu->isIdle())
+        if(info.queueDelete && info.menu)
         {
             std::list<MenuInfo_S>::iterator next = del;
             ++next;
@@ -674,6 +677,7 @@ void Page::update(float dt)
         }
     }
 }
+
 
 void Page::draw()
 {
