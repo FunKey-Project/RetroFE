@@ -42,7 +42,9 @@ int main(int argc, char **argv)
         {
             // Do nothing; we handle that later
         }
-        else if(param == "-version")
+        else if(param == "-version"  ||
+                param == "--version" ||
+                param == "-v")
         {
             std::cout << "RetroFE version " << Version::getString( ) << std::endl;
             return 0;
@@ -51,7 +53,7 @@ int main(int argc, char **argv)
         {
             std::cout << "Usage:" << std::endl;
             std::cout << program  << "                                           Run RetroFE"                              << std::endl;
-            std::cout << program  << " -version                                  Print the version of RetroFE."            << std::endl;
+            std::cout << program  << " --version                                 Print the version of RetroFE."            << std::endl;
             std::cout << program  << " -createcollection <collection name>       Create a collection directory structure." << std::endl;
             return 0;
         }
