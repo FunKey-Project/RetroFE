@@ -266,7 +266,7 @@ void ReloadableScrollingText::draw( )
 {
     Component::draw( );
 
-    if (!text_.empty( ) && waitEndTime_ <= 0.0f && baseViewInfo.Alpha > 0)
+    if (!text_.empty( ) && waitEndTime_ <= 0.0f && baseViewInfo.Alpha > 0.0f)
     {
 
         Font *font;
@@ -365,7 +365,7 @@ void ReloadableScrollingText::draw( )
                             }
                             else
                             {
-                                rect.x = static_cast<int>( xOrigin ) + imageMaxWidth + 1; // Stop handling the rest of the string
+                                rect.x = static_cast<int>( xOrigin ) + static_cast<int>( imageMaxWidth ) + 10; // Stop handling the rest of the string
                             }
                         }
                         position += glyph.advance * scale * scaleX_;
