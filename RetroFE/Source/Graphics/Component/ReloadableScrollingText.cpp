@@ -363,7 +363,7 @@ void ReloadableScrollingText::draw( )
                                 SDL::renderCopy(t, baseViewInfo.Alpha, &charRect, &rect, baseViewInfo);
                                 rect.x += rect.w;
                             }
-                            else
+                            else if ((rect.x + static_cast<int>( glyph.advance * scale * scaleX_ )) >= (static_cast<int>( xOrigin ) + imageMaxWidth))
                             {
                                 rect.x = static_cast<int>( xOrigin ) + static_cast<int>( imageMaxWidth ) + 10; // Stop handling the rest of the string
                             }
