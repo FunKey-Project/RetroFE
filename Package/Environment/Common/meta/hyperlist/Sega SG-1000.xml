@@ -1,739 +1,885 @@
 <?xml version="1.0"?>
 <menu>
-	<header>
-		<listname>Sega SG-1000</listname>
-		<lastlistupdate>06/08/2013</lastlistupdate>
-		<listversion>1.2 Final</listversion>
-		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
-	</header>
-	<game name="Bank Panic (Japan)" index="true" image="b">
-		<description>Bank Panic (Japan)</description>
-		<cloneof></cloneof>
-		<crc>d8a87095</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Black Onyx, The (Japan)" index="" image="">
-		<description>Black Onyx, The (Japan)</description>
-		<cloneof></cloneof>
-		<crc>26ecd094</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1987</year>
-		<genre>Role-Playing</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Bomb Jack (Japan)" index="" image="">
-		<description>Bomb Jack (Japan)</description>
-		<cloneof></cloneof>
-		<crc>ea0f2691</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Puzzle</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Borderline (Japan, Europe)" index="" image="">
-		<description>Borderline (Japan, Europe)</description>
-		<cloneof></cloneof>
-		<crc>0b4bca74</crc>
-		<manufacturer>Compile</manufacturer>
-		<year>1983</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Castle, The (Japan)" index="true" image="c">
-		<description>Castle, The (Japan)</description>
-		<cloneof></cloneof>
-		<crc>092f29d6</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1986</year>
-		<genre>Puzzle</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Chack&apos;n Pop (Japan)" index="" image="">
-		<description>Chack&apos;n Pop (Japan)</description>
-		<cloneof></cloneof>
-		<crc>d37bda49</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Challenge Derby (Japan)" index="" image="">
-		<description>Challenge Derby (Japan)</description>
-		<cloneof></cloneof>
-		<crc>c5f014dc</crc>
-		<manufacturer>Tsukuda Original</manufacturer>
-		<year>1984</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Champion Baseball (Japan)" index="" image="">
-		<description>Champion Baseball (Japan)</description>
-		<cloneof></cloneof>
-		<crc>c0c16fa7</crc>
-		<manufacturer>Alpha Denshi</manufacturer>
-		<year>1983</year>
-		<genre>Sports/Baseball</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Champion Billiards (Japan)" index="" image="">
-		<description>Champion Billiards (Japan)</description>
-		<cloneof></cloneof>
-		<crc>62b21e31</crc>
-		<manufacturer>Compile</manufacturer>
-		<year>1986</year>
-		<genre>Sports</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Champion Boxing (Japan)" index="" image="">
-		<description>Champion Boxing (Japan)</description>
-		<cloneof></cloneof>
-		<crc>26f947d1</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1984</year>
-		<genre>Sports/Boxing</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Champion Golf (Japan)" index="" image="">
-		<description>Champion Golf (Japan)</description>
-		<cloneof></cloneof>
-		<crc>868419b5</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1983</year>
-		<genre>Sports/Golf</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Champion Ice Hockey (Japan)" index="" image="">
-		<description>Champion Ice Hockey (Japan)</description>
-		<cloneof></cloneof>
-		<crc>bdc05652</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Sports/Ice Hockey</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Champion Kendou (Japan)" index="" image="">
-		<description>Champion Kendou (Japan)</description>
-		<cloneof></cloneof>
-		<crc>10cdebce</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1986</year>
-		<genre>Sports</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Champion Pro Wrestling (Japan)" index="" image="">
-		<description>Champion Pro Wrestling (Japan)</description>
-		<cloneof></cloneof>
-		<crc>372fe6bc</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Sports/Wrestling</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Champion Soccer (Japan)" index="" image="">
-		<description>Champion Soccer (Japan)</description>
-		<cloneof></cloneof>
-		<crc>6f39719e</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1984</year>
-		<genre>Sports/Soccer</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Champion Tennis (Japan)" index="" image="">
-		<description>Champion Tennis (Japan)</description>
-		<cloneof></cloneof>
-		<crc>7c663316</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1983</year>
-		<genre>Sports/Tennis</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Championship Lode Runner (Japan)" index="" image="">
-		<description>Championship Lode Runner (Japan)</description>
-		<cloneof></cloneof>
-		<crc>11db4b1d</crc>
-		<manufacturer>Compile</manufacturer>
-		<year>1985</year>
-		<genre>Puzzle</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Choplifter (Japan)" index="" image="">
-		<description>Choplifter (Japan)</description>
-		<cloneof></cloneof>
-		<crc>732b7180</crc>
-		<manufacturer>Compile</manufacturer>
-		<year>1985</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Congo Bongo (Japan, Europe)" index="" image="">
-		<description>Congo Bongo (Japan, Europe)</description>
-		<cloneof></cloneof>
-		<crc>5a24c7cf</crc>
-		<manufacturer>Ikegami Tsushinki</manufacturer>
-		<year>1983</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="C_So! (Japan)" index="" image="">
-		<description>C_So! (Japan)</description>
-		<cloneof></cloneof>
-		<crc>be7ed0eb</crc>
-		<manufacturer>Compile</manufacturer>
-		<year>1985</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Dokidoki Penguin Land (Japan)" index="true" image="d">
-		<description>Dokidoki Penguin Land (Japan)</description>
-		<cloneof></cloneof>
-		<crc>346556b9</crc>
-		<manufacturer>Coreland</manufacturer>
-		<year>1985</year>
-		<genre>Puzzle</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Dragon Wang (Japan)" index="" image="">
-		<description>Dragon Wang (Japan)</description>
-		<cloneof></cloneof>
-		<crc>99c3de21</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Drol (Japan)" index="" image="">
-		<description>Drol (Japan)</description>
-		<cloneof></cloneof>
-		<crc>288940cb</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Elevator Action (Japan)" index="true" image="e">
-		<description>Elevator Action (Japan)</description>
-		<cloneof></cloneof>
-		<crc>5af8f69d</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Exerion (Japan, Europe)" index="" image="">
-		<description>Exerion (Japan, Europe)</description>
-		<cloneof></cloneof>
-		<crc>a2c45b61</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1983</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Flicky (Japan)" index="true" image="f">
-		<description>Flicky (Japan)</description>
-		<cloneof></cloneof>
-		<crc>26d2862c</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1984</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Girl&apos;s Garden (Japan)" index="true" image="g">
-		<description>Girl&apos;s Garden (Japan)</description>
-		<cloneof></cloneof>
-		<crc>1898f274</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1984</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Golgo 13 (Japan)" index="" image="">
-		<description>Golgo 13 (Japan)</description>
-		<cloneof></cloneof>
-		<crc>0d159ed0</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1984</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="GP World (Japan)" index="" image="">
-		<description>GP World (Japan)</description>
-		<cloneof></cloneof>
-		<crc>191ffe0a</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Driving</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Gulkave (Japan)" index="" image="">
-		<description>Gulkave (Japan)</description>
-		<cloneof></cloneof>
-		<crc>15a754a3</crc>
-		<manufacturer>Compile</manufacturer>
-		<year>1986</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Guzzler (Japan)" index="" image="">
-		<description>Guzzler (Japan)</description>
-		<cloneof></cloneof>
-		<crc>61fa9ea0</crc>
-		<manufacturer>Tsukuda Original</manufacturer>
-		<year>1983</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="H.E.R.O. (Japan)" index="true" image="h">
-		<description>H.E.R.O. (Japan)</description>
-		<cloneof></cloneof>
-		<crc>4587de6e</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Hang-On II (Japan)" index="" image="">
-		<description>Hang-On II (Japan)</description>
-		<cloneof></cloneof>
-		<crc>9be3c6bd</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Driving</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Home Mahjong (Japan)" index="" image="">
-		<description>Home Mahjong (Japan)</description>
-		<cloneof></cloneof>
-		<crc>e7e0f0e3</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1984</year>
-		<genre>Puzzle</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Hustle Chumy (Japan)" index="" image="">
-		<description>Hustle Chumy (Japan)</description>
-		<cloneof></cloneof>
-		<crc>a627d440</crc>
-		<manufacturer>Compile</manufacturer>
-		<year>1984</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Hyper Sports (Japan)" index="" image="">
-		<description>Hyper Sports (Japan)</description>
-		<cloneof></cloneof>
-		<crc>ba09a0fd</crc>
-		<manufacturer>Konami</manufacturer>
-		<year>1985</year>
-		<genre>Sports/Track &amp; Field</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="James Bond 007 (Japan)" index="true" image="j">
-		<description>James Bond 007 (Japan)</description>
-		<cloneof></cloneof>
-		<crc>90160849</crc>
-		<manufacturer>Tsukuda Original</manufacturer>
-		<year>1984</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Lode Runner (Japan, Europe)" index="true" image="l">
-		<description>Lode Runner (Japan, Europe)</description>
-		<cloneof></cloneof>
-		<crc>00ed3970</crc>
-		<manufacturer>Compile</manufacturer>
-		<year>1984</year>
-		<genre>Puzzle</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Mahjong (Japan)" index="true" image="m">
-		<description>Mahjong (Japan)</description>
-		<cloneof></cloneof>
-		<crc>1c137cab</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1983</year>
-		<genre>Puzzle</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Monaco GP (Japan)" index="" image="">
-		<description>Monaco GP (Japan)</description>
-		<cloneof></cloneof>
-		<crc>02e5d66a</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1983</year>
-		<genre>Driving</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="N-Sub (Europe)" index="true" image="n">
-		<description>N-Sub (Europe)</description>
-		<cloneof></cloneof>
-		<crc>09196fc5</crc>
-		<manufacturer>Compile</manufacturer>
-		<year>1983</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Ninja Princess (Japan)" index="" image="">
-		<description>Ninja Princess (Japan)</description>
-		<cloneof></cloneof>
-		<crc>3b912408</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1986</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Okamoto Ayako no Match Play Golf (Japan)" index="true" image="o">
-		<description>Okamoto Ayako no Match Play Golf (Japan)</description>
-		<cloneof></cloneof>
-		<crc>49d3db2c</crc>
-		<manufacturer>Tsukuda Original</manufacturer>
-		<year>1984</year>
-		<genre>Sports/Golf</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Orguss (Japan, Europe)" index="" image="">
-		<description>Orguss (Japan, Europe)</description>
-		<cloneof></cloneof>
-		<crc>f4f78b76</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1984</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Othello (Japan)" index="" image="">
-		<description>Othello (Japan)</description>
-		<cloneof></cloneof>
-		<crc>af4f14bc</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Puzzle</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Pacar (Japan, Europe)" index="true" image="p">
-		<description>Pacar (Japan, Europe)</description>
-		<cloneof></cloneof>
-		<crc>30c52e5e</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1983</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Pachinko (Japan)" index="" image="">
-		<description>Pachinko (Japan)</description>
-		<cloneof></cloneof>
-		<crc>326587e1</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1983</year>
-		<genre>Puzzle</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Pachinko II (Japan)" index="" image="">
-		<description>Pachinko II (Japan)</description>
-		<cloneof></cloneof>
-		<crc>fd7cb50a</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1984</year>
-		<genre>Puzzle</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Pitfall II - The Lost Caverns (Japan)" index="" image="">
-		<description>Pitfall II - The Lost Caverns (Japan)</description>
-		<cloneof></cloneof>
-		<crc>3db74761</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Pop Flamer (Japan, Europe)" index="" image="">
-		<description>Pop Flamer (Japan, Europe)</description>
-		<cloneof></cloneof>
-		<crc>db6404ba</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1983</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Q-bert (Japan)" index="true" image="q">
-		<description>Q-bert (Japan)</description>
-		<cloneof></cloneof>
-		<crc>77db4704</crc>
-		<manufacturer>Konami</manufacturer>
-		<year>1983</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Rock n&apos; Bolt (Japan)" index="true" image="r">
-		<description>Rock n&apos; Bolt (Japan)</description>
-		<cloneof></cloneof>
-		<crc>0ffdd03d</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Safari Hunting (Japan)" index="true" image="s">
-		<description>Safari Hunting (Japan)</description>
-		<cloneof></cloneof>
-		<crc>49e9718b</crc>
-		<manufacturer>Compile</manufacturer>
-		<year>1983</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Safari Race (Japan)" index="" image="">
-		<description>Safari Race (Japan)</description>
-		<cloneof></cloneof>
-		<crc>619dd066</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1984</year>
-		<genre>Driving</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="San-nin Mahjong (Japan)" index="" image="">
-		<description>San-nin Mahjong (Japan)</description>
-		<cloneof></cloneof>
-		<crc>885fa64d</crc>
-		<manufacturer>Tsukuda Original</manufacturer>
-		<year>1984</year>
-		<genre>Puzzle</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Sega Flipper (Japan, Europe)" index="" image="">
-		<description>Sega Flipper (Japan, Europe)</description>
-		<cloneof></cloneof>
-		<crc>8efc77bc</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1983</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Sega-Galaga (Japan)" index="" image="">
-		<description>Sega-Galaga (Japan)</description>
-		<cloneof></cloneof>
-		<crc>981e36c1</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1983</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Serizawa Hachidan no Tsumeshogi (Japan)" index="" image="">
-		<description>Serizawa Hachidan no Tsumeshogi (Japan)</description>
-		<cloneof></cloneof>
-		<crc>545fc9bb</crc>
-		<manufacturer>Coreland</manufacturer>
-		<year>1983</year>
-		<genre>Puzzle</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Shinnyushain Tooru Kun (Japan)" index="" image="">
-		<description>Shinnyushain Tooru Kun (Japan)</description>
-		<cloneof></cloneof>
-		<crc>5a917e06</crc>
-		<manufacturer>Konami</manufacturer>
-		<year>1985</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Sindbad Mystery (Japan, Europe)" index="" image="">
-		<description>Sindbad Mystery (Japan, Europe)</description>
-		<cloneof></cloneof>
-		<crc>01932df9</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1983</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Soukoban (Japan)" index="" image="">
-		<description>Soukoban (Japan)</description>
-		<cloneof></cloneof>
-		<crc>922c5468</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Puzzle</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Space Armor (Japan)" index="" image="">
-		<description>Space Armor (Japan)</description>
-		<cloneof></cloneof>
-		<crc>d5fdb4a3</crc>
-		<manufacturer>Tsukuda Original</manufacturer>
-		<year>1984</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Space Invaders (Japan)" index="" image="">
-		<description>Space Invaders (Japan)</description>
-		<cloneof></cloneof>
-		<crc>6ad5cb3d</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Space Mountain (Japan)" index="" image="">
-		<description>Space Mountain (Japan)</description>
-		<cloneof></cloneof>
-		<crc>bbd87d8f</crc>
-		<manufacturer>Tsukuda Original</manufacturer>
-		<year>1983</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Space Slalom (Japan)" index="" image="">
-		<description>Space Slalom (Japan)</description>
-		<cloneof></cloneof>
-		<crc>b8b58b30</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1983</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Star Force (Japan)" index="" image="">
-		<description>Star Force (Japan)</description>
-		<cloneof></cloneof>
-		<crc>b846b52a</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Star Jacker (Japan, Europe)" index="" image="">
-		<description>Star Jacker (Japan, Europe)</description>
-		<cloneof></cloneof>
-		<crc>3fe59505</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1983</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Super Tank (Japan)" index="" image="">
-		<description>Super Tank (Japan)</description>
-		<cloneof></cloneof>
-		<crc>084cc13e</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1986</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Wonder Boy (Japan)" index="true" image="w">
-		<description>Wonder Boy (Japan)</description>
-		<cloneof></cloneof>
-		<crc>e8f0344d</crc>
-		<manufacturer>Escape</manufacturer>
-		<year>1986</year>
-		<genre>Action</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Yamato (Japan, Europe)" index="true" image="y">
-		<description>Yamato (Japan, Europe)</description>
-		<cloneof></cloneof>
-		<crc>e2fd5201</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1983</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Zaxxon (Japan)" index="true" image="z">
-		<description>Zaxxon (Japan)</description>
-		<cloneof></cloneof>
-		<crc>905467e4</crc>
-		<manufacturer>Ikegami Tsushinki</manufacturer>
-		<year>1985</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Zippy Race (Japan)" index="" image="">
-		<description>Zippy Race (Japan)</description>
-		<cloneof></cloneof>
-		<crc>bc5d20df</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1983</year>
-		<genre>Driving</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Zoom 909 (Japan)" index="" image="">
-		<description>Zoom 909 (Japan)</description>
-		<cloneof></cloneof>
-		<crc>093830d8</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1985</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
+  <header>
+    <listname>Sega SG-1000</listname>
+    <lastlistupdate>06/08/2013</lastlistupdate>
+    <listversion>1.2 Final</listversion>
+    <exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+  </header>
+  <game name="Bank Panic (Japan)" index="true" image="b">
+    <description>Bank Panic (Japan)</description>
+    <cloneof></cloneof>
+    <crc>d8a87095</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>4.7</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Black Onyx, The (Japan)" index="" image="">
+    <description>Black Onyx, The (Japan)</description>
+    <cloneof></cloneof>
+    <crc>26ecd094</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1987</year>
+    <genre>Role-Playing</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.2</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Bomb Jack (Japan)" index="" image="">
+    <description>Bomb Jack (Japan)</description>
+    <cloneof></cloneof>
+    <crc>ea0f2691</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Puzzle</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.4</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Borderline (Japan, Europe)" index="" image="">
+    <description>Borderline (Japan, Europe)</description>
+    <cloneof></cloneof>
+    <crc>0b4bca74</crc>
+    <manufacturer>Compile</manufacturer>
+    <year>1983</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.6</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Castle, The (Japan)" index="true" image="c">
+    <description>Castle, The (Japan)</description>
+    <cloneof></cloneof>
+    <crc>092f29d6</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1986</year>
+    <genre>Puzzle</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>4</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Chack&apos;n Pop (Japan)" index="" image="">
+    <description>Chack&apos;n Pop (Japan)</description>
+    <cloneof></cloneof>
+    <crc>d37bda49</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>4</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Challenge Derby (Japan)" index="" image="">
+    <description>Challenge Derby (Japan)</description>
+    <cloneof></cloneof>
+    <crc>c5f014dc</crc>
+    <manufacturer>Tsukuda Original</manufacturer>
+    <year>1984</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.6</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Champion Baseball (Japan)" index="" image="">
+    <description>Champion Baseball (Japan)</description>
+    <cloneof></cloneof>
+    <crc>c0c16fa7</crc>
+    <manufacturer>Alpha Denshi</manufacturer>
+    <year>1983</year>
+    <genre>Sports/Baseball</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.3</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Champion Billiards (Japan)" index="" image="">
+    <description>Champion Billiards (Japan)</description>
+    <cloneof></cloneof>
+    <crc>62b21e31</crc>
+    <manufacturer>Compile</manufacturer>
+    <year>1986</year>
+    <genre>Sports</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.8</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Champion Boxing (Japan)" index="" image="">
+    <description>Champion Boxing (Japan)</description>
+    <cloneof></cloneof>
+    <crc>26f947d1</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1984</year>
+    <genre>Sports/Boxing</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>4</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Champion Golf (Japan)" index="" image="">
+    <description>Champion Golf (Japan)</description>
+    <cloneof></cloneof>
+    <crc>868419b5</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1983</year>
+    <genre>Sports/Golf</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.9</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Champion Ice Hockey (Japan)" index="" image="">
+    <description>Champion Ice Hockey (Japan)</description>
+    <cloneof></cloneof>
+    <crc>bdc05652</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Sports/Ice Hockey</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.9</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Champion Kendou (Japan)" index="" image="">
+    <description>Champion Kendou (Japan)</description>
+    <cloneof></cloneof>
+    <crc>10cdebce</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1986</year>
+    <genre>Sports</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.1</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Champion Pro Wrestling (Japan)" index="" image="">
+    <description>Champion Pro Wrestling (Japan)</description>
+    <cloneof></cloneof>
+    <crc>372fe6bc</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Sports/Wrestling</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>1.4</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Champion Soccer (Japan)" index="" image="">
+    <description>Champion Soccer (Japan)</description>
+    <cloneof></cloneof>
+    <crc>6f39719e</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1984</year>
+    <genre>Sports/Soccer</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>4.2</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Champion Tennis (Japan)" index="" image="">
+    <description>Champion Tennis (Japan)</description>
+    <cloneof></cloneof>
+    <crc>7c663316</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1983</year>
+    <genre>Sports/Tennis</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>4.2</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Championship Lode Runner (Japan)" index="" image="">
+    <description>Championship Lode Runner (Japan)</description>
+    <cloneof></cloneof>
+    <crc>11db4b1d</crc>
+    <manufacturer>Compile</manufacturer>
+    <year>1985</year>
+    <genre>Puzzle</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.4</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Choplifter (Japan)" index="" image="">
+    <description>Choplifter (Japan)</description>
+    <cloneof></cloneof>
+    <crc>732b7180</crc>
+    <manufacturer>Compile</manufacturer>
+    <year>1985</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.5</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Congo Bongo (Japan, Europe)" index="" image="">
+    <description>Congo Bongo (Japan, Europe)</description>
+    <cloneof></cloneof>
+    <crc>5a24c7cf</crc>
+    <manufacturer>Ikegami Tsushinki</manufacturer>
+    <year>1983</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>4.3</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="C_So! (Japan)" index="" image="">
+    <description>C_So! (Japan)</description>
+    <cloneof></cloneof>
+    <crc>be7ed0eb</crc>
+    <manufacturer>Compile</manufacturer>
+    <year>1985</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.7</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Dokidoki Penguin Land (Japan)" index="true" image="d">
+    <description>Dokidoki Penguin Land (Japan)</description>
+    <cloneof></cloneof>
+    <crc>346556b9</crc>
+    <manufacturer>Coreland</manufacturer>
+    <year>1985</year>
+    <genre>Puzzle</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Dragon Wang (Japan)" index="" image="">
+    <description>Dragon Wang (Japan)</description>
+    <cloneof></cloneof>
+    <crc>99c3de21</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.9</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Drol (Japan)" index="" image="">
+    <description>Drol (Japan)</description>
+    <cloneof></cloneof>
+    <crc>288940cb</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.4</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Elevator Action (Japan)" index="true" image="e">
+    <description>Elevator Action (Japan)</description>
+    <cloneof></cloneof>
+    <crc>5af8f69d</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>4.3</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Exerion (Japan, Europe)" index="" image="">
+    <description>Exerion (Japan, Europe)</description>
+    <cloneof></cloneof>
+    <crc>a2c45b61</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1983</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.7</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Flicky (Japan)" index="true" image="f">
+    <description>Flicky (Japan)</description>
+    <cloneof></cloneof>
+    <crc>26d2862c</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1984</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.3</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Girl&apos;s Garden (Japan)" index="true" image="g">
+    <description>Girl&apos;s Garden (Japan)</description>
+    <cloneof></cloneof>
+    <crc>1898f274</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1984</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.6</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Golgo 13 (Japan)" index="" image="">
+    <description>Golgo 13 (Japan)</description>
+    <cloneof></cloneof>
+    <crc>0d159ed0</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1984</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.8</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="GP World (Japan)" index="" image="">
+    <description>GP World (Japan)</description>
+    <cloneof></cloneof>
+    <crc>191ffe0a</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Driving</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.4</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Gulkave (Japan)" index="" image="">
+    <description>Gulkave (Japan)</description>
+    <cloneof></cloneof>
+    <crc>15a754a3</crc>
+    <manufacturer>Compile</manufacturer>
+    <year>1986</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Guzzler (Japan)" index="" image="">
+    <description>Guzzler (Japan)</description>
+    <cloneof></cloneof>
+    <crc>61fa9ea0</crc>
+    <manufacturer>Tsukuda Original</manufacturer>
+    <year>1983</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.8</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="H.E.R.O. (Japan)" index="true" image="h">
+    <description>H.E.R.O. (Japan)</description>
+    <cloneof></cloneof>
+    <crc>4587de6e</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.6</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Hang-On II (Japan)" index="" image="">
+    <description>Hang-On II (Japan)</description>
+    <cloneof></cloneof>
+    <crc>9be3c6bd</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Driving</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.4</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Home Mahjong (Japan)" index="" image="">
+    <description>Home Mahjong (Japan)</description>
+    <cloneof></cloneof>
+    <crc>e7e0f0e3</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1984</year>
+    <genre>Puzzle</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.8</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Hustle Chumy (Japan)" index="" image="">
+    <description>Hustle Chumy (Japan)</description>
+    <cloneof></cloneof>
+    <crc>a627d440</crc>
+    <manufacturer>Compile</manufacturer>
+    <year>1984</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>4.4</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Hyper Sports (Japan)" index="" image="">
+    <description>Hyper Sports (Japan)</description>
+    <cloneof></cloneof>
+    <crc>ba09a0fd</crc>
+    <manufacturer>Konami</manufacturer>
+    <year>1985</year>
+    <genre>Sports/Track &amp; Field</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.6</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="James Bond 007 (Japan)" index="true" image="j">
+    <description>James Bond 007 (Japan)</description>
+    <cloneof></cloneof>
+    <crc>90160849</crc>
+    <manufacturer>Tsukuda Original</manufacturer>
+    <year>1984</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.8</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Lode Runner (Japan, Europe)" index="true" image="l">
+    <description>Lode Runner (Japan, Europe)</description>
+    <cloneof></cloneof>
+    <crc>00ed3970</crc>
+    <manufacturer>Compile</manufacturer>
+    <year>1984</year>
+    <genre>Puzzle</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.3</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Mahjong (Japan)" index="true" image="m">
+    <description>Mahjong (Japan)</description>
+    <cloneof></cloneof>
+    <crc>1c137cab</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1983</year>
+    <genre>Puzzle</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.9</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Monaco GP (Japan)" index="" image="">
+    <description>Monaco GP (Japan)</description>
+    <cloneof></cloneof>
+    <crc>02e5d66a</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1983</year>
+    <genre>Driving</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.6</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="N-Sub (Europe)" index="true" image="n">
+    <description>N-Sub (Europe)</description>
+    <cloneof></cloneof>
+    <crc>09196fc5</crc>
+    <manufacturer>Compile</manufacturer>
+    <year>1983</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.6</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Ninja Princess (Japan)" index="" image="">
+    <description>Ninja Princess (Japan)</description>
+    <cloneof></cloneof>
+    <crc>3b912408</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1986</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.4</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Okamoto Ayako no Match Play Golf (Japan)" index="true" image="o">
+    <description>Okamoto Ayako no Match Play Golf (Japan)</description>
+    <cloneof></cloneof>
+    <crc>49d3db2c</crc>
+    <manufacturer>Tsukuda Original</manufacturer>
+    <year>1984</year>
+    <genre>Sports/Golf</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Orguss (Japan, Europe)" index="" image="">
+    <description>Orguss (Japan, Europe)</description>
+    <cloneof></cloneof>
+    <crc>f4f78b76</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1984</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>4.3</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Othello (Japan)" index="" image="">
+    <description>Othello (Japan)</description>
+    <cloneof></cloneof>
+    <crc>af4f14bc</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Puzzle</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.1</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Pacar (Japan, Europe)" index="true" image="p">
+    <description>Pacar (Japan, Europe)</description>
+    <cloneof></cloneof>
+    <crc>30c52e5e</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1983</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.5</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Pachinko (Japan)" index="" image="">
+    <description>Pachinko (Japan)</description>
+    <cloneof></cloneof>
+    <crc>326587e1</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1983</year>
+    <genre>Puzzle</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.7</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Pachinko II (Japan)" index="" image="">
+    <description>Pachinko II (Japan)</description>
+    <cloneof></cloneof>
+    <crc>fd7cb50a</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1984</year>
+    <genre>Puzzle</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.7</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Pitfall II - The Lost Caverns (Japan)" index="" image="">
+    <description>Pitfall II - The Lost Caverns (Japan)</description>
+    <cloneof></cloneof>
+    <crc>3db74761</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.8</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Pop Flamer (Japan, Europe)" index="" image="">
+    <description>Pop Flamer (Japan, Europe)</description>
+    <cloneof></cloneof>
+    <crc>db6404ba</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1983</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.5</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Q-bert (Japan)" index="true" image="q">
+    <description>Q-bert (Japan)</description>
+    <cloneof></cloneof>
+    <crc>77db4704</crc>
+    <manufacturer>Konami</manufacturer>
+    <year>1983</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.8</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Rock n&apos; Bolt (Japan)" index="true" image="r">
+    <description>Rock n&apos; Bolt (Japan)</description>
+    <cloneof></cloneof>
+    <crc>0ffdd03d</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.8</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Safari Hunting (Japan)" index="true" image="s">
+    <description>Safari Hunting (Japan)</description>
+    <cloneof></cloneof>
+    <crc>49e9718b</crc>
+    <manufacturer>Compile</manufacturer>
+    <year>1983</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.9</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Safari Race (Japan)" index="" image="">
+    <description>Safari Race (Japan)</description>
+    <cloneof></cloneof>
+    <crc>619dd066</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1984</year>
+    <genre>Driving</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.3</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="San-nin Mahjong (Japan)" index="" image="">
+    <description>San-nin Mahjong (Japan)</description>
+    <cloneof></cloneof>
+    <crc>885fa64d</crc>
+    <manufacturer>Tsukuda Original</manufacturer>
+    <year>1984</year>
+    <genre>Puzzle</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.9</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Sega Flipper (Japan, Europe)" index="" image="">
+    <description>Sega Flipper (Japan, Europe)</description>
+    <cloneof></cloneof>
+    <crc>8efc77bc</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1983</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Sega-Galaga (Japan)" index="" image="">
+    <description>Sega-Galaga (Japan)</description>
+    <cloneof></cloneof>
+    <crc>981e36c1</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1983</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.9</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Serizawa Hachidan no Tsumeshogi (Japan)" index="" image="">
+    <description>Serizawa Hachidan no Tsumeshogi (Japan)</description>
+    <cloneof></cloneof>
+    <crc>545fc9bb</crc>
+    <manufacturer>Coreland</manufacturer>
+    <year>1983</year>
+    <genre>Puzzle</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.8</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Shinnyushain Tooru Kun (Japan)" index="" image="">
+    <description>Shinnyushain Tooru Kun (Japan)</description>
+    <cloneof></cloneof>
+    <crc>5a917e06</crc>
+    <manufacturer>Konami</manufacturer>
+    <year>1985</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.2</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Sindbad Mystery (Japan, Europe)" index="" image="">
+    <description>Sindbad Mystery (Japan, Europe)</description>
+    <cloneof></cloneof>
+    <crc>01932df9</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1983</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.9</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Soukoban (Japan)" index="" image="">
+    <description>Soukoban (Japan)</description>
+    <cloneof></cloneof>
+    <crc>922c5468</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Puzzle</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>4.8</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Space Armor (Japan)" index="" image="">
+    <description>Space Armor (Japan)</description>
+    <cloneof></cloneof>
+    <crc>d5fdb4a3</crc>
+    <manufacturer>Tsukuda Original</manufacturer>
+    <year>1984</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.6</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Space Invaders (Japan)" index="" image="">
+    <description>Space Invaders (Japan)</description>
+    <cloneof></cloneof>
+    <crc>6ad5cb3d</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.3</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Space Mountain (Japan)" index="" image="">
+    <description>Space Mountain (Japan)</description>
+    <cloneof></cloneof>
+    <crc>bbd87d8f</crc>
+    <manufacturer>Tsukuda Original</manufacturer>
+    <year>1983</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>4</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Space Slalom (Japan)" index="" image="">
+    <description>Space Slalom (Japan)</description>
+    <cloneof></cloneof>
+    <crc>b8b58b30</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1983</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.2</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Star Force (Japan)" index="" image="">
+    <description>Star Force (Japan)</description>
+    <cloneof></cloneof>
+    <crc>b846b52a</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.4</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Star Jacker (Japan, Europe)" index="" image="">
+    <description>Star Jacker (Japan, Europe)</description>
+    <cloneof></cloneof>
+    <crc>3fe59505</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1983</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.2</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Super Tank (Japan)" index="" image="">
+    <description>Super Tank (Japan)</description>
+    <cloneof></cloneof>
+    <crc>084cc13e</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1986</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.8</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Wonder Boy (Japan)" index="true" image="w">
+    <description>Wonder Boy (Japan)</description>
+    <cloneof></cloneof>
+    <crc>e8f0344d</crc>
+    <manufacturer>Escape</manufacturer>
+    <year>1986</year>
+    <genre>Action</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.1</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Yamato (Japan, Europe)" index="true" image="y">
+    <description>Yamato (Japan, Europe)</description>
+    <cloneof></cloneof>
+    <crc>e2fd5201</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1983</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.8</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Zaxxon (Japan)" index="true" image="z">
+    <description>Zaxxon (Japan)</description>
+    <cloneof></cloneof>
+    <crc>905467e4</crc>
+    <manufacturer>Ikegami Tsushinki</manufacturer>
+    <year>1985</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.6</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Zippy Race (Japan)" index="" image="">
+    <description>Zippy Race (Japan)</description>
+    <cloneof></cloneof>
+    <crc>bc5d20df</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1983</year>
+    <genre>Driving</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>4</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Zoom 909 (Japan)" index="" image="">
+    <description>Zoom 909 (Japan)</description>
+    <cloneof></cloneof>
+    <crc>093830d8</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1985</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.9</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
 </menu>

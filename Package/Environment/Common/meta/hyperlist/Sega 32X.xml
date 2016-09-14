@@ -1,339 +1,405 @@
 <?xml version="1.0"?>
 <menu>
-	<header>
-		<listname>Sega 32X</listname>
-		<lastlistupdate>09/26/2012</lastlistupdate>
-		<listversion>1.2 Final</listversion>
-		<exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
-	</header>
-	<game name="After Burner Complete ~ After Burner (Japan, USA)" index="true" image="a">
-		<description>After Burner (Japan, USA)</description>
-		<cloneof></cloneof>
-		<crc>204044C4</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1995</year>
-		<genre>Flying</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Amazing Spider-Man, The - Web of Fire (USA)" index="" image="">
-		<description>Amazing Spider-Man, The - Web of Fire (USA)</description>
-		<cloneof></cloneof>
-		<crc>29DCE257</crc>
-		<manufacturer>	Sega</manufacturer>
-		<year>1996</year>
-		<genre>Platform</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="BC Racers (USA)" index="true" image="b">
-		<description>BC Racers (USA)</description>
-		<cloneof></cloneof>
-		<crc>936C3D27</crc>
-		<manufacturer>Front Street Publishing</manufacturer>
-		<year>1995</year>
-		<genre>Driving</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Blackthorne (USA)" index="" image="">
-		<description>Blackthorne (USA)</description>
-		<cloneof></cloneof>
-		<crc>D1A60A47</crc>
-		<manufacturer>Interplay</manufacturer>
-		<year>1995</year>
-		<genre>Platform</genre>
-		<rating>ESRB - T (Teen)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Brutal Unleashed - Above the Claw (USA)" index="" image="">
-		<description>Brutal Unleashed - Above the Claw (USA)</description>
-		<cloneof></cloneof>
-		<crc>7A72C939</crc>
-		<manufacturer>GameTek</manufacturer>
-		<year>1995</year>
-		<genre>Fighter</genre>
-		<rating>ESRB - T (Teen)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Cyber Brawl ~ Cosmic Carnage (Japan, USA)" index="true" image="c">
-		<description>Cosmic Carnage (Japan, USA)</description>
-		<cloneof></cloneof>
-		<crc>7C7BE6A2</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1994</year>
-		<genre>Fighter</genre>
-		<rating>ESRB - T (Teen)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Darxide (Europe) (En,Fr,De,Es)" index="true" image="d">
-		<description>Darxide (Europe)</description>
-		<cloneof></cloneof>
-		<crc>22D7C906</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1996</year>
-		<genre>Shooter</genre>
-		<rating>HSRS - GA (General Audience)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Doom (Japan, USA)" index="" image="">
-		<description>Doom (Japan, USA)</description>
-		<cloneof></cloneof>
-		<crc>208332FD</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1994</year>
-		<genre>Shooter</genre>
-		<rating>ESRB - M (Mature)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="FIFA Soccer &apos;96 (Europe) (En,Fr,De,Es,It,Sv)" index="true" image="f">
-		<description>FIFA Soccer &apos;96 (Europe)</description>
-		<cloneof></cloneof>
-		<crc>FB14A7C8</crc>
-		<manufacturer>Electronic Arts</manufacturer>
-		<year>1995</year>
-		<genre>Soccer/Sports</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Golf Magazine 36 Great Holes Starring Fred Couples (Japan, USA)" index="true" image="g">
-		<description>Golf Magazine 36 Great Holes Starring Fred Couples (Japan, USA)</description>
-		<cloneof></cloneof>
-		<crc>D3D0A2FE</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1994</year>
-		<genre>Golf/Sports</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Chaotix ~ Knuckles&apos; Chaotix (Japan, USA)" index="true" image="k">
-		<description>Knuckles&apos; Chaotix (Japan, USA)</description>
-		<cloneof></cloneof>
-		<crc>D0B0B842</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1995</year>
-		<genre>Platform</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Kolibri (USA, Europe)" index="" image="">
-		<description>Kolibri (USA, Europe)</description>
-		<cloneof></cloneof>
-		<crc>20CA53EF</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1995</year>
-		<genre>Shooter</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Metal Head (Japan, USA) (En,Ja)" index="true" image="m">
-		<description>Metal Head (Japan, USA)</description>
-		<cloneof></cloneof>
-		<crc>EF5553FF</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1995</year>
-		<genre>Simulation</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Mortal Kombat II (Japan, USA)" index="" image="">
-		<description>Mortal Kombat II (Japan, USA)</description>
-		<cloneof></cloneof>
-		<crc>773C0A85</crc>
-		<manufacturer>Acclaim</manufacturer>
-		<year>1994</year>
-		<genre>Fighter</genre>
-		<rating>ESRB - M (Mature)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Motocross Championship (USA)" index="" image="">
-		<description>Motocross Championship (USA)</description>
-		<cloneof></cloneof>
-		<crc>A21C5761</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1994</year>
-		<genre>Motorcycle</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="NBA Jam - Tournament Edition (World)" index="true" image="n">
-		<description>NBA Jam Tournament Edition (World)</description>
-		<cloneof></cloneof>
-		<crc>6B7994AA</crc>
-		<manufacturer>Acclaim</manufacturer>
-		<year>1995</year>
-		<genre>Basketball/Sports</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="NFL Quarterback Club (World)" index="" image="">
-		<description>NFL Quarterback Club (World)</description>
-		<cloneof></cloneof>
-		<crc>0BC7018D</crc>
-		<manufacturer>Acclaim</manufacturer>
-		<year>1995</year>
-		<genre>Football/Sports</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Pitfall - The Mayan Adventure (USA)" index="true" image="p">
-		<description>Pitfall - The Mayan Adventure (USA)</description>
-		<cloneof></cloneof>
-		<crc>F9126F15</crc>
-		<manufacturer>Activision</manufacturer>
-		<year>1995</year>
-		<genre>Platform</genre>
-		<rating>ESRB - T (Teen)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Primal Rage (USA, Europe)" index="" image="">
-		<description>Primal Rage (USA, Europe)</description>
-		<cloneof></cloneof>
-		<crc>E78A4D28</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1995</year>
-		<genre>Fighter</genre>
-		<rating>ESRB - T (Teen)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="RBI Baseball &apos;95 (USA)" index="true" image="r">
-		<description>RBI Baseball &apos;95 (USA)</description>
-		<cloneof></cloneof>
-		<crc>FF795FDC</crc>
-		<manufacturer>Time Warner Interactive</manufacturer>
-		<year>1995</year>
-		<genre>Baseball/Sports</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Shadow Squadron ~ Stellar Assault (USA, Europe)" index="true" image="s">
-		<description>Shadow Squadron (USA, Europe)</description>
-		<cloneof></cloneof>
-		<crc>60C49E4D</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1995</year>
-		<genre>Shooter</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Space Harrier (Japan, USA)" index="" image="">
-		<description>Space Harrier (Japan, USA)</description>
-		<cloneof></cloneof>
-		<crc>86E7F989</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1994</year>
-		<genre>Shooter</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Star Trek Starfleet Academy - Starship Bridge Simulator (USA)" index="" image="">
-		<description>Star Trek Starfleet Academy - Starship Bridge Simulator (USA)</description>
-		<cloneof></cloneof>
-		<crc>DD9708B9</crc>
-		<manufacturer>Interplay</manufacturer>
-		<year>1995</year>
-		<genre>Simulation</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Star Wars Arcade (USA)" index="" image="">
-		<description>Star Wars Arcade (USA)</description>
-		<cloneof></cloneof>
-		<crc>2F16B44A</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1994</year>
-		<genre>Action</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="T-Mek (USA, Europe)" index="true" image="t">
-		<description>T-Mek (USA, Europe)</description>
-		<cloneof></cloneof>
-		<crc>66D2C48F</crc>
-		<manufacturer>Time Warner Interactive</manufacturer>
-		<year>1995</year>
-		<genre>Action</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Tempo (Japan, USA)" index="" image="">
-		<description>Tempo (Japan, USA)</description>
-		<cloneof></cloneof>
-		<crc>14E5C575</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1995</year>
-		<genre>Platform</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Toughman Contest (USA, Europe)" index="" image="">
-		<description>Toughman Contest (USA, Europe)</description>
-		<cloneof></cloneof>
-		<crc>14EAC7A6</crc>
-		<manufacturer>Electronic Arts</manufacturer>
-		<year>1995</year>
-		<genre>Boxing/Sports</genre>
-		<rating>ESRB - T (Teen)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Virtua Fighter (Japan, USA)" index="true" image="v">
-		<description>Virtua Fighter (Japan, USA)</description>
-		<cloneof></cloneof>
-		<crc>B5DE9626</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1995</year>
-		<genre>Fighter</genre>
-		<rating>ESRB - T (Teen)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Virtua Racing Deluxe (USA)" index="" image="">
-		<description>Virtua Racing Deluxe (USA)</description>
-		<cloneof></cloneof>
-		<crc>7896B62E</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1994</year>
-		<genre>Driving</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="World Series Baseball Starring Deion Sanders (USA)" index="true" image="w">
-		<description>World Series Baseball Starring Deion Sanders (USA)</description>
-		<cloneof></cloneof>
-		<crc>6DE1BC75</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1995</year>
-		<genre>Baseball/Sports</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="WWF Raw (World)" index="" image="">
-		<description>WWF Raw (World)</description>
-		<cloneof></cloneof>
-		<crc>8EB7CD2C</crc>
-		<manufacturer>Acclaim</manufacturer>
-		<year>1995</year>
-		<genre>Sports/Wrestling</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="WWF WrestleMania - The Arcade Game (USA)" index="" image="">
-		<description>WWF WrestleMania - The Arcade Game (USA)</description>
-		<cloneof></cloneof>
-		<crc>61833503</crc>
-		<manufacturer>Acclaim</manufacturer>
-		<year>1995</year>
-		<genre>Sports/Wrestling</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
-	<game name="Parasquad ~ Zaxxon&apos;s Motherbase 2000 (Japan, USA)" index="true" image="z">
-		<description>Zaxxon&apos;s Motherbase 2000 (Japan, USA)</description>
-		<cloneof></cloneof>
-		<crc>447D44BE</crc>
-		<manufacturer>Sega</manufacturer>
-		<year>1995</year>
-		<genre>Shooter</genre>
-		<rating>ESRB - E (Everyone)</rating>
-		<enabled>Yes</enabled>
-	</game>
+  <header>
+    <listname>Sega 32X</listname>
+    <lastlistupdate>09/26/2012</lastlistupdate>
+    <listversion>1.2 Final</listversion>
+    <exporterversion>HyperList XML Exporter Version 1.3 Copywrite (c) 2009-2011 William Strong</exporterversion>
+  </header>
+  <game name="After Burner Complete ~ After Burner (Japan, USA)" index="true" image="a">
+    <description>After Burner (Japan, USA)</description>
+    <cloneof></cloneof>
+    <crc>204044C4</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1995</year>
+    <genre>Flying</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>3.5</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Amazing Spider-Man, The - Web of Fire (USA)" index="" image="">
+    <description>Amazing Spider-Man, The - Web of Fire (USA)</description>
+    <cloneof></cloneof>
+    <crc>29DCE257</crc>
+    <manufacturer>	Sega</manufacturer>
+    <year>1996</year>
+    <genre>Platform</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>2.9</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="BC Racers (USA)" index="true" image="b">
+    <description>BC Racers (USA)</description>
+    <cloneof></cloneof>
+    <crc>936C3D27</crc>
+    <manufacturer>Front Street Publishing</manufacturer>
+    <year>1995</year>
+    <genre>Driving</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>2.7</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Blackthorne (USA)" index="" image="">
+    <description>Blackthorne (USA)</description>
+    <cloneof></cloneof>
+    <crc>D1A60A47</crc>
+    <manufacturer>Interplay</manufacturer>
+    <year>1995</year>
+    <genre>Platform</genre>
+    <rating>ESRB - T (Teen)</rating>
+    <score>3.5</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Brutal Unleashed - Above the Claw (USA)" index="" image="">
+    <description>Brutal Unleashed - Above the Claw (USA)</description>
+    <cloneof></cloneof>
+    <crc>7A72C939</crc>
+    <manufacturer>GameTek</manufacturer>
+    <year>1995</year>
+    <genre>Fighter</genre>
+    <rating>ESRB - T (Teen)</rating>
+    <score>2.9</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Cyber Brawl ~ Cosmic Carnage (Japan, USA)" index="true" image="c">
+    <description>Cosmic Carnage (Japan, USA)</description>
+    <cloneof></cloneof>
+    <crc>7C7BE6A2</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1994</year>
+    <genre>Fighter</genre>
+    <rating>ESRB - T (Teen)</rating>
+    <score>2.3</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Darxide (Europe) (En,Fr,De,Es)" index="true" image="d">
+    <description>Darxide (Europe)</description>
+    <cloneof></cloneof>
+    <crc>22D7C906</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1996</year>
+    <genre>Shooter</genre>
+    <rating>HSRS - GA (General Audience)</rating>
+    <score>2.5</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Doom (Japan, USA)" index="" image="">
+    <description>Doom (Japan, USA)</description>
+    <cloneof></cloneof>
+    <crc>208332FD</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1994</year>
+    <genre>Shooter</genre>
+    <rating>ESRB - M (Mature)</rating>
+    <score>2.7</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="FIFA Soccer &apos;96 (Europe) (En,Fr,De,Es,It,Sv)" index="true" image="f">
+    <description>FIFA Soccer &apos;96 (Europe)</description>
+    <cloneof></cloneof>
+    <crc>FB14A7C8</crc>
+    <manufacturer>Electronic Arts</manufacturer>
+    <year>1995</year>
+    <genre>Soccer/Sports</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>2.7</score>
+    <players>4</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Golf Magazine 36 Great Holes Starring Fred Couples (Japan, USA)" index="true" image="g">
+    <description>Golf Magazine 36 Great Holes Starring Fred Couples (Japan, USA)</description>
+    <cloneof></cloneof>
+    <crc>D3D0A2FE</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1994</year>
+    <genre>Golf/Sports</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>3.5</score>
+    <players>8</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Chaotix ~ Knuckles&apos; Chaotix (Japan, USA)" index="true" image="k">
+    <description>Knuckles&apos; Chaotix (Japan, USA)</description>
+    <cloneof></cloneof>
+    <crc>D0B0B842</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1995</year>
+    <genre>Platform</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>3.7</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Kolibri (USA, Europe)" index="" image="">
+    <description>Kolibri (USA, Europe)</description>
+    <cloneof></cloneof>
+    <crc>20CA53EF</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1995</year>
+    <genre>Shooter</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>4.1</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Metal Head (Japan, USA) (En,Ja)" index="true" image="m">
+    <description>Metal Head (Japan, USA)</description>
+    <cloneof></cloneof>
+    <crc>EF5553FF</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1995</year>
+    <genre>Simulation</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>3.1</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Mortal Kombat II (Japan, USA)" index="" image="">
+    <description>Mortal Kombat II (Japan, USA)</description>
+    <cloneof></cloneof>
+    <crc>773C0A85</crc>
+    <manufacturer>Acclaim</manufacturer>
+    <year>1994</year>
+    <genre>Fighter</genre>
+    <rating>ESRB - M (Mature)</rating>
+    <score>4.2</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Motocross Championship (USA)" index="" image="">
+    <description>Motocross Championship (USA)</description>
+    <cloneof></cloneof>
+    <crc>A21C5761</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1994</year>
+    <genre>Motorcycle</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>2.9</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="NBA Jam - Tournament Edition (World)" index="true" image="n">
+    <description>NBA Jam Tournament Edition (World)</description>
+    <cloneof></cloneof>
+    <crc>6B7994AA</crc>
+    <manufacturer>Acclaim</manufacturer>
+    <year>1995</year>
+    <genre>Basketball/Sports</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>3.7</score>
+    <players>4</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="NFL Quarterback Club (World)" index="" image="">
+    <description>NFL Quarterback Club (World)</description>
+    <cloneof></cloneof>
+    <crc>0BC7018D</crc>
+    <manufacturer>Acclaim</manufacturer>
+    <year>1995</year>
+    <genre>Football/Sports</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>3.8</score>
+    <players>4</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Pitfall - The Mayan Adventure (USA)" index="true" image="p">
+    <description>Pitfall - The Mayan Adventure (USA)</description>
+    <cloneof></cloneof>
+    <crc>F9126F15</crc>
+    <manufacturer>Activision</manufacturer>
+    <year>1995</year>
+    <genre>Platform</genre>
+    <rating>ESRB - T (Teen)</rating>
+    <score>3.0</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Primal Rage (USA, Europe)" index="" image="">
+    <description>Primal Rage (USA, Europe)</description>
+    <cloneof></cloneof>
+    <crc>E78A4D28</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1995</year>
+    <genre>Fighter</genre>
+    <rating>ESRB - T (Teen)</rating>
+    <score>3.6</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="RBI Baseball &apos;95 (USA)" index="true" image="r">
+    <description>RBI Baseball &apos;95 (USA)</description>
+    <cloneof></cloneof>
+    <crc>FF795FDC</crc>
+    <manufacturer>Time Warner Interactive</manufacturer>
+    <year>1995</year>
+    <genre>Baseball/Sports</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>3.1</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Shadow Squadron ~ Stellar Assault (USA, Europe)" index="true" image="s">
+    <description>Shadow Squadron (USA, Europe)</description>
+    <cloneof></cloneof>
+    <crc>60C49E4D</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1995</year>
+    <genre>Shooter</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>3.9</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Space Harrier (Japan, USA)" index="" image="">
+    <description>Space Harrier (Japan, USA)</description>
+    <cloneof></cloneof>
+    <crc>86E7F989</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1994</year>
+    <genre>Shooter</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>3.5</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Star Trek Starfleet Academy - Starship Bridge Simulator (USA)" index="" image="">
+    <description>Star Trek Starfleet Academy - Starship Bridge Simulator (USA)</description>
+    <cloneof></cloneof>
+    <crc>DD9708B9</crc>
+    <manufacturer>Interplay</manufacturer>
+    <year>1995</year>
+    <genre>Simulation</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>3.8</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Star Wars Arcade (USA)" index="" image="">
+    <description>Star Wars Arcade (USA)</description>
+    <cloneof></cloneof>
+    <crc>2F16B44A</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1994</year>
+    <genre>Action</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>3.5</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="T-Mek (USA, Europe)" index="true" image="t">
+    <description>T-Mek (USA, Europe)</description>
+    <cloneof></cloneof>
+    <crc>66D2C48F</crc>
+    <manufacturer>Time Warner Interactive</manufacturer>
+    <year>1995</year>
+    <genre>Action</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>3.4</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Tempo (Japan, USA)" index="" image="">
+    <description>Tempo (Japan, USA)</description>
+    <cloneof></cloneof>
+    <crc>14E5C575</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1995</year>
+    <genre>Platform</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>3.8</score>
+    <players>1</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Toughman Contest (USA, Europe)" index="" image="">
+    <description>Toughman Contest (USA, Europe)</description>
+    <cloneof></cloneof>
+    <crc>14EAC7A6</crc>
+    <manufacturer>Electronic Arts</manufacturer>
+    <year>1995</year>
+    <genre>Boxing/Sports</genre>
+    <rating>ESRB - T (Teen)</rating>
+    <score>2.6</score>
+    <players>8</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Virtua Fighter (Japan, USA)" index="true" image="v">
+    <description>Virtua Fighter (Japan, USA)</description>
+    <cloneof></cloneof>
+    <crc>B5DE9626</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1995</year>
+    <genre>Fighter</genre>
+    <rating>ESRB - T (Teen)</rating>
+    <score>3.6</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Virtua Racing Deluxe (USA)" index="" image="">
+    <description>Virtua Racing Deluxe (USA)</description>
+    <cloneof></cloneof>
+    <crc>7896B62E</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1994</year>
+    <genre>Driving</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>3.8</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="World Series Baseball Starring Deion Sanders (USA)" index="true" image="w">
+    <description>World Series Baseball Starring Deion Sanders (USA)</description>
+    <cloneof></cloneof>
+    <crc>6DE1BC75</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1995</year>
+    <genre>Baseball/Sports</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>3.8</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="WWF Raw (World)" index="" image="">
+    <description>WWF Raw (World)</description>
+    <cloneof></cloneof>
+    <crc>8EB7CD2C</crc>
+    <manufacturer>Acclaim</manufacturer>
+    <year>1995</year>
+    <genre>Sports/Wrestling</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>3.5</score>
+    <players>4</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="WWF WrestleMania - The Arcade Game (USA)" index="" image="">
+    <description>WWF WrestleMania - The Arcade Game (USA)</description>
+    <cloneof></cloneof>
+    <crc>61833503</crc>
+    <manufacturer>Acclaim</manufacturer>
+    <year>1995</year>
+    <genre>Sports/Wrestling</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>2.8</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
+  <game name="Parasquad ~ Zaxxon&apos;s Motherbase 2000 (Japan, USA)" index="true" image="z">
+    <description>Zaxxon&apos;s Motherbase 2000 (Japan, USA)</description>
+    <cloneof></cloneof>
+    <crc>447D44BE</crc>
+    <manufacturer>Sega</manufacturer>
+    <year>1995</year>
+    <genre>Shooter</genre>
+    <rating>ESRB - E (Everyone)</rating>
+    <score>3.2</score>
+    <players>2</players>
+    <enabled>Yes</enabled>
+  </game>
 </menu>
