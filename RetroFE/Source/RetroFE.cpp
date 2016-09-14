@@ -364,7 +364,7 @@ void RetroFE::run()
             break;
 
         case RETROFE_HIGHLIGHT_LOAD_ART:
-            if ( processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
+            if ( currentPage_->isMenuIdle() && processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
             {
                 state = RETROFE_HIGHLIGHT_REQUEST;
             }
@@ -377,7 +377,7 @@ void RetroFE::run()
             break;
 
         case RETROFE_HIGHLIGHT_ENTER:
-            if ( processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
+            if ( currentPage_->isMenuIdle() && processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
             {
                 state = RETROFE_HIGHLIGHT_REQUEST;
             }
