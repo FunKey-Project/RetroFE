@@ -252,10 +252,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
         ImportBasicList(info, mergedFile, includeFilter);
 
     }
-    else
-    {
-        (void)conf_.getProperty("collections." + info->name + ".list.includeMissingItems", showMissing);
-    }
+    (void)conf_.getProperty("collections." + info->name + ".list.includeMissingItems", showMissing);
 
     // If no merged file exists, or it is empty, attempt to use the include and exclude from the subcollection
     // If this not a merged collection, the size will be 0 anyways and the code below will still execute
