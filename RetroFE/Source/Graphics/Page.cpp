@@ -700,7 +700,6 @@ void Page::draw()
 void Page::removePlaylist()
 {
     if(!selectedItem_) return;
-    if(!selectedItem_->leaf) return;
 
     MenuInfo_S &info = collections_.back();
     CollectionInfo *collection = info.collection;
@@ -711,14 +710,15 @@ void Page::removePlaylist()
     if(it != items->end())
     {
         items->erase(it);
+        collection->sortFavoriteItems();
         collection->saveRequest = true;
     }
+    collection->Save();
 }
 
 void Page::addPlaylist()
 {
     if(!selectedItem_) return;
-    if(!selectedItem_->leaf) return;
 
     MenuInfo_S &info = collections_.back();
     CollectionInfo *collection = info.collection;
@@ -727,9 +727,10 @@ void Page::addPlaylist()
     if(playlist_->first != "favorites" && std::find(items->begin(), items->end(), selectedItem_) == items->end())
     {
         items->push_back(selectedItem_);
-        collection->sortItems();
+        collection->sortFavoriteItems();
         collection->saveRequest = true;
     }
+    collection->Save();
 }
 
 std::string Page::getCollectionName()

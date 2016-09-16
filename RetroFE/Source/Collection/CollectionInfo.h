@@ -29,8 +29,8 @@ public:
     std::string settingsPath() const;
     bool Save();
     void sortItems();
+    void sortFavoriteItems();
     void addSubcollection(CollectionInfo *info);
-    bool hasSubcollections();
     void extensionList(std::vector<std::string> &extensions);
     std::string name;
     std::string listpath;
@@ -44,7 +44,6 @@ public:
 
     bool menusort;
 private:
-    std::vector<CollectionInfo *> subcollections_;
     std::string metadataPath_;
     std::string extensions_;
     static bool itemIsLess(Item *lhs, Item *rhs);

@@ -1970,4 +1970,46 @@
     </reloadableVideo>
 
 
+    <!----------------------------------------------------------------------------------------------------------------------------------->
+    <!-- Playlist -->
+    <!----------------------------------------------------------------------------------------------------------------------------------->
+
+
+    <reloadableImage type="playlist" mode="common" alpha="0" x="940" y="505" xOrigin="center" yOrigin="top" maxHeight="40" layer="19">
+        <onEnter>
+            <set duration=".8">
+                <animate type="nop"/>
+            </set>
+        </onEnter>
+        <onExit>
+            <set duration=".25">
+                <animate type="alpha" to="0" algorithm="easeinquadratic"/>
+            </set>
+        </onExit>
+        <onMenuEnter menuIndex="0">
+            <set duration=".8">
+                <animate type="y" to="505" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuEnter>
+        <onMenuEnter menuIndex="1">
+            <set duration=".25">
+                <animate type="y" from="-50" to="2" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuEnter>
+        <onMenuExit>
+            <set duration=".25">
+                <animate type="alpha" to="0" algorithm="easeinquadratic"/>
+            </set>
+        </onMenuExit>
+        <onIdle>
+            <set duration="1">
+                <animate type="alpha" to="0.5" algorithm="easeinquadratic"/>
+            </set>
+            <set duration="1">
+                <animate type="alpha" to="1" algorithm="easeinquadratic"/>
+            </set>
+        </onIdle>
+    </reloadableImage>
+
+
 </layout>
