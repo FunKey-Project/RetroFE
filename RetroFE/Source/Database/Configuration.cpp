@@ -197,7 +197,10 @@ bool Configuration::getProperty(std::string key, std::string &value)
     bool retVal = getRawProperty(key, value);
 
     std::string baseMediaPath = absolutePath;
-    std::string baseItemPath = absolutePath;
+    std::string baseItemPath  = absolutePath;
+
+    baseMediaPath = Utils::combinePath(absolutePath, "collections");
+    baseItemPath  = Utils::combinePath(absolutePath, "collections");
 
     getRawProperty("baseMediaPath", baseMediaPath);
     getRawProperty("baseItemPath", baseItemPath);
