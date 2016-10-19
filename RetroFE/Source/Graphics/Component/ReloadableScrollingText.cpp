@@ -567,7 +567,7 @@ void ReloadableScrollingText::draw( )
                     }
                     else
                     {
-                        rect.x += static_cast<int>( spaceWidth * scale * scaleX_ );
+                        rect.x += static_cast<int>( spaceWidth );
                     }
                 }
 
