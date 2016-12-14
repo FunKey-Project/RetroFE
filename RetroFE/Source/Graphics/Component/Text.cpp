@@ -79,7 +79,6 @@ void Text::draw()
     float scale = (float)baseViewInfo.FontSize / (float)imageHeight;
 
     unsigned int textIndexMax = 0;
-    unsigned int emptySpace = 0;
 
     // determine image width
     for(unsigned int i = 0; i < textData_.size(); ++i)
@@ -94,12 +93,10 @@ void Text::draw()
 
             if ((imageWidth + glyph.advance)*scale > imageMaxWidth )
             {
-                imageWidth -= emptySpace;
                 break;
             }
 
             textIndexMax = i;
-            emptySpace   = glyph.advance - glyph.maxX;
             imageWidth  += glyph.advance;
         }
 

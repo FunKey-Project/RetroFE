@@ -51,16 +51,6 @@ CollectionInfo::CollectionInfo(std::string name,
 
 CollectionInfo::~CollectionInfo()
 {
-	// remove items from the subcollections so their destructors do not
-	// delete the items since the parent collection will delete them.
-    std::vector<CollectionInfo *>::iterator subit;
-    for (subit = subcollections_.begin(); subit != subcollections_.end(); subit++)
-    {
-    	CollectionInfo *info = *subit;
-    	info->items.clear();
-    }
-
-
     Playlists_T::iterator pit = playlists.begin();
 
     while(pit != playlists.end())
@@ -129,7 +119,14 @@ bool CollectionInfo::Save()
             std::vector<Item *> *saveitems = playlists["favorites"];
             for(std::vector<Item *>::iterator it = saveitems->begin(); it != saveitems->end(); it++)
             {
-                filestream << (*it)->name << std::endl;
+                if ((*it)->collectionInfo->name == name)
+                {
+                    filestream << (*it)->name << std::endl;
+                }
+                else
+                {
+                    filestream << "_" << (*it)->collectionInfo->name << ":" << (*it)->name << std::endl;
+                }
             }
 
             filestream.close();
@@ -163,14 +160,7 @@ void CollectionInfo::extensionList(std::vector<std::string> &extensionlist)
 
 void CollectionInfo::addSubcollection(CollectionInfo *newinfo)
 {
-	subcollections_.push_back(newinfo);
-
     items.insert(items.begin(), newinfo->items.begin(), newinfo->items.end());
-}
-
-bool CollectionInfo::hasSubcollections()
-{
-    return (subcollections_.size() > 0);
 }
 
 bool CollectionInfo::itemIsLess(Item *lhs, Item *rhs)
@@ -187,5 +177,30 @@ void CollectionInfo::sortItems()
     for(Playlists_T::iterator it = playlists.begin(); it != playlists.end(); it++)
     {
         std::sort(it->second->begin(), it->second->end(), itemIsLess);
+    }
+}
+
+
+void CollectionInfo::sortFavoriteItems()
+{
+
+    std::vector<Item *> *allItems = playlists["all"];
+    std::vector<Item *> favItems;
+    for(std::vector <Item *>::iterator itFav = playlists["favorites"]->begin(); itFav != playlists["favorites"]->end(); itFav++)
+    {
+        favItems.push_back((*itFav));
+    }
+    playlists["favorites"]->clear();
+    
+
+    for(std::vector <Item *>::iterator itAll = allItems->begin(); itAll != allItems->end(); itAll++)
+    {
+        for(std::vector <Item *>::iterator itFav = favItems.begin(); itFav != favItems.end(); itFav++)
+        {
+            if ((*itAll) == (*itFav))
+            {
+                playlists["favorites"]->push_back((*itAll));
+            }
+        }
     }
 }

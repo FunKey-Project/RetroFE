@@ -276,6 +276,10 @@ void ReloadableMedia::reloadTexture()
         {
             basename = selectedItem->score;
         }
+        else if(typeLC == "playlist")
+        {
+            basename = page.getPlaylistName();
+        }
 
         Utils::replaceSlashesWithUnderscores(basename);
 

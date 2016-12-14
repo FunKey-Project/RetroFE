@@ -24,6 +24,7 @@ class Video : public Component
 public:
     Video( std::string file, std::string altFile, int numLoops, Page &page, float scaleX, float scaleY );
     virtual ~Video( );
+    static void setEnabled(bool enabled);
     void update(float dt);
     void freeGraphicsMemory( );
     void allocateGraphicsMemory( );
@@ -37,4 +38,8 @@ protected:
     int         numLoops_;
     float       scaleX_;
     float       scaleY_;
+
+private:
+    static bool enabled_;
+
 };

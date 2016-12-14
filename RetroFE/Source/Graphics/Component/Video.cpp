@@ -23,6 +23,9 @@
 #include "../../SDL.h"
 
 
+bool Video::enabled_ = true;
+
+
 Video::Video(std::string file, std::string altFile, int numLoops, Page &p, float scaleX, float scaleY)
     : Component(p)
     , video_(NULL)
@@ -43,6 +46,12 @@ Video::~Video( )
     {
         delete video_;
     }
+}
+
+
+void Video::setEnabled(bool enabled)
+{
+    enabled_ = enabled;
 }
 
 
@@ -78,7 +87,7 @@ void Video::allocateGraphicsMemory( )
 
     Component::allocateGraphicsMemory( );
 
-    if (!video_)
+    if (enabled_ && !video_)
     {
         std::string file = "";
 

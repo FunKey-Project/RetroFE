@@ -232,12 +232,9 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     DIR *dp;
     struct dirent *dirp;
     std::string path = info->listpath;
-    std::map<std::string, Item *> allMap;
     std::map<std::string, Item *> includeFilter;
-    std::map<std::string, Item *> favoritesFilter;
     std::map<std::string, Item *> excludeFilter;
     std::string includeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "include.txt");
-    std::string favoritesFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "playlists/favorites.txt");
     std::string excludeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "exclude.txt");
 
     std::string launcher;
@@ -252,10 +249,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
         ImportBasicList(info, mergedFile, includeFilter);
 
     }
-    else
-    {
-        (void)conf_.getProperty("collections." + info->name + ".list.includeMissingItems", showMissing);
-    }
+    (void)conf_.getProperty("collections." + info->name + ".list.includeMissingItems", showMissing);
 
     // If no merged file exists, or it is empty, attempt to use the include and exclude from the subcollection
     // If this not a merged collection, the size will be 0 anyways and the code below will still execute
@@ -347,28 +341,52 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
         excludeFilter.erase(it);
     }
 
-    for(std::vector<Item *>::iterator it = info->items.begin(); it != info->items.end(); it++) {
-        allMap[(*it)->fullTitle] = *it;
-    }
-
-
-    ImportBasicList(info, favoritesFile, favoritesFilter);
     info->playlists["all"] = &info->items;
+    return true;
+}
+
+
+void CollectionInfoBuilder::addFavorites(CollectionInfo *info)
+{
+    std::map<std::string, Item *> favoritesFilter;
+    std::string favoritesFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "playlists/favorites.txt");
+    ImportBasicList(info, favoritesFile, favoritesFilter);
+
     info->playlists["favorites"] = new std::vector<Item *>();
 
     // add the favorites list 
     for(std::map<std::string, Item *>::iterator it = favoritesFilter.begin(); it != favoritesFilter.end(); it++)
     {
-        std::map<std::string, Item *>::iterator itemit = allMap.find(it->first);
-
-        if(itemit != allMap.end())
+        std::string collectionName = info->name;
+        std::string itemName       = it->first;
+        if (itemName.at(0) == '_') // name consists of _<collectionName>:<itemName>
         {
-            info->playlists["favorites"]->push_back(itemit->second);
+          itemName.erase(0, 1); // Remove _
+          size_t position = itemName.find(":");
+          if (position != std::string::npos )
+          {
+              collectionName = itemName.substr(0, position);
+              itemName       = itemName.erase(0, position+1);
+          }
+        }
+
+        for(std::vector<Item *>::iterator it = info->items.begin(); it != info->items.end(); it++)
+        {
+            if( (*it)->name == itemName && (*it)->collectionInfo->name == collectionName)
+            {
+                info->playlists["favorites"]->push_back((*it));
+            }
         }
     }
 
+    return;
+}
 
+
+
+
+void CollectionInfoBuilder::injectMetadata(CollectionInfo *info)
+{
     metaDB_.injectMetadata(info);
-    
-    return true;
+    return;
 }

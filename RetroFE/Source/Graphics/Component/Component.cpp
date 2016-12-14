@@ -93,7 +93,7 @@ void Component::triggerEvent(std::string event, int menuIndex)
 {
     animationRequestedType_ = event;
     animationRequested_     = true;
-    menuIndex_              = menuIndex;
+    menuIndex_              = (menuIndex > 0 ? menuIndex : 0);
 }
 
 void Component::setPlaylist(std::string name)
