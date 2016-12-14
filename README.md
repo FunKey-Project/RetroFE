@@ -74,4 +74,4 @@ Copy your live RetroFE system to any folder of your choosing. files can be found
 
 Just run the following on your raspberry pi 2 (assuming you have an internet connection:
 
-	bash <(curl -s https://bitbucket.org/teamretro/retrofe/raw/default/Scripts/Raspi2/install.sh)
+	bash <(curl -s https://bitbucket.org/phulshof/retrofe/raw/default/Scripts/Raspi2/install.sh)
