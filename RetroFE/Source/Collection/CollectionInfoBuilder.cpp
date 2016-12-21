@@ -227,11 +227,59 @@ bool CollectionInfoBuilder::ImportBasicList(CollectionInfo *info, std::string fi
     return true;
 }
 
+bool CollectionInfoBuilder::ImportBasicList(CollectionInfo *info, std::string file, std::vector<Item *> &list)
+{
+    std::ifstream includeStream(file.c_str());
+
+    if (!includeStream.good())
+    {
+        return false;
+    }
+
+    std::string line; 
+
+    while(std::getline(includeStream, line))
+    {
+        line = Utils::filterComments(line);
+        
+        if(!line.empty())
+        {
+
+            bool found = false;
+            for (std::vector<Item *>::iterator it = list.begin(); it != list.end(); ++it)
+            {
+                if (line == (*it)->name)
+                {
+                    found = true;
+                }
+            }
+
+            if (!found)
+            {
+               Item *i = new Item();
+
+                line.erase( std::remove(line.begin(), line.end(), '\r'), line.end() );
+
+                i->fullTitle = line;
+                i->name = line;
+                i->title = line;
+                i->collectionInfo = info;
+
+                list.push_back(i);
+            }
+
+        }
+    }
+
+    return true;
+}
+
 bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string mergedCollectionName)
 {
     DIR *dp;
     struct dirent *dirp;
     std::string path = info->listpath;
+    std::vector<Item *> includeFilterUnsorted;
     std::map<std::string, Item *> includeFilter;
     std::map<std::string, Item *> excludeFilter;
     std::string includeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "include.txt");
@@ -256,6 +304,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     if(includeFilter.size() == 0)
     {
         Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Checking for \"" + includeFile + "\"");
+        ImportBasicList(info, includeFile, includeFilterUnsorted);
         ImportBasicList(info, includeFile, includeFilter);
         ImportBasicList(info, excludeFile, excludeFilter);
     }
@@ -275,16 +324,16 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
 
     if(showMissing)
     {
-        for(std::map<std::string, Item *>::iterator it = includeFilter.begin(); it != includeFilter.end(); it++)
+        for(std::vector<Item *>::iterator it = includeFilterUnsorted.begin(); it != includeFilterUnsorted.end(); ++it)
         {
-            if(excludeFilter.find(it->first) == excludeFilter.end())
+            if(excludeFilter.find((*it)->name) == excludeFilter.end())
             {
-                info->items.push_back(it->second);
+                info->items.push_back(*it);
             }
         }
     }
 
-    while(dp != NULL && (dirp = readdir(dp)) != NULL)
+    while(!showMissing && dp != NULL && (dirp = readdir(dp)) != NULL)
     {
         std::string file = dirp->d_name;
 
