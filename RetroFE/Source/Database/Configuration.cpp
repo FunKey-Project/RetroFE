@@ -23,6 +23,10 @@
 
 #ifdef WIN32
 #include <windows.h>
+#elif __APPLE__
+#include <libproc.h>
+#include <sys/types.h>
+#include <unistd.h>
 #else
 #include <sys/types.h>
 #include <unistd.h>
@@ -42,10 +46,17 @@ void Configuration::initialize()
 {
     const char *environment = std::getenv("RETROFE_PATH");
     std::string environmentStr;
+    std::string home_load = std::getenv("HOME") + std::string("/.retrofe");
+    std::ifstream retrofe_path(home_load.c_str());
     if (environment != NULL)
     {
         environmentStr = environment;
         absolutePath = environment;
+    }
+    else if (retrofe_path.is_open())
+    {
+    	std::getline( retrofe_path, absolutePath );
+    	retrofe_path.close();
     }
     else
     {
@@ -56,6 +67,19 @@ void Configuration::initialize()
         std::string sPath(exe);
         sPath = Utils::getDirectory(sPath);
         sPath = Utils::getParentDirectory(sPath);
+#elif __APPLE__
+    	char exepath[PROC_PIDPATHINFO_MAXSIZE];
+    	if( proc_pidpath (getpid(), exepath, sizeof(exepath)) <= 0 ) // Error to console if no path to write logs…
+            fprintf(stderr, "Cannot set absolutePath: %s\nOverride with RETROFE_PATH env var\n", strerror(errno));
+        std::string sPath = Utils::getDirectory(exepath);
+
+        // RetroFE can be started from the command line: 'retrofe' or as an app, by clicking RetroFE.app.
+        // If this was started as an app bundle, relocate it's current working directory to the root folder.
+        // as an example /usr/local/opt/retro/RetroFE.app/Contents/MacOS becomes /usr/local/opt/retrofe
+        // Note: executing 'brew applinks retrofe' - should create symlink to /Applications/RetroFE.app
+        size_t rootPos = sPath.find("/RetroFE.app/Contents/MacOS");
+	if(rootPos!=std::string::npos) 
+		sPath = sPath.erase(rootPos);
 #else
         char exepath[1024];
         sprintf(exepath, "/proc/%d/exe", getpid());
@@ -63,7 +87,6 @@ void Configuration::initialize()
         std::string sPath(exepath);
         sPath = Utils::getDirectory(sPath);
 #endif
-
 
         absolutePath = sPath;
     }

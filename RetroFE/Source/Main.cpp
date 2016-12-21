@@ -88,6 +88,9 @@ int main(int argc, char **argv)
 
     if(!ImportConfiguration(&config))
     {
+	// Exit with a heads up...
+	std::string logFile = Utils::combinePath(Configuration::absolutePath, "log.txt");
+        fprintf(stderr, "RetroFE has failed to start due to configuration error.\nCheck log for details: %s\n", logFile.c_str());
         return -1;
     }
 
@@ -203,7 +206,9 @@ bool StartLogging()
 
     if(!Logger::initialize(logFile))
     {
-        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not open \"" + logFile + "\" for writing");
+	// Can't write to logs give a heads up...
+	fprintf(stderr, "Could not open log: %s for writing!\nRetroFE will now exit...\n", logFile.c_str());
+        //Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not open \"" + logFile + "\" for writing");
         return false;
     }
 
@@ -211,6 +216,8 @@ bool StartLogging()
 
 #ifdef WIN32
     Logger::write(Logger::ZONE_INFO, "RetroFE", "OS: Windows");
+#elif __APPLE__
+    Logger::write(Logger::ZONE_INFO, "RetroFE", "OS: Mac");
 #else
     Logger::write(Logger::ZONE_INFO, "RetroFE", "OS: Linux");
 #endif

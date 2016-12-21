@@ -23,7 +23,7 @@
 #include "../Utility/Utils.h"
 #include <dirent.h>
 
-#ifdef __linux
+#if defined(__linux) || defined(__APPLE__)
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <errno.h>

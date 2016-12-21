@@ -3,11 +3,16 @@ FILE(TO_CMAKE_PATH "${GSTREAMER_ROOT}" TRY2_DIR)
 FILE(GLOB GSTREAMER_ROOT ${TRY1_DIR} ${TRY2_DIR})
 
 FIND_PATH(GSTREAMER_gst_INCLUDE_DIR gst/gst.h
-                                    PATHS ${GSTREAMER_ROOT}/include ${GSTREAMER_ROOT}/include/gstreamer-1.0 /usr/local/include/gstreamer-1.0 /usr/include/gstreamer-1.0
+                                    PATHS ${GSTREAMER_ROOT}/include ${GSTREAMER_ROOT}/include/gstreamer-1.0 /usr/local/include/gstreamer-1.0 /usr/include/gstreamer-1.0 /usr/local/opt/gstreamer/include/gstreamer-1.0
                                     ENV INCLUDE DOC "Directory containing gst/gst.h include file")
 
+#/usr/local/opt/gst-plugins-base/lib/gstreamer-1.0
+FIND_PATH(GSTREAMER_gstappsink_INCLUDE_DIR gst/app/gstappsink.h
+                                    PATHS /usr/local/opt/gst-plugins-base/include /usr/local/opt/gst-plugins-base/include/gstreamer-1.0
+                                    ENV INCLUDE DOC "Directory containing gst/app/gstappsink.h include file")
+
 FIND_PATH(GSTREAMER_gstconfig_INCLUDE_DIR gst/gstconfig.h
-                                          PATHS ${GSTREAMER_ROOT}/include ${GSTREAMER_ROOT}/lib/include ${GSTREAMER_ROOT}/include/gstreamer-1.0 /usr/local/include/gstreamer-1.0 /usr/include/gstreamer-1.0 /usr/local/lib/include/gstreamer-1.0 /usr/lib/include/gstreamer-1.0
+                                          PATHS ${GSTREAMER_ROOT}/include ${GSTREAMER_ROOT}/lib/include ${GSTREAMER_ROOT}/include/gstreamer-1.0 /usr/local/include/gstreamer-1.0 /usr/include/gstreamer-1.0 /usr/local/lib/include/gstreamer-1.0 /usr/lib/include/gstreamer-1.0 /usr/local/opt/gstreamer/lib/gstreamer-1.0/include
                                           ENV INCLUDE DOC "Directory containing gst/gstconfig.h include file")
 
 FIND_LIBRARY(GSTREAMER_gstaudio_LIBRARY NAMES gstaudio-1.0 libgstaudio-1.0 gstaudio
@@ -38,7 +43,7 @@ FIND_LIBRARY(GSTREAMER_gstvideo_LIBRARY NAMES gstvideo-1.0 libgstvideo-1.0 gstvi
 #    GSTREAMER_gstaudio_LIBRARY AND GSTREAMER_gstbase_LIBRARY AND
 #    GSTREAMER_gstreamer_LIBRARY AND GSTREAMER_gstvideo_LIBRARY)
 	
-  SET(GSTREAMER_INCLUDE_DIRS ${GSTREAMER_gst_INCLUDE_DIR} ${GSTREAMER_gstconfig_INCLUDE_DIR})
+  SET(GSTREAMER_INCLUDE_DIRS ${GSTREAMER_gst_INCLUDE_DIR} ${GSTREAMER_gstconfig_INCLUDE_DIR} ${GSTREAMER_gstappsink_INCLUDE_DIR})
   list(REMOVE_DUPLICATES GSTREAMER_INCLUDE_DIRS)
   SET(GSTREAMER_LIBRARIES ${GSTREAMER_gstaudio_LIBRARY} ${GSTREAMER_gstbase_LIBRARY}
                           ${GSTREAMER_gstreamer_LIBRARY} ${GSTREAMER_gstvideo_LIBRARY})

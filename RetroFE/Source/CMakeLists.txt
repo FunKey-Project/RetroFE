@@ -2,6 +2,7 @@ cmake_minimum_required (VERSION 2.8)
 
 project (retrofe)
 
+set(CMAKE_FIND_FRAMEWORK FIRST)
 set(RETROFE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/..)
 set(RETROFE_THIRD_PARTY_DIR "${RETROFE_DIR}/ThirdParty")
 list(APPEND CMAKE_MODULE_PATH "${RETROFE_DIR}/CMake")
@@ -54,9 +55,14 @@ else()
 	pkg_search_module(GSTREAMER REQUIRED gstreamer-1.0 gstbase-1.0)
 	pkg_search_module(Glib2 REQUIRED glib-2.0 gobject-2.0 gthread-2.0 gmodule-2.0)
 	find_package(Threads REQUIRED)
+
+if(APPLE)
+	find_package(SDL2 REQUIRED)
+endif()
 endif()
 
 set(RETROFE_INCLUDE_DIRS
+	"/usr/local/opt/gst-plugins-base/include/gstreamer-1.0"
 	"${GLIB2_INCLUDE_DIRS}"
 	"${GSTREAMER_INCLUDE_DIRS}"
 	"${SDL2_INCLUDE_DIRS}"
@@ -205,7 +211,6 @@ endif()
 add_definitions(-DRETROFE_VERSION_MAJOR=${VERSION_MAJOR})
 add_definitions(-DRETROFE_VERSION_MINOR=${VERSION_MINOR})
 add_definitions(-DRETROFE_VERSION_BUILD=${VERSION_BUILD})
-
 
 if(MSVC)
 	set(CMAKE_DEBUG_POSTFIX "d")

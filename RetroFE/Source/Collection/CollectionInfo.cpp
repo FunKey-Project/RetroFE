@@ -29,7 +29,7 @@
 #include <Windows.h>
 #endif
 
-#ifdef __linux
+#if defined(__linux) || defined(__APPLE__)
 #include <errno.h>
 #include <cstring>
 #endif

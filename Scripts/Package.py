@@ -31,9 +31,9 @@ def mkdir_p(path):
 # Parse arguments
 #####################################################################
 parser = argparse.ArgumentParser(description='Bundle up some RetroFE common files.')
-parser.add_argument('--os', choices=['windows','linux'], required=True, help='Operating System (windows or linux)')
+parser.add_argument('--os', choices=['windows','linux','mac'], required=True, help='Operating System (windows or linux or mac)')
 parser.add_argument('--gstreamer_path', help='Path to gstreamer sdk (i.e. D:/gstreamer')
-parser.add_argument('--build', default='full', help='Define what contents to package (full, core, engine, layout,none')
+parser.add_argument('--build', default='full', help='Define what contents to package (full, core, engine, layout, none')
 parser.add_argument('--clean', action='store_true', help='Clean the output directory')
 parser.add_argument('--compiler', help='Compiler to use (vs, mingw, gcc')
 
@@ -67,6 +67,8 @@ if args.os == 'windows':
 elif args.os == 'linux':
   os_path = os.path.join(base_path, 'Package', 'Environment', 'Linux')
 
+elif args.os == 'mac':
+  os_path = os.path.join(base_path, 'Package', 'Environment', 'MacOS')
 
 #####################################################################
 # Copy layers, artwork, config files, etc for the given os
@@ -160,6 +162,14 @@ elif args.os == 'linux':
     src_exe = os.path.join(base_path, 'RetroFE', 'Build', 'retrofe')
     shutil.copy(src_exe, output_path)
 
+elif args.os == 'mac':
+  if args.build == 'full' or args.build == 'core' or args.build == 'engine':
+    src_exe = os.path.join(base_path, 'RetroFE', 'Build', 'retrofe')
+    shutil.copy(src_exe, output_path)
+    app_path = os.path.join(output_path, 'RetroFE.app')
+    if not os.path.exists(app_path):
+      copytree(os_path, output_path)
+    shutil.copy(src_exe, output_path + '/RetroFE.app/Contents/MacOS/')
 
 
 
