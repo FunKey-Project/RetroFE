@@ -319,7 +319,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     }
 
     // Read ROM directory if showMissing is false
-    if (!showMissing)
+    if (!showMissing || includeFilter.size() == 0)
     {
         ImportRomDirectory(path, info, includeFilter, excludeFilter);
     }
