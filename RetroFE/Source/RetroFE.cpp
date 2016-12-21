@@ -378,36 +378,35 @@ void RetroFE::run()
             }
             break;
 
-        case RETROFE_HIGHLIGHT_REQUEST:
-            currentPage_->highlightExit();
+        case RETROFE_HIGHLIGHT_MENU_IDLE:
             currentPage_->setScrolling(Page::ScrollDirectionIdle);
+            if (currentPage_->isIdle())
+            {
+                state = RETROFE_HIGHLIGHT_REQUEST;
+            }
+            break;
+
+        case RETROFE_HIGHLIGHT_REQUEST:
+            currentPage_->setScrolling(Page::ScrollDirectionIdle);
+            currentPage_->highlightExit();
             state = RETROFE_HIGHLIGHT_EXIT;
             break;
 
         case RETROFE_HIGHLIGHT_EXIT:
             if (processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
             {
-                state = RETROFE_HIGHLIGHT_REQUEST;
+                state = RETROFE_HIGHLIGHT_MENU_IDLE;
             }
-            else if ((currentPage_->isGraphicsIdle() && currentPage_->isMenuScrolling()) ||
-                     (currentPage_->isIdle()))
+            else if (currentPage_->isIdle())
             {
-                currentPage_->onNewItemSelected();
+                currentPage_->highlightLoadArt();
                 state = RETROFE_HIGHLIGHT_LOAD_ART;
             }
             break;
 
         case RETROFE_HIGHLIGHT_LOAD_ART:
-            if (processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
-            {
-                state = RETROFE_HIGHLIGHT_REQUEST;
-            }
-            else if ((currentPage_->isGraphicsIdle() && currentPage_->isMenuScrolling()) ||
-                     (currentPage_->isIdle()))
-            {
-                currentPage_->highlightEnter();
-                state = RETROFE_HIGHLIGHT_ENTER;
-            }
+            currentPage_->highlightEnter();
+            state = RETROFE_HIGHLIGHT_ENTER;
             break;
 
         case RETROFE_HIGHLIGHT_ENTER:
@@ -415,7 +414,7 @@ void RetroFE::run()
             {
                 state = RETROFE_HIGHLIGHT_REQUEST;
             }
-            else if (currentPage_->isGraphicsIdle())
+            else if (currentPage_->isIdle())
             {
                 state = RETROFE_IDLE;
             }
