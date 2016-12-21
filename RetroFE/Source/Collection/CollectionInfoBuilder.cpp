@@ -69,9 +69,9 @@ bool CollectionInfoBuilder::createCollectionDirectory(std::string name)
         std::cout << "Creating folder \"" << *it << "\"" << std::endl;
 
 #if defined(_WIN32) && !defined(__GNUC__)
-        if(!CreateDirectory(it->c_str(), NULL))
+        if (!CreateDirectory(it->c_str(), NULL))
         {
-            if(ERROR_ALREADY_EXISTS != GetLastError())
+            if (ERROR_ALREADY_EXISTS != GetLastError())
             {
                 std::cout << "Could not create folder \"" << *it << "\"" << std::endl;
                 return false;
@@ -79,9 +79,9 @@ bool CollectionInfoBuilder::createCollectionDirectory(std::string name)
         }
 #else 
 #if defined(__MINGW32__)
-        if(mkdir(it->c_str()) == -1)
+        if (mkdir(it->c_str()) == -1)
 #else
-        if(mkdir(it->c_str(), 0755) == -1)
+        if (mkdir(it->c_str(), 0755) == -1)
 #endif        
         {
            std::cout << "Could not create folder \"" << *it << "\":" << errno << std::endl;
@@ -171,7 +171,7 @@ CollectionInfo *CollectionInfoBuilder::buildCollection(std::string name, std::st
     (void)conf_.getProperty(metadataTypeKey, metadataType);
     (void)conf_.getProperty(metadataPathKey, metadataPath);
 
-    if(!conf_.getProperty(launcherKey, launcherName))
+    if (!conf_.getProperty(launcherKey, launcherName))
     {
         std::stringstream ss;
         ss        << "\""
@@ -209,7 +209,7 @@ bool CollectionInfoBuilder::ImportBasicList(CollectionInfo *info, std::string fi
     {
         line = Utils::filterComments(line);
         
-        if(!line.empty() && list.find(line) == list.end())
+        if (!line.empty() && list.find(line) == list.end())
         {
             Item *i = new Item();
 
@@ -242,7 +242,7 @@ bool CollectionInfoBuilder::ImportBasicList(CollectionInfo *info, std::string fi
     {
         line = Utils::filterComments(line);
         
-        if(!line.empty())
+        if (!line.empty())
         {
 
             bool found = false;
@@ -276,8 +276,6 @@ bool CollectionInfoBuilder::ImportBasicList(CollectionInfo *info, std::string fi
 
 bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string mergedCollectionName)
 {
-    DIR *dp;
-    struct dirent *dirp;
     std::string path = info->listpath;
     std::vector<Item *> includeFilterUnsorted;
     std::map<std::string, Item *> includeFilter;
@@ -288,7 +286,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     std::string launcher;
     bool showMissing = false; 
  
-    if(mergedCollectionName != "")
+    if (mergedCollectionName != "")
     {
         
         std::string mergedFile = Utils::combinePath(Configuration::absolutePath, "collections", mergedCollectionName, info->name + ".sub");
@@ -301,7 +299,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
 
     // If no merged file exists, or it is empty, attempt to use the include and exclude from the subcollection
     // If this not a merged collection, the size will be 0 anyways and the code below will still execute
-    if(includeFilter.size() == 0)
+    if (includeFilter.size() == 0)
     {
         Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Checking for \"" + includeFile + "\"");
         ImportBasicList(info, includeFile, includeFilterUnsorted);
@@ -309,75 +307,28 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
         ImportBasicList(info, excludeFile, excludeFilter);
     }
 
-    std::vector<std::string> extensions;
-    std::vector<std::string>::iterator extensionsIt;
-
-    info->extensionList(extensions);
-
-    dp = opendir(path.c_str());
-
-    Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Scanning directory \"" + path + "\"");
-    if(dp == NULL)
-    {
-        Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Could not read directory \"" + path + "\". Ignore if this is a menu.");
-    }
-
-    if(showMissing)
+    if (showMissing)
     {
         for(std::vector<Item *>::iterator it = includeFilterUnsorted.begin(); it != includeFilterUnsorted.end(); ++it)
         {
-            if(excludeFilter.find((*it)->name) == excludeFilter.end())
+            if (excludeFilter.find((*it)->name) == excludeFilter.end())
             {
                 info->items.push_back(*it);
             }
         }
     }
 
-    while(!showMissing && dp != NULL && (dirp = readdir(dp)) != NULL)
+    // Read ROM directory if showMissing is false
+    if (!showMissing)
     {
-        std::string file = dirp->d_name;
-
-        size_t position = file.find_last_of(".");
-        std::string basename = (std::string::npos == position)? file : file.substr(0, position);
-        
-        // if there is an include list, only include roms that are found and are in the include list
-        // if there is an exclude list, exclude those roms
-        if((includeFilter.size() == 0 || (!showMissing && includeFilter.find(basename) != includeFilter.end())) &&
-                (excludeFilter.size() == 0 || excludeFilter.find(basename) == excludeFilter.end()))
-        {
-            // iterate through all known file extensions
-            for(extensionsIt = extensions.begin(); extensionsIt != extensions.end(); ++extensionsIt)
-            {
-                std::string comparator = "." + *extensionsIt;
-                int start = file.length() - comparator.length() + 1;
-
-                if(start >= 0)
-                {
-                    if(file.compare(start, comparator.length(), *extensionsIt) == 0)
-                    {
-                        Item *i = new Item();
-                        i->name = basename;
-                        i->fullTitle = basename;
-                        i->title = basename;
-                        i->collectionInfo = info;
-
-                        info->items.push_back(i);
-                    }
-                }
-            }
-        }
-    }
-
-    if(dp != NULL) 
-    {
-        closedir(dp);
+        ImportRomDirectory(path, info, includeFilter, excludeFilter);
     }
 
     while(includeFilter.size() > 0)
     {
         std::map<std::string, Item *>::iterator it = includeFilter.begin();
         // delete the unused items if they were never pushed to the main collection
-        if(!showMissing)
+        if (!showMissing)
         {
             delete it->second;
         }
@@ -421,7 +372,7 @@ void CollectionInfoBuilder::addFavorites(CollectionInfo *info)
 
         for(std::vector<Item *>::iterator it = info->items.begin(); it != info->items.end(); it++)
         {
-            if( (*it)->name == itemName && (*it)->collectionInfo->name == collectionName)
+            if ( (*it)->name == itemName && (*it)->collectionInfo->name == collectionName)
             {
                 info->playlists["favorites"]->push_back((*it));
             }
@@ -432,6 +383,78 @@ void CollectionInfoBuilder::addFavorites(CollectionInfo *info)
 }
 
 
+void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo *info, std::map<std::string, Item *> includeFilter, std::map<std::string, Item *> excludeFilter)
+{
+
+    DIR                               *dp;
+    struct dirent                     *dirp;
+    std::vector<std::string>           extensions;
+    std::vector<std::string>::iterator extensionsIt;
+
+    info->extensionList(extensions);
+
+    dp = opendir(path.c_str());
+
+    Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Scanning directory \"" + path + "\"");
+    if (dp == NULL)
+    {
+        Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Could not read directory \"" + path + "\". Ignore if this is a menu.");
+    }
+
+    while(dp != NULL && (dirp = readdir(dp)) != NULL)
+    {
+        std::string file = dirp->d_name;
+
+        // Check if the file is a directory or a file
+        struct stat sb;
+        if (file != "." && file != ".." && stat( Utils::combinePath( path, file ).c_str(), &sb ) == 0 && S_ISDIR( sb.st_mode ))
+        {
+            ImportRomDirectory( Utils::combinePath( path, file ), info, includeFilter, excludeFilter );
+        }
+        else if (file != "." && file != "..")
+        {
+            size_t position = file.find_last_of(".");
+            std::string basename = (std::string::npos == position)? file : file.substr(0, position);
+        
+            // if there is an include list, only include roms that are found and are in the include list
+            // if there is an exclude list, exclude those roms
+            if ((includeFilter.size() == 0 || (includeFilter.find(basename) != includeFilter.end())) &&
+                    (excludeFilter.size() == 0 || excludeFilter.find(basename) == excludeFilter.end()))
+            {
+                // iterate through all known file extensions
+                for(extensionsIt = extensions.begin(); extensionsIt != extensions.end(); ++extensionsIt)
+                {
+                    std::string comparator = "." + *extensionsIt;
+                    int start = file.length() - comparator.length() + 1;
+
+                    if (start >= 0)
+                    {
+                        if (file.compare(start, comparator.length(), *extensionsIt) == 0)
+                        {
+                            Item *i = new Item();
+
+                            i->name           = basename;
+                            i->fullTitle      = basename;
+                            i->title          = basename;
+                            i->collectionInfo = info;
+                            i->filepath       = path + Utils::pathSeparator;
+
+                            info->items.push_back(i);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if (dp != NULL) 
+    {
+        closedir(dp);
+    }
+
+    return;
+
+}
 
 
 void CollectionInfoBuilder::injectMetadata(CollectionInfo *info)

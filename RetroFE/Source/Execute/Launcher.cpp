@@ -67,6 +67,13 @@ bool Launcher::run(std::string collection, Item *collectionItem)
         return false;
     }
 
+
+    // Overwrite selectedItemsDirectory if already set in the file
+    if (collectionItem->filepath != "")
+    {
+        selectedItemsDirectory = collectionItem->filepath;
+    }
+
     // It is ok to continue if the file could not be found. We could be launching a merged romset
     findFile(selectedItemsPath, matchedExtension, selectedItemsDirectory, collectionItem->name, extensionstr);
 
