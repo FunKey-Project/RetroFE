@@ -119,7 +119,7 @@ std::string Launcher::replaceVariables(std::string str,
     str = Utils::replace(str, "%ITEM_COLLECTION_NAME%", itemCollectionName);
     str = Utils::replace(str, "%RETROFE_PATH%", Configuration::absolutePath);
 #ifdef WIN32
-    str = Utils::replace(str, "%RETROFE_EXEC_PATH%", Utils::combinePath(Configuration::absolutePath, "RetroFE.exe"));
+    str = Utils::replace(str, "%RETROFE_EXEC_PATH%", Utils::combinePath(Configuration::absolutePath, "core", "RetroFE.exe"));
 #else
     str = Utils::replace(str, "%RETROFE_EXEC_PATH%", Utils::combinePath(Configuration::absolutePath, "RetroFE"));
 #endif
