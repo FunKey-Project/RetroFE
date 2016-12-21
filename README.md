@@ -3,7 +3,8 @@
 RetroFE is a cross-platform frontend designed for MAME cabinets/game centers/etc. with a focus on simplicity and customization.
 
 #  Installing on MacOS #
-** The quickest and easiest way to install RetroFE for mac is to use [Homebrew](brew.sh) and type: **
+
+The quickest and easiest way to install RetroFE for mac is to use [Homebrew](brew.sh) and type:
 	
 	brew install retrofe 
 
@@ -13,13 +14,15 @@ This will install RetroFE in /usr/local/opt/retrofe. RetroFE can then be started
 	
 	brew linkapps retrofe 
 
+
 ** Install RetroArch: (RetroFE requires a backend to load the emulator cores) **
 	
 	brew cask install retroarch 
 
-RetroArch will be installed in /Applications. The sample configuration is setup to use RetroArch. Before starting RetroFE you need to start up RetroArch to download the Genesis Plus GX core and the MAME 2014 core. In RetroArch use arrow keys to move and select by hitting X on the keyboard "Online Updater" -> "Core Updater" -> "<Core Name>". Also run "Online Updater" -> "<Every Updater choice>" to keep RetroArch up to snuff. Check out RetroArch's documentation to learn more. Especially read about using Shaders to make games look better.
+RetroArch will be installed in /Applications. The RetroFE's sample configuration is setup to use RetroArch for mac. Before starting RetroFE you need to start up RetroArch to download the Genesis Plus GX core and the MAME 2014 core. In RetroArch use arrow keys to move and select by hitting X on the keyboard "Online Updater" -> "Core Updater" -> "<Core Name>". Also run "Online Updater" -> "<Every Updater choice>" to keep RetroArch up to snuff. Check out RetroArch's documentation to learn more. Especially read about using Shaders to make games look better.
 
 ** Accessing RetroFE Configurations and installing ROMS **
+
 Brew installs applications in /usr/local/Cellar and symlinks the latest version number to /usr/local/opt. This path will not be visible to Finder.
 
 To expose it open Finder and pin the retrofe folder to the Sidebar: 
@@ -28,10 +31,13 @@ To expose it open Finder and pin the retrofe folder to the Sidebar:
 	In Finder -> File -> Add to Sidebar  
 
 ## Optional ##
-** Fix libpng iCCP warnings about incorrect sRGB profile**
+
+** Fix libpng iCCP warnings about incorrect sRGB profile **
+
 The issue is with the png files that are being used with the Artwork. Libpng is pretty touchy about it. You can get rid of these messages with a handy tool called pngcrush found on sourceforge and github.
 
 Error message:
+	
 	libpng warning: iCCP: known incorrect sRGB profile
 	libpng warning: iCCP: known incorrect sRGB profile
 	libpng warning: iCCP: known incorrect sRGB profile
@@ -39,22 +45,32 @@ Error message:
 	libpng warning: iCCP: known incorrect sRGB profile
 	libpng warning: iCCP: known incorrect sRGB profile
 
-mac install (linux use apt-get?):
+Mac install (linux use apt-get?):
+	
 	brew install pngcrush
 
-run find and repair pngs:
+
+Find and repair pngs:
+	
 	find /usr/local/opt/retrofe/collections -type f -iname '*.png' -exec pngcrush -ow -rem allb -reduce {} \;
 
-** RetroFE will load it's media and configuration files relative to where the binary file is located. This allows the build to be portable. If you want RetroFE to load your configuration from a fixed location regardless of where your install is copy your configuration there and set $RETROFE_PATH. Note this will work if you start RetroFE from the command line. **
+
+** Set $RETROFE_PATH via Environment variable ** 
+
+RetroFE will load it's media and configuration files relative to where the binary file is located. This allows the build to be portable. If you want RetroFE to load your configuration from a fixed location regardless of where your install is copy your configuration there and set $RETROFE_PATH. Note this will work if you start RetroFE from the command line.
 
 	vi ~/.bash_profile
 	export RETROFE_PATH=/your/new/retrofe
 
-** Depending on your version of OS X the GUI will read user defined Environment variables from [another place](http://stackoverflow.com/questions/135688/setting-environment-variables-in-os-x). If you find this dificult to setup you can get around it by creating a text file in your HOME directory: /Users/<you>/.retrofe with one line no spaces: /your/new/retrofe. This will also work in Linux. RetroFE's configuration search order is 1st: ENV, Flat file, executable location.
+
+** Set RETROFE_PATH via flat file ** 
+
+Depending on your version of OS X the GUI will read user defined Environment variables from [another place]("http://stackoverflow.com/questions/135688/setting-environment-variables-in-os-x"). If you find this dificult to setup you can get around it by creating a text file in your HOME directory: /Users/<you>/.retrofe with one line no spaces: /your/new/retrofe. This will also work in Linux. RetroFE's configuration search order is 1st: ENV, Flat file, executable location.
 
 See below for optional flat file example**
 
 	echo /your/new/retrofe > ~/.retrofe
+
 
 ## Mac download and compile RetroFE fron source code ##
 If you don't use Homebrew you will need to download and install the same dependencies as given in the linux instuctions.
@@ -109,7 +125,7 @@ Copy your live RetroFE system to any folder of your choosing:
 
 
 # Compiling and installing on Windows #
-** Visit the [RetroFE downloads](retrofe.com/download.php) page to download a precompiled version if you do not want to compile your own. **
+** Visit the [RetroFE downloads]("http://retrofe.com/download.php") page to download a precompiled version if you do not want to compile your own. **
 
 ## Install libraries ##
 	Install Python 2.7
