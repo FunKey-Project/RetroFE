@@ -11,18 +11,19 @@ The quickest and easiest way to install RetroFE for mac is to use [Homebrew]("ht
 This will install RetroFE in /usr/local/opt/retrofe. RetroFE can then be started by typing 'retrofe'.
 
 
-### Run RetroFE as an app from the Applications follder ###
+### Run RetroFE as an app from the Applications follder
 	
 	brew linkapps retrofe 
 
 
-### Install RetroArch: ### (RetroFE requires a backend to load the emulator cores) 
+### Install RetroArch: 
+(RetroFE requires a backend to load the emulator cores) 
 	
 	brew cask install retroarch 
 
 RetroArch will be installed in /Applications. The RetroFE's sample configuration is setup to use RetroArch for mac. Before starting RetroFE you need to start up RetroArch to download the Genesis Plus GX core and the MAME 2014 core. In RetroArch use arrow keys to move and select by hitting X on the keyboard "Online Updater" -> "Core Updater" -> "<Core Name>". Also run "Online Updater" -> "<Every Updater choice>" to keep RetroArch up to snuff. Check out RetroArch's documentation to learn more. Especially read about using Shaders to make games look better.
 
-### Accessing RetroFE Configurations and installing ROMS ###
+### Accessing RetroFE Configurations and installing ROMS 
 
 Brew installs applications in /usr/local/Cellar and symlinks the latest version number to /usr/local/opt. This path will not be visible to Finder.
 
@@ -33,7 +34,7 @@ To expose it open Finder and pin the retrofe folder to the Sidebar:
 
 ## Optional ##
 
-### Fix libpng iCCP warnings about incorrect sRGB profile ###
+### Fix libpng iCCP warnings about incorrect sRGB profile 
 
 The issue is with the png files that are being used with the Artwork. Libpng is pretty touchy about it. You can get rid of these messages with a handy tool called pngcrush found on sourceforge and github.
 
@@ -56,7 +57,7 @@ The issue is with the png files that are being used with the Artwork. Libpng is 
 	find /usr/local/opt/retrofe/collections -type f -iname '*.png' -exec pngcrush -ow -rem allb -reduce {} \;
 
 
-### Set $RETROFE_PATH via Environment variable ### 
+### Set $RETROFE_PATH via Environment variable 
 
 RetroFE will load it's media and configuration files relative to where the binary file is located. This allows the build to be portable. If you want RetroFE to load your configuration from a fixed location regardless of where your install is copy your configuration there and set $RETROFE_PATH. Note this will work if you start RetroFE from the command line.
 
@@ -64,7 +65,7 @@ RetroFE will load it's media and configuration files relative to where the binar
 	export RETROFE_PATH=/your/new/retrofe
 
 
-### Set RETROFE_PATH via flat file ### 
+### Set RETROFE_PATH via flat file 
 
 Depending on your version of OS X the GUI will read user defined Environment variables from [another place]("http://stackoverflow.com/questions/135688/setting-environment-variables-in-os-x"). If you find this dificult to setup you can get around it by creating a text file in your HOME directory: /Users/<you>/.retrofe with one line no spaces: /your/new/retrofe. This will also work in Linux. RetroFE's configuration search order is 1st: ENV, Flat file, executable location.
 
