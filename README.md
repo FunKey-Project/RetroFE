@@ -95,7 +95,7 @@ Compile RetroFE and create a full environment (ensure --os=mac !):
 	python Scripts/Package.py --os=mac --build=full
 
 Copy your live RetroFE system to any folder of your choosing:
-	cp -r Artifacts/linux/RetroFE /your/ideal/retrofe/path
+	cp -r Artifacts/mac/RetroFE /your/ideal/retrofe/path
 
 #  Compiling and installing on Ubuntu Linux (10.04 or newer) #
 

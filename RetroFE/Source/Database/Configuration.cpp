@@ -45,19 +45,19 @@ Configuration::~Configuration()
 void Configuration::initialize()
 {
     const char *environment = std::getenv("RETROFE_PATH");
-    std::string environmentStr;
     std::string home_load = std::getenv("HOME") + std::string("/.retrofe");
     std::ifstream retrofe_path(home_load.c_str());
+    // Check Environment for path
     if (environment != NULL)
     {
-        environmentStr = environment;
         absolutePath = environment;
     }
-    else if (retrofe_path.is_open())
+    // Or check for home based flat file works on linux/mac
+    else if (retrofe_path && std::getline( retrofe_path, absolutePath ))
     {
-    	std::getline( retrofe_path, absolutePath );
     	retrofe_path.close();
     }
+    // Or check executable for path
     else
     {
 #ifdef WIN32

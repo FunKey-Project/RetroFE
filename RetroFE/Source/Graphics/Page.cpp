@@ -145,6 +145,18 @@ void Page::onNewItemSelected()
 }
 
 
+void Page::highlightLoadArt()
+{
+    selectedItem_ = activeMenu_->getSelectedItem();
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        (*it)->setNewItemSelected();
+    }
+
+}
+
+
 void Page::pushMenu(ScrollingList *s)
 {
     menus_.push_back(s);

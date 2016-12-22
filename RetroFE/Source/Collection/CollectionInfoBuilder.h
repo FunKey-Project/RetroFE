@@ -39,5 +39,7 @@ private:
     Configuration &conf_;
     MetadataDatabase &metaDB_;
     bool ImportBasicList(CollectionInfo *info, std::string file, std::map<std::string, Item *> &list);
+    bool ImportBasicList(CollectionInfo *info, std::string file, std::vector<Item *> &list);
     bool ImportDirectory(CollectionInfo *info, std::string mergedCollectionName);
+    void ImportRomDirectory(std::string path, CollectionInfo *info, std::map<std::string, Item *> includeFilter, std::map<std::string, Item *> excludeFilter);
 };

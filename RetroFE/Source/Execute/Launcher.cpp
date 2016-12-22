@@ -67,6 +67,13 @@ bool Launcher::run(std::string collection, Item *collectionItem)
         return false;
     }
 
+
+    // Overwrite selectedItemsDirectory if already set in the file
+    if (collectionItem->filepath != "")
+    {
+        selectedItemsDirectory = collectionItem->filepath;
+    }
+
     // It is ok to continue if the file could not be found. We could be launching a merged romset
     findFile(selectedItemsPath, matchedExtension, selectedItemsDirectory, collectionItem->name, extensionstr);
 
@@ -119,7 +126,7 @@ std::string Launcher::replaceVariables(std::string str,
     str = Utils::replace(str, "%ITEM_COLLECTION_NAME%", itemCollectionName);
     str = Utils::replace(str, "%RETROFE_PATH%", Configuration::absolutePath);
 #ifdef WIN32
-    str = Utils::replace(str, "%RETROFE_EXEC_PATH%", Utils::combinePath(Configuration::absolutePath, "RetroFE.exe"));
+    str = Utils::replace(str, "%RETROFE_EXEC_PATH%", Utils::combinePath(Configuration::absolutePath, "core", "RetroFE.exe"));
 #else
     str = Utils::replace(str, "%RETROFE_EXEC_PATH%", Utils::combinePath(Configuration::absolutePath, "RetroFE"));
 #endif

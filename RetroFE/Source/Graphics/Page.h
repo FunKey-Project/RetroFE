@@ -44,6 +44,7 @@ public:
     virtual ~Page();
     void DeInitialize();
     virtual void onNewItemSelected();
+    void highlightLoadArt();
     bool pushCollection(CollectionInfo *collection);
     bool popCollection();
     void enterMenu();

@@ -485,7 +485,7 @@ void ScrollingList::update(float dt)
 
         Component *c = components_.at(cindex);
 
-        if(c && (scrollRequested || scrollChanged))
+        if(c && readyToScroll && (scrollRequested || scrollChanged))
         {
             unsigned int nextI = 0;
             if(currentScrollDirection_ == ScrollDirectionBack)
