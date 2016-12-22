@@ -2,7 +2,7 @@
 
 RetroFE is a cross-platform frontend designed for MAME cabinets/game centers/etc. with a focus on simplicity and customization.
 
-#  Installing on MacOS #
+# Installing on MacOS #
 
 The quickest and easiest way to install RetroFE for mac is to use [Homebrew]("http://brew.sh") and type:
 	
@@ -16,12 +16,12 @@ This will install RetroFE in /usr/local/opt/retrofe. RetroFE can then be started
 	brew linkapps retrofe 
 
 
-### Install RetroArch: 
+### Install RetroArch 
 (RetroFE requires a backend to load the emulator cores) 
 	
 	brew cask install retroarch 
 
-RetroArch will be installed in /Applications. The RetroFE's sample configuration is setup to use RetroArch for mac. Before starting RetroFE you need to start up RetroArch to download the Genesis Plus GX core and the MAME 2014 core. In RetroArch use arrow keys to move and select by hitting X on the keyboard "Online Updater" -> "Core Updater" -> "<Core Name>". Also run "Online Updater" -> "<Every Updater choice>" to keep RetroArch up to snuff. Check out RetroArch's documentation to learn more. Especially read about using Shaders to make games look better.
+RetroArch will be installed in /Applications. The RetroFE's sample configuration is setup to use RetroArch for mac. Before starting RetroFE you need to start up RetroArch to download the Genesis Plus GX core and the MAME 2014 core as an example. In RetroArch use arrow keys to move and select by hitting X on the keyboard "Online Updater" -> "Core Updater" -> "<Core Name>". Also run "Online Updater" -> "<Every Updater choice>" to keep RetroArch up to snuff. Check out RetroArch's documentation to learn more. Especially read about using Shaders to make your games look even better.
 
 ### Accessing RetroFE Configurations and installing ROMS 
 
@@ -67,14 +67,14 @@ RetroFE will load it's media and configuration files relative to where the binar
 
 ### Set RETROFE_PATH via flat file 
 
-Depending on your version of OS X the GUI will read user defined Environment variables from [another place]("http://stackoverflow.com/questions/135688/setting-environment-variables-in-os-x"). If you find this dificult to setup you can get around it by creating a text file in your HOME directory: /Users/<you>/.retrofe with one line no spaces: /your/new/retrofe. This will also work in Linux. RetroFE's configuration search order is 1st: ENV, Flat file, executable location.
+Depending on your version of OS X the GUI will read user defined Environment variables from [another place]("http://stackoverflow.com/questions/135688/setting-environment-variables-in-os-x"). If you find this dificult to setup you can get around it by creating a text file in your HOME directory: /Users/<you>/.retrofe with one line no spaces: /your/new/retrofe. This will also work in Linux. RetroFE's configuration search order is 1st: ENV, Flat file, and executable location.
 
 ** See below for optional flat file example **
 
 	echo /your/new/retrofe > ~/.retrofe
 
 
-## Mac download and compile RetroFE fron source code ##
+## Mac download and compile RetroFE from source code ##
 If you don't use Homebrew you will need to download and install the same dependencies as given in the linux instuctions.
 You may need to export the libs with $LIBRARY_PATH and or supply the include folders with $CPATH before building.
 
