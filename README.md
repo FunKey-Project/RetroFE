@@ -4,7 +4,7 @@ RetroFE is a cross-platform frontend designed for MAME cabinets/game centers/etc
 
 # Installing on MacOS #
 
-The quickest and easiest way to install RetroFE for mac is to use [Homebrew]("http://brew.sh") and type:
+The quickest and easiest way to install RetroFE for mac is to use [Homebrew](http://brew.sh) and type:
 	
 	brew install retrofe 
 
@@ -67,7 +67,7 @@ RetroFE will load it's media and configuration files relative to where the binar
 
 ### Set RETROFE_PATH via flat file 
 
-Depending on your version of OS X the GUI will read user defined Environment variables from [another place]("http://stackoverflow.com/questions/135688/setting-environment-variables-in-os-x"). If you find this dificult to setup you can get around it by creating a text file in your HOME directory: /Users/<you>/.retrofe with one line no spaces: /your/new/retrofe. This will also work in Linux. RetroFE's configuration search order is 1st: ENV, Flat file, and executable location.
+Depending on your version of OS X the GUI will read user defined Environment variables from [another place](http://stackoverflow.com/questions/135688/setting-environment-variables-in-os-x). If you find this dificult to setup you can get around it by creating a text file in your HOME directory: /Users/<you>/.retrofe with one line no spaces: /your/new/retrofe. This will also work in Linux. RetroFE's configuration search order is 1st: ENV, Flat file, and executable location.
 
 ** See below for optional flat file example **
 
@@ -127,7 +127,7 @@ Copy your live RetroFE system to any folder of your choosing:
 
 
 # Compiling and installing on Windows #
-** Visit the [RetroFE downloads]("http://retrofe.com/download.php") page to download a precompiled version if you do not want to compile your own. **
+** Visit the [RetroFE downloads](http://retrofe.com/download.php) page to download a precompiled version if you do not want to compile your own. **
 
 ## Install libraries ##
 	Install Python 2.7
