@@ -25,6 +25,7 @@
 #include <fstream>
 #include <dirent.h>
 #include <time.h>
+#include <locale>
 
 static bool ImportConfiguration(Configuration *c);
 static bool StartLogging();
@@ -58,6 +59,9 @@ int main(int argc, char **argv)
             return 0;
         }
     }
+
+    // Initialize locale language
+    setlocale( LC_ALL, "" );
 
     // Initialize random seed
     srand(static_cast<unsigned int>(time(0)));
