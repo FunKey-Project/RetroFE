@@ -94,6 +94,12 @@ void ReloadableScrollingText::update(float dt)
 }
 
 
+void ReloadableScrollingText::launchExit( )
+{
+    reloadTexture( );
+}
+
+
 void ReloadableScrollingText::freeGraphicsMemory( )
 {
     Component::freeGraphicsMemory( );

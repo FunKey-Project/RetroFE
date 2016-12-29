@@ -29,6 +29,7 @@ public:
     void     update(float dt);
     void     draw( );
     void     freeGraphicsMemory( );
+    void     launchExit();
 
 private:
     void reloadTexture( );

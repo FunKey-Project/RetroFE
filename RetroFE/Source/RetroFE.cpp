@@ -135,6 +135,11 @@ void RetroFE::launchExit()
     SDL_RestoreWindow(SDL::getWindow());
     SDL_RaiseWindow(SDL::getWindow());
     SDL_SetWindowGrab(SDL::getWindow(), SDL_TRUE);
+
+    // Empty event queue
+    SDL_Event e;
+    while (SDL_PollEvent(&e));
+
     input_.resetStates();
     attract_.reset();
 
