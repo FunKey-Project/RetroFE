@@ -390,9 +390,6 @@ void Page::highlightExit()
 
 void Page::setScrolling(ScrollDirection direction)
 {
-    ScrollingList::ScrollDirection menuDirection;
-    bool prevScrollActive = scrollActive_;
-
     switch(direction)
     {
     case ScrollDirectionForward:
@@ -400,7 +397,6 @@ void Page::setScrolling(ScrollDirection direction)
         {
             menuScroll();
         }
-        menuDirection = ScrollingList::ScrollDirectionForward;
         scrollActive_ = true;
         break;
     case ScrollDirectionBack:
@@ -408,23 +404,14 @@ void Page::setScrolling(ScrollDirection direction)
         {
             menuScroll();
         }
-        menuDirection = ScrollingList::ScrollDirectionBack;
         scrollActive_ = true;
         break;
     case ScrollDirectionIdle:
     default:
-        menuDirection = ScrollingList::ScrollDirectionIdle;
         scrollActive_ = false;
         break;
     }
 
-    if(!prevScrollActive && scrollActive_ && highlightSoundChunk_)
-    {
-        highlightSoundChunk_->play();
-    }
-
-
-    activeMenu_->setScrollDirection(menuDirection);
 }
 
 bool Page::isHorizontalScroll()
@@ -856,4 +843,35 @@ bool Page::isPlaying()
 
     return retVal;
 
+}
+
+
+void Page::resetScrollPeriod()
+{
+  if(activeMenu_)
+  {
+      activeMenu_->resetScrollPeriod();
+  }
+  return;
+}
+
+
+void Page::updateScrollPeriod()
+{
+  if(activeMenu_)
+  {
+      activeMenu_->updateScrollPeriod();
+  }
+  return;
+}
+
+
+void Page::scroll(bool forward)
+{
+  if(activeMenu_)
+  {
+      activeMenu_->scroll(forward);
+      highlightSoundChunk_->play();
+  }
+  return;
 }

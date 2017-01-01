@@ -96,6 +96,9 @@ public:
     void reallocateMenuSpritePoints();
     bool isMenuScrolling();
     bool isPlaying();
+    void resetScrollPeriod();
+    void updateScrollPeriod();
+    void scroll(bool forward);
 
 private:
     void playlistChange();

@@ -257,7 +257,7 @@ void RetroFE::run()
         float lastTime = 0;
         float deltaTime = 0;
         SDL_Event e;
-        if (SDL_PollEvent(&e))
+        if (splashMode && SDL_PollEvent(&e))
         {
             if(input_.update(e))
             {
@@ -281,7 +281,10 @@ void RetroFE::run()
                 // account for when returning from a menu and the previous key was still "stuck"
                 if(lastLaunchReturnTime_ == 0 || (currentTime_ - lastLaunchReturnTime_ > .3))
                 {
-                    state = processUserInput(currentPage_);
+                    if(currentPage_->isMenuIdle())
+                    {
+                        state = processUserInput(currentPage_);
+                    }
                     lastLaunchReturnTime_ = 0;
                 }
             }
@@ -398,7 +401,7 @@ void RetroFE::run()
             break;
 
         case RETROFE_HIGHLIGHT_EXIT:
-            if (processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
+            if (currentPage_->isMenuIdle() && processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
             {
                 state = RETROFE_HIGHLIGHT_MENU_IDLE;
             }
@@ -415,7 +418,7 @@ void RetroFE::run()
             break;
 
         case RETROFE_HIGHLIGHT_ENTER:
-            if (processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
+            if (currentPage_->isMenuIdle() && processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
             {
                 state = RETROFE_HIGHLIGHT_REQUEST;
             }
@@ -655,15 +658,29 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
     bool exit = false;
     RETROFE_STATE state = RETROFE_IDLE;
 
+    SDL_Event e;
+    while (SDL_PollEvent(&e))
+    {
+        input_.update(e);
+        if(e.type == SDL_KEYDOWN && !e.key.repeat)
+        {
+            break;
+        }
+    }
+
     if(page->isHorizontalScroll())
     {
         if (input_.keystate(UserInput::KeyCodeLeft))
         {
             page->setScrolling(Page::ScrollDirectionBack);
+            page->scroll(false);
+            page->updateScrollPeriod();
         }
         if (input_.keystate(UserInput::KeyCodeRight))
         {
             page->setScrolling(Page::ScrollDirectionForward);
+            page->scroll(true);
+            page->updateScrollPeriod();
         }
     }
     else
@@ -671,10 +688,14 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         if (input_.keystate(UserInput::KeyCodeUp))
         {
             page->setScrolling(Page::ScrollDirectionBack);
+            page->scroll(false);
+            page->updateScrollPeriod();
         }
         if (input_.keystate(UserInput::KeyCodeDown))
         {
             page->setScrolling(Page::ScrollDirectionForward);
+            page->scroll(true);
+            page->updateScrollPeriod();
         }
     }
 
@@ -790,8 +811,11 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
        !input_.keystate(UserInput::KeyCodePageDown) &&
        !attract_.isActive())
     {
+        page->resetScrollPeriod();
         if (page->isMenuScrolling())
+        {
             state = RETROFE_HIGHLIGHT_REQUEST;
+        }
     }
 
     return state;

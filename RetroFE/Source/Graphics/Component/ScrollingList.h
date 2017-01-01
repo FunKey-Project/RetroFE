@@ -34,14 +34,6 @@ class Font;
 class ScrollingList : public Component
 {
 public:
-    enum ScrollDirection
-    {
-        ScrollDirectionBack,
-        ScrollDirectionForward,
-        ScrollDirectionIdle,
-
-    };
-
     ScrollingList(Configuration &c,
                   Page &p,
                   bool layoutMode,
@@ -65,7 +57,6 @@ public:
     void setItems(std::vector<Item *> *items);
     void destroyItems();
     void setPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<AnimationEvents *> *tweenPoints);
-    void setScrollDirection(ScrollDirection direction);
     unsigned int getSelectedIndex();
     unsigned int getSize(); 
     void pageUp();
@@ -89,21 +80,15 @@ public:
     bool horizontalScroll;
     void deallocateSpritePoints();
     void allocateSpritePoints();
+    void resetScrollPeriod();
+    void updateScrollPeriod();
+    void scroll(bool forward);
 
 
 private:
-    void click(double nextScrollTime);
     void resetTweens(Component *c, AnimationEvents *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime);
     unsigned int loopIncrement(unsigned int offset, unsigned int i, unsigned int size);
     unsigned int loopDecrement(unsigned int offset, unsigned int i, unsigned int size);
-
-    enum ScrollState
-    {
-        ScrollStateActive,
-        ScrollStatePageChange,
-        ScrollStateStopping,
-        ScrollStateIdle
-    };
 
     bool layoutMode_;
     std::vector<Component *> *spriteList_;
@@ -113,10 +98,6 @@ private:
     unsigned int itemIndex_;
     unsigned int componentIndex_;
     unsigned int selectedOffsetIndex_;
-
-    ScrollDirection currentScrollDirection_;
-    ScrollDirection requestedScrollDirection_;
-    ScrollState currentScrollState_;
 
     float scrollAcceleration_;
     float startScrollTime_;

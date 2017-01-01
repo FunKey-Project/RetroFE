@@ -56,9 +56,6 @@ ScrollingList::ScrollingList(Configuration &c,
     , itemIndex_(0)
     , componentIndex_(0)
     , selectedOffsetIndex_(0)
-    , currentScrollDirection_(ScrollDirectionIdle)
-    , requestedScrollDirection_(ScrollDirectionIdle)
-    , currentScrollState_(ScrollStateIdle)
     , scrollAcceleration_(0)
     , startScrollTime_(0.500)
     , scrollPeriod_(0)
@@ -79,9 +76,6 @@ ScrollingList::ScrollingList(const ScrollingList &copy)
     , itemIndex_(0)
     , componentIndex_(0)
     , selectedOffsetIndex_(copy.selectedOffsetIndex_)
-    , currentScrollDirection_(ScrollDirectionIdle)
-    , requestedScrollDirection_(ScrollDirectionIdle)
-    , currentScrollState_(ScrollStateIdle)
     , scrollAcceleration_(copy.scrollAcceleration_)
     , startScrollTime_(copy.startScrollTime_)
     , scrollPeriod_(0)
@@ -237,39 +231,6 @@ Item *ScrollingList::getSelectedItem()
 }
 
 
-void ScrollingList::click(double nextScrollTime)
-{
-    if(currentScrollDirection_ == ScrollDirectionBack)
-    {
-        // get the previous item
-        itemIndex_ = loopDecrement(itemIndex_, 1, items_->size());
-        Item *i = items_->at(itemIndex_);
-        componentIndex_ = loopDecrement(componentIndex_, 1, components_.size()); 
-
-        deallocateTexture(componentIndex_);
-        allocateTexture(componentIndex_, i);
-
-        Component *c = components_.at(componentIndex_);
-        ViewInfo *v = scrollPoints_->at(0);
-        resetTweens(c, tweenPoints_->at(componentIndex_), v, v, 0);
-    }
-    else if(currentScrollDirection_ == ScrollDirectionForward)
-    {
-        unsigned int itemIncrement = loopIncrement(itemIndex_, scrollPoints_->size(), items_->size());
-        itemIndex_ = loopIncrement(itemIndex_, 1, items_->size());
-        Item *i = items_->at(itemIncrement);
-       
-        deallocateTexture(componentIndex_);
-        allocateTexture(componentIndex_, i);
-
-        Component *c = components_.at(componentIndex_);
-        ViewInfo *v = scrollPoints_->back();
-        resetTweens(c, tweenPoints_->at(componentIndex_), v, v, 0);
-
-        componentIndex_ = loopIncrement(componentIndex_, 1, components_.size()); 
-    }
-}
-
 void ScrollingList::pageUp()
 {
     if(components_.size() == 0) return;
@@ -345,9 +306,6 @@ void ScrollingList::letterChange(bool increment)
 void ScrollingList::freeGraphicsMemory()
 {
     Component::freeGraphicsMemory();
-    currentScrollDirection_ = ScrollDirectionIdle;
-    requestedScrollDirection_ = ScrollDirectionIdle;
-    currentScrollState_ = ScrollStateIdle;
     scrollPeriod_ = 0;
     
     deallocateSpritePoints();
@@ -411,110 +369,14 @@ void ScrollingList::update(float dt)
 {
     Component::update(dt);
 
-    bool readyToScroll = true;
-    bool scrollChanged = false;
-    bool scrollRequested = false;
-    bool scrollStopped = false;
-
     if(components_.size() == 0) return;
     if(!items_ || items_->size() == 0) return;
-
-    // validate all scroll points are done tweening to the next position
-    for(std::vector<Component *>::iterator c = components_.begin(); c != components_.end(); c++)
-    {
-        if(*c && (*c)->isMenuScrolling())
-        {
-            readyToScroll = false;
-            break;
-        }
-    }
-
-    // check if it was requested to change directions
-    if(currentScrollState_ == ScrollStateActive && requestedScrollDirection_ != currentScrollDirection_)
-    {
-        currentScrollState_ = ScrollStateStopping;
-    }
-    else if(currentScrollState_ == ScrollStateIdle && readyToScroll)
-    {
-        scrollPeriod_ = startScrollTime_;
-        // check to see if requested to scroll
-        if(requestedScrollDirection_ != ScrollDirectionIdle)
-        {
-            currentScrollState_ = ScrollStateActive;
-            currentScrollDirection_ = requestedScrollDirection_;
-            scrollRequested = true;
-        }
-    }
-
-    // if currently scrolling, process it
-    if(!scrollRequested && readyToScroll)
-    {
-        if(currentScrollState_ == ScrollStateStopping)
-        {
-            currentScrollState_ = ScrollStateIdle;
-            scrollStopped = true;
-            click(0);
-
-            for(unsigned int i = 0; i < tweenPoints_->size(); ++i)
-            {
-                unsigned int cindex = loopIncrement(componentIndex_, i, components_.size());
-                Component *c = components_.at(cindex);
-
-                if(c) c->setTweens(tweenPoints_->at(i));
-            }
-
-        }
-
-        else if(currentScrollState_ == ScrollStateActive)
-        {
-            scrollPeriod_ -= scrollAcceleration_;
-            if(scrollPeriod_ < scrollAcceleration_)
-            {
-                scrollPeriod_ = scrollAcceleration_;
-            }
-
-            click(scrollPeriod_);
-            scrollChanged = true;
-        }
-    }
-
 
     for(unsigned int i = 0; i < scrollPoints_->size(); i++)
     {
         unsigned int cindex = loopIncrement(componentIndex_, i, components_.size());
-
         Component *c = components_.at(cindex);
-
-        if(c && readyToScroll && (scrollRequested || scrollChanged))
-        {
-            unsigned int nextI = 0;
-            if(currentScrollDirection_ == ScrollDirectionBack)
-            {
-                nextI = loopIncrement(i, 1, scrollPoints_->size());
-            }
-            if(currentScrollDirection_ == ScrollDirectionForward)
-            {
-                nextI = loopDecrement(i, 1, scrollPoints_->size());
-            }
-
-            ViewInfo *currentvi = scrollPoints_->at(i);
-            ViewInfo *nextvi = scrollPoints_->at(nextI);
-
-            resetTweens(c, tweenPoints_->at(i), currentvi, nextvi, scrollPeriod_);
-            c->baseViewInfo.font = nextvi->font; // Use the font settings of the next index
-            c->triggerEvent( "menuScroll" );
-        }
-
         if(c) c->update(dt);
-        
-    }
-
-    if(scrollStopped)
-    {
-        if(currentScrollState_ == ScrollStatePageChange)
-        {
-            currentScrollState_ = ScrollStateIdle;
-        }
     }
 }
 
@@ -737,15 +599,9 @@ void ScrollingList::draw(unsigned int layer)
 }
 
 
-void ScrollingList::setScrollDirection(ScrollDirection direction)
-{
-    requestedScrollDirection_ = direction;
-}
-
-
 bool ScrollingList::isIdle()
 {
-    if(!Component::isIdle() || currentScrollState_ != ScrollStateIdle) return false;
+    if(!Component::isIdle()) return false;
 
     for(unsigned int i = 0; i < components_.size(); ++i)
     {
@@ -757,3 +613,73 @@ bool ScrollingList::isIdle()
 }
 
 
+void ScrollingList::resetScrollPeriod()
+{
+    scrollPeriod_ = startScrollTime_;
+    return;
+}
+
+
+void ScrollingList::updateScrollPeriod()
+{
+    scrollPeriod_ -= scrollAcceleration_;
+    if(scrollPeriod_ < scrollAcceleration_)
+    {
+        scrollPeriod_ = scrollAcceleration_;
+    }
+}
+
+
+void ScrollingList::scroll(bool forward)
+{
+
+    if(forward)
+    {
+        Item *i = items_->at(loopIncrement(itemIndex_, scrollPoints_->size(), items_->size()));
+        deallocateTexture(componentIndex_);
+        allocateTexture(componentIndex_, i);
+    }
+    else
+    {
+        Item *i = items_->at(loopDecrement(itemIndex_, 1, items_->size()));
+        deallocateTexture(loopDecrement(componentIndex_, 1, components_.size()));
+        allocateTexture(loopDecrement(componentIndex_, 1, components_.size()), i);
+    }
+
+    for(unsigned int i = 0; i < scrollPoints_->size(); i++)
+    {
+        unsigned int cindex = loopIncrement(componentIndex_, i, components_.size());
+
+        Component *c = components_.at(cindex);
+
+        unsigned int nextI = 0;
+        if(forward)
+        {
+            nextI = loopDecrement(i, 1, scrollPoints_->size());
+        }
+        else
+        {
+            nextI = loopIncrement(i, 1, scrollPoints_->size());
+        }
+
+        ViewInfo *currentvi = scrollPoints_->at(i);
+        ViewInfo *nextvi = scrollPoints_->at(nextI);
+
+        resetTweens(c, tweenPoints_->at(i), currentvi, nextvi, scrollPeriod_);
+        c->baseViewInfo.font = nextvi->font; // Use the font settings of the next index
+        c->triggerEvent( "menuScroll" );
+    }
+
+    if(forward)
+    {
+        itemIndex_ = loopIncrement(itemIndex_, 1, items_->size());
+        componentIndex_ = loopIncrement(componentIndex_, 1, components_.size()); 
+    }
+    else
+    {
+        itemIndex_ = loopDecrement(itemIndex_, 1, items_->size());
+        componentIndex_ = loopDecrement(componentIndex_, 1, components_.size()); 
+    }
+
+    return;
+}
