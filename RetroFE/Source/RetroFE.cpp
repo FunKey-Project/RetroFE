@@ -401,11 +401,7 @@ void RetroFE::run()
             break;
 
         case RETROFE_HIGHLIGHT_EXIT:
-            if (currentPage_->isMenuIdle() && processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
-            {
-                state = RETROFE_HIGHLIGHT_MENU_IDLE;
-            }
-            else if (currentPage_->isIdle())
+            if (currentPage_->isIdle())
             {
                 currentPage_->highlightLoadArt();
                 state = RETROFE_HIGHLIGHT_LOAD_ART;
