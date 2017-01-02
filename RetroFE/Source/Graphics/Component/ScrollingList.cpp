@@ -665,7 +665,7 @@ void ScrollingList::scroll(bool forward)
         ViewInfo *currentvi = scrollPoints_->at(i);
         ViewInfo *nextvi = scrollPoints_->at(nextI);
 
-        resetTweens(c, tweenPoints_->at(loopDecrement(i, 1, components_.size())), currentvi, nextvi, scrollPeriod_);
+        resetTweens(c, tweenPoints_->at(nextI), currentvi, nextvi, scrollPeriod_);
         c->baseViewInfo.font = nextvi->font; // Use the font settings of the next index
         c->triggerEvent( "menuScroll" );
     }
