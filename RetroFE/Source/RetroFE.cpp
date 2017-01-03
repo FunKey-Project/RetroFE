@@ -281,7 +281,7 @@ void RetroFE::run()
                 // account for when returning from a menu and the previous key was still "stuck"
                 if(lastLaunchReturnTime_ == 0 || (currentTime_ - lastLaunchReturnTime_ > .3))
                 {
-                    if(currentPage_->isMenuIdle())
+                    if(currentPage_->isIdle())
                     {
                         state = processUserInput(currentPage_);
                     }
@@ -313,6 +313,7 @@ void RetroFE::run()
         case RETROFE_ENTER:
             if(currentPage_->isIdle())
             {
+                currentPage_->resetScrollPeriod();
                 state = RETROFE_IDLE;
             }
             break;
