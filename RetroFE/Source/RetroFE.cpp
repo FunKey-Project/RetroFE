@@ -313,7 +313,6 @@ void RetroFE::run()
         case RETROFE_ENTER:
             if(currentPage_->isIdle())
             {
-                currentPage_->resetScrollPeriod();
                 state = RETROFE_IDLE;
             }
             break;

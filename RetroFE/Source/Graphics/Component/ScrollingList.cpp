@@ -78,7 +78,7 @@ ScrollingList::ScrollingList(const ScrollingList &copy)
     , selectedOffsetIndex_(copy.selectedOffsetIndex_)
     , scrollAcceleration_(copy.scrollAcceleration_)
     , startScrollTime_(copy.startScrollTime_)
-    , scrollPeriod_(0)
+    , scrollPeriod_(copy.startScrollTime_)
     , config_(copy.config_)
     , scaleX_(copy.scaleX_)
     , scaleY_(copy.scaleY_)
@@ -367,6 +367,14 @@ void ScrollingList::triggerHighlightExitEvent( int menuIndex )
 
 void ScrollingList::update(float dt)
 {
+
+    // Check if scrollPeriod_ has been properly initialised already or if something went wrong
+    // while updating the scrollPeriod_
+    if(scrollPeriod_ < scrollAcceleration_)
+    {
+        scrollPeriod_ = startScrollTime_;
+    }
+
     Component::update(dt);
 
     if(components_.size() == 0) return;
