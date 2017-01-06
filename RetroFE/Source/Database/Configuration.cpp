@@ -45,18 +45,22 @@ Configuration::~Configuration()
 void Configuration::initialize()
 {
     const char *environment = std::getenv("RETROFE_PATH");
+#if defined(__linux) || defined(__APPLE__)
     std::string home_load = std::getenv("HOME") + std::string("/.retrofe");
     std::ifstream retrofe_path(home_load.c_str());
+#endif
     // Check Environment for path
     if (environment != NULL)
     {
         absolutePath = environment;
     }
+#if defined(__linux) || defined(__APPLE__)
     // Or check for home based flat file works on linux/mac
     else if (retrofe_path && std::getline( retrofe_path, absolutePath ))
     {
     	retrofe_path.close();
     }
+#endif
     // Or check executable for path
     else
     {

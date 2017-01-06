@@ -149,16 +149,15 @@ Download the source code
 Setup Environment (to setup necessary variables and paths to compile in visual studio)
 
 	cd retrofe
-	RetroFE/Source/SetupEnvironment.bat   
 
 Generate visual studio solution files
 
-	cmake RetroFE/Source -BRetroFE/Build -DGSTREAMER_ROOT=C:/gstreamer/1.0/x86 -DVERSION_MAJOR=0 -DVERSION_MINOR=0 -DVERSION_BUILD=0
+	cmake RetroFE/Source -BRetroFE/Build -DGSTREAMER_ROOT=C:\gstreamer\1.0\x86
   
 Compile RetroFE and create a full environment by running the following commands
 
 	cmake --build RetroFE/Build --config Release
-	python Scripts\Package.py --os=windows --build=full --gstreamer_path=D:/gstreamer/1.0/x86
+	python Scripts\Package.py --os=windows --build=full
 
 Copy your live RetroFE system to any folder of your choosing. files can be found in Artifacts\windows\RetroFE
 
