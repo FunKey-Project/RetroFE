@@ -37,13 +37,14 @@ UserInput::UserInput(Configuration &c)
 
 UserInput::~UserInput()
 {
-    for(std::vector<SDL_Joystick *>::iterator it = joysticks_.begin(); it != joysticks_.end(); it++)
-    {
-        if(*it)
-        {
-            SDL_JoystickClose(*it);
-        }
-    }
+// This code causes an exception when a controller is attached; it's disabled to prevent crashes on exit.
+//    for(std::vector<SDL_Joystick *>::iterator it = joysticks_.begin(); it != joysticks_.end(); it++)
+//    {
+//        if(*it)
+//        {
+//            SDL_JoystickClose(*it);
+//        }
+//    }
 }
 
 bool UserInput::initialize()
