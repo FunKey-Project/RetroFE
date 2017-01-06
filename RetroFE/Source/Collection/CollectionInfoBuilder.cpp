@@ -285,6 +285,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
 
     std::string launcher;
     bool showMissing = false; 
+    bool romHierarchy = false;
  
     if (mergedCollectionName != "")
     {
@@ -297,6 +298,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
 
     }
     (void)conf_.getProperty("collections." + info->name + ".list.includeMissingItems", showMissing);
+    (void)conf_.getProperty("collections." + info->name + ".list.romHierarchy", romHierarchy);
 
     // If no merged file exists, or it is empty, attempt to use the include and exclude from the subcollection
     // If this not a merged collection, the size will be 0 anyways and the code below will still execute
@@ -322,7 +324,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     // Read ROM directory if showMissing is false
     if (!showMissing || includeFilter.size() == 0)
     {
-        ImportRomDirectory(path, info, includeFilter, excludeFilter);
+        ImportRomDirectory(path, info, includeFilter, excludeFilter, romHierarchy);
     }
 
     while(includeFilter.size() > 0)
@@ -384,7 +386,7 @@ void CollectionInfoBuilder::addFavorites(CollectionInfo *info)
 }
 
 
-void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo *info, std::map<std::string, Item *> includeFilter, std::map<std::string, Item *> excludeFilter)
+void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo *info, std::map<std::string, Item *> includeFilter, std::map<std::string, Item *> excludeFilter, bool romHierarchy)
 {
 
     DIR                               *dp;
@@ -408,9 +410,9 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
 
         // Check if the file is a directory or a file
         struct stat sb;
-        if (file != "." && file != ".." && stat( Utils::combinePath( path, file ).c_str(), &sb ) == 0 && S_ISDIR( sb.st_mode ))
+        if (romHierarchy && file != "." && file != ".." && stat( Utils::combinePath( path, file ).c_str(), &sb ) == 0 && S_ISDIR( sb.st_mode ))
         {
-            ImportRomDirectory( Utils::combinePath( path, file ), info, includeFilter, excludeFilter );
+            ImportRomDirectory( Utils::combinePath( path, file ), info, includeFilter, excludeFilter, romHierarchy );
         }
         else if (file != "." && file != "..")
         {
