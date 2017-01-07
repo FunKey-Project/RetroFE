@@ -702,7 +702,9 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
             !input_.keystate(UserInput::KeyCodePageDown) &&
             !input_.keystate(UserInput::KeyCodeLetterUp) &&
             !input_.keystate(UserInput::KeyCodeLetterDown) &&
+            !input_.keystate(UserInput::KeyCodeFavPlaylist) &&
             !input_.keystate(UserInput::KeyCodeNextPlaylist) &&
+            !input_.keystate(UserInput::KeyCodePrevPlaylist) &&
             !input_.keystate(UserInput::KeyCodeAddPlaylist) &&
             !input_.keystate(UserInput::KeyCodeRemovePlaylist) &&
             !input_.keystate(UserInput::KeyCodeRandom))
@@ -741,9 +743,19 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
                 page->reallocateMenuSpritePoints();
                 state = RETROFE_HIGHLIGHT_REQUEST;
             }
+            if(input_.newKeyPressed(UserInput::KeyCodeFavPlaylist))
+            {
+                page->favPlaylist();
+                state = RETROFE_PLAYLIST_REQUEST;
+            }
             if(input_.newKeyPressed(UserInput::KeyCodeNextPlaylist))
             {
                 page->nextPlaylist();
+                state = RETROFE_PLAYLIST_REQUEST;
+            }
+            if(input_.newKeyPressed(UserInput::KeyCodePrevPlaylist))
+            {
+                page->prevPlaylist();
                 state = RETROFE_PLAYLIST_REQUEST;
             }
             if(input_.newKeyPressed(UserInput::KeyCodeRemovePlaylist))
@@ -895,7 +907,7 @@ CollectionInfo *RetroFE::getCollection(std::string collectionName)
     MenuParser mp;
     mp.buildMenuItems(collection, menuSort);
 
-    cib.addFavorites(collection);
+    cib.addPlaylists(collection);
     collection->sortFavoriteItems();
 
     return collection;

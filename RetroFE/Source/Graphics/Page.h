@@ -50,7 +50,9 @@ public:
     void enterMenu();
     void exitMenu();
     std::string getPlaylistName();
+    void favPlaylist();
     void nextPlaylist();
+    void prevPlaylist();
     void selectPlaylist(std::string playlist);
     void pushMenu(ScrollingList *s);
     bool isMenusFull();

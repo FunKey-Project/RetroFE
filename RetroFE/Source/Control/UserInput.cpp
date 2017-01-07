@@ -76,7 +76,9 @@ bool UserInput::initialize()
 
     MapKey("letterDown", KeyCodeLetterDown, false);
     MapKey("letterUp", KeyCodeLetterUp, false);
+    MapKey("favPlaylist", KeyCodeFavPlaylist, false);
     MapKey("nextPlaylist", KeyCodeNextPlaylist, false);
+    MapKey("prevPlaylist", KeyCodePrevPlaylist, false);
     MapKey("addPlaylist", KeyCodeAddPlaylist, false);
     MapKey("removePlaylist", KeyCodeRemovePlaylist, false);
     MapKey("random", KeyCodeRandom, false);

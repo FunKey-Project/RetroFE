@@ -579,10 +579,23 @@ std::string Page::getPlaylistName()
 }
 
 
+void Page::favPlaylist()
+{
+    if(playlist_->first == "favorites")
+    {
+        selectPlaylist("all");
+    }
+    else
+    {
+        selectPlaylist("favorites");
+    }
+    return;
+}
+
+
 void Page::nextPlaylist()
 {
     MenuInfo_S &info = collections_.back();
-    info.collection->Save();
     unsigned int numlists = info.collection->playlists.size();
 
     for(unsigned int i = 0; i <= numlists; ++i)
@@ -598,6 +611,30 @@ void Page::nextPlaylist()
     activeMenu_->setItems(playlist_->second);
     playlistChange();
 }
+
+
+void Page::prevPlaylist()
+{
+    MenuInfo_S &info = collections_.back();
+    unsigned int numlists = info.collection->playlists.size();
+
+    for(unsigned int i = 0; i <= numlists; ++i)
+    {
+        // wrap
+        if(playlist_ == info.collection->playlists.begin())
+        {
+            playlist_ = info.collection->playlists.end();
+        }
+        playlist_--;
+
+        // find the first playlist
+        if(playlist_->second->size() != 0) break;
+    }
+
+    activeMenu_->setItems(playlist_->second);
+    playlistChange();
+}
+
 
 void Page::selectPlaylist(std::string playlist)
 {

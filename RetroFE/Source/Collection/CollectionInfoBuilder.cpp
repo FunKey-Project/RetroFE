@@ -349,38 +349,64 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
 }
 
 
-void CollectionInfoBuilder::addFavorites(CollectionInfo *info)
+void CollectionInfoBuilder::addPlaylists(CollectionInfo *info)
 {
-    std::map<std::string, Item *> favoritesFilter;
-    std::string favoritesFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "playlists/favorites.txt");
-    ImportBasicList(info, favoritesFile, favoritesFilter);
+    DIR *dp;
+    struct dirent *dirp;
+    std::string path = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "playlists");
+    dp = opendir(path.c_str());
 
-    info->playlists["favorites"] = new std::vector<Item *>();
-
-    // add the favorites list 
-    for(std::map<std::string, Item *>::iterator it = favoritesFilter.begin(); it != favoritesFilter.end(); it++)
+    while((dirp = readdir(dp)) != NULL)
     {
-        std::string collectionName = info->name;
-        std::string itemName       = it->first;
-        if (itemName.at(0) == '_') // name consists of _<collectionName>:<itemName>
-        {
-          itemName.erase(0, 1); // Remove _
-          size_t position = itemName.find(":");
-          if (position != std::string::npos )
-          {
-              collectionName = itemName.substr(0, position);
-              itemName       = itemName.erase(0, position+1);
-          }
-        }
+        std::string file = dirp->d_name;
 
-        for(std::vector<Item *>::iterator it = info->items.begin(); it != info->items.end(); it++)
+        size_t position = file.find_last_of(".");
+        std::string basename = (std::string::npos == position)? file : file.substr(0, position);
+
+        std::string comparator = ".txt";
+        int start = file.length() - comparator.length();
+
+        if(start >= 0)
         {
-            if ( (*it)->name == itemName && (*it)->collectionInfo->name == collectionName)
+            if(file.compare(start, comparator.length(), comparator) == 0)
             {
-                info->playlists["favorites"]->push_back((*it));
+                Logger::write(Logger::ZONE_INFO, "RetroFE", "Loading playlist: " + basename);
+
+                std::map<std::string, Item *> playlistFilter;
+                std::string playlistFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "playlists", file);
+                ImportBasicList(info, playlistFile, playlistFilter);
+
+                info->playlists[basename] = new std::vector<Item *>();
+
+                // add the playlist list 
+                for(std::map<std::string, Item *>::iterator it = playlistFilter.begin(); it != playlistFilter.end(); it++)
+                {
+                    std::string collectionName = info->name;
+                    std::string itemName       = it->first;
+                    if (itemName.at(0) == '_') // name consists of _<collectionName>:<itemName>
+                    {
+                         itemName.erase(0, 1); // Remove _
+                         size_t position = itemName.find(":");
+                         if (position != std::string::npos )
+                         {
+                             collectionName = itemName.substr(0, position);
+                             itemName       = itemName.erase(0, position+1);
+                         }
+                    }
+
+                    for(std::vector<Item *>::iterator it = info->items.begin(); it != info->items.end(); it++)
+                    {
+                        if ( (*it)->name == itemName && (*it)->collectionInfo->name == collectionName)
+                        {
+                            info->playlists[basename]->push_back((*it));
+                        }
+                    }
+                }
+
             }
         }
     }
+
 
     return;
 }

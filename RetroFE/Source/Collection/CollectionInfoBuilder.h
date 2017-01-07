@@ -31,7 +31,7 @@ public:
     virtual ~CollectionInfoBuilder();
     CollectionInfo *buildCollection(std::string collectionName);
     CollectionInfo *buildCollection(std::string collectionName, std::string mergedCollectionName);
-    void addFavorites(CollectionInfo *info);
+    void addPlaylists(CollectionInfo *info);
     void injectMetadata(CollectionInfo *info);
     static bool createCollectionDirectory(std::string collectionName);
 
