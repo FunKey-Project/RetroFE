@@ -238,8 +238,10 @@ void UserInput::resetStates()
         {
             keyHandlers_[i]->reset();
         }
+        currentKeyState_[i] = false;
     }
 }
+
 bool UserInput::update(SDL_Event &e)
 {
     bool updated = false;
