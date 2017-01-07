@@ -356,6 +356,12 @@ void CollectionInfoBuilder::addPlaylists(CollectionInfo *info)
     std::string path = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "playlists");
     dp = opendir(path.c_str());
 
+    if(dp == NULL)
+    {
+        info->playlists["favorites"] = new std::vector<Item *>();
+        return;
+    }
+
     while((dirp = readdir(dp)) != NULL)
     {
         std::string file = dirp->d_name;
@@ -407,6 +413,12 @@ void CollectionInfoBuilder::addPlaylists(CollectionInfo *info)
         }
     }
 
+    closedir(dp);
+
+    if(info->playlists["favorites"] == NULL)
+    {
+        info->playlists["favorites"] = new std::vector<Item *>();
+    }
 
     return;
 }
@@ -476,10 +488,7 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
         }
     }
 
-    if (dp != NULL) 
-    {
-        closedir(dp);
-    }
+    closedir(dp);
 
     return;
 
