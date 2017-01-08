@@ -440,6 +440,7 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
     if (dp == NULL)
     {
         Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Could not read directory \"" + path + "\". Ignore if this is a menu.");
+        return;
     }
 
     while(dp != NULL && (dirp = readdir(dp)) != NULL)
