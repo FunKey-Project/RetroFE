@@ -33,6 +33,10 @@
 #include <zlib.h>
 #include <exception>
 
+#if defined(__linux) || defined(__APPLE__)
+#include <sys/stat.h>
+#endif
+
 MetadataDatabase::MetadataDatabase(DB &db, Configuration &c)
     : config_(c)
     , db_(db)
@@ -115,8 +119,9 @@ bool MetadataDatabase::importDirectory()
 {
     DIR *dp;
     struct dirent *dirp;
-    std::string hyperListPath = Utils::combinePath(Configuration::absolutePath, "meta", "hyperlist");
-    std::string mameListPath = Utils::combinePath(Configuration::absolutePath, "meta", "mamelist");
+    std::string hyperListPath  = Utils::combinePath(Configuration::absolutePath, "meta", "hyperlist");
+    std::string mameListPath   = Utils::combinePath(Configuration::absolutePath, "meta", "mamelist");
+    std::string truripListPath = Utils::combinePath(Configuration::absolutePath, "meta", "trurip");
 
     dp = opendir(hyperListPath.c_str());
 
@@ -176,6 +181,37 @@ bool MetadataDatabase::importDirectory()
                     Logger::write(Logger::ZONE_INFO, "Metadata", "Importing mamelist: " + importFile);
                     config_.setProperty("status", "Scraping data from " + importFile);
                     importMamelist(importFile, collectionName);
+                }
+            }
+        }
+
+        closedir(dp);
+    }
+
+    dp = opendir(truripListPath.c_str());
+
+    if(dp == NULL)
+    {
+        Logger::write(Logger::ZONE_INFO, "MetadataDatabase", "Could not read directory \"" + truripListPath + "\"");
+    }
+    else
+    {
+        while((dirp = readdir(dp)) != NULL)
+        {
+            if (dirp->d_type != DT_DIR && std::string(dirp->d_name) != "." && std::string(dirp->d_name) != "..")
+            {
+
+                std::string basename = dirp->d_name;
+
+                std::string extension = basename.substr(basename.find_last_of("."), basename.size()-1);
+                basename = basename.substr(0, basename.find_last_of("."));
+
+
+                if(extension == ".dat")
+                {
+                    std::string importFile = Utils::combinePath(truripListPath, std::string(dirp->d_name));
+                    Logger::write(Logger::ZONE_INFO, "Metadata", "Importing truriplist: " + importFile);
+                    importTruriplist(importFile);
                 }
             }
         }
@@ -307,8 +343,11 @@ bool MetadataDatabase::needsRefresh()
     if(rc == SQLITE_ROW)
     {
         int count = sqlite3_column_int(stmt, 0);
+        struct stat metadb;
+        int metadbErr  = stat( Utils::combinePath(Configuration::absolutePath, "meta.db").c_str(), &metadb);
+        time_t metadirTime = timeDir(Utils::combinePath(Configuration::absolutePath, "meta"));
 
-        return (count == 0) ? true : false;
+        return (count == 0 || metadbErr || metadb.st_mtime < metadirTime) ? true : false;
     }
     else
     {
@@ -523,4 +562,171 @@ bool MetadataDatabase::importMamelist(std::string filename, std::string collecti
     sqlite3_exec(handle, "COMMIT TRANSACTION;", NULL, NULL, &error);
 
     return true;
+}
+
+
+bool MetadataDatabase::importTruriplist(std::string truriplistFile)
+{
+    char *error = NULL;
+
+    config_.setProperty("status", "Scraping data from \"" + truriplistFile + "\"");
+    rapidxml::xml_document<> doc;
+    std::ifstream file(truriplistFile.c_str());
+    std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+
+    try
+    {
+        buffer.push_back('\0');
+
+        doc.parse<0>(&buffer[0]);
+
+        rapidxml::xml_node<> *root = doc.first_node("datafile");
+
+        if(!root)
+        {
+            Logger::write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a TruripList file (missing <datafile> tag)");
+            return false;
+        }
+
+        rapidxml::xml_node<> *header = root->first_node("header");
+        if (!header)
+        {
+            Logger::write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a TruripList file (missing <header> tag)");
+            return false;
+        }
+        rapidxml::xml_node<> *name = header->first_node("name");
+        if (!name)
+        {
+            Logger::write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a TruripList SuperDat file (missing <name> in <header> tag)");
+            return false;
+        }
+        std::string collectionName = name->value();
+        std::size_t pos = collectionName.find(" - ");
+        if(pos != std::string::npos)
+        {
+            collectionName = collectionName.substr(0, pos);
+        }
+        sqlite3 *handle = db_.handle;
+        sqlite3_exec(handle, "BEGIN IMMEDIATE TRANSACTION;", NULL, NULL, &error);
+        
+
+        for(rapidxml::xml_node<> *game = root->first_node("game"); game; game = game->next_sibling("game"))
+        {
+            rapidxml::xml_node<> *descriptionXml = game->first_node("description");
+            rapidxml::xml_node<> *truripXml      = game->first_node("trurip");
+            if (!truripXml)
+            {
+                Logger::write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a TruripList SuperDat file (missing <trurip> tag)");
+                return false;
+            }
+            rapidxml::xml_node<> *cloneofXml       = truripXml->first_node("cloneof");
+            rapidxml::xml_node<> *manufacturerXml  = truripXml->first_node("publisher");
+            rapidxml::xml_node<> *developerXml     = truripXml->first_node("developer");
+            rapidxml::xml_node<> *yearXml          = truripXml->first_node("year");
+            rapidxml::xml_node<> *genreXml         = truripXml->first_node("genre");
+            rapidxml::xml_node<> *ratingXml        = truripXml->first_node("ratings");
+            rapidxml::xml_node<> *scoreXml         = truripXml->first_node("score");
+            rapidxml::xml_node<> *numberPlayersXml = truripXml->first_node("players");
+            rapidxml::xml_node<> *enabledXml       = truripXml->first_node("enabled");
+            std::string name          = (descriptionXml) ? descriptionXml->value() : "";
+            std::string description   = (descriptionXml) ? descriptionXml->value() : "";
+            std::string crc           = "";
+            std::string cloneOf       = (cloneofXml) ? cloneofXml->value() : "";
+            std::string manufacturer  = (manufacturerXml) ? manufacturerXml->value() : "";
+            std::string developer     = (developerXml) ? developerXml->value() : "";
+            std::string year          = (yearXml) ? yearXml->value() : "";
+            std::string genre         = (genreXml) ? genreXml->value() : "";
+            std::string rating        = (ratingXml) ? ratingXml->value() : "";
+            std::string score         = (scoreXml) ? scoreXml->value() : "";
+            std::string numberPlayers = (numberPlayersXml) ? numberPlayersXml->value() : "";
+            std::string ctrlType      = "";
+            std::string numberButtons = "";
+            std::string numberJoyWays = "";
+            std::string enabled       = (enabledXml) ? enabledXml->value() : "";
+
+            if(name.length() > 0)
+            {
+                sqlite3_stmt *stmt;
+
+                sqlite3_prepare_v2(handle,
+                                   "INSERT OR REPLACE INTO Meta (name, title, year, manufacturer, developer, genre, players, ctrltype, buttons, joyways, cloneOf, collectionName, rating, score) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                                   -1, &stmt, 0);
+
+                sqlite3_bind_text(stmt,  1, name.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  2, description.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  3, year.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  4, manufacturer.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  5, developer.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  6, genre.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  7, numberPlayers.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  8, ctrlType.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt,  9, numberButtons.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt, 10, numberJoyWays.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt, 11, cloneOf.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt, 12, collectionName.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt, 13, rating.c_str(), -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmt, 14, score.c_str(), -1, SQLITE_TRANSIENT);
+
+                sqlite3_step(stmt);
+                sqlite3_finalize(stmt);
+            }
+        }
+        config_.setProperty("status", "Saving data from \"" + truriplistFile + "\" to database");
+        sqlite3_exec(handle, "COMMIT TRANSACTION;", NULL, NULL, &error);
+
+        return true;
+    }
+    catch(rapidxml::parse_error &e)
+    {
+        std::string what = e.what();
+        long line = static_cast<long>(std::count(&buffer.front(), e.where<char>(), char('\n')) + 1);
+        std::stringstream ss;
+        ss << "Could not parse layout file. [Line: " << line << "] Reason: " << e.what();
+
+        Logger::write(Logger::ZONE_ERROR, "Metadata", ss.str());
+    }
+    catch(std::exception &e)
+    {
+        std::string what = e.what();
+        Logger::write(Logger::ZONE_ERROR, "Metadata", "Could not parse truriplist file. Reason: " + what);
+    }
+
+
+    return false;
+}
+
+
+time_t MetadataDatabase::timeDir( std::string path )
+{
+    time_t lastTime = 0;
+    DIR *dp;
+    struct dirent *dirp;
+
+    dp = opendir( path.c_str( ) );
+
+    while (dp != NULL && (dirp = readdir( dp )) != NULL)
+    {
+        std::string file = dirp->d_name;
+
+        // Check if file is a directory
+        struct stat sb;
+        if (file != "." && file != ".." && stat( Utils::combinePath( path, file ).c_str( ), &sb ) == 0 && S_ISDIR( sb.st_mode ))
+        {
+            time_t tmpTime = timeDir( Utils::combinePath( path, file ) );
+            lastTime = (tmpTime > lastTime) ? tmpTime : lastTime;
+        }
+        else if (file != "." && file != "..")
+        {
+            struct stat filestat;
+            int err = stat( Utils::combinePath( path, file ).c_str( ), &filestat );
+            lastTime = (!err && filestat.st_mtime > lastTime) ? filestat.st_mtime : lastTime;
+        }
+    }
+
+    if (dp != NULL)
+    {
+        closedir( dp );
+    }
+
+    return lastTime;
 }

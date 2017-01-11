@@ -35,10 +35,12 @@ public:
     void injectMetadata(CollectionInfo *collection);
     bool importHyperlist(std::string hyperlistFile, std::string collectionName);
     bool importMamelist(std::string filename, std::string collectionName);
+    bool importTruriplist(std::string filename);
 
 private:
     bool importDirectory();
     bool needsRefresh();
+    time_t timeDir(std::string path);
     Configuration &config_;
     DB &db_;
 };
