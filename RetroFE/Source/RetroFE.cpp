@@ -495,9 +495,18 @@ void RetroFE::run()
         case RETROFE_NEXT_PAGE_MENU_ENTER:
             if(currentPage_->isIdle())
             {
-              state = RETROFE_IDLE;
+                bool collectionInputClear = false;
+                config_.getProperty( "collectionInputClear", collectionInputClear );
+                if( collectionInputClear )
+                {
+                    // Empty event queue
+                    SDL_Event e;
+                    while (SDL_PollEvent(&e));
+                    input_.resetStates();
+                }
+                state = RETROFE_IDLE;
             }
-          break;
+            break;
 
         case RETROFE_LAUNCH_REQUEST:
             nextPageItem_ = currentPage_->getSelectedItem();
@@ -572,6 +581,15 @@ void RetroFE::run()
             if(currentPage_->isIdle())
             {
                 currentPage_->cleanup();
+                bool collectionInputClear = false;
+                config_.getProperty( "collectionInputClear", collectionInputClear );
+                if( collectionInputClear )
+                {
+                    // Empty event queue
+                    SDL_Event e;
+                    while (SDL_PollEvent(&e));
+                    input_.resetStates();
+                }
                 state = RETROFE_IDLE;
             }
             break;
