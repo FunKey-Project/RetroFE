@@ -49,6 +49,12 @@ void AttractMode::update(float dt, Page &page)
     {
         page.setScrolling(Page::ScrollDirectionForward);
 
+        if (page.isMenuIdle())
+        {
+            page.scroll(true);
+            page.updateScrollPeriod();
+        }
+
         if(elapsedTime_ > activeTime_)
         {
             elapsedTime_ = 0;

@@ -678,6 +678,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         input_.update(e);
         if(e.type == SDL_KEYDOWN && !e.key.repeat)
         {
+            attract_.reset();
             break;
         }
     }
