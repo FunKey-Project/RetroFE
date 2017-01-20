@@ -324,7 +324,22 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     // Read ROM directory if showMissing is false
     if (!showMissing || includeFilter.size() == 0)
     {
-        ImportRomDirectory(path, info, includeFilter, excludeFilter, romHierarchy);
+        do
+        {
+             std::string rompath;
+             size_t position = path.find( ";" );
+             if(position != std::string::npos)
+             {
+                 rompath = path.substr(0, position);
+                 path    = path.substr(position+1);
+             }
+             else
+             {
+                 rompath = path;
+                 path    = "";
+             }
+             ImportRomDirectory(rompath, info, includeFilter, excludeFilter, romHierarchy);
+        } while (path != "");
     }
 
     while(includeFilter.size() > 0)
