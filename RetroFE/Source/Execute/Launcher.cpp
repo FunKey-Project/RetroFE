@@ -46,6 +46,17 @@ bool Launcher::run(std::string collection, Item *collectionItem)
     std::string matchedExtension;
     std::string args;
 
+    std::string launcherFile = Utils::combinePath( Configuration::absolutePath, "collections", collectionItem->collectionInfo->name, "launchers", collectionItem->name + ".conf" );
+    std::ifstream launcherStream( launcherFile.c_str( ) );
+    if (launcherStream.good( )) // Launcher file found
+    {
+        std::string line;
+        if (std::getline( launcherStream, line)) // Launcher found
+        {
+            launcherName = line;
+        }
+    }
+
     if(!launcherExecutable(executablePath, launcherName))
     {
         Logger::write(Logger::ZONE_ERROR, "Launcher", "Failed to find launcher executable (launcher: " + launcherName + " executable: " + executablePath + ")");
