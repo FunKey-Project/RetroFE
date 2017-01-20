@@ -187,11 +187,9 @@ bool ImportConfiguration(Configuration *c)
 
             std::string settingsFile = Utils::combinePath(collectionsPath, collection, "settings.conf");
 
-            if(!c->import(collection, prefix, settingsFile))
+            if(!c->import(collection, prefix, settingsFile, false))
             {
-                Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + settingsFile + "\"");
-                closedir(dp);
-                return false;
+                Logger::write(Logger::ZONE_INFO, "RetroFE", "Could not import \"" + settingsFile + "\"");
             }
 
         }
