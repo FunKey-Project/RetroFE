@@ -344,10 +344,20 @@ bool MetadataDatabase::needsRefresh()
     {
         int count = sqlite3_column_int(stmt, 0);
         struct stat metadb;
+        struct stat exe;
         int metadbErr  = stat( Utils::combinePath(Configuration::absolutePath, "meta.db").c_str(), &metadb);
+#ifdef WIN32
+        int exeErr  = stat( Utils::combinePath(Configuration::absolutePath, "core", "RetroFE.exe").c_str(), &exe);
+#else
+        int exeErr  = stat( Utils::combinePath(Configuration::absolutePath, "RetroFE").c_str(), &exe);
+        if (exeErr)
+        {
+            exeErr  = stat( Utils::combinePath(Configuration::absolutePath, "retrofe").c_str(), &exe);
+        }
+#endif
         time_t metadirTime = timeDir(Utils::combinePath(Configuration::absolutePath, "meta"));
 
-        return (count == 0 || metadbErr || metadb.st_mtime < metadirTime) ? true : false;
+        return (count == 0 || metadbErr || metadb.st_mtime < metadirTime || exeErr || metadb.st_mtime < exe.st_mtime) ? true : false;
     }
     else
     {
