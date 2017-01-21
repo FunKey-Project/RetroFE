@@ -55,9 +55,7 @@ private:
     SDL_Texture* texture_;
     gint height_;
     gint width_;
-    char *videoBuffer_;
-    gsize videoBufferSize_;
-    gsize maxVideoBufferSize_;
+    GstBuffer *videoBuffer_;
     bool frameReady_;
     bool isPlaying_;
     static bool initialized_;
