@@ -270,7 +270,7 @@ bool UserInput::update(SDL_Event &e)
     memcpy(lastKeyState_, currentKeyState_, sizeof(lastKeyState_));
     memset(currentKeyState_, 0, sizeof(currentKeyState_));
 
-    for(unsigned int i = 0; i < KeyCodeMax; ++i)
+    for (unsigned int i = 0; i < keyHandlers_.size(); ++i)
     {
         InputHandler *h = keyHandlers_[i].first;
         if(h)
