@@ -499,7 +499,12 @@ bool MetadataDatabase::importMamelist(std::string filename, std::string collecti
         return false;
     }
 
-    sqlite3_exec(handle, "BEGIN IMMEDIATE TRANSACTION;", NULL, NULL, &error);
+    if(sqlite3_exec(handle, "BEGIN IMMEDIATE TRANSACTION;", NULL, NULL, &error) != SQLITE_OK)
+    {
+        std::string emsg = error;
+        Logger::write(Logger::ZONE_ERROR, "Metadata", "SQL Error starting transaction: " + emsg);
+        return false;
+    };
     std::string gameNodeName = "game";
 
     // support new mame formats
@@ -549,7 +554,7 @@ bool MetadataDatabase::importMamelist(std::string filename, std::string collecti
             sqlite3_stmt *stmt;
 
             sqlite3_prepare_v2(handle,
-                               "INSERT OR REPLACE INTO Meta (name, title, year, manufacturer, genre, players, buttons, cloneOf, collectionName) VALUES (?,?,?,?,?,?,?,?,?,?)",
+                               "INSERT OR REPLACE INTO Meta (name, title, year, manufacturer, genre, players, buttons, cloneOf, collectionName) VALUES (?,?,?,?,?,?,?,?,?)",
                                -1, &stmt, 0);
 
 
@@ -563,13 +568,24 @@ bool MetadataDatabase::importMamelist(std::string filename, std::string collecti
             sqlite3_bind_text(stmt, 8, cloneOf.c_str(), -1, SQLITE_TRANSIENT);
             sqlite3_bind_text(stmt, 9, collectionName.c_str(), -1, SQLITE_TRANSIENT);
 
-            sqlite3_step(stmt);
+            if (int code = sqlite3_step(stmt) != SQLITE_DONE)
+            {
+                std::stringstream ss;
+                ss << "Failed to insert machine \"" << name << "\" into database; " << sqlite3_errstr(code) << "; " << sqlite3_errmsg(handle);
+                Logger::write(Logger::ZONE_ERROR, "Metadata", ss.str());
+                sqlite3_finalize(stmt);
+                break;
+            };
             sqlite3_finalize(stmt);
         }
     }
 
     config_.setProperty("status", "Saving data from \"" + filename + "\" to database");
-    sqlite3_exec(handle, "COMMIT TRANSACTION;", NULL, NULL, &error);
+    if (sqlite3_exec(handle, "COMMIT TRANSACTION;", NULL, NULL, &error) != SQLITE_OK)
+    {
+        std::string emsg = error;
+        Logger::write(Logger::ZONE_ERROR, "Metadata", "SQL Error closing transaction: " + emsg);
+    };
 
     return true;
 }
