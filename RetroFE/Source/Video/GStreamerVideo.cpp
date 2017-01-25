@@ -360,15 +360,41 @@ void GStreamerVideo::update(float /* dt */)
             int pitch;
             unsigned int vbytes = width_ * height_;
             vbytes += (vbytes / 2);
-            SDL_LockTexture(texture_, NULL, &pixels, &pitch);
-            gst_buffer_extract(videoBuffer_, 0, pixels, vbytes);
-            SDL_UnlockTexture(texture_);
+            gsize bufSize = gst_buffer_get_size(videoBuffer_);
+
+            if (bufSize == vbytes)
+            {
+                SDL_LockTexture(texture_, NULL, &pixels, &pitch);
+                gst_buffer_extract(videoBuffer_, 0, pixels, vbytes);
+                SDL_UnlockTexture(texture_);
+            }
+            else
+            {
+                GstMapInfo bufInfo;
+                unsigned int y_stride, u_stride, v_stride;
+                const Uint8 *y_plane, *u_plane, *v_plane;
+                std::stringstream ss;
+
+                y_stride = GST_ROUND_UP_4(width_);
+                u_stride = v_stride = GST_ROUND_UP_4(y_stride / 2);
+
+                gst_buffer_map(videoBuffer_, &bufInfo, GST_MAP_READ);
+                y_plane = bufInfo.data;
+                u_plane = y_plane + (height_ * y_stride);
+                v_plane = u_plane + ((height_ / 2) * u_stride);
+                SDL_UpdateYUVTexture(texture_, NULL,
+                                     (const Uint8*)y_plane, y_stride,
+                                     (const Uint8*)u_plane, u_stride,
+                                     (const Uint8*)v_plane, v_stride);
+                gst_buffer_unmap(videoBuffer_, &bufInfo);
+            }
         }
         else
         {
             GstMapInfo y_info, u_info, v_info;
             void *y_plane, *u_plane, *v_plane;
             int y_stride, u_stride, v_stride;
+
             gst_video_meta_map(meta, 0, &y_info, &y_plane, &y_stride, GST_MAP_READ);
             gst_video_meta_map(meta, 1, &u_info, &u_plane, &u_stride, GST_MAP_READ);
             gst_video_meta_map(meta, 2, &v_info, &v_plane, &v_stride, GST_MAP_READ);
