@@ -112,7 +112,13 @@ int main(int argc, char **argv)
 bool ImportConfiguration(Configuration *c)
 {
     std::string configPath =  Configuration::absolutePath;
-    std::string launchersPath =  Utils::combinePath(Configuration::absolutePath, "launchers");
+#ifdef WIN32
+    std::string launchersPath =  Utils::combinePath(Configuration::absolutePath, "launchers.windows");
+#elif __APPLE__
+    std::string launchersPath =  Utils::combinePath(Configuration::absolutePath, "launchers.apple");
+#else
+    std::string launchersPath =  Utils::combinePath(Configuration::absolutePath, "launchers.linux");
+#endif
     std::string collectionsPath =  Utils::combinePath(Configuration::absolutePath, "collections");
     DIR *dp;
     struct dirent *dirp;
@@ -135,8 +141,14 @@ bool ImportConfiguration(Configuration *c)
 
     if(dp == NULL)
     {
-        Logger::write(Logger::ZONE_NOTICE, "RetroFE", "Could not read directory \"" + launchersPath + "\"");
-        return false;
+        Logger::write(Logger::ZONE_INFO, "RetroFE", "Could not read directory \"" + launchersPath + "\"");
+        launchersPath =  Utils::combinePath(Configuration::absolutePath, "launchers");
+        dp = opendir(launchersPath.c_str());
+        if(dp == NULL)
+        {
+            Logger::write(Logger::ZONE_NOTICE, "RetroFE", "Could not read directory \"" + launchersPath + "\"");
+            return false;
+        }
     }
 
     while((dirp = readdir(dp)) != NULL)
