@@ -36,6 +36,14 @@ UserInput::UserInput(Configuration &c)
 
 UserInput::~UserInput()
 {
+    for (unsigned int i = 0; i < keyHandlers_.size(); ++i)
+    {
+        if (keyHandlers_[i].first)
+        {
+            delete keyHandlers_[i].first;
+        }
+    }
+
 // This code causes an exception when a controller is attached; it's disabled to prevent crashes on exit.
 //    for(std::vector<SDL_Joystick *>::iterator it = joysticks_.begin(); it != joysticks_.end(); it++)
 //    {

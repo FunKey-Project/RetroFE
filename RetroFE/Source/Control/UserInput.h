@@ -64,7 +64,7 @@ private:
     bool MapKey(std::string keyDescription, KeyCode_E key, bool required);
     Configuration &config_;
     std::vector<SDL_Joystick *> joysticks_;
-    std::vector<std::pair<InputHandler *, KeyCode_E>> keyHandlers_;
+    std::vector<std::pair<InputHandler *, KeyCode_E> > keyHandlers_;
     bool lastKeyState_[KeyCodeMax]; 
     bool currentKeyState_[KeyCodeMax]; 
 };
