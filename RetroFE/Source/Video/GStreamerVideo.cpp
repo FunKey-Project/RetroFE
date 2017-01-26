@@ -209,7 +209,7 @@ bool GStreamerVideo::play(std::string file)
             videoBin_ = gst_bin_new("SinkBin");
             videoSink_  = gst_element_factory_make("fakesink", "video_sink");
             videoConvert_  = gst_element_factory_make("capsfilter", "video_convert");
-            videoConvertCaps_ = gst_caps_from_string("video/x-raw,format=(string)I420");
+            videoConvertCaps_ = gst_caps_from_string("video/x-raw,format=(string)I420,pixel-aspect-ratio=(fraction)1/1");
             height_ = 0;
             width_ = 0;
             if(!playbin_)
