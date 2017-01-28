@@ -156,9 +156,16 @@ bool ImportConfiguration(Configuration *c)
         if (dirp->d_type != DT_DIR && std::string(dirp->d_name) != "." && std::string(dirp->d_name) != "..")
         {
             std::string basename = dirp->d_name;
+            std::string::size_type dot_position = basename.find_last_of(".");
 
-            std::string extension = basename.substr(basename.find_last_of("."), basename.size()-1);
-            basename = basename.substr(0, basename.find_last_of("."));
+            if (dot_position == std::string::npos)
+            {
+                Logger::write(Logger::ZONE_NOTICE, "RetroFE", "Extension missing on launcher file \"" + basename + "\"");
+                continue;
+            }
+
+            std::string extension = basename.substr(dot_position, basename.size()-1);
+            basename = basename.substr(0, dot_position);
 
             if(extension == ".conf")
             {
