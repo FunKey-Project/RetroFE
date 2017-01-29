@@ -914,6 +914,7 @@ CollectionInfo *RetroFE::getCollection(std::string collectionName)
             }
         }
     }
+    closedir(dp);
 
     bool menuSort = true;
     config_.getProperty("collections." + collectionName + ".list.menuSort", menuSort);

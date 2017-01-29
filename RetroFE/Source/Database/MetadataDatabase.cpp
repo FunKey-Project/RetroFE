@@ -327,12 +327,14 @@ void MetadataDatabase::injectMetadata(CollectionInfo *collection)
         }
         rc = sqlite3_step(stmt);
     }
+    sqlite3_finalize(stmt);
 }
 
 bool MetadataDatabase::needsRefresh()
 {
     sqlite3 *handle = db_.handle;
     sqlite3_stmt *stmt;
+    bool result;
 
     sqlite3_prepare_v2(handle,
                        "SELECT COUNT(*) FROM Meta;",
@@ -357,12 +359,16 @@ bool MetadataDatabase::needsRefresh()
 #endif
         time_t metadirTime = timeDir(Utils::combinePath(Configuration::absolutePath, "meta"));
 
-        return (count == 0 || metadbErr || metadb.st_mtime < metadirTime || exeErr || metadb.st_mtime < exe.st_mtime) ? true : false;
+        result = (count == 0 || metadbErr || metadb.st_mtime < metadirTime || exeErr || metadb.st_mtime < exe.st_mtime) ? true : false;
     }
     else
     {
-        return true;
+        result = true;
     }
+
+    sqlite3_finalize(stmt);
+
+    return result;
 }
 
 bool MetadataDatabase::importHyperlist(std::string hyperlistFile, std::string collectionName)

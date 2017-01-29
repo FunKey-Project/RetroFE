@@ -85,7 +85,7 @@ void Configuration::initialize()
 	if(rootPos!=std::string::npos) 
 		sPath = sPath.erase(rootPos);
 #else
-        char exepath[1024];
+        char exepath[1024] = {};
         sprintf(exepath, "/proc/%d/exe", getpid());
         readlink(exepath, exepath, sizeof(exepath));
         std::string sPath(exepath);

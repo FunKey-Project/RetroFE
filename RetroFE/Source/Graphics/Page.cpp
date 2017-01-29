@@ -523,7 +523,10 @@ bool Page::popCollection()
     playlist_ = info->playlist;
     playlistChange();
 
+    // Remove references to the collection we're about to delete and pop the menu
     menuDepth_--;
+    activeMenu_->collectionName = "";
+    activeMenu_->setItems(NULL);
     activeMenu_ = menus_[menuDepth_ - 1];
 
     for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
