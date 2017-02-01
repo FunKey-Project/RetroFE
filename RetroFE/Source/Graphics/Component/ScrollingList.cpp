@@ -641,6 +641,11 @@ void ScrollingList::updateScrollPeriod()
 void ScrollingList::scroll(bool forward)
 {
 
+    if(items_->size() == 0)
+    {
+        return;
+    }
+
     if(forward)
     {
         Item *i = items_->at(loopIncrement(itemIndex_, scrollPoints_->size(), items_->size()));
