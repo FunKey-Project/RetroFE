@@ -261,6 +261,9 @@ void ScrollingList::letterDown()
 
 void ScrollingList::letterChange(bool increment)
 {
+
+    if(!items_ || items_->size() == 0) return;
+
     std::string startname = items_->at((itemIndex_+selectedOffsetIndex_)%items_->size())->lowercaseFullTitle();
 
     for(unsigned int i = 0; i < items_->size(); ++i)
@@ -641,10 +644,7 @@ void ScrollingList::updateScrollPeriod()
 void ScrollingList::scroll(bool forward)
 {
 
-    if(items_->size() == 0)
-    {
-        return;
-    }
+    if(!items_ || items_->size() == 0) return;
 
     if(forward)
     {
