@@ -121,7 +121,6 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key, bool required)
         return false;
     }
 
-    description = Utils::replace(description, " ", "");
     description = Utils::replace(description, ".", "");
 
     std::istringstream ss(description);
