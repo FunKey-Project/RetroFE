@@ -381,7 +381,7 @@ void ScrollingList::update(float dt)
     Component::update(dt);
 
     if(components_.size() == 0) return;
-    if(!items_ || items_->size() == 0) return;
+    if(!items_) return;
 
     for(unsigned int i = 0; i < scrollPoints_->size(); i++)
     {
