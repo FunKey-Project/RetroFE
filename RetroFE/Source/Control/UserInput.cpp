@@ -130,6 +130,7 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key, bool required)
 
     while (std::getline(ss, token, ','))
     {
+        token = Configuration::trimEnds(token);
         scanCode = SDL_GetScancodeFromName(token.c_str());
 
         bool found = false;

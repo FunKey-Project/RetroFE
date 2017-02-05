@@ -26,6 +26,7 @@ public:
     virtual ~Configuration();
     static void initialize();
     static std::string convertToAbsolutePath(std::string prefix, std::string path);
+    static std::string trimEnds(std::string str);
     // gets the global configuration
     bool import(std::string keyPrefix, std::string file);
     bool import(std::string collection, std::string keyPrefix, std::string file, bool mustExist = true);
@@ -45,7 +46,6 @@ public:
 private:
     bool getRawProperty(std::string key, std::string &value);
     bool parseLine(std::string collection, std::string keyPrefix, std::string line, int lineCount);
-    std::string trimEnds(std::string str);
     typedef std::map<std::string, std::string> PropertiesType;
     typedef std::pair<std::string, std::string> PropertiesPair;
 
