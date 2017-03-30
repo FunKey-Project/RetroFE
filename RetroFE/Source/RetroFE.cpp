@@ -394,6 +394,24 @@ void RetroFE::run()
             }
             break;
 
+        case RETROFE_MENUJUMP_REQUEST:
+            currentPage_->setScrolling(Page::ScrollDirectionIdle);
+            currentPage_->highlightExit();
+            state = RETROFE_MENUJUMP_EXIT;
+            break;
+
+        case RETROFE_MENUJUMP_EXIT:
+            if (currentPage_->isMenuIdle() && processUserInput(currentPage_) == RETROFE_MENUJUMP_REQUEST)
+            {
+                state = RETROFE_MENUJUMP_REQUEST;
+            }
+            if (currentPage_->isIdle())
+            {
+                currentPage_->highlightLoadArt();
+                state = RETROFE_HIGHLIGHT_LOAD_ART;
+            }
+            break;
+
         case RETROFE_HIGHLIGHT_REQUEST:
             currentPage_->setScrolling(Page::ScrollDirectionIdle);
             currentPage_->highlightExit();
@@ -742,25 +760,25 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
             {
                 page->pageScroll(Page::ScrollDirectionBack);
                 page->reallocateMenuSpritePoints();
-                state = RETROFE_HIGHLIGHT_REQUEST;
+                state = RETROFE_MENUJUMP_REQUEST;
             }
             if (input_.keystate(UserInput::KeyCodePageDown))
             {
                 page->pageScroll(Page::ScrollDirectionForward);
                 page->reallocateMenuSpritePoints();
-                state = RETROFE_HIGHLIGHT_REQUEST;
+                state = RETROFE_MENUJUMP_REQUEST;
             }
             if (input_.keystate(UserInput::KeyCodeLetterUp))
             {
                 page->letterScroll(Page::ScrollDirectionBack);
                 page->reallocateMenuSpritePoints();
-                state = RETROFE_HIGHLIGHT_REQUEST;
+                state = RETROFE_MENUJUMP_REQUEST;
             }
             if (input_.keystate(UserInput::KeyCodeLetterDown))
             {
                 page->letterScroll(Page::ScrollDirectionForward);
                 page->reallocateMenuSpritePoints();
-                state = RETROFE_HIGHLIGHT_REQUEST;
+                state = RETROFE_MENUJUMP_REQUEST;
             }
             if(input_.newKeyPressed(UserInput::KeyCodeFavPlaylist))
             {
