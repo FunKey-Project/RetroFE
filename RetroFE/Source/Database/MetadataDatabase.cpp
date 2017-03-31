@@ -228,13 +228,6 @@ void MetadataDatabase::injectMetadata(CollectionInfo *collection)
     int rc;
     sqlite3_stmt *stmt;
 
-    bool showParenthesis = true;
-    bool showSquareBrackets = true;
-
-    (void)config_.getProperty("showParenthesis", showParenthesis);
-    (void)config_.getProperty("showSquareBrackets", showSquareBrackets);
-
-
     // items into a hash to make it easily searchable
     std::vector<Item *> *items = &collection->items;
     std::map<std::string, Item *> itemMap;
@@ -271,40 +264,6 @@ void MetadataDatabase::injectMetadata(CollectionInfo *collection)
         std::string score = (char *)sqlite3_column_text(stmt, 12);
         std::string launcher;
         std::string title = fullTitle;
-
-        //todo: this should be a helper method, peformed both in CollectionInfoBuilder
-        if(!showParenthesis)
-        {
-            std::string::size_type firstPos  = title.find_first_of("(");
-            std::string::size_type secondPos = title.find_first_of(")", firstPos);
-
-            while(firstPos != std::string::npos && secondPos != std::string::npos)
-            {
-                firstPos  = title.find_first_of("(");
-                secondPos = title.find_first_of(")", firstPos);
-
-                if (firstPos != std::string::npos)
-                {
-                    title.erase(firstPos, (secondPos - firstPos) + 1);
-                }
-            }
-        }
-        if(!showSquareBrackets)
-        {
-            std::string::size_type firstPos  = title.find_first_of("[");
-            std::string::size_type secondPos = title.find_first_of("]", firstPos);
-
-            while(firstPos != std::string::npos && secondPos != std::string::npos)
-            {
-                firstPos  = title.find_first_of("[");
-                secondPos = title.find_first_of("]", firstPos);
-
-                if (firstPos != std::string::npos && secondPos != std::string::npos)
-                {
-                    title.erase(firstPos, (secondPos - firstPos) + 1);
-                }
-            }
-        }
 
         std::map<std::string, Item *>::iterator it = itemMap.find(name);
 

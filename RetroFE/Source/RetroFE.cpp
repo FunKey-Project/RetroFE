@@ -948,6 +948,53 @@ CollectionInfo *RetroFE::getCollection(std::string collectionName)
     cib.addPlaylists(collection);
     collection->sortFavoriteItems();
 
+    // Remove parenthesis and brackets, if so configured
+    bool showParenthesis = true;
+    bool showSquareBrackets = true;
+
+    (void)config_.getProperty("showParenthesis", showParenthesis);
+    (void)config_.getProperty("showSquareBrackets", showSquareBrackets);
+
+    typedef std::map<std::string, std::vector <Item *> *> Playlists_T;
+    for(Playlists_T::iterator itP = collection->playlists.begin(); itP != collection->playlists.end(); itP++)
+    {
+        for(std::vector <Item *>::iterator itI = itP->second->begin(); itI != itP->second->end(); itI++)
+        {
+            if(!showParenthesis)
+            {
+                std::string::size_type firstPos  = (*itI)->title.find_first_of("(");
+                std::string::size_type secondPos = (*itI)->title.find_first_of(")", firstPos);
+    
+                while(firstPos != std::string::npos && secondPos != std::string::npos)
+                {
+                    firstPos  = (*itI)->title.find_first_of("(");
+                    secondPos = (*itI)->title.find_first_of(")", firstPos);
+    
+                    if (firstPos != std::string::npos)
+                    {
+                        (*itI)->title.erase(firstPos, (secondPos - firstPos) + 1);
+                    }
+                }
+            }
+            if(!showSquareBrackets)
+            {
+                std::string::size_type firstPos  = (*itI)->title.find_first_of("[");
+                std::string::size_type secondPos = (*itI)->title.find_first_of("]", firstPos);
+    
+                while(firstPos != std::string::npos && secondPos != std::string::npos)
+                {
+                    firstPos  = (*itI)->title.find_first_of("[");
+                    secondPos = (*itI)->title.find_first_of("]", firstPos);
+    
+                    if (firstPos != std::string::npos && secondPos != std::string::npos)
+                    {
+                        (*itI)->title.erase(firstPos, (secondPos - firstPos) + 1);
+                    }
+                }
+            }
+        }
+    }
+
     return collection;
 }
 
