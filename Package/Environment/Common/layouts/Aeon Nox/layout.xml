@@ -973,7 +973,7 @@
 
 
     <!-- Logo Menu -->
-    <menu type="custom" imageType="logo" scrollTime=".35" scrollAcceleration=".04" orientation="horizontal" x="0" width="center" y="910" algorithm="easeincircular">
+    <menu type="custom" imageType="logo" scrollTime=".3" scrollAcceleration=".04" orientation="horizontal" x="0" width="center" y="910" algorithm="easeincircular">
         <itemDefaults alpha="0.2" x="center" y="center" maxWidth="400" height="90" xOrigin="center" yOrigin="center" yOffset="-5" fontSize="144" loadFontSize="144" layer="12"/>
         <item xOffset="-1440" alpha="0"/>
         <item xOffset="-1440">
@@ -1367,7 +1367,7 @@
 
 
     <!-- Selected Title -->
-    <reloadableText type="title" alpha="0" x="center" y="92" maxWidth="500" xOrigin="center" yOrigin="center" fontColor="75c8f7" fontSize="40" loadFontSize="40" layer="10">
+    <reloadableText type="title" alpha="0" x="center" y="92" maxWidth="1500" xOrigin="center" yOrigin="center" fontColor="75c8f7" fontSize="40" loadFontSize="40" layer="10">
         <onExit>
             <set duration=".25">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
@@ -1756,7 +1756,7 @@
 
 
     <!-- Box Menu -->
-    <menu type="custom" imageType="artwork_front" scrollTime=".35" scrollAcceleration=".04" orientation="horizontal" textFallback="true" x="0" font="fonts/Oswald-Regular.ttf" fontSize="20" loadFontSize="20" width="center" y="980" algorithm="easeincircular">
+    <menu type="custom" imageType="artwork_front" scrollTime=".3" scrollAcceleration=".04" orientation="horizontal" textFallback="true" x="0" font="fonts/Oswald-Regular.ttf" fontSize="20" loadFontSize="20" width="center" y="980" algorithm="easeincircular">
         <itemDefaults alpha="1" x="center" y="980" width="270" maxHeight="340" xOrigin="center" yOrigin="bottom" layer="12" fontSize="50" loadFontSize="50" fontColor="ffffff" reflection="bottom" reflectionDistance="2" reflectionScale="1" reflectionAlpha=".2"/>
         <item xOffset="-1150" alpha="0"/>
         <onExit>
@@ -1943,12 +1943,12 @@
                 <animate type="maxHeight" to="445"/>
             </set>
             <set duration=".24">
-                <animate type="alpha" from="0" to=".9" algorithm="easeinquadratic"/>
+                <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="1">
             <set duration=".24">
-                <animate type="alpha" from=".9" to="0" algorithm="easeinquadratic"/>
+                <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
             </set>
             <set duration=".01">
                 <animate type="x"         to="1555"/>
@@ -1959,7 +1959,7 @@
         </onMenuExit>
         <onHighlightEnter menuIndex="1">
             <set duration=".25">
-                <animate type="alpha" to=".9" algorithm="easeinquadratic"/>
+                <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="1">
@@ -1975,7 +1975,7 @@
     <!----------------------------------------------------------------------------------------------------------------------------------->
 
 
-    <reloadableImage type="playlist" mode="common" alpha="0" x="1100" y="430" xOrigin="center" yOrigin="top" maxHeight="40" layer="19">
+    <reloadableImage type="playlist" mode="common" alpha="0" x="1150" y="430" xOrigin="center" yOrigin="top" maxHeight="40" layer="19">
         <onEnter>
             <set duration=".8">
                 <animate type="nop"/>
