@@ -696,7 +696,6 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         input_.update(e);
         if(e.type == SDL_KEYDOWN && !e.key.repeat)
         {
-            attract_.reset();
             break;
         }
     }
@@ -705,12 +704,14 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
     {
         if (input_.keystate(UserInput::KeyCodeLeft))
         {
+            attract_.reset();
             page->setScrolling(Page::ScrollDirectionBack);
             page->scroll(false);
             page->updateScrollPeriod();
         }
         if (input_.keystate(UserInput::KeyCodeRight))
         {
+            attract_.reset();
             page->setScrolling(Page::ScrollDirectionForward);
             page->scroll(true);
             page->updateScrollPeriod();
@@ -720,12 +721,14 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
     {
         if (input_.keystate(UserInput::KeyCodeUp))
         {
+            attract_.reset();
             page->setScrolling(Page::ScrollDirectionBack);
             page->scroll(false);
             page->updateScrollPeriod();
         }
         if (input_.keystate(UserInput::KeyCodeDown))
         {
+            attract_.reset();
             page->setScrolling(Page::ScrollDirectionForward);
             page->scroll(true);
             page->updateScrollPeriod();
@@ -758,55 +761,65 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
 
             if (input_.keystate(UserInput::KeyCodePageUp))
             {
+                attract_.reset();
                 page->pageScroll(Page::ScrollDirectionBack);
                 page->reallocateMenuSpritePoints();
                 state = RETROFE_MENUJUMP_REQUEST;
             }
             if (input_.keystate(UserInput::KeyCodePageDown))
             {
+                attract_.reset();
                 page->pageScroll(Page::ScrollDirectionForward);
                 page->reallocateMenuSpritePoints();
                 state = RETROFE_MENUJUMP_REQUEST;
             }
             if (input_.keystate(UserInput::KeyCodeLetterUp))
             {
+                attract_.reset();
                 page->letterScroll(Page::ScrollDirectionBack);
                 page->reallocateMenuSpritePoints();
                 state = RETROFE_MENUJUMP_REQUEST;
             }
             if (input_.keystate(UserInput::KeyCodeLetterDown))
             {
+                attract_.reset();
                 page->letterScroll(Page::ScrollDirectionForward);
                 page->reallocateMenuSpritePoints();
                 state = RETROFE_MENUJUMP_REQUEST;
             }
             if(input_.newKeyPressed(UserInput::KeyCodeFavPlaylist))
             {
+                attract_.reset();
                 page->favPlaylist();
                 state = RETROFE_PLAYLIST_REQUEST;
             }
             if(input_.newKeyPressed(UserInput::KeyCodeNextPlaylist))
             {
+                attract_.reset();
                 page->nextPlaylist();
                 state = RETROFE_PLAYLIST_REQUEST;
             }
             if(input_.newKeyPressed(UserInput::KeyCodePrevPlaylist))
             {
+                attract_.reset();
                 page->prevPlaylist();
                 state = RETROFE_PLAYLIST_REQUEST;
             }
             if(input_.newKeyPressed(UserInput::KeyCodeRemovePlaylist))
             {
+                attract_.reset();
                 page->removePlaylist();
                 state = RETROFE_PLAYLIST_REQUEST;
             }
             if(input_.newKeyPressed(UserInput::KeyCodeAddPlaylist))
             {
+                attract_.reset();
                 page->addPlaylist();
                 state = RETROFE_PLAYLIST_REQUEST;
             }
             if(input_.keystate(UserInput::KeyCodeRandom))
             {
+                attract_.reset();
                 page->selectRandom();
                 page->reallocateMenuSpritePoints();
                 state = RETROFE_HIGHLIGHT_REQUEST;
@@ -819,6 +832,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         }
         if (input_.keystate(UserInput::KeyCodeSelect))
         {
+            attract_.reset();
             nextPageItem_ = page->getSelectedItem();
 
             if(nextPageItem_)
@@ -836,6 +850,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
 
         if (input_.keystate(UserInput::KeyCodeBack))
         {
+            attract_.reset();
             if(back(exit) || exit)
             {
                 state = (exit) ? RETROFE_QUIT_REQUEST : RETROFE_BACK_REQUEST;
@@ -844,6 +859,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
 
         if (input_.keystate(UserInput::KeyCodeQuit))
         {
+            attract_.reset();
             state = RETROFE_QUIT_REQUEST;
         }
     }
@@ -859,6 +875,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
         page->resetScrollPeriod();
         if (page->isMenuScrolling())
         {
+            attract_.reset();
             state = RETROFE_HIGHLIGHT_REQUEST;
         }
     }
