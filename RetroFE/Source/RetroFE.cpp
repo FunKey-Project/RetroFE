@@ -432,9 +432,12 @@ void RetroFE::run()
             break;
 
         case RETROFE_HIGHLIGHT_ENTER:
-            if (currentPage_->isMenuIdle() && processUserInput(currentPage_) == RETROFE_HIGHLIGHT_REQUEST)
+            RETROFE_STATE state_tmp;
+            if (currentPage_->isMenuIdle() &&
+                ((state_tmp = processUserInput(currentPage_)) == RETROFE_HIGHLIGHT_REQUEST ||
+                  state_tmp                                   == RETROFE_MENUJUMP_REQUEST) )
             {
-                state = RETROFE_HIGHLIGHT_REQUEST;
+                state = state_tmp;
             }
             else if (currentPage_->isIdle())
             {
@@ -870,6 +873,8 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
        !input_.keystate(UserInput::KeyCodeRight) &&
        !input_.keystate(UserInput::KeyCodePageUp) &&
        !input_.keystate(UserInput::KeyCodePageDown) &&
+       !input_.keystate(UserInput::KeyCodeLetterUp) &&
+       !input_.keystate(UserInput::KeyCodeLetterDown) &&
        !attract_.isActive())
     {
         page->resetScrollPeriod();
