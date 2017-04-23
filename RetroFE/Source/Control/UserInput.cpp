@@ -121,8 +121,6 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key, bool required)
         return false;
     }
 
-    description = Utils::replace(description, ".", "");
-
     std::istringstream ss(description);
     std::string token;
 
@@ -131,6 +129,8 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key, bool required)
     while (std::getline(ss, token, ','))
     {
         token = Configuration::trimEnds(token);
+        if (token == "" && description != "") // Allow "," as input key
+            token = ",";
         scanCode = SDL_GetScancodeFromName(token.c_str());
 
         bool found = false;
