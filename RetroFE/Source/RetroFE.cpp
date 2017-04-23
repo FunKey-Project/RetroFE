@@ -343,6 +343,10 @@ void RetroFE::run()
                     {
                         currentPage_->selectPlaylist("favorites"); // Switch to favorites playlist
                     }
+                    else
+                    {
+                        currentPage_->selectPlaylist("all"); // Switch to all games playlist
+                    }
 
                     currentPage_->onNewItemSelected();
                     currentPage_->reallocateMenuSpritePoints();
@@ -487,6 +491,10 @@ void RetroFE::run()
                 {
                   currentPage_->selectPlaylist("favorites"); // Switch to favorites playlist
                 }
+                else
+                {
+                  currentPage_->selectPlaylist("all"); // Switch to all games playlist
+                }
 
                 if(rememberMenu && lastMenuOffsets_.find(nextPageName) != lastMenuOffsets_.end())
                 {
@@ -580,6 +588,10 @@ void RetroFE::run()
                 else if (autoFavorites)
                 {
                   currentPage_->selectPlaylist("favorites"); // Switch to favorites playlist
+                }
+                else
+                {
+                  currentPage_->selectPlaylist("all"); // Switch to all games playlist
                 }
 
                 if(rememberMenu && lastMenuOffsets_.find(currentPage_->getCollectionName()) != lastMenuOffsets_.end())
