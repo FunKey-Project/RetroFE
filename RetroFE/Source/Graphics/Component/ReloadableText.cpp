@@ -178,6 +178,10 @@ void ReloadableText::ReloadTexture()
         {
             text = playlistName;
         }
+        else if (type_ == "firstLetter")
+        {
+          text = selectedItem->fullTitle.at(0);
+        }
         else if (type_ == "collectionName")
         {
             text = page.getCollectionName();

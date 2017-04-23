@@ -280,6 +280,10 @@ void ReloadableMedia::reloadTexture()
         {
             basename = page.getPlaylistName();
         }
+        else if (typeLC == "firstletter")
+        {
+          basename = selectedItem->fullTitle.at(0);
+        }
 
         Utils::replaceSlashesWithUnderscores(basename);
 
