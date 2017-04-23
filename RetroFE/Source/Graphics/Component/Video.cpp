@@ -39,6 +39,15 @@ Video::Video(std::string file, std::string altFile, int numLoops, Page &p, float
     allocateGraphicsMemory( );
 }
 
+void Video::launchEnter()
+{
+    freeGraphicsMemory();
+}
+
+void Video::launchExit()
+{
+    allocateGraphicsMemory();
+}
 
 Video::~Video( )
 {

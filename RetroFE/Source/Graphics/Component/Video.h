@@ -28,6 +28,8 @@ public:
     void update(float dt);
     void freeGraphicsMemory( );
     void allocateGraphicsMemory( );
+    void launchEnter();
+    void launchExit();
     void draw( );
     virtual bool isPlaying( );
 
