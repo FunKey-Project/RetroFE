@@ -600,7 +600,27 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                 {
                     alignment = alignmentXml->value();
                 }
-                c = new ReloadableScrollingText(config_, systemMode, layoutMode, type->value(), textFormat, alignment, *page, selectedOffset, font, scaleX_, scaleY_, direction, scrollingSpeed, startPosition, startTime, endTime);
+                std::string singlePrefix = "";
+                if (singlePrefixXml)
+                {
+                    singlePrefix = singlePrefixXml->value();
+                }
+                std::string singlePostfix = "";
+                if (singlePostfixXml)
+                {
+                    singlePostfix = singlePostfixXml->value();
+                }
+                std::string pluralPrefix = "";
+                if (pluralPrefixXml)
+                {
+                    pluralPrefix = pluralPrefixXml->value();
+                }
+                std::string pluralPostfix = "";
+                if (pluralPostfixXml)
+                {
+                    pluralPostfix = pluralPostfixXml->value();
+                }
+                c = new ReloadableScrollingText(config_, systemMode, layoutMode, type->value(), singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, textFormat, alignment, *page, selectedOffset, font, scaleX_, scaleY_, direction, scrollingSpeed, startPosition, startTime, endTime);
             }
         }
         else

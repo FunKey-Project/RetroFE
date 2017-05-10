@@ -28,7 +28,7 @@
 #include <algorithm>
 
 
-ReloadableScrollingText::ReloadableScrollingText(Configuration &config, bool systemMode, bool layoutMode, std::string type, std::string textFormat, std::string alignment, Page &p, int displayOffset, Font *font, float scaleX, float scaleY, std::string direction, float scrollingSpeed, float startPosition, float startTime, float endTime )
+ReloadableScrollingText::ReloadableScrollingText(Configuration &config, bool systemMode, bool layoutMode, std::string type, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, std::string alignment, Page &p, int displayOffset, Font *font, float scaleX, float scaleY, std::string direction, float scrollingSpeed, float startPosition, float startTime, float endTime )
     : Component(p)
     , config_(config)
     , systemMode_(systemMode)
@@ -36,6 +36,10 @@ ReloadableScrollingText::ReloadableScrollingText(Configuration &config, bool sys
     , fontInst_(font)
     , type_(type)
     , textFormat_(textFormat)
+    , singlePrefix_(singlePrefix)
+    , singlePostfix_(singlePostfix)
+    , pluralPrefix_(pluralPrefix)
+    , pluralPostfix_(pluralPostfix)
     , alignment_(alignment)
     , scaleX_(scaleX)
     , scaleY_(scaleY)
@@ -200,6 +204,159 @@ void ReloadableScrollingText::reloadTexture( )
 
             }
 
+        }
+    }
+
+    // Check for supported fields if text is still empty
+    if (text_.empty( ))
+    {
+        std::stringstream ss;
+        std::string text = "";
+        if (type_ == "numberButtons")
+        {
+            text = selectedItem->numberButtons;
+        }
+        else if (type_ == "numberPlayers")
+        {
+            text = selectedItem->numberPlayers;
+        }
+        else if (type_ == "ctrlType")
+        {
+            text = selectedItem->ctrlType;
+        }
+        else if (type_ == "numberJoyWays")
+        {
+            text = selectedItem->joyWays;
+        }
+        else if (type_ == "rating")
+        {
+            text = selectedItem->rating;
+        }
+        else if (type_ == "score")
+        {
+            text = selectedItem->score;
+        }
+        else if (type_ == "year")
+        {
+            if (selectedItem->leaf) // item is a leaf
+              text = selectedItem->year;
+            else // item is a collection
+              (void)config_.getProperty("collections." + selectedItem->name + ".year", text );
+        }
+        else if (type_ == "title")
+        {
+            text = selectedItem->title;
+        }
+        else if(type_ == "developer")
+        {
+            text = selectedItem->developer;
+            // Overwrite in case developer has not been specified
+            if (text == "")
+            {
+                text = selectedItem->manufacturer;
+            }
+        }
+        else if (type_ == "manufacturer")
+        {
+            if (selectedItem->leaf) // item is a leaf
+              text = selectedItem->manufacturer;
+            else // item is a collection
+              (void)config_.getProperty("collections." + selectedItem->name + ".manufacturer", text );
+        }
+        else if (type_ == "genre")
+        {
+            if (selectedItem->leaf) // item is a leaf
+              text = selectedItem->genre;
+            else // item is a collection
+              (void)config_.getProperty("collections." + selectedItem->name + ".genre", text );
+        }
+        else if (type_ == "playlist")
+        {
+            text = playlistName;
+        }
+        else if (type_ == "firstLetter")
+        {
+          text = selectedItem->fullTitle.at(0);
+        }
+        else if (type_ == "collectionName")
+        {
+            text = page.getCollectionName();
+        }
+        else if (type_ == "collectionSize")
+        {
+            if (page.getCollectionSize() == 0)
+            {
+                ss << singlePrefix_ << page.getCollectionSize() << pluralPostfix_;
+            }
+            else if (page.getCollectionSize() == 1)
+            {
+                ss << singlePrefix_ << page.getCollectionSize() << singlePostfix_;
+            }
+            else
+            {
+                ss << pluralPrefix_ << page.getCollectionSize() << pluralPostfix_;
+            }
+        }
+        else if (type_ == "collectionIndex")
+        {
+            if (page.getSelectedIndex() == 0)
+            {
+                ss << singlePrefix_ << (page.getSelectedIndex()+1) << pluralPostfix_;
+            }
+            else if (page.getSelectedIndex() == 1)
+            {
+                ss << singlePrefix_ << (page.getSelectedIndex()+1) << singlePostfix_;
+            }
+            else
+            {
+                ss << pluralPrefix_ << (page.getSelectedIndex()+1) << pluralPostfix_;
+            }
+        }
+        else if (type_ == "collectionIndexSize")
+        {
+            if (page.getSelectedIndex() == 0)
+            {
+                ss << singlePrefix_ << (page.getSelectedIndex()+1) << "/" << page.getCollectionSize() << pluralPostfix_;
+            }
+            else if (page.getSelectedIndex() == 1)
+            {
+                ss << singlePrefix_ << (page.getSelectedIndex()+1) << "/" << page.getCollectionSize() << singlePostfix_;
+            }
+            else
+            {
+                ss << pluralPrefix_ << (page.getSelectedIndex()+1) << "/" << page.getCollectionSize() << pluralPostfix_;
+            }
+        }
+        else if (!selectedItem->leaf) // item is not a leaf
+        {
+            (void)config_.getProperty("collections." + selectedItem->name + "." + type_, text );
+        }
+
+        if (text == "0")
+        {
+            text = singlePrefix_ + text + pluralPostfix_;
+        }
+        else if (text == "1")
+        {
+            text = singlePrefix_ + text + singlePostfix_;
+        }
+        else if (text != "")
+        {
+            text = pluralPrefix_ + text + pluralPostfix_;
+        }
+
+        if (text != "")
+        {
+            if (textFormat_ == "uppercase")
+            {
+                std::transform(text.begin(), text.end(), text.begin(), ::toupper);
+            }
+            if (textFormat_ == "lowercase")
+            {
+                std::transform(text.begin(), text.end(), text.begin(), ::tolower);
+            }
+            ss << text;
+            text_.push_back(ss.str());
         }
     }
 
