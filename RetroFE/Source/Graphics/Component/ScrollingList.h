@@ -49,6 +49,8 @@ public:
     void triggerExitEvent();
     void triggerMenuEnterEvent(int menuIndex = -1);
     void triggerMenuExitEvent(int menuIndex = -1);
+    void triggerGameEnterEvent(int menuIndex = -1);
+    void triggerGameExitEvent(int menuIndex = -1);
     void triggerHighlightEnterEvent(int menuIndex = -1);
     void triggerHighlightExitEvent(int menuIndex = -1);
 

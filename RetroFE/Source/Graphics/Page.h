@@ -49,6 +49,8 @@ public:
     bool popCollection();
     void enterMenu();
     void exitMenu();
+    void enterGame();
+    void exitGame();
     std::string getPlaylistName();
     void favPlaylist();
     void nextPlaylist();

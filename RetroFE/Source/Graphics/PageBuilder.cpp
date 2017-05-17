@@ -729,6 +729,8 @@ AnimationEvents *PageBuilder::createTweenInstance(xml_node<> *componentXml)
     buildTweenSet(tweens, componentXml, "onHighlightExit", "highlightExit");
     buildTweenSet(tweens, componentXml, "onMenuEnter", "menuEnter");
     buildTweenSet(tweens, componentXml, "onMenuExit", "menuExit");
+    buildTweenSet(tweens, componentXml, "onGameEnter", "gameEnter");
+    buildTweenSet(tweens, componentXml, "onGameExit", "gameExit");
 
     return tweens;
 }

@@ -537,12 +537,28 @@ void RetroFE::run()
             }
             break;
 
+        case RETROFE_LAUNCH_ENTER:
+            currentPage_->enterGame();
+            state = RETROFE_LAUNCH_REQUEST;
+            break;
+
         case RETROFE_LAUNCH_REQUEST:
-            nextPageItem_ = currentPage_->getSelectedItem();
-            launchEnter();
-            l.run(nextPageItem_->collectionInfo->name, nextPageItem_);
-            launchExit();
-            state = RETROFE_IDLE;
+            if(currentPage_->isIdle())
+            {
+                nextPageItem_ = currentPage_->getSelectedItem();
+                launchEnter();
+                l.run(nextPageItem_->collectionInfo->name, nextPageItem_);
+                launchExit();
+                currentPage_->exitGame();
+                state = RETROFE_LAUNCH_EXIT;
+            }
+            break;
+
+        case RETROFE_LAUNCH_EXIT:
+            if(currentPage_->isIdle())
+            {
+                state = RETROFE_IDLE;
+            }
             break;
 
         case RETROFE_BACK_REQUEST:
@@ -854,7 +870,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput(Page *page)
             {
                 if(nextPageItem_->leaf)
                 {
-                    state = RETROFE_LAUNCH_REQUEST;
+                    state = RETROFE_LAUNCH_ENTER;
                 }
                 else
                 {

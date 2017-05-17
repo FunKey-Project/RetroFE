@@ -350,6 +350,24 @@ void ScrollingList::triggerMenuExitEvent( int menuIndex )
     }
 }
 
+void ScrollingList::triggerGameEnterEvent( int menuIndex )
+{
+    for(unsigned int i = 0; i < components_.size(); ++i)
+    {
+        Component *c = components_.at(i);
+        if(c) c->triggerEvent( "gameEnter", menuIndex );
+    }
+}
+
+void ScrollingList::triggerGameExitEvent( int menuIndex )
+{
+    for(unsigned int i = 0; i < components_.size(); ++i)
+    {
+        Component *c = components_.at(i);
+        if(c) c->triggerEvent( "gameExit", menuIndex );
+    }
+}
+
 void ScrollingList::triggerHighlightEnterEvent( int menuIndex )
 {
     for(unsigned int i = 0; i < components_.size(); ++i)

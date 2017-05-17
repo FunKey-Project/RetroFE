@@ -573,6 +573,44 @@ void Page::exitMenu()
 }
 
 
+void Page::enterGame()
+{
+
+    for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
+    {
+        ScrollingList *menu = *it;
+        menu->triggerEvent( "gameEnter", menuDepth_ - 1 );
+        menu->triggerGameEnterEvent( menuDepth_ - 1 );
+    }
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        (*it)->triggerEvent( "gameEnter", menuDepth_ - 1 );
+    }
+
+    return;
+}
+
+
+void Page::exitGame()
+{
+
+    for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
+    {
+        ScrollingList *menu = *it;
+        menu->triggerEvent( "gameExit" );
+        menu->triggerGameExitEvent( menuDepth_ - 1 );
+    }
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        (*it)->triggerEvent( "gameExit", menuDepth_ - 1 );
+    }
+
+    return;
+}
+
+
 std::string Page::getPlaylistName()
 {
    return playlist_->first;
