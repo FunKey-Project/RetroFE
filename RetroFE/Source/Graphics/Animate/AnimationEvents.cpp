@@ -89,7 +89,3 @@ void AnimationEvents::clear()
 
     animationMap_.clear();
 }
-
-
-
-

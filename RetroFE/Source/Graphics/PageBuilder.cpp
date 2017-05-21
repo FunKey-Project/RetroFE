@@ -740,11 +740,72 @@ void PageBuilder::buildTweenSet(AnimationEvents *tweens, xml_node<> *componentXm
     for(componentXml = componentXml->first_node(tagName.c_str()); componentXml; componentXml = componentXml->next_sibling(tagName.c_str()))
     {
         xml_attribute<> *indexXml = componentXml->first_attribute("menuIndex");
-        int index = (indexXml) ? Utils::convertInt(indexXml->value()) : -1;
 
-        Animation *animation = new Animation();
-        getTweenSet(componentXml, animation);
-        tweens->setAnimation(tweenName, index, animation);
+        if(indexXml)
+        {
+            std::string indexs = indexXml->value();
+            if(indexs[0] == '!')
+            {
+                indexs.erase(0);
+                int index = Utils::convertInt(indexXml->value());
+                for(int i = 0; i < MENU_INDEX_HIGH-1; i++)
+                {
+                    if(i != index)
+                    {
+                        Animation *animation = new Animation();
+                        getTweenSet(componentXml, animation);
+                        tweens->setAnimation(tweenName, i, animation);
+                    }
+                }
+            }
+            else if(indexs[0] == '<')
+            {
+                indexs.erase(0);
+                int index = Utils::convertInt(indexXml->value());
+                for(int i = 0; i < MENU_INDEX_HIGH-1; i++)
+                {
+                    if(i < index)
+                    {
+                        Animation *animation = new Animation();
+                        getTweenSet(componentXml, animation);
+                        tweens->setAnimation(tweenName, i, animation);
+                    }
+                }
+            }
+            else if(indexs[0] == '>')
+            {
+                indexs.erase(0);
+                int index = Utils::convertInt(indexXml->value());
+                for(int i = 0; i < MENU_INDEX_HIGH-1; i++)
+                {
+                    if(i > index)
+                    {
+                        Animation *animation = new Animation();
+                        getTweenSet(componentXml, animation);
+                        tweens->setAnimation(tweenName, i, animation);
+                    }
+                }
+            }
+            else if(indexs[0] == 'i')
+            {
+                Animation *animation = new Animation();
+                getTweenSet(componentXml, animation);
+                tweens->setAnimation(tweenName, MENU_INDEX_HIGH, animation);
+            }
+            else
+            {
+                int index = Utils::convertInt(indexXml->value());
+                Animation *animation = new Animation();
+                getTweenSet(componentXml, animation);
+                tweens->setAnimation(tweenName, index, animation);
+            }
+        }
+        else
+        {
+            Animation *animation = new Animation();
+            getTweenSet(componentXml, animation);
+            tweens->setAnimation(tweenName, -1, animation);
+        }
     }
 }
 

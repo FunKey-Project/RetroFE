@@ -18,6 +18,7 @@
 #include "../../Graphics/ViewInfo.h"
 #include "../../Utility/Log.h"
 #include "../../SDL.h"
+#include "../PageBuilder.h"
 
 Component::Component(Page &p)
 : page(p)
@@ -127,7 +128,23 @@ void Component::update(float dt)
 
     if(animationRequested_ && animationRequestedType_ != "")
     {
-      Animation *newTweens  = tweens_->getAnimation( animationRequestedType_, menuIndex_ );
+      Animation *newTweens;
+      // Check if this component is part of an active scrolling list
+      if(menuIndex_ >= MENU_INDEX_HIGH)
+      {
+          // Check for animation at index i
+          newTweens = tweens_->getAnimation( animationRequestedType_, MENU_INDEX_HIGH );
+          if(!(newTweens && newTweens->size() > 0))
+          {
+              // Check for animation at the current menuIndex
+              newTweens = tweens_->getAnimation( animationRequestedType_, menuIndex_ - MENU_INDEX_HIGH);
+          }
+      }
+      else
+      {
+          // Check for animation at the current menuIndex
+          newTweens = tweens_->getAnimation( animationRequestedType_, menuIndex_ );
+      }
       if (newTweens && newTweens->size() > 0)
       {
         animationType_        = animationRequestedType_;

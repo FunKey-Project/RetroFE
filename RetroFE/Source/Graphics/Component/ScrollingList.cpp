@@ -72,6 +72,7 @@ ScrollingList::ScrollingList(Configuration &c,
 ScrollingList::ScrollingList(const ScrollingList &copy)
     : Component(copy)
     , horizontalScroll(copy.horizontalScroll)
+    , layoutMode_(copy.layoutMode_)
     , spriteList_(NULL)
     , itemIndex_(0)
     , componentIndex_(0)

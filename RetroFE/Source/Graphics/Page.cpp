@@ -23,6 +23,7 @@
 #include "Component/ScrollingList.h"
 #include "../Sound/Sound.h"
 #include "ComponentItemBindingBuilder.h"
+#include "PageBuilder.h"
 #include <algorithm>
 #include <sstream>
 
@@ -358,8 +359,17 @@ void Page::highlightEnter()
     for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
         ScrollingList *menu = *it;
-        menu->triggerEvent( "highlightEnter", menuDepth_ - 1 );
-        menu->triggerHighlightEnterEvent( menuDepth_ - 1 );
+        if(menus_[menuDepth_-1] == menu)
+        {
+            // Also trigger animations for index i for active menu
+            menu->triggerEvent( "highlightEnter", MENU_INDEX_HIGH + menuDepth_ - 1 );
+            menu->triggerHighlightEnterEvent( MENU_INDEX_HIGH + menuDepth_ - 1 );
+        }
+        else
+        {
+            menu->triggerEvent( "highlightEnter", menuDepth_ - 1 );
+            menu->triggerHighlightEnterEvent( menuDepth_ - 1 );
+        }
     }
 
     for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
@@ -377,8 +387,17 @@ void Page::highlightExit()
     for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
         ScrollingList *menu = *it;
-        menu->triggerEvent( "highlightExit", menuDepth_ - 1 );
-        menu->triggerHighlightExitEvent( menuDepth_ - 1 );
+        if(menus_[menuDepth_-1] == menu)
+        {
+            // Also trigger animations for index i for active menu
+            menu->triggerEvent( "highlightExit", MENU_INDEX_HIGH + menuDepth_ - 1 );
+            menu->triggerHighlightExitEvent( MENU_INDEX_HIGH + menuDepth_ - 1 );
+        }
+        else
+        {
+            menu->triggerEvent( "highlightExit", menuDepth_ - 1 );
+            menu->triggerHighlightExitEvent( menuDepth_ - 1 );
+        }
     }
 
     for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
@@ -471,7 +490,7 @@ bool Page::pushCollection(CollectionInfo *collection)
 {
 
     // grow the menu as needed
-    if(menus_.size() >= menuDepth_ && activeMenu_)
+    if(menus_.size() <= menuDepth_ && activeMenu_)
     {
         activeMenu_ = new ScrollingList(*activeMenu_);
         pushMenu(activeMenu_);
@@ -541,8 +560,17 @@ void Page::enterMenu()
     for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
         ScrollingList *menu = *it;
-        menu->triggerEvent( "menuEnter", menuDepth_ - 1 );
-        menu->triggerMenuEnterEvent( menuDepth_ - 1 );
+        if(menus_[menuDepth_-1] == menu)
+        {
+            // Also trigger animations for index i for active menu
+            menu->triggerEvent( "menuEnter", MENU_INDEX_HIGH + menuDepth_ - 1 );
+            menu->triggerMenuEnterEvent( MENU_INDEX_HIGH + menuDepth_ - 1 );
+        }
+        else
+        {
+            menu->triggerEvent( "menuEnter", menuDepth_ - 1 );
+            menu->triggerMenuEnterEvent( menuDepth_ - 1 );
+        }
     }
 
     for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
@@ -560,8 +588,17 @@ void Page::exitMenu()
     for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
         ScrollingList *menu = *it;
-        menu->triggerEvent( "menuExit" );
-        menu->triggerMenuExitEvent( menuDepth_ - 1 );
+        if(menus_[menuDepth_-1] == menu)
+        {
+            // Also trigger animations for index i for active menu
+            menu->triggerEvent( "menuExit", MENU_INDEX_HIGH + menuDepth_ - 1 );
+            menu->triggerMenuExitEvent( MENU_INDEX_HIGH + menuDepth_ - 1 );
+        }
+        else
+        {
+            menu->triggerEvent( "menuExit", menuDepth_ - 1 );
+            menu->triggerMenuExitEvent( menuDepth_ - 1 );
+        }
     }
 
     for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
@@ -579,8 +616,17 @@ void Page::enterGame()
     for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
         ScrollingList *menu = *it;
-        menu->triggerEvent( "gameEnter", menuDepth_ - 1 );
-        menu->triggerGameEnterEvent( menuDepth_ - 1 );
+        if(menus_[menuDepth_-1] == menu)
+        {
+            // Also trigger animations for index i for active menu
+            menu->triggerEvent( "gameEnter", MENU_INDEX_HIGH + menuDepth_ - 1 );
+            menu->triggerGameEnterEvent( MENU_INDEX_HIGH + menuDepth_ - 1 );
+        }
+        else
+        {
+            menu->triggerEvent( "gameEnter", menuDepth_ - 1 );
+            menu->triggerGameEnterEvent( menuDepth_ - 1 );
+        }
     }
 
     for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
@@ -598,8 +644,17 @@ void Page::exitGame()
     for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
         ScrollingList *menu = *it;
-        menu->triggerEvent( "gameExit" );
-        menu->triggerGameExitEvent( menuDepth_ - 1 );
+        if(menus_[menuDepth_-1] == menu)
+        {
+            // Also trigger animations for index i for active menu
+            menu->triggerEvent( "gameExit", MENU_INDEX_HIGH + menuDepth_ - 1 );
+            menu->triggerGameExitEvent( MENU_INDEX_HIGH + menuDepth_ - 1 );
+        }
+        else
+        {
+            menu->triggerEvent( "gameExit", menuDepth_ - 1 );
+            menu->triggerGameExitEvent( menuDepth_ - 1 );
+        }
     }
 
     for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)

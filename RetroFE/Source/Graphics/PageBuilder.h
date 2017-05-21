@@ -22,6 +22,8 @@
 #include <rapidxml.hpp>
 #include <vector>
 
+static const int MENU_INDEX_HIGH = 16;
+
 class ScrollingList;
 class Page;
 class ViewInfo;
