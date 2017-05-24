@@ -334,7 +334,9 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
     for(xml_node<> *componentXml = layout->first_node("menu"); componentXml; componentXml = componentXml->next_sibling("menu"))
     {
         ScrollingList *scrollingList = buildMenu(componentXml,*page);
-        page->pushMenu(scrollingList);
+        xml_attribute<> *indexXml = componentXml->first_attribute("menuIndex");
+        int index = indexXml ? Utils::convertInt(indexXml->value()) : -1;
+        page->pushMenu(scrollingList, index);
     }
 
     for(xml_node<> *componentXml = layout->first_node("container"); componentXml; componentXml = componentXml->next_sibling("container"))

@@ -416,6 +416,13 @@ unsigned int ScrollingList::getSelectedIndex()
     return loopIncrement(itemIndex_, selectedOffsetIndex_, items_->size());
 }
 
+void ScrollingList::setSelectedIndex(unsigned int index)
+{
+     if(!items_) return;
+     itemIndex_ = loopDecrement(index, selectedOffsetIndex_, items_->size());
+}
+
+
 unsigned int ScrollingList::getSize()
 {
     if(!items_) return 0;

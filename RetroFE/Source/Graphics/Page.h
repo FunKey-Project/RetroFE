@@ -56,7 +56,7 @@ public:
     void nextPlaylist();
     void prevPlaylist();
     void selectPlaylist(std::string playlist);
-    void pushMenu(ScrollingList *s);
+    void pushMenu(ScrollingList *s, int index = -1);
     bool isMenusFull();
     void setLoadSound(Sound *chunk);
     void setUnloadSound(Sound *chunk);
@@ -112,15 +112,14 @@ private:
     struct MenuInfo_S
     {
         CollectionInfo *collection;
-        ScrollingList *menu;
         CollectionInfo::Playlists_T::iterator playlist; 
         bool queueDelete;
     };
 
-    typedef std::vector<ScrollingList *> MenuVector_T;
+    typedef std::vector< std::vector<ScrollingList *> > MenuVector_T;
     typedef std::list<MenuInfo_S> CollectionVector_T;
 
-    ScrollingList *activeMenu_;
+    std::vector<ScrollingList *> activeMenu_;
     unsigned int menuDepth_;
     MenuVector_T menus_;
     CollectionVector_T collections_;
