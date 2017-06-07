@@ -159,7 +159,7 @@ bool MetadataDatabase::importDirectory()
 
     if(dp == NULL)
     {
-        Logger::write(Logger::ZONE_ERROR, "CollectionInfoBuilder", "Could not read directory \"" + mameListPath + "\"");
+        Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Could not read directory \"" + mameListPath + "\"");
     }
     else
     {

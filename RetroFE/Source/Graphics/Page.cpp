@@ -1149,8 +1149,11 @@ void Page::scroll(bool forward)
         if(menu)
         {
             menu->scroll(forward);
-            highlightSoundChunk_->play();
         }
+    }
+    if(highlightSoundChunk_)
+    {
+        highlightSoundChunk_->play();
     }
     return;
 }
