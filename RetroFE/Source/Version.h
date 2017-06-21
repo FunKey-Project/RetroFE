@@ -15,10 +15,12 @@
  */
 #pragma once
 
+
 #include <string>
+
 
 class Version
 {
 public:
-    static std::string getString();
+    static std::string getString( );
 };

@@ -32,9 +32,9 @@ public:
         SDL_Rect rect;
     };
 
-    Font();
+    Font(std::string fontPath, int fontSize, SDL_Color color);
     virtual ~Font();
-    bool initialize(std::string fontPath, int fontSize, SDL_Color color);
+    bool initialize();
     void deInitialize();
     SDL_Texture *getTexture();
     bool getRect(unsigned int charCode, GlyphInfo &glyph);
@@ -52,4 +52,7 @@ private:
     int height;
     int ascent;
     std::map<unsigned int, GlyphInfoBuild *> atlas;
+    std::string fontPath_;
+    int fontSize_;
+    SDL_Color color_;
 };

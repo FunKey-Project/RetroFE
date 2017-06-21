@@ -38,12 +38,14 @@ Text::~Text()
 void Text::freeGraphicsMemory()
 {
     Component::freeGraphicsMemory();
+    fontInst_->deInitialize();
 }
 
 void Text::allocateGraphicsMemory()
 {
     //todo: make the font blend color a parameter that is passed in
     Component::allocateGraphicsMemory();
+    fontInst_->initialize();
 }
 
 void Text::setText(std::string text)

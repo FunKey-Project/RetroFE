@@ -31,8 +31,6 @@ public:
     virtual ~Component();
     virtual void freeGraphicsMemory();
     virtual void allocateGraphicsMemory();
-    virtual void launchEnter() {}
-    virtual void launchExit() {}
     void triggerEvent(std::string event, int menuIndex = -1);
     void setPlaylist(std::string name );
     void setNewItemSelected();

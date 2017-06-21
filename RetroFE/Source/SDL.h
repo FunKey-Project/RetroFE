@@ -14,42 +14,45 @@
  * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
 #pragma once
+
+
 #include <SDL2/SDL.h>
 #include <string>
 #include "Graphics/ViewInfo.h"
 
-// todo: this wrapper could be cleaned up
+
 class Configuration;
+
 
 class SDL
 {
 public:
-    static bool initialize(Configuration &config);
-    static bool deInitialize();
-    static SDL_Renderer *getRenderer();
-    static SDL_mutex *getMutex();
-    static SDL_Window *getWindow();
-    static bool renderCopy(SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo);
-    static int getWindowWidth()
+    static bool initialize( Configuration &config );
+    static bool deInitialize( );
+    static SDL_Renderer *getRenderer( );
+    static SDL_mutex *getMutex( );
+    static SDL_Window *getWindow( );
+    static bool renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo );
+    static int getWindowWidth( )
     {
         return windowWidth_;
     }
-    static int getWindowHeight()
+    static int getWindowHeight( )
     {
         return windowHeight_;
     }
-    static bool isFullscreen()
+    static bool isFullscreen( )
     {
         return fullscreen_;
     }
 
 private:
-    static SDL_Window *window_;
+    static SDL_Window   *window_;
     static SDL_Renderer *renderer_;
-    static SDL_mutex *mutex_;
-    static int displayWidth_;
-    static int displayHeight_;
-    static int windowWidth_;
-    static int windowHeight_;
-    static bool fullscreen_;
+    static SDL_mutex    *mutex_;
+    static int           displayWidth_;
+    static int           displayHeight_;
+    static int           windowWidth_;
+    static int           windowHeight_;
+    static bool          fullscreen_;
 };

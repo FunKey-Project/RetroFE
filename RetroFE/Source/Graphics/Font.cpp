@@ -21,8 +21,11 @@
 #include <cstdio>
 #include <cstring>
 
-Font::Font()
+Font::Font(std::string fontPath, int fontSize, SDL_Color color)
     : texture(NULL)
+    , fontPath_(fontPath)
+    , fontSize_(fontSize)
+    , color_(color)
 {
 }
 
@@ -60,9 +63,9 @@ bool Font::getRect(unsigned int charCode, GlyphInfo &glyph)
     return false;
 }
 
-bool Font::initialize(std::string fontPath, int fontSize, SDL_Color color)
+bool Font::initialize()
 {
-    TTF_Font *font = TTF_OpenFont(fontPath.c_str(), fontSize);
+    TTF_Font *font = TTF_OpenFont(fontPath_.c_str(), fontSize_);
 
     if (!font)
     {
@@ -84,8 +87,8 @@ bool Font::initialize(std::string fontPath, int fontSize, SDL_Color color)
         GlyphInfoBuild *info = new GlyphInfoBuild;
         memset(info, 0, sizeof(GlyphInfoBuild));
 
-        color.a = 255;
-        info->surface = TTF_RenderGlyph_Blended(font, i, color);
+        color_.a = 255;
+        info->surface = TTF_RenderGlyph_Blended(font, i, color_);
         TTF_GlyphMetrics(font, i,
         		&info->glyph.minX, &info->glyph.maxX,
         		&info->glyph.minY, &info->glyph.maxY,

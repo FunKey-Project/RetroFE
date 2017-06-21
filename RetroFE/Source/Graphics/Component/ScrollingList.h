@@ -74,6 +74,7 @@ public:
     void setSelectedIndex(int selectedIndex);
     Item *getItemByOffset(int offset);
     Item *getSelectedItem();
+    void allocateGraphicsMemory();
     void freeGraphicsMemory();
     void update(float dt);
     void draw();

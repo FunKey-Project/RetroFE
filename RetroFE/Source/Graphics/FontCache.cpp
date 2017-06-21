@@ -81,8 +81,8 @@ bool FontCache::loadFont(std::string fontPath, int fontSize, SDL_Color color)
 
     if(it == fontFaceMap_.end())
     {
-        Font *f = new Font();
-        f->initialize(fontPath, fontSize, color);
+        Font *f = new Font(fontPath, fontSize, color);
+        f->initialize();
         fontFaceMap_[key] = f;
     }
 

@@ -82,14 +82,6 @@ void VideoComponent::freeGraphicsMemory()
     Component::freeGraphicsMemory();
 }
 
-void VideoComponent::launchEnter()
-{
-    freeGraphicsMemory();
-}
-void VideoComponent::launchExit()
-{
-    allocateGraphicsMemory();
-}
 
 void VideoComponent::draw()
 {

@@ -53,8 +53,6 @@ void Image::allocateGraphicsMemory()
     int width;
     int height;
 
-    Component::allocateGraphicsMemory();
-
     if(!texture_)
     {
         SDL_LockMutex(SDL::getMutex());
@@ -74,7 +72,11 @@ void Image::allocateGraphicsMemory()
         SDL_UnlockMutex(SDL::getMutex());
 
     }
+
+    Component::allocateGraphicsMemory();
+
 }
+
 
 void Image::draw()
 {

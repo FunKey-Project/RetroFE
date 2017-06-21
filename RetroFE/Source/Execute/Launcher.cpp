@@ -30,9 +30,8 @@
 #include <cstring>
 #endif
 
-Launcher::Launcher(RetroFE &p, Configuration &c)
+Launcher::Launcher(Configuration &c)
     : config_(c)
-    , retrofe_(p)
 {
 }
 
@@ -153,9 +152,6 @@ bool Launcher::execute(std::string executable, std::string args, std::string cur
     Logger::write(Logger::ZONE_INFO, "Launcher", "Attempting to launch: " + executionString);
     Logger::write(Logger::ZONE_INFO, "Launcher", "     from within folder: " + currentDirectory);
 
-    //todo: use delegation instead of depending on knowing the RetroFE class (tie to an interface)
-    retrofe_.launchEnter();
-
 #ifdef WIN32
     STARTUPINFO startupInfo;
     PROCESS_INFORMATION processInfo;
@@ -205,7 +201,6 @@ bool Launcher::execute(std::string executable, std::string args, std::string cur
     }
 
     Logger::write(Logger::ZONE_INFO, "Launcher", "Completed");
-    retrofe_.launchExit();
 
     return retVal;
 }

@@ -14,16 +14,17 @@
  * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 #include "Version.h"
 #include <string>
 
 
 std::string retrofe_version_major = "0";
 std::string retrofe_version_minor = "8";
-std::string retrofe_version_build = "7";
+std::string retrofe_version_build = "8";
 
 
-std::string Version::getString()
+std::string Version::getString( )
 {
     std::string return_string = retrofe_version_major + "." + retrofe_version_minor + "." + retrofe_version_build;
     return return_string;

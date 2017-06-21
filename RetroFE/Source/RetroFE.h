@@ -15,6 +15,7 @@
  */
 #pragma once
 
+
 #include "Collection/Item.h"
 #include "Control/UserInput.h"
 #include "Database/DB.h"
@@ -28,26 +29,30 @@
 #include <stack>
 #include <map>
 
+
 class CollectionInfo;
 class Configuration;
 class Page;
 
+
 class RetroFE
 {
+
 public:
-    RetroFE(Configuration &c);
-    virtual ~RetroFE();
-    bool deInitialize();
-    void run();
-    void freeGraphicsMemory();
-    void allocateGraphicsMemory();
-    void launchEnter();
-    void launchExit();
+    RetroFE( Configuration &c );
+    virtual ~RetroFE( );
+    bool     deInitialize( );
+    void     run( );
+    void     freeGraphicsMemory( );
+    void     allocateGraphicsMemory( );
+    void     launchEnter( );
+    void     launchExit( );
+
 private:
     volatile bool initialized;
     volatile bool initializeError;
-    SDL_Thread *initializeThread;
-    static int initialize(void *context);
+    SDL_Thread   *initializeThread;
+    static int    initialize( void *context );
 
     enum RETROFE_STATE
     {
@@ -65,7 +70,6 @@ private:
         RETROFE_HIGHLIGHT_EXIT,
         RETROFE_HIGHLIGHT_LOAD_ART,
         RETROFE_HIGHLIGHT_ENTER,
-        RETROFE_HIGHLIGHT_MENU_IDLE,
         RETROFE_NEXT_PAGE_REQUEST,
         RETROFE_NEXT_PAGE_MENU_EXIT,
         RETROFE_NEXT_PAGE_MENU_LOAD_ART,
@@ -82,30 +86,31 @@ private:
         RETROFE_QUIT,
     };
 
-    void render();
-    bool back(bool &exit);
-    void quit();
-    Page *loadPage();
-    Page *loadSplashPage();
-    RETROFE_STATE processUserInput(Page *page);
-    void update(float dt, bool scrollActive);
-    std::string getLayout(std::string collectionName);
-    CollectionInfo *getCollection(std::string collectionName);
-    Configuration &config_;
-    DB *db_;
-    MetadataDatabase *metadb_;
-    UserInput input_;
-    Page *currentPage_;
+    void            render( );
+    bool            back( bool &exit );
+    void            quit( );
+    Page           *loadPage( );
+    Page           *loadSplashPage( );
+    RETROFE_STATE   processUserInput( Page *page );
+    void            update( float dt, bool scrollActive );
+    CollectionInfo *getCollection( std::string collectionName );
+
+    Configuration     &config_;
+    DB                *db_;
+    MetadataDatabase  *metadb_;
+    UserInput          input_;
+    Page              *currentPage_;
     std::stack<Page *> pages_;
-    float keyInputDisable_;
-    float currentTime_;
-    float lastLaunchReturnTime_;
-    float keyLastTime_;
-    float keyDelayTime_;
-    Item *nextPageItem_;
-    FontCache fontcache_;
-    AttractMode attract_;
+    float              keyInputDisable_;
+    float              currentTime_;
+    float              lastLaunchReturnTime_;
+    float              keyLastTime_;
+    float              keyDelayTime_;
+    Item              *nextPageItem_;
+    FontCache          fontcache_;
+    AttractMode        attract_;
+
     std::map<std::string, unsigned int> lastMenuOffsets_;
-    std::map<std::string, std::string> lastMenuPlaylists_;
+    std::map<std::string, std::string>  lastMenuPlaylists_;
 
 };

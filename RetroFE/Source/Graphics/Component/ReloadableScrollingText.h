@@ -28,8 +28,8 @@ public:
     virtual ~ReloadableScrollingText( );
     void     update(float dt);
     void     draw( );
+    void     allocateGraphicsMemory( );
     void     freeGraphicsMemory( );
-    void     launchExit();
 
 private:
     void reloadTexture( );

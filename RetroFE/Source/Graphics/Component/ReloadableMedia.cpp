@@ -99,21 +99,6 @@ void ReloadableMedia::allocateGraphicsMemory()
     Component::allocateGraphicsMemory();
 }
 
-void ReloadableMedia::launchEnter()
-{
-    if(loadedComponent_)
-    {
-        loadedComponent_->launchEnter();
-    }
-}
-
-void ReloadableMedia::launchExit()
-{
-    if(loadedComponent_)
-    {
-        loadedComponent_->launchExit();
-    }
-}
 
 void ReloadableMedia::freeGraphicsMemory()
 {

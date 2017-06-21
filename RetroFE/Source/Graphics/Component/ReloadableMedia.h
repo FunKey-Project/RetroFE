@@ -33,8 +33,6 @@ public:
     void draw();
     void freeGraphicsMemory();
     void allocateGraphicsMemory();
-    void launchEnter();
-    void launchExit();
     Component *findComponent(std::string collection, std::string type, std::string basename, bool systemMode);
 
     void enableTextFallback_(bool value);

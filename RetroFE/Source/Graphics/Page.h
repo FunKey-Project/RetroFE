@@ -42,7 +42,7 @@ public:
 
     Page(Configuration &c);
     virtual ~Page();
-    void DeInitialize();
+    void deInitialize();
     virtual void onNewItemSelected();
     void highlightLoadArt();
     bool pushCollection(CollectionInfo *collection);
@@ -88,7 +88,6 @@ public:
     void freeGraphicsMemory();
     void allocateGraphicsMemory();
     void launchEnter();
-    void launchExit();
     std::string getCollectionName();
     void setMinShowTime(float value);
     float getMinShowTime();

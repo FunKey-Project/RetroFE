@@ -140,8 +140,6 @@ void ScrollingList::deallocateSpritePoints()
     {
         deallocateTexture(i);
     }
-
-    componentIndex_ = 0;
 }
 
 void ScrollingList::allocateSpritePoints()
@@ -152,26 +150,41 @@ void ScrollingList::allocateSpritePoints()
 
     for(unsigned int i = 0; i < scrollPoints_->size(); ++i)
     {
-        componentIndex_ = 0;
-        unsigned int index = loopIncrement(itemIndex_, i, items_->size());
+        unsigned int index  = loopIncrement(itemIndex_, i, items_->size());
+        unsigned int oindex = loopIncrement(componentIndex_, i, components_.size());
         Item *item = items_->at(index);
 
-        allocateTexture(i, item);
-        Component *c = components_.at(i);
+        Component *o = components_.at(oindex);
 
-        ViewInfo *current = scrollPoints_->at(i);
+        allocateTexture(oindex, item);
 
-        unsigned int nextI = loopIncrement(i, 1, scrollPoints_->size());
+        Component *c = components_.at(oindex);
+
+        ViewInfo *current = scrollPoints_->at(oindex);
+
+        unsigned int nextI = loopIncrement(oindex, 1, scrollPoints_->size());
         ViewInfo *next = scrollPoints_->at(nextI);
 
         resetTweens(c, tweenPoints_->at(i), current, next, 0);
+
+        if(o)
+        {
+            c->baseViewInfo = o->baseViewInfo;
+            delete o;
+        }
+
     }
 }
 
 void ScrollingList::destroyItems()
 {
-    deallocateSpritePoints();  
-//todo: who deletes the CollectionInfo?
+    for(unsigned int i = 0; i < components_.size(); ++i)
+    {
+        delete components_.at(i);
+        components_.at(i) = NULL;
+    }
+
+    componentIndex_ = 0;
 }
 
 
@@ -304,6 +317,15 @@ void ScrollingList::letterChange(bool increment)
         }
     }
 
+}
+
+
+void ScrollingList::allocateGraphicsMemory()
+{
+    Component::allocateGraphicsMemory();
+    scrollPeriod_ = startScrollTime_;
+
+    allocateSpritePoints();
 }
 
 
@@ -612,8 +634,7 @@ void ScrollingList::deallocateTexture(unsigned int index)
 
     if(s)
     {
-        delete s;
-        components_.at(index) = NULL;
+        s->freeGraphicsMemory();
     }
 }
 
@@ -704,7 +725,8 @@ void ScrollingList::scroll(bool forward)
         ViewInfo *currentvi = scrollPoints_->at(i);
         ViewInfo *nextvi = scrollPoints_->at(nextI);
 
-        resetTweens(c, tweenPoints_->at(nextI), currentvi, nextvi, scrollPeriod_);
+        resetTweens
+        (c, tweenPoints_->at(nextI), currentvi, nextvi, scrollPeriod_);
         c->baseViewInfo.font = nextvi->font; // Use the font settings of the next index
         c->triggerEvent( "menuScroll" );
     }

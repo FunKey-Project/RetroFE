@@ -98,8 +98,10 @@ void ReloadableScrollingText::update(float dt)
 }
 
 
-void ReloadableScrollingText::launchExit( )
+void ReloadableScrollingText::allocateGraphicsMemory( )
 {
+    Component::allocateGraphicsMemory( );
+    fontInst_->initialize( );
     reloadTexture( );
 }
 
@@ -107,6 +109,7 @@ void ReloadableScrollingText::launchExit( )
 void ReloadableScrollingText::freeGraphicsMemory( )
 {
     Component::freeGraphicsMemory( );
+    fontInst_->deInitialize( );
     text_.clear( );
 }
 

@@ -71,17 +71,12 @@ void ReloadableText::allocateGraphicsMemory()
 {
     ReloadTexture();
 
+    fontInst_->initialize();
+
     // NOTICE! needs to be done last to prevent flags from being missed
     Component::allocateGraphicsMemory();
 }
 
-void ReloadableText::launchEnter()
-{
-}
-
-void ReloadableText::launchExit()
-{
-}
 
 void ReloadableText::freeGraphicsMemory()
 {
@@ -92,7 +87,11 @@ void ReloadableText::freeGraphicsMemory()
         delete imageInst_;
         imageInst_ = NULL;
     }
+
+    fontInst_->deInitialize();
 }
+
+
 void ReloadableText::ReloadTexture()
 {
     if (imageInst_ != NULL)

@@ -31,8 +31,6 @@ public:
     void draw();
     void freeGraphicsMemory();
     void allocateGraphicsMemory();
-    void launchEnter();
-    void launchExit();
 
 private:
     void ReloadTexture();
