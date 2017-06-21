@@ -139,6 +139,8 @@ void RetroFE::launchEnter( )
     // Play launch sound
     currentPage_->launchEnter( );
 
+    SDL_SetWindowGrab(SDL::getWindow(), SDL_FALSE);
+
     // Free the textures, and optionally take down SDL
     freeGraphicsMemory( );
 
