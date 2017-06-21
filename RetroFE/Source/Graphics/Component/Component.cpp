@@ -36,7 +36,7 @@ Component::Component(const Component &copy)
     backgroundTexture_ = NULL;
     freeGraphicsMemory();
 
-    if(copy.tweens_)
+    if ( copy.tweens_ )
     {
         AnimationEvents *tweens = new AnimationEvents(*copy.tweens_);
         setTweens(tweens);
@@ -63,7 +63,7 @@ void Component::freeGraphicsMemory()
     currentTweenComplete_ = true;
     elapsedTweenTime_     = 0;
 
-    if(backgroundTexture_)
+    if ( backgroundTexture_ )
     {
         SDL_LockMutex(SDL::getMutex());
         SDL_DestroyTexture(backgroundTexture_);
@@ -74,7 +74,7 @@ void Component::freeGraphicsMemory()
 }
 void Component::allocateGraphicsMemory()
 {
-    if(!backgroundTexture_)
+    if ( !backgroundTexture_ )
     {
         // make a 4x4 pixel wide surface to be stretched during rendering, make it a white background so we can use
         // color  later
@@ -109,7 +109,7 @@ void Component::setNewItemSelected()
 
 bool Component::isIdle()
 {
-    return (currentTweenComplete_ || animationType_ == "idle");
+    return (currentTweenComplete_ || animationType_ == "idle" || animationType_ == "menuIdle");
 }
 
 bool Component::isMenuScrolling()
@@ -126,15 +126,15 @@ void Component::update(float dt)
 {
     elapsedTweenTime_ += dt;
 
-    if(animationRequested_ && animationRequestedType_ != "")
+    if ( animationRequested_ && animationRequestedType_ != "" )
     {
       Animation *newTweens;
       // Check if this component is part of an active scrolling list
-      if(menuIndex_ >= MENU_INDEX_HIGH)
+      if ( menuIndex_ >= MENU_INDEX_HIGH )
       {
           // Check for animation at index i
           newTweens = tweens_->getAnimation( animationRequestedType_, MENU_INDEX_HIGH );
-          if(!(newTweens && newTweens->size() > 0))
+          if ( !(newTweens && newTweens->size() > 0) )
           {
               // Check for animation at the current menuIndex
               newTweens = tweens_->getAnimation( animationRequestedType_, menuIndex_ - MENU_INDEX_HIGH);
@@ -160,6 +160,14 @@ void Component::update(float dt)
     {
         animationType_        = "idle";
         currentTweens_        = tweens_->getAnimation( "idle", menuIndex_ );
+        if ( currentTweens_ && currentTweens_->size( ) == 0 && !page.isMenuScrolling( ) )
+        {
+            currentTweens_    = tweens_->getAnimation( "menuIdle", menuIndex_ );
+            if ( currentTweens_ && currentTweens_->size( ) > 0 )
+            {
+                currentTweens_ = currentTweens_;
+            }
+        }
         currentTweenIndex_    = 0;
         elapsedTweenTime_     = 0;
         storeViewInfo_        = baseViewInfo;
@@ -168,7 +176,7 @@ void Component::update(float dt)
     }
 
     currentTweenComplete_ = animate();
-    if(currentTweenComplete_)
+    if ( currentTweenComplete_ )
     {
       currentTweens_     = NULL;
       currentTweenIndex_ = 0;
@@ -178,7 +186,7 @@ void Component::update(float dt)
 void Component::draw()
 {
 
-    if(backgroundTexture_)
+    if ( backgroundTexture_ )
     {
         SDL_Rect rect;
         rect.h = static_cast<int>(baseViewInfo.ScaledHeight());
@@ -199,11 +207,11 @@ void Component::draw()
 bool Component::animate()
 {
     bool completeDone = false;
-    if(!currentTweens_ || currentTweenIndex_ >= currentTweens_->size())
+    if ( !currentTweens_ || currentTweenIndex_ >= currentTweens_->size() )
     {
         completeDone = true;
     }
-    else if(currentTweens_)
+    else if ( currentTweens_ )
     {
         bool currentDone = true;
         TweenSet *tweens = currentTweens_->tweenSet(currentTweenIndex_);
@@ -214,7 +222,7 @@ bool Component::animate()
             double elapsedTime = elapsedTweenTime_;
 
             //todo: too many levels of nesting
-            if(elapsedTime < tween->duration)
+            if ( elapsedTime < tween->duration )
                 currentDone = false;
             else
                 elapsedTime = static_cast<float>(tween->duration);
@@ -359,7 +367,7 @@ bool Component::animate()
             }
         }
 
-        if(currentDone)
+        if ( currentDone )
         {
             currentTweenIndex_++;
             elapsedTweenTime_ = 0;
@@ -367,7 +375,7 @@ bool Component::animate()
         }
     }
 
-    if(!currentTweens_ || currentTweenIndex_ >= currentTweens_->tweenSets()->size())
+    if ( !currentTweens_ || currentTweenIndex_ >= currentTweens_->tweenSets()->size() )
     {
         completeDone = true;
     }

@@ -723,16 +723,17 @@ AnimationEvents *PageBuilder::createTweenInstance(xml_node<> *componentXml)
 {
     AnimationEvents *tweens = new AnimationEvents();
 
-    buildTweenSet(tweens, componentXml, "onEnter", "enter");
-    buildTweenSet(tweens, componentXml, "onExit", "exit");
-    buildTweenSet(tweens, componentXml, "onIdle", "idle");
-    buildTweenSet(tweens, componentXml, "onMenuScroll", "menuScroll");
+    buildTweenSet(tweens, componentXml, "onEnter",          "enter");
+    buildTweenSet(tweens, componentXml, "onExit",           "exit");
+    buildTweenSet(tweens, componentXml, "onIdle",           "idle");
+    buildTweenSet(tweens, componentXml, "onMenuIdle",       "menuIdle");
+    buildTweenSet(tweens, componentXml, "onMenuScroll",     "menuScroll");
     buildTweenSet(tweens, componentXml, "onHighlightEnter", "highlightEnter");
-    buildTweenSet(tweens, componentXml, "onHighlightExit", "highlightExit");
-    buildTweenSet(tweens, componentXml, "onMenuEnter", "menuEnter");
-    buildTweenSet(tweens, componentXml, "onMenuExit", "menuExit");
-    buildTweenSet(tweens, componentXml, "onGameEnter", "gameEnter");
-    buildTweenSet(tweens, componentXml, "onGameExit", "gameExit");
+    buildTweenSet(tweens, componentXml, "onHighlightExit",  "highlightExit");
+    buildTweenSet(tweens, componentXml, "onMenuEnter",      "menuEnter");
+    buildTweenSet(tweens, componentXml, "onMenuExit",       "menuExit");
+    buildTweenSet(tweens, componentXml, "onGameEnter",      "gameEnter");
+    buildTweenSet(tweens, componentXml, "onGameExit",       "gameExit");
 
     return tweens;
 }
