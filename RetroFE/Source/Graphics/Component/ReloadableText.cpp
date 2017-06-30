@@ -149,10 +149,7 @@ void ReloadableText::ReloadTexture()
         }
         else if (type_ == "year")
         {
-            if (selectedItem->leaf) // item is a leaf
               text = selectedItem->year;
-            else // item is a collection
-              (void)config_.getProperty("collections." + selectedItem->name + ".year", text );
         }
         else if (type_ == "title")
         {
@@ -169,17 +166,11 @@ void ReloadableText::ReloadTexture()
         }
         else if (type_ == "manufacturer")
         {
-            if (selectedItem->leaf) // item is a leaf
-              text = selectedItem->manufacturer;
-            else // item is a collection
-              (void)config_.getProperty("collections." + selectedItem->name + ".manufacturer", text );
+            text = selectedItem->manufacturer;
         }
         else if (type_ == "genre")
         {
-            if (selectedItem->leaf) // item is a leaf
-              text = selectedItem->genre;
-            else // item is a collection
-              (void)config_.getProperty("collections." + selectedItem->name + ".genre", text );
+            text = selectedItem->genre;
         }
         else if (type_ == "playlist")
         {
@@ -238,9 +229,22 @@ void ReloadableText::ReloadTexture()
                 ss << pluralPrefix_ << (page.getSelectedIndex()+1) << "/" << page.getCollectionSize() << pluralPostfix_;
             }
         }
-        else if (!selectedItem->leaf) // item is not a leaf
+
+        if (!selectedItem->leaf) // item is not a leaf
         {
             (void)config_.getProperty("collections." + selectedItem->name + "." + type_, text );
+        }
+
+        bool overwriteXML = false;
+        config_.getProperty( "overwriteXML", overwriteXML );
+        if ( text == "" || overwriteXML ) // No text was found yet; check the info in stead
+        {
+            std::string text_tmp;
+            selectedItem->getInfo( type_, text_tmp );
+            if ( text_tmp != "" )
+            {
+                text = text_tmp;
+            }
         }
 
         if (text == "0")

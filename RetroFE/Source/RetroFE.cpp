@@ -1090,6 +1090,13 @@ CollectionInfo *RetroFE::getCollection(std::string collectionName)
     cib.addPlaylists( collection );
     collection->sortFavoriteItems( );
 
+    // Add extra info, if available
+    for ( std::vector<Item *>::iterator it = collection->items.begin( ); it != collection->items.end( ); it++ )
+    {
+        std::string path = Utils::combinePath( Configuration::absolutePath, "collections", collectionName, "info", (*it)->name + ".conf" );
+        (*it)->loadInfo( path );
+    }
+
     // Remove parenthesis and brackets, if so configured
     bool showParenthesis    = true;
     bool showSquareBrackets = true;

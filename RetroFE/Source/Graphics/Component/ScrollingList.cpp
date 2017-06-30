@@ -168,7 +168,7 @@ void ScrollingList::allocateSpritePoints( )
 
         resetTweens( c, tweenPoints_->at( i ), view, view, 0 );
 
-        if ( old )
+        if ( old && !newItemSelected )
         {
             c->baseViewInfo = old->baseViewInfo;
             delete old;

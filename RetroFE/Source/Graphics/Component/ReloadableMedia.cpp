@@ -236,10 +236,7 @@ void ReloadableMedia::reloadTexture()
         }
         else if(typeLC == "manufacturer")
         {
-          if ( selectedItem->leaf ) // item is a leaf
-            basename = selectedItem->manufacturer;
-          else // item is a collection
-            (void)config_.getProperty("collections." + selectedItem->name + ".manufacturer", basename );
+          basename = selectedItem->manufacturer;
         }
         else if(typeLC == "genre")
         {
@@ -268,6 +265,23 @@ void ReloadableMedia::reloadTexture()
         else if (typeLC == "firstletter")
         {
           basename = selectedItem->fullTitle.at(0);
+        }
+
+        if (!selectedItem->leaf) // item is not a leaf
+        {
+            (void)config_.getProperty("collections." + selectedItem->name + "." + type_, basename );
+        }
+
+        bool overwriteXML = false;
+        config_.getProperty( "overwriteXML", overwriteXML );
+        if ( basename == "" || overwriteXML ) // No basename was found yet; check the info in stead
+        {
+            std::string basename_tmp;
+            selectedItem->getInfo( type_, basename_tmp );
+            if ( basename_tmp != "" )
+            {
+                basename = basename_tmp;
+            }
         }
 
         Utils::replaceSlashesWithUnderscores(basename);

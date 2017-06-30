@@ -15,7 +15,9 @@
  */
 
 #include "Item.h"
+#include "../Utility/Log.h"
 #include "../Utility/Utils.h"
+#include <fstream>
 #include <sstream>
 #include <algorithm>
 
@@ -50,3 +52,63 @@ std::string Item::lowercaseFullTitle()
     return lcstr;
 }
 
+
+void Item::setInfo( std::string key, std::string value )
+{
+    info_.insert( InfoPair( key, value ) );
+}
+
+
+bool Item::getInfo( std::string key, std::string & value )
+{
+
+   bool retVal = false;
+
+   if ( info_.find( key ) != info_.end( ) )
+   {
+       value  = info_[key];
+       retVal = true;
+   }
+
+   return retVal;
+
+}
+
+
+void Item::loadInfo( std::string path )
+{
+
+    int           lineCount = 0;
+    std::string   line;
+    std::ifstream ifs( path.c_str( ) );
+    size_t        position;
+    std::string   key;
+    std::string   value;
+
+    if ( !ifs.is_open( ) )
+    {
+        return;
+    }
+
+    while ( std::getline( ifs, line ) )
+    {
+        lineCount++;
+        line = Utils::filterComments( line );
+        // Check if the line has an assigment operator
+        if ( (position = line.find( "=" )) != std::string::npos )
+        {
+            key   = line.substr( 0, position );
+            key   = Utils::trimEnds( key );
+            value = line.substr( position + 1, line.size( )-1 );
+            value = Utils::trimEnds( value );
+            setInfo( key, value );
+        }
+        else
+        {
+            std::stringstream ss;
+            ss << "Missing an assignment operator (=) on line " << lineCount;
+            Logger::write(Logger::ZONE_ERROR, "Item", ss.str());
+        }
+    }
+    
+}

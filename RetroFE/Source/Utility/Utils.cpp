@@ -237,3 +237,19 @@ std::string Utils::getFileName(std::string filePath)
     return filename;
 }
 
+
+std::string Utils::trimEnds(std::string str)
+{
+    // strip off any initial tabs or spaces
+    size_t trimStart = str.find_first_not_of(" \t");
+
+    if(trimStart != std::string::npos)
+    {
+        size_t trimEnd = str.find_last_not_of(" \t");
+
+        str = str.substr(trimStart, trimEnd - trimStart + 1);
+    }
+
+    return str;
+}
+

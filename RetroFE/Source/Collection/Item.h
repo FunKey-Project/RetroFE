@@ -16,6 +16,7 @@
 #pragma once
 
 #include <string>
+#include <map>
 #include "CollectionInfo.h"
 
 class Item
@@ -43,4 +44,11 @@ public:
     std::string score;
     CollectionInfo *collectionInfo;
     bool leaf;
+
+    typedef std::map<std::string, std::string> InfoType;
+    typedef std::pair<std::string, std::string> InfoPair;
+    InfoType info_;
+    void setInfo( std::string key, std::string value );
+    bool getInfo( std::string key, std::string &value );
+    void loadInfo( std::string path );
 };

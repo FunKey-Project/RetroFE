@@ -34,6 +34,7 @@ public:
     static std::string toLower(std::string str);
     static std::string uppercaseFirst(std::string str);
     static std::string filterComments(std::string line);
+    static std::string trimEnds(std::string str);
 
     //todo: there has to be a better way to do this
     static std::string combinePath(std::list<std::string> &paths);
