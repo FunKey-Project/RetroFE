@@ -15,6 +15,7 @@
  */
 #pragma once
 
+
 #include <vector>
 #include "Component.h"
 #include "../Animate/Tween.h"
@@ -24,75 +25,73 @@
 #include <SDL2/SDL.h>
 
 
-//todo: This scrolling implementation needs to be overhauled
-//      It needs to have a common interface to support different menu types
-//      (It was originally sandbox code that creeped into here)
-
 class Configuration;
 class Font;
 
 class ScrollingList : public Component
 {
+
 public:
-    ScrollingList(Configuration &c,
-                  Page &p,
-                  bool layoutMode,
-                  float scaleX,
-                  float scaleY,
-                  Font *font,
-                  std::string layoutKey,
-                  std::string imageType);
 
-    ScrollingList(const ScrollingList &copy);
-    virtual ~ScrollingList();
-    void triggerEnterEvent();
-    void triggerExitEvent();
-    void triggerMenuEnterEvent(int menuIndex = -1);
-    void triggerMenuExitEvent(int menuIndex = -1);
-    void triggerGameEnterEvent(int menuIndex = -1);
-    void triggerGameExitEvent(int menuIndex = -1);
-    void triggerHighlightEnterEvent(int menuIndex = -1);
-    void triggerHighlightExitEvent(int menuIndex = -1);
+    ScrollingList( Configuration &c,
+                   Page          &p,
+                   bool          layoutMode,
+                   float         scaleX,
+                   float         scaleY,
+                   Font         *font,
+                   std::string   layoutKey,
+                   std::string   imageType );
 
-    bool allocateTexture(unsigned int index, Item *i);
-    void deallocateTexture(unsigned int index);
-    void setItems(std::vector<Item *> *items);
-    void destroyItems();
-    void setPoints(std::vector<ViewInfo *> *scrollPoints, std::vector<AnimationEvents *> *tweenPoints);
-    unsigned int getSelectedIndex();
-    void setSelectedIndex(unsigned int index);
-    unsigned int getSize(); 
-    void pageUp();
-    void pageDown();
-    void letterUp();
-    void letterDown();
-    void letterChange(bool increment);
-    void random();
-    bool isIdle();
-    unsigned int getScrollOffsetIndex();
-    void setScrollOffsetIndex(unsigned int index);
-    void setSelectedIndex(int selectedIndex);
-    Item *getItemByOffset(int offset);
-    Item *getSelectedItem();
-    void allocateGraphicsMemory();
-    void freeGraphicsMemory();
-    void update(float dt);
-    void draw();
-    void draw(unsigned int layer);
-    void setScrollAcceleration(float value);
-    void setStartScrollTime(float value);
+    ScrollingList( const ScrollingList &copy );
+    virtual ~ScrollingList( );
+    void triggerEnterEvent( );
+    void triggerExitEvent( );
+    void triggerMenuEnterEvent( int menuIndex = -1 );
+    void triggerMenuExitEvent( int menuIndex = -1 );
+    void triggerGameEnterEvent( int menuIndex = -1 );
+    void triggerGameExitEvent( int menuIndex = -1 );
+    void triggerHighlightEnterEvent( int menuIndex = -1 );
+    void triggerHighlightExitEvent( int menuIndex = -1 );
+
+    bool allocateTexture( unsigned int index, Item *i );
+    void deallocateTexture( unsigned int index );
+    void setItems( std::vector<Item *> *items );
+    void destroyItems( );
+    void setPoints( std::vector<ViewInfo *> *scrollPoints, std::vector<AnimationEvents *> *tweenPoints );
+    unsigned int getSelectedIndex( );
+    void setSelectedIndex( unsigned int index );
+    unsigned int getSize( );
+    void pageUp( );
+    void pageDown( );
+    void letterUp( );
+    void letterDown( );
+    void letterChange( bool increment );
+    void random( );
+    bool isIdle( );
+    unsigned int getScrollOffsetIndex( );
+    void setScrollOffsetIndex( unsigned int index );
+    void setSelectedIndex( int selectedIndex );
+    Item *getItemByOffset( int offset );
+    Item *getSelectedItem( );
+    void allocateGraphicsMemory( );
+    void freeGraphicsMemory( );
+    void update( float dt );
+    void draw( );
+    void draw( unsigned int layer );
+    void setScrollAcceleration( float value );
+    void setStartScrollTime( float value );
     bool horizontalScroll;
-    void deallocateSpritePoints();
-    void allocateSpritePoints();
-    void resetScrollPeriod();
-    void updateScrollPeriod();
-    void scroll(bool forward);
-
+    void deallocateSpritePoints( );
+    void allocateSpritePoints( );
+    void resetScrollPeriod( );
+    void updateScrollPeriod( );
+    void scroll( bool forward );
 
 private:
-    void resetTweens(Component *c, AnimationEvents *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime);
-    unsigned int loopIncrement(unsigned int offset, unsigned int i, unsigned int size);
-    unsigned int loopDecrement(unsigned int offset, unsigned int i, unsigned int size);
+
+    void resetTweens( Component *c, AnimationEvents *sets, ViewInfo *currentViewInfo, ViewInfo *nextViewInfo, double scrollTime );
+    unsigned int loopIncrement( unsigned int offset, unsigned int i, unsigned int size );
+    unsigned int loopDecrement( unsigned int offset, unsigned int i, unsigned int size );
 
     bool layoutMode_;
     std::vector<Component *> *spriteList_;
@@ -100,24 +99,20 @@ private:
     std::vector<AnimationEvents *> *tweenPoints_;
 
     unsigned int itemIndex_;
-    unsigned int componentIndex_;
     unsigned int selectedOffsetIndex_;
 
     float scrollAcceleration_;
     float startScrollTime_;
     float scrollPeriod_;
-    
+
     Configuration &config_;
-    float scaleX_;
-    float scaleY_;
-    Font *fontInst_;
-    std::string layoutKey_;
-    std::string imageType_;
+    float          scaleX_;
+    float          scaleY_;
+    Font          *fontInst_;
+    std::string    layoutKey_;
+    std::string    imageType_;
 
-        
-    std::vector<Item *> *items_;
+    std::vector<Item *>     *items_;
     std::vector<Component *> components_;
-    
-    
-};
 
+};

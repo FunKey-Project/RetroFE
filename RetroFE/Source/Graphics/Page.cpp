@@ -529,11 +529,11 @@ void Page::selectRandom()
     if(activeMenu_.size() > 0 && activeMenu_[0])
     {
         activeMenu_[0]->random();
-        unsigned int index = activeMenu_[0]->getSelectedIndex();
+        unsigned int index = activeMenu_[0]->getScrollOffsetIndex();
         for(std::vector<ScrollingList *>::iterator it = activeMenu_.begin(); it != activeMenu_.end(); it++)
         {
             ScrollingList *menu = *it;
-            menu->setSelectedIndex(index);
+            menu->setScrollOffsetIndex(index);
         }
     }
 }
