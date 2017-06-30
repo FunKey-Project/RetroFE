@@ -1049,6 +1049,42 @@ void Page::allocateGraphicsMemory()
 }
 
 
+void Page::deInitializeFonts()
+{
+    for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
+    {
+        for(std::vector<ScrollingList *>::iterator it2 = menus_[std::distance(menus_.begin(), it)].begin(); it2 != menus_[std::distance(menus_.begin(), it)].end(); it2++)
+        {
+            ScrollingList *menu = *it2;
+            menu->deInitializeFonts( );
+        }
+    }
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        (*it)->deInitializeFonts();
+    }
+}
+
+
+void Page::initializeFonts()
+{
+    for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
+    {
+        for(std::vector<ScrollingList *>::iterator it2 = menus_[std::distance(menus_.begin(), it)].begin(); it2 != menus_[std::distance(menus_.begin(), it)].end(); it2++)
+        {
+            ScrollingList *menu = *it2;
+            menu->initializeFonts( );
+        }
+    }
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        (*it)->initializeFonts( );
+    }
+}
+
+
 void Page::launchEnter()
 {
     if(selectSoundChunk_)

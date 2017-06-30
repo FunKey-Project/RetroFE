@@ -87,6 +87,8 @@ public:
     void draw();
     void freeGraphicsMemory();
     void allocateGraphicsMemory();
+    void deInitializeFonts( );
+    void initializeFonts( );
     void launchEnter();
     std::string getCollectionName();
     void setMinShowTime(float value);

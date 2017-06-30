@@ -1,5 +1,4 @@
-/* This file is part of RetroFE.
- *
+/* This file is part of RetroFE. *
  * RetroFE is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -27,10 +26,12 @@ class ReloadableText : public Component
 public:
     ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, std::string timeFormat, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, float scaleX, float scaleY);
     virtual ~ReloadableText();
-    void update(float dt);
-    void draw();
-    void freeGraphicsMemory();
-    void allocateGraphicsMemory();
+    void     update(float dt);
+    void     draw();
+    void     freeGraphicsMemory();
+    void     allocateGraphicsMemory();
+    void     deInitializeFonts();
+    void     initializeFonts();
 
 private:
     void ReloadTexture();

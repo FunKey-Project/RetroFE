@@ -187,6 +187,7 @@ void RetroFE::freeGraphicsMemory( )
     config_.getProperty( "unloadSDL", unloadSDL );
     if ( unloadSDL )
     {
+        currentPage_->deInitializeFonts( );
         SDL::deInitialize( );
     }
 
@@ -203,6 +204,7 @@ void RetroFE::allocateGraphicsMemory( )
     if ( unloadSDL )
     {
         SDL::initialize( config_ );
+        currentPage_->initializeFonts( );
     }
 
     // Allocate textures

@@ -90,6 +90,17 @@ void Component::allocateGraphicsMemory()
     }
 }
 
+
+void Component::deInitializeFonts()
+{
+}
+
+
+void Component::initializeFonts()
+{
+}
+
+
 void Component::triggerEvent(std::string event, int menuIndex)
 {
     animationRequestedType_ = event;

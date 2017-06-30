@@ -1,5 +1,4 @@
-/* This file is part of RetroFE.
- *
+/* This file is part of RetroFE. *
  * RetroFE is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -28,10 +27,12 @@ public:
     //todo: should have a Font flass that references fontcache, pass that in as an argument
     Text(std::string text, Page &p, Font *font, float scaleX, float scaleY);
     virtual ~Text();
-    void setText(std::string text);
-    void allocateGraphicsMemory();
-    void freeGraphicsMemory();
-    void draw();
+    void     setText(std::string text);
+    void     allocateGraphicsMemory();
+    void     freeGraphicsMemory();
+    void     deInitializeFonts();
+    void     initializeFonts();
+    void     draw();
 
 private:
     std::string textData_;

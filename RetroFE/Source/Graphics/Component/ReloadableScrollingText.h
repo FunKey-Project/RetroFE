@@ -30,6 +30,8 @@ public:
     void     draw( );
     void     allocateGraphicsMemory( );
     void     freeGraphicsMemory( );
+    void     deInitializeFonts();
+    void     initializeFonts();
 
 private:
     void reloadTexture( );
