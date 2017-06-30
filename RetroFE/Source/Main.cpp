@@ -102,8 +102,6 @@ int main(int argc, char **argv)
 
     p.run();
 
-    p.deInitialize();
-
     Logger::deInitialize();
 
     return 0;
