@@ -202,32 +202,37 @@ void ReloadableMedia::reloadTexture()
         }
     }
 
-    // check for images if video could not be found (and was specified)
+    // check for images, also if video could not be found (and was specified)
     for(unsigned int n = 0; n < names.size() && !loadedComponent_; ++n)
     {
         std::string basename = names[n];
-
-        std::string typeLC = Utils::toLower(type_);
+        std::string typeLC   = Utils::toLower(type_);
+        bool        defined  = false;
 
         if(typeLC == "numberbuttons")
         {
             basename = selectedItem->numberButtons;
+            defined  = true;
         }
         else if(typeLC == "numberplayers")
         {
             basename = selectedItem->numberPlayers;
+            defined  = true;
         }
         else if(typeLC == "year")
         {
             basename = selectedItem->year;
+            defined  = true;
         }
         else if(typeLC == "title")
         {
             basename = selectedItem->title;
+            defined  = true;
         }
         else if(typeLC == "developer")
         {
             basename = selectedItem->developer;
+            defined  = true;
             // Overwrite in case developer has not been specified
             if (basename == "")
             {
@@ -236,35 +241,43 @@ void ReloadableMedia::reloadTexture()
         }
         else if(typeLC == "manufacturer")
         {
-          basename = selectedItem->manufacturer;
+            basename = selectedItem->manufacturer;
+            defined  = true;
         }
         else if(typeLC == "genre")
         {
             basename = selectedItem->genre;
+            defined  = true;
         }
         else if(typeLC == "ctrltype")
         {
             basename = selectedItem->ctrlType;
+            defined  = true;
         }
         else if(typeLC == "joyways")
         {
             basename = selectedItem->joyWays;
+            defined  = true;
         }
         else if(typeLC == "rating")
         {
             basename = selectedItem->rating;
+            defined  = true;
         }
         else if(typeLC == "score")
         {
             basename = selectedItem->score;
+            defined  = true;
         }
         else if(typeLC == "playlist")
         {
             basename = page.getPlaylistName();
+            defined  = true;
         }
         else if (typeLC == "firstletter")
         {
-          basename = selectedItem->fullTitle.at(0);
+            basename = selectedItem->fullTitle.at(0);
+            defined  = true;
         }
 
         if (!selectedItem->leaf) // item is not a leaf
@@ -274,7 +287,7 @@ void ReloadableMedia::reloadTexture()
 
         bool overwriteXML = false;
         config_.getProperty( "overwriteXML", overwriteXML );
-        if ( basename == "" || overwriteXML ) // No basename was found yet; check the info in stead
+        if ( !defined || overwriteXML ) // No basename was found yet; check the info in stead
         {
             std::string basename_tmp;
             selectedItem->getInfo( type_, basename_tmp );
