@@ -20,42 +20,42 @@
     <!-- Fan Art Background -->
     <reloadableImage type="fanart" alpha="0" x="center" y="center" width="stretch" height="stretch" xOrigin="center" yOrigin="center" layer="0">
         <onEnter>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter>
-            <set duration=".25">
+            <set duration=".5">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit>
-            <set duration=".25">
+            <set duration=".05">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -70,32 +70,32 @@
     <!-- Bar -->
     <image src="images/bar.png" alpha="0" x="center" y="center" width="stretch" height="135" xOrigin="center" yOrigin="center" layer="11">
         <onEnter>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -112,7 +112,7 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
@@ -123,17 +123,17 @@
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -150,7 +150,7 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
@@ -161,17 +161,17 @@
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -188,7 +188,7 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
@@ -199,17 +199,17 @@
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -226,7 +226,7 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
@@ -237,17 +237,17 @@
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -262,42 +262,42 @@
     <!-- video_background -->
     <image src="images/black.png" alpha="0" x="1300" y="220" width="360" height="280" xOrigin="center" yOrigin="center" layer="8">
         <onEnter>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -307,42 +307,42 @@
     <!-- video_overlay -->
     <image src="images/video_overlay.png" alpha="0" x="center" y="220" width="1400" xOrigin="center" yOrigin="center" layer="11">
         <onEnter>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -352,42 +352,42 @@
     <!-- Rectangular cropped video -->
     <reloadableVideo imageType="screenshot" alpha="0" x="700" y="220" width="1920" maxHeight="2560" xOrigin="center" yOrigin="center" containerX="128" containerY="80" containerWidth="1000" containerHeight="280" layer="9">
         <onEnter>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -399,42 +399,42 @@
 
     <reloadableText mode="system" type="title" alpha="0" x="140" y="220" maxWidth="900" height="40" xOrigin="left" yOrigin="center" font="fonts/Oswald-Bold.ttf" fontSize="80" loadFontSize="80" fontColor="ffffff" layer="10">
         <onEnter>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -443,42 +443,42 @@
 
     <reloadableText type="manufacturer" alpha="0" x="140" y="280" maxWidth="900" height="40" xOrigin="left" yOrigin="center" font="fonts/Oswald-Regular.ttf" fontSize="50" loadFontSize="50" fontColor="ffffff" layer="10">
         <onEnter>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -487,42 +487,42 @@
 
     <reloadableText mode="system" type="year" alpha="0" x="140" y="320" maxWidth="900" height="40" xOrigin="left" yOrigin="center" font="fonts/Oswald-Regular.ttf" fontSize="30" loadFontSize="30" fontColor="ffffff" layer="10">
         <onEnter>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -532,37 +532,37 @@
     <!-- Scrolling text containing the Horizontal story -->
     <reloadableScrollingText type="story" alpha="1" x="80" y="683" width="1530" height="35" xOrigin="left" yOrigin="center" font="fonts/Oswald-Regular.ttf" fontSize="35" loadFontSize="35" fontColor="f2f2f2" direction="horizontal" scrollingSpeed="100" startPosition="1820" startTime="1" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -584,37 +584,37 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -628,37 +628,37 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -672,37 +672,37 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -716,37 +716,37 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -760,37 +760,37 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -804,37 +804,37 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -848,37 +848,37 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -892,37 +892,37 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -936,37 +936,37 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -980,37 +980,37 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1024,37 +1024,37 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1068,37 +1068,37 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1113,37 +1113,37 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25" menuIndex="0">
+            <set duration=".15" menuIndex="0">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1158,37 +1158,37 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25" menuIndex="0">
+            <set duration=".15" menuIndex="0">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1203,37 +1203,37 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to=".2" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25" menuIndex="0">
+            <set duration=".15" menuIndex="0">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to=".2" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1248,37 +1248,37 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25" menuIndex="0">
+            <set duration=".15" menuIndex="0">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1291,104 +1291,77 @@
 
 
     <!-- Logo Menu -->
-    <menu type="custom" imageType="logo" scrollTime=".3" scrollAcceleration=".04" orientation="horizontal" x="0" width="center" y="910" algorithm="easeincircular">
+    <menu type="custom" imageType="logo" scrollTime=".2" scrollAcceleration=".02" orientation="horizontal" x="0" width="center" y="910" algorithm="easeincircular">
         <itemDefaults alpha="0.2" x="center" y="center" maxWidth="400" height="90" xOrigin="center" yOrigin="center" yOffset="-5" fontSize="144" loadFontSize="144" layer="12"/>
-        <item xOffset="-1440" alpha="0"/>
-        <item xOffset="-1440">
+        <item xOffset="-1500" alpha="0"/>
+        <item xOffset="-1000">
             <onExit>
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </onExit>
             <onMenuEnter menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" from="0" to="0.2" algorithm="easeinquadratic"/>
                 </set>
             </onMenuEnter>
             <onMenuExit menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </onMenuExit>
             <onGameEnter menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </oneGameEnter>
             <onGameExit menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" from="0" to="0.2" algorithm="easeinquadratic"/>
                 </set>
             </oneGameExit>
         </item>
-        <item xOffset="-960">
+        <item xOffset="-500">
             <onExit>
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </onExit>
             <onMenuEnter menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" from="0" to="0.2" algorithm="easeinquadratic"/>
                 </set>
             </onMenuEnter>
             <onMenuExit menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </onMenuExit>
             <onGameEnter menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </oneGameEnter>
             <onGameExit menuIndex="0">
-                <set duration=".25">
-                    <animate type="alpha" from="0" to="0.2" algorithm="easeinquadratic"/>
-                </set>
-            </oneGameExit>
-        </item>
-        <item xOffset="-480">
-            <onExit>
-                <set duration=".25">
-                    <animate type="alpha" to="0" algorithm="easeinquadratic"/>
-                </set>
-            </onExit>
-            <onMenuEnter menuIndex="0">
-                <set duration=".25">
-                    <animate type="alpha" from="0" to="0.2" algorithm="easeinquadratic"/>
-                </set>
-            </onMenuEnter>
-            <onMenuExit menuIndex="0">
-                <set duration=".25">
-                    <animate type="alpha" to="0" algorithm="easeinquadratic"/>
-                </set>
-            </onMenuExit>
-            <onGameEnter menuIndex="0">
-                <set duration=".25">
-                    <animate type="alpha" to="0" algorithm="easeinquadratic"/>
-                </set>
-            </oneGameEnter>
-            <onGameExit menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" from="0" to="0.2" algorithm="easeinquadratic"/>
                 </set>
             </oneGameExit>
         </item>
         <item xOffset="0" layer="12" alpha="1" selected="true">
             <onExit>
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </onExit>
             <onMenuEnter menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="height" from="120" to="90" algorithm="easeinquadratic"/>
                     <animate type="alpha"  from="0"   to="1"  algorithm="easeinquadratic"/>
                 </set>
             </onMenuEnter>
             <onMenuExit menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="height" to="120" algorithm="easeinquadratic"/>
                     <animate type="alpha"  to="0"   algorithm="easeinquadratic"/>
                 </set>
@@ -1399,93 +1372,66 @@
                 </set>
             </oneGameEnter>
             <onGameExit menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
                 </set>
             </oneGameExit>
         </item>
-        <item xOffset="480">
+        <item xOffset="500">
             <onExit>
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </onExit>
             <onMenuEnter menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" from="0" to="0.2" algorithm="easeinquadratic"/>
                 </set>
             </onMenuEnter>
             <onMenuExit menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </onMenuExit>
             <onGameEnter menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </oneGameEnter>
             <onGameExit menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" from="0" to="0.2" algorithm="easeinquadratic"/>
                 </set>
             </oneGameExit>
         </item>
-        <item xOffset="960">
+        <item xOffset="1000">
             <onExit>
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </onExit>
             <onMenuEnter menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" from="0" to="0.2" algorithm="easeinquadratic"/>
                 </set>
             </onMenuEnter>
             <onMenuExit menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </onMenuExit>
             <onGameEnter menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </oneGameEnter>
             <onGameExit menuIndex="0">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" from="0" to="0.2" algorithm="easeinquadratic"/>
                 </set>
             </oneGameExit>
         </item>
-        <item xOffset="1440">
-            <onExit>
-                <set duration=".25">
-                    <animate type="alpha" to="0" algorithm="easeinquadratic"/>
-                </set>
-            </onExit>
-            <onMenuEnter menuIndex="0">
-                <set duration=".25">
-                    <animate type="alpha" from="0" to="0.2" algorithm="easeinquadratic"/>
-                </set>
-            </onMenuEnter>
-            <onMenuExit menuIndex="0">
-                <set duration=".25">
-                    <animate type="alpha" to="0" algorithm="easeinquadratic"/>
-                </set>
-            </onMenuExit>
-            <onGameEnter menuIndex="0">
-                <set duration=".25">
-                    <animate type="alpha" to="0" algorithm="easeinquadratic"/>
-                </set>
-            </oneGameEnter>
-            <onGameExit menuIndex="0">
-                <set duration=".25">
-                    <animate type="alpha" from="0" to="0.2" algorithm="easeinquadratic"/>
-                </set>
-            </oneGameExit>
-        </item>
-        <item xOffset="1440" alpha="0"/>
+        <item xOffset="1500" alpha="0"/>
     </menu>
 
 
@@ -1497,27 +1443,27 @@
     <!-- Top Bar -->
     <image src="images/topbar.png" x="0" y="-50" width="stretch" height="50" yOrigin="bottom" layer="5">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="y" from="0" to="50"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="y" from="50" to="0"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1527,27 +1473,27 @@
     <!-- Floor -->
     <image src="images/floor.png" alpha="0" x="0" y="1200" width="stretch" height="210" yOrigin="bottom" layer="8">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" from="0" to="1`"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" from="1" to="0"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1557,27 +1503,27 @@
     <!-- Information Wall -->
     <image src="images/wall.png" alpha="0" x="center" y="553" width="1484" height="952" xOrigin="center" yOrigin="center" yOffset="-20" layer="9">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" from="0" to=".75"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" from=".75" to="0"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1587,27 +1533,27 @@
     <!-- "Items" -->
     <text value="ITEMS" x="1590" y="-68" xOrigin="right" yOrigin="center" fontSize="42" loadFontSize="42" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="y" from="-68" to="25"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="y" from="25" to="-68"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1617,27 +1563,27 @@
     <!-- "Publisher:" -->
     <text value="Publisher:" alpha="0" x="90" y="138" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" fontColor="75c8f7" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1647,27 +1593,27 @@
     <!-- "Developer:" -->
     <text value="Developer:" alpha="0" x="510" y="138" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" fontColor="75c8f7" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1677,27 +1623,27 @@
     <!-- "Genre:" -->
     <text value="Genre:" alpha="0" x="90" y="223" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" fontColor="75c8f7" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1707,27 +1653,27 @@
     <!-- "Rating:" -->
     <text value="Rating:" alpha="0" x="510" y="223" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" fontColor="75c8f7" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1737,27 +1683,27 @@
     <!-- "Year:" -->
     <text value="Year:" alpha="0" x="90" y="310" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" fontColor="75c8f7" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1767,27 +1713,27 @@
     <!-- "Score:" -->
     <text value="Score:" alpha="0" x="510" y="310" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" fontColor="75c8f7" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1803,27 +1749,27 @@
     <!-- With seconds = %I:%M:%S %p / Without seconds = %I:%M %p -->
     <reloadableText type="time" timeFormat="%I:%M:%S %p" x="center" y="-68" xOrigin="center" yOrigin="center" fontSize="42" loadFontSize="42" fontColor="ffffff" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="y" from="-68" to="25"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="y" from="25" to="-68"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1833,27 +1779,27 @@
     <!-- Collection Name -->
     <reloadableImage mode="system" type="logo" x="20" y="-68" maxWidth="400" height="45" xOrigin="left" yOrigin="center" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="y" from="-68" to="23"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="y" from="23" to="-68"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1863,27 +1809,27 @@
     <!-- Collection Size -->
     <reloadableText type="collectionIndexSize" x="1500" y="-68" xOrigin="right" yOrigin="center" fontSize="42" loadFontSize="42" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="y" from="-68" to="25"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="y" from="25" to="-68"/>
             </set>
         </onMenuExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1898,37 +1844,37 @@
     <!-- Selected Title -->
     <reloadableText type="title" alpha="0" x="center" y="92" maxWidth="1250" xOrigin="center" yOrigin="center" fontColor="75c8f7" fontSize="40" loadFontSize="40" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1938,37 +1884,37 @@
     <!-- Selected Publisher -->
     <reloadableText type="manufacturer" alpha="0" x="90" y="180" maxWidth="420" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -1978,37 +1924,37 @@
     <!-- show genre image -->
     <reloadableImage type="genre" mode="common" alpha="0" x="1535" y="1190" maxWidth="120" height="120" xOrigin="center" yOrigin="bottom" layer="15">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -2018,37 +1964,37 @@
     <!-- show rating image -->
     <reloadableImage type="rating" mode="common" alpha="0" x="1385" y="1190" maxWidth="180" height="120" xOrigin="center" yOrigin="bottom" layer="15">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -2058,37 +2004,37 @@
     <!-- show Number of players image -->
     <reloadableImage type="numberPlayers" mode="common" alpha="0" x="1200" y="1190" maxWidth="180" height="120" xOrigin="center" yOrigin="bottom" layer="15">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -2098,37 +2044,37 @@
     <!-- Selected Developer -->
     <reloadableText type="developer" alpha="0" x="510" y="180" maxWidth="420" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -2138,37 +2084,37 @@
     <!-- Selected Genre -->
     <reloadableText type="genre" alpha="0" x="90" y="265" maxWidth="420" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -2178,37 +2124,37 @@
     <!-- Selected Rating -->
     <reloadableText type="rating" alpha="0" x="510" y="265" maxWidth="420" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -2218,37 +2164,37 @@
     <!-- Selected Year -->
     <reloadableText type="year" alpha="0" x="90" y="352" maxWidth="200" height="40" xOrigin="left" yOrigin="center" fontSize="40" loadFontSize="40" fontColor="ffffff" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -2258,37 +2204,37 @@
     <!-- Selected Score -->
     <reloadableImage type="score" mode="common" alpha="0" x="510" y="352" maxWidth="200" height="30" xOrigin="left" yOrigin="center" layer="10">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -2298,37 +2244,37 @@
     <!-- Scrolling text containing the vertical story -->
     <reloadableScrollingText type="story" alpha="0" x="90" y="385" width="800" height="215" xOrigin="left" yOrigin="top" font="fonts/MC360.ttf" fontSize="35" loadFontSize="35" fontColor="f2f2f2" direction="vertical" alignment="justified" scrollingSpeed="15" startPosition="0" startTime="4" endTime="1" alpha="1" layer="19">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -2343,37 +2289,37 @@
     <!-- show manufacturer image -->
     <reloadableImage type="manufacturer" mode="common" alpha="0" width="500" maxHeight="120" x="20" y="1190" xOrigin="left" yOrigin="bottom" layer="15">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -2383,37 +2329,37 @@
     <!-- Game Logo -->
     <reloadableImage type="logo" alpha="0" x="center" y="bottom" width="500" maxHeight="140" xOrigin="center" yOrigin="bottom" layer="19">
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
         <onGameExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
@@ -2426,103 +2372,103 @@
 
 
     <!-- Box Menu -->
-    <menu type="custom" imageType="artwork_front" scrollTime=".3" scrollAcceleration=".04" orientation="horizontal" textFallback="true" x="0" font="fonts/Oswald-Regular.ttf" fontSize="20" loadFontSize="20" width="center" y="980" algorithm="easeincircular">
+    <menu type="custom" imageType="artwork_front" scrollTime=".2" scrollAcceleration=".02" orientation="horizontal" textFallback="true" x="0" font="fonts/Oswald-Regular.ttf" fontSize="20" loadFontSize="20" width="center" y="980" algorithm="easeincircular">
         <itemDefaults alpha="1" x="center" y="1030" width="270" maxHeight="340" xOrigin="center" yOrigin="bottom" layer="12" fontSize="50" loadFontSize="50" fontColor="ffffff" reflection="bottom" reflectionDistance="2" reflectionScale="1" reflectionAlpha=".2"/>
         <item xOffset="-1150" alpha="0"/>
         <item xOffset="-875">
             <onExit>
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0"/>
                 </set>
             </onExit>
             <onMenuEnter menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="1"/>
                 </set>
             </onMenuEnter>
             <onMenuExit menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0"/>
                 </set>
             </onMenuExit>
             <onGameEnter menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </oneGameEnter>
             <onGameExit menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
                 </set>
             </oneGameExit>
         </item>
         <item xOffset="-600">
             <onExit>
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0"/>
                 </set>
             </onExit>
             <onMenuEnter menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="1"/>
                 </set>
             </onMenuEnter>
             <onMenuExit menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0"/>
                 </set>
             </onMenuExit>
             <onGameEnter menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </oneGameEnter>
             <onGameExit menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
                 </set>
             </oneGameExit>
         </item>
         <item xOffset="-325">
             <onExit>
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0"/>
                 </set>
             </onExit>
             <onMenuEnter menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="1"/>
                 </set>
             </onMenuEnter>
             <onMenuExit menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0"/>
                 </set>
             </onMenuExit>
             <onGameEnter menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </oneGameEnter>
             <onGameExit menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
                 </set>
             </oneGameExit>
         </item>
         <item xOffset="0" yOffset="10" selected="true" width="350" maxHeight="400" layer="13">
             <onExit>
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0"/>
                 </set>
             </onExit>
             <onMenuEnter menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="1"/>
                 </set>
             </onMenuEnter>
             <onMenuExit menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0"/>
                 </set>
             </onMenuExit>
@@ -2532,88 +2478,88 @@
                 </set>
             </oneGameEnter>
             <onGameExit menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
                 </set>
             </oneGameExit>
         </item>
         <item xOffset="325">
             <onExit>
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0"/>
                 </set>
             </onExit>
             <onMenuEnter menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="1"/>
                 </set>
             </onMenuEnter>
             <onMenuExit menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0"/>
                 </set>
             </onMenuExit>
             <onGameEnter menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </oneGameEnter>
             <onGameExit menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
                 </set>
             </oneGameExit>
         </item>
         <item xOffset="600">
             <onExit>
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0"/>
                 </set>
             </onExit>
             <onMenuEnter menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="1"/>
                 </set>
             </onMenuEnter>
             <onMenuExit menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0"/>
                 </set>
             </onMenuExit>
             <onGameEnter menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </oneGameEnter>
             <onGameExit menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
                 </set>
             </oneGameExit>
         </item>
         <item xOffset="875">
             <onExit>
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0"/>
                 </set>
             </onExit>
             <onMenuEnter menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="1"/>
                 </set>
             </onMenuEnter>
             <onMenuExit menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0"/>
                 </set>
             </onMenuExit>
             <onGameEnter menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" to="0" algorithm="easeinquadratic"/>
                 </set>
             </oneGameEnter>
             <onGameExit menuIndex="i">
-                <set duration=".25">
+                <set duration=".15">
                     <animate type="alpha" from="0" to="1" algorithm="easeinquadratic"/>
                 </set>
             </oneGameExit>
@@ -2629,32 +2575,32 @@
 
     <reloadableVideo imageType="screenshot" alpha="1" x="1300" y="220" width="360" maxHeight="280" xOrigin="center" yOrigin="center" layer="9">
         <onEnter>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
         <onMenuEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
@@ -2667,12 +2613,12 @@
                 <animate type="width"     to="480"/>
                 <animate type="maxHeight" to="360"/>
             </set>
-            <set duration=".24">
+            <set duration=".14">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
-            <set duration=".24">
+            <set duration=".14">
                 <animate type="alpha" from="1" to="0" algorithm="easeinquadratic"/>
             </set>
             <set duration=".01">
@@ -2683,22 +2629,22 @@
             </set>
         </onMenuExit>
         <onHighlightEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </onHighlightEnter>
         <onHighlightExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onHighlightExit>
         <onGameExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
         <onGameEnter>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
@@ -2718,7 +2664,7 @@
             </set>
         </onEnter>
         <onExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </onExit>
@@ -2730,19 +2676,19 @@
             </set>
         </onMenuEnter>
         <onMenuEnter menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" from="0"   to="0"  algorithm="easeinquadratic"/>
                 <animate type="maxHeight"        to="40" algorithm="easeinquadratic"/>
                 <animate type="y"                to="2"  algorithm="easeinquadratic"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0"   algorithm="easeinquadratic"/>
             </set>
         </onMenuExit>
         <onMenuExit menuIndex="!0">
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="y"     to="-50" algorithm="easeinquadratic"/>
                 <animate type="alpha" to="0"   algorithm="easeinquadratic"/>
             </set>
@@ -2756,12 +2702,12 @@
             </set>
         </onIdle>
         <onGameExit>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="1" algorithm="easeinquadratic"/>
             </set>
         </oneGameExit>
         <onGameEnter>
-            <set duration=".25">
+            <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
             </set>
         </oneGameEnter>
