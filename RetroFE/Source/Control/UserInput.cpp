@@ -157,7 +157,7 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key, bool required)
             {
                 std::string joydesc = Utils::replace(Utils::toLower(token), "joy", "");
                 int joynum;
-                if ( std::isdigit( joydesc.at( 0 ) ) )
+                if ( isdigit( joydesc.at( 0 ) ) )
                 {
                     std::stringstream ssjoy;
                     ssjoy << joydesc.at(0);
