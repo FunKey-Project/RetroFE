@@ -159,9 +159,15 @@ void RetroFE::launchExit( )
     SDL_RaiseWindow( SDL::getWindow( ) );
     SDL_SetWindowGrab( SDL::getWindow( ), SDL_TRUE );
 
-    // Empty event queue
+    // Empty event queue, but handle joystick add/remove events
     SDL_Event e;
-    while ( SDL_PollEvent( &e ) );
+    while ( SDL_PollEvent( &e ) )
+    {
+        if ( e.type == SDL_JOYDEVICEADDED || e.type == SDL_JOYDEVICEREMOVED )
+        {
+            input_.update( e );
+        }
+    }
     input_.resetStates( );
     attract_.reset( );
 
@@ -189,6 +195,7 @@ void RetroFE::freeGraphicsMemory( )
     {
         currentPage_->deInitializeFonts( );
         SDL::deInitialize( );
+        input_.clearJoysticks( );
     }
 
 }

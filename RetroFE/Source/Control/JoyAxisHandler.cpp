@@ -16,7 +16,7 @@ void JoyAxisHandler::reset()
 
 bool JoyAxisHandler::update(SDL_Event &e)
 {
-    if(e.type != SDL_JOYAXISMOTION || e.jaxis.which != joyid_ || e.jaxis.axis != axis_) return false;
+    if(e.type != SDL_JOYAXISMOTION || (joyid_ != -1 && e.jaxis.which != joyid_) || e.jaxis.axis != axis_) return false;
     pressed_ = (min_ <= e.jaxis.value && e.jaxis.value <= max_);
 
     return true;

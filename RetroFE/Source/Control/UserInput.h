@@ -20,6 +20,8 @@
 #include <string>
 #include <vector>
 
+const int cMaxJoy = 4;
+
 class Configuration;
 class InputHandler;
 
@@ -58,12 +60,13 @@ public:
     bool update(SDL_Event &e);
     bool keystate(KeyCode_E);
     bool newKeyPressed(KeyCode_E code);
+    void clearJoysticks( );
 
 private:
     bool MapKey(std::string keyDescription, KeyCode_E key);
     bool MapKey(std::string keyDescription, KeyCode_E key, bool required);
     Configuration &config_;
-    std::vector<SDL_Joystick *> joysticks_;
+    SDL_JoystickID joysticks_[cMaxJoy];
     std::vector<std::pair<InputHandler *, KeyCode_E> > keyHandlers_;
     bool lastKeyState_[KeyCodeMax]; 
     bool currentKeyState_[KeyCodeMax]; 
