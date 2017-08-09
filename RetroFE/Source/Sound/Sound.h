@@ -25,7 +25,9 @@ public:
     void play();
     bool allocate();
     bool free();
+    bool isPlaying();
 private:
     std::string file_;
-    Mix_Chunk *chunk_;
+    Mix_Chunk  *chunk_;
+    int         channel_;
 };

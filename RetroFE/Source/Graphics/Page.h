@@ -89,7 +89,8 @@ public:
     void allocateGraphicsMemory();
     void deInitializeFonts( );
     void initializeFonts( );
-    void launchEnter();
+    void playSelect();
+    bool isSelectPlaying();
     std::string getCollectionName();
     void setMinShowTime(float value);
     float getMinShowTime();

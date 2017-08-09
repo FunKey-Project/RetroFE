@@ -136,9 +136,7 @@ int RetroFE::initialize( void *context )
 void RetroFE::launchEnter( )
 {
 
-    // Play launch sound
-    currentPage_->launchEnter( );
-
+    // Disable window focus
     SDL_SetWindowGrab(SDL::getWindow(), SDL_FALSE);
 
     // Free the textures, and optionally take down SDL
@@ -615,13 +613,14 @@ void RetroFE::run( )
 
         // Launching game; start onGameEnter animation
         case RETROFE_LAUNCH_ENTER:
-            currentPage_->enterGame( );
+            currentPage_->enterGame( );  // Start onGameEnter animation
+            currentPage_->playSelect( ); // Play launch sound
             state = RETROFE_LAUNCH_REQUEST;
             break;
 
         // Wait for onGameEnter animation to finish; launch game; start onGameExit animation
         case RETROFE_LAUNCH_REQUEST:
-            if ( currentPage_->isIdle( ) )
+            if ( currentPage_->isIdle( ) && !currentPage_->isSelectPlaying( ) )
             {
                 nextPageItem_ = currentPage_->getSelectedItem( );
                 launchEnter( );

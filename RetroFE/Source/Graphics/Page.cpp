@@ -1085,12 +1085,22 @@ void Page::initializeFonts()
 }
 
 
-void Page::launchEnter()
+void Page::playSelect()
 {
     if(selectSoundChunk_)
     {
         selectSoundChunk_->play();
     }
+}
+
+
+bool Page::isSelectPlaying()
+{
+    if ( selectSoundChunk_ )
+    {
+        return selectSoundChunk_->isPlaying();
+    }
+    return false;
 }
 
 
