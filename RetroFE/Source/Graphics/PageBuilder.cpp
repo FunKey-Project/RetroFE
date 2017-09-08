@@ -749,8 +749,8 @@ void PageBuilder::buildTweenSet(AnimationEvents *tweens, xml_node<> *componentXm
             std::string indexs = indexXml->value();
             if(indexs[0] == '!')
             {
-                indexs.erase(0);
-                int index = Utils::convertInt(indexXml->value());
+                indexs.erase(0,1);
+                int index = Utils::convertInt(indexs);
                 for(int i = 0; i < MENU_INDEX_HIGH-1; i++)
                 {
                     if(i != index)
@@ -763,8 +763,8 @@ void PageBuilder::buildTweenSet(AnimationEvents *tweens, xml_node<> *componentXm
             }
             else if(indexs[0] == '<')
             {
-                indexs.erase(0);
-                int index = Utils::convertInt(indexXml->value());
+                indexs.erase(0,1);
+                int index = Utils::convertInt(indexs);
                 for(int i = 0; i < MENU_INDEX_HIGH-1; i++)
                 {
                     if(i < index)
@@ -777,8 +777,8 @@ void PageBuilder::buildTweenSet(AnimationEvents *tweens, xml_node<> *componentXm
             }
             else if(indexs[0] == '>')
             {
-                indexs.erase(0);
-                int index = Utils::convertInt(indexXml->value());
+                indexs.erase(0,1);
+                int index = Utils::convertInt(indexs);
                 for(int i = 0; i < MENU_INDEX_HIGH-1; i++)
                 {
                     if(i > index)
