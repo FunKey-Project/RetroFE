@@ -88,7 +88,8 @@ void ReloadableScrollingText::update(float dt)
         }
     }
 
-    if (newItemSelected)
+    if (newItemSelected ||
+       (newScrollItemSelected && getMenuScrollReload()))
     {
         reloadTexture( );
         newItemSelected = false;

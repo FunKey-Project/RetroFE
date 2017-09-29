@@ -44,6 +44,7 @@ public:
     virtual ~Page();
     void deInitialize();
     virtual void onNewItemSelected();
+    virtual void onNewScrollItemSelected();
     void highlightLoadArt();
     bool pushCollection(CollectionInfo *collection);
     bool popCollection();

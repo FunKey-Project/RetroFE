@@ -36,9 +36,11 @@ public:
     void triggerEvent(std::string event, int menuIndex = -1);
     void setPlaylist(std::string name );
     void setNewItemSelected();
+    void setNewScrollItemSelected();
     bool isIdle();
     bool isMenuScrolling();
     bool newItemSelected;
+    bool newScrollItemSelected;
 
     virtual void update(float dt);
     virtual void draw();
@@ -46,6 +48,8 @@ public:
     virtual bool isPlaying();
     ViewInfo baseViewInfo;
     std::string collectionName;
+    void setMenuScrollReload(bool menuScrollReload);
+    bool getMenuScrollReload();
 
 protected:
     Page &page;
@@ -67,5 +71,6 @@ private:
     std::string  animationRequestedType_;
     std::string  animationType_;
     bool         animationRequested_;
+    bool         menuScrollReload_;
     int          menuIndex_;
 };

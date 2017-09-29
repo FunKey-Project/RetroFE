@@ -342,6 +342,13 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
     for(xml_node<> *componentXml = layout->first_node("container"); componentXml; componentXml = componentXml->next_sibling("container"))
     {
         Container *c = new Container(*page);
+        xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
+        if (menuScrollReload &&
+            (Utils::toLower(menuScrollReload->value()) == "true" ||
+             Utils::toLower(menuScrollReload->value()) == "yes"))
+        {
+            c->setMenuScrollReload(true);
+        }
         buildViewInfo(componentXml, c->baseViewInfo);
         loadTweens(c, componentXml);
         page->addComponent(c);
@@ -366,6 +373,13 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
             altImagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, std::string(src->value()));
 
             Image *c = new Image(imagePath, altImagePath, *page, scaleX_, scaleY_);
+            xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
+            if (menuScrollReload &&
+                (Utils::toLower(menuScrollReload->value()) == "true" ||
+                 Utils::toLower(menuScrollReload->value()) == "yes"))
+            {
+                c->setMenuScrollReload(true);
+            }
             buildViewInfo(componentXml, c->baseViewInfo);
             loadTweens(c, componentXml);
             page->addComponent(c);
@@ -393,6 +407,13 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
             int numLoops = numLoopsXml ? Utils::convertInt(numLoopsXml->value()) : 1;
 
             Video *c = new Video(videoPath, altVideoPath, numLoops, *page, scaleX_, scaleY_);
+            xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
+            if (menuScrollReload &&
+                (Utils::toLower(menuScrollReload->value()) == "true" ||
+                 Utils::toLower(menuScrollReload->value()) == "yes"))
+            {
+                c->setMenuScrollReload(true);
+            }
             buildViewInfo(componentXml, c->baseViewInfo);
             loadTweens(c, componentXml);
             page->addComponent(c);
@@ -412,9 +433,14 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
         {
             Font *font = addFont(componentXml, NULL);
             Text *c = new Text(value->value(), *page, font, scaleX_, scaleY_);
-
+            xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
+            if (menuScrollReload &&
+                (Utils::toLower(menuScrollReload->value()) == "true" ||
+                 Utils::toLower(menuScrollReload->value()) == "yes"))
+            {
+                c->setMenuScrollReload(true);
+            }
             buildViewInfo(componentXml, c->baseViewInfo);
-
             loadTweens(c, componentXml);
             page->addComponent(c);
         }
@@ -424,9 +450,14 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
     {
         Font *font = addFont(componentXml, NULL);
         Text *c = new Text("", *page, font, scaleX_, scaleY_);
-
+        xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
+        if (menuScrollReload &&
+            (Utils::toLower(menuScrollReload->value()) == "true" ||
+             Utils::toLower(menuScrollReload->value()) == "yes"))
+        {
+            c->setMenuScrollReload(true);
+        }
         buildViewInfo(componentXml, c->baseViewInfo);
-
         loadTweens(c, componentXml);
         page->addComponent(c);
         page->setStatusTextComponent(c);
@@ -560,6 +591,13 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                     pluralPostfix = pluralPostfixXml->value();
                 }
                 c = new ReloadableText(type->value(), *page, config_, font, layoutKey, timeFormat, textFormat, singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, scaleX_, scaleY_);
+                xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
+                if (menuScrollReload &&
+                    (Utils::toLower(menuScrollReload->value()) == "true" ||
+                     Utils::toLower(menuScrollReload->value()) == "yes"))
+                {
+                    c->setMenuScrollReload(true);
+                }
             }
         }
         else if(tagName == "reloadableScrollingText")
@@ -623,14 +661,27 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                     pluralPostfix = pluralPostfixXml->value();
                 }
                 c = new ReloadableScrollingText(config_, systemMode, layoutMode, type->value(), singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, textFormat, alignment, *page, selectedOffset, font, scaleX_, scaleY_, direction, scrollingSpeed, startPosition, startTime, endTime);
+                xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
+                if (menuScrollReload &&
+                    (Utils::toLower(menuScrollReload->value()) == "true" ||
+                     Utils::toLower(menuScrollReload->value()) == "yes"))
+                {
+                    c->setMenuScrollReload(true);
+                }
             }
         }
         else
         {
             Font *font = addFont(componentXml, NULL);
             c = new ReloadableMedia(config_, systemMode, layoutMode, commonMode, type->value(), *page, selectedOffset, (tagName == "reloadableVideo"), font, scaleX_, scaleY_);
+            xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
+            if (menuScrollReload &&
+                (Utils::toLower(menuScrollReload->value()) == "true" ||
+                 Utils::toLower(menuScrollReload->value()) == "yes"))
+            {
+                c->setMenuScrollReload(true);
+            }
             xml_attribute<> *textFallback = componentXml->first_attribute("textFallback");
-
             if(textFallback && Utils::toLower(textFallback->value()) == "true")
             {
                 static_cast<ReloadableMedia *>(c)->enableTextFallback_(true);

@@ -164,6 +164,19 @@ void Page::onNewItemSelected()
 }
 
 
+void Page::onNewScrollItemSelected()
+{
+    if(!(activeMenu_.size() > 0 && activeMenu_[0])) return;
+    selectedItem_ = activeMenu_[0]->getSelectedItem();
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        (*it)->setNewScrollItemSelected();
+    }
+
+}
+
+
 void Page::highlightLoadArt()
 {
     if(!(activeMenu_.size() > 0 && activeMenu_[0])) return;
@@ -1171,6 +1184,7 @@ void Page::scroll(bool forward)
             menu->scroll(forward);
         }
     }
+    onNewScrollItemSelected();
     if(highlightSoundChunk_)
     {
         highlightSoundChunk_->play();

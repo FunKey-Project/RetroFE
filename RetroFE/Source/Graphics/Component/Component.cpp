@@ -25,8 +25,8 @@ Component::Component(Page &p)
 {
     tweens_                   = NULL;
     backgroundTexture_        = NULL;
+    menuScrollReload_         = false;
     freeGraphicsMemory();
-
 }
 
 Component::Component(const Component &copy)
@@ -56,6 +56,7 @@ void Component::freeGraphicsMemory()
     animationType_          = "";
     animationRequested_     = false;
     newItemSelected         = false;
+    newScrollItemSelected   = false;
     menuIndex_              = -1;
 
     currentTweens_        = NULL;
@@ -116,6 +117,11 @@ void Component::setPlaylist(std::string name)
 void Component::setNewItemSelected()
 {
   newItemSelected = true;
+}
+
+void Component::setNewScrollItemSelected()
+{
+  newScrollItemSelected = true;
 }
 
 bool Component::isIdle()
@@ -398,4 +404,16 @@ bool Component::animate()
 bool Component::isPlaying()
 {
     return false;
+}
+
+
+void Component::setMenuScrollReload(bool menuScrollReload)
+{
+    menuScrollReload_ = menuScrollReload;
+}
+
+
+bool Component::getMenuScrollReload()
+{
+    return menuScrollReload_;
 }

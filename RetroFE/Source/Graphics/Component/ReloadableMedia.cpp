@@ -63,11 +63,13 @@ void ReloadableMedia::enableTextFallback_(bool value)
 
 void ReloadableMedia::update(float dt)
 {
-    if (newItemSelected)
+    if (newItemSelected ||
+       (newScrollItemSelected && getMenuScrollReload()))
     {
 
         reloadTexture();
-        newItemSelected = false;
+        newItemSelected       = false;
+        newScrollItemSelected = false;
     }
 
     if(loadedComponent_)
