@@ -211,7 +211,12 @@ void ReloadableMedia::reloadTexture()
         std::string typeLC   = Utils::toLower(type_);
         bool        defined  = false;
 
-        if(typeLC == "numberbuttons")
+        if(basename == "default")
+        {
+            basename = "default";
+            defined  = true;
+        }
+        else if(typeLC == "numberbuttons")
         {
             basename = selectedItem->numberButtons;
             defined  = true;
