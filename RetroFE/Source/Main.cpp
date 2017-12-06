@@ -162,7 +162,7 @@ bool ImportConfiguration(Configuration *c)
                 continue;
             }
 
-            std::string extension = basename.substr(dot_position, basename.size()-1);
+            std::string extension = Utils::toLower(basename.substr(dot_position, basename.size()-1));
             basename = basename.substr(0, dot_position);
 
             if(extension == ".conf")
