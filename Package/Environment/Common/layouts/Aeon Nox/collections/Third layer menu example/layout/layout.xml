@@ -1861,7 +1861,7 @@
 
 
     <!-- Collection Size -->
-    <reloadableText type="collectionIndexSize" x="1820" y="-68" xOrigin="right" yOrigin="center" fontSize="42" loadFontSize="42" layer="10">
+    <reloadableText type="collectionIndexSize" menuScrollReload="true" x="1820" y="-68" xOrigin="right" yOrigin="center" fontSize="42" loadFontSize="42" layer="10">
         <onExit>
             <set duration=".15">
                 <animate type="alpha" to="0" algorithm="easeinquadratic"/>
