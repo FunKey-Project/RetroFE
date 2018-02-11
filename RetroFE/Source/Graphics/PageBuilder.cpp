@@ -77,6 +77,7 @@ Page *PageBuilder::buildPage( std::string collectionName )
     Page *page = NULL;
 
     std::string layoutFile;
+    std::string layoutFileAspect;
     std::string layoutName = layoutKey;
 
     if ( collectionName == "" )
@@ -89,18 +90,43 @@ Page *PageBuilder::buildPage( std::string collectionName )
         layoutPath = Utils::combinePath(layoutPath, "layout");
     }
     layoutFile = Utils::combinePath(layoutPath, layoutPage + ".xml");
+    if ( screenWidth_*3/4 == screenHeight_ )
+        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 4x3.xml");
+    else if ( screenWidth_*4/3 == screenHeight_ )
+        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 3x4.xml");
+    else if ( screenWidth_*4/5 == screenHeight_ )
+        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 5x4.xml");
+    else if ( screenWidth_*5/4 == screenHeight_ )
+        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 4x5.xml");
+    else if ( screenWidth_*9/16 == screenHeight_ )
+        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 16x9.xml");
+    else if ( screenWidth_*16/9 == screenHeight_ )
+        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 9x16.xml");
+    else if ( screenWidth_*10/16 == screenHeight_ )
+        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 16x10.xml");
+    else if ( screenWidth_*16/10 == screenHeight_ )
+        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 10x16.xml");
+    else
+        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + ".xml");
 
-    Logger::write(Logger::ZONE_INFO, "Layout", "Initializing " + layoutFile);
+    Logger::write(Logger::ZONE_INFO, "Layout", "Initializing " + layoutFileAspect);
 
     rapidxml::xml_document<> doc;
-    std::ifstream file(layoutFile.c_str());
-    std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    std::ifstream file(layoutFileAspect.c_str());
 
-    if(!file.good())
+    if ( !file.good( ) )
     {
-        Logger::write(Logger::ZONE_INFO, "Layout", "could not find layout file: " + layoutFile);
-        return NULL;
+        Logger::write( Logger::ZONE_INFO, "Layout", "could not find layout file: " + layoutFileAspect );
+        Logger::write( Logger::ZONE_INFO, "Layout", "Initializing " + layoutFile );
+        file.open( layoutFile.c_str( ) );
+        if ( !file.good( ) )
+        {
+            Logger::write( Logger::ZONE_INFO, "Layout", "could not find layout file: " + layoutFile );
+            return NULL;
+        }
     }
+
+    std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 
     try
     {

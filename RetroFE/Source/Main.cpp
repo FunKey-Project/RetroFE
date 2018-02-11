@@ -21,6 +21,7 @@
 #include "Utility/Utils.h"
 #include "RetroFE.h"
 #include "Version.h"
+#include "SDL.h"
 #include <cstdlib>
 #include <fstream>
 #include <dirent.h>
@@ -128,13 +129,6 @@ bool ImportConfiguration(Configuration *c)
         return false;
     }
     
-    std::string controlsConfPath = Utils::combinePath(configPath, "controls.conf");
-    if(!c->import("controls", controlsConfPath))
-    {
-        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + controlsConfPath + "\"");
-        return false;
-    }
-
     dp = opendir(launchersPath.c_str());
 
     if(dp == NULL)

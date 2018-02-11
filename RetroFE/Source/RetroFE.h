@@ -25,9 +25,11 @@
 #include "Video/IVideo.h"
 #include "Video/VideoFactory.h"
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <list>
 #include <stack>
 #include <map>
+#include <string>
 
 
 class CollectionInfo;
@@ -112,5 +114,9 @@ private:
 
     std::map<std::string, unsigned int> lastMenuOffsets_;
     std::map<std::string, std::string>  lastMenuPlaylists_;
+
+    std::string get_key( );
+    void        print_string( std::string message, TTF_Font *font );
+    void        get_controls_config( );
 
 };

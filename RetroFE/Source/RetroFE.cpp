@@ -31,10 +31,13 @@
 #include "Graphics/Component/ScrollingList.h"
 #include "Graphics/Component/Video.h"
 #include "Video/VideoFactory.h"
-#include <vector>
-#include <string>
-#include <sstream>
+#include <algorithm>
 #include <dirent.h>
+#include <fstream>
+#include <sstream>
+#include <tuple>
+#include <vector>
+#include <SDL2/SDL_ttf.h>
 
 #if defined(__linux) || defined(__APPLE__)
 #include <sys/stat.h>
@@ -137,7 +140,7 @@ void RetroFE::launchEnter( )
 {
 
     // Disable window focus
-    SDL_SetWindowGrab(SDL::getWindow(), SDL_FALSE);
+    SDL_SetWindowGrab(SDL::getWindow( ), SDL_FALSE);
 
     // Free the textures, and optionally take down SDL
     freeGraphicsMemory( );
@@ -266,6 +269,27 @@ void RetroFE::run( )
     // Initialize SDL
     if(! SDL::initialize( config_ ) ) return;
     fontcache_.initialize( );
+
+    // Define control configuration
+    std::string controlsConfPath = Utils::combinePath( Configuration::absolutePath, "controls.conf" );
+    if ( !config_.import( "controls", controlsConfPath ) )
+    {
+
+        // Let the user input new controls
+        get_controls_config( );
+
+        // Re-initialize SDL to reset the controller situation
+        SDL::deInitialize( );
+        if(! SDL::initialize( config_ ) ) return;
+
+        // Retry reading the control configuration
+        if ( !config_.import( "controls", controlsConfPath ) )
+        {
+            Logger::write( Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + controlsConfPath + "\"" );
+            return;
+        }
+
+    }
 
     float preloadTime = 0;
 
@@ -1151,4 +1175,202 @@ CollectionInfo *RetroFE::getCollection(std::string collectionName)
     }
 
     return collection;
+}
+
+
+std::string RetroFE::get_key( )
+{
+
+    SDL_Event   event;
+    std::string return_value;
+
+    while ( SDL_PollEvent( &event ) )
+    {
+        switch (event.type)
+        {
+            case SDL_JOYDEVICEADDED:
+                if ( !SDL_JoystickOpen( event.jdevice.which ) )
+                    Logger::write( Logger::ZONE_INFO, "RetroFE", "Unable to open SDL joystick." );
+                else
+                    Logger::write( Logger::ZONE_INFO, "RetroFE", "SDL joystick opened." );
+                break;
+            case SDL_KEYDOWN:
+                if ( return_value.empty( ) )
+                    return_value = SDL_GetKeyName( event.key.keysym.sym);
+                break;
+            case SDL_JOYBUTTONDOWN:
+                if ( return_value.empty( ) )
+                    return_value = "joyButton" + std::to_string( int( event.jbutton.button ) );
+                break;
+            case SDL_JOYAXISMOTION:
+                if ((event.jaxis.value > 30000 || event.jaxis.value < -30000) && event.jaxis.axis <= 3)
+                {
+                    if ( event.jaxis.value > 0 )
+                    {
+                        if ( return_value.empty( ) )
+                            return_value = "joyAxis" + std::to_string( int( event.jaxis.axis ) ) + "+";
+                    }
+                    else
+                    {
+                        if ( return_value.empty( ) )
+                            return_value = "joyAxis" + std::to_string( int( event.jaxis.axis ) ) + "-";
+                    }
+                }
+                break;
+            case SDL_JOYHATMOTION:
+                switch( event.jhat.value )
+                {
+                    case SDL_HAT_UP:
+                        if ( return_value.empty( ) )
+                            return_value = "joyHat" + std::to_string( int( event.jhat.hat ) ) + "Up";
+                        break;
+                    case SDL_HAT_DOWN:
+                        if ( return_value.empty( ) )
+                            return_value = "joyHat" + std::to_string( int( event.jhat.hat ) ) + "Down";
+                        break;
+                    case SDL_HAT_LEFT:
+                        if ( return_value.empty( ) )
+                            return_value = "joyHat" + std::to_string( int( event.jhat.hat ) ) + "Left";
+                        break;
+                    case SDL_HAT_RIGHT:
+                        if ( return_value.empty( ) )
+                            return_value = "joyHat" + std::to_string( int( event.jhat.hat ) ) + "Right";
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    return return_value;
+
+}
+
+
+void RetroFE::print_string( std::string message, TTF_Font *font )
+{
+
+    SDL_Surface *surfaceMessage;
+    SDL_Texture *messageTexture;
+    SDL_Rect     messageRect;
+    SDL_Color    color = {255, 255, 255, 0};
+
+    surfaceMessage = TTF_RenderText_Solid( font, message.c_str( ), color );
+
+    if ( !surfaceMessage )
+        Logger::write( Logger::ZONE_INFO, "RetroFE", "Could not render print_string text." );
+
+    messageTexture = SDL_CreateTextureFromSurface( SDL::getRenderer( ), surfaceMessage );
+
+    if ( !messageTexture )
+        Logger::write( Logger::ZONE_INFO, "RetroFE", "Could not create print_string texture." );
+
+    messageRect.w = SDL::getWindowWidth( ) * 8 / 10;
+    messageRect.h = SDL::getWindowWidth( ) * 8 * surfaceMessage->h / (10 * surfaceMessage->w);
+    messageRect.x = SDL::getWindowWidth( )/2  - messageRect.w/2;
+    messageRect.y = SDL::getWindowHeight( )/2 - messageRect.h/2;
+
+    SDL_LockMutex( SDL::getMutex( ) );
+    SDL_SetRenderDrawColor( SDL::getRenderer( ), 0, 0, 0, 0xFF );
+    SDL_RenderClear( SDL::getRenderer( ) );
+    SDL_RenderCopy( SDL::getRenderer( ), messageTexture, NULL, &messageRect);
+    SDL_RenderPresent( SDL::getRenderer( ) );
+    SDL_UnlockMutex( SDL::getMutex( ) );
+
+    SDL_FreeSurface( surfaceMessage);
+    SDL_DestroyTexture( messageTexture );
+
+}
+
+
+void RetroFE::get_controls_config( )
+{
+
+    Logger::write( Logger::ZONE_INFO, "RetroFE", std::to_string( SDL_NumJoysticks( ) ) + " joysticks were found." );
+
+    TTF_Font *font = TTF_OpenFont( Utils::combinePath( "core", "OpenSans.ttf" ).c_str( ), 48 );
+    if ( !font )
+    {
+        Logger::write( Logger::ZONE_INFO, "RetroFE", "SDL could not open font OpenSans.ttf" );
+        return;
+    }
+
+    std::ofstream controls_file;
+    controls_file.open( "controls.conf" );
+
+    std::vector<std::tuple<std::string, std::string, bool>> controls;
+    controls.push_back( std::make_tuple( "up",             "go up in the games/collection menu",                               true ) );
+    controls.push_back( std::make_tuple( "down",           "go down in the games/collection menu",                             true ) );
+    controls.push_back( std::make_tuple( "left",           "go left in the games/collection menu",                             true ) );
+    controls.push_back( std::make_tuple( "right",          "go right in the games/collection menu",                            true ) );
+    controls.push_back( std::make_tuple( "pageUp",         "go to the next page in your games/collection menu",                false ) );
+    controls.push_back( std::make_tuple( "pageDown",       "go to the previous page in your games/collection menu",            false ) );
+    controls.push_back( std::make_tuple( "letterUp",       "go to the next letter in your games/collection menu",              false ) );
+    controls.push_back( std::make_tuple( "letterDown",     "go to the previous letter in your games/collection menu",          false ) );
+    controls.push_back( std::make_tuple( "favPlaylist",    "switch to your Favorites playlist",                                false ) );
+    controls.push_back( std::make_tuple( "nextPlaylist",   "switch to the next playlist",                                      false ) );
+    controls.push_back( std::make_tuple( "prevPlaylist",   "switch to the previous playlist",                                  false ) );
+    controls.push_back( std::make_tuple( "addPlaylist",    "add the selected game/collection to your Favorites playlist",      false ) );
+    controls.push_back( std::make_tuple( "removePlaylist", "remove the selected game/collection from your Favorites playlist", false ) );
+    controls.push_back( std::make_tuple( "random",         "select a random game/collection from the menu",                    false ) );
+    controls.push_back( std::make_tuple( "select",         "enter the collection/start the game",                              true ) );
+    controls.push_back( std::make_tuple( "back",           "go back to the previous menu",                                     true ) );
+    controls.push_back( std::make_tuple( "quit",           "quit RetroFE",                                                     true ) );
+
+    std::string              key;
+    std::vector<std::string> keys;
+
+    // Clear input queue before we start, but do attach joysticks
+    get_key( );
+
+    for ( uint c = 0; c < controls.size( ); c++ )
+    {
+
+        keys.clear( );
+        int time_out = 0;
+        while ( true )
+        {
+            key = "";
+            while ( key.empty( ) )
+            {
+                if ( !keys.size( ) )
+                {
+                    if ( std::get<2>( controls[c] ) )
+                        print_string( "Please enter your control to " + std::get<1>( controls[c] ) + ". This key is mandatory for proper RetroFE usage.", font );
+                    else
+                        print_string( "Please enter your control to " + std::get<1>( controls[c] ) + " or wait " + std::to_string( 10 - time_out / 10 ) + " second(s) to not make a selection for this control.", font );
+                }
+                else
+                {
+                    print_string( "Please enter another control to " + std::get<1>( controls[c] ) + " or wait " + std::to_string( 10 - time_out / 10 ) + " second(s) to continue with the next control.", font );
+                }
+                SDL_Delay( 100 );
+                key = get_key( );
+                time_out++;
+                if ( (!std::get<2>( controls[c] ) || keys.size( )) && time_out > 100 )
+                    break;
+            }
+            if ( key.empty( ) || (keys.size( ) && std::find( keys.begin( ), keys.end( ), key ) != keys.end( )) )
+               break;
+            keys.push_back( key );
+            time_out = 0;
+                
+        }
+        if ( keys.size( ) )
+        {
+            controls_file << std::get<0>( controls[c] ) + " = ";
+            for ( uint i = 0; i < keys.size( ); i++ )
+                if ( i == 0 )
+                    controls_file << keys[i];
+                else
+                    controls_file << ", " << keys[i];
+            controls_file << std::endl;
+        }
+
+    }
+
+    controls_file.close( );
+    TTF_CloseFont( font );
+
 }

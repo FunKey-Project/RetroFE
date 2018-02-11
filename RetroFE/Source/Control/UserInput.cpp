@@ -51,8 +51,22 @@ UserInput::~UserInput()
 
 bool UserInput::initialize()
 {
+
+    // Optional keys
+    MapKey("pageDown", KeyCodePageDown, false );
+    MapKey("pageUp", KeyCodePageUp, false );
+    MapKey("letterDown", KeyCodeLetterDown, false);
+    MapKey("letterUp", KeyCodeLetterUp, false);
+    MapKey("favPlaylist", KeyCodeFavPlaylist, false);
+    MapKey("nextPlaylist", KeyCodeNextPlaylist, false);
+    MapKey("prevPlaylist", KeyCodePrevPlaylist, false);
+    MapKey("addPlaylist", KeyCodeAddPlaylist, false);
+    MapKey("removePlaylist", KeyCodeRemovePlaylist, false);
+    MapKey("random", KeyCodeRandom, false);
+
     bool retVal = true;
 
+    // At least have controls for either a vertical or horizontal menu
     if(!MapKey("up", KeyCodeUp))
     {
         retVal = MapKey("left", KeyCodeUp) && retVal;
@@ -63,30 +77,17 @@ bool UserInput::initialize()
     }
     if(!MapKey("down", KeyCodeDown))
     {
-        retVal = MapKey("right", KeyCodeDown) && retVal;
+        retVal = MapKey("right", KeyCodeDown ) && retVal;
     }
-    if(!MapKey("right", KeyCodeRight))
+    if(!MapKey("right", KeyCodeRight ))
     {
-        retVal = MapKey("down", KeyCodeRight) && retVal;
+        retVal = MapKey("down", KeyCodeRight ) && retVal;
     }
 
+    // These keys are mandatory
     retVal = MapKey("select", KeyCodeSelect) && retVal;
     retVal = MapKey("back", KeyCodeBack) && retVal;
     retVal = MapKey("quit", KeyCodeQuit) && retVal;
-    retVal = MapKey("pageDown", KeyCodePageDown);
-    retVal = MapKey("pageUp", KeyCodePageUp);
-
-    MapKey("letterDown", KeyCodeLetterDown, false);
-    MapKey("letterUp", KeyCodeLetterUp, false);
-    MapKey("favPlaylist", KeyCodeFavPlaylist, false);
-    MapKey("nextPlaylist", KeyCodeNextPlaylist, false);
-    MapKey("prevPlaylist", KeyCodePrevPlaylist, false);
-    MapKey("addPlaylist", KeyCodeAddPlaylist, false);
-    MapKey("removePlaylist", KeyCodeRemovePlaylist, false);
-    MapKey("random", KeyCodeRandom, false);
-    // these features will need to be implemented at a later time
-//   retVal = MapKey("admin", KeyCodeAdminMode) && retVal;
-//   retVal = MapKey("remove", KeyCodeHideItem) && retVal;
 
     return retVal;
 }
