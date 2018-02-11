@@ -1324,7 +1324,7 @@ void RetroFE::get_controls_config( )
     // Clear input queue before we start, but do attach joysticks
     get_key( );
 
-    for ( uint c = 0; c < controls.size( ); c++ )
+    for ( unsigned int c = 0; c < controls.size( ); c++ )
     {
 
         keys.clear( );
@@ -1360,7 +1360,7 @@ void RetroFE::get_controls_config( )
         if ( keys.size( ) )
         {
             controls_file << std::get<0>( controls[c] ) + " = ";
-            for ( uint i = 0; i < keys.size( ); i++ )
+            for ( unsigned int i = 0; i < keys.size( ); i++ )
                 if ( i == 0 )
                     controls_file << keys[i];
                 else
