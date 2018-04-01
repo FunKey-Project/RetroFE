@@ -1060,7 +1060,7 @@ void Page::allocateGraphicsMemory()
 
     for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
-        if ( std::distance(menus_.begin(), it) < menuDepth_ )
+        if ( std::distance(menus_.begin(), it) < (signed int)menuDepth_ )
         {
             for(std::vector<ScrollingList *>::iterator it2 = menus_[std::distance(menus_.begin(), it)].begin(); it2 != menus_[std::distance(menus_.begin(), it)].end(); it2++)
             {
