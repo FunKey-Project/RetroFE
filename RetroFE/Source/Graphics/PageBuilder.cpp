@@ -49,7 +49,7 @@ static const int MENU_END = -2;    // last item transitions here after it scroll
 static const int MENU_CENTER = -4;
 
 //todo: this file is starting to become a god class of building. Consider splitting into sub-builders
-PageBuilder::PageBuilder(std::string layoutKey, std::string layoutPage, Configuration &c, FontCache *fc)
+PageBuilder::PageBuilder(std::string layoutKey, std::string layoutPage, Configuration &c, FontCache *fc, bool isMenu)
     : layoutKey(layoutKey)
     , layoutPage(layoutPage)
     , config_(c)
@@ -59,6 +59,7 @@ PageBuilder::PageBuilder(std::string layoutKey, std::string layoutPage, Configur
     , screenWidth_(0)
     , fontSize_(24)
     , fontCache_(fc)
+    , isMenu_(isMenu)
 {
     screenWidth_ = SDL::getWindowWidth();
     screenHeight_ = SDL::getWindowHeight();
@@ -80,7 +81,11 @@ Page *PageBuilder::buildPage( std::string collectionName )
     std::string layoutFileAspect;
     std::string layoutName = layoutKey;
 
-    if ( collectionName == "" )
+    if ( isMenu_ )
+    {
+        layoutPath = Utils::combinePath(Configuration::absolutePath, "menu");
+    }
+    else if ( collectionName == "" )
     {
         layoutPath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName);
     }
@@ -523,6 +528,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
         bool systemMode = false;
         bool layoutMode = false;
         bool commonMode = false;
+        bool menuMode   = false;
         int selectedOffset = 0;
         if(tagName == "reloadableVideo")
         {
@@ -568,6 +574,10 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
             {
                 systemMode = true;
                 layoutMode = true;
+            }
+            if(sysMode == "menu")
+            {
+                menuMode = true;
             }
         }
 
@@ -686,7 +696,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                 {
                     pluralPostfix = pluralPostfixXml->value();
                 }
-                c = new ReloadableScrollingText(config_, systemMode, layoutMode, type->value(), singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, textFormat, alignment, *page, selectedOffset, font, scaleX_, scaleY_, direction, scrollingSpeed, startPosition, startTime, endTime);
+                c = new ReloadableScrollingText(config_, systemMode, layoutMode, menuMode, type->value(), singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, textFormat, alignment, *page, selectedOffset, font, scaleX_, scaleY_, direction, scrollingSpeed, startPosition, startTime, endTime);
                 xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
                 if (menuScrollReload &&
                     (Utils::toLower(menuScrollReload->value()) == "true" ||
@@ -699,7 +709,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
         else
         {
             Font *font = addFont(componentXml, NULL);
-            c = new ReloadableMedia(config_, systemMode, layoutMode, commonMode, type->value(), *page, selectedOffset, (tagName == "reloadableVideo"), font, scaleX_, scaleY_);
+            c = new ReloadableMedia(config_, systemMode, layoutMode, commonMode, menuMode, type->value(), *page, selectedOffset, (tagName == "reloadableVideo"), font, scaleX_, scaleY_);
             xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
             if (menuScrollReload &&
                 (Utils::toLower(menuScrollReload->value()) == "true" ||
@@ -812,6 +822,11 @@ AnimationEvents *PageBuilder::createTweenInstance(xml_node<> *componentXml)
     buildTweenSet(tweens, componentXml, "onGameEnter",      "gameEnter");
     buildTweenSet(tweens, componentXml, "onGameExit",       "gameExit");
 
+    buildTweenSet(tweens, componentXml, "onMenuActionInputEnter",  "menuActionInputEnter");
+    buildTweenSet(tweens, componentXml, "onMenuActionInputExit",   "menuActionInputExit");
+    buildTweenSet(tweens, componentXml, "onMenuActionSelectEnter", "menuActionSelectEnter");
+    buildTweenSet(tweens, componentXml, "onMenuActionSelectExit",  "menuActionSelectExit");
+
     return tweens;
 }
 
@@ -921,6 +936,7 @@ ScrollingList * PageBuilder::buildMenu(xml_node<> *menuXml, Page &page)
     }
 
     bool layoutMode = false;
+    bool commonMode = false;
     if(modeXml)
     {
         std::string sysMode = modeXml->value();
@@ -928,12 +944,21 @@ ScrollingList * PageBuilder::buildMenu(xml_node<> *menuXml, Page &page)
         {
             layoutMode = true;
         }
+        if(sysMode == "common")
+        {
+            commonMode = true;
+        }
+        if(sysMode == "commonlayout")
+        {
+            layoutMode = true;
+            commonMode = true;
+        }
     }
 
     // on default, text will be rendered to the menu. Preload it into cache.
     Font *font = addFont(itemDefaults, NULL);
 
-    menu = new ScrollingList(config_, page, layoutMode, scaleX_, scaleY_, font, layoutKey, imageType);
+    menu = new ScrollingList(config_, page, layoutMode, commonMode, scaleX_, scaleY_, font, layoutKey, imageType);
 
     if(scrollTimeXml)
     {

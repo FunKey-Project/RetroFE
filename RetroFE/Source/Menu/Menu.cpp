@@ -13,36 +13,34 @@
  * You should have received a copy of the GNU General Public License
  * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
-#pragma once
 
 
-#include "Component.h"
-#include "../Page.h"
-#include <SDL2/SDL.h>
-#include <vector>
+#include "Menu.h"
+#include "../Collection/Item.h"
+#include <iostream>
 
 
-class Font;
-
-
-class Text : public Component
+Menu::Menu( Configuration &c )
+    : config_( c )
 {
+    page_ = nullptr;
+}
 
-public:
-    Text( std::string text, Page &p, Font *font, float scaleX, float scaleY, bool input = false );
-    virtual ~Text( );
-    void     setText( std::string text );
-    void     setInput( std::string text );
-    void     allocateGraphicsMemory( );
-    void     freeGraphicsMemory( );
-    void     deInitializeFonts( );
-    void     initializeFonts( );
-    void     draw( );
 
-private:
-    std::string textData_;
-    Font       *fontInst_;
-    float       scaleX_;
-    float       scaleY_;
-    bool        input_;
-};
+void Menu::handleEntry( Item *item )
+{
+    std::cout << "Handling " + item->ctrlType + "." << std::endl;
+    return;
+}
+
+
+void Menu::setPage( Page *page )
+{
+    page_ = page;
+}
+
+
+void Menu::clearPage( )
+{
+    page_ = nullptr;
+}

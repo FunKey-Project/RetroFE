@@ -45,6 +45,7 @@ public:
         KeyCodeNextPlaylist,
         KeyCodePrevPlaylist,
         KeyCodeRandom,
+        KeyCodeMenu,
         KeyCodeAddPlaylist,
         KeyCodeRemovePlaylist,
         KeyCodeAdminMode,

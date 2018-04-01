@@ -43,50 +43,53 @@
 ScrollingList::ScrollingList( Configuration &c,
                               Page          &p,
                               bool           layoutMode,
+                              bool           commonMode,
                               float          scaleX,
                               float          scaleY,
                               Font          *font,
                               std::string    layoutKey,
                               std::string    imageType )
-    : Component(p )
-    , horizontalScroll(false )
-    , layoutMode_(layoutMode )
-    , spriteList_(NULL )
-    , scrollPoints_(NULL )
-    , tweenPoints_(NULL )
-    , itemIndex_(0 )
-    , selectedOffsetIndex_(0 )
-    , scrollAcceleration_(0 )
-    , startScrollTime_(0.500 )
-    , scrollPeriod_(0 )
-    , config_(c )
-    , scaleX_(scaleX )
-    , scaleY_(scaleY )
-    , fontInst_(font )
-    , layoutKey_(layoutKey )
-    , imageType_(imageType )
-    , items_(NULL )
+    : Component( p )
+    , horizontalScroll( false )
+    , layoutMode_( layoutMode )
+    , commonMode_( commonMode )
+    , spriteList_( NULL )
+    , scrollPoints_( NULL )
+    , tweenPoints_( NULL )
+    , itemIndex_( 0 )
+    , selectedOffsetIndex_( 0 )
+    , scrollAcceleration_( 0 )
+    , startScrollTime_( 0.500 )
+    , scrollPeriod_( 0 )
+    , config_( c )
+    , scaleX_( scaleX )
+    , scaleY_( scaleY )
+    , fontInst_( font )
+    , layoutKey_( layoutKey )
+    , imageType_( imageType )
+    , items_( NULL )
 {
 }
 
 
 ScrollingList::ScrollingList( const ScrollingList &copy )
-    : Component(copy )
-    , horizontalScroll(copy.horizontalScroll )
-    , layoutMode_(copy.layoutMode_ )
-    , spriteList_(NULL )
-    , itemIndex_(0 )
-    , selectedOffsetIndex_(copy.selectedOffsetIndex_ )
-    , scrollAcceleration_(copy.scrollAcceleration_ )
-    , startScrollTime_(copy.startScrollTime_ )
-    , scrollPeriod_(copy.startScrollTime_ )
-    , config_(copy.config_ )
-    , scaleX_(copy.scaleX_ )
-    , scaleY_(copy.scaleY_ )
-    , fontInst_(copy.fontInst_ )
-    , layoutKey_(copy.layoutKey_ )
-    , imageType_(copy.imageType_ )
-    , items_(NULL )
+    : Component( copy )
+    , horizontalScroll( copy.horizontalScroll )
+    , layoutMode_( copy.layoutMode_ )
+    , commonMode_( copy.commonMode_ )
+    , spriteList_( NULL )
+    , itemIndex_( 0 )
+    , selectedOffsetIndex_( copy.selectedOffsetIndex_ )
+    , scrollAcceleration_( copy.scrollAcceleration_ )
+    , startScrollTime_( copy.startScrollTime_ )
+    , scrollPeriod_( copy.startScrollTime_ )
+    , config_( copy.config_ )
+    , scaleX_( copy.scaleX_ )
+    , scaleY_( copy.scaleY_ )
+    , fontInst_( copy.fontInst_ )
+    , layoutKey_( copy.layoutKey_ )
+    , imageType_( copy.imageType_ )
+    , items_( NULL )
 {
     scrollPoints_ = NULL;
     tweenPoints_  = NULL;
@@ -530,91 +533,82 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
     std::string layoutName;
     config_.getProperty( "layout", layoutName );
 
-    // check collection path for art based on gamename
-    if ( layoutMode_ )
-    {
-        imagePath = Utils::combinePath( Configuration::absolutePath, "layouts", layoutName, "collections", collectionName );
-        imagePath = Utils::combinePath( imagePath, "medium_artwork", imageType_ );
-    }
-    else
-    {
-        config_.getMediaPropertyAbsolutePath( collectionName, imageType_, false, imagePath );
-    }
-    t = imageBuild.CreateImage( imagePath, page, item->name, scaleX_, scaleY_ );
+    std::string typeLC = Utils::toLower( imageType_ );
 
-    // check sub-collection path for art based on gamename
-    if ( !t )
+    std::vector<std::string> names;
+    names.push_back( item->name );
+    names.push_back( item->fullTitle );
+    if ( item->cloneof != "" )
+        names.push_back( item->cloneof );
+    if ( typeLC == "numberbuttons" )
+        names.push_back( item->numberButtons );
+    if ( typeLC == "numberplayers" )
+        names.push_back( item->numberPlayers );
+    if ( typeLC == "year" )
+        names.push_back( item->year );
+    if ( typeLC == "title" )
+        names.push_back( item->title );
+    if ( typeLC == "developer" )
     {
+        if ( item->developer == "" )
+        {
+            names.push_back( item->manufacturer );
+        }
+        else
+        {
+            names.push_back( item->developer );
+        }
+    }
+    if ( typeLC == "manufacturer" )
+        names.push_back( item->manufacturer );
+    if ( typeLC == "genre" )
+        names.push_back( item->genre );
+    if ( typeLC == "ctrltype" )
+        names.push_back( item->ctrlType );
+    if ( typeLC == "joyways" )
+        names.push_back( item->joyWays );
+    if ( typeLC == "rating" )
+        names.push_back( item->rating );
+    if ( typeLC == "score" )
+        names.push_back( item->score );
+    names.push_back("default");
+
+    for ( unsigned int n = 0; n < names.size() && !t; ++n )
+    {
+        // check collection path for art
         if ( layoutMode_ )
         {
-            imagePath = Utils::combinePath( Configuration::absolutePath, "layouts", layoutName, "collections", item->collectionInfo->name );
+            if ( commonMode_ )
+                imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", "_common");
+            else
+                imagePath = Utils::combinePath( Configuration::absolutePath, "layouts", layoutName, "collections", collectionName );
             imagePath = Utils::combinePath( imagePath, "medium_artwork", imageType_ );
         }
         else
         {
-            config_.getMediaPropertyAbsolutePath( item->collectionInfo->name, imageType_, false, imagePath );
+            if ( commonMode_ )
+            {
+                imagePath = Utils::combinePath(Configuration::absolutePath, "collections", "_common" );
+                imagePath = Utils::combinePath( imagePath, "medium_artwork", imageType_ );
+            }
+            else
+                config_.getMediaPropertyAbsolutePath( collectionName, imageType_, false, imagePath );
         }
-        t = imageBuild.CreateImage( imagePath, page, item->name, scaleX_, scaleY_ );
-    }
-
-    // check collection path for art based on game name (full title )
-    if ( !t && item->title != item->fullTitle )
-    {
-        if ( layoutMode_ )
+        t = imageBuild.CreateImage( imagePath, page, names[n], scaleX_, scaleY_ );
+        // check sub-collection path for art
+        if ( !t && !commonMode_ )
         {
-            imagePath = Utils::combinePath( Configuration::absolutePath, "layouts", layoutName, "collections", collectionName );
-            imagePath = Utils::combinePath( imagePath, "medium_artwork", imageType_ );
+            if ( layoutMode_ )
+            {
+                imagePath = Utils::combinePath( Configuration::absolutePath, "layouts", layoutName, "collections", item->collectionInfo->name );
+                imagePath = Utils::combinePath( imagePath, "medium_artwork", imageType_ );
+            }
+            else
+            {
+                config_.getMediaPropertyAbsolutePath( item->collectionInfo->name, imageType_, false, imagePath );
+            }
+            t = imageBuild.CreateImage( imagePath, page, names[n], scaleX_, scaleY_ );
         }
-        else
-        {
-            config_.getMediaPropertyAbsolutePath( collectionName, imageType_, false, imagePath );
-        }
-        t = imageBuild.CreateImage( imagePath, page, item->fullTitle, scaleX_, scaleY_ );
-    }
-
-    // check sub-collection path for art based on game name (full title )
-    if ( !t && item->title != item->fullTitle )
-    {
-        if ( layoutMode_ )
-        {
-            imagePath = Utils::combinePath( Configuration::absolutePath, "layouts", layoutName, "collections", item->collectionInfo->name );
-            imagePath = Utils::combinePath( imagePath, "medium_artwork", imageType_ );
-        }
-        else
-        {
-            config_.getMediaPropertyAbsolutePath( item->collectionInfo->name, imageType_, false, imagePath );
-        }
-        t = imageBuild.CreateImage( imagePath, page, item->fullTitle, scaleX_, scaleY_ );
-    }
-
-    // check collection path for art based on parent game name
-    if ( !t && item->cloneof != "" )
-    {
-        if ( layoutMode_ )
-        {
-            imagePath = Utils::combinePath( Configuration::absolutePath, "layouts", layoutName, "collections", collectionName );
-            imagePath = Utils::combinePath( imagePath, "medium_artwork", imageType_ );
-        }
-        else
-        {
-            config_.getMediaPropertyAbsolutePath( collectionName, imageType_, false, imagePath );
-        }
-        t = imageBuild.CreateImage( imagePath, page, item->cloneof, scaleX_, scaleY_ );
-    }
-
-    // check sub-collection path for art based on parent game name
-    if ( !t && item->cloneof != "" )
-    {
-        if ( layoutMode_ )
-        {
-            imagePath = Utils::combinePath( Configuration::absolutePath, "layouts", layoutName, "collections", item->collectionInfo->name );
-            imagePath = Utils::combinePath( imagePath, "medium_artwork", imageType_ );
-        }
-        else
-        {
-            config_.getMediaPropertyAbsolutePath( item->collectionInfo->name, imageType_, false, imagePath );
-        }
-        t = imageBuild.CreateImage( imagePath, page, item->cloneof, scaleX_, scaleY_ );
     }
 
     // check collection path for art based on system name
@@ -622,12 +616,21 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
     {
         if ( layoutMode_ )
         {
-            imagePath = Utils::combinePath( Configuration::absolutePath, "layouts", layoutName, "collections", item->name );
+            if ( commonMode_ )
+                imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", "_common");
+            else
+                imagePath = Utils::combinePath( Configuration::absolutePath, "layouts", layoutName, "collections", item->name );
             imagePath = Utils::combinePath( imagePath, "system_artwork" );
         }
         else
         {
-            config_.getMediaPropertyAbsolutePath( item->name, imageType_, true, imagePath );
+            if ( commonMode_ )
+            {
+                imagePath = Utils::combinePath(Configuration::absolutePath, "collections", "_common" );
+                imagePath = Utils::combinePath( imagePath, "system_artwork" );
+            }
+            else
+                config_.getMediaPropertyAbsolutePath( item->name, imageType_, true, imagePath );
         }
         t = imageBuild.CreateImage( imagePath, page, imageType_, scaleX_, scaleY_ );
     }

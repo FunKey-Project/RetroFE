@@ -50,6 +50,7 @@ public:
     std::string collectionName;
     void setMenuScrollReload(bool menuScrollReload);
     bool getMenuScrollReload();
+    virtual void setInput(std::string text) {};
 
 protected:
     Page &page;

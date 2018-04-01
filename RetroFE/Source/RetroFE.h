@@ -76,6 +76,7 @@ private:
         RETROFE_NEXT_PAGE_MENU_EXIT,
         RETROFE_NEXT_PAGE_MENU_LOAD_ART,
         RETROFE_NEXT_PAGE_MENU_ENTER,
+        RETROFE_HANDLE_MENUENTRY,
         RETROFE_LAUNCH_ENTER,
         RETROFE_LAUNCH_REQUEST,
         RETROFE_LAUNCH_EXIT,
@@ -83,6 +84,9 @@ private:
         RETROFE_BACK_MENU_EXIT,
         RETROFE_BACK_MENU_LOAD_ART,
         RETROFE_BACK_MENU_ENTER,
+        RETROFE_MENUMODE_START_REQUEST,
+        RETROFE_MENUMODE_START_LOAD_ART,
+        RETROFE_MENUMODE_START_ENTER,
         RETROFE_NEW,
         RETROFE_QUIT_REQUEST,
         RETROFE_QUIT,
@@ -96,6 +100,7 @@ private:
     RETROFE_STATE   processUserInput( Page *page );
     void            update( float dt, bool scrollActive );
     CollectionInfo *getCollection( std::string collectionName );
+    CollectionInfo *getMenuCollection( std::string collectionName );
 
     Configuration     &config_;
     DB                *db_;
@@ -111,12 +116,8 @@ private:
     Item              *nextPageItem_;
     FontCache          fontcache_;
     AttractMode        attract_;
+    bool               menuMode_;
 
     std::map<std::string, unsigned int> lastMenuOffsets_;
     std::map<std::string, std::string>  lastMenuPlaylists_;
-
-    std::string get_key( );
-    void        print_string( std::string message, TTF_Font *font );
-    void        get_controls_config( );
-
 };

@@ -33,7 +33,7 @@ class Font;
 class PageBuilder
 {
 public:
-    PageBuilder(std::string layoutKey, std::string layoutPage, Configuration &c, FontCache *fc);
+    PageBuilder(std::string layoutKey, std::string layoutPage, Configuration &c, FontCache *fc, bool isMenu = false);
     virtual ~PageBuilder();
     Page *buildPage( std::string collectionName = "" );
 
@@ -50,6 +50,7 @@ private:
     std::string fontName_;
     int fontSize_;
     FontCache *fontCache_;
+    bool isMenu_;
 
     Font *addFont(rapidxml::xml_node<> *component, rapidxml::xml_node<> *defaults);
     void loadReloadableImages(rapidxml::xml_node<> *layout, std::string tagName, Page *page);

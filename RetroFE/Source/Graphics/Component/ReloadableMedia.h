@@ -27,7 +27,7 @@ class Image;
 class ReloadableMedia : public Component
 {
 public:
-    ReloadableMedia(Configuration &config, bool systemMode, bool layoutMode, bool commonMode, std::string type, Page &page, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY);
+    ReloadableMedia(Configuration &config, bool systemMode, bool layoutMode, bool commonMode, bool menuMode, std::string type, Page &page, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY);
     virtual ~ReloadableMedia();
     void update(float dt);
     void draw();
@@ -43,6 +43,7 @@ private:
     bool systemMode_;
     bool layoutMode_;
     bool commonMode_;
+    bool menuMode_;
     Component *loadedComponent_;
     IVideo *videoInst_;
     bool isVideo_;

@@ -28,12 +28,13 @@
 #include <vector>
 #include <iostream>
 
-ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, bool layoutMode, bool commonMode, std::string type, Page &p, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY)
+ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, bool layoutMode, bool commonMode, bool menuMode, std::string type, Page &p, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY)
     : Component(p)
     , config_(config)
     , systemMode_(systemMode)
     , layoutMode_(layoutMode)
     , commonMode_(commonMode)
+    , menuMode_(menuMode)
     , loadedComponent_(NULL)
     , videoInst_(NULL)
     , isVideo_(isVideo)

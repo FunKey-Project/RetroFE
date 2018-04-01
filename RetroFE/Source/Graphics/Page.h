@@ -98,6 +98,8 @@ public:
     void menuScroll();
     void highlightEnter();
     void highlightExit();
+    void menuAction( std::string action );
+    void menuInput( std::string text );
     void addPlaylist();
     void removePlaylist();
     void reallocateMenuSpritePoints();

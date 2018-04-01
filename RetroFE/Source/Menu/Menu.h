@@ -16,33 +16,22 @@
 #pragma once
 
 
-#include "Component.h"
-#include "../Page.h"
-#include <SDL2/SDL.h>
-#include <vector>
+class Configuration;
+class Item;
+class Page;
 
 
-class Font;
-
-
-class Text : public Component
+class Menu
 {
 
 public:
-    Text( std::string text, Page &p, Font *font, float scaleX, float scaleY, bool input = false );
-    virtual ~Text( );
-    void     setText( std::string text );
-    void     setInput( std::string text );
-    void     allocateGraphicsMemory( );
-    void     freeGraphicsMemory( );
-    void     deInitializeFonts( );
-    void     initializeFonts( );
-    void     draw( );
+    Menu( Configuration &c );
+    void handleEntry( Item *item );
+    void setPage( Page *page );
+    void clearPage( );
 
 private:
-    std::string textData_;
-    Font       *fontInst_;
-    float       scaleX_;
-    float       scaleY_;
-    bool        input_;
+    Configuration &config_;
+    Page          *page_;
+
 };

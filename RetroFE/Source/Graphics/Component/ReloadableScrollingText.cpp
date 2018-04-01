@@ -28,11 +28,12 @@
 #include <algorithm>
 
 
-ReloadableScrollingText::ReloadableScrollingText(Configuration &config, bool systemMode, bool layoutMode, std::string type, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, std::string alignment, Page &p, int displayOffset, Font *font, float scaleX, float scaleY, std::string direction, float scrollingSpeed, float startPosition, float startTime, float endTime )
+ReloadableScrollingText::ReloadableScrollingText(Configuration &config, bool systemMode, bool layoutMode, bool menuMode, std::string type, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, std::string alignment, Page &p, int displayOffset, Font *font, float scaleX, float scaleY, std::string direction, float scrollingSpeed, float startPosition, float startTime, float endTime )
     : Component(p)
     , config_(config)
     , systemMode_(systemMode)
     , layoutMode_(layoutMode)
+    , menuMode_(menuMode)
     , fontInst_(font)
     , type_(type)
     , textFormat_(textFormat)

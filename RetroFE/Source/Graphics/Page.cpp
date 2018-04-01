@@ -483,6 +483,24 @@ void Page::highlightExit()
 }
 
 
+void Page::menuAction( std::string action )
+{
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        (*it)->triggerEvent( action );
+    }
+}
+
+
+void Page::menuInput( std::string text )
+{
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        (*it)->setInput( text );
+    }
+}
+
+
 void Page::setScrolling(ScrollDirection direction)
 {
     switch(direction)
@@ -1042,10 +1060,13 @@ void Page::allocateGraphicsMemory()
 
     for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
-        for(std::vector<ScrollingList *>::iterator it2 = menus_[std::distance(menus_.begin(), it)].begin(); it2 != menus_[std::distance(menus_.begin(), it)].end(); it2++)
+        if ( std::distance(menus_.begin(), it) < menuDepth_ )
         {
-            ScrollingList *menu = *it2;
-            menu->allocateGraphicsMemory();
+            for(std::vector<ScrollingList *>::iterator it2 = menus_[std::distance(menus_.begin(), it)].begin(); it2 != menus_[std::distance(menus_.begin(), it)].end(); it2++)
+            {
+                ScrollingList *menu = *it2;
+                menu->allocateGraphicsMemory();
+            }
         }
     }
 

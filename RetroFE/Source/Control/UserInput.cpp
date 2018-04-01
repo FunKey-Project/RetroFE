@@ -63,6 +63,7 @@ bool UserInput::initialize()
     MapKey("addPlaylist", KeyCodeAddPlaylist, false);
     MapKey("removePlaylist", KeyCodeRemovePlaylist, false);
     MapKey("random", KeyCodeRandom, false);
+    MapKey("menu", KeyCodeMenu, true);
 
     bool retVal = true;
 
@@ -86,8 +87,9 @@ bool UserInput::initialize()
 
     // These keys are mandatory
     retVal = MapKey("select", KeyCodeSelect) && retVal;
-    retVal = MapKey("back", KeyCodeBack) && retVal;
-    retVal = MapKey("quit", KeyCodeQuit) && retVal;
+    retVal = MapKey("back",   KeyCodeBack) && retVal;
+    retVal = MapKey("quit",   KeyCodeQuit) && retVal;
+    retVal = MapKey("menu",   KeyCodeMenu) && retVal;
 
     return retVal;
 }

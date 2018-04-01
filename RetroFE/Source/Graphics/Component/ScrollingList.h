@@ -36,6 +36,7 @@ public:
     ScrollingList( Configuration &c,
                    Page          &p,
                    bool          layoutMode,
+                   bool          commonMode,
                    float         scaleX,
                    float         scaleY,
                    Font         *font,
@@ -94,6 +95,7 @@ private:
     unsigned int loopDecrement( unsigned int offset, unsigned int i, unsigned int size );
 
     bool layoutMode_;
+    bool commonMode_;
     std::vector<Component *> *spriteList_;
     std::vector<ViewInfo *> *scrollPoints_;
     std::vector<AnimationEvents *> *tweenPoints_;
