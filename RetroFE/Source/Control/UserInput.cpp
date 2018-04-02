@@ -89,7 +89,6 @@ bool UserInput::initialize()
     retVal = MapKey("select", KeyCodeSelect) && retVal;
     retVal = MapKey("back",   KeyCodeBack) && retVal;
     retVal = MapKey("quit",   KeyCodeQuit) && retVal;
-    retVal = MapKey("menu",   KeyCodeMenu) && retVal;
 
     return retVal;
 }
