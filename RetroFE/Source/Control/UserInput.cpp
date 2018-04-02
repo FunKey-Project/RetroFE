@@ -63,7 +63,7 @@ bool UserInput::initialize()
     MapKey("addPlaylist", KeyCodeAddPlaylist, false);
     MapKey("removePlaylist", KeyCodeRemovePlaylist, false);
     MapKey("random", KeyCodeRandom, false);
-    MapKey("menu", KeyCodeMenu, true);
+    MapKey("menu", KeyCodeMenu, false);
 
     bool retVal = true;
 
