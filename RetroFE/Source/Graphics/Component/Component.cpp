@@ -27,6 +27,7 @@ Component::Component(Page &p)
     backgroundTexture_        = NULL;
     menuScrollReload_         = false;
     freeGraphicsMemory();
+    id_                       = -1;
 }
 
 Component::Component(const Component &copy)
@@ -116,12 +117,17 @@ void Component::setPlaylist(std::string name)
 
 void Component::setNewItemSelected()
 {
-  newItemSelected = true;
+    newItemSelected = true;
 }
 
 void Component::setNewScrollItemSelected()
 {
-  newScrollItemSelected = true;
+    newScrollItemSelected = true;
+}
+
+void Component::setId( int id )
+{
+    id_ = id;
 }
 
 bool Component::isIdle()
@@ -416,4 +422,9 @@ void Component::setMenuScrollReload(bool menuScrollReload)
 bool Component::getMenuScrollReload()
 {
     return menuScrollReload_;
+}
+
+int Component::getId( )
+{
+    return id_;
 }

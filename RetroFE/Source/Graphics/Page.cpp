@@ -483,7 +483,7 @@ void Page::highlightExit()
 }
 
 
-void Page::menuAction( std::string action )
+void Page::triggerEvent( std::string action )
 {
     for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
@@ -492,11 +492,11 @@ void Page::menuAction( std::string action )
 }
 
 
-void Page::menuInput( std::string text )
+void Page::setText( std::string text, int id )
 {
     for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
-        (*it)->setInput( text );
+        (*it)->setText( text, id );
     }
 }
 

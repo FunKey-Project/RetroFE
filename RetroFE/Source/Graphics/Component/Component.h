@@ -41,6 +41,7 @@ public:
     bool isMenuScrolling();
     bool newItemSelected;
     bool newScrollItemSelected;
+    void setId( int id );
 
     virtual void update(float dt);
     virtual void draw();
@@ -50,12 +51,15 @@ public:
     std::string collectionName;
     void setMenuScrollReload(bool menuScrollReload);
     bool getMenuScrollReload();
-    virtual void setInput(std::string text) {};
+    virtual void setText(std::string text, int id = -1) {};
+    virtual void setImage(std::string filePath, int id = -1) {};
+    int getId( );
 
 protected:
     Page &page;
 
     std::string playlistName;
+
 private:
 
     bool animate();
@@ -74,4 +78,5 @@ private:
     bool         animationRequested_;
     bool         menuScrollReload_;
     int          menuIndex_;
+    int          id_;
 };
