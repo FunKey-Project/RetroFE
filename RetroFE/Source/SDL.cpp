@@ -205,12 +205,10 @@ bool SDL::initialize( Configuration &config )
         }
     }
 
-    //todo: specify in configuration file
     if ( retVal && Mix_OpenAudio( audioRate, audioFormat, audioChannels, audioBuffers ) == -1 )
     {
         std::string error = Mix_GetError( );
-        Logger::write( Logger::ZONE_ERROR, "SDL", "Audio initialize failed: " + error );
-        retVal = false;
+        Logger::write( Logger::ZONE_WARNING, "SDL", "Audio initialize failed: " + error );
     }
 
     return retVal;

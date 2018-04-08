@@ -22,13 +22,12 @@
 #include <sstream>
 
 
-Text::Text( std::string text, Page &p, Font *font, float scaleX, float scaleY, bool input )
+Text::Text( std::string text, Page &p, Font *font, float scaleX, float scaleY )
     : Component(p)
     , textData_(text)
     , fontInst_(font)
     , scaleX_(scaleX)
     , scaleY_(scaleY)
-    , input_(input)
 {
     allocateGraphicsMemory( );
 }
@@ -58,14 +57,9 @@ void Text::initializeFonts( )
     fontInst_->initialize( );
 }
 
-void Text::setText( std::string text )
+void Text::setText( std::string text, int id )
 {
-    textData_ = text;
-}
-
-void Text::setInput( std::string text )
-{
-    if ( input_ )
+    if ( getId( ) == id )
         textData_ = text;
 }
 

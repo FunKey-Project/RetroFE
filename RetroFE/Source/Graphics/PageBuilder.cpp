@@ -388,7 +388,14 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
 
     for(xml_node<> *componentXml = layout->first_node("image"); componentXml; componentXml = componentXml->next_sibling("image"))
     {
-        xml_attribute<> *src = componentXml->first_attribute("src");
+        xml_attribute<> *src   = componentXml->first_attribute("src");
+        xml_attribute<> *idXml = componentXml->first_attribute("id");
+
+        int id = -1;
+        if (idXml)
+        {
+            id = Utils::convertInt(idXml->value());
+        }
 
         if (!src)
         {
@@ -404,6 +411,7 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
             altImagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, std::string(src->value()));
 
             Image *c = new Image(imagePath, altImagePath, *page, scaleX_, scaleY_);
+            c->setId( id );
             xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
             if (menuScrollReload &&
                 (Utils::toLower(menuScrollReload->value()) == "true" ||
@@ -422,6 +430,13 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
     {
         xml_attribute<> *srcXml      = componentXml->first_attribute("src");
         xml_attribute<> *numLoopsXml = componentXml->first_attribute("numLoops");
+        xml_attribute<> *idXml = componentXml->first_attribute("id");
+
+        int id = -1;
+        if (idXml)
+        {
+            id = Utils::convertInt(idXml->value());
+        }
 
         if (!srcXml)
         {
@@ -438,6 +453,7 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
             int numLoops = numLoopsXml ? Utils::convertInt(numLoopsXml->value()) : 1;
 
             Video *c = new Video(videoPath, altVideoPath, numLoops, *page, scaleX_, scaleY_);
+            c->setId( id );
             xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
             if (menuScrollReload &&
                 (Utils::toLower(menuScrollReload->value()) == "true" ||
@@ -455,6 +471,13 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
     for(xml_node<> *componentXml = layout->first_node("text"); componentXml; componentXml = componentXml->next_sibling("text"))
     {
         xml_attribute<> *value = componentXml->first_attribute("value");
+        xml_attribute<> *idXml = componentXml->first_attribute("id");
+
+        int id = -1;
+        if (idXml)
+        {
+            id = Utils::convertInt(idXml->value());
+        }
 
         if (!value)
         {
@@ -464,6 +487,7 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
         {
             Font *font = addFont(componentXml, NULL);
             Text *c = new Text(value->value(), *page, font, scaleX_, scaleY_);
+            c->setId( id );
             xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
             if (menuScrollReload &&
                 (Utils::toLower(menuScrollReload->value()) == "true" ||
@@ -525,11 +549,19 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
         xml_attribute<> *startTimeXml      = componentXml->first_attribute("startTime");
         xml_attribute<> *endTimeXml        = componentXml->first_attribute("endTime");
         xml_attribute<> *alignmentXml      = componentXml->first_attribute("alignment");
+        xml_attribute<> *idXml             = componentXml->first_attribute("id");
         bool systemMode = false;
         bool layoutMode = false;
         bool commonMode = false;
         bool menuMode   = false;
         int selectedOffset = 0;
+
+        int id = -1;
+        if (idXml)
+        {
+            id = Utils::convertInt(idXml->value());
+        }
+
         if(tagName == "reloadableVideo")
         {
             type = componentXml->first_attribute("imageType");
@@ -627,6 +659,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                     pluralPostfix = pluralPostfixXml->value();
                 }
                 c = new ReloadableText(type->value(), *page, config_, font, layoutKey, timeFormat, textFormat, singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, scaleX_, scaleY_);
+                c->setId( id );
                 xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
                 if (menuScrollReload &&
                     (Utils::toLower(menuScrollReload->value()) == "true" ||
@@ -676,6 +709,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                 {
                     alignment = alignmentXml->value();
                 }
+                
                 std::string singlePrefix = "";
                 if (singlePrefixXml)
                 {
@@ -697,6 +731,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                     pluralPostfix = pluralPostfixXml->value();
                 }
                 c = new ReloadableScrollingText(config_, systemMode, layoutMode, menuMode, type->value(), singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, textFormat, alignment, *page, selectedOffset, font, scaleX_, scaleY_, direction, scrollingSpeed, startPosition, startTime, endTime);
+                c->setId( id );
                 xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
                 if (menuScrollReload &&
                     (Utils::toLower(menuScrollReload->value()) == "true" ||
@@ -710,6 +745,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
         {
             Font *font = addFont(componentXml, NULL);
             c = new ReloadableMedia(config_, systemMode, layoutMode, commonMode, menuMode, type->value(), *page, selectedOffset, (tagName == "reloadableVideo"), font, scaleX_, scaleY_);
+            c->setId( id );
             xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
             if (menuScrollReload &&
                 (Utils::toLower(menuScrollReload->value()) == "true" ||
