@@ -333,9 +333,17 @@ void RetroFE::run( )
         SDL_Event e;
         if ( splashMode && SDL_PollEvent( &e ) )
         {
-            if ( input_.update( e ) )
+            if ( input_.update( e ) && input_.keystate(UserInput::KeyCodeSelect) )
             {
                 exitSplashMode = true;
+                while ( SDL_PollEvent( &e ) )
+                {
+                    if ( e.type == SDL_JOYDEVICEADDED || e.type == SDL_JOYDEVICEREMOVED )
+                    {
+                        input_.update( e );
+                    }
+                }
+                input_.resetStates( );
                 attract_.reset( );
             }
         }
