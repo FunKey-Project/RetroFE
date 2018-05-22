@@ -29,7 +29,7 @@ public:
     std::string settingsPath() const;
     bool Save();
     void sortItems();
-    void sortFavoriteItems();
+    void sortPlaylists();
     void addSubcollection(CollectionInfo *info);
     void extensionList(std::vector<std::string> &extensions);
     std::string name;

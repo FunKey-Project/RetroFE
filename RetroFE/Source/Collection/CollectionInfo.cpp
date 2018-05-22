@@ -181,25 +181,31 @@ void CollectionInfo::sortItems()
 }
 
 
-void CollectionInfo::sortFavoriteItems()
+void CollectionInfo::sortPlaylists()
 {
 
     std::vector<Item *> *allItems = playlists["all"];
-    std::vector<Item *> favItems;
-    for(std::vector <Item *>::iterator itFav = playlists["favorites"]->begin(); itFav != playlists["favorites"]->end(); itFav++)
-    {
-        favItems.push_back((*itFav));
-    }
-    playlists["favorites"]->clear();
-    
+    std::vector<Item *> toSortItems;
 
-    for(std::vector <Item *>::iterator itAll = allItems->begin(); itAll != allItems->end(); itAll++)
+    for ( Playlists_T::iterator itP = playlists.begin( ); itP != playlists.end( ); itP++ )
     {
-        for(std::vector <Item *>::iterator itFav = favItems.begin(); itFav != favItems.end(); itFav++)
+        if ( itP->second != allItems )
         {
-            if ((*itAll) == (*itFav))
+            toSortItems.clear();
+            for(std::vector <Item *>::iterator itSort = itP->second->begin(); itSort != itP->second->end(); itSort++)
             {
-                playlists["favorites"]->push_back((*itAll));
+                toSortItems.push_back((*itSort));
+            }
+            itP->second->clear();
+            for(std::vector <Item *>::iterator itAll = allItems->begin(); itAll != allItems->end(); itAll++)
+            {
+                for(std::vector <Item *>::iterator itSort = toSortItems.begin(); itSort != toSortItems.end(); itSort++)
+                {
+                    if ((*itAll) == (*itSort))
+                    {
+                        itP->second->push_back((*itAll));
+                    }
+                }
             }
         }
     }

@@ -1210,7 +1210,7 @@ CollectionInfo *RetroFE::getCollection(std::string collectionName)
     mp.buildMenuItems( collection, menuSort );
 
     cib.addPlaylists( collection );
-    collection->sortFavoriteItems( );
+    collection->sortPlaylists( );
 
     // Add extra info, if available
     for ( std::vector<Item *>::iterator it = collection->items.begin( ); it != collection->items.end( ); it++ )
