@@ -483,6 +483,68 @@ void Page::highlightExit()
 }
 
 
+void Page::playlistEnter()
+{
+    Item *item = selectedItem_;
+
+    if(!item) return;
+    for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
+    {
+        for(std::vector<ScrollingList *>::iterator it2 = menus_[std::distance(menus_.begin(), it)].begin(); it2 != menus_[std::distance(menus_.begin(), it)].end(); it2++)
+        {
+            ScrollingList *menu = *it2;
+            if(menuDepth_-1 == static_cast<unsigned int>(distance(menus_.begin(), it)))
+            {
+                // Also trigger animations for index i for active menu
+                menu->triggerEvent( "playlistEnter", MENU_INDEX_HIGH + menuDepth_ - 1 );
+                menu->triggerPlaylistEnterEvent( MENU_INDEX_HIGH + menuDepth_ - 1 );
+            }
+            else
+            {
+                menu->triggerEvent( "playlistEnter", menuDepth_ - 1 );
+                menu->triggerPlaylistEnterEvent( menuDepth_ - 1 );
+            }
+        }
+    }
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        (*it)->triggerEvent( "playlistEnter", menuDepth_ - 1 );
+    }
+}
+
+
+void Page::playlistExit()
+{
+    Item *item = selectedItem_;
+
+    if(!item) return;
+    for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
+    {
+        for(std::vector<ScrollingList *>::iterator it2 = menus_[std::distance(menus_.begin(), it)].begin(); it2 != menus_[std::distance(menus_.begin(), it)].end(); it2++)
+        {
+            ScrollingList *menu = *it2;
+            if(menuDepth_-1 == static_cast<unsigned int>(distance(menus_.begin(), it)))
+            {
+                // Also trigger animations for index i for active menu
+                menu->triggerEvent( "playlistExit", MENU_INDEX_HIGH + menuDepth_ - 1 );
+                menu->triggerPlaylistExitEvent( MENU_INDEX_HIGH + menuDepth_ - 1 );
+            }
+            else
+            {
+                menu->triggerEvent( "playlistExit", menuDepth_ - 1 );
+                menu->triggerPlaylistExitEvent( menuDepth_ - 1 );
+            }
+        }
+    }
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        (*it)->triggerEvent( "playlistExit", menuDepth_ - 1 );
+    }
+}
+
+
 void Page::triggerEvent( std::string action )
 {
     for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
