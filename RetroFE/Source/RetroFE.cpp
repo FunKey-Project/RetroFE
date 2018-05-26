@@ -471,7 +471,6 @@ void RetroFE::run( )
         case RETROFE_PLAYLIST_LOAD_ART:
             if (currentPage_->isIdle( ))
             {
-                currentPage_->onNewItemSelected( );
                 currentPage_->reallocateMenuSpritePoints( );
                 currentPage_->playlistEnter( );
                 state = RETROFE_PLAYLIST_ENTER;
