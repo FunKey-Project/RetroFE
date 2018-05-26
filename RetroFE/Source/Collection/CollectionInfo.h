@@ -33,6 +33,7 @@ public:
     void addSubcollection(CollectionInfo *info);
     void extensionList(std::vector<std::string> &extensions);
     std::string name;
+    std::string lowercaseName();
     std::string listpath;
     bool saveRequest;
     std::string metadataType;
@@ -43,6 +44,7 @@ public:
     Playlists_T playlists;
 
     bool menusort;
+    bool subsSplit;
 private:
     std::string metadataPath_;
     std::string extensions_;

@@ -481,6 +481,15 @@ void RetroFE::run( )
         case RETROFE_PLAYLIST_ENTER:
             if (currentPage_->isIdle( ))
             {
+                bool collectionInputClear = false;
+                config_.getProperty( "collectionInputClear", collectionInputClear );
+                if (  collectionInputClear  )
+                {
+                    // Empty event queue
+                    SDL_Event e;
+                    while ( SDL_PollEvent( &e ) );
+                    input_.resetStates( );
+                }
                 state = RETROFE_IDLE;
             }
             break;
@@ -1161,9 +1170,14 @@ Page *RetroFE::loadSplashPage( )
 CollectionInfo *RetroFE::getCollection(std::string collectionName)
 {
 
+    // Check if subcollections should be merged or split
+    bool subsSplit = false;
+    config_.getProperty( "subsSplit", subsSplit );
+
     // Build the collection
     CollectionInfoBuilder cib(config_, *metadb_);
     CollectionInfo *collection = cib.buildCollection( collectionName );
+    collection->subsSplit = subsSplit;
     cib.injectMetadata( collection );
 
     DIR *dp;
@@ -1191,6 +1205,7 @@ CollectionInfo *RetroFE::getCollection(std::string collectionName)
 
                 CollectionInfo *subcollection = cib.buildCollection( basename, collectionName );
                 collection->addSubcollection( subcollection );
+                subcollection->subsSplit = subsSplit;
                 cib.injectMetadata( subcollection );
             }
         }
@@ -1206,7 +1221,7 @@ CollectionInfo *RetroFE::getCollection(std::string collectionName)
     }
 
     MenuParser mp;
-    mp.buildMenuItems( collection, menuSort );
+    mp.buildMenuItems( collection, menuSort);
 
     cib.addPlaylists( collection );
     collection->sortPlaylists( );
