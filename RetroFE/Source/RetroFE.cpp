@@ -453,7 +453,7 @@ void RetroFE::run( )
 
         // Switch playlist; start onHighlightExit animation
         case RETROFE_PLAYLIST_REQUEST:
-            currentPage_->highlightExit( );
+            currentPage_->playlistExit( );
             currentPage_->setScrolling(Page::ScrollDirectionIdle);
             state = RETROFE_PLAYLIST_EXIT;
             break;
@@ -473,7 +473,7 @@ void RetroFE::run( )
             {
                 currentPage_->onNewItemSelected( );
                 currentPage_->reallocateMenuSpritePoints( );
-                currentPage_->highlightEnter( );
+                currentPage_->playlistEnter( );
                 state = RETROFE_PLAYLIST_ENTER;
             }
             break;

@@ -434,6 +434,24 @@ void ScrollingList::triggerHighlightExitEvent( int menuIndex )
     }
 }
 
+void ScrollingList::triggerPlaylistEnterEvent( int menuIndex )
+{
+    for ( unsigned int i = 0; i < components_.size( ); ++i )
+    {
+        Component *c = components_.at( i );
+        if ( c ) c->triggerEvent( "playlistEnter", menuIndex );
+    }
+}
+
+void ScrollingList::triggerPlaylistExitEvent( int menuIndex )
+{
+    for ( unsigned int i = 0; i < components_.size( ); ++i )
+    {
+        Component *c = components_.at( i );
+        if ( c ) c->triggerEvent( "playlistExit", menuIndex );
+    }
+}
+
 void ScrollingList::update( float dt )
 {
 

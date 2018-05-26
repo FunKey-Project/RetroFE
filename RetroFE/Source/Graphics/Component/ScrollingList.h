@@ -53,6 +53,8 @@ public:
     void triggerGameExitEvent( int menuIndex = -1 );
     void triggerHighlightEnterEvent( int menuIndex = -1 );
     void triggerHighlightExitEvent( int menuIndex = -1 );
+    void triggerPlaylistEnterEvent( int menuIndex = -1 );
+    void triggerPlaylistExitEvent( int menuIndex = -1 );
 
     bool allocateTexture( unsigned int index, Item *i );
     void deallocateTexture( unsigned int index );

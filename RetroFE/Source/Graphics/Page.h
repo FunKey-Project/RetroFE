@@ -98,6 +98,8 @@ public:
     void menuScroll();
     void highlightEnter();
     void highlightExit();
+    void playlistEnter();
+    void playlistExit();
     void triggerEvent( std::string action );
     void setText( std::string text, int id );
     void addPlaylist();
