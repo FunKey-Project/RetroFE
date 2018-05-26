@@ -44,6 +44,7 @@ CollectionInfo::CollectionInfo(std::string name,
     , saveRequest(false)
     , metadataType(metadataType)
     , menusort(true)
+    , subsSplit(false)
     , metadataPath_(metadataPath)
 	, extensions_(extensions)
 {
@@ -158,6 +159,13 @@ void CollectionInfo::extensionList(std::vector<std::string> &extensionlist)
     }
 }
 
+std::string CollectionInfo::lowercaseName()
+{
+    std::string lcstr = name;
+    std::transform(lcstr.begin(), lcstr.end(), lcstr.begin(), ::tolower);
+    return lcstr;
+}
+
 void CollectionInfo::addSubcollection(CollectionInfo *newinfo)
 {
     items.insert(items.begin(), newinfo->items.begin(), newinfo->items.end());
@@ -168,6 +176,8 @@ bool CollectionInfo::itemIsLess(Item *lhs, Item *rhs)
     if(lhs->leaf && !rhs->leaf) return true;
     if(!lhs->leaf && rhs->leaf) return false;
     if(!lhs->collectionInfo->menusort && lhs->leaf && rhs->leaf) return false;
+    if(lhs->collectionInfo->subsSplit && lhs->collectionInfo != rhs->collectionInfo)
+        return lhs->collectionInfo->lowercaseName() < rhs->collectionInfo->lowercaseName();
     return lhs->lowercaseFullTitle() < rhs->lowercaseFullTitle();
 }
 
