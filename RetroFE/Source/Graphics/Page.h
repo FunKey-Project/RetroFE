@@ -100,6 +100,8 @@ public:
     void highlightExit();
     void playlistEnter();
     void playlistExit();
+    void menuJumpEnter();
+    void menuJumpExit();
     void triggerEvent( std::string action );
     void setText( std::string text, int id );
     void addPlaylist();
