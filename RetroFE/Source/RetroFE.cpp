@@ -494,23 +494,46 @@ void RetroFE::run( )
             }
             break;
 
-        // Make a jump in the menu; start onHighlightExit animation
+        // Jump in menu; start onMenuJumpExit animation
         case RETROFE_MENUJUMP_REQUEST:
+            currentPage_->menuJumpExit( );
             currentPage_->setScrolling(Page::ScrollDirectionIdle);
-            currentPage_->highlightExit( );
             state = RETROFE_MENUJUMP_EXIT;
             break;
 
-        // Make a jump in the menu; wait for onHighlightExit animation to finish; load art
+        // Jump in menu; wait for onMenuJumpExit animation to finish; load art
         case RETROFE_MENUJUMP_EXIT:
-            if (currentPage_->isMenuIdle( ) && processUserInput( currentPage_ ) == RETROFE_MENUJUMP_REQUEST)
-            {
-                state = RETROFE_MENUJUMP_REQUEST;
-            }
             if (currentPage_->isIdle( ))
             {
-                currentPage_->highlightLoadArt( );
-                state = RETROFE_HIGHLIGHT_LOAD_ART;
+                currentPage_->onNewItemSelected( );
+                state = RETROFE_MENUJUMP_LOAD_ART;
+            }
+            break;
+
+        // Jump in menu; start onMenuJumpEnter animation
+        case RETROFE_MENUJUMP_LOAD_ART:
+            if (currentPage_->isIdle( ))
+            {
+                currentPage_->reallocateMenuSpritePoints( );
+                currentPage_->menuJumpEnter( );
+                state = RETROFE_MENUJUMP_ENTER;
+            }
+            break;
+
+        // Jump in menu; wait for onMenuJump animation to finish
+        case RETROFE_MENUJUMP_ENTER:
+            if (currentPage_->isIdle( ))
+            {
+                bool collectionInputClear = false;
+                config_.getProperty( "collectionInputClear", collectionInputClear );
+                if (  collectionInputClear  )
+                {
+                    // Empty event queue
+                    SDL_Event e;
+                    while ( SDL_PollEvent( &e ) );
+                    input_.resetStates( );
+                }
+                state = RETROFE_IDLE;
             }
             break;
 
@@ -996,32 +1019,24 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             {
                 attract_.reset( );
                 page->pageScroll(Page::ScrollDirectionBack);
-                page->onNewItemSelected( );
-                page->reallocateMenuSpritePoints( );
                 state = RETROFE_MENUJUMP_REQUEST;
             }
             if (input_.keystate(UserInput::KeyCodePageDown))
             {
                 attract_.reset( );
                 page->pageScroll(Page::ScrollDirectionForward);
-                page->onNewItemSelected( );
-                page->reallocateMenuSpritePoints( );
                 state = RETROFE_MENUJUMP_REQUEST;
             }
             if (input_.keystate(UserInput::KeyCodeLetterUp))
             {
                 attract_.reset( );
                 page->letterScroll(Page::ScrollDirectionBack);
-                page->onNewItemSelected( );
-                page->reallocateMenuSpritePoints( );
                 state = RETROFE_MENUJUMP_REQUEST;
             }
             if (input_.keystate(UserInput::KeyCodeLetterDown))
             {
                 attract_.reset( );
                 page->letterScroll(Page::ScrollDirectionForward);
-                page->onNewItemSelected( );
-                page->reallocateMenuSpritePoints( );
                 state = RETROFE_MENUJUMP_REQUEST;
             }
             if ( input_.newKeyPressed(UserInput::KeyCodeFavPlaylist) )
@@ -1058,9 +1073,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             {
                 attract_.reset( );
                 page->selectRandom( );
-                page->onNewItemSelected( );
-                page->reallocateMenuSpritePoints( );
-                state = RETROFE_HIGHLIGHT_REQUEST;
+                state = RETROFE_MENUJUMP_REQUEST;
             }
         }
 
