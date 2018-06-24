@@ -524,15 +524,6 @@ void RetroFE::run( )
         case RETROFE_MENUJUMP_ENTER:
             if (currentPage_->isIdle( ))
             {
-                bool collectionInputClear = false;
-                config_.getProperty( "collectionInputClear", collectionInputClear );
-                if (  collectionInputClear  )
-                {
-                    // Empty event queue
-                    SDL_Event e;
-                    while ( SDL_PollEvent( &e ) );
-                    input_.resetStates( );
-                }
                 state = RETROFE_IDLE;
             }
             break;
