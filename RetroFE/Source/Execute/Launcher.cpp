@@ -85,7 +85,10 @@ bool Launcher::run(std::string collection, Item *collectionItem)
     }
 
     // It is ok to continue if the file could not be found. We could be launching a merged romset
-    findFile(selectedItemsPath, matchedExtension, selectedItemsDirectory, collectionItem->name, extensionstr);
+    if (collectionItem->file == "")
+        findFile(selectedItemsPath, matchedExtension, selectedItemsDirectory, collectionItem->name, extensionstr);
+    else
+        findFile(selectedItemsPath, matchedExtension, selectedItemsDirectory, collectionItem->file, extensionstr);
 
     args = replaceVariables(args,
                             selectedItemsPath,

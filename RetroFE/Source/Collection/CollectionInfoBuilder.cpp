@@ -284,8 +284,9 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     std::string excludeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "exclude.txt");
 
     std::string launcher;
-    bool showMissing = false; 
+    bool showMissing  = false; 
     bool romHierarchy = false;
+    bool truRIP       = false;
  
     if (mergedCollectionName != "")
     {
@@ -299,6 +300,9 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     }
     (void)conf_.getProperty("collections." + info->name + ".list.includeMissingItems", showMissing);
     (void)conf_.getProperty("collections." + info->name + ".list.romHierarchy", romHierarchy);
+    (void)conf_.getProperty("collections." + info->name + ".list.truRIP", truRIP);
+    if (truRIP)
+        romHierarchy = true;
 
     // If no merged file exists, or it is empty, attempt to use the include and exclude from the subcollection
     // If this not a merged collection, the size will be 0 anyways and the code below will still execute
@@ -338,7 +342,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
                  rompath = path;
                  path    = "";
              }
-             ImportRomDirectory(rompath, info, includeFilter, excludeFilter, romHierarchy);
+             ImportRomDirectory(rompath, info, includeFilter, excludeFilter, romHierarchy, truRIP);
         } while (path != "");
     }
 
@@ -439,7 +443,7 @@ void CollectionInfoBuilder::addPlaylists(CollectionInfo *info)
 }
 
 
-void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo *info, std::map<std::string, Item *> includeFilter, std::map<std::string, Item *> excludeFilter, bool romHierarchy)
+void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo *info, std::map<std::string, Item *> includeFilter, std::map<std::string, Item *> excludeFilter, bool romHierarchy, bool truRIP)
 {
 
     DIR                               *dp;
@@ -466,7 +470,7 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
         struct stat sb;
         if (romHierarchy && file != "." && file != ".." && stat( Utils::combinePath( path, file ).c_str(), &sb ) == 0 && S_ISDIR( sb.st_mode ))
         {
-            ImportRomDirectory( Utils::combinePath( path, file ), info, includeFilter, excludeFilter, romHierarchy );
+            ImportRomDirectory( Utils::combinePath( path, file ), info, includeFilter, excludeFilter, romHierarchy, truRIP );
         }
         else if (file != "." && file != "..")
         {
@@ -495,6 +499,14 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
                             i->title          = basename;
                             i->collectionInfo = info;
                             i->filepath       = path + Utils::pathSeparator;
+
+                            if ( truRIP )
+                            {
+                                i->file      = basename;
+                                i->name      = Utils::getFileName( path );
+                                i->fullTitle = i->name;
+                                i->title     = i->name;
+                            }
 
                             info->items.push_back(i);
                         }
