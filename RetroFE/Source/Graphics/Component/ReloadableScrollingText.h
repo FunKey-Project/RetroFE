@@ -35,7 +35,7 @@ public:
 
 private:
     void reloadTexture( );
-    void loadText( std::string collection, std::string type, std::string basename, bool systemMode );
+    void loadText( std::string collection, std::string type, std::string basename, std::string filepath, bool systemMode );
     Configuration           &config_;
     bool                     systemMode_;
     bool                     layoutMode_;

@@ -604,7 +604,7 @@ bool MetadataDatabase::importTruriplist(std::string truriplistFile)
         for(rapidxml::xml_node<> *game = root->first_node("game"); game; game = game->next_sibling("game"))
         {
             rapidxml::xml_node<> *descriptionXml = game->first_node("description");
-            rapidxml::xml_node<> *truripXml      = game->first_node("trurip");
+            rapidxml::xml_node<> *truripXml      = game->first_node("EmuArc");
             if (!truripXml)
             {
                 Logger::write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a TruripList SuperDat file (missing <trurip> tag)");
@@ -615,6 +615,7 @@ bool MetadataDatabase::importTruriplist(std::string truriplistFile)
             rapidxml::xml_node<> *developerXml     = truripXml->first_node("developer");
             rapidxml::xml_node<> *yearXml          = truripXml->first_node("year");
             rapidxml::xml_node<> *genreXml         = truripXml->first_node("genre");
+            rapidxml::xml_node<> *subgenreXml      = truripXml->first_node("subgenre");
             rapidxml::xml_node<> *ratingXml        = truripXml->first_node("ratings");
             rapidxml::xml_node<> *scoreXml         = truripXml->first_node("score");
             rapidxml::xml_node<> *numberPlayersXml = truripXml->first_node("players");
@@ -627,6 +628,7 @@ bool MetadataDatabase::importTruriplist(std::string truriplistFile)
             std::string developer     = (developerXml) ? developerXml->value() : "";
             std::string year          = (yearXml) ? yearXml->value() : "";
             std::string genre         = (genreXml) ? genreXml->value() : "";
+            genre                     = (subgenreXml && subgenreXml->value_size() != 0) ? genre + "_" + subgenreXml->value() : genre;
             std::string rating        = (ratingXml) ? ratingXml->value() : "";
             std::string score         = (scoreXml) ? scoreXml->value() : "";
             std::string numberPlayers = (numberPlayersXml) ? numberPlayersXml->value() : "";

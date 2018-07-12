@@ -173,12 +173,12 @@ void ReloadableScrollingText::reloadTexture( )
         {
 
             // check the master collection for the system artifact 
-            loadText( collectionName, type_, type_, true );
+            loadText( collectionName, type_, type_, "", true );
 
             // check collection for the system artifact
             if (text_.empty( ))
             {
-              loadText( selectedItem->collectionInfo->name, type_, type_, true );
+              loadText( selectedItem->collectionInfo->name, type_, type_, "", true );
             }
 
         }
@@ -190,12 +190,12 @@ void ReloadableScrollingText::reloadTexture( )
             {
 
               // check the master collection for the artifact 
-              loadText( collectionName, type_, basename, false );
+              loadText( collectionName, type_, basename, "", false );
 
               // check the collection for the artifact
               if (text_.empty( ))
               {
-                loadText( selectedItem->collectionInfo->name, type_, basename, false );
+                loadText( selectedItem->collectionInfo->name, type_, basename, "", false );
               }
 
             }
@@ -203,24 +203,28 @@ void ReloadableScrollingText::reloadTexture( )
             {
 
               // check the master collection for the artifact 
-              loadText( collectionName, type_, basename, false );
+              loadText( collectionName, type_, basename, "", false );
 
               // check the collection for the artifact
               if (text_.empty( ))
               {
-                loadText( selectedItem->collectionInfo->name, type_, basename, false );
+                loadText( selectedItem->collectionInfo->name, type_, basename, "", false );
               }
 
               // check the submenu collection for the system artifact
               if (text_.empty( ))
               {
-                loadText( selectedItem->name, type_, type_, true );
+                loadText( selectedItem->name, type_, type_, "", true );
               } 
 
             }
 
         }
     }
+
+    // Check for thext in the roms directory
+    if ( text_.empty( ))
+        loadText( selectedItem->filepath, type_, type_, selectedItem->filepath, false );
 
     // Check for supported fields if text is still empty
     if (text_.empty( ))
@@ -378,7 +382,7 @@ void ReloadableScrollingText::reloadTexture( )
 }
 
 
-void ReloadableScrollingText::loadText( std::string collection, std::string type, std::string basename, bool systemMode )
+void ReloadableScrollingText::loadText( std::string collection, std::string type, std::string basename, std::string filepath, bool systemMode )
 {
 
     std::string textPath = "";
@@ -398,6 +402,8 @@ void ReloadableScrollingText::loadText( std::string collection, std::string type
     {
         config_.getMediaPropertyAbsolutePath( collection, type, systemMode, textPath );
     }
+    if ( filepath != "" )
+        textPath = filepath;
 
     textPath = Utils::combinePath( textPath, basename );
 

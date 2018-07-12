@@ -148,12 +148,12 @@ void ReloadableMedia::reloadTexture()
             {
 
                 // check the master collection for the system artifact 
-                loadedComponent_ = findComponent(collectionName, "video", "video", true);
+                loadedComponent_ = findComponent(collectionName, "video", "video", "", true);
 
                 // check the collection for the system artifact
                 if(!loadedComponent_)
                 {
-                  loadedComponent_ = findComponent(selectedItem->collectionInfo->name, "video", "video", true);
+                  loadedComponent_ = findComponent(selectedItem->collectionInfo->name, "video", "video", "", true);
                 }
 
             }
@@ -165,12 +165,18 @@ void ReloadableMedia::reloadTexture()
                 {
 
                   // check the master collection for the artifact 
-                  loadedComponent_ = findComponent(collectionName, "video", basename, false);
+                  loadedComponent_ = findComponent(collectionName, "video", basename, "", false);
 
                   // check the collection for the artifact
                   if(!loadedComponent_)
                   {
-                    loadedComponent_ = findComponent(selectedItem->collectionInfo->name, "video", basename, false);
+                    loadedComponent_ = findComponent(selectedItem->collectionInfo->name, "video", basename, "", false);
+                  }
+
+                  // check the rom directory for the artifact
+                  if(!loadedComponent_)
+                  {
+                    loadedComponent_ = findComponent(selectedItem->collectionInfo->name, "video", "video", selectedItem->filepath, false);
                   }
 
                 }
@@ -178,18 +184,18 @@ void ReloadableMedia::reloadTexture()
                 {
 
                   // check the master collection for the artifact 
-                  loadedComponent_ = findComponent(collectionName, "video", basename, false);
+                  loadedComponent_ = findComponent(collectionName, "video", basename, "", false);
 
                   // check the collection for the artifact
                   if(!loadedComponent_)
                   {
-                    loadedComponent_ = findComponent(selectedItem->collectionInfo->name, "video", basename, false);
+                    loadedComponent_ = findComponent(selectedItem->collectionInfo->name, "video", basename, "", false);
                   }
 
                   // check the submenu collection for the system artifact
                   if (!loadedComponent_)
                   {
-                    loadedComponent_ = findComponent(selectedItem->name, "video", "video", true);
+                    loadedComponent_ = findComponent(selectedItem->name, "video", "video", "", true);
                   } 
 
                 }
@@ -311,12 +317,12 @@ void ReloadableMedia::reloadTexture()
         {
 
             // check the master collection for the system artifact 
-            loadedComponent_ = findComponent(collectionName, type_, type_, true);
+            loadedComponent_ = findComponent(collectionName, type_, type_, "", true);
 
             // check collection for the system artifact
             if(!loadedComponent_)
             {
-              loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, type_, true);
+              loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, type_, "", true);
             }
 
         }
@@ -328,12 +334,18 @@ void ReloadableMedia::reloadTexture()
             {
 
               // check the master collection for the artifact 
-              loadedComponent_ = findComponent(collectionName, type_, basename, false);
+              loadedComponent_ = findComponent(collectionName, type_, basename, "", false);
 
               // check the collection for the artifact
               if(!loadedComponent_)
               {
-                loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, basename, false);
+                loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, basename, "", false);
+              }
+
+              // check the rom directory for the artifact
+              if(!loadedComponent_)
+              {
+                loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, type_, selectedItem->filepath, false);
               }
 
             }
@@ -341,18 +353,18 @@ void ReloadableMedia::reloadTexture()
             {
 
               // check the master collection for the artifact 
-              loadedComponent_ = findComponent(collectionName, type_, basename, false);
+              loadedComponent_ = findComponent(collectionName, type_, basename, "", false);
 
               // check the collection for the artifact
               if(!loadedComponent_)
               {
-                loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, basename, false);
+                loadedComponent_ = findComponent(selectedItem->collectionInfo->name, type_, basename, "", false);
               }
 
               // check the submenu collection for the system artifact
               if (!loadedComponent_)
               {
-                loadedComponent_ = findComponent(selectedItem->name, type_, type_, true);
+                loadedComponent_ = findComponent(selectedItem->name, type_, type_, "", true);
               } 
 
             }
@@ -377,7 +389,7 @@ void ReloadableMedia::reloadTexture()
 }
 
 
-Component *ReloadableMedia::findComponent(std::string collection, std::string type, std::string basename, bool systemMode)
+Component *ReloadableMedia::findComponent(std::string collection, std::string type, std::string basename, std::string filepath, bool systemMode)
 {
     std::string imagePath;
     Component *component = NULL;
@@ -417,6 +429,8 @@ Component *ReloadableMedia::findComponent(std::string collection, std::string ty
             config_.getMediaPropertyAbsolutePath(collection, type, systemMode, imagePath);
         }
     }
+    if ( filepath != "" )
+        imagePath = filepath;
 
     if(type == "video")
     {

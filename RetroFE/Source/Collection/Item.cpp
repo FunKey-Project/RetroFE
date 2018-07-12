@@ -25,6 +25,7 @@ Item::Item()
     : collectionInfo(NULL)
     , leaf(true)
 {
+    file = "";
 }
 
 Item::~Item()

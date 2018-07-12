@@ -29,6 +29,7 @@ public:
     std::string lowercaseFullTitle();
     std::string name;
     std::string filepath;
+    std::string file;
     std::string title;
     std::string fullTitle;
     std::string year;

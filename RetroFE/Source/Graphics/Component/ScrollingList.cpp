@@ -671,6 +671,10 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
         t = imageBuild.CreateImage( imagePath, page, imageType_, scaleX_, scaleY_ );
     }
 
+    // check rom directory path for art
+    if ( !t )
+        t = imageBuild.CreateImage( item->filepath, page, imageType_, scaleX_, scaleY_ );
+
     if ( !t )
     {
         t = new Text(item->title, page, fontInst_, scaleX_, scaleY_ );

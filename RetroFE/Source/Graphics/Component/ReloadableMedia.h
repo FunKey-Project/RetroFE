@@ -33,7 +33,7 @@ public:
     void draw();
     void freeGraphicsMemory();
     void allocateGraphicsMemory();
-    Component *findComponent(std::string collection, std::string type, std::string basename, bool systemMode);
+    Component *findComponent(std::string collection, std::string type, std::string basename, std::string filepath, bool systemMode);
 
     void enableTextFallback_(bool value);
 
