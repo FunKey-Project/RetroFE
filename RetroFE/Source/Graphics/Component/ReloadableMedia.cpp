@@ -132,12 +132,11 @@ void ReloadableMedia::reloadTexture()
 
     names.push_back(selectedItem->name);
     names.push_back(selectedItem->fullTitle);
-    names.push_back("default");
-
     if(selectedItem->cloneof.length() > 0)
     {
         names.push_back(selectedItem->cloneof);
     }
+    names.push_back("default");
 
     if(isVideo_)
     {

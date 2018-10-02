@@ -286,7 +286,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     std::string launcher;
     bool showMissing  = false; 
     bool romHierarchy = false;
-    bool truRIP       = false;
+    bool emuarc       = false;
  
     if (mergedCollectionName != "")
     {
@@ -300,8 +300,8 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     }
     (void)conf_.getProperty("collections." + info->name + ".list.includeMissingItems", showMissing);
     (void)conf_.getProperty("collections." + info->name + ".list.romHierarchy", romHierarchy);
-    (void)conf_.getProperty("collections." + info->name + ".list.truRIP", truRIP);
-    if (truRIP)
+    (void)conf_.getProperty("collections." + info->name + ".list.emuarc", emuarc);
+    if (emuarc)
         romHierarchy = true;
 
     // If no merged file exists, or it is empty, attempt to use the include and exclude from the subcollection
@@ -342,7 +342,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
                  rompath = path;
                  path    = "";
              }
-             ImportRomDirectory(rompath, info, includeFilter, excludeFilter, romHierarchy, truRIP);
+             ImportRomDirectory(rompath, info, includeFilter, excludeFilter, romHierarchy, emuarc);
         } while (path != "");
     }
 
@@ -443,7 +443,7 @@ void CollectionInfoBuilder::addPlaylists(CollectionInfo *info)
 }
 
 
-void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo *info, std::map<std::string, Item *> includeFilter, std::map<std::string, Item *> excludeFilter, bool romHierarchy, bool truRIP)
+void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo *info, std::map<std::string, Item *> includeFilter, std::map<std::string, Item *> excludeFilter, bool romHierarchy, bool emuarc)
 {
 
     DIR                               *dp;
@@ -470,7 +470,7 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
         struct stat sb;
         if (romHierarchy && file != "." && file != ".." && stat( Utils::combinePath( path, file ).c_str(), &sb ) == 0 && S_ISDIR( sb.st_mode ))
         {
-            ImportRomDirectory( Utils::combinePath( path, file ), info, includeFilter, excludeFilter, romHierarchy, truRIP );
+            ImportRomDirectory( Utils::combinePath( path, file ), info, includeFilter, excludeFilter, romHierarchy, emuarc );
         }
         else if (file != "." && file != "..")
         {
@@ -500,7 +500,7 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
                             i->collectionInfo = info;
                             i->filepath       = path + Utils::pathSeparator;
 
-                            if ( truRIP )
+                            if ( emuarc )
                             {
                                 i->file      = basename;
                                 i->name      = Utils::getFileName( path );
@@ -508,7 +508,13 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
                                 i->title     = i->name;
                             }
 
-                            info->items.push_back(i);
+                            // Add item if it doesn't already exist
+                            bool found = false;
+                            for ( std::vector<Item*>::iterator it = info->items.begin(); it != info->items.end( ); it++ )
+                               if ( (*it)->name == basename )
+                                   found = true;
+                            if ( !found )
+                                info->items.push_back(i);
                         }
                     }
                 }

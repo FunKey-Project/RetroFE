@@ -356,3 +356,17 @@ void UserInput::clearJoysticks( )
         joysticks_[i] = -1;
     }
 }
+
+
+void UserInput::reconfigure( )
+{
+    for (unsigned int i = 0; i < keyHandlers_.size(); ++i)
+    {
+        if (keyHandlers_[i].first)
+        {
+            delete keyHandlers_[i].first;
+        }
+    }
+    keyHandlers_.clear();
+    initialize( );
+}

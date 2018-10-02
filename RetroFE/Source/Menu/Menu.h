@@ -16,7 +16,11 @@
 #pragma once
 
 
+#include <string>
+
+
 class Configuration;
+class UserInput;
 class Item;
 class Page;
 
@@ -25,13 +29,15 @@ class Menu
 {
 
 public:
-    Menu( Configuration &c );
+    Menu( Configuration &c, UserInput &ui );
     void handleEntry( Item *item );
     void setPage( Page *page );
     void clearPage( );
 
 private:
+    std::string    getKey();
     Configuration &config_;
+    UserInput     &input_;
     Page          *page_;
 
 };

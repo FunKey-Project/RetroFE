@@ -155,6 +155,7 @@ void CollectionInfo::extensionList(std::vector<std::string> &extensionlist)
 
     while(std::getline(ss, token, ','))
     {
+        token = Utils::trimEnds(token);
     	extensionlist.push_back(token);
     }
 }

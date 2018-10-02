@@ -320,7 +320,7 @@ void RetroFE::run( )
     bool exitSplashMode = false;
 
     Launcher l( config_ );
-    Menu     m( config_ );
+    Menu     m( config_, input_ );
     preloadTime = static_cast<float>( SDL_GetTicks( ) ) / 1000;
 
     while ( running )

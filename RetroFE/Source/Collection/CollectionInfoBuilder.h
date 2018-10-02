@@ -41,5 +41,5 @@ private:
     MetadataDatabase &metaDB_;
     bool ImportBasicList(CollectionInfo *info, std::string file, std::map<std::string, Item *> &list);
     bool ImportDirectory(CollectionInfo *info, std::string mergedCollectionName);
-    void ImportRomDirectory(std::string path, CollectionInfo *info, std::map<std::string, Item *> includeFilter, std::map<std::string, Item *> excludeFilter, bool romHierarchy, bool truRIP);
+    void ImportRomDirectory(std::string path, CollectionInfo *info, std::map<std::string, Item *> includeFilter, std::map<std::string, Item *> excludeFilter, bool romHierarchy, bool emuarc);
 };

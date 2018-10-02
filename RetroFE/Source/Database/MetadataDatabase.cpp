@@ -121,7 +121,7 @@ bool MetadataDatabase::importDirectory()
     struct dirent *dirp;
     std::string hyperListPath  = Utils::combinePath(Configuration::absolutePath, "meta", "hyperlist");
     std::string mameListPath   = Utils::combinePath(Configuration::absolutePath, "meta", "mamelist");
-    std::string truripListPath = Utils::combinePath(Configuration::absolutePath, "meta", "trurip");
+    std::string emuarcListPath = Utils::combinePath(Configuration::absolutePath, "meta", "emuarc");
 
     dp = opendir(hyperListPath.c_str());
 
@@ -188,11 +188,11 @@ bool MetadataDatabase::importDirectory()
         closedir(dp);
     }
 
-    dp = opendir(truripListPath.c_str());
+    dp = opendir(emuarcListPath.c_str());
 
     if(dp == NULL)
     {
-        Logger::write(Logger::ZONE_INFO, "MetadataDatabase", "Could not read directory \"" + truripListPath + "\"");
+        Logger::write(Logger::ZONE_INFO, "MetadataDatabase", "Could not read directory \"" + emuarcListPath + "\"");
     }
     else
     {
@@ -209,9 +209,9 @@ bool MetadataDatabase::importDirectory()
 
                 if(extension == ".dat")
                 {
-                    std::string importFile = Utils::combinePath(truripListPath, std::string(dirp->d_name));
-                    Logger::write(Logger::ZONE_INFO, "Metadata", "Importing truriplist: " + importFile);
-                    importTruriplist(importFile);
+                    std::string importFile = Utils::combinePath(emuarcListPath, std::string(dirp->d_name));
+                    Logger::write(Logger::ZONE_INFO, "Metadata", "Importing emuarclist: " + importFile);
+                    importEmuArclist(importFile);
                 }
             }
         }
@@ -556,13 +556,13 @@ bool MetadataDatabase::importMamelist(std::string filename, std::string collecti
 }
 
 
-bool MetadataDatabase::importTruriplist(std::string truriplistFile)
+bool MetadataDatabase::importEmuArclist(std::string emuarclistFile)
 {
     char *error = NULL;
 
-    config_.setProperty("status", "Scraping data from \"" + truriplistFile + "\"");
+    config_.setProperty("status", "Scraping data from \"" + emuarclistFile + "\"");
     rapidxml::xml_document<> doc;
-    std::ifstream file(truriplistFile.c_str());
+    std::ifstream file(emuarclistFile.c_str());
     std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 
     try
@@ -575,20 +575,20 @@ bool MetadataDatabase::importTruriplist(std::string truriplistFile)
 
         if(!root)
         {
-            Logger::write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a TruripList file (missing <datafile> tag)");
+            Logger::write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a EmuArcList file (missing <datafile> tag)");
             return false;
         }
 
         rapidxml::xml_node<> *header = root->first_node("header");
         if (!header)
         {
-            Logger::write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a TruripList file (missing <header> tag)");
+            Logger::write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a EmuArcList file (missing <header> tag)");
             return false;
         }
         rapidxml::xml_node<> *name = header->first_node("name");
         if (!name)
         {
-            Logger::write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a TruripList SuperDat file (missing <name> in <header> tag)");
+            Logger::write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a EmuArcList SuperDat file (missing <name> in <header> tag)");
             return false;
         }
         std::string collectionName = name->value();
@@ -604,22 +604,22 @@ bool MetadataDatabase::importTruriplist(std::string truriplistFile)
         for(rapidxml::xml_node<> *game = root->first_node("game"); game; game = game->next_sibling("game"))
         {
             rapidxml::xml_node<> *descriptionXml = game->first_node("description");
-            rapidxml::xml_node<> *truripXml      = game->first_node("EmuArc");
-            if (!truripXml)
+            rapidxml::xml_node<> *emuarcXml      = game->first_node("EmuArc");
+            if (!emuarcXml)
             {
-                Logger::write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a TruripList SuperDat file (missing <trurip> tag)");
+                Logger::write(Logger::ZONE_ERROR, "Metadata", "Does not appear to be a EmuArcList SuperDat file (missing <emuarc> tag)");
                 return false;
             }
-            rapidxml::xml_node<> *cloneofXml       = truripXml->first_node("cloneof");
-            rapidxml::xml_node<> *manufacturerXml  = truripXml->first_node("publisher");
-            rapidxml::xml_node<> *developerXml     = truripXml->first_node("developer");
-            rapidxml::xml_node<> *yearXml          = truripXml->first_node("year");
-            rapidxml::xml_node<> *genreXml         = truripXml->first_node("genre");
-            rapidxml::xml_node<> *subgenreXml      = truripXml->first_node("subgenre");
-            rapidxml::xml_node<> *ratingXml        = truripXml->first_node("ratings");
-            rapidxml::xml_node<> *scoreXml         = truripXml->first_node("score");
-            rapidxml::xml_node<> *numberPlayersXml = truripXml->first_node("players");
-            rapidxml::xml_node<> *enabledXml       = truripXml->first_node("enabled");
+            rapidxml::xml_node<> *cloneofXml       = emuarcXml->first_node("cloneof");
+            rapidxml::xml_node<> *manufacturerXml  = emuarcXml->first_node("publisher");
+            rapidxml::xml_node<> *developerXml     = emuarcXml->first_node("developer");
+            rapidxml::xml_node<> *yearXml          = emuarcXml->first_node("year");
+            rapidxml::xml_node<> *genreXml         = emuarcXml->first_node("genre");
+            rapidxml::xml_node<> *subgenreXml      = emuarcXml->first_node("subgenre");
+            rapidxml::xml_node<> *ratingXml        = emuarcXml->first_node("ratings");
+            rapidxml::xml_node<> *scoreXml         = emuarcXml->first_node("score");
+            rapidxml::xml_node<> *numberPlayersXml = emuarcXml->first_node("players");
+            rapidxml::xml_node<> *enabledXml       = emuarcXml->first_node("enabled");
             std::string name          = (descriptionXml) ? descriptionXml->value() : "";
             std::string description   = (descriptionXml) ? descriptionXml->value() : "";
             std::string crc           = "";
@@ -664,7 +664,7 @@ bool MetadataDatabase::importTruriplist(std::string truriplistFile)
                 sqlite3_finalize(stmt);
             }
         }
-        config_.setProperty("status", "Saving data from \"" + truriplistFile + "\" to database");
+        config_.setProperty("status", "Saving data from \"" + emuarclistFile + "\" to database");
         sqlite3_exec(handle, "COMMIT TRANSACTION;", NULL, NULL, &error);
 
         return true;
@@ -681,7 +681,7 @@ bool MetadataDatabase::importTruriplist(std::string truriplistFile)
     catch(std::exception &e)
     {
         std::string what = e.what();
-        Logger::write(Logger::ZONE_ERROR, "Metadata", "Could not parse truriplist file. Reason: " + what);
+        Logger::write(Logger::ZONE_ERROR, "Metadata", "Could not parse EmuArclist file. Reason: " + what);
     }
 
 

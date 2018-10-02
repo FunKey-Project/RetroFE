@@ -62,6 +62,7 @@ public:
     bool keystate(KeyCode_E);
     bool newKeyPressed(KeyCode_E code);
     void clearJoysticks( );
+    void reconfigure( );
 
 private:
     bool MapKey(std::string keyDescription, KeyCode_E key);
