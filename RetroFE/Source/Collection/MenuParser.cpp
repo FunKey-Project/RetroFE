@@ -26,6 +26,8 @@
 #include <rapidxml.hpp>
 #include <fstream>
 #include <sstream>
+#include <dirent.h>
+
 
 bool VectorSort(Item *d1, Item *d2)
 {
@@ -59,32 +61,69 @@ bool MenuParser::buildTextMenu(CollectionInfo *collection, bool sort)
 
     if (!includeStream.good())
     {
-        Logger::write(Logger::ZONE_INFO, "Menu", "File does not exist: \"" + file + "\"");
-        return false;
-    }
 
-    Logger::write(Logger::ZONE_INFO, "Menu", "Found: \"" + file + "\"");
+        Logger::write(Logger::ZONE_INFO, "Menu", "File does not exist: \"" + file + "\"; trying menu directory.");
 
-    std::string line;
+        DIR *dp;
+        struct dirent *dirp;
+        std::string path = Utils::combinePath(Configuration::absolutePath, "collections", collection->name, "menu");
+        dp = opendir(path.c_str());
 
-    while(std::getline(includeStream, line))
-    {
-        line = Utils::filterComments(line);
-
-        if(!line.empty())
+        while((dirp = readdir(dp)) != NULL)
         {
-            std::string title = line;
-            Item *item = new Item();
-            item->title = title;
-            item->fullTitle = title;
-            item->name = title;
-            item->leaf = false;
-            item->collectionInfo = collection;
+            std::string file = dirp->d_name;
 
-            menuItems.push_back(item);
+            size_t position = file.find_last_of(".");
+            std::string basename = (std::string::npos == position)? file : file.substr(0, position);
+
+            std::string comparator = ".txt";
+            int start = file.length() - comparator.length();
+
+            if(start >= 0)
+            {
+                if(file.compare(start, comparator.length(), comparator) == 0)
+                {
+                    std::string title = basename;
+                    Item *item = new Item();
+                    item->title = title;
+                    item->fullTitle = title;
+                    item->name = title;
+                    item->leaf = false;
+                    item->collectionInfo = collection;
+
+                    menuItems.push_back(item);
+                }
+            }
+        }
+
+        closedir(dp);
+
+    }
+    else
+    {
+
+        Logger::write(Logger::ZONE_INFO, "Menu", "Found: \"" + file + "\"");
+
+        std::string line;
+
+        while(std::getline(includeStream, line))
+        {
+            line = Utils::filterComments(line);
+
+            if(!line.empty())
+            {
+                std::string title = line;
+                Item *item = new Item();
+                item->title = title;
+                item->fullTitle = title;
+                item->name = title;
+                item->leaf = false;
+                item->collectionInfo = collection;
+
+                menuItems.push_back(item);
+            }
         }
     }
-
 
     collection->menusort = sort;
     collection->items.insert(collection->items.begin(), menuItems.begin(), menuItems.end());
