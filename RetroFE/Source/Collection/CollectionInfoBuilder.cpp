@@ -280,8 +280,10 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     std::vector<Item *> includeFilterUnsorted;
     std::map<std::string, Item *> includeFilter;
     std::map<std::string, Item *> excludeFilter;
-    std::string includeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "include.txt");
-    std::string excludeFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "exclude.txt");
+    std::map<std::string, Item *> excludeAllFilter;
+    std::string includeFile    = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "include.txt");
+    std::string excludeFile    = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "exclude.txt");
+    std::string excludeAllFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "exclude_all.txt");
 
     std::string launcher;
     bool showMissing  = false; 
@@ -313,6 +315,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
         ImportBasicList(info, includeFile, includeFilter);
         ImportBasicList(info, excludeFile, excludeFilter);
     }
+    ImportBasicList(info, excludeAllFile, excludeAllFilter);
 
     if (showMissing)
     {
@@ -363,7 +366,46 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
         excludeFilter.erase(it);
     }
 
-    info->playlists["all"] = &info->items;
+    if ( excludeAllFilter.size() > 0)
+    {
+        info->playlists["all"] = new std::vector<Item *>();
+        for(std::vector<Item *>::iterator it = info->items.begin(); it != info->items.end(); it++)
+        {
+            bool found = false;
+            for(std::map<std::string, Item *>::iterator itex = excludeAllFilter.begin(); itex != excludeAllFilter.end(); itex++)
+            {
+                std::string collectionName = info->name;
+                std::string itemName       = itex->first;
+                if (itemName.at(0) == '_') // name consists of _<collectionName>:<itemName>
+                {
+                     itemName.erase(0, 1); // Remove _
+                     size_t position = itemName.find(":");
+                     if (position != std::string::npos )
+                     {
+                         collectionName = itemName.substr(0, position);
+                         itemName       = itemName.erase(0, position+1);
+                     }
+                }
+                if ( (*it)->name == itemName && (*it)->collectionInfo->name == collectionName)
+                {
+                    found = true;
+                }
+            }
+            if ( !found )
+            {
+                info->playlists["all"]->push_back((*it));
+            }
+        }
+        while(excludeAllFilter.size() > 0)
+        {
+            std::map<std::string, Item *>::iterator it = excludeAllFilter.begin();
+            excludeAllFilter.erase(it);
+        }
+    }
+    else
+    {
+        info->playlists["all"] = &info->items;
+    }
     return true;
 }
 

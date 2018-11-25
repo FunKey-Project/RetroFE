@@ -69,7 +69,7 @@ bool MenuParser::buildTextMenu(CollectionInfo *collection, bool sort)
         std::string path = Utils::combinePath(Configuration::absolutePath, "collections", collection->name, "menu");
         dp = opendir(path.c_str());
 
-        while((dirp = readdir(dp)) != NULL)
+        while(dp && (dirp = readdir(dp)) != NULL)
         {
             std::string file = dirp->d_name;
 

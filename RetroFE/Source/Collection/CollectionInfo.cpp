@@ -185,17 +185,19 @@ bool CollectionInfo::itemIsLess(Item *lhs, Item *rhs)
 
 void CollectionInfo::sortItems()
 {
-    for(Playlists_T::iterator it = playlists.begin(); it != playlists.end(); it++)
-    {
-        std::sort(it->second->begin(), it->second->end(), itemIsLess);
-    }
+    std::sort( items.begin(), items.end(), itemIsLess );
+//    for(Playlists_T::iterator it = playlists.begin(); it != playlists.end(); it++)
+//    {
+//        std::sort(it->second->begin(), it->second->end(), itemIsLess);
+//    }
 }
 
 
 void CollectionInfo::sortPlaylists()
 {
 
-    std::vector<Item *> *allItems = playlists["all"];
+//    std::vector<Item *> *allItems = playlists["all"];
+    std::vector<Item *> *allItems = &items;
     std::vector<Item *> toSortItems;
 
     for ( Playlists_T::iterator itP = playlists.begin( ); itP != playlists.end( ); itP++ )
