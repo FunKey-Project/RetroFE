@@ -280,10 +280,8 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     std::vector<Item *> includeFilterUnsorted;
     std::map<std::string, Item *> includeFilter;
     std::map<std::string, Item *> excludeFilter;
-    std::map<std::string, Item *> excludeAllFilter;
     std::string includeFile    = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "include.txt");
     std::string excludeFile    = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "exclude.txt");
-    std::string excludeAllFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "exclude_all.txt");
 
     std::string launcher;
     bool showMissing  = false; 
@@ -315,7 +313,6 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
         ImportBasicList(info, includeFile, includeFilter);
         ImportBasicList(info, excludeFile, excludeFilter);
     }
-    ImportBasicList(info, excludeAllFile, excludeAllFilter);
 
     if (showMissing)
     {
@@ -366,6 +363,17 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
         excludeFilter.erase(it);
     }
 
+    return true;
+}
+
+
+void CollectionInfoBuilder::addPlaylists(CollectionInfo *info)
+{
+    std::map<std::string, Item *> excludeAllFilter;
+    std::string excludeAllFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "exclude_all.txt");
+
+    ImportBasicList(info, excludeAllFile, excludeAllFilter);
+
     if ( excludeAllFilter.size() > 0)
     {
         info->playlists["all"] = new std::vector<Item *>();
@@ -406,12 +414,7 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     {
         info->playlists["all"] = &info->items;
     }
-    return true;
-}
 
-
-void CollectionInfoBuilder::addPlaylists(CollectionInfo *info)
-{
     DIR *dp;
     struct dirent *dirp;
     std::string path = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "playlists");
