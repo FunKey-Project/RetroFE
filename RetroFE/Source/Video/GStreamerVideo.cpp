@@ -30,6 +30,7 @@
 #include <gst/app/gstappsink.h>
 #include <gst/video/gstvideometa.h>
 #include <gst/video/video.h>
+#include <gst/audio/audio.h>
 
 bool GStreamerVideo::initialized_ = false;
 
@@ -56,6 +57,7 @@ GStreamerVideo::GStreamerVideo()
     , isPlaying_(false)
     , playCount_(0)
     , numLoops_(0)
+	, volume_(1.0)
 {
 }
 GStreamerVideo::~GStreamerVideo()
@@ -348,6 +350,17 @@ void GStreamerVideo::update(float /* dt */)
         SDL_SetTextureBlendMode(texture_, SDL_BLENDMODE_BLEND);
     }
 
+	if(playbin_)
+	{
+		if(volume_ > 1.0)
+			volume_ = 1.0;
+		gst_stream_volume_set_volume( GST_STREAM_VOLUME( playbin_ ), GST_STREAM_VOLUME_FORMAT_LINEAR, static_cast<double>(volume_));
+		if(volume_ < 0.1)
+			gst_stream_volume_set_mute( GST_STREAM_VOLUME( playbin_ ), true );
+		else
+			gst_stream_volume_set_mute( GST_STREAM_VOLUME( playbin_ ), false );
+	}
+
     if(videoBuffer_)
     {
         GstVideoMeta *meta;
@@ -449,4 +462,10 @@ void GStreamerVideo::update(float /* dt */)
 bool GStreamerVideo::isPlaying()
 {
     return isPlaying_;
+}
+
+
+void GStreamerVideo::setVolume(double volume)
+{
+    volume_ = volume;
 }

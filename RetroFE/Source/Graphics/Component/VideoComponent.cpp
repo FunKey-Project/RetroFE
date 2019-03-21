@@ -28,6 +28,7 @@ VideoComponent::VideoComponent(IVideo *videoInst, Page &p, std::string videoFile
     , scaleX_(scaleX)
     , scaleY_(scaleY)
     , isPlaying_(false)
+	, volume_(1.0)
 {
 //   AllocateGraphicsMemory();
 }
@@ -104,4 +105,16 @@ void VideoComponent::draw()
 bool VideoComponent::isPlaying()
 {
     return isPlaying_;
+}
+
+
+void VideoComponent::setVolume(double volume)
+{
+	volume_ = volume;
+}
+
+
+double VideoComponent::getVolume()
+{
+	return volume_;
 }

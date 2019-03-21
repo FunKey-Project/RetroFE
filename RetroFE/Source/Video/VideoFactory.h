@@ -23,6 +23,7 @@ public:
     static IVideo *createVideo();
     static void setEnabled(bool enabled);
     static void setNumLoops(int numLoops);
+	static void setVolume(double volume);
 
 private:
     static bool enabled_;

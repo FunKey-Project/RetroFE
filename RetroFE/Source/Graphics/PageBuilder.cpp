@@ -25,6 +25,7 @@
 #include "Component/ReloadableScrollingText.h"
 #include "Component/ScrollingList.h"
 #include "Component/Video.h"
+#include "Component/VideoComponent.h"
 #include "Animate/AnimationEvents.h"
 #include "Animate/TweenTypes.h"
 #include "../Sound/Sound.h"
@@ -431,6 +432,7 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
         xml_attribute<> *srcXml      = componentXml->first_attribute("src");
         xml_attribute<> *numLoopsXml = componentXml->first_attribute("numLoops");
         xml_attribute<> *idXml = componentXml->first_attribute("id");
+		xml_attribute<> *volumeXml = componentXml->first_attribute("volume");
 
         int id = -1;
         if (idXml)
@@ -463,6 +465,8 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
             }
             buildViewInfo(componentXml, c->baseViewInfo);
             loadTweens(c, componentXml);
+			if(volumeXml)
+				c->setVolume(Utils::convertFloat(volumeXml->value()));
             page->addComponent(c);
         }
     }
@@ -762,6 +766,10 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
             {
                 static_cast<ReloadableMedia *>(c)->enableTextFallback_(false);
             }
+
+			xml_attribute<> *volumeXml = componentXml->first_attribute("volume");
+			if(volumeXml)
+				static_cast<VideoComponent *>(c)->setVolume(Utils::convertFloat(volumeXml->value()));
         }
 
         if(c)

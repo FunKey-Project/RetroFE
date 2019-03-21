@@ -137,3 +137,15 @@ bool Video::isPlaying( )
         return false;
     }
 }
+
+
+void Video::setVolume(double volume)
+{
+	volume_ = volume;
+}
+
+
+double Video::getVolume()
+{
+	return volume_;
+}

@@ -30,6 +30,8 @@ public:
     void allocateGraphicsMemory( );
     void draw( );
     virtual bool isPlaying( );
+	void setVolume(double volume);
+	double getVolume();
 
 protected:
     Component  *video_;
@@ -41,5 +43,6 @@ protected:
 
 private:
     static bool enabled_;
+	double volume_;
 
 };

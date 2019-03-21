@@ -22,6 +22,7 @@ bool VideoFactory::enabled_ = true;
 int VideoFactory::numLoops_ = 0;
 IVideo *VideoFactory::instance_ = NULL;
 
+
 IVideo *VideoFactory::createVideo()
 {
 
@@ -35,12 +36,20 @@ IVideo *VideoFactory::createVideo()
     return instance_;
 }
 
+
 void VideoFactory::setEnabled(bool enabled)
 {
     enabled_ = enabled;
 }
 
+
 void VideoFactory::setNumLoops(int numLoops)
 {
     numLoops_ = numLoops;
+}
+
+
+void VideoFactory::setVolume(double volume)
+{
+	((GStreamerVideo *)(instance_))->setVolume(volume);
 }

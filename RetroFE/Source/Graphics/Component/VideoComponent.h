@@ -32,6 +32,8 @@ public:
     void freeGraphicsMemory();
     void allocateGraphicsMemory();
     virtual bool isPlaying();
+	void setVolume(double volume);
+	double getVolume();
 
 private:
     std::string videoFile_;
@@ -40,4 +42,5 @@ private:
     float scaleX_;
     float scaleY_;
     bool isPlaying_;
+	double volume_;
 };
