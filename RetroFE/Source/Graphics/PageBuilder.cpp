@@ -25,7 +25,6 @@
 #include "Component/ReloadableScrollingText.h"
 #include "Component/ScrollingList.h"
 #include "Component/Video.h"
-#include "Component/VideoComponent.h"
 #include "Animate/AnimationEvents.h"
 #include "Animate/TweenTypes.h"
 #include "../Sound/Sound.h"
@@ -465,8 +464,8 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
             }
             buildViewInfo(componentXml, c->baseViewInfo);
             loadTweens(c, componentXml);
-			if(volumeXml)
-				c->setVolume(Utils::convertFloat(volumeXml->value()));
+            if(volumeXml)
+               c->setVolume(Utils::convertFloat(volumeXml->value()));
             page->addComponent(c);
         }
     }

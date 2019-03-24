@@ -65,6 +65,7 @@ void Video::update(float dt)
             baseViewInfo.ImageHeight = video_->baseViewInfo.ImageHeight;
         }
 
+        video_->setVolume(volume_);
         video_->update(dt);
     }
     Component::update(dt);
