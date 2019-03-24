@@ -72,6 +72,7 @@ private:
     SDL_Texture *backgroundTexture_;
 
     ViewInfo     storeViewInfo_;
+    double       storeVolume_;
     unsigned int currentTweenIndex_;
     bool         currentTweenComplete_;
     float        elapsedTweenTime_;

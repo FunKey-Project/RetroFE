@@ -175,6 +175,7 @@ void Component::update(float dt)
         currentTweenIndex_    = 0;
         elapsedTweenTime_     = 0;
         storeViewInfo_        = baseViewInfo;
+        storeVolume_          = getVolume();
         currentTweenComplete_ = false;
       }
       animationRequested_   = false;
@@ -194,6 +195,7 @@ void Component::update(float dt)
         currentTweenIndex_    = 0;
         elapsedTweenTime_     = 0;
         storeViewInfo_        = baseViewInfo;
+        storeVolume_          = getVolume();
         currentTweenComplete_ = false;
         animationRequested_   = false;
     }
@@ -384,6 +386,12 @@ bool Component::animate()
                 else
                     baseViewInfo.ContainerHeight = tween->animate(elapsedTime, storeViewInfo_.ContainerHeight);
                 break;
+
+            case TWEEN_PROPERTY_VOLUME:
+                if (tween->startDefined)
+                    setVolume(tween->animate(elapsedTime));
+                else
+                    setVolume(tween->animate(elapsedTime, storeVolume_));
 
             case TWEEN_PROPERTY_NOP:
                 break;
