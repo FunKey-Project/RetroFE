@@ -44,6 +44,7 @@ ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, bool la
     , scaleX_(scaleX)
     , scaleY_(scaleY)
     , displayOffset_(displayOffset)
+    , volume_(1.0)
 
 {
     allocateGraphicsMemory();

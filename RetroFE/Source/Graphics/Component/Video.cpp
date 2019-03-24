@@ -34,6 +34,7 @@ Video::Video(std::string file, std::string altFile, int numLoops, Page &p, float
     , numLoops_(numLoops)
     , scaleX_(scaleX)
     , scaleY_(scaleY)
+    , volume_(1.0)
 
 {
     allocateGraphicsMemory( );
