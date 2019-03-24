@@ -51,6 +51,7 @@ void VideoComponent::update(float dt)
     }
     if(isPlaying_)
     {
+        videoInst_->setVolume(volume_);
         videoInst_->update(dt);
 
         // video needs to run a frame to start getting size info

@@ -36,6 +36,8 @@ public:
     Component *findComponent(std::string collection, std::string type, std::string basename, std::string filepath, bool systemMode);
 
     void enableTextFallback_(bool value);
+    void setVolume(double volume);
+    double getVolume();
 
 private:
     void reloadTexture();
@@ -55,4 +57,5 @@ private:
     std::string currentCollection_;
     Page *page_;
     int displayOffset_;
+    double volume_;
 };

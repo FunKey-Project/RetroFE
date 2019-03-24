@@ -767,9 +767,9 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                 static_cast<ReloadableMedia *>(c)->enableTextFallback_(false);
             }
 
-			xml_attribute<> *volumeXml = componentXml->first_attribute("volume");
-			if(volumeXml)
-				static_cast<VideoComponent *>(c)->setVolume(Utils::convertFloat(volumeXml->value()));
+            xml_attribute<> *volumeXml = componentXml->first_attribute("volume");
+            if(volumeXml)
+                static_cast<ReloadableMedia *>(c)->setVolume(Utils::convertFloat(volumeXml->value()));
         }
 
         if(c)

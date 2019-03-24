@@ -31,4 +31,5 @@ public:
     virtual void draw() = 0;
     virtual int getHeight() = 0;
     virtual int getWidth() = 0;
+    virtual void setVolume(double volume) = 0;
 };

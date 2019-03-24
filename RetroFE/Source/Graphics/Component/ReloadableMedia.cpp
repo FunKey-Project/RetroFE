@@ -83,6 +83,7 @@ void ReloadableMedia::update(float dt)
             baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
         }
 
+        static_cast<VideoComponent *>(loadedComponent_)->setVolume(volume_);
         loadedComponent_->update(dt);
     }
 
@@ -455,4 +456,16 @@ void ReloadableMedia::draw()
         loadedComponent_->baseViewInfo = baseViewInfo;
         loadedComponent_->draw();
     }
+}
+
+
+void ReloadableMedia::setVolume(double volume)
+{
+    volume_ = volume;
+}
+
+
+double ReloadableMedia::getVolume()
+{
+    return volume_;
 }
