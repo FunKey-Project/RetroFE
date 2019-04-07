@@ -25,9 +25,10 @@
 #include <time.h>
 #include <algorithm>
 
-ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, std::string timeFormat, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, float scaleX, float scaleY)
+ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, bool systemMode, Font *font, std::string layoutKey, std::string timeFormat, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, float scaleX, float scaleY)
     : Component(page)
     , config_(config)
+    , systemMode_(systemMode)
     , imageInst_(NULL)
     , type_(type)
     , layoutKey_(layoutKey)
@@ -232,9 +233,15 @@ void ReloadableText::ReloadTexture()
             }
         }
 
-        if (!selectedItem->leaf) // item is not a leaf
+        if (!selectedItem->leaf || systemMode_) // item is not a leaf
         {
             (void)config_.getProperty("collections." + selectedItem->name + "." + type_, text );
+        }
+
+        if (systemMode_) // Get the system information in stead
+        {
+            text = "";
+            (void)config_.getProperty("collections." + page.getCollectionName() + "." + type_, text );
         }
 
         bool overwriteXML = false;
