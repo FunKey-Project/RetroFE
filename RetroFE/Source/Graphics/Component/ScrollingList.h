@@ -71,6 +71,9 @@ public:
     void letterUp( );
     void letterDown( );
     void letterChange( bool increment );
+    void subUp( );
+    void subDown( );
+    void subChange( bool increment );
     void random( );
     bool isIdle( );
     unsigned int getScrollOffsetIndex( );

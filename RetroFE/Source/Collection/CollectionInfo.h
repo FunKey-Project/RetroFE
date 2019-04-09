@@ -45,6 +45,7 @@ public:
 
     bool menusort;
     bool subsSplit;
+    bool hasSubs;
 private:
     std::string metadataPath_;
     std::string extensions_;

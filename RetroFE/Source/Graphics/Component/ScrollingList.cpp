@@ -345,6 +345,67 @@ void ScrollingList::letterChange( bool increment )
 }
 
 
+void ScrollingList::subUp( )
+{
+    subChange( true );
+}
+
+
+void ScrollingList::subDown( )
+{
+    subChange( false );
+}
+
+
+void ScrollingList::subChange( bool increment )
+{
+
+    if ( !items_ || items_->size( ) == 0 ) return;
+
+    std::string startname = items_->at( (itemIndex_+selectedOffsetIndex_ ) % items_->size( ) )->collectionInfo->lowercaseName( );
+
+    for ( unsigned int i = 0; i < items_->size( ); ++i )
+    {
+        unsigned int index = 0;
+        if ( increment )
+        {
+            index = loopIncrement( itemIndex_, i, items_->size( ) );
+        }
+        else
+        {
+            index = loopDecrement( itemIndex_, i, items_->size( ) );
+        }
+
+        std::string endname = items_->at( (index+selectedOffsetIndex_ ) % items_->size( ) )->collectionInfo->lowercaseName( );
+
+        if (startname != endname)
+        {
+            itemIndex_ = index;
+            break;
+        }
+    }
+
+    if ( !increment ) // For decrement, find the first game of the new sub
+    {
+        startname = items_->at( (itemIndex_+selectedOffsetIndex_ ) % items_->size( ) )->collectionInfo->lowercaseName( );
+
+        for ( unsigned int i = 0; i < items_->size( ); ++i )
+        {
+            unsigned int index = loopDecrement( itemIndex_, i, items_->size( ) );
+
+            std::string endname = items_->at( (index+selectedOffsetIndex_ ) % items_->size( ) )->collectionInfo->lowercaseName( );
+
+            if (startname != endname)
+            {
+                itemIndex_ = loopIncrement( index,1,items_->size( ) );
+                break;
+            }
+        }
+    }
+
+}
+
+
 void ScrollingList::allocateGraphicsMemory( )
 {
     Component::allocateGraphicsMemory( );

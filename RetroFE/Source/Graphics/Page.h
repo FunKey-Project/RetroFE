@@ -66,6 +66,7 @@ public:
     bool addComponent(Component *c);
     void pageScroll(ScrollDirection direction);
     void letterScroll(ScrollDirection direction);
+    void subScroll(ScrollDirection direction);
     unsigned int getCollectionSize();
     unsigned int getSelectedIndex();
     void selectRandom();
@@ -112,6 +113,7 @@ public:
     void resetScrollPeriod();
     void updateScrollPeriod();
     void scroll(bool forward);
+    bool hasSubs();
 
 private:
     void playlistChange();

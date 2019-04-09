@@ -45,6 +45,7 @@ CollectionInfo::CollectionInfo(std::string name,
     , metadataType(metadataType)
     , menusort(true)
     , subsSplit(false)
+    , hasSubs(false)
     , metadataPath_(metadataPath)
 	, extensions_(extensions)
 {

@@ -714,6 +714,26 @@ void Page::letterScroll(ScrollDirection direction)
 }
 
 
+void Page::subScroll(ScrollDirection direction)
+{
+    for(std::vector<ScrollingList *>::iterator it = activeMenu_.begin(); it != activeMenu_.end(); it++)
+    {
+        ScrollingList *menu = *it;
+        if(menu)
+        {
+            if(direction == ScrollDirectionForward)
+            {
+                menu->subDown();
+            }
+            if(direction == ScrollDirectionBack)
+            {
+                menu->subUp();
+            }
+        }
+    }
+}
+
+
 unsigned int Page::getCollectionSize()
 {
     if(!(activeMenu_.size() > 0 && activeMenu_[0])) return 0;
@@ -1335,4 +1355,10 @@ void Page::scroll(bool forward)
         highlightSoundChunk_->play();
     }
     return;
+}
+
+
+bool Page::hasSubs()
+{
+    return collections_.back().collection->hasSubs;
 }

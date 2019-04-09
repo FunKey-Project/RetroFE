@@ -1021,13 +1021,23 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             if (input_.keystate(UserInput::KeyCodeLetterUp))
             {
                 attract_.reset( );
-                page->letterScroll(Page::ScrollDirectionBack);
+                bool letterSub;
+                config_.getProperty( "letterSub", letterSub );
+                if (letterSub && page->hasSubs())
+                    page->subScroll(Page::ScrollDirectionBack);
+                else
+                    page->letterScroll(Page::ScrollDirectionBack);
                 state = RETROFE_MENUJUMP_REQUEST;
             }
             if (input_.keystate(UserInput::KeyCodeLetterDown))
             {
                 attract_.reset( );
-                page->letterScroll(Page::ScrollDirectionForward);
+                bool letterSub;
+                config_.getProperty( "letterSub", letterSub );
+                if (letterSub && page->hasSubs())
+                    page->subScroll(Page::ScrollDirectionForward);
+                else
+                    page->letterScroll(Page::ScrollDirectionForward);
                 state = RETROFE_MENUJUMP_REQUEST;
             }
             if ( input_.newKeyPressed(UserInput::KeyCodeFavPlaylist) )
@@ -1211,6 +1221,7 @@ CollectionInfo *RetroFE::getCollection(std::string collectionName)
                 collection->addSubcollection( subcollection );
                 subcollection->subsSplit = subsSplit;
                 cib.injectMetadata( subcollection );
+                collection->hasSubs = true;
             }
         }
     }
