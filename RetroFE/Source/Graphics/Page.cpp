@@ -734,6 +734,26 @@ void Page::subScroll(ScrollDirection direction)
 }
 
 
+void Page::cfwLetterSubScroll(ScrollDirection direction)
+{
+    for(std::vector<ScrollingList *>::iterator it = activeMenu_.begin(); it != activeMenu_.end(); it++)
+    {
+        ScrollingList *menu = *it;
+        if(menu)
+        {
+            if(direction == ScrollDirectionForward)
+            {
+                menu->cfwLetterSubDown();
+            }
+            if(direction == ScrollDirectionBack)
+            {
+                menu->cfwLetterSubUp();
+            }
+        }
+    }
+}
+
+
 unsigned int Page::getCollectionSize()
 {
     if(!(activeMenu_.size() > 0 && activeMenu_[0])) return 0;

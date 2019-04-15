@@ -74,6 +74,8 @@ public:
     void subUp( );
     void subDown( );
     void subChange( bool increment );
+    void cfwLetterSubUp( );
+    void cfwLetterSubDown( );
     void random( );
     bool isIdle( );
     unsigned int getScrollOffsetIndex( );

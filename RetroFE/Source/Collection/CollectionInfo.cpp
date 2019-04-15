@@ -177,9 +177,10 @@ bool CollectionInfo::itemIsLess(Item *lhs, Item *rhs)
 {
     if(lhs->leaf && !rhs->leaf) return true;
     if(!lhs->leaf && rhs->leaf) return false;
-    if(!lhs->collectionInfo->menusort && lhs->leaf && rhs->leaf) return false;
     if(lhs->collectionInfo->subsSplit && lhs->collectionInfo != rhs->collectionInfo)
         return lhs->collectionInfo->lowercaseName() < rhs->collectionInfo->lowercaseName();
+    if(!lhs->collectionInfo->menusort && !lhs->leaf && !rhs->leaf)
+        return false;
     return lhs->lowercaseFullTitle() < rhs->lowercaseFullTitle();
 }
 

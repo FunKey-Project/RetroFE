@@ -1021,10 +1021,10 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             if (input_.keystate(UserInput::KeyCodeLetterUp))
             {
                 attract_.reset( );
-                bool letterSub;
-                config_.getProperty( "letterSub", letterSub );
-                if (letterSub && page->hasSubs())
-                    page->subScroll(Page::ScrollDirectionBack);
+                bool cfwLetterSub;
+                config_.getProperty( "cfwLetterSub", cfwLetterSub );
+                if (cfwLetterSub && page->hasSubs())
+                    page->cfwLetterSubScroll(Page::ScrollDirectionBack);
                 else
                     page->letterScroll(Page::ScrollDirectionBack);
                 state = RETROFE_MENUJUMP_REQUEST;
@@ -1032,10 +1032,10 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             if (input_.keystate(UserInput::KeyCodeLetterDown))
             {
                 attract_.reset( );
-                bool letterSub;
-                config_.getProperty( "letterSub", letterSub );
-                if (letterSub && page->hasSubs())
-                    page->subScroll(Page::ScrollDirectionForward);
+                bool cfwLetterSub;
+                config_.getProperty( "cfwLetterSub", cfwLetterSub );
+                if (cfwLetterSub && page->hasSubs())
+                    page->cfwLetterSubScroll(Page::ScrollDirectionForward);
                 else
                     page->letterScroll(Page::ScrollDirectionForward);
                 state = RETROFE_MENUJUMP_REQUEST;
@@ -1046,13 +1046,13 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
                 page->favPlaylist( );
                 state = RETROFE_PLAYLIST_REQUEST;
             }
-            if ( input_.newKeyPressed(UserInput::KeyCodeNextPlaylist) )
+            if ( input_.keystate(UserInput::KeyCodeNextPlaylist) )
             {
                 attract_.reset( );
                 page->nextPlaylist( );
                 state = RETROFE_PLAYLIST_REQUEST;
             }
-            if ( input_.newKeyPressed(UserInput::KeyCodePrevPlaylist) )
+            if ( input_.keystate(UserInput::KeyCodePrevPlaylist) )
             {
                 attract_.reset( );
                 page->prevPlaylist( );
@@ -1227,13 +1227,10 @@ CollectionInfo *RetroFE::getCollection(std::string collectionName)
     }
     closedir( dp );
 
+    collection->sortItems( );
+
     bool menuSort = true;
     config_.getProperty( "collections." + collectionName + ".list.menuSort", menuSort );
-
-    if ( menuSort )
-    {
-        collection->sortItems( );
-    }
 
     MenuParser mp;
     mp.buildMenuItems( collection, menuSort);

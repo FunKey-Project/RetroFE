@@ -406,6 +406,24 @@ void ScrollingList::subChange( bool increment )
 }
 
 
+void ScrollingList::cfwLetterSubUp( )
+{
+    if (Utils::toLower( collectionName ) != items_->at( (itemIndex_+selectedOffsetIndex_ ) % items_->size( ) )->collectionInfo->lowercaseName( ))
+        subChange( true );
+    else
+        letterChange( true );
+}
+
+
+void ScrollingList::cfwLetterSubDown( )
+{
+    if (Utils::toLower( collectionName ) != items_->at( (itemIndex_+selectedOffsetIndex_ ) % items_->size( ) )->collectionInfo->lowercaseName( ))
+        subChange( false );
+    else
+        letterChange( false );
+}
+
+
 void ScrollingList::allocateGraphicsMemory( )
 {
     Component::allocateGraphicsMemory( );

@@ -67,6 +67,7 @@ public:
     void pageScroll(ScrollDirection direction);
     void letterScroll(ScrollDirection direction);
     void subScroll(ScrollDirection direction);
+    void cfwLetterSubScroll(ScrollDirection direction);
     unsigned int getCollectionSize();
     unsigned int getSelectedIndex();
     void selectRandom();
