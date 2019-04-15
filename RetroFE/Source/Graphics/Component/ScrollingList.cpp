@@ -297,6 +297,7 @@ void ScrollingList::letterChange( bool increment )
 
     if ( !items_ || items_->size( ) == 0 ) return;
 
+    Item       *startItem = items_->at( (itemIndex_+selectedOffsetIndex_ ) % items_->size( ) );
     std::string startname = items_->at( (itemIndex_+selectedOffsetIndex_ ) % items_->size( ) )->lowercaseFullTitle( );
 
     for ( unsigned int i = 0; i < items_->size( ); ++i )
@@ -324,24 +325,32 @@ void ScrollingList::letterChange( bool increment )
 
     if ( !increment ) // For decrement, find the first game of the new letter
     {
-        startname = items_->at( (itemIndex_+selectedOffsetIndex_ ) % items_->size( ) )->lowercaseFullTitle( );
-
-        for ( unsigned int i = 0; i < items_->size( ); ++i )
+        bool prevLetterSubToCurrent = false;
+        config_.getProperty( "prevLetterSubToCurrent", prevLetterSubToCurrent );
+        if ( !prevLetterSubToCurrent || items_->at( (itemIndex_+1+selectedOffsetIndex_ ) % items_->size( ) ) == startItem )
         {
-            unsigned int index = loopDecrement( itemIndex_, i, items_->size( ) );
+            startname = items_->at( (itemIndex_+selectedOffsetIndex_ ) % items_->size( ) )->lowercaseFullTitle( );
 
-            std::string endname = items_->at( (index+selectedOffsetIndex_ ) % items_->size( ) )->lowercaseFullTitle( );
-
-            // check if we are changing characters from a-z, or changing from alpha character to non-alpha character
-            if ((isalpha(startname[0] ) ^ isalpha(endname[0] ) ) ||
-                (isalpha(startname[0] ) && isalpha(endname[0] ) && startname[0] != endname[0] ) )
+            for ( unsigned int i = 0; i < items_->size( ); ++i )
             {
-                itemIndex_ = loopIncrement( index,1,items_->size( ) );
-                break;
+                unsigned int index = loopDecrement( itemIndex_, i, items_->size( ) );
+
+                std::string endname = items_->at( (index+selectedOffsetIndex_ ) % items_->size( ) )->lowercaseFullTitle( );
+
+                // check if we are changing characters from a-z, or changing from alpha character to non-alpha character
+                if ((isalpha(startname[0] ) ^ isalpha(endname[0] ) ) ||
+                    (isalpha(startname[0] ) && isalpha(endname[0] ) && startname[0] != endname[0] ) )
+                {
+                    itemIndex_ = loopIncrement( index,1,items_->size( ) );
+                    break;
+                }
             }
         }
+        else
+        {
+            itemIndex_ = loopIncrement( itemIndex_,1,items_->size( ) );
+        }
     }
-
 }
 
 
@@ -362,6 +371,7 @@ void ScrollingList::subChange( bool increment )
 
     if ( !items_ || items_->size( ) == 0 ) return;
 
+    Item       *startItem = items_->at( (itemIndex_+selectedOffsetIndex_ ) % items_->size( ) );
     std::string startname = items_->at( (itemIndex_+selectedOffsetIndex_ ) % items_->size( ) )->collectionInfo->lowercaseName( );
 
     for ( unsigned int i = 0; i < items_->size( ); ++i )
@@ -387,22 +397,30 @@ void ScrollingList::subChange( bool increment )
 
     if ( !increment ) // For decrement, find the first game of the new sub
     {
-        startname = items_->at( (itemIndex_+selectedOffsetIndex_ ) % items_->size( ) )->collectionInfo->lowercaseName( );
-
-        for ( unsigned int i = 0; i < items_->size( ); ++i )
+        bool prevLetterSubToCurrent = false;
+        config_.getProperty( "prevLetterSubToCurrent", prevLetterSubToCurrent );
+        if ( !prevLetterSubToCurrent || items_->at( (itemIndex_+1+selectedOffsetIndex_ ) % items_->size( ) ) == startItem )
         {
-            unsigned int index = loopDecrement( itemIndex_, i, items_->size( ) );
+            startname = items_->at( (itemIndex_+selectedOffsetIndex_ ) % items_->size( ) )->collectionInfo->lowercaseName( );
 
-            std::string endname = items_->at( (index+selectedOffsetIndex_ ) % items_->size( ) )->collectionInfo->lowercaseName( );
-
-            if (startname != endname)
+            for ( unsigned int i = 0; i < items_->size( ); ++i )
             {
-                itemIndex_ = loopIncrement( index,1,items_->size( ) );
-                break;
+                unsigned int index = loopDecrement( itemIndex_, i, items_->size( ) );
+
+                std::string endname = items_->at( (index+selectedOffsetIndex_ ) % items_->size( ) )->collectionInfo->lowercaseName( );
+
+                if (startname != endname)
+                {
+                    itemIndex_ = loopIncrement( index,1,items_->size( ) );
+                    break;
+                }
             }
         }
+        else
+        {
+            itemIndex_ = loopIncrement( itemIndex_,1,items_->size( ) );
+        }
     }
-
 }
 
 
