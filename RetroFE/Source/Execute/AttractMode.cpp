@@ -24,6 +24,7 @@ AttractMode::AttractMode()
     , isActive_(false)
     , isSet_(false)
     , elapsedTime_(0)
+    , elapsedPlaylistTime_(0)
     , activeTime_(0)
 {
 }
@@ -34,21 +35,23 @@ void AttractMode::reset( bool set )
     isActive_    = false;
     isSet_       = set;
     activeTime_  = 0;
+    if (!set)
+        elapsedPlaylistTime_ = 0;
 }
 
-void AttractMode::update(float dt, Page &page)
+bool AttractMode::update(float dt, Page &page)
 {
-    elapsedTime_ += dt;
+
+    elapsedTime_         += dt;
+    elapsedPlaylistTime_ += dt;
+
+    // Check if it's time to switch playlists
+    if (!isActive_ && elapsedPlaylistTime_ > idlePlaylistTime && idlePlaylistTime > 0)
+        return true;
+    
 
     // enable attract mode when idling for the expected time. Disable if idle time is set to 0.
-    if(!isActive_ && (elapsedTime_ > idleTime && idleTime > 0))
-    {
-        isActive_    = true;
-        isSet_       = true;
-        elapsedTime_ = 0;
-        activeTime_  = ((float)((1000+rand()) % 5000)) / 1000;
-    }
-    if(!isActive_ && isSet_ && elapsedTime_ > idleNextTime && idleNextTime > 0)
+    if(!isActive_ && ((elapsedTime_ > idleTime && idleTime > 0) || (isSet_ && elapsedTime_ > idleNextTime && idleNextTime > 0)))
     {
         isActive_    = true;
         isSet_       = true;
@@ -72,6 +75,9 @@ void AttractMode::update(float dt, Page &page)
             isActive_ = false;
         }
     }
+
+    return false;
+
 }
 
 

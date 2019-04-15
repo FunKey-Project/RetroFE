@@ -22,9 +22,10 @@ class AttractMode
 public:
     AttractMode();
     void reset( bool set = false );
-    void update(float dt, Page &page);
+    bool update(float dt, Page &page);
     float idleTime;
     float idleNextTime;
+    float idlePlaylistTime;
     bool  isActive();
     bool  isSet();
 
@@ -32,6 +33,6 @@ private:
     bool isActive_;
     bool isSet_;
     float elapsedTime_;
+    float elapsedPlaylistTime_;
     float activeTime_;
-
 };

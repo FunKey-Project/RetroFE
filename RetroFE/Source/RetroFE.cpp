@@ -301,18 +301,21 @@ void RetroFE::run( )
         return;
     }
 
-    int attractModeTime = 0;
-    int attractModeNextTime = 0;
+    int attractModeTime         = 0;
+    int attractModeNextTime     = 0;
+    int attractModePlaylistTime = 0;
     std::string firstCollection = "Main";
-    bool running = true;
-    RETROFE_STATE state = RETROFE_NEW;
+    bool running                = true;
+    RETROFE_STATE state         = RETROFE_NEW;
 
     config_.getProperty( "attractModeTime", attractModeTime );
     config_.getProperty( "attractModeNextTime", attractModeNextTime );
+    config_.getProperty( "attractModePlaylistTime", attractModePlaylistTime );
     config_.getProperty( "firstCollection", firstCollection );
 
-    attract_.idleTime     = static_cast<float>(attractModeTime);
-    attract_.idleNextTime = static_cast<float>(attractModeNextTime);
+    attract_.idleTime         = static_cast<float>(attractModeTime);
+    attract_.idleNextTime     = static_cast<float>(attractModeNextTime);
+    attract_.idlePlaylistTime = static_cast<float>(attractModePlaylistTime);
 
     int initializeStatus = 0;
 
@@ -888,7 +891,12 @@ void RetroFE::run( )
             {
                 if (!splashMode)
                 {
-                    attract_.update( deltaTime, *currentPage_ );
+                    if (attract_.update( deltaTime, *currentPage_ ))
+                    {
+                        attract_.reset( );
+                        currentPage_->nextPlaylist( );
+                        state = RETROFE_PLAYLIST_REQUEST;
+                    }
                 }
                 if ( menuMode_ )
                 {
