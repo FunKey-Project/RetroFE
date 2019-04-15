@@ -20,7 +20,9 @@
 
 AttractMode::AttractMode()
     : idleTime(0)
+    , idleNextTime(0)
     , isActive_(false)
+    , isSet_(false)
     , elapsedTime_(0)
     , activeTime_(0)
 {
@@ -29,8 +31,9 @@ AttractMode::AttractMode()
 void AttractMode::reset()
 {
     elapsedTime_ = 0;
-    isActive_ = false;
-    activeTime_ = 0;
+    isActive_    = false;
+    isSet_       = false;
+    activeTime_  = 0;
 }
 
 void AttractMode::update(float dt, Page &page)
@@ -38,11 +41,12 @@ void AttractMode::update(float dt, Page &page)
     elapsedTime_ += dt;
 
     // enable attract mode when idling for the expected time. Disable if idle time is set to 0.
-    if(!isActive_ && elapsedTime_ > idleTime && idleTime > 0)
+    if(!isActive_ && ((elapsedTime_ > idleTime && idleTime > 0) || (isSet_ && elapsedTime_ > idleNextTime && idleNextTime > 0)))
     {
-        isActive_ = true;
+        isActive_    = true;
+        isSet_       = true;
         elapsedTime_ = 0;
-        activeTime_ = ((float)((1000+rand()) % 5000)) / 1000;
+        activeTime_  = ((float)((1000+rand()) % 5000)) / 1000;
     }
 
     if(isActive_)

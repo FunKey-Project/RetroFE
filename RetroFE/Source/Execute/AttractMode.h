@@ -24,10 +24,12 @@ public:
     void reset();
     void update(float dt, Page &page);
     float idleTime;
+    float idleNextTime;
     bool  isActive();
 
 private:
     bool isActive_;
+    bool isSet_;
     float elapsedTime_;
     float activeTime_;
 

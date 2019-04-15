@@ -302,14 +302,17 @@ void RetroFE::run( )
     }
 
     int attractModeTime = 0;
+    int attractModeNextTime = 0;
     std::string firstCollection = "Main";
     bool running = true;
     RETROFE_STATE state = RETROFE_NEW;
 
     config_.getProperty( "attractModeTime", attractModeTime );
+    config_.getProperty( "attractModeNextTime", attractModeNextTime );
     config_.getProperty( "firstCollection", firstCollection );
 
-    attract_.idleTime = static_cast<float>(attractModeTime);
+    attract_.idleTime     = static_cast<float>(attractModeTime);
+    attract_.idleNextTime = static_cast<float>(attractModeNextTime);
 
     int initializeStatus = 0;
 
