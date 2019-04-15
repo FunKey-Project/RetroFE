@@ -1141,7 +1141,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
         page->resetScrollPeriod( );
         if (page->isMenuScrolling( ))
         {
-            attract_.reset( );
+            attract_.reset( attract_.isSet( ) );
             state = RETROFE_HIGHLIGHT_REQUEST;
         }
     }
