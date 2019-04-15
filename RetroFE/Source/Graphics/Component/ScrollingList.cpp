@@ -418,9 +418,23 @@ void ScrollingList::cfwLetterSubUp( )
 void ScrollingList::cfwLetterSubDown( )
 {
     if (Utils::toLower( collectionName ) != items_->at( (itemIndex_+selectedOffsetIndex_ ) % items_->size( ) )->collectionInfo->lowercaseName( ))
+    {
         subChange( false );
+        if (Utils::toLower( collectionName ) == items_->at( (itemIndex_+selectedOffsetIndex_ ) % items_->size( ) )->collectionInfo->lowercaseName( ))
+        {
+            subChange( true );
+            letterChange( false );
+        }
+    }
     else
+    {
         letterChange( false );
+        if (Utils::toLower( collectionName ) != items_->at( (itemIndex_+selectedOffsetIndex_ ) % items_->size( ) )->collectionInfo->lowercaseName( ))
+        {
+            letterChange( true );
+            subChange( false );
+        }
+    }
 }
 
 
