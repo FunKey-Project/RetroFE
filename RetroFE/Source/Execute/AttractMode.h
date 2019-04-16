@@ -21,7 +21,7 @@ class AttractMode
 {
 public:
     AttractMode();
-    void reset( bool set = false );
+    void reset( bool set = false, bool resetElapsedPlaylistTime = true );
     bool update(float dt, Page &page);
     float idleTime;
     float idleNextTime;

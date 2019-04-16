@@ -893,8 +893,12 @@ void RetroFE::run( )
                 {
                     if (attract_.update( deltaTime, *currentPage_ ))
                     {
-                        attract_.reset( );
+                        attract_.reset( attract_.isSet( ), true );
                         currentPage_->nextPlaylist( );
+                        std::string attractModeSkipPlaylist = "";
+                        config_.getProperty( "attractModeSkipPlaylist", attractModeSkipPlaylist );
+                        if (currentPage_->getPlaylistName( ) == attractModeSkipPlaylist)
+                            currentPage_->nextPlaylist( );
                         state = RETROFE_PLAYLIST_REQUEST;
                     }
                 }
@@ -1149,7 +1153,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
         page->resetScrollPeriod( );
         if (page->isMenuScrolling( ))
         {
-            attract_.reset( attract_.isSet( ) );
+            attract_.reset( attract_.isSet( ), false );
             state = RETROFE_HIGHLIGHT_REQUEST;
         }
     }

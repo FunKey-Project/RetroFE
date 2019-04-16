@@ -29,13 +29,13 @@ AttractMode::AttractMode()
 {
 }
 
-void AttractMode::reset( bool set )
+void AttractMode::reset( bool set, bool resetElapsedPlaylistTime )
 {
     elapsedTime_ = 0;
     isActive_    = false;
     isSet_       = set;
     activeTime_  = 0;
-    if (!set)
+    if (resetElapsedPlaylistTime)
         elapsedPlaylistTime_ = 0;
 }
 
