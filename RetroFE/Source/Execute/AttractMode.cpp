@@ -29,13 +29,13 @@ AttractMode::AttractMode()
 {
 }
 
-void AttractMode::reset( bool set, bool resetElapsedPlaylistTime )
+void AttractMode::reset( bool set )
 {
     elapsedTime_ = 0;
     isActive_    = false;
     isSet_       = set;
     activeTime_  = 0;
-    if (resetElapsedPlaylistTime)
+    if (!set)
         elapsedPlaylistTime_ = 0;
 }
 
@@ -47,12 +47,17 @@ bool AttractMode::update(float dt, Page &page)
 
     // Check if it's time to switch playlists
     if (!isActive_ && elapsedPlaylistTime_ > idlePlaylistTime && idlePlaylistTime > 0)
+    {
+        elapsedPlaylistTime_ = 0;
         return true;
+    }
     
 
     // enable attract mode when idling for the expected time. Disable if idle time is set to 0.
     if(!isActive_ && ((elapsedTime_ > idleTime && idleTime > 0) || (isSet_ && elapsedTime_ > idleNextTime && idleNextTime > 0)))
     {
+        if (!isSet_)
+            elapsedPlaylistTime_ = 0; // Reset playlist timer if we are entering attract mode
         isActive_    = true;
         isSet_       = true;
         elapsedTime_ = 0;

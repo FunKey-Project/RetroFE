@@ -893,7 +893,7 @@ void RetroFE::run( )
                 {
                     if (attract_.update( deltaTime, *currentPage_ ))
                     {
-                        attract_.reset( attract_.isSet( ), true );
+                        attract_.reset( attract_.isSet( ) );
                         currentPage_->nextPlaylist( );
                         std::string attractModeSkipPlaylist = "";
                         config_.getProperty( "attractModeSkipPlaylist", attractModeSkipPlaylist );
@@ -1153,7 +1153,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
         page->resetScrollPeriod( );
         if (page->isMenuScrolling( ))
         {
-            attract_.reset( attract_.isSet( ), false );
+            attract_.reset( attract_.isSet( ) );
             state = RETROFE_HIGHLIGHT_REQUEST;
         }
     }
