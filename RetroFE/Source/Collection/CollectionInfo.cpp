@@ -143,6 +143,7 @@ bool CollectionInfo::Save()
     return retval;
 }
 
+
 std::string CollectionInfo::settingsPath() const
 {
     return Utils::combinePath(Configuration::absolutePath, "collections", name);

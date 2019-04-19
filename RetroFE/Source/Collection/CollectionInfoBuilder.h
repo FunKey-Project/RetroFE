@@ -32,6 +32,7 @@ public:
     CollectionInfo *buildCollection(std::string collectionName);
     CollectionInfo *buildCollection(std::string collectionName, std::string mergedCollectionName);
     void addPlaylists(CollectionInfo *info);
+    void updateLastPlayedPlaylist(CollectionInfo *info, Item *item);
     void injectMetadata(CollectionInfo *info);
     static bool createCollectionDirectory(std::string collectionName);
     bool ImportBasicList(CollectionInfo *info, std::string file, std::vector<Item *> &list);

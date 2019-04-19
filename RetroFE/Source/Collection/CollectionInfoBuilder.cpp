@@ -484,7 +484,131 @@ void CollectionInfoBuilder::addPlaylists(CollectionInfo *info)
         info->playlists["favorites"] = new std::vector<Item *>();
     }
 
+    if(info->playlists["lastplayed"] == NULL)
+    {
+        info->playlists["lastplayed"] = new std::vector<Item *>();
+    }
+
     return;
+}
+
+
+void CollectionInfoBuilder::updateLastPlayedPlaylist(CollectionInfo *info, Item *item)
+{
+    std::string path = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "playlists");
+    Logger::write(Logger::ZONE_INFO, "RetroFE", "Updating lastplayed playlist");
+
+    std::vector<Item *> lastplayedList;
+    std::string playlistFile = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "playlists", "lastplayed.txt");
+    ImportBasicList(info, playlistFile, lastplayedList);
+
+    if (info->playlists["lastplayed"] == NULL)
+        info->playlists["lastplayed"] = new std::vector<Item *>();
+    else
+        info->playlists["lastplayed"]->clear();
+
+    int lastplayedSize = 0;
+    (void)conf_.getProperty("lastplayedSize", lastplayedSize);
+    
+    if (lastplayedSize == 0)
+        return;
+
+    // Put the new item at the front of the list.
+    info->playlists["lastplayed"]->push_back(item);
+
+    // Add the items already in the playlist up to the lastplayedSize.
+    for(std::vector<Item *>::iterator it = lastplayedList.begin(); it != lastplayedList.end(); it++)
+    {
+        if (info->playlists["lastplayed"]->size() >= static_cast<unsigned int>( lastplayedSize ))
+            break;
+
+        std::string collectionName = info->name;
+        std::string itemName       = (*it)->name;
+        if (itemName.at(0) == '_') // name consists of _<collectionName>:<itemName>
+        {
+             itemName.erase(0, 1); // Remove _
+             size_t position = itemName.find(":");
+             if (position != std::string::npos )
+             {
+                 collectionName = itemName.substr(0, position);
+                 itemName       = itemName.erase(0, position+1);
+             }
+        }
+
+        for(std::vector<Item *>::iterator it = info->items.begin(); it != info->items.end(); it++)
+        {
+            if ( (*it)->name == itemName && (*it)->collectionInfo->name == collectionName && (*it) != item)
+            {
+                info->playlists["lastplayed"]->push_back((*it));
+            }
+        }
+    }
+
+    // Write new lastplayed playlist
+    std::string dir  = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "playlists");
+    std::string file = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "playlists/lastplayed.txt");
+    Logger::write(Logger::ZONE_INFO, "Collection", "Saving " + file);
+
+    std::ofstream filestream;
+    try
+    {
+        // Create playlists directory if it does not exist yet.
+        struct stat infostat;
+        if ( stat( dir.c_str(), &infostat ) != 0 )
+        {
+#if defined(_WIN32) && !defined(__GNUC__)
+            if(!CreateDirectory(dir.c_str(), NULL))
+            {
+                if(ERROR_ALREADY_EXISTS != GetLastError())
+                {
+                    Logger::write(Logger::ZONE_WARNING, "Collection", "Could not create directory " + dir);
+                    return false;
+                }
+            }
+#else 
+#if defined(__MINGW32__)
+            if(mkdir(dir.c_str()) == -1)
+#else
+            if(mkdir(dir.c_str(), 0755) == -1)
+#endif        
+            {
+                Logger::write(Logger::ZONE_WARNING, "Collection", "Could not create directory " + dir);
+                return;
+            }
+#endif
+        }
+        else if ( !(infostat.st_mode & S_IFDIR) )
+        {
+            Logger::write(Logger::ZONE_WARNING, "Collection", dir + " exists, but is not a directory.");
+            return;
+        }
+
+        filestream.open(file.c_str());
+        std::vector<Item *> *saveitems = info->playlists["lastplayed"];
+        for(std::vector<Item *>::iterator it = saveitems->begin(); it != saveitems->end(); it++)
+        {
+            if ((*it)->collectionInfo->name == info->name)
+            {
+                filestream << (*it)->name << std::endl;
+            }
+            else
+            {
+                filestream << "_" << (*it)->collectionInfo->name << ":" << (*it)->name << std::endl;
+            }
+        }
+
+        filestream.close();
+    }
+    catch(std::exception &)
+    {
+        Logger::write(Logger::ZONE_ERROR, "Collection", "Save failed: " + file);
+    }
+
+    // Sort the playlist(s)
+    info->sortPlaylists( );
+
+    return;
+
 }
 
 

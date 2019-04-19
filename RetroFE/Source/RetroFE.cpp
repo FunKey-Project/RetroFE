@@ -701,6 +701,8 @@ void RetroFE::run( )
             {
                 nextPageItem_ = currentPage_->getSelectedItem( );
                 launchEnter( );
+                CollectionInfoBuilder cib(config_, *metadb_);
+                cib.updateLastPlayedPlaylist( currentPage_->getCollection(), nextPageItem_ );
                 l.run(nextPageItem_->collectionInfo->name, nextPageItem_);
                 launchExit( );
                 currentPage_->exitGame( );

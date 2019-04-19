@@ -1195,6 +1195,12 @@ std::string Page::getCollectionName()
 }
 
 
+CollectionInfo *Page::getCollection()
+{
+    return collections_.back().collection;
+}
+
+
 void Page::freeGraphicsMemory()
 {
     for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)

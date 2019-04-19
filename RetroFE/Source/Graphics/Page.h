@@ -95,6 +95,7 @@ public:
     void playSelect();
     bool isSelectPlaying();
     std::string getCollectionName();
+    CollectionInfo *getCollection();
     void setMinShowTime(float value);
     float getMinShowTime();
     void menuScroll();
@@ -108,6 +109,7 @@ public:
     void setText( std::string text, int id );
     void addPlaylist();
     void removePlaylist();
+    void updateLastPlayedPlaylist( Item *item );
     void reallocateMenuSpritePoints();
     bool isMenuScrolling();
     bool isPlaying();
