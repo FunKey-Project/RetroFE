@@ -562,7 +562,7 @@ void CollectionInfoBuilder::updateLastPlayedPlaylist(CollectionInfo *info, Item 
                 if(ERROR_ALREADY_EXISTS != GetLastError())
                 {
                     Logger::write(Logger::ZONE_WARNING, "Collection", "Could not create directory " + dir);
-                    return false;
+                    return;
                 }
             }
 #else 
