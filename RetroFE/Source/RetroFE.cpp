@@ -433,17 +433,9 @@ void RetroFE::run( )
 
                     currentPage_->pushCollection(info);
 
-                    bool autoFavorites = true;
-                    config_.getProperty( "autoFavorites", autoFavorites );
-
-                    if (autoFavorites)
-                    {
-                        currentPage_->selectPlaylist("favorites"); // Switch to favorites playlist
-                    }
-                    else
-                    {
-                        currentPage_->selectPlaylist("all"); // Switch to all games playlist
-                    }
+                    std::string firstPlaylist = "all";
+                    config_.getProperty( "firstPlaylist", firstPlaylist );
+                    currentPage_->selectPlaylist( firstPlaylist );
 
                     currentPage_->onNewItemSelected( );
                     currentPage_->reallocateMenuSpritePoints( );
@@ -611,20 +603,17 @@ void RetroFE::run( )
 
                 bool rememberMenu = false;
                 config_.getProperty( "rememberMenu", rememberMenu );
-                bool autoFavorites = true;
-                config_.getProperty( "autoFavorites", autoFavorites );
+
+                std::string firstPlaylist = "all";
+                config_.getProperty( "firstPlaylist", firstPlaylist );
 
                 if (rememberMenu && lastMenuPlaylists_.find( nextPageName ) != lastMenuPlaylists_.end( ))
                 {
-                  currentPage_->selectPlaylist( lastMenuPlaylists_[nextPageName] ); // Switch to last playlist
-                }
-                else if (autoFavorites)
-                {
-                  currentPage_->selectPlaylist( "favorites" ); // Switch to favorites playlist
+                    currentPage_->selectPlaylist( lastMenuPlaylists_[nextPageName] ); // Switch to last playlist
                 }
                 else
                 {
-                  currentPage_->selectPlaylist( "all" ); // Switch to all games playlist
+                    currentPage_->selectPlaylist( firstPlaylist );
                 }
 
                 if ( rememberMenu && lastMenuOffsets_.find( nextPageName ) != lastMenuOffsets_.end( ) )
@@ -702,7 +691,10 @@ void RetroFE::run( )
                 nextPageItem_ = currentPage_->getSelectedItem( );
                 launchEnter( );
                 CollectionInfoBuilder cib(config_, *metadb_);
-                cib.updateLastPlayedPlaylist( currentPage_->getCollection(), nextPageItem_ );
+                std::string attractModeSkipPlaylist = "";
+                config_.getProperty( "attractModeSkipPlaylist", attractModeSkipPlaylist );
+                if (currentPage_->getPlaylistName( ) != attractModeSkipPlaylist)
+                    cib.updateLastPlayedPlaylist( currentPage_->getCollection(), nextPageItem_ ); // Update last played playlist if not currently in the skip playlist (e.g. settings)
                 l.run(nextPageItem_->collectionInfo->name, nextPageItem_);
                 launchExit( );
                 currentPage_->exitGame( );
