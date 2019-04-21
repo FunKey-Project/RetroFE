@@ -747,20 +747,17 @@ void RetroFE::run( )
 
                 bool rememberMenu = false;
                 config_.getProperty( "rememberMenu", rememberMenu );
-                bool autoFavorites = true;
-                config_.getProperty( "autoFavorites", autoFavorites );
+
+                std::string firstPlaylist = "all";
+                config_.getProperty( "firstPlaylist", firstPlaylist );
 
                 if (rememberMenu && lastMenuPlaylists_.find( currentPage_->getCollectionName( ) ) != lastMenuPlaylists_.end( ))
                 {
                   currentPage_->selectPlaylist( lastMenuPlaylists_[currentPage_->getCollectionName( )] ); // Switch to last playlist
                 }
-                else if ( autoFavorites )
-                {
-                  currentPage_->selectPlaylist( "favorites" ); // Switch to favorites playlist
-                }
                 else
                 {
-                  currentPage_->selectPlaylist( "all" ); // Switch to all games playlist
+                    currentPage_->selectPlaylist( firstPlaylist );
                 }
 
                 if ( rememberMenu && lastMenuOffsets_.find( currentPage_->getCollectionName( ) ) != lastMenuOffsets_.end( ) )
