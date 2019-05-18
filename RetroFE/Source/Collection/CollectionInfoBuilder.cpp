@@ -466,7 +466,7 @@ void CollectionInfoBuilder::addPlaylists(CollectionInfo *info)
 
                     for(std::vector<Item *>::iterator it = info->items.begin(); it != info->items.end(); it++)
                     {
-                        if ( (*it)->name == itemName && (*it)->collectionInfo->name == collectionName)
+                        if ( ((*it)->name == itemName || itemName == "*") && (*it)->collectionInfo->name == collectionName )
                         {
                             info->playlists[basename]->push_back((*it));
                         }
