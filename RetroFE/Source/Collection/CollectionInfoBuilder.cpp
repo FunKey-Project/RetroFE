@@ -394,7 +394,7 @@ void CollectionInfoBuilder::addPlaylists(CollectionInfo *info)
                          itemName       = itemName.erase(0, position+1);
                      }
                 }
-                if ( (*it)->name == itemName && (*it)->collectionInfo->name == collectionName)
+                if ( ((*it)->name == itemName || itemName == "*") && (*it)->collectionInfo->name == collectionName )
                 {
                     found = true;
                 }
