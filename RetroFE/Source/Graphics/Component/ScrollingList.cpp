@@ -60,6 +60,7 @@ ScrollingList::ScrollingList( Configuration &c,
     , selectedOffsetIndex_( 0 )
     , scrollAcceleration_( 0 )
     , startScrollTime_( 0.500 )
+    , minScrollTime_( 0.500 )
     , scrollPeriod_( 0 )
     , config_( c )
     , scaleX_( scaleX )
@@ -82,6 +83,7 @@ ScrollingList::ScrollingList( const ScrollingList &copy )
     , selectedOffsetIndex_( copy.selectedOffsetIndex_ )
     , scrollAcceleration_( copy.scrollAcceleration_ )
     , startScrollTime_( copy.startScrollTime_ )
+    , minScrollTime_( copy.minScrollTime_ )
     , scrollPeriod_( copy.startScrollTime_ )
     , config_( copy.config_ )
     , scaleX_( copy.scaleX_ )
@@ -138,6 +140,12 @@ void ScrollingList::setScrollAcceleration( float value )
 void ScrollingList::setStartScrollTime( float value )
 {
     startScrollTime_ = value;
+}
+
+
+void ScrollingList::setMinScrollTime( float value )
+{
+    minScrollTime_ = value;
 }
 
 
@@ -586,7 +594,7 @@ void ScrollingList::update( float dt )
 
     // Check if scrollPeriod_ has been properly initialised already or if something went wrong
     // while updating the scrollPeriod_
-    if ( scrollPeriod_ < scrollAcceleration_ )
+    if ( scrollPeriod_ < minScrollTime_ )
     {
         scrollPeriod_ = startScrollTime_;
     }
@@ -856,9 +864,9 @@ void ScrollingList::resetScrollPeriod(  )
 void ScrollingList::updateScrollPeriod(  )
 {
     scrollPeriod_ -= scrollAcceleration_;
-    if ( scrollPeriod_ < scrollAcceleration_ )
+    if ( scrollPeriod_ < minScrollTime_ )
     {
-        scrollPeriod_ = scrollAcceleration_;
+        scrollPeriod_ = minScrollTime_;
     }
 }
 

@@ -90,6 +90,7 @@ public:
     void draw( unsigned int layer );
     void setScrollAcceleration( float value );
     void setStartScrollTime( float value );
+    void setMinScrollTime( float value );
     bool horizontalScroll;
     void deallocateSpritePoints( );
     void allocateSpritePoints( );
@@ -114,6 +115,7 @@ private:
 
     float scrollAcceleration_;
     float startScrollTime_;
+    float minScrollTime_;
     float scrollPeriod_;
 
     Configuration &config_;

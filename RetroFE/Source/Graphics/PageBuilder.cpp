@@ -964,6 +964,7 @@ ScrollingList * PageBuilder::buildMenu(xml_node<> *menuXml, Page &page)
     xml_attribute<> *menuTypeXml           = menuXml->first_attribute("type");
     xml_attribute<> *scrollTimeXml         = menuXml->first_attribute("scrollTime");
     xml_attribute<> *scrollAccelerationXml = menuXml->first_attribute("scrollAcceleration");
+    xml_attribute<> *minScrollTimeXml      = menuXml->first_attribute("minScrollTime");
     xml_attribute<> *scrollOrientationXml  = menuXml->first_attribute("orientation");
 
     if(menuTypeXml)
@@ -1015,6 +1016,12 @@ ScrollingList * PageBuilder::buildMenu(xml_node<> *menuXml, Page &page)
     if(scrollAccelerationXml)
     {
         menu->setScrollAcceleration(Utils::convertFloat(scrollAccelerationXml->value()));
+        menu->setMinScrollTime(Utils::convertFloat(scrollAccelerationXml->value()));
+    }
+
+    if(minScrollTimeXml)
+    {
+        menu->setMinScrollTime(Utils::convertFloat(minScrollTimeXml->value()));
     }
 
     if(scrollOrientationXml)
