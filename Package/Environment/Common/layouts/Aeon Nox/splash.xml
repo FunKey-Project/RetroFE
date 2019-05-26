@@ -30,7 +30,10 @@
    <!-- Text shown when creating meta.db. This will only show once unless meta.db does not exsist
    <statusText x="0" y="bottom" xOffset="20" yOrigin="center" yOffset="-175" height="150" width="stretch" fontSize="25" layer="3" />
    -->
-   <video src="video/intro.mp4" height="1080" width="1920" alpha="1"/>   
+   <video src="video/intro.mp4" height="1080" width="1920" alpha="1">
+        <onExit>                   <set duration=".3"><animate type="alpha"  to="0"/>
+                                                      <animate type="volume" to="0"/></set></onExit>
+   </video>
 
  </layout>
 
