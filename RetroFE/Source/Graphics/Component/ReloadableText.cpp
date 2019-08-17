@@ -175,7 +175,7 @@ void ReloadableText::ReloadTexture()
         {
             text = selectedItem->genre;
         }
-        else if (type_ == "playlist")
+        else if (type_.rfind( "playlist", 0 ) == 0)
         {
             text = playlistName;
         }

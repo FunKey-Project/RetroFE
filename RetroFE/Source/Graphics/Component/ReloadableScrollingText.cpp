@@ -289,7 +289,7 @@ void ReloadableScrollingText::reloadTexture( )
             else // item is a collection
               (void)config_.getProperty("collections." + selectedItem->name + ".genre", text );
         }
-        else if (type_ == "playlist")
+        else if (type_.rfind( "playlist", 0 ) == 0)
         {
             text = playlistName;
         }
