@@ -1000,6 +1000,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             !input_.keystate(UserInput::KeyCodeFavPlaylist) &&
             !input_.keystate(UserInput::KeyCodeNextPlaylist) &&
             !input_.keystate(UserInput::KeyCodePrevPlaylist) &&
+            !input_.keystate(UserInput::KeyCodeCyclePlaylist) &&
             !input_.keystate(UserInput::KeyCodeAddPlaylist) &&
             !input_.keystate(UserInput::KeyCodeRemovePlaylist) &&
             !input_.keystate(UserInput::KeyCodeRandom) &&

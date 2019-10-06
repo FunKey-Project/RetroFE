@@ -1096,8 +1096,9 @@ void Page::cyclePlaylist(std::vector<std::string> list)
     // Current playlist found; switch to the next found playlist in the list
     else
     {
-        for(;; ++it)
+        for(;;)
         {
+            ++it;
             if (it == list.end()) it = list.begin(); // wrap
             selectPlaylist( *it );
             if (*it == getPlaylistName())
