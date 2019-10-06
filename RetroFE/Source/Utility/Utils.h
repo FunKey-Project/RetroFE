@@ -35,6 +35,7 @@ public:
     static std::string uppercaseFirst(std::string str);
     static std::string filterComments(std::string line);
     static std::string trimEnds(std::string str);
+    static void listToVector( std::string str, std::vector<std::string> &vec, char delimiter );
 
     //todo: there has to be a better way to do this
     static std::string combinePath(std::list<std::string> &paths);

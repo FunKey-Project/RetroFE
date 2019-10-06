@@ -253,3 +253,16 @@ std::string Utils::trimEnds(std::string str)
     return str;
 }
 
+
+void Utils::listToVector( std::string str, std::vector<std::string> &vec, char delimiter = ',' )
+{
+    std::size_t current, previous = 0;
+    current = str.find( delimiter );
+    while (current != std::string::npos)
+    {
+        vec.push_back( Utils::trimEnds( str.substr( previous, current - previous ) ) );
+        previous = current + 1;
+        current  = str.find( delimiter, previous );
+    }
+    vec.push_back( Utils::trimEnds( str.substr( previous, current - previous ) ) );
+}

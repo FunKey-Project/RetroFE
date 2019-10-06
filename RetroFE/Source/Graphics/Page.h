@@ -57,6 +57,7 @@ public:
     void nextPlaylist();
     void prevPlaylist();
     void selectPlaylist(std::string playlist);
+    void cyclePlaylist(std::vector<std::string> list);
     void pushMenu(ScrollingList *s, int index = -1);
     bool isMenusFull();
     void setLoadSound(Sound *chunk);

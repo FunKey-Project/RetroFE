@@ -1067,6 +1067,16 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
                 page->prevPlaylist( );
                 state = RETROFE_PLAYLIST_REQUEST;
             }
+            if ( input_.keystate(UserInput::KeyCodeCyclePlaylist) )
+            {
+                attract_.reset( );
+                std::string cycleString;
+                config_.getProperty( "cyclePlaylist", cycleString );
+                std::vector<std::string> cycleVector;
+                Utils::listToVector( cycleString, cycleVector, ',' );
+                page->cyclePlaylist( cycleVector );
+                state = RETROFE_PLAYLIST_REQUEST;
+            }
             if ( input_.newKeyPressed(UserInput::KeyCodeRemovePlaylist) )
             {
                 attract_.reset( );

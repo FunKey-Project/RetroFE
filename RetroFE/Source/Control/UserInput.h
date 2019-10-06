@@ -44,6 +44,7 @@ public:
         KeyCodeFavPlaylist,
         KeyCodeNextPlaylist,
         KeyCodePrevPlaylist,
+        KeyCodeCyclePlaylist,
         KeyCodeRandom,
         KeyCodeMenu,
         KeyCodeAddPlaylist,
