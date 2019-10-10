@@ -57,6 +57,8 @@ bool UserInput::initialize()
     MapKey("pageUp", KeyCodePageUp, false );
     MapKey("letterDown", KeyCodeLetterDown, false);
     MapKey("letterUp", KeyCodeLetterUp, false);
+    MapKey("collectionUp", KeyCodeCollectionUp, false);
+    MapKey("collectionDown", KeyCodeCollectionDown, false);
     MapKey("favPlaylist", KeyCodeFavPlaylist, false);
     MapKey("nextPlaylist", KeyCodeNextPlaylist, false);
     MapKey("prevPlaylist", KeyCodePrevPlaylist, false);

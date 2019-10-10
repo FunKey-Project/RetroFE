@@ -41,6 +41,8 @@ public:
         KeyCodePageUp,
         KeyCodeLetterDown,
         KeyCodeLetterUp,
+        KeyCodeCollectionUp,
+        KeyCodeCollectionDown,
         KeyCodeFavPlaylist,
         KeyCodeNextPlaylist,
         KeyCodePrevPlaylist,
