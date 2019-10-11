@@ -1223,6 +1223,18 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             state = RETROFE_MENUMODE_START_REQUEST;
         }
 
+        // Handle Collection Up/Down keys
+        if (input_.keystate( UserInput::KeyCodeCollectionUp ))
+        {
+            attract_.reset( );
+            state = RETROFE_COLLECTION_UP_REQUEST;
+        }
+        if (input_.keystate( UserInput::KeyCodeCollectionDown ))
+        {
+            attract_.reset( );
+            state = RETROFE_COLLECTION_DOWN_REQUEST;
+        }
+
         if ( menuMode_ || (
             !input_.keystate(UserInput::KeyCodePageUp) &&
             !input_.keystate(UserInput::KeyCodePageDown) &&
@@ -1282,16 +1294,6 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
                 else
                     page->letterScroll(Page::ScrollDirectionForward);
                 state = RETROFE_MENUJUMP_REQUEST;
-            }
-            if (input_.keystate( UserInput::KeyCodeCollectionUp ))
-            {
-                attract_.reset( );
-                state = RETROFE_COLLECTION_UP_REQUEST;
-            }
-            if (input_.keystate( UserInput::KeyCodeCollectionDown ))
-            {
-                attract_.reset( );
-                state = RETROFE_COLLECTION_DOWN_REQUEST;
             }
             if ( input_.newKeyPressed(UserInput::KeyCodeFavPlaylist) )
             {
