@@ -1137,6 +1137,14 @@ void RetroFE::run( )
                             currentPage_->nextPlaylist( );
                         state = RETROFE_PLAYLIST_REQUEST;
                     }
+                }
+                if ( menuMode_ )
+                {
+                    attract_.reset( );
+                }
+                currentPage_->update( deltaTime );
+                if (!splashMode)
+                {
                     if ( currentPage_->isAttractIdle( ) )
                     {
                         if ( !attractMode_ && attract_.isSet( ) )
@@ -1154,11 +1162,6 @@ void RetroFE::run( )
                         attractMode_ = attract_.isSet( );
                     }
                 }
-                if ( menuMode_ )
-                {
-                    attract_.reset( );
-                }
-                currentPage_->update( deltaTime );
             }
 
             render( );
