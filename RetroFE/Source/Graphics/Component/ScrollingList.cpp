@@ -589,6 +589,33 @@ void ScrollingList::triggerMenuJumpExitEvent( int menuIndex )
     }
 }
 
+void ScrollingList::triggerAttractEnterEvent( int menuIndex )
+{
+    for ( unsigned int i = 0; i < components_.size( ); ++i )
+    {
+        Component *c = components_.at( i );
+        if ( c ) c->triggerEvent( "attractEnter", menuIndex );
+    }
+}
+
+void ScrollingList::triggerAttractEvent( int menuIndex )
+{
+    for ( unsigned int i = 0; i < components_.size( ); ++i )
+    {
+        Component *c = components_.at( i );
+        if ( c ) c->triggerEvent( "attract", menuIndex );
+    }
+}
+
+void ScrollingList::triggerAttractExitEvent( int menuIndex )
+{
+    for ( unsigned int i = 0; i < components_.size( ); ++i )
+    {
+        Component *c = components_.at( i );
+        if ( c ) c->triggerEvent( "attractExit", menuIndex );
+    }
+}
+
 void ScrollingList::update( float dt )
 {
 
@@ -848,6 +875,20 @@ bool ScrollingList::isIdle(  )
     {
         Component *c = components_.at( i );
         if ( c && !c->isIdle(  ) ) return false;
+    }
+
+    return true;
+}
+
+
+bool ScrollingList::isAttractIdle(  )
+{
+    if ( !Component::isAttractIdle(  ) ) return false;
+
+    for ( unsigned int i = 0; i < components_.size(  ); ++i )
+    {
+        Component *c = components_.at( i );
+        if ( c && !c->isAttractIdle(  ) ) return false;
     }
 
     return true;

@@ -129,6 +129,7 @@ private:
     FontCache          fontcache_;
     AttractMode        attract_;
     bool               menuMode_;
+    bool               attractMode_;
 
     std::map<std::string, unsigned int> lastMenuOffsets_;
     std::map<std::string, std::string>  lastMenuPlaylists_;

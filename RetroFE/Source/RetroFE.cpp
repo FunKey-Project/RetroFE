@@ -70,7 +70,8 @@ RetroFE::RetroFE( Configuration &c )
     , keyLastTime_(0)
     , keyDelayTime_(.3f)
 {
-    menuMode_ = false;
+    menuMode_    = false;
+    attractMode_ = false;
 }
 
 
@@ -1135,6 +1136,22 @@ void RetroFE::run( )
                         if (currentPage_->getPlaylistName( ) == attractModeSkipPlaylist)
                             currentPage_->nextPlaylist( );
                         state = RETROFE_PLAYLIST_REQUEST;
+                    }
+                    if ( currentPage_->isAttractIdle( ) )
+                    {
+                        if ( !attractMode_ && attract_.isSet( ) )
+                        {
+                            currentPage_->attractEnter( );
+                        }
+                        else if ( attractMode_ && !attract_.isSet( ) )
+                        {
+                            currentPage_->attractExit( );
+                        }
+                        else if ( attract_.isSet( ) )
+                        {
+                            currentPage_->attract( );
+                        }
+                        attractMode_ = attract_.isSet( );
                     }
                 }
                 if ( menuMode_ )

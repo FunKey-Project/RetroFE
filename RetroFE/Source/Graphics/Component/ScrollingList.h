@@ -57,6 +57,9 @@ public:
     void triggerPlaylistExitEvent( int menuIndex = -1 );
     void triggerMenuJumpEnterEvent( int menuIndex = -1 );
     void triggerMenuJumpExitEvent( int menuIndex = -1 );
+    void triggerAttractEnterEvent( int menuIndex = -1 );
+    void triggerAttractEvent( int menuIndex = -1 );
+    void triggerAttractExitEvent( int menuIndex = -1 );
 
     bool allocateTexture( unsigned int index, Item *i );
     void deallocateTexture( unsigned int index );
@@ -78,6 +81,7 @@ public:
     void cfwLetterSubDown( );
     void random( );
     bool isIdle( );
+    bool isAttractIdle( );
     unsigned int getScrollOffsetIndex( );
     void setScrollOffsetIndex( unsigned int index );
     void setSelectedIndex( int selectedIndex );

@@ -38,6 +38,7 @@ public:
     void setNewItemSelected();
     void setNewScrollItemSelected();
     bool isIdle();
+    bool isAttractIdle();
     bool isMenuScrolling();
     bool newItemSelected;
     bool newScrollItemSelected;

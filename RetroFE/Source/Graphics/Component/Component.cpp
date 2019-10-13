@@ -132,6 +132,11 @@ void Component::setId( int id )
 
 bool Component::isIdle()
 {
+    return (currentTweenComplete_ || animationType_ == "idle" || animationType_ == "menuIdle" || animationType_ == "attract");
+}
+
+bool Component::isAttractIdle()
+{
     return (currentTweenComplete_ || animationType_ == "idle" || animationType_ == "menuIdle");
 }
 

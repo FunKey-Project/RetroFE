@@ -83,6 +83,7 @@ public:
     void setScrollOffsetIndex(unsigned int i);
     unsigned int getScrollOffsetIndex();
     bool isIdle();
+    bool isAttractIdle();
     bool isGraphicsIdle();
     bool isMenuIdle();
     void setStatusTextComponent(Text *t);
@@ -106,6 +107,9 @@ public:
     void playlistExit();
     void menuJumpEnter();
     void menuJumpExit();
+    void attractEnter( );
+    void attract( );
+    void attractExit( );
     void triggerEvent( std::string action );
     void setText( std::string text, int id );
     void addPlaylist();
