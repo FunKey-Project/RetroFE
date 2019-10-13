@@ -409,7 +409,17 @@ void RetroFE::run( )
         case RETROFE_ENTER:
             if ( currentPage_->isIdle( ) )
             {
-                state = RETROFE_IDLE;
+                bool startCollectionEnter = false;
+                config_.getProperty( "startCollectionEnter", startCollectionEnter );
+                nextPageItem_ = currentPage_->getSelectedItem( );
+                if ( !splashMode && startCollectionEnter && !nextPageItem_->leaf )
+                {
+                    state = RETROFE_NEXT_PAGE_REQUEST;
+                }
+                else
+                {
+                    state = RETROFE_IDLE;
+                }
             }
             break;
 
