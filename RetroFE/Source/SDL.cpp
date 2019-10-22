@@ -182,15 +182,16 @@ bool SDL::initialize( Configuration &config )
     }
         SDL_FillRect(window_virtual_, NULL, SDL_MapRGBA(window_virtual_->format, 0, 0, 0, 0));
 
-        texture_copy_alpha_ = SDL_CreateRGBSurface(0, windowWidth_, windowHeight_, 32, rmask, gmask, bmask, amask);
+        /*texture_copy_alpha_ = SDL_CreateRGBSurface(0, windowWidth_, windowHeight_, 32, rmask, gmask, bmask, amask);
         if ( texture_copy_alpha_ == NULL )
         {
 	    std::string error = SDL_GetError( );
 	    Logger::write( Logger::ZONE_ERROR, "SDL", "SDL_CreateRGBSurface texture_copy_alpha_ failed: " + error );
 	    retVal = false;
         }
-        SDL_FillRect(texture_copy_alpha_, NULL, SDL_MapRGBA(texture_copy_alpha_->format, 0, 0, 0, 0));
+        SDL_FillRect(texture_copy_alpha_, NULL, SDL_MapRGBA(texture_copy_alpha_->format, 0, 0, 0, 0));*/
     }
+
     /*if ( retVal )
     {
         renderer_ = SDL_CreateRenderer( window_, -1, SDL_RENDERER_ACCELERATED );
@@ -271,11 +272,11 @@ bool SDL::deInitialize( )
         window_virtual_ = NULL;
     }
 
-    if ( texture_copy_alpha_ )
+    /*if ( texture_copy_alpha_ )
     {
         SDL_FreeSurface(texture_copy_alpha_);
         texture_copy_alpha_ = NULL;
-    }
+    }*/
 
     SDL_ShowCursor( SDL_TRUE );
 
@@ -569,30 +570,44 @@ bool SDL::renderCopy( SDL_Surface *texture, float alpha, SDL_Rect *src, SDL_Rect
     /*SDL_SetAlpha(texture, SDL_SRCALPHA, static_cast<char>( alpha * 255 ));
     SDL_BlitSurface (texture, &srcRect, getWindow(), &dstRect);*/
 
+    /*if(alpha){
+        unsigned int rmask;
+        unsigned int gmask;
+        unsigned int bmask;
+        unsigned int amask;
+    #if SDL_BYTEORDER == SDL_BIG_ENDIAN
+            rmask = 0xff000000;
+            gmask = 0x00ff0000;
+            bmask = 0x0000ff00;
+            amask = 0x000000ff;
+    #else
+            rmask = 0x000000ff;
+            gmask = 0x0000ff00;
+            bmask = 0x00ff0000;
+            amask = 0xff000000;
+    #endif
+        SDL_Surface * texture_tmp = SDL_CreateRGBSurface(0, texture->w, texture->h, 32, rmask, gmask, bmask, amask);
+        //SDL_FillRect(texture_tmp, NULL, SDL_MapRGBA(texture_tmp->format, 0, 0, 0, 0));
+        SDL_SetAlpha( texture, 0, SDL_ALPHA_OPAQUE );
+        SDL_BlitSurface (texture, NULL, texture_tmp, NULL);
+        SDL_gfxMultiplyAlpha (texture_tmp, static_cast<char>( alpha * 255 ));
+        //SDL_gfxBlitRGBA(texture_tmp, &srcRect, getWindow(), &dstRect);
+        SDL_BlitSurface(texture_tmp, &srcRect, getWindow(), &dstRect);
+        SDL_FreeSurface(texture_tmp);
+    }*/
 
-    unsigned int rmask;
-    unsigned int gmask;
-    unsigned int bmask;
-    unsigned int amask;
-#if SDL_BYTEORDER == SDL_BIG_ENDIAN
-        rmask = 0xff000000;
-        gmask = 0x00ff0000;
-        bmask = 0x0000ff00;
-        amask = 0x000000ff;
-#else
-        rmask = 0x000000ff;
-        gmask = 0x0000ff00;
-        bmask = 0x00ff0000;
-        amask = 0xff000000;
-#endif
-    SDL_Surface * texture_tmp = SDL_CreateRGBSurface(0, texture->w, texture->h, 32, rmask, gmask, bmask, amask);
-    //SDL_FillRect(texture_tmp, NULL, SDL_MapRGBA(texture_tmp->format, 0, 0, 0, 0));
-    SDL_SetAlpha( texture, 0, SDL_ALPHA_OPAQUE );
-    SDL_BlitSurface (texture, NULL, texture_tmp, NULL);
-    SDL_gfxMultiplyAlpha (texture_tmp, static_cast<char>( alpha * 255 ));
-    //SDL_gfxBlitRGBA(texture_tmp, &srcRect, getWindow(), &dstRect);
-    SDL_BlitSurface(texture_tmp, &srcRect, getWindow(), &dstRect);
-    SDL_FreeSurface(texture_tmp);
+
+    if(alpha){
+        SDL_SetAlpha(texture, SDL_SRCALPHA, static_cast<uint8_t>( alpha * 255 ));
+        //printf("\n-----------\n");
+        //printf("Alpha = %f = %u\n", alpha, texture->format->alpha);
+        SDL_BlitSurface(texture, &srcRect, getWindow(), &dstRect);
+    }
+
+
+
+
+
 
 
     //texture = rotozoomSurfaceXY(texture, viewInfo.Angle, scaleX, scaleY, SMOOTHING_OFF);

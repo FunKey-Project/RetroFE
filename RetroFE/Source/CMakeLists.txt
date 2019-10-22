@@ -31,8 +31,8 @@ endif()
 
 	set(GSTREAMER_ROOT "C:/gstreamer/1.0/x86" CACHE STRING "location of where your gstreamer include and lib folders reside")
 	set(GLIB2_ROOT "${GSTREAMER_ROOT}")
-  
-if(MSVC)  
+
+if(MSVC)
 	set(DIRENT_INCLUDE_DIR "${RETROFE_THIRD_PARTY_DIR}/dirent-1.20.1/include")
 endif()
 endif()
@@ -50,6 +50,8 @@ if(WIN32)
 	find_package(SDL_ttf REQUIRED )
 	find_package(SDL_gfx REQUIRED )
 	find_package(ZLIB REQUIRED)
+
+	find_package(X11)
 else()
 	include(FindPkgConfig)
 	#pkg_search_module(SDL2 REQUIRED sdl2)
@@ -70,6 +72,8 @@ if(APPLE)
 	#find_package(SDL2 REQUIRED)
 	find_package(SDL REQUIRED )
 endif()
+
+	find_package(X11)
 endif()
 
 set(RETROFE_INCLUDE_DIRS
@@ -88,6 +92,7 @@ set(RETROFE_INCLUDE_DIRS
 	"${ZLIB_INCLUDE_DIRS}"
 	"${SQLITE3_ROOT}"
 	"${RAPIDXML_ROOT}"
+	"${X11_INCLUDE_DIR}"
 )
 
 if(MSVC)
@@ -107,6 +112,7 @@ set(RETROFE_LIBRARIES
 	${SDL_TTF_LIBRARIES}
 	${SDL_GFX_LIBRARIES}
 	${ZLIB_LIBRARIES}
+	${X11_LIBRARIES}
 )
 
 if(NOT WIN32)
@@ -223,7 +229,6 @@ set(RETROFE_SOURCES
 
 set(EXECUTABLE_OUTPUT_PATH "${RETROFE_DIR}/Build" CACHE PATH "Build directory" FORCE)
 set(LIBRARY_OUTPUT_PATH "${RETROFE_DIR}/Build" CACHE PATH "Build directory" FORCE)
-
 
 include_directories(${RETROFE_INCLUDE_DIRS})
 add_executable(retrofe  ${RETROFE_SOURCES} ${RETROFE_HEADERS})

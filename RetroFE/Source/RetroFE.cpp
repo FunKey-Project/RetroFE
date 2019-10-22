@@ -95,9 +95,24 @@ void RetroFE::render( )
     //SDL_RenderClear( SDL::getRenderer( ) );
     SDL_FillRect(SDL::getWindow( ), NULL, SDL_MapRGB(SDL::getWindow( )->format, 0, 0, 0));
 
+    uint32_t draw_ticks = SDL_GetTicks();
     if ( currentPage_ )
     {
         currentPage_->draw( );
+    }
+    int draw_time = SDL_GetTicks()-draw_ticks;
+    //printf("draw time: %dms\n", draw_time);
+
+
+    // DEBUG: Average draw time over FPS*5 frames
+    static int avg_draw_time = 0;
+    static int avg_draw_time_nb_vals = 0;
+    avg_draw_time += draw_time;
+    avg_draw_time_nb_vals++;
+    if(avg_draw_time_nb_vals >= FPS*5){
+        printf("Average draw time: %dms\n", avg_draw_time/avg_draw_time_nb_vals);
+        avg_draw_time=0;
+        avg_draw_time_nb_vals=0;
     }
 
     //SDL_RenderPresent( SDL::getRenderer( ) );

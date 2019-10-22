@@ -1,6 +1,7 @@
 syntax: glob
 *.orig
 *.suo
+*~
 .git
 Build/
 Documentation/Documentation/*
@@ -9,4 +10,3 @@ Documentation/Manual/_build/*
 Configuration/Configuration/bin/**
 Configuration/Configuration/obj/**
 Artifacts/**
-
