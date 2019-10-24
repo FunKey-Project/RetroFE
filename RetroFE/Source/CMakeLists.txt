@@ -51,7 +51,7 @@ if(WIN32)
 	find_package(SDL_gfx REQUIRED )
 	find_package(ZLIB REQUIRED)
 
-	find_package(X11)
+	#find_package(X11)
 else()
 	include(FindPkgConfig)
 	#pkg_search_module(SDL2 REQUIRED sdl2)
@@ -73,7 +73,7 @@ if(APPLE)
 	find_package(SDL REQUIRED )
 endif()
 
-	find_package(X11)
+	#find_package(X11)
 endif()
 
 set(RETROFE_INCLUDE_DIRS
