@@ -481,6 +481,7 @@ void RetroFE::run( )
 
         float lastTime = 0;
         float deltaTime = 0;
+        bool must_render = false;
 
         // Exit splash mode when an active key is pressed
         SDL_Event e;
@@ -990,11 +991,13 @@ void RetroFE::run( )
                 state = RETROFE_MENUMODE_START_LOAD_ART;
             }*/
 
+
 	    /// Launch menu
 	    menuMode_ = true;
 	    printf("Menu launched here\n");
 	    MenuMode::launch();
 	    menuMode_ = false;
+	    must_render = true;
 
 	    /// Clear events
 	    SDL_Event ev;
@@ -1060,6 +1063,10 @@ void RetroFE::run( )
                 SDL_Delay( static_cast<unsigned int>( sleepTime ) );
             }
 
+            // Check if previous update of page needed to be rendered
+            if(!currentPage_->isIdle( ) || splashMode){
+	        must_render = true;
+            }
 
             // Handle current pages updates
             if ( currentPage_ )
@@ -1077,7 +1084,8 @@ void RetroFE::run( )
                 currentPage_->update( deltaTime );
             }
 
-            if(!currentPage_->isIdle( ) || splashMode){
+            // Real render here
+            if(must_render){
 	        render( );
             }
         }
