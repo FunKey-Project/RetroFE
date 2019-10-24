@@ -234,11 +234,11 @@ bool SDL::initialize( Configuration &config )
         }
     }
 
-    if ( retVal && Mix_OpenAudio( audioRate, audioFormat, audioChannels, audioBuffers ) == -1 )
+    /*if ( retVal && Mix_OpenAudio( audioRate, audioFormat, audioChannels, audioBuffers ) == -1 )
     {
         std::string error = Mix_GetError( );
         Logger::write( Logger::ZONE_WARNING, "SDL", "Audio initialize failed: " + error );
-    }
+    }*/
 
     return retVal;
 
@@ -251,8 +251,8 @@ bool SDL::deInitialize( )
     std::string error = SDL_GetError( );
     Logger::write( Logger::ZONE_INFO, "SDL", "DeInitializing" );
 
-    Mix_CloseAudio( );
-    Mix_Quit( );
+    /*Mix_CloseAudio( );
+    Mix_Quit( );*/
 
     if ( mutex_ )
     {

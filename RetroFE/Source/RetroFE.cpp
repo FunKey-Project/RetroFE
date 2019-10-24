@@ -223,6 +223,8 @@ void RetroFE::freeGraphicsMemory( )
     if ( unloadSDL )
     {
         currentPage_->deInitializeFonts( );
+        // Deinit menuMode
+        MenuMode::end( );
         SDL::deInitialize( );
         //input_.clearJoysticks( );
     }
@@ -241,6 +243,7 @@ void RetroFE::allocateGraphicsMemory( )
     {
         SDL::initialize( config_ );
         currentPage_->initializeFonts( );
+
         // Init MenuMode
         MenuMode::init( );
     }
@@ -251,7 +254,6 @@ void RetroFE::allocateGraphicsMemory( )
         currentPage_->allocateGraphicsMemory( );
     }
 
-
 }
 
 
@@ -260,9 +262,6 @@ bool RetroFE::deInitialize( )
 {
 
     bool retVal = true;
-
-    // Deinit menuMode
-    MenuMode::end( );
 
     // Free textures
     freeGraphicsMemory( );
@@ -849,16 +848,10 @@ void RetroFE::run( )
                 launchEnter( );
                 l.run(nextPageItem_->collectionInfo->name, nextPageItem_);
 
-/********************************/
-#warning to remove
-                //bypass
-                state = RETROFE_QUIT_REQUEST;
-                break;
-/********************************/
-
                 launchExit( );
                 currentPage_->exitGame( );
-                state = RETROFE_QUIT_REQUEST;
+
+                state = RETROFE_LAUNCH_EXIT;
             }
             break;
 
@@ -866,6 +859,12 @@ void RetroFE::run( )
         case RETROFE_LAUNCH_EXIT:
             if ( currentPage_->isIdle( ) )
             {
+                /********************************/
+                /*#warning to remove
+                                //bypass
+                                state = RETROFE_QUIT_REQUEST;
+                                break;*/
+                /********************************/
                 state = RETROFE_IDLE;
             }
             break;
@@ -1071,7 +1070,9 @@ void RetroFE::run( )
                 currentPage_->update( deltaTime );
             }
 
-            render( );
+            if(!currentPage_->isIdle( ) || splashMode){
+	        render( );
+            }
         }
     }
 }

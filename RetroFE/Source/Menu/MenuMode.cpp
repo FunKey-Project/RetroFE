@@ -111,10 +111,10 @@ void MenuMode::init( )
 
 
 	/// ------ Save prev key repeat params and set new Key repeat -------
-	SDL_GetKeyRepeat(&backup_key_repeat_delay, &backup_key_repeat_interval);
+	/*SDL_GetKeyRepeat(&backup_key_repeat_delay, &backup_key_repeat_interval);
 	if(SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL)){
 		MENU_ERROR_PRINTF("ERROR with SDL_EnableKeyRepeat: %s\n", SDL_GetError());
-	}
+	}*/
 
 	/// ------ Init menu zones ------
 	init_menu_zones();
@@ -133,14 +133,21 @@ void MenuMode::end( )
 
 	/// ------ Free Surfaces -------
 	for(int i=0; i < nb_menu_zones; i++){
-		SDL_FreeSurface(menu_zone_surfaces[i]);
+		if(menu_zone_surfaces[i] != NULL){
+			SDL_FreeSurface(menu_zone_surfaces[i]);
+		}
 	}
-	SDL_FreeSurface(backup_hw_screen);
+	idx_menus = NULL;
+	nb_menu_zones = 0;
+
+	if(backup_hw_screen != NULL){
+		SDL_FreeSurface(backup_hw_screen);
+	}
 
 	/// ------ reset initial key repeat values ------
-	if(SDL_EnableKeyRepeat(backup_key_repeat_delay, backup_key_repeat_interval)){
+	/*if(SDL_EnableKeyRepeat(backup_key_repeat_delay, backup_key_repeat_interval)){
 		MENU_ERROR_PRINTF("ERROR with SDL_EnableKeyRepeat: %s\n", SDL_GetError());
-	}
+	}*/
 	return;
 }
 
