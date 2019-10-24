@@ -32,6 +32,13 @@
 #include <linux/keyboard.h>
 
 
+/* The following devices are the same on all systems.  */
+#define CURRENT_TTY "/dev/tty"
+#define DEV_CONSOLE "/dev/console"
+/*Linux, normal names */
+# define CURRENT_VC "/dev/tty0"
+
+
 Utils::Utils()
 {
 }
@@ -286,4 +293,68 @@ int Utils::termfix(uint32_t ttyId){
 
     //printf("Success\n");
     return res;
+}
+
+int Utils::open_a_console(const char *fnam)
+{
+    int fd;
+
+    /* try read-write */
+    fd = open(fnam, O_RDWR);
+
+    /* if failed, try read-only */
+    if (fd < 0 && errno == EACCES)
+        fd = open(fnam, O_RDONLY);
+
+    /* if failed, try write-only */
+    if (fd < 0 && errno == EACCES)
+        fd = open(fnam, O_WRONLY);
+
+    return fd;
+}
+
+/*
+ * Get an fd for use with kbd/console ioctls.
+ * We try several things because opening /dev/console will fail
+ * if someone else used X (which does a chown on /dev/console).
+ */
+int Utils::get_console_fd_or_die(void)
+{
+    static const char *const console_names[] = {
+        DEV_CONSOLE, CURRENT_VC, CURRENT_TTY
+    };
+
+    int fd;
+
+    for (fd = 2; fd >= 0; fd--) {
+        int fd4name;
+        int choice_fd;
+        char arg;
+
+        fd4name = open_a_console(console_names[fd]);
+ chk_std:
+        choice_fd = (fd4name >= 0 ? fd4name : fd);
+
+        arg = 0;
+        if (ioctl(choice_fd, KDGKBTYPE, &arg) == 0)
+            return choice_fd;
+        if (fd4name >= 0) {
+            fd4name = -1;
+            goto chk_std;
+        }
+    }
+
+    printf("can't open console");
+    /*return fd; - total failure */
+}
+
+
+int Utils::getVTid(){
+    struct vt_stat vtstat;
+
+    vtstat.v_active = 0;
+    ioctl(get_console_fd_or_die(), VT_GETSTATE, &vtstat);
+    //printf("Active VT: %d\n", vtstat.v_active);
+
+    return vtstat.v_active;
 }

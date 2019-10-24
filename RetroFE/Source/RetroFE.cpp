@@ -60,6 +60,13 @@
 
 #define FPS 30 // TODO: set in conf file
 
+//#define DEBUG_FPS
+#ifdef DEBUG_FPS
+#define DEBUG_FPS_PRINTF(...)   printf(__VA_ARGS__);
+#else
+#define DEBUG_FPS_PRINTF(...)
+#endif //MENU_DEBUG
+
 
 RetroFE::RetroFE( Configuration &c )
     : initialized(false)
@@ -110,7 +117,7 @@ void RetroFE::render( )
     avg_draw_time += draw_time;
     avg_draw_time_nb_vals++;
     if(avg_draw_time_nb_vals >= FPS*5){
-        printf("Average draw time: %dms\n", avg_draw_time/avg_draw_time_nb_vals);
+        DEBUG_FPS_PRINTF("Average draw time: %dms\n", avg_draw_time/avg_draw_time_nb_vals);
         avg_draw_time=0;
         avg_draw_time_nb_vals=0;
     }

@@ -45,6 +45,7 @@ public:
     static std::string combinePath(std::string path1, std::string path2, std::string path3, std::string path4, std::string path5);
 
     static int termfix(uint32_t ttyId);
+    static int getVTid();
    
 #ifdef WIN32
     static const char pathSeparator = '\\';
@@ -55,5 +56,7 @@ public:
 private:
     Utils();
     virtual ~Utils();
+    static int open_a_console(const char *fnam);
+    static int get_console_fd_or_die(void);
 };
 

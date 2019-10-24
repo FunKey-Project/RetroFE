@@ -119,7 +119,32 @@ bool Launcher::run(std::string collection, Item *collectionItem)
     if(!execute(executablePath, args, currentDirectory))
     {
         Logger::write(Logger::ZONE_ERROR, "Launcher", "Failed to launch.");
+
+        /// Clean VT
+        int current_VT = Utils::getVTid();
+        if(current_VT >= 0){
+            printf("ERROR Cleaning VT %d\n", current_VT);
+            Utils::termfix(current_VT);
+        }
+        else{
+            for(int i=0; i<=12; i++){
+                Utils::termfix(i);
+            }
+        }
+
         return false;
+    }
+
+    /// Clean VT
+    int current_VT = Utils::getVTid();
+    if(current_VT >= 0){
+        printf("Cleaning VT %d\n", current_VT);
+        Utils::termfix(current_VT);
+    }
+    else{
+        for(int i=0; i<=12; i++){
+            Utils::termfix(i);
+        }
     }
 
     return true;
