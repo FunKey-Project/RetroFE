@@ -441,8 +441,6 @@ void RetroFE::run( )
     }
 
     float preloadTime = 0;
-    int current_sdl_ticks = 0;
-    int process_time = 0;
 
     // Force refresh variables
 #ifdef PERIOD_FORCE_REFRESH
@@ -1137,6 +1135,14 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
     SDL_Event e;
     while ( SDL_PollEvent( &e ) )
     {
+        if ( e.type == SDL_QUIT  )
+        {
+            printf("How dare you interrupt me!\n");
+            attract_.reset( );
+            state = RETROFE_QUIT_REQUEST;
+            return state;
+        }
+
         input_.update(e);
         /*if ( e.type == SDL_KEYDOWN && !e.key.repeat )
         {

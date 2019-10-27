@@ -515,12 +515,21 @@ void MenuMode::menu_screen_refresh(int menuItem, int prevItem, int scroll, uint8
 
 		case MENU_TYPE_EXIT:
 		case MENU_TYPE_POWERDOWN:
-			if(menu_confirmation){
-				sprintf(text_tmp, "Are you sure ?");
+			if(menu_action){
+				sprintf(text_tmp, "Shutting down...");
 				text_surface = TTF_RenderText_Blended(menu_info_font, text_tmp, text_color);
 				text_pos.x = (virtual_hw_screen->w - MENU_ZONE_WIDTH)/2 + (MENU_ZONE_WIDTH - text_surface->w)/2;
 				text_pos.y = virtual_hw_screen->h - MENU_ZONE_HEIGHT/2 - text_surface->h/2 + 2*padding_y_from_center_menu_zone;
 				SDL_BlitSurface(text_surface, NULL, virtual_hw_screen, &text_pos);
+			}
+			else{
+				if(menu_confirmation){
+					sprintf(text_tmp, "Are you sure ?");
+					text_surface = TTF_RenderText_Blended(menu_info_font, text_tmp, text_color);
+					text_pos.x = (virtual_hw_screen->w - MENU_ZONE_WIDTH)/2 + (MENU_ZONE_WIDTH - text_surface->w)/2;
+					text_pos.y = virtual_hw_screen->h - MENU_ZONE_HEIGHT/2 - text_surface->h/2 + 2*padding_y_from_center_menu_zone;
+					SDL_BlitSurface(text_surface, NULL, virtual_hw_screen, &text_pos);
+				}
 			}
 			break;
 		default:
@@ -597,6 +606,7 @@ void MenuMode::launch( )
 						break;
 
 					case SDLK_q:
+					case SDLK_FIRST:
 					case SDLK_ESCAPE:
 						stop_menu_loop = 1;
 						break;
@@ -809,6 +819,10 @@ void MenuMode::launch( )
 						else if(idx_menus[menuItem] == MENU_TYPE_POWERDOWN){
 							if(menu_confirmation){
 								MENU_DEBUG_PRINTF("Powerdown - confirmed\n");
+								
+								/// ------ Refresh Screen -------
+								menu_screen_refresh(menuItem, prevItem, scroll, menu_confirmation, 1);
+
 								/// ----- Shell cmd ----
 								sprintf(shell_cmd, "%s", SHELL_CMD_POWERDOWN);
 								fp = popen(shell_cmd, "r");
