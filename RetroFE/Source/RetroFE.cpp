@@ -56,7 +56,8 @@
 #endif
 
 #define REMOVE_TEST_FUNKEY
-#define FUNKEY_ALL_POLLEVENT_DELAY	30 //ms
+#define FUNKEY_ALL_POLLEVENT_DELAY  30 //ms
+#define PERIOD_FORCE_REFRESH    1000 //ms
 
 #define FPS 30 // TODO: set in conf file
 
@@ -102,25 +103,31 @@ void RetroFE::render( )
     //SDL_RenderClear( SDL::getRenderer( ) );
     SDL_FillRect(SDL::getWindow( ), NULL, SDL_MapRGB(SDL::getWindow( )->format, 0, 0, 0));
 
+#ifdef DEBUG_FPS
     uint32_t draw_ticks = SDL_GetTicks();
+#endif //DEBUG_FPS
     if ( currentPage_ )
     {
         currentPage_->draw( );
     }
+#ifdef DEBUG_FPS
     int draw_time = SDL_GetTicks()-draw_ticks;
     //printf("draw time: %dms\n", draw_time);
+#endif //DEBUG_FPS
 
 
+#ifdef DEBUG_FPS
     // DEBUG: Average draw time over FPS*5 frames
     static int avg_draw_time = 0;
     static int avg_draw_time_nb_vals = 0;
     avg_draw_time += draw_time;
     avg_draw_time_nb_vals++;
     if(avg_draw_time_nb_vals >= FPS*5){
-        DEBUG_FPS_PRINTF("Average draw time: %dms\n", avg_draw_time/avg_draw_time_nb_vals);
+        printf("Average draw time: %dms\n", avg_draw_time/avg_draw_time_nb_vals);
         avg_draw_time=0;
         avg_draw_time_nb_vals=0;
     }
+#endif //DEBUG_FPS
 
     //SDL_RenderPresent( SDL::getRenderer( ) );
     //SDL_Flip(SDL::getWindow( ));
@@ -303,114 +310,114 @@ bool RetroFE::deInitialize( )
 
 // Print State
 void RetroFE::printState(RETROFE_STATE state){
-	switch(state){
-	case RETROFE_IDLE:
-		printf("RETROFE_IDLE");
-		break;
-	case RETROFE_LOAD_ART:
-		printf("RETROFE_LOAD_ART");
-		break;
-	case RETROFE_ENTER:
-		printf("RETROFE_ENTER");
-		break;
-	case RETROFE_SPLASH_EXIT:
-		printf("RETROFE_SPLASH_EXIT");
-		break;
-	case RETROFE_PLAYLIST_REQUEST:
-		printf("RETROFE_PLAYLIST_REQUEST");
-		break;
-	case RETROFE_PLAYLIST_EXIT:
-		printf("RETROFE_PLAYLIST_EXIT");
-		break;
-	case RETROFE_PLAYLIST_LOAD_ART:
-		printf("RETROFE_PLAYLIST_LOAD_ART");
-		break;
-	case RETROFE_PLAYLIST_ENTER:
-		printf("RETROFE_PLAYLIST_ENTER");
-		break;
-	case RETROFE_MENUJUMP_REQUEST:
-		printf("RETROFE_MENUJUMP_REQUEST");
-		break;
-	case RETROFE_MENUJUMP_EXIT:
-		printf("RETROFE_MENUJUMP_EXIT");
-		break;
-	case RETROFE_MENUJUMP_LOAD_ART:
-		printf("RETROFE_MENUJUMP_LOAD_ART");
-		break;
-	case RETROFE_MENUJUMP_ENTER:
-		printf("RETROFE_MENUJUMP_ENTER");
-		break;
-	case RETROFE_HIGHLIGHT_REQUEST:
-		printf("RETROFE_HIGHLIGHT_REQUEST");
-		break;
-	case RETROFE_HIGHLIGHT_EXIT:
-		printf("RETROFE_HIGHLIGHT_EXIT");
-		break;
-	case RETROFE_HIGHLIGHT_LOAD_ART:
-		printf("RETROFE_HIGHLIGHT_LOAD_ART");
-		break;
-	case RETROFE_HIGHLIGHT_ENTER:
-		printf("RETROFE_HIGHLIGHT_ENTER");
-		break;
-	case RETROFE_NEXT_PAGE_REQUEST:
-		printf("RETROFE_NEXT_PAGE_REQUEST");
-		break;
-	case RETROFE_NEXT_PAGE_MENU_EXIT:
-		printf("RETROFE_NEXT_PAGE_MENU_EXIT");
-		break;
-	case RETROFE_NEXT_PAGE_MENU_LOAD_ART:
-		printf("RETROFE_NEXT_PAGE_MENU_LOAD_ART");
-		break;
-	case RETROFE_NEXT_PAGE_MENU_ENTER:
-		printf("RETROFE_NEXT_PAGE_MENU_ENTER");
-		break;
-	case RETROFE_HANDLE_MENUENTRY:
-		printf("RETROFE_HANDLE_MENUENTRY");
-		break;
-	case RETROFE_LAUNCH_ENTER:
-		printf("RETROFE_LAUNCH_ENTER");
-		break;
-	case RETROFE_LAUNCH_REQUEST:
-		printf("RETROFE_LAUNCH_REQUEST");
-		break;
-	case RETROFE_LAUNCH_EXIT:
-		printf("RETROFE_LAUNCH_EXIT");
-		break;
-	case RETROFE_BACK_REQUEST:
-		printf("RETROFE_BACK_REQUEST");
-		break;
-	case RETROFE_BACK_MENU_EXIT:
-		printf("RETROFE_BACK_MENU_EXIT");
-		break;
-	case RETROFE_BACK_MENU_LOAD_ART:
-		printf("RETROFE_BACK_MENU_LOAD_ART");
-		break;
-	case RETROFE_BACK_MENU_ENTER:
-		printf("RETROFE_BACK_MENU_ENTER");
-		break;
-	case RETROFE_MENUMODE_START_REQUEST:
-		printf("RETROFE_MENUMODE_START_REQUEST");
-		break;
-	case RETROFE_MENUMODE_START_LOAD_ART:
-		printf("RETROFE_MENUMODE_START_LOAD_ART");
-		break;
-	case RETROFE_MENUMODE_START_ENTER:
-		printf("RETROFE_MENUMODE_START_ENTER");
-		break;
-	case RETROFE_NEW:
-		printf("RETROFE_NEW");
-		break;
-	case RETROFE_QUIT_REQUEST:
-		printf("RETROFE_QUIT_REQUEST");
-		break;
-	case RETROFE_QUIT:
-		printf("RETROFE_QUIT");
-		break;
-	default:
-		printf("STATE UNDEFINED:%d", state);
-		break;
-	}
-	printf("\n");
+    switch(state){
+    case RETROFE_IDLE:
+        printf("RETROFE_IDLE");
+        break;
+    case RETROFE_LOAD_ART:
+        printf("RETROFE_LOAD_ART");
+        break;
+    case RETROFE_ENTER:
+        printf("RETROFE_ENTER");
+        break;
+    case RETROFE_SPLASH_EXIT:
+        printf("RETROFE_SPLASH_EXIT");
+        break;
+    case RETROFE_PLAYLIST_REQUEST:
+        printf("RETROFE_PLAYLIST_REQUEST");
+        break;
+    case RETROFE_PLAYLIST_EXIT:
+        printf("RETROFE_PLAYLIST_EXIT");
+        break;
+    case RETROFE_PLAYLIST_LOAD_ART:
+        printf("RETROFE_PLAYLIST_LOAD_ART");
+        break;
+    case RETROFE_PLAYLIST_ENTER:
+        printf("RETROFE_PLAYLIST_ENTER");
+        break;
+    case RETROFE_MENUJUMP_REQUEST:
+        printf("RETROFE_MENUJUMP_REQUEST");
+        break;
+    case RETROFE_MENUJUMP_EXIT:
+        printf("RETROFE_MENUJUMP_EXIT");
+        break;
+    case RETROFE_MENUJUMP_LOAD_ART:
+        printf("RETROFE_MENUJUMP_LOAD_ART");
+        break;
+    case RETROFE_MENUJUMP_ENTER:
+        printf("RETROFE_MENUJUMP_ENTER");
+        break;
+    case RETROFE_HIGHLIGHT_REQUEST:
+        printf("RETROFE_HIGHLIGHT_REQUEST");
+        break;
+    case RETROFE_HIGHLIGHT_EXIT:
+        printf("RETROFE_HIGHLIGHT_EXIT");
+        break;
+    case RETROFE_HIGHLIGHT_LOAD_ART:
+        printf("RETROFE_HIGHLIGHT_LOAD_ART");
+        break;
+    case RETROFE_HIGHLIGHT_ENTER:
+        printf("RETROFE_HIGHLIGHT_ENTER");
+        break;
+    case RETROFE_NEXT_PAGE_REQUEST:
+        printf("RETROFE_NEXT_PAGE_REQUEST");
+        break;
+    case RETROFE_NEXT_PAGE_MENU_EXIT:
+        printf("RETROFE_NEXT_PAGE_MENU_EXIT");
+        break;
+    case RETROFE_NEXT_PAGE_MENU_LOAD_ART:
+        printf("RETROFE_NEXT_PAGE_MENU_LOAD_ART");
+        break;
+    case RETROFE_NEXT_PAGE_MENU_ENTER:
+        printf("RETROFE_NEXT_PAGE_MENU_ENTER");
+        break;
+    case RETROFE_HANDLE_MENUENTRY:
+        printf("RETROFE_HANDLE_MENUENTRY");
+        break;
+    case RETROFE_LAUNCH_ENTER:
+        printf("RETROFE_LAUNCH_ENTER");
+        break;
+    case RETROFE_LAUNCH_REQUEST:
+        printf("RETROFE_LAUNCH_REQUEST");
+        break;
+    case RETROFE_LAUNCH_EXIT:
+        printf("RETROFE_LAUNCH_EXIT");
+        break;
+    case RETROFE_BACK_REQUEST:
+        printf("RETROFE_BACK_REQUEST");
+        break;
+    case RETROFE_BACK_MENU_EXIT:
+        printf("RETROFE_BACK_MENU_EXIT");
+        break;
+    case RETROFE_BACK_MENU_LOAD_ART:
+        printf("RETROFE_BACK_MENU_LOAD_ART");
+        break;
+    case RETROFE_BACK_MENU_ENTER:
+        printf("RETROFE_BACK_MENU_ENTER");
+        break;
+    case RETROFE_MENUMODE_START_REQUEST:
+        printf("RETROFE_MENUMODE_START_REQUEST");
+        break;
+    case RETROFE_MENUMODE_START_LOAD_ART:
+        printf("RETROFE_MENUMODE_START_LOAD_ART");
+        break;
+    case RETROFE_MENUMODE_START_ENTER:
+        printf("RETROFE_MENUMODE_START_ENTER");
+        break;
+    case RETROFE_NEW:
+        printf("RETROFE_NEW");
+        break;
+    case RETROFE_QUIT_REQUEST:
+        printf("RETROFE_QUIT_REQUEST");
+        break;
+    case RETROFE_QUIT:
+        printf("RETROFE_QUIT");
+        break;
+    default:
+        printf("STATE UNDEFINED:%d", state);
+        break;
+    }
+    printf("\n");
 }
 
 
@@ -434,6 +441,13 @@ void RetroFE::run( )
     }
 
     float preloadTime = 0;
+    int current_sdl_ticks = 0;
+    int process_time = 0;
+
+    // Force refresh variables
+#ifdef PERIOD_FORCE_REFRESH
+    int ticks_last_refresh = 0;
+#endif  //PERIOD_FORCE_REFRESH
 
     // Initialize video
     bool videoEnable = true;
@@ -1004,7 +1018,7 @@ void RetroFE::run( )
 	    while ( SDL_PollEvent( &ev ) );
 	    input_.resetStates( );
 	    state = RETROFE_IDLE;
-            break;
+	    break;
 
         case RETROFE_MENUMODE_START_LOAD_ART:
             //currentPage_->start();
@@ -1063,30 +1077,29 @@ void RetroFE::run( )
                 SDL_Delay( static_cast<unsigned int>( sleepTime ) );
             }
 
-            // Check if previous update of page needed to be rendered
+            // ------- Check if previous update of page needed to be rendered -------
             if(!currentPage_->isIdle( ) || splashMode){
-	        must_render = true;
+                must_render = true;
             }
 
-            // Handle current pages updates
+            // Force refresh variables
+#ifdef PERIOD_FORCE_REFRESH
+            if(SDL_GetTicks() - ticks_last_refresh > PERIOD_FORCE_REFRESH){
+                must_render = true;
+                //printf("force render\n");
+            }
+#endif  //PERIOD_FORCE_REFRESH
+
+            // ------- Handle current pages updates -------
             if ( currentPage_ )
             {
-#ifndef REMOVE_TEST_FUNKEY
-                if (!splashMode)
-                {
-                    attract_.update( deltaTime, *currentPage_ );
-                }
-                if ( menuMode_ )
-                {
-                    attract_.reset( );
-                }
-#endif
                 currentPage_->update( deltaTime );
             }
 
-            // Real render here
+            // ------- Real render here -------
             if(must_render){
-	        render( );
+                render( );
+                ticks_last_refresh = SDL_GetTicks();
             }
         }
     }
