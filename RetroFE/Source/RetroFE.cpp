@@ -496,7 +496,8 @@ void RetroFE::run( )
                 {
                     // Empty event queue
                     SDL_Event e;
-                    while ( SDL_PollEvent( &e ) );
+                    while ( SDL_PollEvent( &e ) )
+                        input_.update(e);
                     input_.resetStates( );
                 }
                 state = RETROFE_IDLE;
@@ -663,7 +664,8 @@ void RetroFE::run( )
                 {
                     // Empty event queue
                     SDL_Event e;
-                    while ( SDL_PollEvent( &e ) );
+                    while ( SDL_PollEvent( &e ) )
+                        input_.update(e);
                     input_.resetStates( );
                 }
                 state = RETROFE_IDLE;
@@ -906,14 +908,16 @@ void RetroFE::run( )
 
             // Empty event queue
             SDL_Event e;
-            while ( SDL_PollEvent( &e ) );
+            while ( SDL_PollEvent( &e ) )
+                input_.update(e);
             input_.resetStates( );
 
             // Handle menu entry
             m.handleEntry( currentPage_->getSelectedItem( ) );
 
             // Empty event queue
-            while ( SDL_PollEvent( &e ) );
+            while ( SDL_PollEvent( &e ) )
+                input_.update(e);
             input_.resetStates( );
 
             state = RETROFE_IDLE;
@@ -1033,7 +1037,8 @@ void RetroFE::run( )
                 {
                     // Empty event queue
                     SDL_Event e;
-                    while ( SDL_PollEvent( &e ) );
+                    while ( SDL_PollEvent( &e ) )
+                        input_.update(e);
                     input_.resetStates( );
                 }
                 state = RETROFE_IDLE;
@@ -1076,7 +1081,8 @@ void RetroFE::run( )
             if ( currentPage_->isIdle( ) )
             {
                 SDL_Event e;
-                while ( SDL_PollEvent( &e ) );
+                while ( SDL_PollEvent( &e ) )
+                    input_.update(e);
                 input_.resetStates( );
                 state = RETROFE_IDLE;
             }
