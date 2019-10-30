@@ -122,10 +122,13 @@ bool ImportConfiguration(Configuration *c)
     DIR *dp;
     struct dirent *dirp;
 
-    std::string settingsConfPath = Utils::combinePath(configPath, "settings.conf");
-    if(!c->import("", settingsConfPath))
+    std::string settingsConfPath = Utils::combinePath(configPath, "settings");
+    c->import("", "", settingsConfPath + "_saved.conf", false);
+    for ( int i = 9; i > 0; i--)
+        c->import("", "", settingsConfPath + std::to_string(i) + ".conf", false);
+    if(!c->import("", settingsConfPath + ".conf"))
     {
-        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + settingsConfPath + "\"");
+        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + settingsConfPath + ".conf\"");
         return false;
     }
     
