@@ -773,19 +773,60 @@ void RetroFE::run( )
                 else
                 {
                     currentPage_->setScrolling(Page::ScrollDirectionIdle); // Stop scrolling
+                    nextPageItem_ = currentPage_->getSelectedItem( );
                     if ( currentPage_->getSelectedItem( )->leaf ) // Current selection is a game
                     {
-                        state = RETROFE_BACK_MENU_ENTER;
+                        state = RETROFE_HIGHLIGHT_REQUEST;
                     }
                     else // Current selection is a menu
                     {
-                        nextPageItem_ = currentPage_->getSelectedItem( );
-                        state = RETROFE_NEXT_PAGE_REQUEST;
+                        state = RETROFE_COLLECTION_HIGHLIGHT_EXIT;
                     }
                 }
             }
             break;
 
+
+        // Start onHighlightExit animation
+        case RETROFE_COLLECTION_HIGHLIGHT_REQUEST:
+            currentPage_->highlightExit( );
+            state = RETROFE_COLLECTION_HIGHLIGHT_EXIT;
+            break;
+
+        // Wait for onHighlightExit animation to finish; load art
+        case RETROFE_COLLECTION_HIGHLIGHT_EXIT:
+            if (currentPage_->isIdle( ))
+            {
+                currentPage_->highlightLoadArt( );
+                state = RETROFE_COLLECTION_HIGHLIGHT_LOAD_ART;
+            }
+            break;
+
+        // Start onHighlightEnter animation
+        case RETROFE_COLLECTION_HIGHLIGHT_LOAD_ART:
+            currentPage_->highlightEnter( );
+            state = RETROFE_COLLECTION_HIGHLIGHT_ENTER;
+            break;
+
+        // Wait for onHighlightEnter animation to finish
+        case RETROFE_COLLECTION_HIGHLIGHT_ENTER:
+            if (currentPage_->isIdle( ))
+            {
+                RETROFE_STATE state_tmp = processUserInput( currentPage_ );
+                if ( state_tmp == RETROFE_COLLECTION_UP_REQUEST )
+                {
+                    state = RETROFE_COLLECTION_UP_REQUEST;
+                }
+                else if ( state_tmp == RETROFE_COLLECTION_DOWN_REQUEST )
+                {
+                    state = RETROFE_COLLECTION_DOWN_REQUEST;
+                }
+                else
+                {
+                    state = RETROFE_NEXT_PAGE_REQUEST;
+                }
+            }
+            break;
 
         // Start exit animation
         case RETROFE_COLLECTION_DOWN_REQUEST:
@@ -889,14 +930,14 @@ void RetroFE::run( )
                 else
                 {
                     currentPage_->setScrolling(Page::ScrollDirectionIdle); // Stop scrolling
+                    nextPageItem_ = currentPage_->getSelectedItem( );
                     if ( currentPage_->getSelectedItem( )->leaf ) // Current selection is a game
                     {
-                        state = RETROFE_BACK_MENU_ENTER;
+                        state = RETROFE_HIGHLIGHT_REQUEST;
                     }
                     else // Current selection is a menu
                     {
-                        nextPageItem_ = currentPage_->getSelectedItem( );
-                        state = RETROFE_NEXT_PAGE_REQUEST;
+                        state = RETROFE_COLLECTION_HIGHLIGHT_EXIT;
                     }
                 }
             }
