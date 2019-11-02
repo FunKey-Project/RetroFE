@@ -25,6 +25,7 @@ AttractMode::AttractMode()
     , isSet_(false)
     , elapsedTime_(0)
     , elapsedPlaylistTime_(0)
+    , elapsedCollectionTime_(0)
     , activeTime_(0)
 {
 }
@@ -36,20 +37,35 @@ void AttractMode::reset( bool set )
     isSet_       = set;
     activeTime_  = 0;
     if (!set)
-        elapsedPlaylistTime_ = 0;
+    {
+        elapsedPlaylistTime_   = 0;
+        elapsedCollectionTime_ = 0;
+    }
 }
 
-bool AttractMode::update(float dt, Page &page)
+int AttractMode::update(float dt, Page &page)
 {
 
-    elapsedTime_         += dt;
-    elapsedPlaylistTime_ += dt;
+    elapsedTime_           += dt;
+    elapsedPlaylistTime_   += dt;
+    elapsedCollectionTime_ += dt;
 
     // Check if it's time to switch playlists
     if (!isActive_ && elapsedPlaylistTime_ > idlePlaylistTime && idlePlaylistTime > 0)
     {
+        elapsedTime_         = 0;
         elapsedPlaylistTime_ = 0;
-        return true;
+        return 1;
+    }
+    
+
+    // Check if it's time to switch collections
+    if (!isActive_ && elapsedCollectionTime_ > idleCollectionTime && idleCollectionTime > 0)
+    {
+        elapsedTime_           = 0;
+        elapsedPlaylistTime_   = 0;
+        elapsedCollectionTime_ = 0;
+        return 2;
     }
     
 
@@ -81,7 +97,7 @@ bool AttractMode::update(float dt, Page &page)
         }
     }
 
-    return false;
+    return 0;
 
 }
 

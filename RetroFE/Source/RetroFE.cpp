@@ -302,21 +302,24 @@ void RetroFE::run( )
         return;
     }
 
-    int attractModeTime         = 0;
-    int attractModeNextTime     = 0;
-    int attractModePlaylistTime = 0;
-    std::string firstCollection = "Main";
-    bool running                = true;
-    RETROFE_STATE state         = RETROFE_NEW;
+    int attractModeTime           = 0;
+    int attractModeNextTime       = 0;
+    int attractModePlaylistTime   = 0;
+    int attractModeCollectionTime = 0;
+    std::string firstCollection   = "Main";
+    bool running                  = true;
+    RETROFE_STATE state           = RETROFE_NEW;
 
     config_.getProperty( "attractModeTime", attractModeTime );
     config_.getProperty( "attractModeNextTime", attractModeNextTime );
     config_.getProperty( "attractModePlaylistTime", attractModePlaylistTime );
+    config_.getProperty( "attractModeCollectionTime", attractModeCollectionTime );
     config_.getProperty( "firstCollection", firstCollection );
 
-    attract_.idleTime         = static_cast<float>(attractModeTime);
-    attract_.idleNextTime     = static_cast<float>(attractModeNextTime);
-    attract_.idlePlaylistTime = static_cast<float>(attractModePlaylistTime);
+    attract_.idleTime           = static_cast<float>(attractModeTime);
+    attract_.idleNextTime       = static_cast<float>(attractModeNextTime);
+    attract_.idlePlaylistTime   = static_cast<float>(attractModePlaylistTime);
+    attract_.idleCollectionTime = static_cast<float>(attractModeCollectionTime);
 
     int initializeStatus = 0;
 
@@ -761,28 +764,40 @@ void RetroFE::run( )
         case RETROFE_COLLECTION_UP_SCROLL:
             if ( currentPage_->isMenuIdle( ) )
             {
-                RETROFE_STATE state_tmp = processUserInput( currentPage_ );
-                if ( state_tmp == RETROFE_COLLECTION_UP_REQUEST )
+                std::string attractModeSkipCollection = "";
+                config_.getProperty( "attractModeSkipCollection", attractModeSkipCollection );
+                // Check if we need to skip this collection in attract mode or if we can select it
+                if ( attractMode_ && currentPage_->getSelectedItem( )->name == attractModeSkipCollection )
                 {
-                    state = RETROFE_COLLECTION_UP_REQUEST;
-                }
-                else if ( state_tmp == RETROFE_COLLECTION_DOWN_REQUEST )
-                {
-                    state = RETROFE_COLLECTION_DOWN_REQUEST;
+                    currentPage_->setScrolling(Page::ScrollDirectionForward);
+                    currentPage_->scroll(true);
+                    currentPage_->updateScrollPeriod( );
                 }
                 else
                 {
-                    currentPage_->setScrolling(Page::ScrollDirectionIdle); // Stop scrolling
-                    nextPageItem_ = currentPage_->getSelectedItem( );
-                    bool enterOnCollection = true;
-                    config_.getProperty( "enterOnCollection", enterOnCollection );
-                    if ( currentPage_->getSelectedItem( )->leaf || !enterOnCollection ) // Current selection is a game or enterOnCollection is not set
+                    RETROFE_STATE state_tmp = processUserInput( currentPage_ );
+                    if ( state_tmp == RETROFE_COLLECTION_UP_REQUEST )
                     {
-                        state = RETROFE_HIGHLIGHT_REQUEST;
+                        state = RETROFE_COLLECTION_UP_REQUEST;
                     }
-                    else // Current selection is a menu
+                    else if ( state_tmp == RETROFE_COLLECTION_DOWN_REQUEST )
                     {
-                        state = RETROFE_COLLECTION_HIGHLIGHT_EXIT;
+                        state = RETROFE_COLLECTION_DOWN_REQUEST;
+                    }
+                    else
+                    {
+                        currentPage_->setScrolling(Page::ScrollDirectionIdle); // Stop scrolling
+                        nextPageItem_ = currentPage_->getSelectedItem( );
+                        bool enterOnCollection = true;
+                        config_.getProperty( "enterOnCollection", enterOnCollection );
+                        if ( currentPage_->getSelectedItem( )->leaf || !enterOnCollection ) // Current selection is a game or enterOnCollection is not set
+                        {
+                            state = RETROFE_HIGHLIGHT_REQUEST;
+                        }
+                        else // Current selection is a menu
+                        {
+                            state = RETROFE_COLLECTION_HIGHLIGHT_EXIT;
+                        }
                     }
                 }
             }
@@ -1178,7 +1193,8 @@ void RetroFE::run( )
             {
                 if (!splashMode)
                 {
-                    if (attract_.update( deltaTime, *currentPage_ ))
+                    int attractReturn = attract_.update( deltaTime, *currentPage_ );
+                    if (attractReturn == 1) // Change playlist
                     {
                         attract_.reset( attract_.isSet( ) );
                         currentPage_->nextPlaylist( );
@@ -1187,6 +1203,11 @@ void RetroFE::run( )
                         if (currentPage_->getPlaylistName( ) == attractModeSkipPlaylist)
                             currentPage_->nextPlaylist( );
                         state = RETROFE_PLAYLIST_REQUEST;
+                    }
+                    if (attractReturn == 2) // Change collection
+                    {
+                        attract_.reset( attract_.isSet( ) );
+                        state = RETROFE_COLLECTION_UP_REQUEST;
                     }
                 }
                 if ( menuMode_ )
