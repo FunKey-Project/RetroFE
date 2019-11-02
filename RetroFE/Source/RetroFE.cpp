@@ -790,7 +790,7 @@ void RetroFE::run( )
                         nextPageItem_ = currentPage_->getSelectedItem( );
                         bool enterOnCollection = true;
                         config_.getProperty( "enterOnCollection", enterOnCollection );
-                        if ( currentPage_->getSelectedItem( )->leaf || !enterOnCollection ) // Current selection is a game or enterOnCollection is not set
+                        if ( currentPage_->getSelectedItem( )->leaf || (!attractMode_ && !enterOnCollection) ) // Current selection is a game or enterOnCollection is not set
                         {
                             state = RETROFE_HIGHLIGHT_REQUEST;
                         }
