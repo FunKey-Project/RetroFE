@@ -774,7 +774,9 @@ void RetroFE::run( )
                 {
                     currentPage_->setScrolling(Page::ScrollDirectionIdle); // Stop scrolling
                     nextPageItem_ = currentPage_->getSelectedItem( );
-                    if ( currentPage_->getSelectedItem( )->leaf ) // Current selection is a game
+                    bool enterOnCollection = true;
+                    config_.getProperty( "enterOnCollection", enterOnCollection );
+                    if ( currentPage_->getSelectedItem( )->leaf || !enterOnCollection ) // Current selection is a game or enterOnCollection is not set
                     {
                         state = RETROFE_HIGHLIGHT_REQUEST;
                     }
@@ -931,7 +933,9 @@ void RetroFE::run( )
                 {
                     currentPage_->setScrolling(Page::ScrollDirectionIdle); // Stop scrolling
                     nextPageItem_ = currentPage_->getSelectedItem( );
-                    if ( currentPage_->getSelectedItem( )->leaf ) // Current selection is a game
+                    bool enterOnCollection = true;
+                    config_.getProperty( "enterOnCollection", enterOnCollection );
+                    if ( currentPage_->getSelectedItem( )->leaf || !enterOnCollection ) // Current selection is a game or enterOnCollection is not set
                     {
                         state = RETROFE_HIGHLIGHT_REQUEST;
                     }
