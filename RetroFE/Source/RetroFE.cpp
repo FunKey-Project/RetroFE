@@ -57,7 +57,7 @@
 
 #define REMOVE_TEST_FUNKEY
 #define FUNKEY_ALL_POLLEVENT_DELAY  30 //ms
-#define PERIOD_FORCE_REFRESH    1000 //ms
+//#define PERIOD_FORCE_REFRESH    1000 //ms
 
 #define FPS 30 // TODO: set in conf file
 
@@ -72,6 +72,7 @@
 RetroFE::RetroFE( Configuration &c )
     : initialized(false)
     , initializeError(false)
+    , initMetaDb(true)
     , initializeThread(NULL)
     , config_(c)
     , db_(NULL)
@@ -152,6 +153,7 @@ int RetroFE::initialize( void *context )
         instance->initializeError = true;
         return -1;
     }
+    Logger::write( Logger::ZONE_INFO, "RetroFE", "Initialized user controls" );
 
     instance->db_ = new DB( Utils::combinePath( Configuration::absolutePath, "meta.db" ) );
 
@@ -161,14 +163,20 @@ int RetroFE::initialize( void *context )
         instance->initializeError = true;
         return -1;
     }
+    Logger::write( Logger::ZONE_INFO, "RetroFE", "Initialized database" );
 
     instance->metadb_ = new MetadataDatabase( *(instance->db_), instance->config_ );
 
-    if ( !instance->metadb_->initialize( ) )
-    {
-        Logger::write( Logger::ZONE_ERROR, "RetroFE", "Could not initialize meta database" );
-        instance->initializeError = true;
-        return -1;
+
+    if(instance->initMetaDb){
+	    Logger::write( Logger::ZONE_INFO, "RetroFE", "Initializing meta database..." );
+	    if ( !instance->metadb_->initialize( ) )
+	    {
+	        Logger::write( Logger::ZONE_ERROR, "RetroFE", "Could not initialize meta database" );
+	        instance->initializeError = true;
+	        return -1;
+	    }
+	    Logger::write( Logger::ZONE_INFO, "RetroFE", "Initialized meta database" );
     }
 
     instance->initialized = true;
@@ -457,7 +465,10 @@ void RetroFE::run( )
     VideoFactory::createVideo( ); // pre-initialize the gstreamer engine
     Video::setEnabled( videoEnable );
 
-    //initializeThread = SDL_CreateThread( initialize, "RetroFEInit", (void *)this );
+    // Init thread
+    bool initMetaDbtmp;
+    config_.getProperty( "initMetaDb", initMetaDbtmp );
+    initMetaDb = initMetaDbtmp;
     initializeThread = SDL_CreateThread( initialize, (void *)this );
 
     if ( !initializeThread )
@@ -469,6 +480,8 @@ void RetroFE::run( )
     int attractModeTime = 0;
     std::string firstCollection = "Main";
     bool running = true;
+    bool initInBackground = false;
+    config_.getProperty( "initInBackground", initInBackground );
     RETROFE_STATE state = RETROFE_NEW;
 
     config_.getProperty( "attractModeTime", attractModeTime );
@@ -548,9 +561,13 @@ void RetroFE::run( )
             }
 
             // Handle end of splash mode
-            if ( (initialized || initializeError) && splashMode && (exitSplashMode || (currentPage_->getMinShowTime( ) <= (currentTime_ - preloadTime) && !(currentPage_->isPlaying( )))) )
+            if ( ( (initialized || initializeError) && splashMode && (exitSplashMode || (currentPage_->getMinShowTime( ) <= (currentTime_ - preloadTime) && !(currentPage_->isPlaying( )))) )
+		 || (initInBackground && splashMode) )
             {
-                SDL_WaitThread( initializeThread, &initializeStatus );
+	        if(!initInBackground){
+		    SDL_WaitThread( initializeThread, &initializeStatus );
+		    printf("SDL_WaitThread finisheds\n");
+		}
 
                 if ( initializeError )
                 {
@@ -1097,7 +1114,10 @@ void RetroFE::run( )
             // ------- Real render here -------
             if(must_render){
                 render( );
+#ifdef PERIOD_FORCE_REFRESH
                 ticks_last_refresh = SDL_GetTicks();
+#endif  //PERIOD_FORCE_REFRESH
+akes a lot of time
             }
         }
     }
@@ -1470,12 +1490,12 @@ CollectionInfo *RetroFE::getCollection(std::string collectionName)
             {
                 std::string::size_type firstPos  = (*itI)->title.find_first_of( "(" );
                 std::string::size_type secondPos = (*itI)->title.find_first_of( ")", firstPos );
-    
+
                 while ( firstPos != std::string::npos && secondPos != std::string::npos )
                 {
                     firstPos  = (*itI)->title.find_first_of( "(" );
                     secondPos = (*itI)->title.find_first_of( ")", firstPos );
-    
+
                     if ( firstPos != std::string::npos )
                     {
                         (*itI)->title.erase( firstPos, (secondPos - firstPos) + 1 );
@@ -1486,12 +1506,12 @@ CollectionInfo *RetroFE::getCollection(std::string collectionName)
             {
                 std::string::size_type firstPos  = (*itI)->title.find_first_of( "[" );
                 std::string::size_type secondPos = (*itI)->title.find_first_of( "]", firstPos );
-    
+
                 while ( firstPos != std::string::npos && secondPos != std::string::npos )
                 {
                     firstPos  = (*itI)->title.find_first_of( "[" );
                     secondPos = (*itI)->title.find_first_of( "]", firstPos );
-    
+
                     if ( firstPos != std::string::npos && secondPos != std::string::npos )
                     {
                         (*itI)->title.erase( firstPos, (secondPos - firstPos) + 1 );

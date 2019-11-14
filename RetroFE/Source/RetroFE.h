@@ -53,6 +53,7 @@ public:
 private:
     volatile bool initialized;
     volatile bool initializeError;
+    volatile bool initMetaDb;
     SDL_Thread   *initializeThread;
     static int    initialize( void *context );
 
