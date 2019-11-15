@@ -606,7 +606,6 @@ void MenuMode::launch( )
 						break;
 
 					case SDLK_q:
-					case SDLK_FIRST:
 					case SDLK_ESCAPE:
 						stop_menu_loop = 1;
 						break;

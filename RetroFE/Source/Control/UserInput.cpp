@@ -31,7 +31,6 @@ const key_names_s key_names[] = {
   sed 's/^#define \([^ \t]\+\)[ \t]*\([^\ \t]\+\)/  { \"\1\",\t\2 },/' /usr/include/linux/input.h
  */
   { "KEY_RESERVED",	SDLK_UNKNOWN },
-  { "KEY_FIRST", SDLK_FIRST },
   { "Escape",	SDLK_ESCAPE },
   { "1",	SDLK_1 },
   { "2",	SDLK_2 },
@@ -237,7 +236,7 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key, bool required)
 
         bool found = false;
 
-        if (scanCode != SDLK_UNKNOWN || !strcmp(token.c_str(),"SDLK_FIRST") )
+        if (scanCode != SDLK_UNKNOWN)
         {
             Logger::write(Logger::ZONE_INFO, "Input", "Binding key " + configKey + ", Key Value: " + std::to_string(scanCode));
             keyHandlers_.push_back(std::pair<InputHandler *, KeyCode_E>(new KeyboardHandler(scanCode), key));
