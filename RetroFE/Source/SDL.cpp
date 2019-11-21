@@ -356,8 +356,8 @@ void SDL::SDL_Rotate_270(SDL_Surface * src, SDL_Surface * dst){
 // Copy virtual window to HW window and Flip display
 void SDL::renderAndFlipWindow( )
 {
-	SDL_BlitSurface(window_virtual_, NULL, window_, NULL);
-	//SDL_Rotate_270(window_virtual_, window_);
+	//SDL_BlitSurface(window_virtual_, NULL, window_, NULL);
+	SDL_Rotate_270(window_virtual_, window_);
 
 	SDL_Flip(window_);
 }
