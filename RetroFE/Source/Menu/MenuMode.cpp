@@ -30,6 +30,8 @@
 
 #define MENU_ZONE_WIDTH             SCREEN_HORIZONTAL_SIZE
 #define MENU_ZONE_HEIGHT            SCREEN_VERTICAL_SIZE
+#define MENU_BG_SQURE_WIDTH         180
+#define MENU_BG_SQUREE_HEIGHT       140
 
 #define MENU_FONT_NAME_TITLE        "/usr/games/menu_resources/OpenSans-Bold.ttf"
 #define MENU_FONT_SIZE_TITLE        22
@@ -596,13 +598,14 @@ void MenuMode::menu_screen_refresh(int menuItem, int prevItem, int scroll, uint8
 		/// Top arrow
 		SDL_Rect pos_arrow_top;
 		pos_arrow_top.x = (virtual_hw_screen->w - img_arrow_top->w)/2;
-		pos_arrow_top.y = (virtual_hw_screen->h - 160)/4 - img_arrow_top->h/2;
+		pos_arrow_top.y = (virtual_hw_screen->h - MENU_BG_SQUREE_HEIGHT)/4 - img_arrow_top->h/2;
 		SDL_BlitSurface(img_arrow_top, NULL, virtual_hw_screen, &pos_arrow_top);
 
 		/// Bottom arrow
 		SDL_Rect pos_arrow_bottom;
 		pos_arrow_bottom.x = (virtual_hw_screen->w - img_arrow_bottom->w)/2;
-		pos_arrow_bottom.y = virtual_hw_screen->h - (virtual_hw_screen->h - 160)/4 - img_arrow_bottom->h;
+		pos_arrow_bottom.y = virtual_hw_screen->h -
+			(virtual_hw_screen->h - MENU_BG_SQUREE_HEIGHT)/4 - img_arrow_bottom->h/2;
 		SDL_BlitSurface(img_arrow_bottom, NULL, virtual_hw_screen, &pos_arrow_bottom);
 	}
 
