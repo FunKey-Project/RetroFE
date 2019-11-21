@@ -318,7 +318,7 @@ SDL_Surface* SDL::getWindow( )
 
 
 
-void SDL::SDL_Rotate_270(SDL_Surface * dst, SDL_Surface * src){
+void SDL::SDL_Rotate_270(SDL_Surface * src, SDL_Surface * dst){
   int i, j;
     uint32_t *source_pixels = (uint32_t*) src->pixels;
     uint32_t *dest_pixels = (uint32_t*) dst->pixels;
@@ -357,7 +357,7 @@ void SDL::SDL_Rotate_270(SDL_Surface * dst, SDL_Surface * src){
 void SDL::renderAndFlipWindow( )
 {
 	//SDL_BlitSurface(window_virtual_, NULL, window_, NULL);
-	SDL_Rotate_270(window_, window_virtual_);
+	SDL_Rotate_270(window_virtual_, window_);
 
 	SDL_Flip(window_);
 }

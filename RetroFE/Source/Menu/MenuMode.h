@@ -10,8 +10,8 @@ typedef enum{
     MENU_TYPE_SAVE,
     MENU_TYPE_LOAD,
     MENU_TYPE_ASPECT_RATIO,
-    MENU_TYPE_EXIT,
     MENU_TYPE_USB,
+    MENU_TYPE_EXIT,
     MENU_TYPE_POWERDOWN,
     NB_MENU_TYPES,
 } ENUM_MENU_TYPE;
@@ -105,6 +105,7 @@ private:
     static SDL_Surface ** menu_zone_surfaces;
     static int * idx_menus;
     static int nb_menu_zones;
+    static int menuItem;
 
     static int stop_menu_loop;
 

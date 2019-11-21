@@ -26,6 +26,7 @@
 
 #define SCROLL_SPEED_PX             240 //This means no animations but also no tearing effect
 #define FPS_MENU                    30
+#define ARROWS_PADDING				8
 
 #define MENU_ZONE_WIDTH             SCREEN_HORIZONTAL_SIZE
 #define MENU_ZONE_HEIGHT            SCREEN_VERTICAL_SIZE
@@ -59,12 +60,13 @@ int MenuMode::backup_key_repeat_interval=0;
 TTF_Font *MenuMode::menu_title_font = NULL;
 TTF_Font *MenuMode::menu_info_font = NULL;
 TTF_Font *MenuMode::menu_small_info_font = NULL;
+SDL_Surface *img_arrow_top = NULL;
+SDL_Surface *img_arrow_bottom = NULL;
 SDL_Surface ** MenuMode::menu_zone_surfaces = NULL;
-int * MenuMode::idx_menus = NULL;
+int *MenuMode::idx_menus = NULL;
 int MenuMode::nb_menu_zones = 0;
+int MenuMode::menuItem=0;
 int MenuMode::stop_menu_loop = 0;
-SDL_Surface *img_arrow_top;
-SDL_Surface *img_arrow_bottom;
 
 SDL_Color MenuMode::text_color = {GRAY_MAIN_R, GRAY_MAIN_G, GRAY_MAIN_B};
 int MenuMode::padding_y_from_center_menu_zone = 18;
@@ -81,13 +83,15 @@ int MenuMode::brightness_percentage = 0;
 #undef X
 #define X(a, b) b,
 const char *MenuMode::aspect_ratio_name[] = {ASPECT_RATIOS};
-
 int MenuMode::aspect_ratio = ASPECT_RATIOS_TYPE_STRECHED;
 int MenuMode::aspect_ratio_factor_percent = 50;
 int MenuMode::aspect_ratio_factor_step = 10;
 
 int MenuMode::savestate_slot = 0;
 
+/// USB stuff
+int usb_data_connected = 0;
+int usb_mounted = 0;
 
 
 /// -------------- FUNCTIONS IMPLEMENTATION --------------
@@ -115,7 +119,6 @@ void MenuMode::init( )
 	if(backup_hw_screen == NULL){
 		MENU_ERROR_PRINTF("ERROR in init_menu_SDL: Could not create backup_hw_screen: %s\n", SDL_GetError());
 	}
-
 
 	/// ------ Load arrows imgs -------
 	img_arrow_top = IMG_Load(MENU_PNG_ARROW_TOP_PATH);
@@ -297,6 +300,14 @@ void MenuMode::add_menu_zone(ENUM_MENU_TYPE menu_type){
 		text_pos.y = surface->h - MENU_ZONE_HEIGHT/2 - text_surface->h/2;
 		SDL_BlitSurface(text_surface, NULL, surface, &text_pos);
 		break;
+	case MENU_TYPE_USB:
+		MENU_DEBUG_PRINTF("Init MENU_TYPE_USB\n");
+		/// ------ Text ------
+		/*text_surface = TTF_RenderText_Blended(menu_title_font, "USB", text_color);
+		text_pos.x = (surface->w - MENU_ZONE_WIDTH)/2 + (MENU_ZONE_WIDTH - text_surface->w)/2;
+		text_pos.y = surface->h - MENU_ZONE_HEIGHT/2 - text_surface->h/2;
+		SDL_BlitSurface(text_surface, NULL, surface, &text_pos);*/
+		break;
 	case MENU_TYPE_POWERDOWN:
 		MENU_DEBUG_PRINTF("Init MENU_TYPE_POWERDOWN\n");
 		/// ------ Text ------
@@ -327,6 +338,8 @@ void MenuMode::init_menu_zones(){
 	//add_menu_zone(MENU_TYPE_ASPECT_RATIO);
 	/// Init Exit Menu
 	//add_menu_zone(MENU_TYPE_EXIT);
+	/// Init USB Menu
+	add_menu_zone(MENU_TYPE_USB);
 	/// Init Powerdown Menu
 	add_menu_zone(MENU_TYPE_POWERDOWN);
 }
@@ -376,6 +389,27 @@ void MenuMode::init_menu_system_values(){
 		}
 	}
 
+	/// ------- Get USB Value -------
+	//should be getters from retroFe here, instead of setting values
+	usb_data_connected = 1;
+	usb_mounted = 0;
+
+	if(usb_mounted && !usb_data_connected){
+		MENU_ERROR_PRINTF("WARNING usb_mounted && !usb_data_connected\n");
+		usb_mounted = 0;
+	}
+
+	if(usb_mounted){
+		/// Force USB menu to launch
+		for(int cur_idx=0; cur_idx < nb_menu_zones; cur_idx++){
+			if(idx_menus[cur_idx] == MENU_TYPE_USB){
+				menuItem = cur_idx;
+				printf("USB mounted, setting menu item to %d\n", menuItem);
+				break;
+			}
+		}
+	}
+
 	/// ------ Save prev key repeat params and set new Key repeat -------
 	SDL_GetKeyRepeat(&backup_key_repeat_delay, &backup_key_repeat_interval);
 	if(SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL)){
@@ -387,6 +421,9 @@ void MenuMode::init_menu_system_values(){
 }
 
 void MenuMode::menu_screen_refresh(int menuItem, int prevItem, int scroll, uint8_t menu_confirmation, uint8_t menu_action){
+	/// --------- Vars ---------
+	int print_arrows = (scroll || usb_mounted)?0:1;
+
 	/// --------- Clear HW screen ----------
 	SDL_Surface * virtual_hw_screen = SDL::getWindow();
 	if(SDL_BlitSurface(backup_hw_screen, NULL, virtual_hw_screen, NULL)){
@@ -457,22 +494,7 @@ void MenuMode::menu_screen_refresh(int menuItem, int prevItem, int scroll, uint8
 					text_surface = TTF_RenderText_Blended(menu_info_font, text_tmp, text_color);
 				}
 				else{
-					/*/// ---- Write current Save state ----
-                    get_savestate_filename(savestate_slot, fname);
-                    file_open(savestate_file, fname, read);
-                    if(file_check_valid(savestate_file))
-                    {
-                        file_close(savestate_file);
-                        printf("Found Save slot: %s\n", fname);
-                        char *p = strrchr (fname, '/');
-                        char *basename = p ? p + 1 : (char *) fname;
-                        char file_name_short[24];
-                        snprintf(file_name_short, 24, "%s", basename);
-                        text_surface = TTF_RenderText_Blended(menu_small_info_font, file_name_short, text_color);
-                    }
-                    else{
-                        text_surface = TTF_RenderText_Blended(menu_info_font, "Free", text_color);
-                    }*/
+					/// ---- Write current Save state ----
 				}
 			}
 			text_pos.x = (virtual_hw_screen->w - MENU_ZONE_WIDTH)/2 + (MENU_ZONE_WIDTH - text_surface->w)/2;
@@ -498,22 +520,7 @@ void MenuMode::menu_screen_refresh(int menuItem, int prevItem, int scroll, uint8
 					text_surface = TTF_RenderText_Blended(menu_info_font, text_tmp, text_color);
 				}
 				else{
-					/*/// ---- Write current Load state ----
-                    get_savestate_filename(savestate_slot, fname);
-                    file_open(savestate_file, fname, read);
-                    if(file_check_valid(savestate_file))
-                    {
-                        file_close(savestate_file);
-                        printf("Found Load slot: %s\n", fname);
-                        char *p = strrchr (fname, '/');
-                        char *basename = p ? p + 1 : (char *) fname;
-                        char file_name_short[24];
-                        snprintf(file_name_short, 24, "%s", basename);
-                        text_surface = TTF_RenderText_Blended(menu_small_info_font, file_name_short, text_color);
-                    }
-                    else{
-                        text_surface = TTF_RenderText_Blended(menu_info_font, "Free", text_color);
-                    }*/
+					/// ---- Write current Load state ----
 				}
 			}
 			text_pos.x = (virtual_hw_screen->w - MENU_ZONE_WIDTH)/2 + (MENU_ZONE_WIDTH - text_surface->w)/2;
@@ -527,6 +534,33 @@ void MenuMode::menu_screen_refresh(int menuItem, int prevItem, int scroll, uint8
 			text_pos.x = (virtual_hw_screen->w - MENU_ZONE_WIDTH)/2 + (MENU_ZONE_WIDTH - text_surface->w)/2;
 			text_pos.y = virtual_hw_screen->h - MENU_ZONE_HEIGHT/2 - text_surface->h/2 + padding_y_from_center_menu_zone;
 			SDL_BlitSurface(text_surface, NULL, virtual_hw_screen, &text_pos);
+			break;
+
+		case MENU_TYPE_USB:
+			/// ---- Write slot -----
+			sprintf(text_tmp, "%s USB", usb_mounted?"EJECT":"MOUNT");
+			text_surface = TTF_RenderText_Blended(menu_title_font, text_tmp, text_color);
+			text_pos.x = (virtual_hw_screen->w - MENU_ZONE_WIDTH)/2 + (MENU_ZONE_WIDTH - text_surface->w)/2;
+			text_pos.y = virtual_hw_screen->h - MENU_ZONE_HEIGHT/2 - text_surface->h/2;
+			SDL_BlitSurface(text_surface, NULL, virtual_hw_screen, &text_pos);
+
+			if(menu_action){
+				sprintf(text_tmp, "%s in progress ...", usb_mounted?"Unmount":"Mount");
+				text_surface = TTF_RenderText_Blended(menu_info_font, text_tmp, text_color);
+				text_pos.x = (virtual_hw_screen->w - MENU_ZONE_WIDTH)/2 + (MENU_ZONE_WIDTH - text_surface->w)/2;
+				text_pos.y = virtual_hw_screen->h - MENU_ZONE_HEIGHT/2 - text_surface->h/2 + 2*padding_y_from_center_menu_zone;
+				SDL_BlitSurface(text_surface, NULL, virtual_hw_screen, &text_pos);
+			}
+			else if(menu_confirmation){
+				sprintf(text_tmp, "Are you sure ?");
+				text_surface = TTF_RenderText_Blended(menu_info_font, text_tmp, text_color);
+				text_pos.x = (virtual_hw_screen->w - MENU_ZONE_WIDTH)/2 + (MENU_ZONE_WIDTH - text_surface->w)/2;
+				text_pos.y = virtual_hw_screen->h - MENU_ZONE_HEIGHT/2 - text_surface->h/2 + 2*padding_y_from_center_menu_zone;
+				SDL_BlitSurface(text_surface, NULL, virtual_hw_screen, &text_pos);
+			}
+			else{
+					///Nothing
+			}
 			break;
 
 		case MENU_TYPE_EXIT:
@@ -557,11 +591,20 @@ void MenuMode::menu_screen_refresh(int menuItem, int prevItem, int scroll, uint8
 			SDL_FreeSurface(text_surface);
 	}
 
-	/// --------- Screen Rotate --------
-	/*SDL_Copy_Rotate_270((uint16_t *)virtual_hw_screen->pixels, (uint16_t *)hw_screen->pixels,
-								RES_HW_SCREEN_HORIZONTAL, RES_HW_SCREEN_VERTICAL,
-								RES_HW_SCREEN_HORIZONTAL, RES_HW_SCREEN_VERTICAL);*/
-	/*SDL_BlitSurface(virtual_hw_screen, NULL, virtual_hw_screen, NULL);*/
+	/// --------- Print arrows --------
+	if(print_arrows){
+		/// Top arrow
+		SDL_Rect pos_arrow_top;
+		pos_arrow_top.x = (virtual_hw_screen->w - img_arrow_top->w)/2;
+		pos_arrow_top.y = ARROWS_PADDING;
+		SDL_BlitSurface(img_arrow_top, NULL, virtual_hw_screen, &pos_arrow_top);
+
+		/// Bottom arrow
+		SDL_Rect pos_arrow_bottom;
+		pos_arrow_bottom.x = (virtual_hw_screen->w - img_arrow_bottom->w)/2;
+		pos_arrow_bottom.y = virtual_hw_screen->h - ARROWS_PADDING - img_arrow_bottom->h;
+		SDL_BlitSurface(img_arrow_bottom, NULL, virtual_hw_screen, &pos_arrow_bottom);
+	}
 
 	/// --------- Flip Screen ----------
 	//SDL_Flip(hw_screen);
@@ -576,8 +619,6 @@ void MenuMode::launch( )
 	SDL_Event event;
 	uint32_t prev_ms = SDL_GetTicks();
 	uint32_t cur_ms = SDL_GetTicks();
-	static int menuItem=0;
-	int prevItem=menuItem;
 	int scroll=0;
 	uint8_t screen_refresh = 1;
 	char shell_cmd[100];
@@ -588,6 +629,7 @@ void MenuMode::launch( )
 
 	/// ------ Get init values -------
 	init_menu_system_values();
+	int prevItem=menuItem;
 
 	/// ------ Copy currently displayed screen -------
 	SDL_Surface * virtual_hw_screen = SDL::getWindow();
@@ -623,16 +665,33 @@ void MenuMode::launch( )
 
 					case SDLK_q:
 					case SDLK_ESCAPE:
+						/// ------ Check if no action ------
+						if(usb_mounted){
+							break;
+						}
+
 						stop_menu_loop = 1;
 						break;
 
 					case SDLK_d:
 					case SDLK_DOWN:
 						MENU_DEBUG_PRINTF("DOWN\n");
+						/// ------ Check if no action ------
+						if(usb_mounted){
+							break;
+						}
+
 						/// ------ Start scrolling to new menu -------
 						menuItem++;
 						if (menuItem>=nb_menu_zones) menuItem=0;
-						scroll=SCROLL_SPEED_PX;
+
+						/// Skip if usb menu if usb not connected
+						if(idx_menus[menuItem] == MENU_TYPE_USB && !usb_data_connected){
+							menuItem++;
+							if (menuItem>=nb_menu_zones) menuItem=0;
+						}
+
+						scroll=1;
 
 						/// ------ Reset menu confirmation ------
 						menu_confirmation = 0;
@@ -644,10 +703,22 @@ void MenuMode::launch( )
 					case SDLK_u:
 					case SDLK_UP:
 						MENU_DEBUG_PRINTF("UP\n");
+						/// ------ Check if no action ------
+						if(usb_mounted){
+							break;
+						}
+
 						/// ------ Start scrolling to new menu -------
 						menuItem--;
 						if (menuItem<0) menuItem=nb_menu_zones-1;
-						scroll=-SCROLL_SPEED_PX;
+
+						/// Skip if usb menu if usb not connected
+						if(idx_menus[menuItem] == MENU_TYPE_USB && !usb_data_connected){
+							menuItem--;
+							if (menuItem<0) menuItem=nb_menu_zones-1;
+						}
+
+						scroll=-1;
 
 						/// ------ Reset menu confirmation ------
 						menu_confirmation = 0;
@@ -774,14 +845,6 @@ void MenuMode::launch( )
 								menu_screen_refresh(menuItem, prevItem, scroll, menu_confirmation, 1);
 
 								/// ------ Save game ------
-								/*u16 *current_screen = copy_screen();
-                                    get_savestate_filename_noshot(savestate_slot, fname);
-                                    save_state(fname, current_screen);
-
-                                    /// ----- Hud Msg -----
-                                    sprintf(hud_msg, "SAVED IN SLOT %d", savestate_slot);
-                                    set_hud_msg(hud_msg, 4);*/
-
 								stop_menu_loop = 1;
 							}
 							else{
@@ -798,19 +861,31 @@ void MenuMode::launch( )
 								menu_screen_refresh(menuItem, prevItem, scroll, menu_confirmation, 1);
 
 								/// ------ Load game ------
-								/*get_savestate_filename_noshot(savestate_slot, fname);
-                                    load_state(fname);
-
-                                    /// ----- Hud Msg -----
-                                    sprintf(hud_msg, "LOADED FROM SLOT %d", savestate_slot);
-                                    set_hud_msg(hud_msg, 4);*/
-
 								stop_menu_loop = 1;
 							}
 							else{
 								MENU_DEBUG_PRINTF("Save game - asking confirmation\n");
 								menu_confirmation = 1;
 								/// ------ Refresh screen ------
+								screen_refresh = 1;
+							}
+						}
+						else if(idx_menus[menuItem] == MENU_TYPE_USB){
+							MENU_DEBUG_PRINTF("USB %s\n", usb_mounted?"unmount":"mount");
+							if(menu_confirmation){
+								MENU_DEBUG_PRINTF("%s USB - confirmed\n", usb_mounted?"Unmount":"Mount");
+								/// ----- USB operation here ----
+								menu_screen_refresh(menuItem, prevItem, scroll, menu_confirmation, 1);
+								/// mounting/unmounting usb here (instead of this commentary)
+								usb_mounted = !usb_mounted;
+								menu_confirmation = 0;
+
+								/// ------ Refresh screen ------
+								screen_refresh = 1;
+							}
+							else{
+								MENU_DEBUG_PRINTF("%s USB - asking confirmation\n", usb_mounted?"Unmount":"Mount");
+								menu_confirmation = 1;
 								screen_refresh = 1;
 							}
 						}
