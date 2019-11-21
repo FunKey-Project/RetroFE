@@ -596,13 +596,13 @@ void MenuMode::menu_screen_refresh(int menuItem, int prevItem, int scroll, uint8
 		/// Top arrow
 		SDL_Rect pos_arrow_top;
 		pos_arrow_top.x = (virtual_hw_screen->w - img_arrow_top->w)/2;
-		pos_arrow_top.y = ARROWS_PADDING;
+		pos_arrow_top.y = (virtual_hw_screen->h - 160)/4 - img_arrow_top->h/2;
 		SDL_BlitSurface(img_arrow_top, NULL, virtual_hw_screen, &pos_arrow_top);
 
 		/// Bottom arrow
 		SDL_Rect pos_arrow_bottom;
 		pos_arrow_bottom.x = (virtual_hw_screen->w - img_arrow_bottom->w)/2;
-		pos_arrow_bottom.y = virtual_hw_screen->h - ARROWS_PADDING - img_arrow_bottom->h;
+		pos_arrow_bottom.y = virtual_hw_screen->h - (virtual_hw_screen->h - 160)/4 - img_arrow_bottom->h;
 		SDL_BlitSurface(img_arrow_bottom, NULL, virtual_hw_screen, &pos_arrow_bottom);
 	}
 
@@ -620,6 +620,7 @@ void MenuMode::launch( )
 	uint32_t prev_ms = SDL_GetTicks();
 	uint32_t cur_ms = SDL_GetTicks();
 	int scroll=0;
+	int start_scroll=0;
 	uint8_t screen_refresh = 1;
 	char shell_cmd[100];
 	FILE *fp;
@@ -659,8 +660,8 @@ void MenuMode::launch( )
 							screen_refresh = 1;
 						}
 						/*else{
-                                stop_menu_loop = 1;
-                            }*/
+							stop_menu_loop = 1;
+						}*/
 						break;
 
 					case SDLK_q:
@@ -691,7 +692,7 @@ void MenuMode::launch( )
 							if (menuItem>=nb_menu_zones) menuItem=0;
 						}
 
-						scroll=1;
+						start_scroll=1;
 
 						/// ------ Reset menu confirmation ------
 						menu_confirmation = 0;
@@ -718,7 +719,7 @@ void MenuMode::launch( )
 							if (menuItem<0) menuItem=nb_menu_zones-1;
 						}
 
-						scroll=-1;
+						start_scroll=-1;
 
 						/// ------ Reset menu confirmation ------
 						menu_confirmation = 0;
@@ -909,7 +910,7 @@ void MenuMode::launch( )
 						else if(idx_menus[menuItem] == MENU_TYPE_POWERDOWN){
 							if(menu_confirmation){
 								MENU_DEBUG_PRINTF("Powerdown - confirmed\n");
-								
+
 								/// ------ Refresh Screen -------
 								menu_screen_refresh(menuItem, prevItem, scroll, menu_confirmation, 1);
 
@@ -938,17 +939,19 @@ void MenuMode::launch( )
 		}
 
 		/// --------- Handle Scroll effect ---------
+		if ((scroll>0) || (start_scroll>0)){
+			scroll+=MIN(SCROLL_SPEED_PX, MENU_ZONE_HEIGHT-scroll);
+			start_scroll = 0;
+			screen_refresh = 1;
+		}
+		else if ((scroll<0) || (start_scroll<0)){
+			scroll-=MIN(SCROLL_SPEED_PX, MENU_ZONE_HEIGHT+scroll);
+			start_scroll = 0;
+			screen_refresh = 1;
+		}
 		if (scroll>=MENU_ZONE_HEIGHT || scroll<=-MENU_ZONE_HEIGHT) {
 			prevItem=menuItem;
 			scroll=0;
-			screen_refresh = 1;
-		}
-		else if (scroll>0){
-			scroll+=MIN(SCROLL_SPEED_PX, MENU_ZONE_HEIGHT-scroll);
-			screen_refresh = 1;
-		}
-		else if (scroll<0){
-			scroll-=MIN(SCROLL_SPEED_PX, MENU_ZONE_HEIGHT+scroll);
 			screen_refresh = 1;
 		}
 
