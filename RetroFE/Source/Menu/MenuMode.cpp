@@ -37,6 +37,8 @@
 #define MENU_FONT_NAME_SMALL_INFO   "/usr/games/menu_resources/OpenSans-Regular.ttf"
 #define MENU_FONT_SIZE_SMALL_INFO   13
 #define MENU_PNG_BG_PATH            "/usr/games/menu_resources/zone_bg.png"
+#define MENU_PNG_ARROW_TOP_PATH     "/usr/games/menu_resources/arrow_top.png"
+#define MENU_PNG_ARROW_BOTTOM_PATH  "/usr/games/menu_resources/arrow_bottom.png"
 
 #define GRAY_MAIN_R                 85
 #define GRAY_MAIN_G                 85
@@ -61,6 +63,8 @@ SDL_Surface ** MenuMode::menu_zone_surfaces = NULL;
 int * MenuMode::idx_menus = NULL;
 int MenuMode::nb_menu_zones = 0;
 int MenuMode::stop_menu_loop = 0;
+SDL_Surface *img_arrow_top;
+SDL_Surface *img_arrow_bottom;
 
 SDL_Color MenuMode::text_color = {GRAY_MAIN_R, GRAY_MAIN_G, GRAY_MAIN_B};
 int MenuMode::padding_y_from_center_menu_zone = 18;
@@ -113,11 +117,15 @@ void MenuMode::init( )
 	}
 
 
-	/// ------ Save prev key repeat params and set new Key repeat -------
-	/*SDL_GetKeyRepeat(&backup_key_repeat_delay, &backup_key_repeat_interval);
-	if(SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL)){
-		MENU_ERROR_PRINTF("ERROR with SDL_EnableKeyRepeat: %s\n", SDL_GetError());
-	}*/
+	/// ------ Load arrows imgs -------
+	img_arrow_top = IMG_Load(MENU_PNG_ARROW_TOP_PATH);
+	if(!img_arrow_top) {
+		MENU_ERROR_PRINTF("ERROR IMG_Load: %s\n", IMG_GetError());
+	}
+	img_arrow_bottom = IMG_Load(MENU_PNG_ARROW_BOTTOM_PATH);
+	if(!img_arrow_bottom) {
+		MENU_ERROR_PRINTF("ERROR IMG_Load: %s\n", IMG_GetError());
+	}
 
 	/// ------ Init menu zones ------
 	init_menu_zones();
@@ -147,10 +155,9 @@ void MenuMode::end( )
 		SDL_FreeSurface(backup_hw_screen);
 	}
 
-	/// ------ reset initial key repeat values ------
-	/*if(SDL_EnableKeyRepeat(backup_key_repeat_delay, backup_key_repeat_interval)){
-		MENU_ERROR_PRINTF("ERROR with SDL_EnableKeyRepeat: %s\n", SDL_GetError());
-	}*/
+	SDL_FreeSurface(img_arrow_top);
+	SDL_FreeSurface(img_arrow_bottom);
+
 	return;
 }
 
@@ -367,6 +374,12 @@ void MenuMode::init_menu_system_values(){
 			brightness_percentage = atoi(res);
 			MENU_DEBUG_PRINTF("System brightness = %d%%\n", brightness_percentage);
 		}
+	}
+
+	/// ------ Save prev key repeat params and set new Key repeat -------
+	SDL_GetKeyRepeat(&backup_key_repeat_delay, &backup_key_repeat_interval);
+	if(SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL)){
+		MENU_ERROR_PRINTF("ERROR with SDL_EnableKeyRepeat: %s\n", SDL_GetError());
 	}
 
 	/// Get save slot from game
@@ -879,6 +892,11 @@ void MenuMode::launch( )
 
 		/// --------- reset screen refresh ---------
 		screen_refresh = 0;
+	}
+
+	/// ------ Reset prev key repeat params -------
+	if(SDL_EnableKeyRepeat(backup_key_repeat_delay, backup_key_repeat_interval)){
+		MENU_ERROR_PRINTF("ERROR with SDL_EnableKeyRepeat: %s\n", SDL_GetError());
 	}
 	return;
 }
