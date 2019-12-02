@@ -161,12 +161,12 @@ float ViewInfo::ScaledWidth() const
 
 float ViewInfo::AbsoluteHeight() const
 {
-    if(Height == -1 && Width == -1)
+    if(Height < 0 && Width < 0)
     {
         return ImageHeight;
     }
 
-    if (Height == -1 && ImageWidth != 0)
+    if (Height < 0 && ImageWidth != 0)
     {
         return ImageHeight * Width / ImageWidth;
     }
@@ -176,12 +176,12 @@ float ViewInfo::AbsoluteHeight() const
 
 float ViewInfo::AbsoluteWidth() const
 {
-    if(Height == -1 && Width == -1)
+    if(Height < 0 && Width < 0)
     {
         return ImageWidth;
     }
 
-    if (Width == -1 && ImageHeight != 0)
+    if (Width < 0 && ImageHeight != 0)
     {
         return ImageWidth * Height / ImageHeight;
     }
