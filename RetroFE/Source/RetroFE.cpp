@@ -360,7 +360,7 @@ void RetroFE::run( )
 
         if ( !currentPage_ )
         {
-            Logger::write(  Logger::ZONE_WARNING, "RetroFE", "Could not load page"  );
+            Logger::write( Logger::ZONE_WARNING, "RetroFE", "Could not load page"  );
             running = false;
             break;
         }
@@ -736,7 +736,6 @@ void RetroFE::run( )
                 }
 
                 currentPage_->onNewItemSelected( );
-                currentPage_->reallocateMenuSpritePoints( );
                 state = RETROFE_COLLECTION_UP_MENU_ENTER;
             }
             break;
@@ -906,7 +905,6 @@ void RetroFE::run( )
                 }
 
                 currentPage_->onNewItemSelected( );
-                currentPage_->reallocateMenuSpritePoints( );
                 state = RETROFE_COLLECTION_DOWN_MENU_ENTER;
             }
             break;
