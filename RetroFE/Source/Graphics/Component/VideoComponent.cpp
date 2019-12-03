@@ -21,12 +21,10 @@
 #include "../../Video/GStreamerVideo.h"
 #include "../../SDL.h"
 
-VideoComponent::VideoComponent(IVideo *videoInst, Page &p, std::string videoFile, float scaleX, float scaleY)
+VideoComponent::VideoComponent(IVideo *videoInst, Page &p, std::string videoFile)
     : Component(p)
     , videoFile_(videoFile)
     , videoInst_(videoInst)
-    , scaleX_(scaleX)
-    , scaleY_(scaleY)
     , isPlaying_(false)
 	, volume_(1.0)
 {
@@ -99,7 +97,7 @@ void VideoComponent::draw()
 
     if(texture)
     {
-        SDL::renderCopy(texture, baseViewInfo.Alpha, NULL, &rect, baseViewInfo);
+        SDL::renderCopy(texture, baseViewInfo.Alpha, NULL, &rect, baseViewInfo, page.getScaleX(), page.getScaleY());
     }
 }
 

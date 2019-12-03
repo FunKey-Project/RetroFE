@@ -25,7 +25,7 @@
 #include <time.h>
 #include <algorithm>
 
-ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, bool systemMode, Font *font, std::string layoutKey, std::string timeFormat, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, float scaleX, float scaleY)
+ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, bool systemMode, Font *font, std::string layoutKey, std::string timeFormat, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix)
     : Component(page)
     , config_(config)
     , systemMode_(systemMode)
@@ -39,8 +39,6 @@ ReloadableText::ReloadableText(std::string type, Page &page, Configuration &conf
     , singlePostfix_(singlePostfix)
     , pluralPrefix_(pluralPrefix)
     , pluralPostfix_(pluralPostfix)
-    , scaleX_(scaleX)
-    , scaleY_(scaleY)
 {
     allocateGraphicsMemory();
 }
@@ -282,7 +280,7 @@ void ReloadableText::ReloadTexture()
             ss << text;
         }
 
-        imageInst_ = new Text(ss.str(), page, fontInst_, scaleX_, scaleY_);
+        imageInst_ = new Text(ss.str(), page, fontInst_);
     }
 }
 

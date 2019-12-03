@@ -32,7 +32,7 @@ public:
     static SDL_Renderer *getRenderer( );
     static SDL_mutex *getMutex( );
     static SDL_Window *getWindow( );
-    static bool renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo );
+    static bool renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo, float scaleX, float scaleY );
     static int getWindowWidth( )
     {
         return windowWidth_;

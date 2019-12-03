@@ -22,12 +22,10 @@
 #include <sstream>
 
 
-Text::Text( std::string text, Page &p, Font *font, float scaleX, float scaleY )
+Text::Text( std::string text, Page &p, Font *font )
     : Component(p)
     , textData_(text)
     , fontInst_(font)
-    , scaleX_(scaleX)
-    , scaleY_(scaleY)
 {
     allocateGraphicsMemory( );
 }
@@ -159,7 +157,7 @@ void Text::draw( )
             }
 
 
-            SDL::renderCopy( t, baseViewInfo.Alpha, &charRect, &rect, baseViewInfo );
+            SDL::renderCopy( t, baseViewInfo.Alpha, &charRect, &rect, baseViewInfo, page.getScaleX(), page.getScaleY() );
 
             rect.x += static_cast<int>( glyph.advance * scale );
 

@@ -26,14 +26,12 @@
 bool Video::enabled_ = true;
 
 
-Video::Video(std::string file, std::string altFile, int numLoops, Page &p, float scaleX, float scaleY)
+Video::Video(std::string file, std::string altFile, int numLoops, Page &p)
     : Component(p)
     , video_(NULL)
     , file_(file)
     , altFile_(altFile)
     , numLoops_(numLoops)
-    , scaleX_(scaleX)
-    , scaleY_(scaleY)
     , volume_(1.0)
 
 {
@@ -105,7 +103,7 @@ void Video::allocateGraphicsMemory( )
             IVideo      *video = new GStreamerVideo();
             video->initialize();
             ((GStreamerVideo *)(video))->setNumLoops(numLoops_);
-            video_             = new VideoComponent( video, page, file, scaleX_, scaleY_ );
+            video_             = new VideoComponent( video, page, file );
         }
     }
 

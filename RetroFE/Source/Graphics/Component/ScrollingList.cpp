@@ -44,8 +44,6 @@ ScrollingList::ScrollingList( Configuration &c,
                               Page          &p,
                               bool           layoutMode,
                               bool           commonMode,
-                              float          scaleX,
-                              float          scaleY,
                               Font          *font,
                               std::string    layoutKey,
                               std::string    imageType )
@@ -63,8 +61,6 @@ ScrollingList::ScrollingList( Configuration &c,
     , minScrollTime_( 0.500 )
     , scrollPeriod_( 0 )
     , config_( c )
-    , scaleX_( scaleX )
-    , scaleY_( scaleY )
     , fontInst_( font )
     , layoutKey_( layoutKey )
     , imageType_( imageType )
@@ -86,8 +82,6 @@ ScrollingList::ScrollingList( const ScrollingList &copy )
     , minScrollTime_( copy.minScrollTime_ )
     , scrollPeriod_( copy.startScrollTime_ )
     , config_( copy.config_ )
-    , scaleX_( copy.scaleX_ )
-    , scaleY_( copy.scaleY_ )
     , fontInst_( copy.fontInst_ )
     , layoutKey_( copy.layoutKey_ )
     , imageType_( copy.imageType_ )
@@ -776,7 +770,7 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
             else
                 config_.getMediaPropertyAbsolutePath( collectionName, imageType_, false, imagePath );
         }
-        t = imageBuild.CreateImage( imagePath, page, names[n], scaleX_, scaleY_ );
+        t = imageBuild.CreateImage( imagePath, page, names[n] );
         // check sub-collection path for art
         if ( !t && !commonMode_ )
         {
@@ -789,7 +783,7 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
             {
                 config_.getMediaPropertyAbsolutePath( item->collectionInfo->name, imageType_, false, imagePath );
             }
-            t = imageBuild.CreateImage( imagePath, page, names[n], scaleX_, scaleY_ );
+            t = imageBuild.CreateImage( imagePath, page, names[n] );
         }
     }
 
@@ -814,16 +808,16 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
             else
                 config_.getMediaPropertyAbsolutePath( item->name, imageType_, true, imagePath );
         }
-        t = imageBuild.CreateImage( imagePath, page, imageType_, scaleX_, scaleY_ );
+        t = imageBuild.CreateImage( imagePath, page, imageType_ );
     }
 
     // check rom directory path for art
     if ( !t )
-        t = imageBuild.CreateImage( item->filepath, page, imageType_, scaleX_, scaleY_ );
+        t = imageBuild.CreateImage( item->filepath, page, imageType_ );
 
     if ( !t )
     {
-        t = new Text(item->title, page, fontInst_, scaleX_, scaleY_ );
+        t = new Text(item->title, page, fontInst_ );
     }
 
     if ( t )

@@ -19,13 +19,11 @@
 #include "../../Utility/Log.h"
 #include <SDL2/SDL_image.h>
 
-Image::Image(std::string file, std::string altFile, Page &p, float scaleX, float scaleY)
+Image::Image(std::string file, std::string altFile, Page &p)
     : Component(p)
     , texture_(NULL)
     , file_(file)
     , altFile_(altFile)
-    , scaleX_(scaleX)
-    , scaleY_(scaleY)
 {
     allocateGraphicsMemory();
 }
@@ -66,8 +64,8 @@ void Image::allocateGraphicsMemory()
         {
             SDL_SetTextureBlendMode(texture_, SDL_BLENDMODE_BLEND);
             SDL_QueryTexture(texture_, NULL, NULL, &width, &height);
-            baseViewInfo.ImageWidth = width * scaleX_;
-            baseViewInfo.ImageHeight = height * scaleY_;
+            baseViewInfo.ImageWidth = width;
+            baseViewInfo.ImageHeight = height;
         }
         SDL_UnlockMutex(SDL::getMutex());
 
@@ -91,6 +89,6 @@ void Image::draw()
         rect.h = static_cast<int>(baseViewInfo.ScaledHeight());
         rect.w = static_cast<int>(baseViewInfo.ScaledWidth());
 
-        SDL::renderCopy(texture_, baseViewInfo.Alpha, NULL, &rect, baseViewInfo);
+        SDL::renderCopy(texture_, baseViewInfo.Alpha, NULL, &rect, baseViewInfo, page.getScaleX(), page.getScaleY());
     }
 }

@@ -46,6 +46,8 @@ private:
     float scaleY_;
     int screenHeight_;
     int screenWidth_;
+    int layoutHeight_;
+    int layoutWidth_;
     SDL_Color fontColor_;
     std::string fontName_;
     int fontSize_;

@@ -24,7 +24,7 @@
 class ReloadableScrollingText : public Component
 {
 public:
-    ReloadableScrollingText(Configuration &config, bool systemMode, bool layoutMode, bool menuMode, std::string type, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, std::string alignment, Page &page, int displayOffset, Font *font, float scaleX, float scaleY, std::string direction, float scrollingSpeed, float startPosition, float startTime, float endTime );
+    ReloadableScrollingText(Configuration &config, bool systemMode, bool layoutMode, bool menuMode, std::string type, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, std::string alignment, Page &page, int displayOffset, Font *font, std::string direction, float scrollingSpeed, float startPosition, float startTime, float endTime );
     virtual ~ReloadableScrollingText( );
     void     update(float dt);
     void     draw( );
@@ -49,8 +49,6 @@ private:
     std::string              pluralPostfix_;
     std::string              alignment_;
     std::vector<std::string> text_;
-    float                    scaleX_;
-    float                    scaleY_;
     std::string              direction_;
     float                    scrollingSpeed_;
     float                    startPosition_;

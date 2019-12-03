@@ -37,8 +37,6 @@ public:
                    Page          &p,
                    bool          layoutMode,
                    bool          commonMode,
-                   float         scaleX,
-                   float         scaleY,
                    Font         *font,
                    std::string   layoutKey,
                    std::string   imageType );
@@ -123,8 +121,6 @@ private:
     float scrollPeriod_;
 
     Configuration &config_;
-    float          scaleX_;
-    float          scaleY_;
     Font          *fontInst_;
     std::string    layoutKey_;
     std::string    imageType_;

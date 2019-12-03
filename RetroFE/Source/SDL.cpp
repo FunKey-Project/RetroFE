@@ -273,15 +273,15 @@ SDL_Window* SDL::getWindow( )
 
 
 // Render a copy of a texture
-bool SDL::renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo )
+bool SDL::renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo, float scaleX, float scaleY )
 {
 
     SDL_Rect srcRect;
     SDL_Rect dstRect;
     SDL_Rect srcRectCopy;
     SDL_Rect dstRectCopy;
-    double   scaleX;
-    double   scaleY;
+    double   imageScaleX;
+    double   imageScaleY;
 
     dstRect.w = dest->w;
     dstRect.h = dest->h;
@@ -317,8 +317,8 @@ bool SDL::renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect
     }
 
     // Define the scale
-    scaleX = (dstRect.w > 0) ? static_cast<double>( srcRect.w ) / static_cast<double>( dstRect.w ) : 0.0;
-    scaleY = (dstRect.h > 0) ? static_cast<double>( srcRect.h ) / static_cast<double>( dstRect.h ) : 0.0;
+    imageScaleX = (dstRect.w > 0) ? static_cast<double>( srcRect.w ) / static_cast<double>( dstRect.w ) : 0.0;
+    imageScaleY = (dstRect.h > 0) ? static_cast<double>( srcRect.h ) / static_cast<double>( dstRect.h ) : 0.0;
 
     // Make a copy
     srcRectCopy.x = srcRect.x;
@@ -364,18 +364,37 @@ bool SDL::renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect
         }
 
         // Define source width and height
-        srcRect.w = static_cast<int>( dstRect.w * scaleX );
-        srcRect.h = static_cast<int>( dstRect.h * scaleY );
+        srcRect.w = static_cast<int>( dstRect.w * imageScaleX );
+        srcRect.h = static_cast<int>( dstRect.h * imageScaleY );
 
     }
 
+    dstRectCopy.x = dstRect.x;
+    dstRectCopy.y = dstRect.y;
+    dstRectCopy.w = dstRect.w;
+    dstRectCopy.h = dstRect.h;
+
+    dstRect.x *= scaleX;
+    dstRect.y *= scaleY;
+    dstRect.w *= scaleX;
+    dstRect.h *= scaleY;
+
     SDL_SetTextureAlphaMod( texture, static_cast<char>( alpha * 255 ) );
     SDL_RenderCopyEx( getRenderer( ), texture, &srcRect, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_NONE );
+
+    dstRect.x = dstRectCopy.x;
+    dstRect.y = dstRectCopy.y;
+    dstRect.w = dstRectCopy.w;
+    dstRect.h = dstRectCopy.h;
 
     if ( viewInfo.Reflection == "top" )
     {
         dstRect.h = static_cast<unsigned int>( static_cast<float>(dstRect.h ) * viewInfo.ReflectionScale);
         dstRect.y = dstRect.y - dstRect.h - viewInfo.ReflectionDistance;
+        dstRect.x *= scaleX;
+        dstRect.y *= scaleY;
+        dstRect.w *= scaleX;
+        dstRect.h *= scaleY;
         SDL_SetTextureAlphaMod( texture, static_cast<char>( viewInfo.ReflectionAlpha * alpha * 255 ) );
         SDL_RenderCopyEx( getRenderer( ), texture, src, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_VERTICAL );
     }
@@ -384,6 +403,10 @@ bool SDL::renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect
     {
         dstRect.y = dstRect.y + dstRect.h + viewInfo.ReflectionDistance;
         dstRect.h = static_cast<unsigned int>( static_cast<float>(dstRect.h ) * viewInfo.ReflectionScale);
+        dstRect.x *= scaleX;
+        dstRect.y *= scaleY;
+        dstRect.w *= scaleX;
+        dstRect.h *= scaleY;
         SDL_SetTextureAlphaMod( texture, static_cast<char>( viewInfo.ReflectionAlpha * alpha * 255 ) );
         SDL_RenderCopyEx( getRenderer( ), texture, src, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_VERTICAL );
     }
@@ -392,6 +415,10 @@ bool SDL::renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect
     {
         dstRect.w = static_cast<unsigned int>( static_cast<float>(dstRect.w ) * viewInfo.ReflectionScale);
         dstRect.x = dstRect.x - dstRect.w - viewInfo.ReflectionDistance;
+        dstRect.x *= scaleX;
+        dstRect.y *= scaleY;
+        dstRect.w *= scaleX;
+        dstRect.h *= scaleY;
         SDL_SetTextureAlphaMod( texture, static_cast<char>( viewInfo.ReflectionAlpha * alpha * 255 ) );
         SDL_RenderCopyEx( getRenderer( ), texture, src, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_HORIZONTAL );
     }
@@ -400,6 +427,10 @@ bool SDL::renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect
     {
         dstRect.x = dstRect.x + dstRect.w + viewInfo.ReflectionDistance;
         dstRect.w = static_cast<unsigned int>( static_cast<float>(dstRect.w ) * viewInfo.ReflectionScale);
+        dstRect.x *= scaleX;
+        dstRect.y *= scaleY;
+        dstRect.w *= scaleX;
+        dstRect.h *= scaleY;
         SDL_SetTextureAlphaMod( texture, static_cast<char>( viewInfo.ReflectionAlpha * alpha * 255 ) );
         SDL_RenderCopyEx( getRenderer( ), texture, src, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_HORIZONTAL );
     }

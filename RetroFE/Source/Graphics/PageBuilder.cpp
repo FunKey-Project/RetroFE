@@ -57,6 +57,8 @@ PageBuilder::PageBuilder(std::string layoutKey, std::string layoutPage, Configur
     , scaleY_(1)
     , screenHeight_(0)
     , screenWidth_(0)
+    , layoutHeight_(0)
+    , layoutWidth_(0)
     , fontSize_(24)
     , fontCache_(fc)
     , isMenu_(isMenu)
@@ -156,8 +158,6 @@ Page *PageBuilder::buildPage( std::string collectionName )
             xml_attribute<> *fontSizeXml = root->first_attribute("loadFontSize");
             xml_attribute<> *minShowTimeXml = root->first_attribute("minShowTime");
 
-            int layoutHeight;
-            int layoutWidth;
             if(!layoutWidthXml || !layoutHeightXml)
             {
                 Logger::write(Logger::ZONE_ERROR, "Layout", "<layout> tag must specify a width and height");
@@ -189,23 +189,23 @@ Page *PageBuilder::buildPage( std::string collectionName )
                 fontSize_ = Utils::convertInt(fontSizeXml->value());
             }
 
-            layoutWidth = Utils::convertInt(layoutWidthXml->value());
-            layoutHeight = Utils::convertInt(layoutHeightXml->value());
+            layoutWidth_ = Utils::convertInt(layoutWidthXml->value());
+            layoutHeight_ = Utils::convertInt(layoutHeightXml->value());
 
-            if(layoutWidth == 0 || layoutHeight == 0)
+            if(layoutWidth_ == 0 || layoutHeight_ == 0)
             {
                 Logger::write(Logger::ZONE_ERROR, "Layout", "Layout width and height cannot be set to 0");
                 return NULL;
             }
 
-            scaleX_ = (float)screenWidth_ / (float)layoutWidth;
-            scaleY_ = (float)screenHeight_ / (float)layoutHeight;
+            scaleX_ = (float)screenWidth_ / (float)layoutWidth_;
+            scaleY_ = (float)screenHeight_ / (float)layoutHeight_;
 
             std::stringstream ss;
-            ss << layoutWidth << "x" << layoutHeight << " (scale " << scaleX_ << "x" << scaleY_ << ")";
+            ss << layoutWidth_ << "x" << layoutHeight_ << " (scale " << scaleX_ << "x" << scaleY_ << ")";
             Logger::write(Logger::ZONE_INFO, "Layout", "Layout resolution " + ss.str());
 
-            page = new Page(config_);
+            page = new Page(config_, scaleX_, scaleY_);
 
             if(minShowTimeXml) 
             {
@@ -310,15 +310,15 @@ float PageBuilder::getHorizontalAlignment(xml_attribute<> *attribute, float valu
         }
         else if(!str.compare("center"))
         {
-            value = static_cast<float>(screenWidth_) / 2;
+            value = static_cast<float>(layoutWidth_) / 2;
         }
         else if(!str.compare("right") || !str.compare("stretch"))
         {
-            value = static_cast<float>(screenWidth_);
+            value = static_cast<float>(layoutWidth_);
         }
         else
         {
-            value = Utils::convertFloat(str) * scaleX_;
+            value = Utils::convertFloat(str);
         }
     }
 
@@ -343,15 +343,15 @@ float PageBuilder::getVerticalAlignment(xml_attribute<> *attribute, float valueI
         }
         else if(!str.compare("center"))
         {
-            value = static_cast<float>(screenHeight_ / 2);
+            value = static_cast<float>(layoutHeight_ / 2);
         }
         else if(!str.compare("bottom") || !str.compare("stretch"))
         {
-            value = static_cast<float>(screenHeight_);
+            value = static_cast<float>(layoutHeight_);
         }
         else
         {
-            value = Utils::convertFloat(str) * scaleY_;
+            value = Utils::convertFloat(str);
         }
     }
     return value;
@@ -410,7 +410,7 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
             std::string altImagePath;
             altImagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, std::string(src->value()));
 
-            Image *c = new Image(imagePath, altImagePath, *page, scaleX_, scaleY_);
+            Image *c = new Image(imagePath, altImagePath, *page);
             c->setId( id );
             xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
             if (menuScrollReload &&
@@ -453,7 +453,7 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
             altVideoPath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, std::string(srcXml->value()));
             int numLoops = numLoopsXml ? Utils::convertInt(numLoopsXml->value()) : 1;
 
-            Video *c = new Video(videoPath, altVideoPath, numLoops, *page, scaleX_, scaleY_);
+            Video *c = new Video(videoPath, altVideoPath, numLoops, *page);
             c->setId( id );
             xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
             if (menuScrollReload &&
@@ -489,7 +489,7 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
         else
         {
             Font *font = addFont(componentXml, NULL);
-            Text *c = new Text(value->value(), *page, font, scaleX_, scaleY_);
+            Text *c = new Text(value->value(), *page, font);
             c->setId( id );
             xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
             if (menuScrollReload &&
@@ -507,7 +507,7 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
     for(xml_node<> *componentXml = layout->first_node("statusText"); componentXml; componentXml = componentXml->next_sibling("statusText"))
     {
         Font *font = addFont(componentXml, NULL);
-        Text *c = new Text("", *page, font, scaleX_, scaleY_);
+        Text *c = new Text("", *page, font);
         xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
         if (menuScrollReload &&
             (Utils::toLower(menuScrollReload->value()) == "true" ||
@@ -661,7 +661,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                 {
                     pluralPostfix = pluralPostfixXml->value();
                 }
-                c = new ReloadableText(type->value(), *page, config_, systemMode, font, layoutKey, timeFormat, textFormat, singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, scaleX_, scaleY_);
+                c = new ReloadableText(type->value(), *page, config_, systemMode, font, layoutKey, timeFormat, textFormat, singlePrefix, singlePostfix, pluralPrefix, pluralPostfix);
                 c->setId( id );
                 xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
                 if (menuScrollReload &&
@@ -733,7 +733,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                 {
                     pluralPostfix = pluralPostfixXml->value();
                 }
-                c = new ReloadableScrollingText(config_, systemMode, layoutMode, menuMode, type->value(), singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, textFormat, alignment, *page, selectedOffset, font, scaleX_, scaleY_, direction, scrollingSpeed, startPosition, startTime, endTime);
+                c = new ReloadableScrollingText(config_, systemMode, layoutMode, menuMode, type->value(), singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, textFormat, alignment, *page, selectedOffset, font, direction, scrollingSpeed, startPosition, startTime, endTime);
                 c->setId( id );
                 xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
                 if (menuScrollReload &&
@@ -747,7 +747,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
         else
         {
             Font *font = addFont(componentXml, NULL);
-            c = new ReloadableMedia(config_, systemMode, layoutMode, commonMode, menuMode, type->value(), *page, selectedOffset, (tagName == "reloadableVideo"), font, scaleX_, scaleY_);
+            c = new ReloadableMedia(config_, systemMode, layoutMode, commonMode, menuMode, type->value(), *page, selectedOffset, (tagName == "reloadableVideo"), font);
             c->setId( id );
             xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
             if (menuScrollReload &&
@@ -1009,7 +1009,7 @@ ScrollingList * PageBuilder::buildMenu(xml_node<> *menuXml, Page &page)
     // on default, text will be rendered to the menu. Preload it into cache.
     Font *font = addFont(itemDefaults, NULL);
 
-    menu = new ScrollingList(config_, page, layoutMode, commonMode, scaleX_, scaleY_, font, layoutKey, imageType);
+    menu = new ScrollingList(config_, page, layoutMode, commonMode, font, layoutKey, imageType);
 
     if(scrollTimeXml)
     {
@@ -1282,8 +1282,8 @@ void PageBuilder::buildViewInfo(xml_node<> *componentXml, ViewInfo &info, xml_no
     float yOriginRelative = getVerticalAlignment(yOrigin, 0);
 
     // the origins need to be saved as a percent since the heights and widths can be scaled
-    info.XOrigin = xOriginRelative / screenWidth_;
-    info.YOrigin = yOriginRelative / screenHeight_;
+    info.XOrigin = xOriginRelative / layoutWidth_;
+    info.YOrigin = yOriginRelative / layoutHeight_;
 
 
     if(!height && !width)
@@ -1301,17 +1301,17 @@ void PageBuilder::buildViewInfo(xml_node<> *componentXml, ViewInfo &info, xml_no
     info.MinWidth           = getHorizontalAlignment(minWidth, 0);
     info.MaxHeight          = getVerticalAlignment(maxHeight, FLT_MAX);
     info.MaxWidth           = getVerticalAlignment(maxWidth, FLT_MAX);
-    info.Alpha              = alpha              ? Utils::convertFloat(alpha->value())                     : 1.f;
-    info.Angle              = angle              ? Utils::convertFloat(angle->value())                     : 0.f;
-    info.Layer              = layer              ? Utils::convertInt(layer->value())                       : 0;
-    info.Reflection         = reflection         ? reflection->value()                                     : "";
-    info.ReflectionDistance = reflectionDistance ? Utils::convertInt(reflectionDistance->value())          : 0;
-    info.ReflectionScale    = reflectionScale    ? Utils::convertFloat(reflectionScale->value())           : 0.25f;
-    info.ReflectionAlpha    = reflectionAlpha    ? Utils::convertFloat(reflectionAlpha->value())           : 1.f;
-    info.ContainerX         = containerX         ? Utils::convertFloat(containerX->value())      * scaleX_ :  0.f;
-    info.ContainerY         = containerY         ? Utils::convertFloat(containerY->value())      * scaleY_ :  0.f;
-    info.ContainerWidth     = containerWidth     ? Utils::convertFloat(containerWidth->value())  * scaleX_ : -1.f;
-    info.ContainerHeight    = containerHeight    ? Utils::convertFloat(containerHeight->value()) * scaleY_ : -1.f;
+    info.Alpha              = alpha              ? Utils::convertFloat(alpha->value())             : 1.f;
+    info.Angle              = angle              ? Utils::convertFloat(angle->value())             : 0.f;
+    info.Layer              = layer              ? Utils::convertInt(layer->value())               : 0;
+    info.Reflection         = reflection         ? reflection->value()                             : "";
+    info.ReflectionDistance = reflectionDistance ? Utils::convertInt(reflectionDistance->value())  : 0;
+    info.ReflectionScale    = reflectionScale    ? Utils::convertFloat(reflectionScale->value())   : 0.25f;
+    info.ReflectionAlpha    = reflectionAlpha    ? Utils::convertFloat(reflectionAlpha->value())   : 1.f;
+    info.ContainerX         = containerX         ? Utils::convertFloat(containerX->value())        :  0.f;
+    info.ContainerY         = containerY         ? Utils::convertFloat(containerY->value())        :  0.f;
+    info.ContainerWidth     = containerWidth     ? Utils::convertFloat(containerWidth->value())    : -1.f;
+    info.ContainerHeight    = containerHeight    ? Utils::convertFloat(containerHeight->value())   : -1.f;
 
     if(fontColor)
     {
@@ -1427,8 +1427,8 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
 
                         // x origin gets translated to a percent
                     case TWEEN_PROPERTY_X_ORIGIN:
-                        fromValue = getHorizontalAlignment(from, 0) / screenWidth_;
-                        toValue = getHorizontalAlignment(to, 0) / screenWidth_;
+                        fromValue = getHorizontalAlignment(from, 0) / layoutWidth_;
+                        toValue = getHorizontalAlignment(to, 0) / layoutWidth_;
                         break;
 
                     case TWEEN_PROPERTY_HEIGHT:
@@ -1444,8 +1444,8 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
 
                         // y origin gets translated to a percent
                     case TWEEN_PROPERTY_Y_ORIGIN:
-                        fromValue = getVerticalAlignment(from, 0) / screenHeight_;
-                        toValue = getVerticalAlignment(to, 0) / screenHeight_;
+                        fromValue = getVerticalAlignment(from, 0) / layoutHeight_;
+                        toValue = getVerticalAlignment(to, 0) / layoutHeight_;
                         break;
 
                     case TWEEN_PROPERTY_MAX_WIDTH:

@@ -28,7 +28,7 @@
 #include <vector>
 #include <iostream>
 
-ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, bool layoutMode, bool commonMode, bool menuMode, std::string type, Page &p, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY)
+ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, bool layoutMode, bool commonMode, bool menuMode, std::string type, Page &p, int displayOffset, bool isVideo, Font *font)
     : Component(p)
     , config_(config)
     , systemMode_(systemMode)
@@ -41,8 +41,6 @@ ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, bool la
     , FfntInst_(font)
     , textFallback_(false)
     , type_(type)
-    , scaleX_(scaleX)
-    , scaleY_(scaleY)
     , displayOffset_(displayOffset)
     , volume_(1.0)
 
@@ -383,7 +381,7 @@ void ReloadableMedia::reloadTexture()
     // if image and artwork was not specified, fall back to displaying text
     if(!loadedComponent_ && textFallback_)
     {
-        loadedComponent_ = new Text(selectedItem->fullTitle, page, FfntInst_, scaleX_, scaleY_);
+        loadedComponent_ = new Text(selectedItem->fullTitle, page, FfntInst_);
         baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
         baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
     }
@@ -435,11 +433,11 @@ Component *ReloadableMedia::findComponent(std::string collection, std::string ty
 
     if(type == "video")
     {
-        component = videoBuild.createVideo(imagePath, page, basename, scaleX_, scaleY_);
+        component = videoBuild.createVideo(imagePath, page, basename);
     }
     else
     {
-        component = imageBuild.CreateImage(imagePath, page, basename, scaleX_, scaleY_);
+        component = imageBuild.CreateImage(imagePath, page, basename);
     }
 
     return component;

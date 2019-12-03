@@ -28,7 +28,7 @@
 #include <sstream>
 
 
-Page::Page(Configuration &config)
+Page::Page(Configuration &config, float scaleX, float scaleY)
     : config_(config)
     , menuDepth_(0)
     , scrollActive_(false)
@@ -39,6 +39,8 @@ Page::Page(Configuration &config)
     , highlightSoundChunk_(NULL)
     , selectSoundChunk_(NULL)
     , minShowTime_(0)
+    , scaleX_(scaleX)
+    , scaleY_(scaleY)
 {
 }
 
@@ -1545,4 +1547,16 @@ void Page::scroll(bool forward)
 bool Page::hasSubs()
 {
     return collections_.back().collection->hasSubs;
+}
+
+
+float Page::getScaleX()
+{
+    return scaleX_;
+}
+
+
+float Page::getScaleY()
+{
+    return scaleY_;
 }

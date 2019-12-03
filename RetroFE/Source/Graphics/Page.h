@@ -40,7 +40,7 @@ public:
 
     };
 
-    Page(Configuration &c);
+    Page(Configuration &c, float scaleX, float scaleY);
     virtual ~Page();
     void deInitialize();
     virtual void onNewItemSelected();
@@ -98,30 +98,32 @@ public:
     bool isSelectPlaying();
     std::string getCollectionName();
     CollectionInfo *getCollection();
-    void setMinShowTime(float value);
+    void  setMinShowTime(float value);
     float getMinShowTime();
-    void menuScroll();
-    void highlightEnter();
-    void highlightExit();
-    void playlistEnter();
-    void playlistExit();
-    void menuJumpEnter();
-    void menuJumpExit();
-    void attractEnter( );
-    void attract( );
-    void attractExit( );
-    void triggerEvent( std::string action );
-    void setText( std::string text, int id );
-    void addPlaylist();
-    void removePlaylist();
-    void updateLastPlayedPlaylist( Item *item );
-    void reallocateMenuSpritePoints();
-    bool isMenuScrolling();
-    bool isPlaying();
-    void resetScrollPeriod();
-    void updateScrollPeriod();
-    void scroll(bool forward);
-    bool hasSubs();
+    void  menuScroll();
+    void  highlightEnter();
+    void  highlightExit();
+    void  playlistEnter();
+    void  playlistExit();
+    void  menuJumpEnter();
+    void  menuJumpExit();
+    void  attractEnter( );
+    void  attract( );
+    void  attractExit( );
+    void  triggerEvent( std::string action );
+    void  setText( std::string text, int id );
+    void  addPlaylist();
+    void  removePlaylist();
+    void  updateLastPlayedPlaylist( Item *item );
+    void  reallocateMenuSpritePoints();
+    bool  isMenuScrolling();
+    bool  isPlaying();
+    void  resetScrollPeriod();
+    void  updateScrollPeriod();
+    void  scroll(bool forward);
+    bool  hasSubs();
+    float getScaleX();
+    float getScaleY();
 
 private:
     void playlistChange();
@@ -160,6 +162,8 @@ private:
     float minShowTime_;
     float elapsedTime_;
     CollectionInfo::Playlists_T::iterator playlist_;
+    float scaleX_;
+    float scaleY_;
 
 
 };

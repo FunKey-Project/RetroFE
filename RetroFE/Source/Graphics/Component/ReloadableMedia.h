@@ -27,7 +27,7 @@ class Image;
 class ReloadableMedia : public Component
 {
 public:
-    ReloadableMedia(Configuration &config, bool systemMode, bool layoutMode, bool commonMode, bool menuMode, std::string type, Page &page, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY);
+    ReloadableMedia(Configuration &config, bool systemMode, bool layoutMode, bool commonMode, bool menuMode, std::string type, Page &page, int displayOffset, bool isVideo, Font *font);
     virtual ~ReloadableMedia();
     void update(float dt);
     void draw();
@@ -52,8 +52,6 @@ private:
     Font *FfntInst_;
     bool textFallback_;
     std::string type_;
-    float scaleX_;
-    float scaleY_;
     std::string currentCollection_;
     Page *page_;
     int displayOffset_;

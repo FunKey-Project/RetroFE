@@ -29,7 +29,7 @@ class Text : public Component
 {
 
 public:
-    Text( std::string text, Page &p, Font *font, float scaleX, float scaleY );
+    Text( std::string text, Page &p, Font *font );
     virtual ~Text( );
     void     setText( std::string text, int id = -1 );
     void     allocateGraphicsMemory( );
@@ -41,6 +41,4 @@ public:
 private:
     std::string textData_;
     Font       *fontInst_;
-    float       scaleX_;
-    float       scaleY_;
 };
