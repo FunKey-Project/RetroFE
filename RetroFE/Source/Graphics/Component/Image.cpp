@@ -64,8 +64,8 @@ void Image::allocateGraphicsMemory()
         {
             SDL_SetTextureBlendMode(texture_, SDL_BLENDMODE_BLEND);
             SDL_QueryTexture(texture_, NULL, NULL, &width, &height);
-            baseViewInfo.ImageWidth = width;
-            baseViewInfo.ImageHeight = height;
+            baseViewInfo.ImageWidth = (float)width;
+            baseViewInfo.ImageHeight = (float)height;
         }
         SDL_UnlockMutex(SDL::getMutex());
 
