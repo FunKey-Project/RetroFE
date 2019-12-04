@@ -96,25 +96,8 @@ Page *PageBuilder::buildPage( std::string collectionName )
         layoutPath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", collectionName);
         layoutPath = Utils::combinePath(layoutPath, "layout");
     }
-    layoutFile = Utils::combinePath(layoutPath, layoutPage + ".xml");
-    if ( screenWidth_*3/4 == screenHeight_ )
-        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 4x3.xml");
-    else if ( screenWidth_*4/3 == screenHeight_ )
-        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 3x4.xml");
-    else if ( screenWidth_*4/5 == screenHeight_ )
-        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 5x4.xml");
-    else if ( screenWidth_*5/4 == screenHeight_ )
-        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 4x5.xml");
-    else if ( screenWidth_*9/16 == screenHeight_ )
-        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 16x9.xml");
-    else if ( screenWidth_*16/9 == screenHeight_ )
-        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 9x16.xml");
-    else if ( screenWidth_*10/16 == screenHeight_ )
-        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 16x10.xml");
-    else if ( screenWidth_*16/10 == screenHeight_ )
-        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 10x16.xml");
-    else
-        layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + ".xml");
+    layoutFile       = Utils::combinePath(layoutPath, layoutPage + ".xml");
+    layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " " + std::to_string( screenWidth_/std::__gcd( screenWidth_, screenHeight_ ) ) + "x" + std::to_string( screenHeight_/std::__gcd( screenWidth_, screenHeight_ ) ) + ".xml" );
 
     Logger::write(Logger::ZONE_INFO, "Layout", "Initializing " + layoutFileAspect);
 
