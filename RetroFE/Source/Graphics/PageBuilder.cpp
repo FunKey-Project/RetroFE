@@ -97,7 +97,7 @@ Page *PageBuilder::buildPage( std::string collectionName )
         layoutPath = Utils::combinePath(layoutPath, "layout");
     }
     layoutFile       = Utils::combinePath(layoutPath, layoutPage + ".xml");
-    layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " " + std::to_string( screenWidth_/std::__gcd( screenWidth_, screenHeight_ ) ) + "x" + std::to_string( screenHeight_/std::__gcd( screenWidth_, screenHeight_ ) ) + ".xml" );
+    layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " " + std::to_string( screenWidth_/Utils::gcd( screenWidth_, screenHeight_ ) ) + "x" + std::to_string( screenHeight_/Utils::gcd( screenWidth_, screenHeight_ ) ) + ".xml" );
 
     Logger::write(Logger::ZONE_INFO, "Layout", "Initializing " + layoutFileAspect);
 

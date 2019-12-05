@@ -266,3 +266,11 @@ void Utils::listToVector( std::string str, std::vector<std::string> &vec, char d
     }
     vec.push_back( Utils::trimEnds( str.substr( previous, current - previous ) ) );
 }
+
+
+int Utils::gcd( int a, int b )
+{
+    if (b == 0)
+        return a;
+    return gcd( b, a % b );
+}
