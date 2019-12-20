@@ -59,7 +59,7 @@
 #define FUNKEY_ALL_POLLEVENT_DELAY  30 //ms
 //#define PERIOD_FORCE_REFRESH    1000 //ms
 
-#define FPS 30 // TODO: set in conf file
+#define FPS 60 // TODO: set in conf file
 
 //#define DEBUG_FPS
 #ifdef DEBUG_FPS
