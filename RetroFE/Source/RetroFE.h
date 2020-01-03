@@ -97,6 +97,7 @@ private:
 
     void            render( );
     bool            back( bool &exit );
+    void            forceRender( bool render );
     void            quit( );
     Page           *loadPage( );
     Page           *loadSplashPage( );
@@ -121,6 +122,7 @@ private:
     FontCache          fontcache_;
     AttractMode        attract_;
     bool               menuMode_;
+    bool               mustRender_;
 
     std::map<std::string, unsigned int> lastMenuOffsets_;
     std::map<std::string, std::string>  lastMenuPlaylists_;

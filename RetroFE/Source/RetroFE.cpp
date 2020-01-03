@@ -55,10 +55,7 @@
 #include <SDL/SDL_thread.h>
 #endif
 
-#define REMOVE_TEST_FUNKEY
-#define FUNKEY_ALL_POLLEVENT_DELAY  30 //ms
 //#define PERIOD_FORCE_REFRESH    1000 //ms
-
 #define FPS 60 // TODO: set in conf file
 
 //#define DEBUG_FPS
@@ -86,6 +83,7 @@ RetroFE::RetroFE( Configuration &c )
     , keyDelayTime_(.3f)
 {
     menuMode_ = false;
+    mustRender_ = true;
 }
 
 
@@ -130,7 +128,6 @@ void RetroFE::render( )
     }
 #endif //DEBUG_FPS
 
-    //SDL_RenderPresent( SDL::getRenderer( ) );
     //SDL_Flip(SDL::getWindow( ));
     SDL::renderAndFlipWindow();
 
@@ -506,24 +503,17 @@ void RetroFE::run( )
 
         float lastTime = 0;
         float deltaTime = 0;
-        bool must_render = false;
 
         // Exit splash mode when an active key is pressed
         SDL_Event e;
-        if ( splashMode && SDL_PollEvent( &e ) )
+        if ( splashMode )
         {
+	    while ( SDL_PollEvent( &e ) );
+
             if ( input_.update( e ) && input_.keystate(UserInput::KeyCodeSelect) )
             {
                 exitSplashMode = true;
                 while ( SDL_PollEvent( &e ) )
-                {
-#ifndef REMOVE_TEST_FUNKEY
-                    if ( e.type == SDL_JOYDEVICEADDED || e.type == SDL_JOYDEVICEREMOVED )
-                    {
-                        input_.update( e );
-                    }
-#endif
-                }
                 input_.resetStates( );
                 attract_.reset( );
             }
@@ -1021,12 +1011,12 @@ void RetroFE::run( )
             }*/
 
 
-	    /// Launch menu
-	    menuMode_ = true;
-	    printf("Menu launched here\n");
-	    MenuMode::launch();
-	    menuMode_ = false;
-	    must_render = true;
+            /// Launch menu
+            menuMode_ = true;
+            printf("Menu launched here\n");
+            MenuMode::launch();
+            menuMode_ = false;
+            forceRender(true);
 
 	    /// Clear events
 	    SDL_Event ev;
@@ -1094,13 +1084,13 @@ void RetroFE::run( )
 
             // ------- Check if previous update of page needed to be rendered -------
             if(!currentPage_->isIdle( ) || splashMode){
-                must_render = true;
+                forceRender(true);
             }
 
             // Force refresh variables
 #ifdef PERIOD_FORCE_REFRESH
             if(SDL_GetTicks() - ticks_last_refresh > PERIOD_FORCE_REFRESH){
-                must_render = true;
+	        forceRender(true);
                 //printf("force render\n");
             }
 #endif  //PERIOD_FORCE_REFRESH
@@ -1112,7 +1102,7 @@ void RetroFE::run( )
             }
 
             // ------- Real render here -------
-            if(must_render){
+            if(mustRender_){
                 render( );
 #ifdef PERIOD_FORCE_REFRESH
                 ticks_last_refresh = SDL_GetTicks();
@@ -1145,12 +1135,19 @@ bool RetroFE::back(bool &exit)
 }
 
 
+// Force render retroFE
+void RetroFE::forceRender( bool render )
+{
+	mustRender_ = true;
+}
+
+
 // Process the user input
 RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
 {
     bool exit = false;
     RETROFE_STATE state = RETROFE_IDLE;
-
+#if 0
     // Poll all events until we find an active one
     SDL_Event e;
     while ( SDL_PollEvent( &e ) )
@@ -1160,6 +1157,11 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             printf("How dare you interrupt me!\n");
             attract_.reset( );
             state = RETROFE_QUIT_REQUEST;
+
+	    /* Finish polling events */
+	    //SDL_Event e_trash;
+	    //while ( SDL_PollEvent( &e_trash ) );
+
             return state;
         }
 
@@ -1170,10 +1172,32 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
         }*/
         if ( e.type == SDL_KEYDOWN  )
         {
-	    //printf("e.key.keysym.sym = %d\n", e.key.keysym.sym);
+            //printf("e.key.keysym.sym = %d\n", e.key.keysym.sym);
+
+	    /* Finish polling events */
+	    //SDL_Event e_trash;
+	    //while ( SDL_PollEvent( &e_trash ) );
+
             break;
         }
     }
+#endif
+
+    // Poll all events until we find an active one
+    SDL_Event e;
+    while ( SDL_PollEvent( &e ) );
+
+    if ( e.type == SDL_QUIT  )
+    {
+        printf("How dare you interrupt me!\n");
+	attract_.reset( );
+	state = RETROFE_QUIT_REQUEST;
+	return state;
+    }
+
+    input_.update(e);
+
+
 
     // Handle next/previous game inputs
     if ( page->isHorizontalScroll( ) )
@@ -1235,6 +1259,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
         {
             keyLastTime_ = 0;
             keyDelayTime_= 0.3f;
+            forceRender(true);
         }
 
         else if ( (currentTime_ - keyLastTime_) > keyDelayTime_ || keyLastTime_ == 0 )
