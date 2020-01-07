@@ -1103,7 +1103,9 @@ void RetroFE::run( )
 
             // ------- Real render here -------
             if(mustRender_){
-                render( );
+	        //printf("render\n");
+	        mustRender_ = false;
+		render( );
 #ifdef PERIOD_FORCE_REFRESH
                 ticks_last_refresh = SDL_GetTicks();
 #endif  //PERIOD_FORCE_REFRESH
@@ -1259,14 +1261,15 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
         {
             keyLastTime_ = 0;
             keyDelayTime_= 0.3f;
-            forceRender(true);
         }
-
         else if ( (currentTime_ - keyLastTime_) > keyDelayTime_ || keyLastTime_ == 0 )
         {
             keyLastTime_ = currentTime_;
             keyDelayTime_-= .05f;
             if ( keyDelayTime_< 0.1f ) keyDelayTime_= 0.1f;
+
+            // All of these keys will mean new screen update => we must render
+            forceRender(true);
 
             if (input_.keystate(UserInput::KeyCodePageUp))
             {
