@@ -39,6 +39,8 @@ typedef enum {ASPECT_RATIOS} ENUM_ASPECT_RATIOS_TYPES;
 #define SHELL_CMD_VOLUME_SET        "/root/shell_cmds/volume_set.sh"
 #define SHELL_CMD_BRIGHTNESS_GET    "/root/shell_cmds/brightness_get.sh"
 #define SHELL_CMD_BRIGHTNESS_SET    "/root/shell_cmds/brightness_set.sh"
+#define SHELL_CMD_USB_MOUNT		    "share start"
+#define SHELL_CMD_USB_UNMOUNT	    "share stop"
 #define SHELL_CMD_POWERDOWN         "shutdown -h now"
 
 class MenuMode

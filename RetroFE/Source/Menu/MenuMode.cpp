@@ -547,7 +547,7 @@ void MenuMode::menu_screen_refresh(int menuItem, int prevItem, int scroll, uint8
 			SDL_BlitSurface(text_surface, NULL, virtual_hw_screen, &text_pos);
 
 			if(menu_action){
-				sprintf(text_tmp, "%s in progress ...", usb_mounted?"Unmount":"Mount");
+				sprintf(text_tmp, "in progress ...");
 				text_surface = TTF_RenderText_Blended(menu_info_font, text_tmp, text_color);
 				text_pos.x = (virtual_hw_screen->w - MENU_ZONE_WIDTH)/2 + (MENU_ZONE_WIDTH - text_surface->w)/2;
 				text_pos.y = virtual_hw_screen->h - MENU_ZONE_HEIGHT/2 - text_surface->h/2 + 2*padding_y_from_center_menu_zone;
@@ -878,13 +878,20 @@ void MenuMode::launch( )
 							MENU_DEBUG_PRINTF("USB %s\n", usb_mounted?"unmount":"mount");
 							if(menu_confirmation){
 								MENU_DEBUG_PRINTF("%s USB - confirmed\n", usb_mounted?"Unmount":"Mount");
-								/// ----- USB operation here ----
+								/// ----- Refresh screen ----
 								menu_screen_refresh(menuItem, prevItem, scroll, menu_confirmation, 1);
-								/// mounting/unmounting usb here (instead of this commentary)
-								usb_mounted = !usb_mounted;
-								menu_confirmation = 0;
+
+								/// ----- Shell cmd ----
+								fp = popen(usb_mounted?SHELL_CMD_USB_UNMOUNT:SHELL_CMD_USB_MOUNT, "r");
+								if (fp == NULL) {
+									MENU_ERROR_PRINTF("Failed to run command %s\n", shell_cmd);
+								}
+								else{
+									usb_mounted = !usb_mounted;
+								}
 
 								/// ------ Refresh screen ------
+								menu_confirmation = 0;
 								screen_refresh = 1;
 							}
 							else{
