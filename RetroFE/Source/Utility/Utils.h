@@ -44,6 +44,8 @@ public:
     static std::string combinePath(std::string path1, std::string path2, std::string path3, std::string path4);
     static std::string combinePath(std::string path1, std::string path2, std::string path3, std::string path4, std::string path5);
 
+    static bool executeRawPath(const char *shellCmd);
+
     static int termfix(uint32_t ttyId);
     static int getVTid();
    

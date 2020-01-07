@@ -20,6 +20,7 @@
 #include <algorithm>
 #include <sstream>
 #include <fstream>
+#include <cstdlib>
 #include <dirent.h>
 #include <locale>
 #include <list>
@@ -265,6 +266,28 @@ std::string Utils::trimEnds(std::string str)
     }
 
     return str;
+}
+
+bool Utils::executeRawPath(const char *shellCmd)
+{
+    bool retVal = false;
+
+    Logger::write(Logger::ZONE_INFO, "Utils", "Attempting to launch: " + std::string(shellCmd));
+
+    std::string executionString = "exec " + std::string(shellCmd);
+    printf("Running: %s\n", executionString.c_str());
+    if(system(executionString.c_str()) != 0)
+    {
+        Logger::write(Logger::ZONE_ERROR, "Utils", "Failed to run: " + std::string(shellCmd));
+    }
+    else
+    {
+        retVal = true;
+    }
+
+    Logger::write(Logger::ZONE_INFO, "Utils", "Completed");
+
+    return retVal;
 }
 
 int Utils::termfix(uint32_t ttyId){

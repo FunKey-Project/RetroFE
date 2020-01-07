@@ -1,4 +1,5 @@
 #include "MenuMode.h"
+#include "../Utility/Utils.h"
 #include <iostream>
 #include "../SDL.h"
 
@@ -882,8 +883,16 @@ void MenuMode::launch( )
 								menu_screen_refresh(menuItem, prevItem, scroll, menu_confirmation, 1);
 
 								/// ----- Shell cmd ----
-								fp = popen(usb_mounted?SHELL_CMD_USB_UNMOUNT:SHELL_CMD_USB_MOUNT, "r");
+								/*fp = popen(usb_mounted?SHELL_CMD_USB_UNMOUNT:SHELL_CMD_USB_MOUNT, "r");
 								if (fp == NULL) {
+									MENU_ERROR_PRINTF("Failed to run command %s\n", shell_cmd);
+								}
+								else{
+									usb_mounted = !usb_mounted;
+								}*/
+
+								bool res = Utils::executeRawPath(usb_mounted?SHELL_CMD_USB_UNMOUNT:SHELL_CMD_USB_MOUNT);
+								if (!res) {
 									MENU_ERROR_PRINTF("Failed to run command %s\n", shell_cmd);
 								}
 								else{
