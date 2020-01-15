@@ -10,3 +10,5 @@ Documentation/Manual/_build/*
 Configuration/Configuration/bin/**
 Configuration/Configuration/obj/**
 Artifacts/**
+Artifacts
+
