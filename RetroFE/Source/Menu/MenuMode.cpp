@@ -154,15 +154,19 @@ void MenuMode::end( )
 			SDL_FreeSurface(menu_zone_surfaces[i]);
 		}
 	}
-	free(idx_menus);
-	nb_menu_zones = 0;
-
 	if(backup_hw_screen != NULL){
 		SDL_FreeSurface(backup_hw_screen);
 	}
 
 	SDL_FreeSurface(img_arrow_top);
 	SDL_FreeSurface(img_arrow_bottom);
+
+	/// ------ Free Menu memory and reset vars -----
+	if(idx_menus){
+		free(idx_menus);
+	}
+	idx_menus=NULL;
+	nb_menu_zones = 0;
 
 	return;
 }
