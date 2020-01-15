@@ -154,7 +154,7 @@ void MenuMode::end( )
 			SDL_FreeSurface(menu_zone_surfaces[i]);
 		}
 	}
-	idx_menus = NULL;
+	free(idx_menus);
 	nb_menu_zones = 0;
 
 	if(backup_hw_screen != NULL){
