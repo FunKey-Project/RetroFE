@@ -1346,6 +1346,8 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             !input_.keystate(UserInput::KeyCodeNextPlaylist) &&
             !input_.keystate(UserInput::KeyCodePrevPlaylist) &&
             !input_.keystate(UserInput::KeyCodeCyclePlaylist) &&
+            !input_.keystate(UserInput::KeyCodeNextCyclePlaylist) &&
+            !input_.keystate(UserInput::KeyCodePrevCyclePlaylist) &&
             !input_.keystate(UserInput::KeyCodeAddPlaylist) &&
             !input_.keystate(UserInput::KeyCodeRemovePlaylist) &&
             !input_.keystate(UserInput::KeyCodeRandom) &&
@@ -1413,14 +1415,25 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
                 page->prevPlaylist( );
                 state = RETROFE_PLAYLIST_REQUEST;
             }
-            if ( input_.keystate(UserInput::KeyCodeCyclePlaylist) )
+            if ( input_.keystate(UserInput::KeyCodeCyclePlaylist) ||
+                 input_.keystate(UserInput::KeyCodeNextCyclePlaylist) )
             {
                 attract_.reset( );
                 std::string cycleString;
                 config_.getProperty( "cyclePlaylist", cycleString );
                 std::vector<std::string> cycleVector;
                 Utils::listToVector( cycleString, cycleVector, ',' );
-                page->cyclePlaylist( cycleVector );
+                page->nextCyclePlaylist( cycleVector );
+                state = RETROFE_PLAYLIST_REQUEST;
+            }
+            if ( input_.keystate(UserInput::KeyCodePrevCyclePlaylist) )
+            {
+                attract_.reset( );
+                std::string cycleString;
+                config_.getProperty( "cyclePlaylist", cycleString );
+                std::vector<std::string> cycleVector;
+                Utils::listToVector( cycleString, cycleVector, ',' );
+                page->prevCyclePlaylist( cycleVector );
                 state = RETROFE_PLAYLIST_REQUEST;
             }
             if ( input_.newKeyPressed(UserInput::KeyCodeRemovePlaylist) )

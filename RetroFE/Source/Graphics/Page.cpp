@@ -1193,7 +1193,7 @@ void Page::selectPlaylist(std::string playlist)
 }
 
 
-void Page::cyclePlaylist(std::vector<std::string> list)
+void Page::nextCyclePlaylist(std::vector<std::string> list)
 {
 
     // Empty list
@@ -1222,6 +1222,44 @@ void Page::cyclePlaylist(std::vector<std::string> list)
         {
             ++it;
             if (it == list.end()) it = list.begin(); // wrap
+            selectPlaylist( *it );
+            if (*it == getPlaylistName())
+                break;
+        }
+    }
+    
+}
+
+
+void Page::prevCyclePlaylist(std::vector<std::string> list)
+{
+
+    // Empty list
+    if (list.size() == 0)
+        return;
+
+    // Find the current playlist in the list
+    std::vector<std::string>::iterator it = list.begin();
+    while (*it != getPlaylistName() && it != list.end())
+        ++it;
+
+    // If current playlist not found, switch to the last found cycle playlist in the playlist list
+    if (it == list.end())
+    {
+        for (std::vector<std::string>::iterator it2 = list.end(); it2 != list.begin(); --it2)
+        {
+            selectPlaylist( *it2 );
+            if (*it2 == getPlaylistName())
+                break;
+        }
+    }
+    // Current playlist found; switch to the previous found playlist in the list
+    else
+    {
+        for(;;)
+        {
+            --it;
+            if (it == list.begin()) it = list.end(); // wrap
             selectPlaylist( *it );
             if (*it == getPlaylistName())
                 break;
