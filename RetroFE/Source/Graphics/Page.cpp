@@ -1243,10 +1243,10 @@ void Page::prevCyclePlaylist(std::vector<std::string> list)
     while (*it != getPlaylistName() && it != list.end())
         ++it;
 
-    // If current playlist not found, switch to the last found cycle playlist in the playlist list
+    // If current playlist not found, switch to the first found cycle playlist in the playlist list
     if (it == list.end())
     {
-        for (std::vector<std::string>::iterator it2 = list.end(); it2 != list.begin(); --it2)
+        for (std::vector<std::string>::iterator it2 = list.begin(); it2 != list.end(); ++it2)
         {
             selectPlaylist( *it2 );
             if (*it2 == getPlaylistName())
@@ -1258,8 +1258,8 @@ void Page::prevCyclePlaylist(std::vector<std::string> list)
     {
         for(;;)
         {
-            --it;
             if (it == list.begin()) it = list.end(); // wrap
+            --it;
             selectPlaylist( *it );
             if (*it == getPlaylistName())
                 break;
