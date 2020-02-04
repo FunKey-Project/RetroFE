@@ -449,9 +449,10 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
 {
 
     DIR                               *dp;
-    struct dirent                     *dirp;
+    struct dirent                     **dirp;
     std::vector<std::string>           extensions;
     std::vector<std::string>::iterator extensionsIt;
+    int n;
 
     info->extensionList(extensions);
 
@@ -464,9 +465,12 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
         return;
     }
 
-    while(dp != NULL && (dirp = readdir(dp)) != NULL)
+    printf("ImportRomDirectory\n");
+    n = scandir(path.c_str(), &dirp, NULL, alphasort);
+
+    while(dp != NULL && n-- > 0)
     {
-        std::string file = dirp->d_name;
+        std::string file = dirp[n]->d_name;
 
         // Check if the file is a directory or a file
         struct stat sb;
@@ -478,6 +482,8 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
         {
             size_t position = file.find_last_of(".");
             std::string basename = (std::string::npos == position)? file : file.substr(0, position);
+
+            printf("	File: %s, basename :%s\n", file.c_str(), basename.c_str());
         
             // if there is an include list, only include roms that are found and are in the include list
             // if there is an exclude list, exclude those roms

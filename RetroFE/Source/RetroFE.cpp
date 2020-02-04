@@ -705,9 +705,7 @@ void RetroFE::run( )
                 }
 
                 currentPage_->onNewItemSelected( );
-                printf("\nbefore currentPage_->reallocateMenuSpritePoints()\n");
                 currentPage_->reallocateMenuSpritePoints( );
-                printf("after currentPage_->reallocateMenuSpritePoints()\n\n");
 
                 state = RETROFE_NEXT_PAGE_MENU_LOAD_ART;
 
