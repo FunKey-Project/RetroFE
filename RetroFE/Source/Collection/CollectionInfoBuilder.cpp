@@ -287,10 +287,12 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
     bool showMissing  = false; 
     bool romHierarchy = false;
     bool truRIP       = false;
+
+    /* Clear Item list */
+    //info->items.clear();
  
     if (mergedCollectionName != "")
     {
-        
         std::string mergedFile = Utils::combinePath(Configuration::absolutePath, "collections", mergedCollectionName, info->name + ".sub");
         Logger::write(Logger::ZONE_INFO, "CollectionInfoBuilder", "Checking for \"" + mergedFile + "\"");
         (void)conf_.getProperty("collections." + mergedCollectionName + ".list.includeMissingItems", showMissing);

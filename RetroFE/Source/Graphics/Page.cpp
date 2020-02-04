@@ -806,7 +806,6 @@ bool Page::popCollection()
 
 void Page::enterMenu()
 {
-
     for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
         for(std::vector<ScrollingList *>::iterator it2 = menus_[std::distance(menus_.begin(), it)].begin(); it2 != menus_[std::distance(menus_.begin(), it)].end(); it2++)

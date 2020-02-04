@@ -313,118 +313,6 @@ bool RetroFE::deInitialize( )
     return retVal;
 }
 
-// Print State
-void RetroFE::printState(RETROFE_STATE state){
-    switch(state){
-    case RETROFE_IDLE:
-        printf("RETROFE_IDLE");
-        break;
-    case RETROFE_LOAD_ART:
-        printf("RETROFE_LOAD_ART");
-        break;
-    case RETROFE_ENTER:
-        printf("RETROFE_ENTER");
-        break;
-    case RETROFE_SPLASH_EXIT:
-        printf("RETROFE_SPLASH_EXIT");
-        break;
-    case RETROFE_PLAYLIST_REQUEST:
-        printf("RETROFE_PLAYLIST_REQUEST");
-        break;
-    case RETROFE_PLAYLIST_EXIT:
-        printf("RETROFE_PLAYLIST_EXIT");
-        break;
-    case RETROFE_PLAYLIST_LOAD_ART:
-        printf("RETROFE_PLAYLIST_LOAD_ART");
-        break;
-    case RETROFE_PLAYLIST_ENTER:
-        printf("RETROFE_PLAYLIST_ENTER");
-        break;
-    case RETROFE_MENUJUMP_REQUEST:
-        printf("RETROFE_MENUJUMP_REQUEST");
-        break;
-    case RETROFE_MENUJUMP_EXIT:
-        printf("RETROFE_MENUJUMP_EXIT");
-        break;
-    case RETROFE_MENUJUMP_LOAD_ART:
-        printf("RETROFE_MENUJUMP_LOAD_ART");
-        break;
-    case RETROFE_MENUJUMP_ENTER:
-        printf("RETROFE_MENUJUMP_ENTER");
-        break;
-    case RETROFE_HIGHLIGHT_REQUEST:
-        printf("RETROFE_HIGHLIGHT_REQUEST");
-        break;
-    case RETROFE_HIGHLIGHT_EXIT:
-        printf("RETROFE_HIGHLIGHT_EXIT");
-        break;
-    case RETROFE_HIGHLIGHT_LOAD_ART:
-        printf("RETROFE_HIGHLIGHT_LOAD_ART");
-        break;
-    case RETROFE_HIGHLIGHT_ENTER:
-        printf("RETROFE_HIGHLIGHT_ENTER");
-        break;
-    case RETROFE_NEXT_PAGE_REQUEST:
-        printf("RETROFE_NEXT_PAGE_REQUEST");
-        break;
-    case RETROFE_NEXT_PAGE_MENU_EXIT:
-        printf("RETROFE_NEXT_PAGE_MENU_EXIT");
-        break;
-    case RETROFE_NEXT_PAGE_MENU_LOAD_ART:
-        printf("RETROFE_NEXT_PAGE_MENU_LOAD_ART");
-        break;
-    case RETROFE_NEXT_PAGE_MENU_ENTER:
-        printf("RETROFE_NEXT_PAGE_MENU_ENTER");
-        break;
-    case RETROFE_HANDLE_MENUENTRY:
-        printf("RETROFE_HANDLE_MENUENTRY");
-        break;
-    case RETROFE_LAUNCH_ENTER:
-        printf("RETROFE_LAUNCH_ENTER");
-        break;
-    case RETROFE_LAUNCH_REQUEST:
-        printf("RETROFE_LAUNCH_REQUEST");
-        break;
-    case RETROFE_LAUNCH_EXIT:
-        printf("RETROFE_LAUNCH_EXIT");
-        break;
-    case RETROFE_BACK_REQUEST:
-        printf("RETROFE_BACK_REQUEST");
-        break;
-    case RETROFE_BACK_MENU_EXIT:
-        printf("RETROFE_BACK_MENU_EXIT");
-        break;
-    case RETROFE_BACK_MENU_LOAD_ART:
-        printf("RETROFE_BACK_MENU_LOAD_ART");
-        break;
-    case RETROFE_BACK_MENU_ENTER:
-        printf("RETROFE_BACK_MENU_ENTER");
-        break;
-    case RETROFE_MENUMODE_START_REQUEST:
-        printf("RETROFE_MENUMODE_START_REQUEST");
-        break;
-    case RETROFE_MENUMODE_START_LOAD_ART:
-        printf("RETROFE_MENUMODE_START_LOAD_ART");
-        break;
-    case RETROFE_MENUMODE_START_ENTER:
-        printf("RETROFE_MENUMODE_START_ENTER");
-        break;
-    case RETROFE_NEW:
-        printf("RETROFE_NEW");
-        break;
-    case RETROFE_QUIT_REQUEST:
-        printf("RETROFE_QUIT_REQUEST");
-        break;
-    case RETROFE_QUIT:
-        printf("RETROFE_QUIT");
-        break;
-    default:
-        printf("STATE UNDEFINED:%d", state);
-        break;
-    }
-    printf("\n");
-}
-
 
 // Run RetroFE
 void RetroFE::run( )
@@ -479,6 +367,7 @@ void RetroFE::run( )
     bool running = true;
     bool initInBackground = false;
     config_.getProperty( "initInBackground", initInBackground );
+
     RETROFE_STATE state = RETROFE_NEW;
 
     config_.getProperty( "attractModeTime", attractModeTime );
@@ -526,9 +415,19 @@ void RetroFE::run( )
             break;
         }
 
-        // Uncomment to print State for debug purposes
-        //printState(state);
+        // Print state for debug purposes
+#if 0
+        static RETROFE_STATE prev_state = state;
+#undef X
+#define X(a, b) b,
+	static const char *retrofe_states_str[] = {RETROFE_STATES};
+        if(prev_state != state){
+	    printf("RetroFE new state: %s\n", retrofe_states_str[state]);
+	    prev_state = state;
+        }
+#endif
 
+        // Main state machine
         switch(state)
         {
 
@@ -694,6 +593,7 @@ void RetroFE::run( )
             {
                 currentPage_->reallocateMenuSpritePoints( );
                 currentPage_->menuJumpEnter( );
+                forceRender(true);
                 state = RETROFE_MENUJUMP_ENTER;
             }
             break;
@@ -805,7 +705,9 @@ void RetroFE::run( )
                 }
 
                 currentPage_->onNewItemSelected( );
+                printf("\nbefore currentPage_->reallocateMenuSpritePoints()\n");
                 currentPage_->reallocateMenuSpritePoints( );
+                printf("after currentPage_->reallocateMenuSpritePoints()\n\n");
 
                 state = RETROFE_NEXT_PAGE_MENU_LOAD_ART;
 
@@ -1060,6 +962,14 @@ void RetroFE::run( )
             {
               running = false;
             }
+            break;
+
+        // Unknown state
+        default:
+	    std::stringstream ss;
+	    ss << "Wrong state: " << state;
+	    Logger::write( Logger::ZONE_ERROR, "RetroFE", "Wrong state: " + ss.str() );
+	    state = RETROFE_IDLE;
             break;
         }
 

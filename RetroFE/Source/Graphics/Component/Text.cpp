@@ -35,11 +35,13 @@ Text::Text( std::string text, Page &p, Font *font, float scaleX, float scaleY )
 Text::~Text( )
 {
     freeGraphicsMemory( );
+    textData_.clear();
 }
 
 void Text::freeGraphicsMemory( )
 {
     Component::freeGraphicsMemory( );
+    textData_.clear();
 }
 
 void Text::allocateGraphicsMemory( )

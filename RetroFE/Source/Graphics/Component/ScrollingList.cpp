@@ -152,6 +152,7 @@ void ScrollingList::deallocateSpritePoints( )
 
 void ScrollingList::allocateSpritePoints( )
 {
+
     if ( !items_ || items_->size( ) == 0 ) return;
     if ( !scrollPoints_ ) return;
     if ( components_.size( ) == 0 ) return;
@@ -611,6 +612,7 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
 
     for ( unsigned int n = 0; n < names.size() && !t; ++n )
     {
+
         // check collection path for art
         if ( layoutMode_ )
         {
