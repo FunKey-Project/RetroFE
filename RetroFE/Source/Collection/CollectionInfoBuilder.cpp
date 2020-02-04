@@ -372,8 +372,9 @@ bool CollectionInfoBuilder::ImportDirectory(CollectionInfo *info, std::string me
 
 void CollectionInfoBuilder::addPlaylists(CollectionInfo *info)
 {
-    DIR *dp;
-    struct dirent *dirp;
+	DIR *dp;
+    struct dirent **dirp;
+    int n;
     std::string path = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "playlists");
     dp = opendir(path.c_str());
 
@@ -383,9 +384,11 @@ void CollectionInfoBuilder::addPlaylists(CollectionInfo *info)
         return;
     }
 
-    while((dirp = readdir(dp)) != NULL)
+    n = scandir(path.c_str(), &dirp, NULL, alphasort);
+
+    while(n-- > 0)
     {
-        std::string file = dirp->d_name;
+        std::string file = dirp[n]->d_name;
 
         size_t position = file.find_last_of(".");
         std::string basename = (std::string::npos == position)? file : file.substr(0, position);
@@ -450,9 +453,10 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
 
     DIR                               *dp;
     struct dirent                     **dirp;
+    int n;
     std::vector<std::string>           extensions;
     std::vector<std::string>::iterator extensionsIt;
-    int n;
+    std::string previous_basename;
 
     info->extensionList(extensions);
 
@@ -465,7 +469,6 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
         return;
     }
 
-    printf("ImportRomDirectory\n");
     n = scandir(path.c_str(), &dirp, NULL, alphasort);
 
     while(dp != NULL && n-- > 0)
@@ -482,8 +485,6 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
         {
             size_t position = file.find_last_of(".");
             std::string basename = (std::string::npos == position)? file : file.substr(0, position);
-
-            printf("	File: %s, basename :%s\n", file.c_str(), basename.c_str());
         
             // if there is an include list, only include roms that are found and are in the include list
             // if there is an exclude list, exclude those roms
@@ -498,8 +499,11 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
 
                     if (start >= 0)
                     {
-                        if (file.compare(start, comparator.length(), *extensionsIt) == 0)
+                        if (file.compare(start, comparator.length(), *extensionsIt) == 0 &&
+			    basename.compare(previous_basename) != 0)
                         {
+			    previous_basename = basename;
+
                             Item *i = new Item();
 
                             i->name           = basename;
