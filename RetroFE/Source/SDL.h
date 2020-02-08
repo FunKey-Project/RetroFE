@@ -39,6 +39,7 @@ public:
     static SDL_Surface *getWindow( );
     static void renderAndFlipWindow( );
     //static bool renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo );
+    static SDL_Surface * zoomSurface(SDL_Surface *surface_ptr, SDL_Rect *src_rect_origin, SDL_Rect *dst_rect);
     static bool renderCopy( SDL_Surface *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo );
     static int getWindowWidth( )
     {
@@ -59,7 +60,6 @@ private:
     //static SDL_Renderer *renderer_;
     static Uint32 get_pixel32( SDL_Surface *surface, int x, int y );
     static void put_pixel32( SDL_Surface *surface, int x, int y, Uint32 pixel );
-    static SDL_Surface * zoomSurface(SDL_Surface *surface_ptr, SDL_Rect *src_rect, SDL_Rect *dst_rect);
     static SDL_Surface * flip_surface( SDL_Surface *surface, int flags );
     static SDL_Surface  *window_;
     static SDL_Surface 	*window_virtual_;

@@ -29,8 +29,8 @@ public:
     void draw();
 
 protected:
-    //SDL_Texture *texture_;
     SDL_Surface *texture_;
+    SDL_Surface *texture_prescaled_;
     std::string file_;
     std::string altFile_;
     float scaleX_;

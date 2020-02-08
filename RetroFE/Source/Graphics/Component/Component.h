@@ -67,8 +67,7 @@ private:
 
     AnimationEvents *tweens_;
     Animation *currentTweens_;
-    //SDL_Texture *backgroundTexture_;
-    SDL_Surface *backgroundTexture_;
+    //SDL_Surface *backgroundTexture_;
 
     ViewInfo     storeViewInfo_;
     unsigned int currentTweenIndex_;

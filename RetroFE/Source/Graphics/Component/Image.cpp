@@ -22,6 +22,7 @@
 Image::Image(std::string file, std::string altFile, Page &p, float scaleX, float scaleY)
     : Component(p)
     , texture_(NULL)
+    , texture_prescaled_(NULL)
     , file_(file)
     , altFile_(altFile)
     , scaleX_(scaleX)
@@ -42,9 +43,13 @@ void Image::freeGraphicsMemory()
     SDL_LockMutex(SDL::getMutex());
     if (texture_ != NULL)
     {
-        //SDL_DestroyTexture(texture_);
-	SDL_FreeSurface(texture_);
+        SDL_FreeSurface(texture_);
         texture_ = NULL;
+    }
+    if (texture_prescaled_ != NULL)
+    {
+        SDL_FreeSurface(texture_prescaled_);
+	texture_prescaled_ = NULL;
     }
     SDL_UnlockMutex(SDL::getMutex());
 }
@@ -59,20 +64,20 @@ void Image::allocateGraphicsMemory()
         SDL_LockMutex(SDL::getMutex());
 
         /* Load image */
-        //texture_ = IMG_LoadTexture(SDL::getRenderer(), file_.c_str());
-        //texture_ = IMG_Load(file_.c_str());
         SDL_Surface *img_tmp = NULL;
+        //printf("Loading image: %s\n", file_.c_str());
         img_tmp = IMG_Load(file_.c_str());
         if (!img_tmp && altFile_ != "")
         {
-            //texture_ = IMG_LoadTexture(SDL::getRenderer(), altFile_.c_str());
+	    //printf("	Failed-> Loading backup image: %s\n", altFile_.c_str());
 	    img_tmp = IMG_Load(altFile_.c_str());
         }
+
 
         if (img_tmp != NULL)
         {
 
-            /* Convert to RGB 32bit if necessary */
+	    /* Convert to RGB 32bit if necessary */
 	    if(img_tmp->format->BitsPerPixel != 32){
 	        texture_ = SDL_CreateRGBSurface(0, img_tmp->w, img_tmp->h, 32, 0, 0, 0, 0);
 		SDL_BlitSurface(img_tmp, NULL, texture_, NULL);
@@ -88,12 +93,8 @@ void Image::allocateGraphicsMemory()
 	    /* Set real dimensions */
 	    if (texture_ != NULL)
 	    {
-	        //SDL_SetTextureBlendMode(texture_, SDL_BLENDMODE_BLEND);
-	        /*SDL_QueryTexture(texture_, NULL, NULL, &width, &height);
-		  baseViewInfo.ImageWidth = width * scaleX_;
-		  baseViewInfo.ImageHeight = height * scaleY_;*/
-	      baseViewInfo.ImageWidth = texture_->w * scaleX_;
-	      baseViewInfo.ImageHeight = texture_->h * scaleY_;
+	        baseViewInfo.ImageWidth = texture_->w * scaleX_;
+		baseViewInfo.ImageHeight = texture_->h * scaleY_;
 	    }
         }
         SDL_UnlockMutex(SDL::getMutex());
@@ -107,17 +108,42 @@ void Image::allocateGraphicsMemory()
 
 void Image::draw()
 {
+	bool scaling_needed = false;
+	bool cache_scaling_needed = false;
+	bool use_prescaled = false;
+
     Component::draw();
 
     if(texture_)
     {
         SDL_Rect rect;
-
         rect.x = static_cast<int>(baseViewInfo.XRelativeToOrigin());
         rect.y = static_cast<int>(baseViewInfo.YRelativeToOrigin());
         rect.h = static_cast<int>(baseViewInfo.ScaledHeight());
         rect.w = static_cast<int>(baseViewInfo.ScaledWidth());
 
-        SDL::renderCopy(texture_, baseViewInfo.Alpha, NULL, &rect, baseViewInfo);
+		/* Cache scaling */
+		scaling_needed = rect.w!=0 && rect.h!=0 && (texture_->w != rect.w || texture_->h != rect.h);
+		if(scaling_needed){
+			cache_scaling_needed = (texture_prescaled_ == NULL)?true:(texture_prescaled_->w != rect.w || texture_prescaled_->h != rect.h);
+			if(cache_scaling_needed){
+				texture_prescaled_ = SDL::zoomSurface(texture_, NULL, &rect);
+				if(texture_prescaled_ == NULL){
+					printf("ERROR in %s - Could not create texture_prescaled_\n", __func__);
+					use_prescaled = false;
+				}
+			}
+
+			if(texture_prescaled_ != NULL){
+				use_prescaled = true;
+			}
+		}
+
+		if(use_prescaled && texture_prescaled_ != NULL){
+			SDL::renderCopy(texture_prescaled_, baseViewInfo.Alpha, NULL, &rect, baseViewInfo);
+		}
+		else{
+			SDL::renderCopy(texture_, baseViewInfo.Alpha, NULL, &rect, baseViewInfo);
+		}
     }
 }

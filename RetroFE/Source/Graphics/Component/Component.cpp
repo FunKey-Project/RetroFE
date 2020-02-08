@@ -24,7 +24,7 @@ Component::Component(Page &p)
 : page(p)
 {
     tweens_                   = NULL;
-    backgroundTexture_        = NULL;
+    //backgroundTexture_        = NULL;
     menuScrollReload_         = false;
     freeGraphicsMemory();
     id_                       = -1;
@@ -34,7 +34,7 @@ Component::Component(const Component &copy)
     : page(copy.page)
 {
     tweens_ = NULL;
-    backgroundTexture_ = NULL;
+    //backgroundTexture_ = NULL;
     freeGraphicsMemory();
 
     if ( copy.tweens_ )
@@ -65,7 +65,7 @@ void Component::freeGraphicsMemory()
     currentTweenComplete_ = true;
     elapsedTweenTime_     = 0;
 
-    if ( backgroundTexture_ )
+    /*if ( backgroundTexture_ )
     {
         SDL_LockMutex(SDL::getMutex());
         //SDL_DestroyTexture(backgroundTexture_);
@@ -73,14 +73,16 @@ void Component::freeGraphicsMemory()
         SDL_UnlockMutex(SDL::getMutex());
 
         backgroundTexture_ = NULL;
-    }
+    }*/
 }
 void Component::allocateGraphicsMemory()
 {
+#if 0
     if ( !backgroundTexture_ )
     {
-        // make a 4x4 pixel wide surface to be stretched during rendering, make it a white background so we can use
-        // color  later
+        // make a 4x4 pixel wide surface to be stretched during rendering,
+        // make it a white background so we can use color later
+
         /*SDL_Surface *surface = SDL_CreateRGBSurface(0, 4, 4, 32, 0, 0, 0, 0);
         SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 255, 255, 255));
 
@@ -96,6 +98,7 @@ void Component::allocateGraphicsMemory()
 	SDL_FillRect(backgroundTexture_, NULL, SDL_MapRGB(backgroundTexture_->format, 255, 255, 255));
 	SDL_UnlockMutex(SDL::getMutex());
     }
+#endif
 }
 
 
@@ -215,6 +218,7 @@ void Component::update(float dt)
 void Component::draw()
 {
 
+#if 0
     if ( backgroundTexture_ )
     {
         SDL_Rect rect;
@@ -230,8 +234,9 @@ void Component::draw()
                                static_cast<char>(baseViewInfo.BackgroundBlue*255));*/
 
         /* For now, no blit, not sure what this surface is good for */
-        //SDL::renderCopy(backgroundTexture_, baseViewInfo.BackgroundAlpha, NULL, &rect, baseViewInfo);
+        SDL::renderCopy(backgroundTexture_, baseViewInfo.BackgroundAlpha, NULL, &rect, baseViewInfo);
     }
+#endif
 }
 
 bool Component::animate()

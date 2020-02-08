@@ -502,7 +502,7 @@ void NNOptimized(SDL_Surface *src_surface, SDL_Surface *dst_surface, int new_w, 
 
 #if 1
 /// Nearest neighboor optimized with possible out of screen coordinates (for cropping)
-SDL_Surface * SDL::zoomSurface(SDL_Surface *src_surface, SDL_Rect *src_rect, SDL_Rect *dst_rect){
+SDL_Surface * SDL::zoomSurface(SDL_Surface *src_surface, SDL_Rect *src_rect_origin, SDL_Rect *dst_rect){
 
 	/* Declare vars */
 	int x_ratio;
@@ -510,34 +510,40 @@ SDL_Surface * SDL::zoomSurface(SDL_Surface *src_surface, SDL_Rect *src_rect, SDL
 	int x2, y2;
 	int i, j;
 	int rat;
+	SDL_Rect srcRect;
 
 	/* Sanity checks */
-	if( src_surface == NULL || dst_rect == NULL || src_rect == NULL){
+	if(dst_rect == NULL || src_surface == NULL){
 		printf("ERROR in %s, sanity check\n", __func__);
 		return NULL;
 	}
-	if( dst_rect->w > windowWidth_){
-		printf("ERROR dst_rect->w (%d) > windowWidth_(%d) \n", dst_rect->w, windowWidth_);
-		dst_rect->w = windowWidth_;
+	/* Sanity checks */
+	if( src_rect_origin == NULL){
+	    srcRect.x = 0;
+	    srcRect.y = 0;
+	    srcRect.w = src_surface->w;
+	    srcRect.h = src_surface->h;
 	}
-	if( dst_rect->h > windowHeight_){
-		printf("ERROR dst_rect->h (%d) > windowHeight_(%d) \n", dst_rect->h, windowHeight_);
-		dst_rect->h = windowHeight_;
+	else{
+	    srcRect.x = src_rect_origin->x;
+	    srcRect.y = src_rect_origin->y;
+	    srcRect.w = src_rect_origin->w;
+	    srcRect.h = src_rect_origin->h;
 	}
-	if( src_rect->w > src_surface->w){
-		printf("ERROR src_rect->w (%d) > src_surface->w(%d) \n", src_rect->w, src_surface->w);
-		src_rect->w = src_surface->w;
+	if( srcRect.w > src_surface->w){
+		printf("ERROR src_rect->w (%d) > src_surface->w(%d) \n", srcRect.w, src_surface->w);
+		srcRect.w = src_surface->w;
 	}
-	if( src_rect->h > src_surface->h){
-		printf("ERROR src_rect->h (%d) > src_surface->h(%d) \n", src_rect->h, src_surface->h);
-		src_rect->h = src_surface->h;
+	if( srcRect.h > src_surface->h){
+		printf("ERROR src_rect->h (%d) > src_surface->h(%d) \n", srcRect.h, src_surface->h);
+		srcRect.h = src_surface->h;
 	}
-	if( src_rect->x > src_surface->w){
-		printf("ERROR src_rect->x(%d) > src_rect->w(%d) \n", src_rect->x, src_rect->w);
+	if( srcRect.x > src_surface->w){
+		printf("ERROR src_rect->x(%d) > src_rect->w(%d) \n", srcRect.x, srcRect.w);
 		return NULL;
 	}
-	if( src_rect->y > src_surface->h){
-		printf("ERROR src_rect->y (%d) > src_rect->h(%d) \n", src_rect->y, src_rect->h);
+	if( srcRect.y > src_surface->h){
+		printf("ERROR src_rect->y (%d) > src_rect->h(%d) \n", srcRect.y, srcRect.h);
 		return NULL;
 	}
 
@@ -545,8 +551,8 @@ SDL_Surface * SDL::zoomSurface(SDL_Surface *src_surface, SDL_Rect *src_rect, SDL
 			src_surface->w, src_surface->h, src_surface->format->BytesPerPixel, src_rect->x, src_rect->y, src_rect->w, src_rect->h, dst_rect->x, dst_rect->y, dst_rect->w, dst_rect->h);*/
 
 	/* Compute zoom ratio */
-	x_ratio = (int)((src_rect->w <<16) / dst_rect->w);
-	y_ratio = (int)((src_rect->h <<16) / dst_rect->h);
+	x_ratio = (int)((srcRect.w <<16) / dst_rect->w);
+	y_ratio = (int)((srcRect.h <<16) / dst_rect->h);
 
 	/* Create new output surface */
 	SDL_Surface *dst_surface = SDL_CreateRGBSurface(src_surface->flags,
@@ -565,8 +571,8 @@ SDL_Surface * SDL::zoomSurface(SDL_Surface *src_surface, SDL_Rect *src_rect, SDL
 			/* Get current lines in src and dst surfaces */
 			uint8_t* t = ( (uint8_t*) dst_surface->pixels + (i*dst_surface->w)*dst_surface->format->BytesPerPixel );
 			y2 = ((i*y_ratio)>>16);
-			uint8_t* p = ( (uint8_t*) src_surface->pixels + ((y2+src_rect->y)*src_surface->w)*src_surface->format->BytesPerPixel );
-			rat =  src_rect->x << 16;
+			uint8_t* p = ( (uint8_t*) src_surface->pixels + ((y2+srcRect.y)*src_surface->w)*src_surface->format->BytesPerPixel );
+			rat =  srcRect.x << 16;
 
 			/* Lines iterations */
 			for (j = 0; j < dst_surface->w; j++)
@@ -634,11 +640,6 @@ bool SDL::renderCopy( SDL_Surface *texture, float alpha, SDL_Rect *src, SDL_Rect
     {
         srcRect.x = 0;
         srcRect.y = 0;
-        /*int w = 0;
-        int h = 0;
-        SDL_QueryTexture(texture, NULL, NULL, &w, &h);
-        srcRect.w = w;
-        srcRect.h = h;*/
         srcRect.w = texture->w;
         srcRect.h = texture->h;
     }
@@ -701,14 +702,8 @@ bool SDL::renderCopy( SDL_Surface *texture, float alpha, SDL_Rect *src, SDL_Rect
     }
 
     /* Scaling */
-    //printf("scaleX : %d, scale Y:%d\n", scaleX, scaleY);
-    //SDL_SetTextureAlphaMod( texture, static_cast<char>( alpha * 255 ) );
-    //SDL_RenderCopyEx( getRenderer( ), texture, &srcRect, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_NONE );
-    //texture = rotozoomSurfaceXY(texture, viewInfo.Angle, scaleX, scaleY, SMOOTHING_OFF);
-	/*printf("AFTER viewinfo remaniement -> srcRectCopy->w = %d, srcRectCopy->h = %d, dstRectCopy->w = %d, dstRectCopy->h = %d, viewInfo->ContainerWidth = %f, viewInfo->ContainerHeight = %f\n",
-			srcRectCopy.w, srcRectCopy.h, dstRectCopy.w, dstRectCopy.h, viewInfo.ContainerWidth, viewInfo.ContainerHeight);
-	printf("AFTER viewinfo remaniement -> srcRect->w = %d, srcRect->h = %d, dstRect->w = %d, dstRect->h = %d, viewInfo->ContainerWidth = %f, viewInfo->ContainerHeight = %f\n",
-			srcRect.w, srcRect.h, dstRect.w, dstRect.h, viewInfo.ContainerWidth, viewInfo.ContainerHeight);*/
+#define WITH_SCALING
+#ifdef WITH_SCALING
 	scaling_needed = !dstRect.w==0 && !dstRect.h==0 && (srcRect.w != dstRect.w || srcRect.h != dstRect.h);
 	if(scaling_needed){
 		texture_zoomed = zoomSurface(texture, &srcRect, &dstRect);
@@ -719,8 +714,8 @@ bool SDL::renderCopy( SDL_Surface *texture, float alpha, SDL_Rect *src, SDL_Rect
 		else{
 			surface_to_blit = texture_zoomed;
 		}
-	    /*printf("AFTER zoomSurface, texture->w = %d, texture->h = %d\n", texture_zoomed->w, texture_zoomed->h);*/
 	}
+#endif  //WITH_SCALING
 
 
 
