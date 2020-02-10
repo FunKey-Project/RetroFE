@@ -144,6 +144,11 @@ bool Component::isIdle()
     return (currentTweenComplete_ || animationType_ == "idle" || animationType_ == "menuIdle");
 }
 
+bool Component::mustRender()
+{
+    return false;
+}
+
 bool Component::isMenuScrolling()
 {
     return (!currentTweenComplete_ && animationType_ == "menuScroll");

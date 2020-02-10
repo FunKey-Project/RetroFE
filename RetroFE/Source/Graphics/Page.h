@@ -80,6 +80,7 @@ public:
     void setScrollOffsetIndex(unsigned int i);
     unsigned int getScrollOffsetIndex();
     bool isIdle();
+    bool mustRender();
     bool isGraphicsIdle();
     bool isMenuIdle();
     void setStatusTextComponent(Text *t);

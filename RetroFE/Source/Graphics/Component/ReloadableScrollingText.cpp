@@ -464,6 +464,7 @@ void ReloadableScrollingText::draw( )
         //SDL_Texture *t = font->getTexture( );
         SDL_Surface *t = font->getTexture( );
 
+        float imageHeight = 0;
         float imageWidth     = 0;
         float imageMaxWidth  = 0;
         float imageMaxHeight = 0;
@@ -484,12 +485,59 @@ void ReloadableScrollingText::draw( )
             imageMaxHeight = baseViewInfo.MaxHeight;
         }
 
+        imageHeight = (float)font->getHeight( );
+
         //float scale = (float)baseViewInfo.FontSize / (float)font->getHeight( ) / scaleY_;
         //TODO, modify for scaling - for now, no scaling in effect
         float scale = 1.0f;
 
+
+        // determine image width from 1st line
+        for ( unsigned int i = 0; i < text_[0].size( ); ++i )
+        {
+            Font::GlyphInfo glyph;
+            if ( font->getRect( text_[0][i], glyph ) )
+            {
+                if ( glyph.minX < 0 )
+                {
+                    imageWidth += glyph.minX;
+                }
+
+                if ( (imageWidth + glyph.advance)*scale > imageMaxWidth )
+                {
+                    break;
+                }
+                imageWidth  += glyph.advance;
+
+                /*printf("textData_[%d]=%c, glyph.advance= %f - %d\n", i, textData_[i], glyph.advance, glyph.advance);
+                printf("imageWidth=%f \n", imageWidth);*/
+            }
+            else{
+	        /*std::stringstream ss;
+		  ss << "Could not find Glyph info for char: " << textData_[i];
+		  Logger::write(Logger::ZONE_WARNING, "Text", ss.str());*/
+            }
+        }
+
+        float oldWidth       = baseViewInfo.Width;
+        float oldHeight      = baseViewInfo.Height;
+        float oldImageWidth  = baseViewInfo.ImageHeight;
+        float oldImageHeight = baseViewInfo.ImageWidth;
+
+        baseViewInfo.Width       = imageWidth*scale;
+        baseViewInfo.Height      = baseViewInfo.FontSize;
+        baseViewInfo.ImageWidth  = imageWidth;
+        baseViewInfo.ImageHeight = imageHeight;
+
         float xOrigin = baseViewInfo.XRelativeToOrigin( );
         float yOrigin = baseViewInfo.YRelativeToOrigin( );
+        //printf("IN SCROLLABLE_TEXT - xOrigin=%f, yOrigin=%f, imageWidth=%f\n", xOrigin, yOrigin, imageWidth);
+
+        baseViewInfo.Width       = oldWidth;
+        baseViewInfo.Height      = oldHeight;
+        baseViewInfo.ImageWidth  = oldImageWidth;
+        baseViewInfo.ImageHeight = oldImageHeight;
+
 
         SDL_Rect rect;
 
@@ -518,12 +566,14 @@ void ReloadableScrollingText::draw( )
 
                     Font::GlyphInfo glyph;
 
+                    //printf("text_[%d][%d] = %c, 0x%02X\n", l, i, text_[l][i], text_[l][i]);
+
                     //if (font->getRect( text_[l][i], glyph) && glyph.rect.h > 0)
                     if (font->getRect( text_[l][i], glyph))
                     {
                         SDL_Rect charRect = glyph.rect;
                         rect.h  = static_cast<int>( charRect.h * scale * scaleY_ );
-                        rect.w  = static_cast<int>( charRect.w * scale * scaleX_ );
+                        rect.w  = static_cast<int>( charRect.w?charRect.w:glyph.advance * scale * scaleX_ );
                         rect.y  = static_cast<int>( yOrigin );
 
                         /*if (font->getAscent( ) < glyph.maxY)
@@ -558,6 +608,9 @@ void ReloadableScrollingText::draw( )
                             {
                                 rect.x = static_cast<int>( xOrigin ) + static_cast<int>( imageMaxWidth ) + 10; // Stop handling the rest of the string
                             }
+                            /*else{
+			        rect.x += glyph.advance * scale * scaleX_;
+                            }*/
                         }
                         position += glyph.advance * scale * scaleX_;
 
@@ -799,4 +852,16 @@ void ReloadableScrollingText::draw( )
 
         }
     }
+}
+
+bool ReloadableScrollingText::mustRender(  )
+{
+    if ( Component::mustRender(  ) ) return true;
+
+    if (!text_.empty( ) && waitEndTime_ <= 0.0f && baseViewInfo.Alpha > 0.0f)
+    {
+        return true;
+    }
+
+    return false;
 }

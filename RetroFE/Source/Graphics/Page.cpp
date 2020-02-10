@@ -275,6 +275,19 @@ bool Page::isIdle()
 }
 
 
+bool Page::mustRender()
+{
+	bool render = false;
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+	render = (*it)->mustRender();
+    }
+
+    return render;
+}
+
+
 bool Page::isGraphicsIdle()
 {
     bool idle = true;
@@ -1043,9 +1056,9 @@ void Page::update(float dt)
 
     if(textStatusComponent_)
     {
-    	std::string status;
-    	config_.setProperty("status", status);
-        textStatusComponent_->setText(status);
+        std::string status;
+	config_.setProperty("status", status);
+	textStatusComponent_->setText(status);
     }
 
     for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)

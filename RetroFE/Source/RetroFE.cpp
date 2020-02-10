@@ -991,8 +991,9 @@ void RetroFE::run( )
             }
 
             // ------- Check if previous update of page needed to be rendered -------
-            if(!currentPage_->isIdle( ) || splashMode){
-                forceRender(true);
+            if(!currentPage_->isIdle( ) || currentPage_->mustRender( ) || splashMode){
+	        //printf("Not idle\n");
+	        forceRender(true);
             }
 
             // Force refresh variables

@@ -128,7 +128,6 @@ void Text::draw( )
 	      ss << "Could not find Glyph info for char: " << textData_[i];
 	      Logger::write(Logger::ZONE_WARNING, "Text", ss.str());*/
         }
-
     }
 
     float oldWidth       = baseViewInfo.Width;
@@ -143,6 +142,8 @@ void Text::draw( )
 
     float xOrigin = baseViewInfo.XRelativeToOrigin( );
     float yOrigin = baseViewInfo.YRelativeToOrigin( );
+
+    //printf("IN TEXT %s - xOrigin=%f, yOrigin=%f\n",textData_.c_str(), xOrigin, yOrigin);
 
     baseViewInfo.Width       = oldWidth;
     baseViewInfo.Height      = oldHeight;

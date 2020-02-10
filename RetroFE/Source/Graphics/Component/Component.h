@@ -33,6 +33,7 @@ public:
     virtual void allocateGraphicsMemory();
     virtual void deInitializeFonts();
     virtual void initializeFonts();
+    virtual bool mustRender();
     void triggerEvent(std::string event, int menuIndex = -1);
     void setPlaylist(std::string name );
     void setNewItemSelected();

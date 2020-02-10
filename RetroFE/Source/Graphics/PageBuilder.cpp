@@ -739,6 +739,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                 {
                     c->setMenuScrollReload(true);
                 }
+                c->allocateGraphicsMemory( );
             }
         }
         else

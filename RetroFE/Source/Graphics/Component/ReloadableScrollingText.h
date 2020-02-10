@@ -28,6 +28,7 @@ public:
     virtual ~ReloadableScrollingText( );
     void     update(float dt);
     void     draw( );
+    bool 	 mustRender( );
     void     allocateGraphicsMemory( );
     void     freeGraphicsMemory( );
     void     deInitializeFonts();
