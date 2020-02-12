@@ -73,6 +73,8 @@ public:
     void letterChange( bool increment );
     void random( );
     bool isIdle( );
+    bool getScrollDirectionForward( );
+    float getScrollPeriod( );
     unsigned int getScrollOffsetIndex( );
     void setScrollOffsetIndex( unsigned int index );
     void setSelectedIndex( int selectedIndex );
@@ -110,6 +112,7 @@ private:
     float scrollAcceleration_;
     float startScrollTime_;
     float scrollPeriod_;
+    int	scrollAccelerationIdx_;
 
     Configuration &config_;
     float          scaleX_;
@@ -121,4 +124,5 @@ private:
     std::vector<Item *>     *items_;
     std::vector<Component *> components_;
 
+    bool scrollDirectionForward_;
 };

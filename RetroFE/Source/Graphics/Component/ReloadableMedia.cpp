@@ -40,6 +40,9 @@ ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, bool la
     , isVideo_(isVideo)
     , FfntInst_(font)
     , textFallback_(false)
+    , imageFallback_(false)
+    , imageAndTextPadding_(0)
+    , imageAndText_(false)
     , type_(type)
     , scaleX_(scaleX)
     , scaleY_(scaleY)
@@ -57,17 +60,36 @@ ReloadableMedia::~ReloadableMedia()
     }
 }
 
+void ReloadableMedia::enableImageAndText_(bool value)
+{
+    imageAndText_ = value;
+}
+
+void ReloadableMedia::setImageAndTextPadding_(float value)
+{
+    imageAndTextPadding_ = value;
+}
+
 void ReloadableMedia::enableTextFallback_(bool value)
 {
     textFallback_ = value;
 }
 
+void ReloadableMedia::enableImageFallback_(bool value)
+{
+    imageFallback_ = value;
+}
+
 void ReloadableMedia::update(float dt)
 {
+
+    // needs to be ran at the end to prevent the NewItemSelected flag from being detected
+    Component::update(dt);
+
+    // Reload media
     if (newItemSelected ||
        (newScrollItemSelected && getMenuScrollReload()))
     {
-
         reloadTexture();
         newItemSelected       = false;
         newScrollItemSelected = false;
@@ -85,9 +107,6 @@ void ReloadableMedia::update(float dt)
 
         loadedComponent_->update(dt);
     }
-
-    // needs to be ran at the end to prevent the NewItemSelected flag from being detected
-    Component::update(dt);
 
 }
 
@@ -380,12 +399,32 @@ void ReloadableMedia::reloadTexture()
     }
 
     // if image and artwork was not specified, fall back to displaying text
+    if(!loadedComponent_ && imageFallback_)
+    {
+        //loadedComponent_ = new Text(selectedItem->fullTitle, page, FfntInst_, scaleX_, scaleY_);
+        /*baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
+        baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;*/
+
+        std::string imagePath;
+        ImageBuilder imageBuild;
+        imagePath = Utils::combinePath(Configuration::absolutePath, "collections", collectionName );
+        imagePath = Utils::combinePath( imagePath, "system_artwork" );
+        loadedComponent_ = imageBuild.CreateImage( imagePath, page, std::string("fallback"), scaleX_, scaleY_ );
+    }
+
+    // if image and artwork was not specified, fall back to displaying text
     if(!loadedComponent_ && textFallback_)
     {
         loadedComponent_ = new Text(selectedItem->fullTitle, page, FfntInst_, scaleX_, scaleY_);
         baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
         baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
     }
+
+    /*if(imageAndText_){
+        loadedComponent_ = new Text(selectedItem->fullTitle, page, FfntInst_, scaleX_, scaleY_);
+        baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
+        baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
+    }*/
 }
 
 

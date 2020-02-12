@@ -25,7 +25,7 @@
 class ReloadableText : public Component
 {
 public:
-    ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, std::string timeFormat, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, float scaleX, float scaleY);
+    ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, std::string timeFormat, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, int displayOffset, float scaleX, float scaleY);
     virtual ~ReloadableText();
     void     update(float dt);
     void     draw();
@@ -48,6 +48,7 @@ private:
     std::string singlePostfix_;
     std::string pluralPrefix_;
     std::string pluralPostfix_;
+    int         displayOffset_;
 
     float scaleX_;
     float scaleY_;

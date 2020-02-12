@@ -25,7 +25,7 @@
 #include <time.h>
 #include <algorithm>
 
-ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, std::string timeFormat, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, float scaleX, float scaleY)
+ReloadableText::ReloadableText(std::string type, Page &page, Configuration &config, Font *font, std::string layoutKey, std::string timeFormat, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, int displayOffset, float scaleX, float scaleY)
     : Component(page)
     , config_(config)
     , imageInst_(NULL)
@@ -38,6 +38,7 @@ ReloadableText::ReloadableText(std::string type, Page &page, Configuration &conf
     , singlePostfix_(singlePostfix)
     , pluralPrefix_(pluralPrefix)
     , pluralPostfix_(pluralPostfix)
+	, displayOffset_(displayOffset)
     , scaleX_(scaleX)
     , scaleY_(scaleY)
 {
@@ -110,7 +111,7 @@ void ReloadableText::ReloadTexture()
         imageInst_ = NULL;
     }
 
-    Item *selectedItem = page.getSelectedItem();
+    Item *selectedItem = page.getSelectedItem( displayOffset_ );
 
     if (selectedItem != NULL)
     {

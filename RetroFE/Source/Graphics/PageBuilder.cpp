@@ -351,7 +351,9 @@ float PageBuilder::getVerticalAlignment(xml_attribute<> *attribute, float valueI
         }
         else
         {
+            //printf("	Utils::convertFloat(str)=%f, scaleY_=%f\n", Utils::convertFloat(str), scaleY_);
             value = Utils::convertFloat(str) * scaleY_;
+            //printf("	value=%f\n", value);
         }
     }
     return value;
@@ -658,7 +660,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                 {
                     pluralPostfix = pluralPostfixXml->value();
                 }
-                c = new ReloadableText(type->value(), *page, config_, font, layoutKey, timeFormat, textFormat, singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, scaleX_, scaleY_);
+                c = new ReloadableText(type->value(), *page, config_, font, layoutKey, timeFormat, textFormat, singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, selectedOffset, scaleX_, scaleY_);
                 c->setId( id );
                 xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
                 if (menuScrollReload &&
@@ -739,7 +741,6 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                 {
                     c->setMenuScrollReload(true);
                 }
-                c->allocateGraphicsMemory( );
             }
         }
         else
@@ -754,6 +755,24 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
             {
                 c->setMenuScrollReload(true);
             }
+            xml_attribute<> *imageAndText = componentXml->first_attribute("imageAndText");
+            if(imageAndText && Utils::toLower(imageAndText->value()) == "true")
+            {
+                static_cast<ReloadableMedia *>(c)->enableImageAndText_(true);
+            }
+            else
+            {
+                static_cast<ReloadableMedia *>(c)->enableImageAndText_(false);
+            }
+            xml_attribute<> *imageAndTextPadding = componentXml->first_attribute("imageAndTextPadding");
+            if(imageAndTextPadding)
+            {
+                static_cast<ReloadableMedia *>(c)->setImageAndTextPadding_( Utils::convertFloat(imageAndTextPadding->value()) );
+            }
+            else
+            {
+                static_cast<ReloadableMedia *>(c)->enableImageAndText_(false);
+            }
             xml_attribute<> *textFallback = componentXml->first_attribute("textFallback");
             if(textFallback && Utils::toLower(textFallback->value()) == "true")
             {
@@ -762,6 +781,15 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
             else
             {
                 static_cast<ReloadableMedia *>(c)->enableTextFallback_(false);
+            }
+            xml_attribute<> *imageFallback = componentXml->first_attribute("imageFallback");
+            if(imageFallback && Utils::toLower(imageFallback->value()) == "true")
+            {
+                static_cast<ReloadableMedia *>(c)->enableImageFallback_(true);
+            }
+            else
+            {
+                static_cast<ReloadableMedia *>(c)->enableImageFallback_(false);
             }
         }
 
@@ -852,6 +880,7 @@ AnimationEvents *PageBuilder::createTweenInstance(xml_node<> *componentXml)
     buildTweenSet(tweens, componentXml, "onIdle",           "idle");
     buildTweenSet(tweens, componentXml, "onMenuIdle",       "menuIdle");
     buildTweenSet(tweens, componentXml, "onMenuScroll",     "menuScroll");
+    buildTweenSet(tweens, componentXml, "onMenuFastScroll", "menuFastScroll");
     buildTweenSet(tweens, componentXml, "onHighlightEnter", "highlightEnter");
     buildTweenSet(tweens, componentXml, "onHighlightExit",  "highlightExit");
     buildTweenSet(tweens, componentXml, "onMenuEnter",      "menuEnter");
@@ -1385,7 +1414,8 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
                 {
                     toValue = Utils::convertFloat(to->value());
                 }
-                float durationValue = Utils::convertFloat(durationXml->value());
+                float durationValue = 0;
+                durationValue = Utils::convertFloat(durationXml->value());
 
                 TweenAlgorithm algorithm = LINEAR;
                 TweenProperty property;
@@ -1425,6 +1455,11 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
                         toValue = getVerticalAlignment(to, 0);
                         break;
 
+                    case TWEEN_PROPERTY_Y_SHIFT_MENU_DIRECTION:
+                        fromValue = getVerticalAlignment(from, 0);
+                        toValue = getVerticalAlignment(to, 0);
+                        break;
+
                         // y origin gets translated to a percent
                     case TWEEN_PROPERTY_Y_ORIGIN:
                         fromValue = getVerticalAlignment(from, 0) / screenHeight_;
@@ -1433,8 +1468,9 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
 
                     case TWEEN_PROPERTY_MAX_WIDTH:
                     case TWEEN_PROPERTY_MAX_HEIGHT:
-                      fromValue = getVerticalAlignment(from, FLT_MAX);
-                      toValue   = getVerticalAlignment(to,   FLT_MAX);
+		        fromValue = getVerticalAlignment(from, FLT_MAX);
+			toValue   = getVerticalAlignment(to,   FLT_MAX);
+			break;
 
                     default:
                         break;

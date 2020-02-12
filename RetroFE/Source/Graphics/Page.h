@@ -97,6 +97,7 @@ public:
     void setMinShowTime(float value);
     float getMinShowTime();
     void menuScroll();
+    void menuFastScroll();
     void highlightEnter();
     void highlightExit();
     void playlistEnter();
@@ -109,8 +110,10 @@ public:
     void removePlaylist();
     void reallocateMenuSpritePoints();
     bool isMenuScrolling();
+    bool isMenuScrollForward();
     bool isPlaying();
     void resetScrollPeriod();
+    float getScrollPeriod();
     void updateScrollPeriod();
     void scroll(bool forward);
 
@@ -141,6 +144,8 @@ private:
     std::list<CollectionInfo *> deleteCollectionList_;
 
     bool scrollActive_;
+    bool scrollDirectionForward_;
+    bool selectNextItemAfterScroll_;
 
     Item *selectedItem_;
     Text *textStatusComponent_;

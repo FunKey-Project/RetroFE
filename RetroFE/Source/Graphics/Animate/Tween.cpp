@@ -29,6 +29,7 @@ Tween::Tween(TweenProperty property, TweenAlgorithm type, double start, double e
     , type(type)
     , start(start)
     , end(end)
+    , endOriginal(end)
 {
 }
 
@@ -49,6 +50,7 @@ bool Tween::getTweenProperty(std::string name, TweenProperty &property)
         tweenPropertyMap_["yorigin"]         = TWEEN_PROPERTY_Y_ORIGIN;
         tweenPropertyMap_["xoffset"]         = TWEEN_PROPERTY_X_OFFSET;
         tweenPropertyMap_["yoffset"]         = TWEEN_PROPERTY_Y_OFFSET;
+        tweenPropertyMap_["yshiftmenudirection"] = TWEEN_PROPERTY_Y_SHIFT_MENU_DIRECTION;
         tweenPropertyMap_["fontSize"]        = TWEEN_PROPERTY_FONT_SIZE;
         tweenPropertyMap_["backgroundalpha"] = TWEEN_PROPERTY_BACKGROUND_ALPHA;
         tweenPropertyMap_["maxwidth"]        = TWEEN_PROPERTY_MAX_WIDTH;
@@ -113,6 +115,17 @@ TweenAlgorithm Tween::getTweenType(std::string name)
     }
 }
 
+double Tween::getStart( ){
+	return start;
+}
+
+double Tween::getOriginalEnd( ){
+	return endOriginal;
+}
+
+void Tween::setEnd(double value){
+	end = value;
+}
 
 float Tween::animate(double elapsedTime)
 {
@@ -122,6 +135,11 @@ float Tween::animate(double elapsedTime)
 float Tween::animate(double elapsedTime, double startValue)
 {
     return animateSingle(type, startValue, end, duration, elapsedTime);
+}
+
+float Tween::animate(double elapsedTime, double startValue, double endValue, double durationValue)
+{
+    return animateSingle(type, startValue, endValue, durationValue, elapsedTime);
 }
 
 //todo: SDL likes floats, consider having casting being performed elsewhere

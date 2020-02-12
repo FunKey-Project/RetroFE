@@ -35,7 +35,10 @@ public:
     void allocateGraphicsMemory();
     Component *findComponent(std::string collection, std::string type, std::string basename, std::string filepath, bool systemMode);
 
+    void enableImageAndText_(bool value);
+    void setImageAndTextPadding_(float value);
     void enableTextFallback_(bool value);
+    void enableImageFallback_(bool value);
 
 private:
     void reloadTexture();
@@ -48,7 +51,10 @@ private:
     IVideo *videoInst_;
     bool isVideo_;
     Font *FfntInst_;
+    bool imageAndText_;
+    float imageAndTextPadding_;
     bool textFallback_;
+    bool imageFallback_;
     std::string type_;
     float scaleX_;
     float scaleY_;

@@ -256,16 +256,22 @@ bool Component::animate()
         bool currentDone = true;
         TweenSet *tweens = currentTweens_->tweenSet(currentTweenIndex_);
 
+
         for(unsigned int i = 0; i < tweens->size(); i++)
         {
             Tween *tween = tweens->tweens()->at(i);
             double elapsedTime = elapsedTweenTime_;
 
+	    /* Special case get menu scroll duration if duration specified is 0 */
+	    double duration = tween->duration ? tween->duration : page.getScrollPeriod();
+
             //todo: too many levels of nesting
-            if ( elapsedTime < tween->duration )
+            if ( elapsedTime < duration ){
                 currentDone = false;
-            else
-                elapsedTime = static_cast<float>(tween->duration);
+            }
+            else{
+                elapsedTime = static_cast<float>(duration);
+            }
 
             switch(tween->property)
             {
@@ -337,6 +343,38 @@ bool Component::animate()
                     baseViewInfo.YOffset = tween->animate(elapsedTime);
                 else
                     baseViewInfo.YOffset = tween->animate(elapsedTime, storeViewInfo_.YOffset);
+                break;
+
+            case TWEEN_PROPERTY_Y_SHIFT_MENU_DIRECTION:
+                if (tween->startDefined){
+		    /*printf("storeViewInfo_.YOffset = %f, tween->start() = %f, page.isMenuScrollForward()=%d, tween->getEnd()=%f, newEnd=%f\n",
+		      storeViewInfo_.YOffset, tween->getStart(), page.isMenuScrollForward(), tween->getOriginalEnd(),
+		      tween->getStart() + tween->getOriginalEnd()* (static_cast<double>(page.isMenuScrollForward()?-1.0f:1.0f)) );*/
+		    /*printf("y_shift_animation, elapsedTime = %f\n", elapsedTime);
+		      printf("page.getScrollPeriod() = %f\n", page.getScrollPeriod());*/
+
+		    /*tween->setEnd( tween->getStart() + tween->getOriginalEnd()* (static_cast<double>(page.isMenuScrollForward()?-1.0f:1.0f)) );
+                    baseViewInfo.YOffset = tween->animate(elapsedTime);*/
+
+                    baseViewInfo.YOffset = tween->animate(elapsedTime,
+							  tween->getStart(),
+							  tween->getStart() + tween->getOriginalEnd()* (static_cast<double>(page.isMenuScrollForward()?-1.0f:1.0f)),
+							  duration);
+                }
+                else{
+		    /*printf("storeViewInfo_.YOffset = %f, page.isMenuScrollForward()=%d, tween->getEnd()=%f, newEnd=%f\n",
+		      storeViewInfo_.YOffset, page.isMenuScrollForward(), tween->getOriginalEnd(),
+		      static_cast<double>(storeViewInfo_.YOffset) + tween->getOriginalEnd()* (static_cast<double>(page.isMenuScrollForward()?-1.0f:1.0f)) );
+		    */
+
+		    /*tween->setEnd( static_cast<double>(storeViewInfo_.YOffset) + tween->getOriginalEnd()* (static_cast<double>(page.isMenuScrollForward()?-1.0f:1.0f)) );
+                    baseViewInfo.YOffset = tween->animate(elapsedTime, storeViewInfo_.YOffset);*/
+
+                    baseViewInfo.YOffset = tween->animate(elapsedTime,
+							  static_cast<double>(storeViewInfo_.YOffset),
+							  static_cast<double>(storeViewInfo_.YOffset) + tween->getOriginalEnd()* (static_cast<double>(page.isMenuScrollForward()?-1.0f:1.0f)),
+							  duration);
+                }
                 break;
 
             case TWEEN_PROPERTY_FONT_SIZE:

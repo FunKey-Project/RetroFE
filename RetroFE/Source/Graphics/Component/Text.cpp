@@ -107,18 +107,22 @@ void Text::draw( )
         Font::GlyphInfo glyph;
         if ( font->getRect( textData_[i], glyph ) )
         {
+            SDL_Rect charRect = glyph.rect;
+            //charRect.w  = static_cast<int>( glyph.advance );
+            charRect.w  = static_cast<int>( glyph.rect.w?glyph.rect.w:glyph.advance );
+
             if ( glyph.minX < 0 )
             {
                 imageWidth += glyph.minX;
             }
 
-            if ( (imageWidth + glyph.advance)*scale > imageMaxWidth )
+            if ( (imageWidth + charRect.w)*scale > imageMaxWidth )
             {
                 break;
             }
 
             textIndexMax = i;
-            imageWidth  += glyph.advance;
+            imageWidth  += charRect.w;
 
             /*printf("textData_[%d]=%c, glyph.advance= %f - %d\n", i, textData_[i], glyph.advance, glyph.advance);
             printf("imageWidth=%f \n", imageWidth);*/
@@ -163,7 +167,7 @@ void Text::draw( )
         {
             SDL_Rect charRect = glyph.rect;
             float h = static_cast<float>( charRect.h * scale );
-            float w = static_cast<float>( charRect.w * scale );
+            float w = static_cast<float>( (charRect.w?charRect.w:glyph.advance) * scale );
             rect.h = static_cast<int>( h );
             rect.w = static_cast<int>( w );
             rect.y = static_cast<int>( yOrigin );
@@ -182,8 +186,7 @@ void Text::draw( )
 
             SDL::renderCopy( t, baseViewInfo.Alpha, &charRect, &rect, baseViewInfo );
 
-            rect.x += static_cast<int>( glyph.advance * scale );
-
+            rect.x += rect.w;
         }
     }
 }

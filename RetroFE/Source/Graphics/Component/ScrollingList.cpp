@@ -60,7 +60,9 @@ ScrollingList::ScrollingList( Configuration &c,
     , selectedOffsetIndex_( 0 )
     , scrollAcceleration_( 0 )
     , startScrollTime_( 0.500 )
+    , scrollDirectionForward_( false )
     , scrollPeriod_( 0 )
+    , scrollAccelerationIdx_( 0 )
     , config_( c )
     , scaleX_( scaleX )
     , scaleY_( scaleY )
@@ -125,7 +127,7 @@ unsigned int ScrollingList::loopIncrement( unsigned int offset, unsigned int i, 
 unsigned int ScrollingList::loopDecrement( unsigned int offset, unsigned int i, unsigned int size )
 {
     if ( size == 0 ) return 0;
-    return ((offset % size ) - (i % size ) + size ) % size; 
+    return ((offset % size ) - (i % size ) + size ) % size;
 }
 
 
@@ -247,7 +249,7 @@ Item *ScrollingList::getItemByOffset( int offset )
     {
         index = loopDecrement( index, offset*-1, items_->size( ) );
     }
-    
+
     return items_->at( index );
 
 }
@@ -359,7 +361,7 @@ void ScrollingList::freeGraphicsMemory( )
 {
     Component::freeGraphicsMemory( );
     scrollPeriod_ = 0;
-    
+
     deallocateSpritePoints( );
 }
 
@@ -620,6 +622,7 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
                 imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", "_common");
             else
                 imagePath = Utils::combinePath( Configuration::absolutePath, "layouts", layoutName, "collections", collectionName );
+
             imagePath = Utils::combinePath( imagePath, "medium_artwork", imageType_ );
         }
         else
@@ -633,6 +636,7 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
                 config_.getMediaPropertyAbsolutePath( collectionName, imageType_, false, imagePath );
         }
         t = imageBuild.CreateImage( imagePath, page, names[n], scaleX_, scaleY_ );
+
         // check sub-collection path for art
         if ( !t && !commonMode_ )
         {
@@ -654,10 +658,12 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
     {
         if ( layoutMode_ )
         {
-            if ( commonMode_ )
+            if ( commonMode_ ){
                 imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", "_common");
-            else
+            }
+            else{
                 imagePath = Utils::combinePath( Configuration::absolutePath, "layouts", layoutName, "collections", item->name );
+            }
             imagePath = Utils::combinePath( imagePath, "system_artwork" );
         }
         else
@@ -667,15 +673,24 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
                 imagePath = Utils::combinePath(Configuration::absolutePath, "collections", "_common" );
                 imagePath = Utils::combinePath( imagePath, "system_artwork" );
             }
-            else
+            else{
                 config_.getMediaPropertyAbsolutePath( item->name, imageType_, true, imagePath );
+            }
         }
         t = imageBuild.CreateImage( imagePath, page, imageType_, scaleX_, scaleY_ );
     }
 
     // check rom directory path for art
-    if ( !t )
+    if ( !t ){
         t = imageBuild.CreateImage( item->filepath, page, imageType_, scaleX_, scaleY_ );
+    }
+
+    // Image fallback
+    if ( !t && imageType_.compare(std::string("null"))){
+        imagePath = Utils::combinePath(Configuration::absolutePath, "collections", collectionName );
+        imagePath = Utils::combinePath( imagePath, "system_artwork" );
+        t = imageBuild.CreateImage( imagePath, page, std::string("fallback"), scaleX_, scaleY_ );
+    }
 
     if ( !t )
     {
@@ -712,7 +727,7 @@ void ScrollingList::draw(  )
 
 void ScrollingList::draw( unsigned int layer )
 {
-    
+
     if ( components_.size(  ) == 0 ) return;
 
     for ( unsigned int i = 0; i < components_.size(  ); ++i )
@@ -737,8 +752,21 @@ bool ScrollingList::isIdle(  )
 }
 
 
+bool ScrollingList::getScrollDirectionForward(  )
+{
+    return scrollDirectionForward_;
+}
+
+
+float ScrollingList::getScrollPeriod(  )
+{
+    return scrollPeriod_;
+}
+
+
 void ScrollingList::resetScrollPeriod(  )
 {
+	scrollAccelerationIdx_ = 0;
     scrollPeriod_ = startScrollTime_;
     return;
 }
@@ -746,11 +774,40 @@ void ScrollingList::resetScrollPeriod(  )
 
 void ScrollingList::updateScrollPeriod(  )
 {
+	//printf("update Scroll Period: %d\n", scrollAccelerationIdx_);
     scrollPeriod_ -= scrollAcceleration_;
     if ( scrollPeriod_ < scrollAcceleration_ )
     {
+	//printf("	Very fast scroll\n");
         scrollPeriod_ = scrollAcceleration_;
     }
+    else{
+        scrollAccelerationIdx_++;
+    }
+
+#if 0
+    /* Send fast scroll event if long press detected */
+    if(scrollAccelerationIdx_ >= 2){
+        for ( unsigned int i = 0; i < scrollPoints_->size(  ); i++ )
+	{
+	    unsigned int nextI;
+	    if ( scrollDirectionForward_ )
+	    {
+	        nextI = loopDecrement( i, 1, scrollPoints_->size(  ) );
+	    }
+	    else
+	    {
+	        nextI = loopIncrement( i, 1, scrollPoints_->size(  ) );
+	    }
+
+	    Component *c = components_.at( i );
+
+	    resetTweens( c, tweenPoints_->at( nextI ), scrollPoints_->at( i ), scrollPoints_->at( nextI ), scrollPeriod_ );
+	    c->baseViewInfo.font = scrollPoints_->at( nextI )->font; // Use the font settings of the next index
+	    c->triggerEvent( "menuFastScroll" );
+	}
+    }
+#endif
 }
 
 
@@ -763,6 +820,7 @@ void ScrollingList::scroll( bool forward )
     // Replace the item that's scrolled out
     if ( forward )
     {
+        scrollDirectionForward_ = true;
         Item *i    = items_->at( loopIncrement( itemIndex_, scrollPoints_->size(  ), items_->size(  ) ) );
         itemIndex_ = loopIncrement( itemIndex_, 1, items_->size(  ) );
         deallocateTexture( 0 );
@@ -770,6 +828,7 @@ void ScrollingList::scroll( bool forward )
     }
     else
     {
+        scrollDirectionForward_ = false;
         Item *i    = items_->at( loopDecrement( itemIndex_, 1, items_->size(  ) ) );
         itemIndex_ = loopDecrement( itemIndex_, 1, items_->size(  ) );
         deallocateTexture( loopDecrement( 0, 1, components_.size(  ) ) );
@@ -806,7 +865,7 @@ void ScrollingList::scroll( bool forward )
             Component *store   = components_.at( prevI );
             components_[prevI] = c;
             c                  = store;
-            
+
         }
     }
     else
@@ -817,7 +876,7 @@ void ScrollingList::scroll( bool forward )
             Component *store   = components_.at( nextI );
             components_[nextI] = c;
             c                  = store;
-            
+
         }
     }
 

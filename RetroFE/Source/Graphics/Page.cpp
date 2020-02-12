@@ -32,7 +32,9 @@ Page::Page(Configuration &config)
     : config_(config)
     , menuDepth_(0)
     , scrollActive_(false)
+    , scrollDirectionForward_(false)
     , selectedItem_(NULL)
+    , selectNextItemAfterScroll_(false)
     , textStatusComponent_(NULL)
     , loadSoundChunk_(NULL)
     , unloadSoundChunk_(NULL)
@@ -166,14 +168,17 @@ void Page::onNewItemSelected()
 
 void Page::onNewScrollItemSelected()
 {
-    if(!(activeMenu_.size() > 0 && activeMenu_[0])) return;
-    selectedItem_ = activeMenu_[0]->getSelectedItem();
+	if(selectNextItemAfterScroll_){
+		if(!(activeMenu_.size() > 0 && activeMenu_[0])) return;
+		selectedItem_ = activeMenu_[0]->getSelectedItem();
 
-    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
-    {
-        (*it)->setNewScrollItemSelected();
-    }
+		for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+		{
+			(*it)->setNewScrollItemSelected();
+		}
 
+		selectNextItemAfterScroll_ = false;
+	}
 }
 
 
@@ -434,6 +439,19 @@ void Page::menuScroll()
 }
 
 
+void Page::menuFastScroll()
+{
+    Item *item = selectedItem_;
+
+    if(!item) return;
+
+    for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+    {
+        (*it)->triggerEvent( "menuFastScroll", menuDepth_ - 1 );
+    }
+}
+
+
 void Page::highlightEnter()
 {
     Item *item = selectedItem_;
@@ -647,14 +665,22 @@ void Page::setScrolling(ScrollDirection direction)
         {
             menuScroll();
         }
+        else{
+	    menuFastScroll();
+        }
         scrollActive_ = true;
+        scrollDirectionForward_=true;
         break;
     case ScrollDirectionBack:
         if(!scrollActive_)
         {
             menuScroll();
         }
+        else{
+	    menuFastScroll();
+        }
         scrollActive_ = true;
+        scrollDirectionForward_=false;
         break;
     case ScrollDirectionIdle:
     default:
@@ -1293,6 +1319,11 @@ bool Page::isMenuScrolling()
     return scrollActive_;
 }
 
+bool Page::isMenuScrollForward()
+{
+    return scrollDirectionForward_;
+}
+
 
 bool Page::isPlaying()
 {
@@ -1320,6 +1351,17 @@ void Page::resetScrollPeriod()
 }
 
 
+float Page::getScrollPeriod()
+{
+    for(std::vector<ScrollingList *>::iterator it = activeMenu_.begin(); it != activeMenu_.end(); it++)
+    {
+        ScrollingList *menu = *it;
+        if(menu) return menu->getScrollPeriod();
+    }
+    return 0;
+}
+
+
 void Page::updateScrollPeriod()
 {
     for(std::vector<ScrollingList *>::iterator it = activeMenu_.begin(); it != activeMenu_.end(); it++)
@@ -1333,6 +1375,14 @@ void Page::updateScrollPeriod()
 
 void Page::scroll(bool forward)
 {
+
+    // Select next item
+    onNewScrollItemSelected();
+
+    // Set flag for notifying a new selected item after next update()
+    selectNextItemAfterScroll_ = true;
+
+    // Change scroll index
     for(std::vector<ScrollingList *>::iterator it = activeMenu_.begin(); it != activeMenu_.end(); it++)
     {
         ScrollingList *menu = *it;
@@ -1341,7 +1391,7 @@ void Page::scroll(bool forward)
             menu->scroll(forward);
         }
     }
-    onNewScrollItemSelected();
+
     if(highlightSoundChunk_)
     {
         highlightSoundChunk_->play();
