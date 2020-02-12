@@ -112,7 +112,8 @@ void ScrollingList::setItems( std::vector<Item *> *items )
     items_ = items;
     if ( items_ )
     {
-        itemIndex_ = loopDecrement( 0, selectedOffsetIndex_, items_->size( ) );
+        prevItemIndex_ = itemIndex_;
+	itemIndex_ = loopDecrement( 0, selectedOffsetIndex_, items_->size( ) );
     }
 }
 
@@ -212,7 +213,8 @@ void ScrollingList::setPoints( std::vector<ViewInfo *> *scrollPoints, std::vecto
 
     if ( items_ )
     {
-        itemIndex_ = loopDecrement( 0, selectedOffsetIndex_, items_->size( ) );
+        prevItemIndex_ = itemIndex_;
+	itemIndex_ = loopDecrement( 0, selectedOffsetIndex_, items_->size( ) );
     }
 }
 
@@ -225,6 +227,7 @@ unsigned int ScrollingList::getScrollOffsetIndex( )
 
 void ScrollingList::setScrollOffsetIndex( unsigned int index )
 {
+	prevItemIndex_ = itemIndex_;
     itemIndex_ = loopDecrement( index, selectedOffsetIndex_, items_->size( ) );
 }
 
@@ -255,6 +258,27 @@ Item *ScrollingList::getItemByOffset( int offset )
 }
 
 
+Item *ScrollingList::getPreviousItemByOffset( int offset )
+{
+
+    if ( !items_ || items_->size( ) == 0 ) return NULL;
+
+    unsigned int index = getPreviousSelectedIndex( );
+
+    if ( offset >= 0 )
+    {
+        index = loopIncrement( index, offset, items_->size( ) );
+    }
+    else
+    {
+        index = loopDecrement( index, offset*-1, items_->size( ) );
+    }
+
+    return items_->at( index );
+
+}
+
+
 Item *ScrollingList::getSelectedItem( )
 {
     if ( !items_ || items_->size( ) == 0 ) return NULL;
@@ -265,6 +289,7 @@ Item *ScrollingList::getSelectedItem( )
 void ScrollingList::pageUp( )
 {
     if ( components_.size( ) == 0 ) return;
+    prevItemIndex_ = itemIndex_;
     itemIndex_ = loopDecrement( itemIndex_, components_.size( ), items_->size( ) );
 }
 
@@ -272,6 +297,7 @@ void ScrollingList::pageUp( )
 void ScrollingList::pageDown( )
 {
     if ( components_.size( ) == 0 ) return;
+    prevItemIndex_ = itemIndex_;
     itemIndex_ = loopIncrement( itemIndex_, components_.size( ), items_->size( ) );
 }
 
@@ -279,6 +305,7 @@ void ScrollingList::pageDown( )
 void ScrollingList::random( )
 {
     if ( !items_ || items_->size( ) == 0 ) return;
+    prevItemIndex_ = itemIndex_;
     itemIndex_ = rand( ) % items_->size( );
 }
 
@@ -320,6 +347,7 @@ void ScrollingList::letterChange( bool increment )
         if ((isalpha(startname[0] ) ^ isalpha(endname[0] ) ) ||
             (isalpha(startname[0] ) && isalpha(endname[0] ) && startname[0] != endname[0] ) )
         {
+	    prevItemIndex_ = itemIndex_;
             itemIndex_ = index;
             break;
         }
@@ -339,8 +367,9 @@ void ScrollingList::letterChange( bool increment )
             if ((isalpha(startname[0] ) ^ isalpha(endname[0] ) ) ||
                 (isalpha(startname[0] ) && isalpha(endname[0] ) && startname[0] != endname[0] ) )
             {
-                itemIndex_ = loopIncrement( index,1,items_->size( ) );
-                break;
+	        prevItemIndex_ = itemIndex_;
+		itemIndex_ = loopIncrement( index,1,items_->size( ) );
+		break;
             }
         }
     }
@@ -503,9 +532,17 @@ unsigned int ScrollingList::getSelectedIndex( )
 }
 
 
+unsigned int ScrollingList::getPreviousSelectedIndex( )
+{
+    if ( !items_ ) return 0;
+    return loopIncrement( prevItemIndex_, selectedOffsetIndex_, items_->size( ) );
+}
+
+
 void ScrollingList::setSelectedIndex( unsigned int index )
 {
      if ( !items_ ) return;
+     prevItemIndex_ = itemIndex_;
      itemIndex_ = loopDecrement( index, selectedOffsetIndex_, items_->size( ) );
 }
 
@@ -822,6 +859,7 @@ void ScrollingList::scroll( bool forward )
     {
         scrollDirectionForward_ = true;
         Item *i    = items_->at( loopIncrement( itemIndex_, scrollPoints_->size(  ), items_->size(  ) ) );
+        prevItemIndex_ = itemIndex_;
         itemIndex_ = loopIncrement( itemIndex_, 1, items_->size(  ) );
         deallocateTexture( 0 );
         allocateTexture( 0, i );
@@ -830,6 +868,7 @@ void ScrollingList::scroll( bool forward )
     {
         scrollDirectionForward_ = false;
         Item *i    = items_->at( loopDecrement( itemIndex_, 1, items_->size(  ) ) );
+        prevItemIndex_ = itemIndex_;
         itemIndex_ = loopDecrement( itemIndex_, 1, items_->size(  ) );
         deallocateTexture( loopDecrement( 0, 1, components_.size(  ) ) );
         allocateTexture( loopDecrement( 0, 1, components_.size(  ) ), i );

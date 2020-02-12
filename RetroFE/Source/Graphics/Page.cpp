@@ -34,7 +34,6 @@ Page::Page(Configuration &config)
     , scrollActive_(false)
     , scrollDirectionForward_(false)
     , selectedItem_(NULL)
-    , selectNextItemAfterScroll_(false)
     , textStatusComponent_(NULL)
     , loadSoundChunk_(NULL)
     , unloadSoundChunk_(NULL)
@@ -168,17 +167,15 @@ void Page::onNewItemSelected()
 
 void Page::onNewScrollItemSelected()
 {
-	if(selectNextItemAfterScroll_){
-		if(!(activeMenu_.size() > 0 && activeMenu_[0])) return;
-		selectedItem_ = activeMenu_[0]->getSelectedItem();
 
-		for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
-		{
-			(*it)->setNewScrollItemSelected();
-		}
+	if(!(activeMenu_.size() > 0 && activeMenu_[0])) return;
+	selectedItem_ = activeMenu_[0]->getSelectedItem();
 
-		selectNextItemAfterScroll_ = false;
+	for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
+	{
+		(*it)->setNewScrollItemSelected();
 	}
+
 }
 
 
@@ -360,10 +357,23 @@ Item *Page::getSelectedItem()
 }
 
 
+Item *Page::getPrevSelectedItem_()
+{
+    return prevSelectedItem_;
+}
+
+
 Item *Page::getSelectedItem(int offset)
 {
     if(!(activeMenu_.size() > 0 && activeMenu_[0])) return NULL;
     return activeMenu_[0]->getItemByOffset(offset);
+}
+
+
+Item *Page::getPreviousSelectedItem(int offset)
+{
+    if(!(activeMenu_.size() > 0 && activeMenu_[0])) return NULL;
+    return activeMenu_[0]->getPreviousItemByOffset(offset);
 }
 
 
@@ -1376,12 +1386,6 @@ void Page::updateScrollPeriod()
 void Page::scroll(bool forward)
 {
 
-    // Select next item
-    onNewScrollItemSelected();
-
-    // Set flag for notifying a new selected item after next update()
-    selectNextItemAfterScroll_ = true;
-
     // Change scroll index
     for(std::vector<ScrollingList *>::iterator it = activeMenu_.begin(); it != activeMenu_.end(); it++)
     {
@@ -1392,6 +1396,10 @@ void Page::scroll(bool forward)
         }
     }
 
+    // Notify scroll item selected next item
+    onNewScrollItemSelected();
+
+    // Play sound
     if(highlightSoundChunk_)
     {
         highlightSoundChunk_->play();

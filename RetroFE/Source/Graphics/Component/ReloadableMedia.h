@@ -41,7 +41,8 @@ public:
     void enableImageFallback_(bool value);
 
 private:
-    void reloadTexture();
+    void reloadTexture( );
+    void reloadTexture(	bool previousItem );
     Configuration &config_;
     bool systemMode_;
     bool layoutMode_;

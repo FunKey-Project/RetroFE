@@ -84,12 +84,15 @@ void ReloadableMedia::update(float dt)
 {
 
     // Reload media
-    if (newItemSelected ||
-       (newScrollItemSelected && getMenuScrollReload()))
+    if (newItemSelected)
     {
         reloadTexture();
         newItemSelected       = false;
-        newScrollItemSelected = false;
+    }
+    else if(newScrollItemSelected && getMenuScrollReload())
+    {
+        reloadTexture(true);
+	newScrollItemSelected = false;
     }
 
     if(loadedComponent_)
@@ -135,13 +138,25 @@ void ReloadableMedia::freeGraphicsMemory()
 
 void ReloadableMedia::reloadTexture()
 {
+	reloadTexture(false);
+}
+
+void ReloadableMedia::reloadTexture( bool previousItem )
+{
     if(loadedComponent_)
     {
         delete loadedComponent_;
         loadedComponent_ = NULL;
     }
 
-    Item *selectedItem = page.getSelectedItem(displayOffset_);
+    /* Select item to reload */
+    Item *selectedItem = NULL;
+    if(previousItem){
+        selectedItem = page.getPreviousSelectedItem(displayOffset_);
+    }
+    else{
+        selectedItem = page.getSelectedItem(displayOffset_);
+    }
     if(!selectedItem) return;
 
     config_.getProperty("currentCollection", currentCollection_);
@@ -490,9 +505,9 @@ void ReloadableMedia::draw()
 
     if(loadedComponent_)
     {
-    	baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
-    	baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
-        loadedComponent_->baseViewInfo = baseViewInfo;
-        loadedComponent_->draw();
+        baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
+	baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
+	loadedComponent_->baseViewInfo = baseViewInfo;
+	loadedComponent_->draw();
     }
 }

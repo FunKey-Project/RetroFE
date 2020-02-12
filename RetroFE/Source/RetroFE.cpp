@@ -625,7 +625,7 @@ void RetroFE::run( )
         // Start onHighlightEnter animation
         case RETROFE_HIGHLIGHT_LOAD_ART:
             currentPage_->highlightEnter( );
-            currentPage_->onNewScrollItemSelected( );
+            currentPage_->onNewItemSelected( );
             state = RETROFE_HIGHLIGHT_ENTER;
             break;
 

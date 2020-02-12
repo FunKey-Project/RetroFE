@@ -75,7 +75,9 @@ public:
     bool isHorizontalScroll();
     unsigned int getMenuDepth();
     Item *getSelectedItem();
+    Item *getPrevSelectedItem_();
     Item *getSelectedItem(int offset);
+    Item *getPreviousSelectedItem(int offset);
     void removeSelectedItem();
     void setScrollOffsetIndex(unsigned int i);
     unsigned int getScrollOffsetIndex();
@@ -145,9 +147,9 @@ private:
 
     bool scrollActive_;
     bool scrollDirectionForward_;
-    bool selectNextItemAfterScroll_;
 
     Item *selectedItem_;
+    Item *prevSelectedItem_;
     Text *textStatusComponent_;
     Sound *loadSoundChunk_;
     Sound *unloadSoundChunk_;

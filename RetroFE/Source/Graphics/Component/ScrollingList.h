@@ -64,6 +64,7 @@ public:
     void destroyItems( );
     void setPoints( std::vector<ViewInfo *> *scrollPoints, std::vector<AnimationEvents *> *tweenPoints );
     unsigned int getSelectedIndex( );
+    unsigned int getPreviousSelectedIndex( );
     void setSelectedIndex( unsigned int index );
     unsigned int getSize( );
     void pageUp( );
@@ -79,6 +80,7 @@ public:
     void setScrollOffsetIndex( unsigned int index );
     void setSelectedIndex( int selectedIndex );
     Item *getItemByOffset( int offset );
+    Item *getPreviousItemByOffset( int offset );
     Item *getSelectedItem( );
     void allocateGraphicsMemory( );
     void freeGraphicsMemory( );
@@ -107,12 +109,14 @@ private:
     std::vector<AnimationEvents *> *tweenPoints_;
 
     unsigned int itemIndex_;
+    unsigned int prevItemIndex_;
     unsigned int selectedOffsetIndex_;
 
     float scrollAcceleration_;
     float startScrollTime_;
     float scrollPeriod_;
     int	scrollAccelerationIdx_;
+    bool scrollDirectionForward_;
 
     Configuration &config_;
     float          scaleX_;
@@ -124,5 +128,4 @@ private:
     std::vector<Item *>     *items_;
     std::vector<Component *> components_;
 
-    bool scrollDirectionForward_;
 };
