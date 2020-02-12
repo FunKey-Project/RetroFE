@@ -83,9 +83,6 @@ void ReloadableMedia::enableImageFallback_(bool value)
 void ReloadableMedia::update(float dt)
 {
 
-    // needs to be ran at the end to prevent the NewItemSelected flag from being detected
-    Component::update(dt);
-
     // Reload media
     if (newItemSelected ||
        (newScrollItemSelected && getMenuScrollReload()))
@@ -107,6 +104,9 @@ void ReloadableMedia::update(float dt)
 
         loadedComponent_->update(dt);
     }
+
+    // needs to be ran at the end to prevent the NewItemSelected flag from being detected
+    Component::update(dt);
 
 }
 
