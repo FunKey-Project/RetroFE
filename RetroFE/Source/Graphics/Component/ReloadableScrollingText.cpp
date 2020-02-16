@@ -492,7 +492,7 @@ void ReloadableScrollingText::draw( )
         float scale = 1.0f;
 
 
-        // determine image width from 1st line
+        // determine image width that can fit the container from 1st line
         for ( unsigned int i = 0; i < text_[0].size( ); ++i )
         {
             Font::GlyphInfo glyph;
@@ -539,8 +539,9 @@ void ReloadableScrollingText::draw( )
         baseViewInfo.ImageHeight = oldImageHeight;
 
 
-        SDL_Rect rect;
 
+
+        SDL_Rect rect;
         float position = 0.0f;
 
         if (direction_ == "horizontal")
@@ -619,6 +620,7 @@ void ReloadableScrollingText::draw( )
             }
 
             // Determine image width
+            imageWidth = 0;
             for (unsigned int l = 0; l < text_.size( ); ++l)
             {
                 for (unsigned int i = 0; i < text_[l].size( ); ++i)
@@ -626,13 +628,23 @@ void ReloadableScrollingText::draw( )
                     Font::GlyphInfo glyph;
                     if (font->getRect( text_[l][i], glyph ))
                     {
+                        if ( glyph.minX < 0 )
+                        {
+                            imageWidth += glyph.minX;
+                        }
                         imageWidth += glyph.advance;
                     }
                 }
             }
 
             // Reset scrolling position when we're done
-            if (currentPosition_ > imageWidth * scale * scaleX_)
+            /*printf("currentPosition_ = %f,            imageWidth * scale * scaleX_= %f,        xOrigin + imageMaxWidth = %f\n",
+	      currentPosition_ ,
+	      imageWidth * scale * scaleX_,
+	      (static_cast<int>( xOrigin ) + imageMaxWidth));*/
+            //if (currentPosition_ > imageWidth * scale * scaleX_)
+            if (waitStartTime_ <= 0 &&
+		imageWidth * scale * scaleX_ - currentPosition_ <= imageMaxWidth)
             {
                 waitStartTime_   = startTime_;
                 waitEndTime_     = endTime_;
