@@ -63,4 +63,5 @@ private:
     std::string              currentCollection_;
     Page                    *page_;
     int                      displayOffset_;
+    bool 					 scrollForward_;
 };

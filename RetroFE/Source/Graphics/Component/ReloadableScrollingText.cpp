@@ -57,6 +57,7 @@ ReloadableScrollingText::ReloadableScrollingText(Configuration &config, bool sys
     , currentCollection_("")
     , page_(NULL)
     , displayOffset_(displayOffset)
+    , scrollForward_(true)
 
 {
     text_.clear( );
@@ -83,7 +84,8 @@ void ReloadableScrollingText::update(float dt)
     {
         if (direction_ == "horizontal")
         {
-            currentPosition_ += scrollingSpeed_ * dt * scaleX_;
+            //currentPosition_ += scrollingSpeed_ * dt * scaleX_;
+	    currentPosition_ += (scrollForward_?1.0f:-1.0f) * scrollingSpeed_ * dt * scaleX_;
         }
         else if (direction_ == "vertical")
         {
@@ -643,12 +645,29 @@ void ReloadableScrollingText::draw( )
 	      imageWidth * scale * scaleX_,
 	      (static_cast<int>( xOrigin ) + imageMaxWidth));*/
             //if (currentPosition_ > imageWidth * scale * scaleX_)
-            if (waitStartTime_ <= 0 &&
-		imageWidth * scale * scaleX_ - currentPosition_ <= imageMaxWidth)
+
+            /*if (waitStartTime_ <= 0 &&
+	      imageWidth * scale * scaleX_ - currentPosition_ <= imageMaxWidth)
             {
                 waitStartTime_   = startTime_;
                 waitEndTime_     = endTime_;
                 currentPosition_ = -startPosition_ * scaleX_;
+            */
+
+            if (scrollForward_ &&
+		waitStartTime_ <= 0 &&
+		imageWidth * scale * scaleX_ - currentPosition_ <= imageMaxWidth)
+            {
+                waitEndTime_     = endTime_;
+                //currentPosition_ = -startPosition_ * scaleX_;
+                scrollForward_ = false;
+            }
+            else if(!scrollForward_ &&
+		    waitEndTime_ <= 0 &&
+		    currentPosition_ <= -startPosition_ * scaleX_)
+            {
+                waitStartTime_   = startTime_;
+                scrollForward_ = true;
             }
 
         }
