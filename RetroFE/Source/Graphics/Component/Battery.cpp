@@ -34,18 +34,20 @@ static uint32_t batteryIcon [BATTERY_ICON_HEIGHT][BATTERY_ICON_WIDTH] = {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
 
+int 	Battery::percentage_ = 0;
+int 	Battery::prevPercentage_ = 0;
+bool 	Battery::charging_ = false;
+float 	Battery::currentWaitTime_ = 0.0f;
+bool 	Battery::mustRender_ = false;
+
 
 Battery::Battery(Page &p, float scaleX, float scaleY, float reloadPeriod, SDL_Color fontColor)
     : Component(p)
     , texture_(NULL)
     , texture_prescaled_(NULL)
     , reloadPeriod_(reloadPeriod)
-    , currentWaitTime_(0.0f)
-    , percentage_(0)
-    , prevPercentage_(0)
     , scaleX_(scaleX)
     , scaleY_(scaleY)
-    , mustRender_(false)
     , fontColor_(0xff000000 | ((uint32_t)fontColor.b) << 16 | ((uint32_t)fontColor.g) << 8 | ((uint32_t)fontColor.r))
 {
     allocateGraphicsMemory();
@@ -76,9 +78,6 @@ void Battery::freeGraphicsMemory()
 
 void Battery::allocateGraphicsMemory()
 {
-    int width;
-    int height;
-    int i, j;
 
     if(!texture_)
     {
@@ -127,8 +126,6 @@ void Battery::allocateGraphicsMemory()
 
 void Battery::drawBattery()
 {
-    int width;
-    int height;
     int i, j;
 
     if(texture_ != NULL)
@@ -167,8 +164,6 @@ void Battery::drawBattery()
 
 void Battery::update(float dt)
 {
-	prevPercentage_ = percentage_;
-
     if (currentWaitTime_ < reloadPeriod_)
     {
         currentWaitTime_ += dt;
@@ -176,16 +171,21 @@ void Battery::update(float dt)
     else if(baseViewInfo.Alpha > 0.0f)
     {
         //printf("Battery check percentage\n");
-        percentage_ = (prevPercentage_+1)%101;
+        prevPercentage_ = percentage_;
+	percentage_ = (prevPercentage_+1)%101;
 
 	currentWaitTime_ = 0.0f;
     }
 
-    if (percentage_ != prevPercentage_)
-    {
-        //printf("	Redraw Battery\n");
-
-        drawBattery();
+    /* Redraw battery if necessary */
+    if(prevPercentage_ != percentage_){
+		float percentagePixelWidth = percentage_ * BATTERY_FILL_REGION_OFFSET_WIDTH / 100;
+		float prevPercentagePixelWidth = prevPercentage_ * BATTERY_FILL_REGION_OFFSET_WIDTH / 100;
+		if (prevPercentagePixelWidth != percentagePixelWidth)
+		{
+			//printf("	Redraw Battery\n");
+			drawBattery();
+		}
     }
 
     Component::update(dt);
@@ -239,8 +239,7 @@ bool Battery::mustRender(  )
 {
     if ( Component::mustRender(  ) ) return true;
 
-    if ( (percentage_ != prevPercentage_ && baseViewInfo.Alpha > 0.0f) ||
-            mustRender_)
+    if ( mustRender_ && baseViewInfo.Alpha > 0.0f )
     {
         mustRender_ = false;
 	return true;

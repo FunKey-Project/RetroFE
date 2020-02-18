@@ -20,12 +20,13 @@ protected:
     SDL_Surface *texture_;
     SDL_Surface *texture_prescaled_;
     uint32_t 	fontColor_;
-    int 		percentage_;
-    int 		prevPercentage_;
-    bool 		charging_;
     float 		scaleX_;
     float 		scaleY_;
     float		reloadPeriod_;
-    float		currentWaitTime_;
-    bool 		mustRender_;
+
+    static float	currentWaitTime_;
+    static bool 	mustRender_;
+    static int 		percentage_;
+    static int 		prevPercentage_;
+    static bool 	charging_;
 };
