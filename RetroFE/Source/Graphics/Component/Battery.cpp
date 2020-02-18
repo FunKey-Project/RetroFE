@@ -7,12 +7,10 @@
 
 #define BATTERY_ICON_WIDTH 34
 #define BATTERY_ICON_HEIGHT 16
-
 #define BATTERY_FILL_REGION_OFFSET_X 5
 #define BATTERY_FILL_REGION_OFFSET_Y 5
 #define BATTERY_FILL_REGION_OFFSET_WIDTH (BATTERY_ICON_WIDTH-12)
 #define BATTERY_FILL_REGION_OFFSET_HEIGHT (BATTERY_ICON_HEIGHT-10)
-
 #define BATTERY_BACK_COLOR 0x00000000
 #define BATTERY_FORE_COLOR 0xffffffff
 
@@ -34,9 +32,64 @@ static uint32_t batteryIcon [BATTERY_ICON_HEIGHT][BATTERY_ICON_WIDTH] = {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
 
+
+#define FLASH_ICON_WIDTH 34
+#define FLASH_ICON_HEIGHT 16
+static uint32_t flashIcon [FLASH_ICON_HEIGHT][FLASH_ICON_WIDTH] = {
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+        {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+        {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+        {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+
+
+#define NOBAT_ICON_WIDTH 34
+#define NOBAT_ICON_HEIGHT 16
+static uint32_t noBatIcon [NOBAT_ICON_HEIGHT][NOBAT_ICON_WIDTH] = {
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+        {0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+        {0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+        {0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+
+
+/* TODO: this should be in config */
+static std::string fileUsbConnected = "/sys/class/power_supply/axp20x-usb/present";
+static std::string fileBatConnected = "/sys/class/power_supply/axp20x-battery/present";
+static std::string fileBatCapacity = "/sys/class/power_supply/axp20x-battery/capacity";
+
+/*static std::string fileUsbConnected = "/home/vincent/Workspace/axp20x-usb_present";
+static std::string fileBatConnected = "/home/vincent/Workspace/axp20x-battery_present";
+static std::string fileBatCapacity = "/home/vincent/Workspace/axp20x-battery_capacity";*/
+
 int 	Battery::percentage_ = 0;
 int 	Battery::prevPercentage_ = 0;
 bool 	Battery::charging_ = false;
+bool 	Battery::prevCharging_ = false;
+bool 	Battery::noBat_ = false;
+bool 	Battery::prevNoBat_ = false;
 float 	Battery::currentWaitTime_ = 0.0f;
 bool 	Battery::mustRender_ = false;
 
@@ -108,7 +161,7 @@ void Battery::allocateGraphicsMemory()
 
         if (texture_ != NULL)
         {
-	    drawBattery();
+	    drawBatteryPercent();
 
 	    //SDL_SetAlpha(texture_, SDL_SRCALPHA, 255);
 
@@ -124,7 +177,7 @@ void Battery::allocateGraphicsMemory()
 
 }
 
-void Battery::drawBattery()
+void Battery::drawBatteryPercent()
 {
     int i, j;
 
@@ -162,29 +215,147 @@ void Battery::drawBattery()
 
 }
 
+void Battery::drawNoBattery()
+{
+    int i, j;
+
+    if(texture_ != NULL)
+    {
+        SDL_LockMutex(SDL::getMutex());
+
+        /* Draw empty battery container */
+        uint32_t *texturePixels = (uint32_t*)texture_->pixels;
+        for(i = 0; i < NOBAT_ICON_HEIGHT; i++){
+	    for(j = 0; j < NOBAT_ICON_WIDTH; j++){
+	        uint32_t *currentPixel = texturePixels + BATTERY_ICON_WIDTH*i + j;
+		*currentPixel = noBatIcon[i][j] ? fontColor_ : BATTERY_BACK_COLOR;
+	    }
+        }
+
+        /* Force render*/
+        mustRender_ = true;
+
+        SDL_UnlockMutex(SDL::getMutex());
+
+    }
+
+    Component::allocateGraphicsMemory();
+
+}
+
+void Battery::drawBatteryCharging()
+{
+    int i, j;
+
+    if(texture_ != NULL)
+    {
+        SDL_LockMutex(SDL::getMutex());
+
+        /* Draw empty battery container */
+        uint32_t *texturePixels = (uint32_t*)texture_->pixels;
+        for(i = 0; i < FLASH_ICON_HEIGHT; i++){
+	    for(j = 0; j < FLASH_ICON_WIDTH; j++){
+	        uint32_t *currentPixel = texturePixels + BATTERY_ICON_WIDTH*i + j;
+		*currentPixel = flashIcon[i][j] ? fontColor_ : BATTERY_BACK_COLOR;
+	    }
+        }
+
+        /* Force render*/
+        mustRender_ = true;
+
+        SDL_UnlockMutex(SDL::getMutex());
+
+    }
+
+    Component::allocateGraphicsMemory();
+
+}
+
+int Battery::readFileValue(std::string file){
+
+	std::ifstream ifs(file.c_str());
+    std::string line;
+    int retVal = -1;
+
+	if (!ifs.is_open())
+	{
+		Logger::write(Logger::ZONE_ERROR, "Configuration", "Could not open " + file + "\"");
+		return -1;
+	}
+
+	while (std::getline (ifs, line))
+	{
+		retVal = atoi(line.c_str());
+	}
+
+	ifs.close();
+
+	return retVal;
+}
+
+bool Battery::isBatConnected(){
+
+	int res = readFileValue(fileBatConnected);
+	//printf("%s: %d \n", __func__, res);
+
+	return (res==1)?true:false;
+}
+
+bool Battery::isUsbConnected(){
+
+	int res = readFileValue(fileUsbConnected);
+	//printf("%s: %d \n", __func__, res);
+
+	return (res==1)?true:false;
+}
+
+int Battery::getBatPercent(){
+
+	int res = readFileValue(fileBatCapacity);
+	//printf("%s: %d \n", __func__, res);
+
+	return res;
+}
+
 void Battery::update(float dt)
 {
+
     if (currentWaitTime_ < reloadPeriod_)
     {
         currentWaitTime_ += dt;
     }
     else if(baseViewInfo.Alpha > 0.0f)
     {
-        //printf("Battery check percentage\n");
         prevPercentage_ = percentage_;
-	percentage_ = (prevPercentage_+1)%101;
+	prevNoBat_ = noBat_;
+	prevCharging_ = charging_;
+
+	percentage_ = getBatPercent();
+	noBat_ = !isBatConnected();
+	charging_ = isUsbConnected();
 
 	currentWaitTime_ = 0.0f;
     }
 
-    /* Redraw battery if necessary */
-    if(prevPercentage_ != percentage_){
+    /* Redraw icon if necessary */
+	bool stateChange = ((prevNoBat_ != noBat_) || (prevCharging_ != charging_));
+
+    if(noBat_){
+        if(prevNoBat_ != noBat_ || stateChange){
+	    drawNoBattery();
+	}
+    }
+    else if(charging_){
+        if(prevCharging_ != charging_ || stateChange){
+	    drawBatteryCharging();
+	}
+    }
+    else if(prevPercentage_ != percentage_ || stateChange){
 		float percentagePixelWidth = percentage_ * BATTERY_FILL_REGION_OFFSET_WIDTH / 100;
 		float prevPercentagePixelWidth = prevPercentage_ * BATTERY_FILL_REGION_OFFSET_WIDTH / 100;
-		if (prevPercentagePixelWidth != percentagePixelWidth)
+		if (prevPercentagePixelWidth != percentagePixelWidth || stateChange)
 		{
-			//printf("	Redraw Battery\n");
-			drawBattery();
+			drawBatteryPercent();
 		}
     }
 

@@ -11,12 +11,19 @@ public:
     virtual ~Battery();
     void freeGraphicsMemory();
     void allocateGraphicsMemory();
-    void drawBattery();
     void update(float dt);
     void draw();
     bool mustRender();
+    bool isBatConnected();
+    bool isUsbConnected();
+    int getBatPercent();
 
 protected:
+    void drawBatteryPercent();
+    void drawBatteryCharging();
+    void drawNoBattery();
+    int readFileValue(std::string file);
+
     SDL_Surface *texture_;
     SDL_Surface *texture_prescaled_;
     uint32_t 	fontColor_;
@@ -29,4 +36,7 @@ protected:
     static int 		percentage_;
     static int 		prevPercentage_;
     static bool 	charging_;
+    static bool 	prevCharging_;
+    static bool 	noBat_;
+    static bool 	prevNoBat_;
 };
