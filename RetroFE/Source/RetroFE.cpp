@@ -264,7 +264,7 @@ void RetroFE::allocateGraphicsMemory( )
         currentPage_->initializeFonts( );
 
         // Init MenuMode
-        MenuMode::init( );
+        MenuMode::init( config_ );
     }
 
     // Allocate textures
@@ -323,7 +323,7 @@ void RetroFE::run( )
     fontcache_.initialize( );
 
     // Initialize MenuMode
-    MenuMode::init();
+    MenuMode::init( config_ );
 
     // Define control configuration
     std::string controlsConfPath = Utils::combinePath( Configuration::absolutePath, "controls.conf" );

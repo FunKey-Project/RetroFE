@@ -3,6 +3,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_image.h>
+#include "../Database/Configuration.h"
 
 typedef enum{
     MENU_TYPE_VOLUME,
@@ -11,6 +12,7 @@ typedef enum{
     MENU_TYPE_LOAD,
     MENU_TYPE_ASPECT_RATIO,
     MENU_TYPE_USB,
+    MENU_TYPE_THEME,
     MENU_TYPE_EXIT,
     MENU_TYPE_POWERDOWN,
     NB_MENU_TYPES,
@@ -48,7 +50,7 @@ class MenuMode
 
 public:
     //MenuMode();
-    static void init();
+    static void init(Configuration &c);
     static void end();
     static void launch( );
 
@@ -129,4 +131,6 @@ private:
     static int aspect_ratio_factor_step;
 
     static int savestate_slot;
+
+    static std::vector<std::string> layouts_;
 };

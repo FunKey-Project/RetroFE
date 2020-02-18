@@ -30,6 +30,7 @@ public:
     // gets the global configuration
     bool import(std::string keyPrefix, std::string file);
     bool import(std::string collection, std::string keyPrefix, std::string file, bool mustExist = true);
+    bool importLayouts(std::string folder, std::string file, bool mustExist = true);
     bool getProperty(std::string key, std::string &value);
     bool getProperty(std::string key, int &value);
     bool getProperty(std::string key, bool &value);
@@ -42,6 +43,7 @@ public:
     void getMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, bool system, std::string &value);
     void getCollectionAbsolutePath(std::string collectionName, std::string &value);
     static std::string absolutePath;
+    std::vector<std::string> layouts_;
 
 private:
     bool getRawProperty(std::string key, std::string &value);

@@ -58,7 +58,7 @@ void Configuration::initialize()
     // Or check for home based flat file works on linux/mac
     else if (retrofe_path && std::getline( retrofe_path, absolutePath ))
     {
-    	retrofe_path.close();
+	retrofe_path.close();
     }
 #endif
     // Or check executable for path
@@ -72,8 +72,8 @@ void Configuration::initialize()
         sPath = Utils::getDirectory(sPath);
         sPath = Utils::getParentDirectory(sPath);
 #elif __APPLE__
-    	char exepath[PROC_PIDPATHINFO_MAXSIZE];
-    	if( proc_pidpath (getpid(), exepath, sizeof(exepath)) <= 0 ) // Error to console if no path to write logs…
+	char exepath[PROC_PIDPATHINFO_MAXSIZE];
+	if( proc_pidpath (getpid(), exepath, sizeof(exepath)) <= 0 ) // Error to console if no path to write logs…
             fprintf(stderr, "Cannot set absolutePath: %s\nOverride with RETROFE_PATH env var\n", strerror(errno));
         std::string sPath = Utils::getDirectory(exepath);
 
@@ -82,7 +82,7 @@ void Configuration::initialize()
         // as an example /usr/local/opt/retro/RetroFE.app/Contents/MacOS becomes /usr/local/opt/retrofe
         // Note: executing 'brew applinks retrofe' - should create symlink to /Applications/RetroFE.app
         size_t rootPos = sPath.find("/RetroFE.app/Contents/MacOS");
-	if(rootPos!=std::string::npos) 
+	if(rootPos!=std::string::npos)
 		sPath = sPath.erase(rootPos);
 #else
         char exepath[1024] = {};
@@ -136,6 +136,62 @@ bool Configuration::import(std::string collection, std::string keyPrefix, std::s
     return retVal;
 }
 
+bool Configuration::importLayouts(std::string folder, std::string file, bool mustExist)
+{
+    bool retVal = true;
+    int lineCount = 0;
+    std::string line;
+
+    Logger::write(Logger::ZONE_INFO, "Configuration", "Importing layouts from \"" + file + "\"");
+
+    std::ifstream ifs(file.c_str());
+
+    if (!ifs.is_open())
+    {
+        if (mustExist)
+        {
+            Logger::write(Logger::ZONE_ERROR, "Configuration", "Could not open " + file + "\"");
+        }
+        else
+        {
+            Logger::write(Logger::ZONE_INFO, "Configuration", "Could not open " + file + "\"");
+        }
+
+        return false;
+    }
+
+    while (std::getline (ifs, line))
+    {
+        lineCount++;
+
+        // strip out any comments
+        line = Utils::filterComments(line);
+
+        if(line.empty() || (line.find_first_not_of(" \t\r") == std::string::npos))
+        {
+	    retVal = true;
+        }
+        else
+        {
+	    std::string layoutName = trimEnds(line);
+	    std::string layoutPath = Utils::combinePath(folder, layoutName);
+
+	    /* Set new layoutPath */
+	    layouts_.push_back(layoutPath);
+
+	    std::stringstream ss;
+	    ss << "Dump layouts: "  << "\"" << layoutPath << "\"";
+
+	    Logger::write(Logger::ZONE_INFO, "Configuration", ss.str());
+	    retVal = true;
+        }
+    }
+
+    ifs.close();
+
+    return retVal;
+}
+
 
 bool Configuration::parseLine(std::string collection, std::string keyPrefix, std::string line, int lineCount)
 {
@@ -147,7 +203,7 @@ bool Configuration::parseLine(std::string collection, std::string keyPrefix, std
 
     // strip out any comments
     line = Utils::filterComments(line);
-    
+
     if(line.empty() || (line.find_first_not_of(" \t\r") == std::string::npos))
     {
         retVal = true;
@@ -172,6 +228,14 @@ bool Configuration::parseLine(std::string collection, std::string keyPrefix, std
         {
             value = Utils::replace(value, "%ITEM_COLLECTION_NAME%", collection);
         }
+
+        /* remove property if key already exists */
+        if(properties_.find(key) != properties_.end())
+        {
+	    properties_.erase(key);
+        }
+
+        /* Set new pair <key, value> */
         properties_.insert(PropertiesPair(key, value));
 
         std::stringstream ss;
@@ -372,7 +436,7 @@ void Configuration::getMediaPropertyAbsolutePath(std::string collectionName, std
 void Configuration::getMediaPropertyAbsolutePath(std::string collectionName, std::string mediaType, bool system, std::string &value)
 {
     std::string key = "collections." + collectionName + ".media." + mediaType;
-    if (system) 
+    if (system)
     {
         key = "collections." + collectionName + ".media.system_artwork";
     }

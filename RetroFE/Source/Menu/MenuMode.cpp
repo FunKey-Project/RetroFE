@@ -70,6 +70,7 @@ int *MenuMode::idx_menus = NULL;
 int MenuMode::nb_menu_zones = 0;
 int MenuMode::menuItem=0;
 int MenuMode::stop_menu_loop = 0;
+std::vector<std::string> MenuMode::layouts_;
 
 SDL_Color MenuMode::text_color = {GRAY_MAIN_R, GRAY_MAIN_G, GRAY_MAIN_B};
 int MenuMode::padding_y_from_center_menu_zone = 18;
@@ -98,7 +99,7 @@ int usb_mounted = 0;
 
 
 /// -------------- FUNCTIONS IMPLEMENTATION --------------
-void MenuMode::init( )
+void MenuMode::init(Configuration &c)
 {
 	MENU_DEBUG_PRINTF("Init MenuMode\n");
 	/// ----- Loading the fonts -----
@@ -131,6 +132,14 @@ void MenuMode::init( )
 	img_arrow_bottom = IMG_Load(MENU_PNG_ARROW_BOTTOM_PATH);
 	if(!img_arrow_bottom) {
 		MENU_ERROR_PRINTF("ERROR IMG_Load: %s\n", IMG_GetError());
+	}
+
+	/// ------ Copy config's layouts ------
+	layouts_ = c.layouts_;
+
+	std::vector<std::string>::iterator it;
+	for (it= layouts_.begin(); it < layouts_.end(); it++){
+		printf("%s\n", (*it).c_str());
 	}
 
 	/// ------ Init menu zones ------
@@ -242,6 +251,7 @@ void MenuMode::add_menu_zone(ENUM_MENU_TYPE menu_type){
 	if(!menu_zone_surfaces[nb_menu_zones-1]) {
 		MENU_ERROR_PRINTF("ERROR IMG_Load: %s\n", IMG_GetError());
 	}
+
 	/// --------- Init Common Variables --------
 	SDL_Surface *text_surface = NULL;
 	SDL_Surface *surface = menu_zone_surfaces[nb_menu_zones-1];
@@ -315,6 +325,14 @@ void MenuMode::add_menu_zone(ENUM_MENU_TYPE menu_type){
 		text_pos.y = surface->h - MENU_ZONE_HEIGHT/2 - text_surface->h/2;
 		SDL_BlitSurface(text_surface, NULL, surface, &text_pos);*/
 		break;
+	case MENU_TYPE_THEME:
+		MENU_DEBUG_PRINTF("Init MENU_TYPE_THEME\n");
+		/// ------ Text ------
+		text_surface = TTF_RenderText_Blended(menu_title_font, "SET THEME", text_color);
+		text_pos.x = (surface->w - MENU_ZONE_WIDTH)/2 + (MENU_ZONE_WIDTH - text_surface->w)/2;
+		text_pos.y = surface->h - MENU_ZONE_HEIGHT/2 - text_surface->h/2 - padding_y_from_center_menu_zone*2;
+		SDL_BlitSurface(text_surface, NULL, surface, &text_pos);
+		break;
 	case MENU_TYPE_POWERDOWN:
 		MENU_DEBUG_PRINTF("Init MENU_TYPE_POWERDOWN\n");
 		/// ------ Text ------
@@ -347,6 +365,8 @@ void MenuMode::init_menu_zones(){
 	//add_menu_zone(MENU_TYPE_EXIT);
 	/// Init USB Menu
 	add_menu_zone(MENU_TYPE_USB);
+	/// Init Theme Menu
+	add_menu_zone(MENU_TYPE_THEME);
 	/// Init Powerdown Menu
 	add_menu_zone(MENU_TYPE_POWERDOWN);
 }

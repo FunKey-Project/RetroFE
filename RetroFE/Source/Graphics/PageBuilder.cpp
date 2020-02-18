@@ -19,6 +19,7 @@
 #include "ViewInfo.h"
 #include "Component/Container.h"
 #include "Component/Image.h"
+#include "Component/Battery.h"
 #include "Component/Text.h"
 #include "Component/ReloadableText.h"
 #include "Component/ReloadableMedia.h"
@@ -207,7 +208,7 @@ Page *PageBuilder::buildPage( std::string collectionName )
 
             page = new Page(config_);
 
-            if(minShowTimeXml) 
+            if(minShowTimeXml)
             {
                 page->setMinShowTime(Utils::convertFloat(minShowTimeXml->value()));
             }
@@ -387,6 +388,42 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
         page->addComponent(c);
     }
 
+    for(xml_node<> *componentXml = layout->first_node("battery"); componentXml; componentXml = componentXml->next_sibling("battery"))
+    {
+        xml_attribute<> *idReloadPeriod = componentXml->first_attribute("reloadPeriod");
+	xml_attribute<> *fontColorXml = componentXml->first_attribute("fontColor");
+
+	int reloadPeriod = 5;
+	if (idReloadPeriod)
+	{
+	    reloadPeriod = Utils::convertInt(idReloadPeriod->value());
+	    if(reloadPeriod < 1){
+	        reloadPeriod = 1;
+		Logger::write(Logger::ZONE_ERROR, "Layout", "Battery component - reloadPeriod cannot be lower than 1, setting 1 as default");
+	    }
+	}
+
+	SDL_Color fontColor = fontColor_;
+	if(fontColorXml)
+	{
+	    int intColor = 0;
+	    std::stringstream ss;
+	    ss << std::hex << fontColorXml->value();
+	    ss >> intColor;
+
+	    fontColor.b = intColor & 0xFF;
+	    intColor >>= 8;
+	    fontColor.g = intColor & 0xFF;
+	    intColor >>= 8;
+	    fontColor.r = intColor & 0xFF;
+	}
+
+	Battery *c = new Battery(*page, scaleX_, scaleY_, reloadPeriod, fontColor);
+	buildViewInfo(componentXml, c->baseViewInfo);
+        loadTweens(c, componentXml);
+		page->addComponent(c);
+    }
+
 
     for(xml_node<> *componentXml = layout->first_node("image"); componentXml; componentXml = componentXml->next_sibling("image"))
     {
@@ -531,7 +568,7 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
 
 void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, Page *page)
 {
-    
+
     for(xml_node<> *componentXml = layout->first_node(tagName.c_str()); componentXml; componentXml = componentXml->next_sibling(tagName.c_str()))
     {
         std::string reloadableImagePath;
@@ -615,7 +652,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
             }
         }
 
-        if(selectedOffsetXml) 
+        if(selectedOffsetXml)
         {
             std::stringstream ss;
             ss << selectedOffsetXml->value();
@@ -711,7 +748,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                 {
                     alignment = alignmentXml->value();
                 }
-                
+
                 std::string singlePrefix = "";
                 if (singlePrefixXml)
                 {
@@ -1195,7 +1232,7 @@ void PageBuilder::buildVerticalMenu(ScrollingList *menu, xml_node<> *menuXml, xm
 
         std::stringstream ss;
 
-        ss << "Design error! Selected menu item was set to " << selectedIndex 
+        ss << "Design error! Selected menu item was set to " << selectedIndex
            << " although there are only " << points->size()
            << " menu points that can be displayed";
 

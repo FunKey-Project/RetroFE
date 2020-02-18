@@ -283,7 +283,7 @@ bool Page::mustRender()
 
     for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
-	render = (*it)->mustRender();
+        render |= (*it)->mustRender();
     }
 
     return render;

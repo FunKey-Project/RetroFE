@@ -122,15 +122,40 @@ bool ImportConfiguration(Configuration *c)
     DIR *dp;
     struct dirent *dirp;
 
+    /* Read settings file */
     std::string settingsConfPath = Utils::combinePath(configPath, "settings.conf");
     if(!c->import("", settingsConfPath))
     {
         Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + settingsConfPath + "\"");
         return false;
     }
-    
-    dp = opendir(launchersPath.c_str());
 
+    /* Read current layout */
+    std::string layoutConfPath = Utils::combinePath(configPath, "layout.conf");
+    if(!c->import("", layoutConfPath))
+    {
+        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + layoutConfPath + "\"");
+        return false;
+    }
+    
+    /* Read layouts */
+    std::string layoutDefaultPath =  Utils::combinePath(Configuration::absolutePath, "layouts");
+    std::string layoutListDefaultPath = Utils::combinePath(layoutDefaultPath, "layouts.list");
+    if(!c->importLayouts(layoutDefaultPath, layoutListDefaultPath))
+    {
+        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + layoutListDefaultPath + "\"");
+    }
+
+    /* Read layouts on user partition */
+    std::string layoutUserPath =  Utils::combinePath(std::string("/mnt"), "themes");
+    std::string layoutListUserPath = Utils::combinePath(layoutUserPath, "themes.list");
+    if(!c->importLayouts(layoutUserPath, layoutListUserPath))
+    {
+        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + layoutListUserPath + "\"");
+    }
+
+    /* Open Launchers folder */
+    dp = opendir(launchersPath.c_str());
     if(dp == NULL)
     {
         Logger::write(Logger::ZONE_INFO, "RetroFE", "Could not read directory \"" + launchersPath + "\"");
