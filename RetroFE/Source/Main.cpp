@@ -135,7 +135,6 @@ bool ImportConfiguration(Configuration *c)
     if(!c->import("", layoutConfPath))
     {
         Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + layoutConfPath + "\"");
-        return false;
     }
     
     /* Read layouts */
