@@ -418,7 +418,7 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
 	    fontColor.r = intColor & 0xFF;
 	}
 
-	Battery *c = new Battery(*page, scaleX_, scaleY_, reloadPeriod, fontColor);
+	Battery *c = new Battery(*page, config_, reloadPeriod, fontColor, scaleX_, scaleY_);
 	buildViewInfo(componentXml, c->baseViewInfo);
         loadTweens(c, componentXml);
 		page->addComponent(c);

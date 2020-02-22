@@ -2,6 +2,7 @@
 #include "../ViewInfo.h"
 #include "../../SDL.h"
 #include "../../Utility/Log.h"
+#include "../../Database/Configuration.h"
 #include <SDL/SDL_image.h>
 
 
@@ -75,14 +76,10 @@ static uint32_t noBatIcon [NOBAT_ICON_HEIGHT][NOBAT_ICON_WIDTH] = {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
 
 
-/* TODO: this should be in config */
-static std::string fileUsbConnected = "/sys/class/power_supply/axp20x-usb/present";
-static std::string fileBatConnected = "/sys/class/power_supply/axp20x-battery/present";
-static std::string fileBatCapacity = "/sys/class/power_supply/axp20x-battery/capacity";
-
-/*static std::string fileUsbConnected = "/home/vincent/Workspace/axp20x-usb_present";
-static std::string fileBatConnected = "/home/vincent/Workspace/axp20x-battery_present";
-static std::string fileBatCapacity = "/home/vincent/Workspace/axp20x-battery_capacity";*/
+/*Default value, reset with config*/
+std::string Battery::fileUsbConnected_ = "/sys/class/power_supply/axp20x-usb/present";
+std::string Battery::fileBatConnected_ = "/sys/class/power_supply/axp20x-battery/present";
+std::string Battery::fileBatCapacity_ = "/sys/class/power_supply/axp20x-battery/capacity";
 
 int 	Battery::percentage_ = 0;
 int 	Battery::prevPercentage_ = 0;
@@ -94,8 +91,9 @@ float 	Battery::currentWaitTime_ = 0.0f;
 bool 	Battery::mustRender_ = false;
 
 
-Battery::Battery(Page &p, float scaleX, float scaleY, float reloadPeriod, SDL_Color fontColor)
+Battery::Battery(Page &p, Configuration &config, float reloadPeriod, SDL_Color fontColor, float scaleX, float scaleY)
     : Component(p)
+	, config_(config)
     , texture_(NULL)
     , texture_prescaled_(NULL)
     , reloadPeriod_(reloadPeriod)
@@ -104,6 +102,16 @@ Battery::Battery(Page &p, float scaleX, float scaleY, float reloadPeriod, SDL_Co
     , fontColor_(0xff000000 | ((uint32_t)fontColor.b) << 16 | ((uint32_t)fontColor.g) << 8 | ((uint32_t)fontColor.r))
 {
     allocateGraphicsMemory();
+
+    if( config_.propertyExists( "fileUsbConnected" ) ){
+        config_.getProperty( "fileUsbConnected", fileUsbConnected_ );
+    }
+    if( config_.propertyExists( "fileBatConnected" ) ){
+        config_.getProperty( "fileBatConnected", fileBatConnected_ );
+    }
+    if( config_.propertyExists( "fileBatCapacity" ) ){
+        config_.getProperty( "fileBatCapacity", fileBatCapacity_ );
+    }
 }
 
 Battery::~Battery()
@@ -295,7 +303,7 @@ int Battery::readFileValue(std::string file){
 
 bool Battery::isBatConnected(){
 
-	int res = readFileValue(fileBatConnected);
+	int res = readFileValue(fileBatConnected_);
 	//printf("%s: %d \n", __func__, res);
 
 	return (res==1)?true:false;
@@ -303,7 +311,7 @@ bool Battery::isBatConnected(){
 
 bool Battery::isUsbConnected(){
 
-	int res = readFileValue(fileUsbConnected);
+	int res = readFileValue(fileUsbConnected_);
 	//printf("%s: %d \n", __func__, res);
 
 	return (res==1)?true:false;
@@ -311,7 +319,7 @@ bool Battery::isUsbConnected(){
 
 int Battery::getBatPercent(){
 
-	int res = readFileValue(fileBatCapacity);
+	int res = readFileValue(fileBatCapacity_);
 	//printf("%s: %d \n", __func__, res);
 
 	return res;
