@@ -1059,6 +1059,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
 {
     bool exit = false;
     RETROFE_STATE state = RETROFE_IDLE;
+
 #if 0
     // Poll all events until we find an active one
     SDL_Event e;
@@ -1087,14 +1088,14 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             //printf("e.key.keysym.sym = %d\n", e.key.keysym.sym);
 
 	    /* Finish polling events */
-	    //SDL_Event e_trash;
-	    //while ( SDL_PollEvent( &e_trash ) );
-
-            break;
+	    /*SDL_Event e_trash;
+	      while ( SDL_PollEvent( &e_trash ) );
+	      break;*/
         }
     }
 #endif
 
+#if 0
     // Poll all events until we find an active one
     SDL_Event e;
     while ( SDL_PollEvent( &e ) );
@@ -1108,6 +1109,30 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
     }
 
     input_.update(e);
+#endif
+
+
+#if 1
+    // Poll all events until we find an active one and process it
+    SDL_Event e;
+    while ( SDL_PollEvent( &e ) )
+    {
+        if ( e.type == SDL_QUIT  )
+        {
+            printf("How dare you interrupt me!\n");
+            attract_.reset( );
+            state = RETROFE_QUIT_REQUEST;
+
+	    /* Finish polling events */
+	    //SDL_Event e_trash;
+	    //while ( SDL_PollEvent( &e_trash ) );
+
+            return state;
+        }
+
+        input_.update(e);
+    }
+#endif
 
 
 
