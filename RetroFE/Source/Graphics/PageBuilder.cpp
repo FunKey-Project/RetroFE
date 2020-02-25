@@ -429,6 +429,15 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
     {
         xml_attribute<> *src   = componentXml->first_attribute("src");
         xml_attribute<> *idXml = componentXml->first_attribute("id");
+        xml_attribute<> *ditheringXml = componentXml->first_attribute("dithering");
+
+        bool dithering =false;
+        if (ditheringXml &&
+            (Utils::toLower(ditheringXml->value()) == "true" ||
+             Utils::toLower(ditheringXml->value()) == "yes"))
+        {
+	    dithering = true;
+        }
 
         int id = -1;
         if (idXml)
@@ -449,7 +458,7 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
             std::string altImagePath;
             altImagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, std::string(src->value()));
 
-            Image *c = new Image(imagePath, altImagePath, *page, scaleX_, scaleY_);
+            Image *c = new Image(imagePath, altImagePath, *page, scaleX_, scaleY_, dithering);
             c->setId( id );
             xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
             if (menuScrollReload &&
@@ -780,10 +789,20 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                 }
             }
         }
-        else
+        else //ReloadableMedia
         {
             Font *font = addFont(componentXml, NULL);
-            c = new ReloadableMedia(config_, systemMode, layoutMode, commonMode, menuMode, type->value(), *page, selectedOffset, (tagName == "reloadableVideo"), font, scaleX_, scaleY_);
+
+            xml_attribute<> *ditheringXml = componentXml->first_attribute("dithering");
+            bool dithering =false;
+            if (ditheringXml &&
+                (Utils::toLower(ditheringXml->value()) == "true" ||
+                 Utils::toLower(ditheringXml->value()) == "yes"))
+            {
+	        dithering = true;
+            }
+
+            c = new ReloadableMedia(config_, systemMode, layoutMode, commonMode, menuMode, type->value(), *page, selectedOffset, (tagName == "reloadableVideo"), font, scaleX_, scaleY_, dithering);
             c->setId( id );
             xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
             if (menuScrollReload &&
@@ -1025,6 +1044,7 @@ ScrollingList * PageBuilder::buildMenu(xml_node<> *menuXml, Page &page)
     xml_attribute<> *scrollTimeXml         = menuXml->first_attribute("scrollTime");
     xml_attribute<> *scrollAccelerationXml = menuXml->first_attribute("scrollAcceleration");
     xml_attribute<> *scrollOrientationXml  = menuXml->first_attribute("orientation");
+    xml_attribute<> *ditheringXml 		   = menuXml->first_attribute("dithering");
 
     if(menuTypeXml)
     {
@@ -1065,7 +1085,15 @@ ScrollingList * PageBuilder::buildMenu(xml_node<> *menuXml, Page &page)
     // on default, text will be rendered to the menu. Preload it into cache.
     Font *font = addFont(itemDefaults, NULL);
 
-    menu = new ScrollingList(config_, page, layoutMode, commonMode, scaleX_, scaleY_, font, layoutKey, imageType);
+    bool dithering =false;
+    if (ditheringXml &&
+        (Utils::toLower(ditheringXml->value()) == "true" ||
+         Utils::toLower(ditheringXml->value()) == "yes"))
+    {
+        dithering = true;
+    }
+
+    menu = new ScrollingList(config_, page, layoutMode, commonMode, scaleX_, scaleY_, font, layoutKey, imageType, dithering);
 
     if(scrollTimeXml)
     {

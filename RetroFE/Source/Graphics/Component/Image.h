@@ -22,7 +22,7 @@
 class Image : public Component
 {
 public:
-    Image(std::string file, std::string altFile, Page &p, float scaleX, float scaleY);
+    Image(std::string file, std::string altFile, Page &p, float scaleX, float scaleY, bool dithering);
     virtual ~Image();
     void freeGraphicsMemory();
     void allocateGraphicsMemory();
@@ -35,4 +35,7 @@ protected:
     std::string altFile_;
     float scaleX_;
     float scaleY_;
+    bool ditheringAuthorized_;
+    bool needDithering_;
+    int imgBitsPerPx_;
 };

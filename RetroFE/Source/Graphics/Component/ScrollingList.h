@@ -41,7 +41,8 @@ public:
                    float         scaleY,
                    Font         *font,
                    std::string   layoutKey,
-                   std::string   imageType );
+                   std::string   imageType,
+				   bool 		 dithering);
 
     ScrollingList( const ScrollingList &copy );
     virtual ~ScrollingList( );
@@ -124,6 +125,7 @@ private:
     Font          *fontInst_;
     std::string    layoutKey_;
     std::string    imageType_;
+    bool 			ditheringAuthorized_;
 
     std::vector<Item *>     *items_;
     std::vector<Component *> components_;

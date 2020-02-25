@@ -20,7 +20,22 @@
 #include "Utility/Log.h"
 #include <SDL/SDL_mixer.h>
 //#include <SDL/SDL_rotozoom.h>
-#include <SDL/SDL_gfxBlitFunc.h>
+//#include <SDL/SDL_gfxBlitFunc.h>
+
+/* Basic math */
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#define MAX(a,b) (((a)>(b))?(a):(b))
+
+/* Get 16bit closest color */
+#define CLOSEST_RB(c) (MIN(c+4,0xff) >> 3 << 3)
+#define CLOSEST_G(c) (MIN(c+2,0xff) >> 2 << 2)
+
+/* RGB8888 */
+#define RGB32BIT(a, r, g, b) ((a<<24) | (r<<16) | (g<<8) | b)
+#define GET_A_32BIT(c)  ((c & 0xff000000) >> 24)
+#define GET_R_32BIT(c)  ((c & 0x00ff0000) >> 16)
+#define GET_G_32BIT(c)  ((c & 0x0000ff00) >> 8)
+#define GET_B_32BIT(c)  (c & 0x000000ff)
 
 
 //SDL_Window   *SDL::window_        = NULL;
@@ -350,6 +365,90 @@ void SDL::SDL_Rotate_270(SDL_Surface * src, SDL_Surface * dst){
       *cur_p_dst = *cur_p_src;
     }
   }
+}
+
+
+/* Dithering 32bpp RGB Surface
+ *
+ * error diffusion with "Filter Lite" also called "Sierra lite" method
+ *
+ */
+void SDL::ditherSurface32bppTo16Bpp(SDL_Surface * src_surface){
+
+	/* Vars */
+	int x, y;
+	uint8_t r_old, g_old, b_old;
+	uint8_t r_new, g_new, b_new;
+	int r_error, g_error, b_error;
+	uint32_t cur_px;
+
+	/* Sanity check */
+	if(src_surface->format->BitsPerPixel != 32){
+		printf("Error: src_surface is %dBpp while dst_surface is not 32\n", src_surface->format->BitsPerPixel);
+		return;
+	}
+
+	/* Loop for dithering */
+	for (y=0; y<src_surface->h; y++){
+		for (x=0; x < src_surface->w; x++){
+
+			/* Get old and new rgb values of current pixel */
+			cur_px = *((uint32_t*)src_surface->pixels + (y)*src_surface->w + (x));
+			r_old = GET_R_32BIT(cur_px);
+			g_old = GET_G_32BIT(cur_px);
+			b_old = GET_B_32BIT(cur_px);
+			r_new = CLOSEST_RB(r_old);
+			g_new = CLOSEST_G(g_old);
+			b_new = CLOSEST_RB(b_old);
+
+			/* Set new pixel value */
+			*((uint32_t*)src_surface->pixels + (y)*src_surface->w + (x)) = RGB32BIT(GET_A_32BIT(cur_px), r_new, g_new, b_new);
+
+			/* Get errors */
+			r_error = r_old - r_new;
+			g_error = g_old - g_new;
+			b_error = b_old - b_new;
+
+			/* Right pixel */
+			if(x + 1 < src_surface->w){
+				cur_px = *((uint32_t*)src_surface->pixels + (y)*src_surface->w + (x+1));
+				r_old = GET_R_32BIT(cur_px);
+				g_old = GET_G_32BIT(cur_px);
+				b_old = GET_B_32BIT(cur_px);
+				*((uint32_t*)src_surface->pixels + (y)*src_surface->w + (x+1)) =
+						RGB32BIT( GET_A_32BIT(cur_px),
+								MAX(MIN((int)r_old + (r_error>>1), 0xff), 0),
+								MAX(MIN((int)g_old + (g_error>>1), 0xff), 0),
+								MAX(MIN((int)b_old + (b_error>>1), 0xff), 0) );
+			}
+
+			/* Bottom pixel */
+			if(y + 1 < src_surface->h){
+				cur_px = *((uint32_t*)src_surface->pixels + (y+1)*src_surface->w + (x));
+				r_old = GET_R_32BIT(cur_px);
+				g_old = GET_G_32BIT(cur_px);
+				b_old = GET_B_32BIT(cur_px);
+				*((uint32_t*)src_surface->pixels + (y+1)*src_surface->w + (x)) =
+						RGB32BIT( GET_A_32BIT(cur_px),
+								MAX(MIN((int)r_old + (r_error>>2), 0xff), 0),
+								MAX(MIN((int)g_old + (g_error>>2), 0xff), 0),
+								MAX(MIN((int)b_old + (b_error>>2), 0xff), 0) );
+			}
+
+			/* Bottom left pixel */
+			if( x > 0 &&  y + 1 < src_surface->h){
+				cur_px = *((uint32_t*)src_surface->pixels + (y+1)*src_surface->w + (x-1));
+				r_old = GET_R_32BIT(cur_px);
+				g_old = GET_G_32BIT(cur_px);
+				b_old = GET_B_32BIT(cur_px);
+				*((uint32_t*)src_surface->pixels + (y+1)*src_surface->w + (x-1)) =
+						RGB32BIT( GET_A_32BIT(cur_px),
+								MAX(MIN((int)r_old + (r_error>>2), 0xff), 0),
+								MAX(MIN((int)g_old + (g_error>>2), 0xff), 0),
+								MAX(MIN((int)b_old + (b_error>>2), 0xff), 0) );
+			}
+		}
+	}
 }
 
 

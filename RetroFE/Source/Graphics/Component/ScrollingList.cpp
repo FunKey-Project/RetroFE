@@ -48,7 +48,8 @@ ScrollingList::ScrollingList( Configuration &c,
                               float          scaleY,
                               Font          *font,
                               std::string    layoutKey,
-                              std::string    imageType )
+                              std::string    imageType ,
+							  bool dithering)
     : Component( p )
     , horizontalScroll( false )
     , layoutMode_( layoutMode )
@@ -69,6 +70,7 @@ ScrollingList::ScrollingList( Configuration &c,
     , fontInst_( font )
     , layoutKey_( layoutKey )
     , imageType_( imageType )
+    , ditheringAuthorized_( dithering )
     , items_( NULL )
 {
 }
@@ -672,7 +674,7 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
             else
                 config_.getMediaPropertyAbsolutePath( collectionName, imageType_, false, imagePath );
         }
-        t = imageBuild.CreateImage( imagePath, page, names[n], scaleX_, scaleY_ );
+        t = imageBuild.CreateImage( imagePath, page, names[n], scaleX_, scaleY_, ditheringAuthorized_ );
 
         // check sub-collection path for art
         if ( !t && !commonMode_ )
@@ -686,7 +688,7 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
             {
                 config_.getMediaPropertyAbsolutePath( item->collectionInfo->name, imageType_, false, imagePath );
             }
-            t = imageBuild.CreateImage( imagePath, page, names[n], scaleX_, scaleY_ );
+            t = imageBuild.CreateImage( imagePath, page, names[n], scaleX_, scaleY_, ditheringAuthorized_ );
         }
     }
 
@@ -714,19 +716,19 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
                 config_.getMediaPropertyAbsolutePath( item->name, imageType_, true, imagePath );
             }
         }
-        t = imageBuild.CreateImage( imagePath, page, imageType_, scaleX_, scaleY_ );
+        t = imageBuild.CreateImage( imagePath, page, imageType_, scaleX_, scaleY_, ditheringAuthorized_ );
     }
 
     // check rom directory path for art
     if ( !t ){
-        t = imageBuild.CreateImage( item->filepath, page, imageType_, scaleX_, scaleY_ );
+        t = imageBuild.CreateImage( item->filepath, page, imageType_, scaleX_, scaleY_, ditheringAuthorized_ );
     }
 
     // Image fallback
     if ( !t && imageType_.compare(std::string("null"))){
         imagePath = Utils::combinePath(Configuration::absolutePath, "collections", collectionName );
         imagePath = Utils::combinePath( imagePath, "system_artwork" );
-        t = imageBuild.CreateImage( imagePath, page, std::string("fallback"), scaleX_, scaleY_ );
+        t = imageBuild.CreateImage( imagePath, page, std::string("fallback"), scaleX_, scaleY_, ditheringAuthorized_ );
     }
 
     if ( !t )

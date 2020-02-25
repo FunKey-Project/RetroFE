@@ -27,7 +27,7 @@ class Image;
 class ReloadableMedia : public Component
 {
 public:
-    ReloadableMedia(Configuration &config, bool systemMode, bool layoutMode, bool commonMode, bool menuMode, std::string type, Page &page, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY);
+    ReloadableMedia(Configuration &config, bool systemMode, bool layoutMode, bool commonMode, bool menuMode, std::string type, Page &page, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY, bool dithering);
     virtual ~ReloadableMedia();
     void update(float dt);
     void draw();
@@ -52,6 +52,7 @@ private:
     IVideo *videoInst_;
     bool isVideo_;
     Font *FfntInst_;
+    bool ditheringAuthorized_;
     bool imageAndText_;
     float imageAndTextPadding_;
     bool textFallback_;

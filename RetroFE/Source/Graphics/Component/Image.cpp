@@ -19,10 +19,13 @@
 #include "../../Utility/Log.h"
 #include <SDL/SDL_image.h>
 
-Image::Image(std::string file, std::string altFile, Page &p, float scaleX, float scaleY)
+Image::Image(std::string file, std::string altFile, Page &p, float scaleX, float scaleY, bool dithering)
     : Component(p)
     , texture_(NULL)
     , texture_prescaled_(NULL)
+    , ditheringAuthorized_(dithering)
+    , needDithering_(false)
+    , imgBitsPerPx_(32)
     , file_(file)
     , altFile_(altFile)
     , scaleX_(scaleX)
@@ -39,6 +42,7 @@ Image::~Image()
 void Image::freeGraphicsMemory()
 {
     Component::freeGraphicsMemory();
+    //printf("freeGraphicsMemory: %s\n", file_.c_str());
 
     SDL_LockMutex(SDL::getMutex());
     if (texture_ != NULL)
@@ -64,7 +68,7 @@ void Image::allocateGraphicsMemory()
         SDL_LockMutex(SDL::getMutex());
 
         /* Load image */
-        SDL_Surface *img_tmp = NULL;
+        SDL_Surface * img_tmp = NULL;
         //printf("Loading image: %s\n", file_.c_str());
         img_tmp = IMG_Load(file_.c_str());
         if (!img_tmp && altFile_ != "")
@@ -76,6 +80,11 @@ void Image::allocateGraphicsMemory()
 
         if (img_tmp != NULL)
         {
+	    /* Check if dithering needed */
+	    imgBitsPerPx_ = img_tmp->format->BitsPerPixel;
+	    if( imgBitsPerPx_ > 16 && ditheringAuthorized_){
+	        needDithering_ = true;
+	    }
 
 	    /* Convert to RGB 32bit if necessary */
 	    if(img_tmp->format->BitsPerPixel != 32){
@@ -126,7 +135,8 @@ void Image::draw()
 		scaling_needed = rect.w!=0 && rect.h!=0 && (texture_->w != rect.w || texture_->h != rect.h);
 		if(scaling_needed){
 			cache_scaling_needed = (texture_prescaled_ == NULL)?true:(texture_prescaled_->w != rect.w || texture_prescaled_->h != rect.h);
-			if(cache_scaling_needed){
+			if(cache_scaling_needed &&  imgBitsPerPx_ > 16 && ditheringAuthorized_){
+				needDithering_ = true;
 				texture_prescaled_ = SDL::zoomSurface(texture_, NULL, &rect);
 				if(texture_prescaled_ == NULL){
 					printf("ERROR in %s - Could not create texture_prescaled_\n", __func__);
@@ -139,11 +149,23 @@ void Image::draw()
 			}
 		}
 
+		/* Surface to display */
+		SDL_Surface * surfaceToRender = NULL;
 		if(use_prescaled && texture_prescaled_ != NULL){
-			SDL::renderCopy(texture_prescaled_, baseViewInfo.Alpha, NULL, &rect, baseViewInfo);
+			surfaceToRender = texture_prescaled_;
 		}
 		else{
-			SDL::renderCopy(texture_, baseViewInfo.Alpha, NULL, &rect, baseViewInfo);
+			surfaceToRender = texture_;
 		}
+
+		/* Dithering */
+		if(needDithering_){
+			//printf("Dither: %s\n", file_.c_str());
+			SDL::ditherSurface32bppTo16Bpp(surfaceToRender);
+			needDithering_ = false;
+		}
+
+		/* Render */
+		SDL::renderCopy(surfaceToRender, baseViewInfo.Alpha, NULL, &rect, baseViewInfo);
     }
 }

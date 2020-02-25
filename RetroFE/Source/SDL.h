@@ -33,13 +33,11 @@ class SDL
 public:
     static bool initialize( Configuration &config );
     static bool deInitialize( );
-    //static SDL_Renderer *getRenderer( );
     static SDL_mutex *getMutex( );
-    //static SDL_Window *getWindow( );
     static SDL_Surface *getWindow( );
     static void renderAndFlipWindow( );
-    //static bool renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo );
     static SDL_Surface * zoomSurface(SDL_Surface *surface_ptr, SDL_Rect *src_rect_origin, SDL_Rect *dst_rect);
+    static void ditherSurface32bppTo16Bpp(SDL_Surface *src_surface);
     static bool renderCopy( SDL_Surface *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo );
     static int getWindowWidth( )
     {
@@ -56,8 +54,6 @@ public:
     static void SDL_Rotate_270(SDL_Surface * dst, SDL_Surface * src);
 
 private:
-    //static SDL_Window   *window_;
-    //static SDL_Renderer *renderer_;
     static Uint32 get_pixel32( SDL_Surface *surface, int x, int y );
     static void put_pixel32( SDL_Surface *surface, int x, int y, Uint32 pixel );
     static SDL_Surface * flip_surface( SDL_Surface *surface, int flags );

@@ -28,7 +28,7 @@
 #include <vector>
 #include <iostream>
 
-ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, bool layoutMode, bool commonMode, bool menuMode, std::string type, Page &p, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY)
+ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, bool layoutMode, bool commonMode, bool menuMode, std::string type, Page &p, int displayOffset, bool isVideo, Font *font, float scaleX, float scaleY, bool dithering)
     : Component(p)
     , config_(config)
     , systemMode_(systemMode)
@@ -39,6 +39,7 @@ ReloadableMedia::ReloadableMedia(Configuration &config, bool systemMode, bool la
     , videoInst_(NULL)
     , isVideo_(isVideo)
     , FfntInst_(font)
+    , ditheringAuthorized_(dithering)
     , textFallback_(false)
     , imageFallback_(false)
     , imageAndTextPadding_(0)
@@ -424,7 +425,7 @@ void ReloadableMedia::reloadTexture( bool previousItem )
         ImageBuilder imageBuild;
         imagePath = Utils::combinePath(Configuration::absolutePath, "collections", collectionName );
         imagePath = Utils::combinePath( imagePath, "system_artwork" );
-        loadedComponent_ = imageBuild.CreateImage( imagePath, page, std::string("fallback"), scaleX_, scaleY_ );
+        loadedComponent_ = imageBuild.CreateImage( imagePath, page, std::string("fallback"), scaleX_, scaleY_, ditheringAuthorized_ );
     }
 
     // if image and artwork was not specified, fall back to displaying text
@@ -492,7 +493,7 @@ Component *ReloadableMedia::findComponent(std::string collection, std::string ty
     }
     else
     {
-        component = imageBuild.CreateImage(imagePath, page, basename, scaleX_, scaleY_);
+        component = imageBuild.CreateImage(imagePath, page, basename, scaleX_, scaleY_, ditheringAuthorized_);
     }
 
     return component;
