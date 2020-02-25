@@ -345,7 +345,7 @@ bool Component::animate()
                     baseViewInfo.YOffset = tween->animate(elapsedTime, storeViewInfo_.YOffset);
                 break;
 
-            case TWEEN_PROPERTY_Y_SHIFT_MENU_DIRECTION:
+            case TWEEN_PROPERTY_Y_OFFSET_SHIFT_MENU_DIRECTION:
                 if (tween->startDefined){
 		    /*printf("storeViewInfo_.YOffset = %f, tween->start() = %f, page.isMenuScrollForward()=%d, tween->getEnd()=%f, newEnd=%f\n",
 		      storeViewInfo_.YOffset, tween->getStart(), page.isMenuScrollForward(), tween->getOriginalEnd(),
@@ -353,12 +353,9 @@ bool Component::animate()
 		    /*printf("y_shift_animation, elapsedTime = %f\n", elapsedTime);
 		      printf("page.getScrollPeriod() = %f\n", page.getScrollPeriod());*/
 
-		    /*tween->setEnd( tween->getStart() + tween->getOriginalEnd()* (static_cast<double>(page.isMenuScrollForward()?-1.0f:1.0f)) );
-                    baseViewInfo.YOffset = tween->animate(elapsedTime);*/
-
                     baseViewInfo.YOffset = tween->animate(elapsedTime,
 							  tween->getStart(),
-							  tween->getStart() + tween->getOriginalEnd()* (static_cast<double>(page.isMenuScrollForward()?-1.0f:1.0f)),
+							  tween->getStart() + tween->getEnd()* (static_cast<double>(page.isMenuScrollForward()?-1.0f:1.0f)),
 							  duration);
                 }
                 else{
@@ -367,12 +364,9 @@ bool Component::animate()
 		      static_cast<double>(storeViewInfo_.YOffset) + tween->getOriginalEnd()* (static_cast<double>(page.isMenuScrollForward()?-1.0f:1.0f)) );
 		    */
 
-		    /*tween->setEnd( static_cast<double>(storeViewInfo_.YOffset) + tween->getOriginalEnd()* (static_cast<double>(page.isMenuScrollForward()?-1.0f:1.0f)) );
-                    baseViewInfo.YOffset = tween->animate(elapsedTime, storeViewInfo_.YOffset);*/
-
                     baseViewInfo.YOffset = tween->animate(elapsedTime,
 							  static_cast<double>(storeViewInfo_.YOffset),
-							  static_cast<double>(storeViewInfo_.YOffset) + tween->getOriginalEnd()* (static_cast<double>(page.isMenuScrollForward()?-1.0f:1.0f)),
+							  static_cast<double>(storeViewInfo_.YOffset) + tween->getEnd()* (static_cast<double>(page.isMenuScrollForward()?-1.0f:1.0f)),
 							  duration);
                 }
                 break;

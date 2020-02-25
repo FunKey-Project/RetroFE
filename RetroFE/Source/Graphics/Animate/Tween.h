@@ -35,9 +35,8 @@ public:
     TweenProperty property;
     double duration;
     bool   startDefined;
-    void setEnd(double value);
     double getStart( );
-    double getOriginalEnd( );
+    double getEnd( );
 
 private:
     static double easeInQuadratic(double elapsedTime, double duration, double b, double c);
@@ -68,5 +67,4 @@ private:
     TweenAlgorithm type;
     double start;
     double end;
-    double endOriginal;
 };

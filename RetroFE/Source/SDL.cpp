@@ -449,58 +449,6 @@ SDL_Surface * SDL::flip_surface( SDL_Surface *surface, int flags )
     return flipped;
 }
 
-
-
-#if 0
-/// Nearest neighboor optimized with possible out of screen coordinates (for cropping)
-void NNOptimized(SDL_Surface *src_surface, SDL_Surface *dst_surface, int new_w, int new_h){
-
-	/* Declare vars */
-	int x_ratio = (int)((src_surface->w <<16)/ new_w);
-	int y_ratio = (int)((src_surface->h <<16)/ new_h);
-	int new_w =
-	int x2, y2;
-	int i, j;
-	int rat;
-
-	/* Columns iterations */
-	for (i = 0; i < new_h; i++)
-	{
-
-		/* Out of bounds: h */
-		if(i >= dst_surface->h){
-			continue;
-		}
-
-		/* Get current lines in src and dst surfaces */
-		uint16_t* t = ( (uint16_t*)dst_surface->pixels + i* ((new_w > dst_surface->w)? dst_surface->w : new_w) );
-		y2 = ((i*y_ratio)>>16);
-		uint16_t* p = ( (uint16_t*)src_surface->pixels + y2*src_surface->w );
-		rat = 0;
-
-		/* Lines iterations */
-		for (j = 0; j < new_w; j++)
-		{
-			/* Out of bounds: w */
-			if(j>=dst_surface->w){
-				continue;
-			}
-
-			/* Get current pixel in src surface */
-			x2 = (rat>>16);
-
-			/* Copy src pixel in dst surface */
-			*t++ = p[x2];
-
-			/* Update x position in source surface */
-			rat += x_ratio;
-		}
-	}
-}
-#endif
-
-
-#if 1
 /// Nearest neighboor optimized with possible out of screen coordinates (for cropping)
 SDL_Surface * SDL::zoomSurface(SDL_Surface *src_surface, SDL_Rect *src_rect_origin, SDL_Rect *dst_rect){
 
@@ -594,7 +542,6 @@ SDL_Surface * SDL::zoomSurface(SDL_Surface *src_surface, SDL_Rect *src_rect_orig
 	/* Return new zoomed surface */
 	return dst_surface;
 }
-#endif
 
 
 // Render a copy of a texture

@@ -29,7 +29,6 @@ Tween::Tween(TweenProperty property, TweenAlgorithm type, double start, double e
     , type(type)
     , start(start)
     , end(end)
-    , endOriginal(end)
 {
 }
 
@@ -50,7 +49,7 @@ bool Tween::getTweenProperty(std::string name, TweenProperty &property)
         tweenPropertyMap_["yorigin"]         = TWEEN_PROPERTY_Y_ORIGIN;
         tweenPropertyMap_["xoffset"]         = TWEEN_PROPERTY_X_OFFSET;
         tweenPropertyMap_["yoffset"]         = TWEEN_PROPERTY_Y_OFFSET;
-        tweenPropertyMap_["yshiftmenudirection"] = TWEEN_PROPERTY_Y_SHIFT_MENU_DIRECTION;
+        tweenPropertyMap_["yoffsetshiftmenudirection"] = TWEEN_PROPERTY_Y_OFFSET_SHIFT_MENU_DIRECTION;
         tweenPropertyMap_["fontSize"]        = TWEEN_PROPERTY_FONT_SIZE;
         tweenPropertyMap_["backgroundalpha"] = TWEEN_PROPERTY_BACKGROUND_ALPHA;
         tweenPropertyMap_["maxwidth"]        = TWEEN_PROPERTY_MAX_WIDTH;
@@ -119,12 +118,8 @@ double Tween::getStart( ){
 	return start;
 }
 
-double Tween::getOriginalEnd( ){
-	return endOriginal;
-}
-
-void Tween::setEnd(double value){
-	end = value;
+double Tween::getEnd( ){
+	return end;
 }
 
 float Tween::animate(double elapsedTime)

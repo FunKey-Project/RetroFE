@@ -779,6 +779,10 @@ void RetroFE::run( )
                 launchExit( );
                 currentPage_->exitGame( );
 
+                // Warning test this
+                currentPage_->onNewItemSelected( );
+                currentPage_->reallocateMenuSpritePoints( );
+
                 state = RETROFE_LAUNCH_EXIT;
             }
             break;
@@ -787,12 +791,6 @@ void RetroFE::run( )
         case RETROFE_LAUNCH_EXIT:
             if ( currentPage_->isIdle( ) )
             {
-                /********************************/
-                /*#warning to remove
-                                //bypass
-                                state = RETROFE_QUIT_REQUEST;
-                                break;*/
-                /********************************/
                 state = RETROFE_IDLE;
             }
             break;
