@@ -159,11 +159,11 @@ void Image::draw()
 		}
 
 		/* Dithering */
-		if(needDithering_){
-			//printf("Dither: %s\n", file_.c_str());
+		/*if(needDithering_){
+			printf("Dither: %s\n", file_.c_str());
 			SDL::ditherSurface32bppTo16Bpp(surfaceToRender);
 			needDithering_ = false;
-		}
+		}*/
 
 		/* Render */
 		SDL::renderCopy(surfaceToRender, baseViewInfo.Alpha, NULL, &rect, baseViewInfo);
