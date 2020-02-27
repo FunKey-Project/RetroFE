@@ -86,8 +86,8 @@ void Image::allocateGraphicsMemory()
 	        needDithering_ = true;
 	    }
 
-	    /* Convert to RGB 32bit if necessary */
-	    if(img_tmp->format->BitsPerPixel != 32){
+            /* Convert to RGB 32bit if necessary */
+	    if(imgBitsPerPx_ != 32){
 	        texture_ = SDL_CreateRGBSurface(0, img_tmp->w, img_tmp->h, 32, 0, 0, 0, 0);
 		SDL_BlitSurface(img_tmp, NULL, texture_, NULL);
 
@@ -102,8 +102,8 @@ void Image::allocateGraphicsMemory()
 	    /* Set real dimensions */
 	    if (texture_ != NULL)
 	    {
-	        baseViewInfo.ImageWidth = texture_->w * scaleX_;
-		baseViewInfo.ImageHeight = texture_->h * scaleY_;
+	      baseViewInfo.ImageWidth = texture_->w * scaleX_;
+	      baseViewInfo.ImageHeight = texture_->h * scaleY_;
 	    }
         }
         SDL_UnlockMutex(SDL::getMutex());
@@ -135,12 +135,14 @@ void Image::draw()
 		scaling_needed = rect.w!=0 && rect.h!=0 && (texture_->w != rect.w || texture_->h != rect.h);
 		if(scaling_needed){
 			cache_scaling_needed = (texture_prescaled_ == NULL)?true:(texture_prescaled_->w != rect.w || texture_prescaled_->h != rect.h);
-			if(cache_scaling_needed &&  imgBitsPerPx_ > 16 && ditheringAuthorized_){
-				needDithering_ = true;
+			if(cache_scaling_needed){
 				texture_prescaled_ = SDL::zoomSurface(texture_, NULL, &rect);
 				if(texture_prescaled_ == NULL){
 					printf("ERROR in %s - Could not create texture_prescaled_\n", __func__);
 					use_prescaled = false;
+				}
+				if(imgBitsPerPx_ > 16 && ditheringAuthorized_){
+					needDithering_ = true;
 				}
 			}
 
@@ -159,11 +161,11 @@ void Image::draw()
 		}
 
 		/* Dithering */
-		/*if(needDithering_){
-			printf("Dither: %s\n", file_.c_str());
+		if(needDithering_){
+			//printf("Dither: %s\n", file_.c_str());
 			SDL::ditherSurface32bppTo16Bpp(surfaceToRender);
 			needDithering_ = false;
-		}*/
+		}
 
 		/* Render */
 		SDL::renderCopy(surfaceToRender, baseViewInfo.Alpha, NULL, &rect, baseViewInfo);
