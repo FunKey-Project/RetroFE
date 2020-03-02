@@ -40,6 +40,7 @@
 #include <string>
 #include <tuple>
 #include <vector>
+#include <time.h>
 #include <SDL/SDL_ttf.h>
 
 #if defined(__linux) || defined(__APPLE__)
@@ -54,6 +55,8 @@
 #include <SDL/SDL_syswm.h>
 #include <SDL/SDL_thread.h>
 #endif
+
+#define GET_RUN_TIME    (clock() / (CLOCKS_PER_SEC/1000))
 
 //#define PERIOD_FORCE_REFRESH    1000 //ms
 #define FPS 60 // TODO: set in conf file
@@ -103,14 +106,14 @@ void RetroFE::render( )
     SDL_FillRect(SDL::getWindow( ), NULL, SDL_MapRGB(SDL::getWindow( )->format, 0, 0, 0));
 
 #ifdef DEBUG_FPS
-    uint32_t draw_ticks = SDL_GetTicks();
+    uint32_t draw_ticks = static_cast<unsigned int>GET_RUN_TIME;
 #endif //DEBUG_FPS
     if ( currentPage_ )
     {
         currentPage_->draw( );
     }
 #ifdef DEBUG_FPS
-    int draw_time = SDL_GetTicks()-draw_ticks;
+    int draw_time = static_cast<int>(GET_RUN_TIME)-draw_ticks;
     //printf("draw time: %dms\n", draw_time);
 #endif //DEBUG_FPS
 
@@ -166,14 +169,14 @@ int RetroFE::initialize( void *context )
 
 
     if(instance->initMetaDb){
-	    Logger::write( Logger::ZONE_INFO, "RetroFE", "Initializing meta database..." );
-	    if ( !instance->metadb_->initialize( ) )
-	    {
-	        Logger::write( Logger::ZONE_ERROR, "RetroFE", "Could not initialize meta database" );
-	        instance->initializeError = true;
-	        return -1;
-	    }
-	    Logger::write( Logger::ZONE_INFO, "RetroFE", "Initialized meta database" );
+        Logger::write( Logger::ZONE_INFO, "RetroFE", "Initializing meta database..." );
+        if ( !instance->metadb_->initialize( ) )
+        {
+            Logger::write( Logger::ZONE_ERROR, "RetroFE", "Could not initialize meta database" );
+            instance->initializeError = true;
+            return -1;
+        }
+        Logger::write( Logger::ZONE_INFO, "RetroFE", "Initialized meta database" );
     }
 
     instance->initialized = true;
@@ -220,7 +223,7 @@ void RetroFE::launchExit( )
     attract_.reset( );
 
     // Restore time settings
-    currentTime_ = static_cast<float>( SDL_GetTicks( ) ) / 1000;
+    currentTime_ = static_cast<float>( GET_RUN_TIME ) / 1000;
     lastLaunchReturnTime_ = currentTime_;
 
 }
@@ -385,7 +388,7 @@ void RetroFE::run( )
 
     Launcher l( config_ );
     Menu     m( config_ );
-    preloadTime = static_cast<float>( SDL_GetTicks( ) ) / 1000;
+    preloadTime = static_cast<float>( GET_RUN_TIME ) / 1000;
 
     while ( running )
     {
@@ -418,12 +421,17 @@ void RetroFE::run( )
         // Print state for debug purposes
 #if 0
         static RETROFE_STATE prev_state = state;
-#undef X
-#define X(a, b) b,
-	static const char *retrofe_states_str[] = {RETROFE_STATES};
+        #undef X
+        #define X(a, b) b,
+        static const char *retrofe_states_str[] = {RETROFE_STATES};
         if(prev_state != state){
-	    printf("RetroFE new state: %s\n", retrofe_states_str[state]);
-	    prev_state = state;
+            printf("RetroFE new state: %s\n", retrofe_states_str[state]);
+
+            std::stringstream ss;
+            ss << "New state: " << retrofe_states_str[state];
+            Logger::write( Logger::ZONE_INFO, "RetroFE", ss.str() );
+
+            prev_state = state;
         }
 #endif
 
@@ -437,7 +445,6 @@ void RetroFE::run( )
             // Not in splash mode
             if ( currentPage_ && !splashMode )
             {
-
                 // account for when returning from a menu and the previous key was still "stuck"
                 if ( lastLaunchReturnTime_ == 0 || (currentTime_ - lastLaunchReturnTime_ > .3) )
                 {
@@ -451,12 +458,12 @@ void RetroFE::run( )
 
             // Handle end of splash mode
             if ( ( (initialized || initializeError) && splashMode && (exitSplashMode || (currentPage_->getMinShowTime( ) <= (currentTime_ - preloadTime) && !(currentPage_->isPlaying( )))) )
-		 || (initInBackground && splashMode) )
+                || (initInBackground && splashMode) )
             {
-	        if(!initInBackground){
-		    SDL_WaitThread( initializeThread, &initializeStatus );
-		    printf("SDL_WaitThread finisheds\n");
-		}
+                if(!initInBackground){
+                    SDL_WaitThread( initializeThread, &initializeStatus );
+                    printf("SDL_WaitThread finisheds\n");
+                }
 
                 if ( initializeError )
                 {
@@ -963,10 +970,10 @@ void RetroFE::run( )
 
         // Unknown state
         default:
-	    std::stringstream ss;
-	    ss << "Wrong state: " << state;
-	    Logger::write( Logger::ZONE_ERROR, "RetroFE", "Wrong state: " + ss.str() );
-	    state = RETROFE_IDLE;
+            std::stringstream ss;
+            ss << "Wrong state: " << state;
+            Logger::write( Logger::ZONE_ERROR, "RetroFE", "Wrong state: " + ss.str() );
+            state = RETROFE_IDLE;
             break;
         }
 
@@ -975,7 +982,7 @@ void RetroFE::run( )
         {
             // Handle FPS
             lastTime = currentTime_;
-            currentTime_ = static_cast<float>( SDL_GetTicks( ) ) / 1000;
+            currentTime_ = static_cast<float>( GET_RUN_TIME ) / 1000;
 
             if ( currentTime_ < lastTime )
             {
@@ -983,6 +990,7 @@ void RetroFE::run( )
             }
 
             deltaTime = currentTime_ - lastTime;
+
             double sleepTime = 1000.0/FPS - deltaTime*1000;
             if ( sleepTime > 0 )
             {
@@ -991,14 +999,14 @@ void RetroFE::run( )
 
             // ------- Check if previous update of page needed to be rendered -------
             if(!currentPage_->isIdle( ) || currentPage_->mustRender( ) || splashMode){
-	        //printf("Not idle\n");
-	        forceRender(true);
+                //printf("Not idle\n");
+                forceRender(true);
             }
 
             // Force refresh variables
 #ifdef PERIOD_FORCE_REFRESH
-            if(SDL_GetTicks() - ticks_last_refresh > PERIOD_FORCE_REFRESH){
-	        forceRender(true);
+            if(static_cast<int>(GET_RUN_TIME) - ticks_last_refresh > PERIOD_FORCE_REFRESH){
+                forceRender(true);
                 //printf("force render\n");
             }
 #endif  //PERIOD_FORCE_REFRESH
@@ -1011,13 +1019,12 @@ void RetroFE::run( )
 
             // ------- Real render here -------
             if(mustRender_){
-	        //printf("render\n");
-	        mustRender_ = false;
-		render( );
+                //printf("render\n");
+                mustRender_ = false;
+                render( );
 #ifdef PERIOD_FORCE_REFRESH
-                ticks_last_refresh = SDL_GetTicks();
+                ticks_last_refresh = static_cast<int>(GET_RUN_TIME);
 #endif  //PERIOD_FORCE_REFRESH
-akes a lot of time
             }
         }
     }
@@ -1048,7 +1055,7 @@ bool RetroFE::back(bool &exit)
 // Force render retroFE
 void RetroFE::forceRender( bool render )
 {
-	mustRender_ = true;
+    mustRender_ = true;
 }
 
 
@@ -1069,9 +1076,9 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             attract_.reset( );
             state = RETROFE_QUIT_REQUEST;
 
-	    /* Finish polling events */
-	    //SDL_Event e_trash;
-	    //while ( SDL_PollEvent( &e_trash ) );
+            /* Finish polling events */
+            //SDL_Event e_trash;
+            //while ( SDL_PollEvent( &e_trash ) );
 
             return state;
         }
@@ -1085,10 +1092,10 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
         {
             //printf("e.key.keysym.sym = %d\n", e.key.keysym.sym);
 
-	    /* Finish polling events */
-	    /*SDL_Event e_trash;
-	      while ( SDL_PollEvent( &e_trash ) );
-	      break;*/
+            /* Finish polling events */
+            /*SDL_Event e_trash;
+            while ( SDL_PollEvent( &e_trash ) );
+            break;*/
         }
     }
 #endif
@@ -1101,9 +1108,9 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
     if ( e.type == SDL_QUIT  )
     {
         printf("How dare you interrupt me!\n");
-	attract_.reset( );
-	state = RETROFE_QUIT_REQUEST;
-	return state;
+        attract_.reset( );
+        state = RETROFE_QUIT_REQUEST;
+        return state;
     }
 
     input_.update(e);
