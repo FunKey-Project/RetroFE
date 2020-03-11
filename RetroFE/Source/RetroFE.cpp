@@ -1609,10 +1609,11 @@ CollectionInfo *RetroFE::getCollection(std::string collectionName)
     }
     closedir( dp );
 
-    collection->sortItems( );
-
     bool menuSort = true;
     config_.getProperty( "collections." + collectionName + ".list.menuSort", menuSort );
+
+    if (menuSort)
+        collection->sortItems( );
 
     MenuParser mp;
     mp.buildMenuItems( collection, menuSort);
