@@ -1213,6 +1213,8 @@ void RetroFE::run( )
                     attract_.reset( );
                 }
                 currentPage_->update( deltaTime );
+				SDL_PumpEvents( );
+				input_.updateKeystate( );
                 if (!splashMode)
                 {
                     if ( currentPage_->isAttractIdle( ) )

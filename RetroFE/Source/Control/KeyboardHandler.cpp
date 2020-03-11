@@ -29,3 +29,8 @@ bool KeyboardHandler::pressed()
     return pressed_;
 }
 
+void KeyboardHandler::updateKeystate()
+{
+	const Uint8 *state = SDL_GetKeyboardState(NULL);
+	pressed_ = state[scancode_];
+}

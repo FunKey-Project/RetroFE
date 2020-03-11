@@ -9,6 +9,7 @@ public:
     bool update(SDL_Event &e);
     bool pressed();
     void reset();
+	void updateKeystate() {};
 
 private:
     Uint8 button_;

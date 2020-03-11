@@ -375,3 +375,17 @@ void UserInput::reconfigure( )
     keyHandlers_.clear();
     initialize( );
 }
+
+
+void UserInput::updateKeystate( )
+{
+    for ( unsigned int i = 0; i < keyHandlers_.size( ); ++i )
+    {
+        InputHandler *h = keyHandlers_[i].first;
+        if ( h )
+        {
+			h->updateKeystate( );
+            currentKeyState_[keyHandlers_[i].second] |= h->pressed( );
+        }
+    }
+}
