@@ -44,4 +44,5 @@ protected:
     static bool 	prevCharging_;
     static bool 	noBat_;
     static bool 	prevNoBat_;
+    static bool		valuesReady_;
 };

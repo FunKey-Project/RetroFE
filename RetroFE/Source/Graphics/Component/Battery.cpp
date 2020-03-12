@@ -89,6 +89,7 @@ bool 	Battery::noBat_ = false;
 bool 	Battery::prevNoBat_ = false;
 float 	Battery::currentWaitTime_ = 0.0f;
 bool 	Battery::mustRender_ = false;
+bool 	Battery::valuesReady_ = false;
 
 
 Battery::Battery(Page &p, Configuration &config, float reloadPeriod, SDL_Color fontColor, float scaleX, float scaleY)
@@ -342,6 +343,8 @@ void Battery::update(float dt)
 	noBat_ = !isBatConnected();
 	charging_ = isUsbConnected();
 
+	valuesReady_ = true;
+
 	currentWaitTime_ = 0.0f;
     }
 
@@ -379,7 +382,7 @@ void Battery::draw()
 
     Component::draw();
 
-    if(texture_)
+    if(texture_ && valuesReady_)
     {
         SDL_Rect rect;
         rect.x = static_cast<int>(baseViewInfo.XRelativeToOrigin());
@@ -418,7 +421,7 @@ bool Battery::mustRender(  )
 {
     if ( Component::mustRender(  ) ) return true;
 
-    if ( mustRender_ && baseViewInfo.Alpha > 0.0f )
+    if ( mustRender_ && baseViewInfo.Alpha > 0.0f && valuesReady_ )
     {
         mustRender_ = false;
 	return true;
