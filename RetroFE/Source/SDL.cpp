@@ -276,6 +276,10 @@ SDL_Window* SDL::getWindow( )
 bool SDL::renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo, float scaleX, float scaleY )
 {
 
+    // Skip rendering if the object is invisible anyway
+    if ( alpha == 0 )
+		return true;
+
     SDL_Rect srcRect;
     SDL_Rect dstRect;
     SDL_Rect srcRectCopy;
