@@ -481,8 +481,10 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
         {
             ImportRomDirectory( Utils::combinePath( path, file ), info, includeFilter, excludeFilter, romHierarchy, truRIP );
         }
-        else if (file != "." && file != "..")
+        else if (file != "." && file != ".." && file.at(0) != '.' )
         {
+            //printf("%s\n", file.c_str());
+
             size_t position = file.find_last_of(".");
             std::string basename = (std::string::npos == position)? file : file.substr(0, position);
         

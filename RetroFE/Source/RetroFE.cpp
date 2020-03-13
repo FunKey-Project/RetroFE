@@ -56,7 +56,8 @@
 #include <SDL/SDL_thread.h>
 #endif
 
-#define GET_RUN_TIME    (clock() / (CLOCKS_PER_SEC/1000))
+//#define GET_RUN_TIME_MS    (clock() / (CLOCKS_PER_SEC/1000))
+#define GET_RUN_TIME_MS    (SDL_GetTicks())
 
 //#define PERIOD_FORCE_REFRESH    1000 //ms
 #define FPS 60 // TODO: set in conf file
@@ -106,14 +107,14 @@ void RetroFE::render( )
     SDL_FillRect(SDL::getWindow( ), NULL, SDL_MapRGB(SDL::getWindow( )->format, 0, 0, 0));
 
 #ifdef DEBUG_FPS
-    uint32_t draw_ticks = static_cast<unsigned int>GET_RUN_TIME;
+    uint32_t draw_ticks = static_cast<unsigned int>GET_RUN_TIME_MS;
 #endif //DEBUG_FPS
     if ( currentPage_ )
     {
         currentPage_->draw( );
     }
 #ifdef DEBUG_FPS
-    int draw_time = static_cast<int>(GET_RUN_TIME)-draw_ticks;
+    int draw_time = static_cast<int>(GET_RUN_TIME_MS)-draw_ticks;
     //printf("draw time: %dms\n", draw_time);
 #endif //DEBUG_FPS
 
@@ -223,7 +224,7 @@ void RetroFE::launchExit( )
     attract_.reset( );
 
     // Restore time settings
-    currentTime_ = static_cast<float>( GET_RUN_TIME ) / 1000;
+    currentTime_ = static_cast<float>( GET_RUN_TIME_MS ) / 1000;
     lastLaunchReturnTime_ = currentTime_;
 
 }
@@ -388,7 +389,7 @@ void RetroFE::run( )
 
     Launcher l( config_ );
     Menu     m( config_ );
-    preloadTime = static_cast<float>( GET_RUN_TIME ) / 1000;
+    preloadTime = static_cast<float>( GET_RUN_TIME_MS ) / 1000;
 
     while ( running )
     {
@@ -616,6 +617,7 @@ void RetroFE::run( )
         // Start onHighlightExit animation
         case RETROFE_HIGHLIGHT_REQUEST:
             currentPage_->setScrolling(Page::ScrollDirectionIdle);
+            currentPage_->onNewItemSelected( );
             currentPage_->highlightExit( );
             state = RETROFE_HIGHLIGHT_EXIT;
             break;
@@ -632,7 +634,6 @@ void RetroFE::run( )
         // Start onHighlightEnter animation
         case RETROFE_HIGHLIGHT_LOAD_ART:
             currentPage_->highlightEnter( );
-            currentPage_->onNewItemSelected( );
             state = RETROFE_HIGHLIGHT_ENTER;
             break;
 
@@ -787,8 +788,8 @@ void RetroFE::run( )
                 currentPage_->exitGame( );
 
                 // Warning test this
-                currentPage_->onNewItemSelected( );
-                currentPage_->reallocateMenuSpritePoints( );
+                /*currentPage_->onNewItemSelected( );
+                currentPage_->reallocateMenuSpritePoints( );*/
 
                 state = RETROFE_LAUNCH_EXIT;
             }
@@ -982,7 +983,7 @@ void RetroFE::run( )
         {
             // Handle FPS
             lastTime = currentTime_;
-            currentTime_ = static_cast<float>( GET_RUN_TIME ) / 1000;
+            currentTime_ = static_cast<float>( GET_RUN_TIME_MS ) / 1000;
 
             if ( currentTime_ < lastTime )
             {
@@ -1005,7 +1006,7 @@ void RetroFE::run( )
 
             // Force refresh variables
 #ifdef PERIOD_FORCE_REFRESH
-            if(static_cast<int>(GET_RUN_TIME) - ticks_last_refresh > PERIOD_FORCE_REFRESH){
+            if(static_cast<int>(GET_RUN_TIME_MS) - ticks_last_refresh > PERIOD_FORCE_REFRESH){
                 forceRender(true);
                 //printf("force render\n");
             }
@@ -1023,7 +1024,7 @@ void RetroFE::run( )
                 mustRender_ = false;
                 render( );
 #ifdef PERIOD_FORCE_REFRESH
-                ticks_last_refresh = static_cast<int>(GET_RUN_TIME);
+		ticks_last_refresh = static_cast<int>(GET_RUN_TIME_MS);
 #endif  //PERIOD_FORCE_REFRESH
             }
         }

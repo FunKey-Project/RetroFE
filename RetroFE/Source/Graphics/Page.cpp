@@ -148,6 +148,8 @@ void Page::onNewItemSelected()
     if(!(activeMenu_.size() > 0 && activeMenu_[0])) return;
     selectedItem_ = activeMenu_[0]->getSelectedItem();
 
+    //printf("onNewItemSelected\n");
+
     for(MenuVector_T::iterator it = menus_.begin(); it != menus_.end(); it++)
     {
         for(std::vector<ScrollingList *>::iterator it2 = menus_[std::distance(menus_.begin(), it)].begin(); it2 != menus_[std::distance(menus_.begin(), it)].end(); it2++)
@@ -170,6 +172,7 @@ void Page::onNewScrollItemSelected()
 
 	if(!(activeMenu_.size() > 0 && activeMenu_[0])) return;
 	selectedItem_ = activeMenu_[0]->getSelectedItem();
+    //printf("onNewScrollItemSelected\n");
 
 	for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
 	{
