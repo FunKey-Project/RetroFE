@@ -31,6 +31,7 @@ protected:
     float 		scaleX_;
     float 		scaleY_;
     float		reloadPeriod_;
+    bool 		mustUpdate_;
 
     static std::string fileUsbConnected_;
     static std::string fileBatConnected_;

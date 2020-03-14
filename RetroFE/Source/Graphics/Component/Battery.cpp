@@ -97,6 +97,7 @@ Battery::Battery(Page &p, Configuration &config, float reloadPeriod, SDL_Color f
 	, config_(config)
     , texture_(NULL)
     , texture_prescaled_(NULL)
+    , mustUpdate_(false)
     , reloadPeriod_(reloadPeriod)
     , scaleX_(scaleX)
     , scaleY_(scaleY)
@@ -184,6 +185,7 @@ void Battery::allocateGraphicsMemory()
 
     Component::allocateGraphicsMemory();
 
+	mustUpdate_ = true;
 }
 
 void Battery::drawBatteryPercent()
@@ -333,7 +335,7 @@ void Battery::update(float dt)
     {
         currentWaitTime_ += dt;
     }
-    else if(baseViewInfo.Alpha > 0.0f)
+    else
     {
         prevPercentage_ = percentage_;
 	prevNoBat_ = noBat_;
@@ -349,26 +351,26 @@ void Battery::update(float dt)
     }
 
     /* Redraw icon if necessary */
-	bool stateChange = ((prevNoBat_ != noBat_) || (prevCharging_ != charging_));
+    bool stateChange = ((prevNoBat_ != noBat_) || (prevCharging_ != charging_));
 
-    if(noBat_){
-        if(prevNoBat_ != noBat_ || stateChange){
+    if(stateChange || mustUpdate_){
+        if(noBat_){
 	    drawNoBattery();
 	}
-    }
-    else if(charging_){
-        if(prevCharging_ != charging_ || stateChange){
+	else if(charging_){
 	    drawBatteryCharging();
 	}
+	else if(prevPercentage_ != percentage_){
+	    float percentagePixelWidth = percentage_ * BATTERY_FILL_REGION_OFFSET_WIDTH / 100;
+	    float prevPercentagePixelWidth = prevPercentage_ * BATTERY_FILL_REGION_OFFSET_WIDTH / 100;
+	    if (prevPercentagePixelWidth != percentagePixelWidth || stateChange)
+	    {
+	        drawBatteryPercent();
+	    }
+	}
     }
-    else if(prevPercentage_ != percentage_ || stateChange){
-		float percentagePixelWidth = percentage_ * BATTERY_FILL_REGION_OFFSET_WIDTH / 100;
-		float prevPercentagePixelWidth = prevPercentage_ * BATTERY_FILL_REGION_OFFSET_WIDTH / 100;
-		if (prevPercentagePixelWidth != percentagePixelWidth || stateChange)
-		{
-			drawBatteryPercent();
-		}
-    }
+
+    mustUpdate_ = false;
 
     Component::update(dt);
 }
@@ -382,7 +384,7 @@ void Battery::draw()
 
     Component::draw();
 
-    if(texture_ && valuesReady_)
+    if(texture_ && valuesReady_ && baseViewInfo.Alpha > 0.0f )
     {
         SDL_Rect rect;
         rect.x = static_cast<int>(baseViewInfo.XRelativeToOrigin());
