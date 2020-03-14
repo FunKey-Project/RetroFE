@@ -86,6 +86,11 @@ void ReloadableScrollingText::update(float dt)
         {
             //currentPosition_ += scrollingSpeed_ * dt * scaleX_;
 	    currentPosition_ += (scrollForward_?1.0f:-1.0f) * scrollingSpeed_ * dt * scaleX_;
+
+	    // Sanity check
+	    if(currentPosition_ < -startPosition_ * scaleX_){
+	        currentPosition_ = -startPosition_ * scaleX_;
+	    }
         }
         else if (direction_ == "vertical")
         {
@@ -176,7 +181,7 @@ void ReloadableScrollingText::reloadTexture( )
         if (systemMode_)
         {
 
-            // check the master collection for the system artifact 
+            // check the master collection for the system artifact
             loadText( collectionName, type_, type_, "", true );
 
             // check collection for the system artifact
@@ -193,7 +198,7 @@ void ReloadableScrollingText::reloadTexture( )
             if (selectedItem->leaf) // item is a leaf
             {
 
-              // check the master collection for the artifact 
+              // check the master collection for the artifact
               loadText( collectionName, type_, basename, "", false );
 
               // check the collection for the artifact
@@ -206,7 +211,7 @@ void ReloadableScrollingText::reloadTexture( )
             else // item is a submenu
             {
 
-              // check the master collection for the artifact 
+              // check the master collection for the artifact
               loadText( collectionName, type_, basename, "", false );
 
               // check the collection for the artifact
@@ -219,7 +224,7 @@ void ReloadableScrollingText::reloadTexture( )
               if (text_.empty( ))
               {
                 loadText( selectedItem->name, type_, type_, "", true );
-              } 
+              }
 
             }
 
@@ -420,7 +425,7 @@ void ReloadableScrollingText::loadText( std::string collection, std::string type
         return;
     }
 
-    std::string line; 
+    std::string line;
 
     while(std::getline(includeStream, line))
     {
@@ -454,7 +459,7 @@ void ReloadableScrollingText::draw( )
 {
     Component::draw( );
 
-    if (!text_.empty( ) && waitEndTime_ <= 0.0f && baseViewInfo.Alpha > 0.0f)
+    if (!text_.empty( ) && baseViewInfo.Alpha > 0.0f)
     {
 
         Font *font;
@@ -463,7 +468,6 @@ void ReloadableScrollingText::draw( )
         else                   // If not, use the general font settings
           font = fontInst_;
 
-        //SDL_Texture *t = font->getTexture( );
         SDL_Surface *t = font->getTexture( );
 
         float imageHeight = 0;
@@ -494,31 +498,37 @@ void ReloadableScrollingText::draw( )
         float scale = 1.0f;
 
 
-        // determine image width that can fit the container from 1st line
-        for ( unsigned int i = 0; i < text_[0].size( ); ++i )
+        // Horizontal mode only:
+        // Compute 1st line image width that fits inside the the container width to get the origin position
+        if (direction_ == "horizontal")
         {
-            Font::GlyphInfo glyph;
-            if ( font->getRect( text_[0][i], glyph ) )
-            {
-                if ( glyph.minX < 0 )
-                {
-                    imageWidth += glyph.minX;
-                }
+	    for ( unsigned int i = 0; i < text_[0].size( ); ++i )
+	    {
+	        Font::GlyphInfo glyph;
+		if ( font->getRect( text_[0][i], glyph ) )
+		{
+		    if ( glyph.minX < 0 )
+		    {
+		        imageWidth += glyph.minX;
+		    }
 
-                if ( (imageWidth + glyph.advance)*scale > imageMaxWidth )
-                {
-                    break;
-                }
-                imageWidth  += glyph.advance;
+                    int char_width = static_cast<int>( glyph.rect.w?glyph.rect.w:glyph.advance );
 
-                /*printf("textData_[%d]=%c, glyph.advance= %f - %d\n", i, textData_[i], glyph.advance, glyph.advance);
-                printf("imageWidth=%f \n", imageWidth);*/
-            }
-            else{
-	        /*std::stringstream ss;
-		  ss << "Could not find Glyph info for char: " << textData_[i];
-		  Logger::write(Logger::ZONE_WARNING, "Text", ss.str());*/
-            }
+		    if ( (imageWidth + char_width) * scale * scaleX_ > imageMaxWidth )
+		    {
+		        break;
+		    }
+		    imageWidth  += char_width;
+
+		    /*printf("textData_[%d]=%c, glyph.advance= %f - %d\n", i, textData_[i], glyph.advance, glyph.advance);
+		      printf("imageWidth=%f \n", imageWidth);*/
+		}
+		else{
+		    /*std::stringstream ss;
+		      ss << "Could not find Glyph info for char: " << textData_[i];
+		      Logger::write(Logger::ZONE_WARNING, "Text", ss.str());*/
+		}
+	    }
         }
 
         float oldWidth       = baseViewInfo.Width;
@@ -576,7 +586,8 @@ void ReloadableScrollingText::draw( )
                     {
                         SDL_Rect charRect = glyph.rect;
                         rect.h  = static_cast<int>( charRect.h * scale * scaleY_ );
-                        rect.w  = static_cast<int>( charRect.w?charRect.w:glyph.advance * scale * scaleX_ );
+                        int char_width = static_cast<int>( charRect.w?charRect.w:glyph.advance );
+                        rect.w  = static_cast<int>( char_width * scale * scaleX_ );
                         rect.y  = static_cast<int>( yOrigin );
 
                         /*if (font->getAscent( ) < glyph.maxY)
@@ -586,19 +597,19 @@ void ReloadableScrollingText::draw( )
                         rect.y += static_cast<int>( (font->getAscent( ) - glyph.maxY) * scale * scaleY_ );
 
                         // Check if glyph falls partially outside the box at the back end
-                        if ((rect.x + static_cast<int>( glyph.advance * scale * scaleX_ )) >= (static_cast<int>( xOrigin ) + imageMaxWidth))
+                        if ((rect.x + static_cast<int>( char_width * scale * scaleX_ )) >= (static_cast<int>( xOrigin ) + imageMaxWidth))
                         {
                             rect.w     = static_cast<int>( xOrigin ) + static_cast<int>( imageMaxWidth ) - rect.x;
                             charRect.w = static_cast<int>( rect.w / scale / scaleX_ );
                         }
 
                         // Print the glyph if it falls (partially) within the box
-                        if ( position + glyph.advance * scale * scaleX_ > currentPosition_ )
+                        if ( position + char_width * scale * scaleX_ > currentPosition_ )
                         {
                             // Check if glyph falls partially outside the box at the front end
                             if ( position < currentPosition_ )
                             {
-                                rect.w     = static_cast<int>( glyph.advance * scale * scaleX_ + position - currentPosition_ );
+                                rect.w     = static_cast<int>( char_width * scale * scaleX_ + position - currentPosition_ );
                                 charRect.x = static_cast<int>( charRect.x + charRect.w - rect.w / scale / scaleX_ );
                                 charRect.w = static_cast<int>( rect.w / scale / scaleX_ );
                             }
@@ -607,7 +618,7 @@ void ReloadableScrollingText::draw( )
                                 SDL::renderCopy(t, baseViewInfo.Alpha, &charRect, &rect, baseViewInfo);
                                 rect.x += rect.w;
                             }
-                            else if ((rect.x + static_cast<int>( glyph.advance * scale * scaleX_ )) >= (static_cast<int>( xOrigin ) + imageMaxWidth))
+                            else if ((rect.x + static_cast<int>( char_width * scale * scaleX_ )) >= (static_cast<int>( xOrigin ) + imageMaxWidth))
                             {
                                 rect.x = static_cast<int>( xOrigin ) + static_cast<int>( imageMaxWidth ) + 10; // Stop handling the rest of the string
                             }
@@ -615,7 +626,7 @@ void ReloadableScrollingText::draw( )
 			        rect.x += glyph.advance * scale * scaleX_;
                             }*/
                         }
-                        position += glyph.advance * scale * scaleX_;
+                        position += char_width * scale * scaleX_;
 
                     }
                 }
@@ -634,7 +645,9 @@ void ReloadableScrollingText::draw( )
                         {
                             imageWidth += glyph.minX;
                         }
-                        imageWidth += glyph.advance;
+
+                        int char_width = static_cast<int>( glyph.rect.w?glyph.rect.w:glyph.advance );
+                        imageWidth += char_width;
                     }
                 }
             }
@@ -667,6 +680,7 @@ void ReloadableScrollingText::draw( )
 		    currentPosition_ <= -startPosition_ * scaleX_)
             {
                 waitStartTime_   = startTime_;
+                currentPosition_ = -startPosition_ * scaleX_;
                 scrollForward_ = true;
             }
 
@@ -889,7 +903,7 @@ bool ReloadableScrollingText::mustRender(  )
 {
     if ( Component::mustRender(  ) ) return true;
 
-    if (!text_.empty( ) && waitEndTime_ <= 0.0f && baseViewInfo.Alpha > 0.0f)
+    if (!text_.empty( ) && baseViewInfo.Alpha > 0.0f)
     {
         return true;
     }
