@@ -58,6 +58,7 @@ ReloadableScrollingText::ReloadableScrollingText(Configuration &config, bool sys
     , page_(NULL)
     , displayOffset_(displayOffset)
     , scrollForward_(true)
+    , needScrolling_(true)
 
 {
     text_.clear( );
@@ -72,30 +73,33 @@ ReloadableScrollingText::~ReloadableScrollingText( )
 void ReloadableScrollingText::update(float dt)
 {
 
-    if (waitEndTime_ > 0)
-    {
-        waitEndTime_ -= dt;
-    }
-    else if (waitStartTime_ > 0)
-    {
-        waitStartTime_ -= dt;
-    }
-    else
-    {
-        if (direction_ == "horizontal")
-        {
-            //currentPosition_ += scrollingSpeed_ * dt * scaleX_;
-	    currentPosition_ += (scrollForward_?1.0f:-1.0f) * scrollingSpeed_ * dt * scaleX_;
+    // Scrolling process
+    if(needScrolling_){
+        if (waitEndTime_ > 0)
+	{
+	    waitEndTime_ -= dt;
+	}
+	else if (waitStartTime_ > 0)
+	{
+	    waitStartTime_ -= dt;
+	}
+	else
+	{
+	    if (direction_ == "horizontal")
+	    {
+	        //currentPosition_ += scrollingSpeed_ * dt * scaleX_;
+	      currentPosition_ += (scrollForward_?1.0f:-1.0f) * scrollingSpeed_ * dt * scaleX_;
 
-	    // Sanity check
-	    if(currentPosition_ < -startPosition_ * scaleX_){
-	        currentPosition_ = -startPosition_ * scaleX_;
+	      // Sanity check
+	      if(currentPosition_ < -startPosition_ * scaleX_){
+		currentPosition_ = -startPosition_ * scaleX_;
+	      }
 	    }
-        }
-        else if (direction_ == "vertical")
-        {
-            currentPosition_ += scrollingSpeed_ * dt * scaleY_;
-        }
+	    else if (direction_ == "vertical")
+	    {
+	      currentPosition_ += scrollingSpeed_ * dt * scaleY_;
+	    }
+	}
     }
 
     if (newItemSelected ||
@@ -388,6 +392,60 @@ void ReloadableScrollingText::reloadTexture( )
         }
     }
 
+    // Set scrolling needed by default
+    needScrolling_ = true;
+
+    // For horizontal images, determine if text needs scrolling
+    if (direction_ == "horizontal"){
+        Font *font;
+        if (baseViewInfo.font) // Use font of this specific item if available
+            font = baseViewInfo.font;
+        else                   // If not, use the general font settings
+            font = fontInst_;
+
+	int imageWidth = 0, curLineWidth;
+
+	for (unsigned int l = 0; l < text_.size( ); ++l)
+	{
+	    curLineWidth = 0;
+
+	    for (unsigned int i = 0; i < text_[l].size( ); ++i)
+	    {
+	        Font::GlyphInfo glyph;
+		if (font->getRect( text_[l][i], glyph ))
+		{
+		  if ( glyph.minX < 0 )
+		  {
+		      curLineWidth += glyph.minX;
+		  }
+
+		  int char_width = static_cast<int>( glyph.rect.w?glyph.rect.w:glyph.advance );
+		  curLineWidth += char_width;
+
+		  //printf("char=%c, char_width = %d, curLineWidth = %d\n", text_[l][i], char_width, curLineWidth);
+		}
+	    }
+
+	    imageWidth = (curLineWidth > imageWidth) ? curLineWidth : imageWidth;
+	}
+
+        float imageMaxWidth  = 0;
+        if (baseViewInfo.Width < baseViewInfo.MaxWidth && baseViewInfo.Width > 0)
+        {
+            imageMaxWidth = baseViewInfo.Width;
+        }
+        else
+        {
+            imageMaxWidth = baseViewInfo.MaxWidth;
+        }
+
+        //printf("imageWidth * scaleX_ - currentPosition_ = %f, imageMaxWidth = %f\n", imageWidth * scaleX_ - currentPosition_, imageMaxWidth);
+
+	if ( imageWidth * scaleX_ - currentPosition_ <= imageMaxWidth )
+	{
+	    needScrolling_ = false;
+	}
+    }
 }
 
 
@@ -499,7 +557,7 @@ void ReloadableScrollingText::draw( )
 
 
         // Horizontal mode only:
-        // Compute 1st line image width that fits inside the the container width to get the origin position
+        // Compute image width that fits inside the the container width to get the origin position
         if (direction_ == "horizontal")
         {
 	    for ( unsigned int i = 0; i < text_[0].size( ); ++i )
@@ -632,58 +690,56 @@ void ReloadableScrollingText::draw( )
                 }
             }
 
-            // Determine image width
-            imageWidth = 0;
-            for (unsigned int l = 0; l < text_.size( ); ++l)
-            {
-                for (unsigned int i = 0; i < text_[l].size( ); ++i)
-                {
-                    Font::GlyphInfo glyph;
-                    if (font->getRect( text_[l][i], glyph ))
-                    {
-                        if ( glyph.minX < 0 )
-                        {
-                            imageWidth += glyph.minX;
-                        }
+            // Scrolling process
+            if(needScrolling_){
 
-                        int char_width = static_cast<int>( glyph.rect.w?glyph.rect.w:glyph.advance );
-                        imageWidth += char_width;
-                    }
-                }
+	        // Determine image width
+	        int imageWidth = 0, curLineWidth, char_width;
+
+		for (unsigned int l = 0; l < text_.size( ); ++l)
+		{
+		    curLineWidth = 0;
+
+		    for (unsigned int i = 0; i < text_[l].size( ); ++i)
+		    {
+		        Font::GlyphInfo glyph;
+			if (font->getRect( text_[l][i], glyph ))
+			{
+			  if ( glyph.minX < 0 )
+			  {
+			      curLineWidth += glyph.minX;
+			  }
+
+			  char_width = static_cast<int>( glyph.rect.w?glyph.rect.w:glyph.advance );
+			  curLineWidth += char_width;
+			}
+		    }
+
+		    imageWidth = (curLineWidth > imageWidth) ? curLineWidth : imageWidth;
+		}
+
+		// Add right padding of one char width
+		imageWidth += char_width;
+
+		//printf("in Draw imageWidth * scaleX_ - currentPosition_ = %f, imageMaxWidth = %f\n", imageWidth * scaleX_ - currentPosition_, imageMaxWidth);
+
+		// Reset scrolling position when we're done
+		if (scrollForward_ &&
+		    waitStartTime_ <= 0 &&
+		    imageWidth * scale * scaleX_ - currentPosition_ <= imageMaxWidth)
+		{
+		  waitEndTime_     = endTime_;
+		  scrollForward_ = false;
+		}
+		else if(!scrollForward_ &&
+			waitEndTime_ <= 0 &&
+			currentPosition_ <= -startPosition_ * scaleX_)
+		{
+		  waitStartTime_   = startTime_;
+		  currentPosition_ = -startPosition_ * scaleX_;
+		  scrollForward_ = true;
+		}
             }
-
-            // Reset scrolling position when we're done
-            /*printf("currentPosition_ = %f,            imageWidth * scale * scaleX_= %f,        xOrigin + imageMaxWidth = %f\n",
-	      currentPosition_ ,
-	      imageWidth * scale * scaleX_,
-	      (static_cast<int>( xOrigin ) + imageMaxWidth));*/
-            //if (currentPosition_ > imageWidth * scale * scaleX_)
-
-            /*if (waitStartTime_ <= 0 &&
-	      imageWidth * scale * scaleX_ - currentPosition_ <= imageMaxWidth)
-            {
-                waitStartTime_   = startTime_;
-                waitEndTime_     = endTime_;
-                currentPosition_ = -startPosition_ * scaleX_;
-            */
-
-            if (scrollForward_ &&
-		waitStartTime_ <= 0 &&
-		imageWidth * scale * scaleX_ - currentPosition_ <= imageMaxWidth)
-            {
-                waitEndTime_     = endTime_;
-                //currentPosition_ = -startPosition_ * scaleX_;
-                scrollForward_ = false;
-            }
-            else if(!scrollForward_ &&
-		    waitEndTime_ <= 0 &&
-		    currentPosition_ <= -startPosition_ * scaleX_)
-            {
-                waitStartTime_   = startTime_;
-                currentPosition_ = -startPosition_ * scaleX_;
-                scrollForward_ = true;
-            }
-
         }
         else if (direction_ == "vertical")
         {
