@@ -56,8 +56,8 @@
 #include <SDL/SDL_thread.h>
 #endif
 
-//#define GET_RUN_TIME_MS    (clock() / (CLOCKS_PER_SEC/1000))
-#define GET_RUN_TIME_MS    (SDL_GetTicks())
+#define GET_RUN_TIME_MS    (clock() / (CLOCKS_PER_SEC/1000))
+//#define GET_RUN_TIME_MS    (SDL_GetTicks())
 
 //#define PERIOD_FORCE_REFRESH    1000 //ms
 #define FPS 60 // TODO: set in conf file
