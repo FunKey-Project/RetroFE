@@ -65,4 +65,5 @@ private:
     int                      displayOffset_;
     bool                     scrollForward_;
     bool                     needScrolling_;
+    bool                     needRender_;
 };

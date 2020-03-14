@@ -59,6 +59,7 @@ ReloadableScrollingText::ReloadableScrollingText(Configuration &config, bool sys
     , displayOffset_(displayOffset)
     , scrollForward_(true)
     , needScrolling_(true)
+    , needRender_(false)
 
 {
     text_.clear( );
@@ -85,20 +86,22 @@ void ReloadableScrollingText::update(float dt)
 	}
 	else
 	{
-	    if (direction_ == "horizontal")
-	    {
-	        //currentPosition_ += scrollingSpeed_ * dt * scaleX_;
-	      currentPosition_ += (scrollForward_?1.0f:-1.0f) * scrollingSpeed_ * dt * scaleX_;
+	  if (direction_ == "horizontal")
+	  {
+	      //currentPosition_ += scrollingSpeed_ * dt * scaleX_;
+	    currentPosition_ += (scrollForward_?1.0f:-1.0f) * scrollingSpeed_ * dt * scaleX_;
 
-	      // Sanity check
-	      if(currentPosition_ < -startPosition_ * scaleX_){
-		currentPosition_ = -startPosition_ * scaleX_;
-	      }
+	    // Sanity check
+	    if(currentPosition_ < -startPosition_ * scaleX_){
+	        currentPosition_ = -startPosition_ * scaleX_;
 	    }
-	    else if (direction_ == "vertical")
-	    {
+	  }
+	  else if (direction_ == "vertical")
+	  {
 	      currentPosition_ += scrollingSpeed_ * dt * scaleY_;
-	    }
+	  }
+
+	  needRender_ = true;
 	}
     }
 
@@ -141,6 +144,7 @@ void ReloadableScrollingText::initializeFonts( )
 
 void ReloadableScrollingText::reloadTexture( )
 {
+	needRender_ = true;
 
     if (direction_ == "horizontal")
     {
@@ -705,13 +709,13 @@ void ReloadableScrollingText::draw( )
 		        Font::GlyphInfo glyph;
 			if (font->getRect( text_[l][i], glyph ))
 			{
-			  if ( glyph.minX < 0 )
-			  {
-			      curLineWidth += glyph.minX;
-			  }
+			    if ( glyph.minX < 0 )
+			    {
+			        curLineWidth += glyph.minX;
+			    }
 
-			  char_width = static_cast<int>( glyph.rect.w?glyph.rect.w:glyph.advance );
-			  curLineWidth += char_width;
+			    char_width = static_cast<int>( glyph.rect.w?glyph.rect.w:glyph.advance );
+			    curLineWidth += char_width;
 			}
 		    }
 
@@ -728,8 +732,9 @@ void ReloadableScrollingText::draw( )
 		    waitStartTime_ <= 0 &&
 		    imageWidth * scale * scaleX_ - currentPosition_ <= imageMaxWidth)
 		{
-		  waitEndTime_     = endTime_;
-		  scrollForward_ = false;
+		    waitEndTime_     = endTime_;
+		    scrollForward_ = false;
+		    needRender_ = true;
 		}
 		else if(!scrollForward_ &&
 			waitEndTime_ <= 0 &&
@@ -738,6 +743,7 @@ void ReloadableScrollingText::draw( )
 		  waitStartTime_   = startTime_;
 		  currentPosition_ = -startPosition_ * scaleX_;
 		  scrollForward_ = true;
+		  needRender_ = true;
 		}
             }
         }
@@ -959,9 +965,10 @@ bool ReloadableScrollingText::mustRender(  )
 {
     if ( Component::mustRender(  ) ) return true;
 
-    if (!text_.empty( ) && baseViewInfo.Alpha > 0.0f)
+    if (!text_.empty( ) && baseViewInfo.Alpha > 0.0f && needRender_)
     {
-        return true;
+        needRender_ = false;
+	return true;
     }
 
     return false;
