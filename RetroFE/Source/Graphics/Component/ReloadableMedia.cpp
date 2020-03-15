@@ -414,13 +414,9 @@ void ReloadableMedia::reloadTexture( bool previousItem )
         }
     }
 
-    // if image and artwork was not specified, fall back to displaying text
+    // if image and artwork was not specified, image fall back
     if(!loadedComponent_ && imageFallback_)
     {
-        //loadedComponent_ = new Text(selectedItem->fullTitle, page, FfntInst_, scaleX_, scaleY_);
-        /*baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
-        baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;*/
-
         std::string imagePath;
         ImageBuilder imageBuild;
         imagePath = Utils::combinePath(Configuration::absolutePath, "collections", collectionName );
@@ -428,19 +424,13 @@ void ReloadableMedia::reloadTexture( bool previousItem )
         loadedComponent_ = imageBuild.CreateImage( imagePath, page, std::string("fallback"), scaleX_, scaleY_, ditheringAuthorized_ );
     }
 
-    // if image and artwork was not specified, fall back to displaying text
+    // if image and artwork was not specified, and no image fallback, fall back to displaying text
     if(!loadedComponent_ && textFallback_)
     {
         loadedComponent_ = new Text(selectedItem->fullTitle, page, FfntInst_, scaleX_, scaleY_);
         baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
         baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
     }
-
-    /*if(imageAndText_){
-        loadedComponent_ = new Text(selectedItem->fullTitle, page, FfntInst_, scaleX_, scaleY_);
-        baseViewInfo.ImageWidth = loadedComponent_->baseViewInfo.ImageWidth;
-        baseViewInfo.ImageHeight = loadedComponent_->baseViewInfo.ImageHeight;
-    }*/
 }
 
 

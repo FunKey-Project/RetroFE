@@ -58,11 +58,15 @@ ReloadableText::~ReloadableText()
 void ReloadableText::update(float dt)
 {
     if (newItemSelected ||
-       (newScrollItemSelected && getMenuScrollReload()) ||
         type_ == "time")
     {
         ReloadTexture();
         newItemSelected = false;
+    }
+    else if(newScrollItemSelected && getMenuScrollReload())
+    {
+        ReloadTexture(true);
+	newScrollItemSelected = false;
     }
 
     // needs to be ran at the end to prevent the NewItemSelected flag from being detected
@@ -103,7 +107,11 @@ void ReloadableText::deInitializeFonts()
 }
 
 
-void ReloadableText::ReloadTexture()
+void ReloadableText::ReloadTexture(){
+	ReloadTexture(false);
+}
+
+void ReloadableText::ReloadTexture( bool previousItem )
 {
     if (imageInst_ != NULL)
     {
@@ -111,7 +119,14 @@ void ReloadableText::ReloadTexture()
         imageInst_ = NULL;
     }
 
-    Item *selectedItem = page.getSelectedItem( displayOffset_ );
+    /* Select item to reload */
+	Item *selectedItem = NULL;
+	if(previousItem){
+		selectedItem = page.getPreviousSelectedItem(displayOffset_);
+	}
+	else{
+		selectedItem = page.getSelectedItem(displayOffset_);
+	}
 
     if (selectedItem != NULL)
     {

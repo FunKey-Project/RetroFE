@@ -36,6 +36,7 @@ public:
 
 private:
     void reloadTexture( );
+    void reloadTexture( bool previousItem );
     void loadText( std::string collection, std::string type, std::string basename, std::string filepath, bool systemMode );
     Configuration           &config_;
     bool                     systemMode_;

@@ -105,12 +105,17 @@ void ReloadableScrollingText::update(float dt)
 	}
     }
 
-    if (newItemSelected ||
-       (newScrollItemSelected && getMenuScrollReload()))
-    {
-        reloadTexture( );
-        newItemSelected = false;
-    }
+    // Reload media
+	if (newItemSelected)
+	{
+		reloadTexture();
+		newItemSelected       = false;
+	}
+	else if(newScrollItemSelected && getMenuScrollReload())
+	{
+		reloadTexture(true);
+		newScrollItemSelected = false;
+	}
 
     Component::update(dt);
 }
@@ -141,8 +146,12 @@ void ReloadableScrollingText::initializeFonts( )
     fontInst_->initialize( );
 }
 
-
 void ReloadableScrollingText::reloadTexture( )
+{
+	reloadTexture(false);
+}
+
+void ReloadableScrollingText::reloadTexture( bool previousItem )
 {
 	needRender_ = true;
 
@@ -159,11 +168,15 @@ void ReloadableScrollingText::reloadTexture( )
 
     text_.clear( );
 
-    Item *selectedItem = page.getSelectedItem( displayOffset_ );
-    if (!selectedItem)
-    {
-        return;
-    }
+    /* Select item to reload */
+	Item *selectedItem = NULL;
+	if(previousItem){
+		selectedItem = page.getPreviousSelectedItem(displayOffset_);
+	}
+	else{
+		selectedItem = page.getSelectedItem(displayOffset_);
+	}
+	if(!selectedItem) return;
 
     config_.getProperty( "currentCollection", currentCollection_ );
 

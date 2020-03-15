@@ -35,7 +35,8 @@ public:
     void     initializeFonts();
 
 private:
-    void ReloadTexture();
+    void ReloadTexture( );
+    void ReloadTexture( bool previousItem );
 
     Configuration &config_;
     Text *imageInst_;
