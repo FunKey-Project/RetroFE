@@ -185,7 +185,8 @@ void Component::update(float dt)
       }
       animationRequested_   = false;
     }
-    else if (tweens_ && currentTweenComplete_)
+
+    if (tweens_ && currentTweenComplete_)
     {
         animationType_        = "idle";
         currentTweens_        = tweens_->getAnimation( "idle", menuIndex_ );
