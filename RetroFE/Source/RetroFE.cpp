@@ -321,6 +321,13 @@ void RetroFE::run( )
     attract_.idlePlaylistTime   = static_cast<float>(attractModePlaylistTime);
     attract_.idleCollectionTime = static_cast<float>(attractModeCollectionTime);
 
+    int fps     = 60;
+	int fpsIdle = 60;
+	config_.getProperty( "fps", fps );
+	config_.getProperty( "fpsIdle", fpsIdle );
+	double fpsTime     = 1000.0 / static_cast<double>(fps);
+	double fpsIdleTime = 1000.0 / static_cast<double>(fpsIdle);
+
     int initializeStatus = 0;
 
     // load the initial splash screen, unload it once it is complete
@@ -1181,7 +1188,11 @@ void RetroFE::run( )
             }
 
             deltaTime = currentTime_ - lastTime;
-            double sleepTime = 1000.0/60.0 - deltaTime*1000;
+            double sleepTime;
+			if (state == RETROFE_IDLE)
+				sleepTime = fpsIdleTime - deltaTime*1000;
+			else
+				sleepTime = fpsTime - deltaTime*1000;
             if ( sleepTime > 0 )
             {
                 SDL_Delay( static_cast<unsigned int>( sleepTime ) );
