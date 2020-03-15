@@ -24,6 +24,7 @@ protected:
     void drawNoBattery();
     int readFileValue(std::string file);
 
+    int 		id_;
     Configuration &config_;
     SDL_Surface *texture_;
     SDL_Surface *texture_prescaled_;
@@ -37,10 +38,13 @@ protected:
     static std::string fileBatConnected_;
     static std::string fileBatCapacity_;
 
+    static int		last_id_;
     static float	currentWaitTime_;
     static bool 	mustRender_;
     static int 		percentage_;
     static int 		prevPercentage_;
+    static int 		percentagePixelWidth_;
+    static int 		prevPercentagePixelWidth_;
     static bool 	charging_;
     static bool 	prevCharging_;
     static bool 	noBat_;

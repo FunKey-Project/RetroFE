@@ -33,7 +33,7 @@ Image * ImageBuilder::CreateImage(std::string path, Page &p, std::string name, f
     std::string prefix = Utils::combinePath(path, name);
     std::string file;
 
-    //printf("		findMatchingFile, prefix = %s, file = %s\n", prefix.c_str(), file.c_str());
+    printf("		findMatchingFile, prefix = %s, file = %s\n", prefix.c_str(), file.c_str());
     if(Utils::findMatchingFile(prefix, extensions, file))
     {
         image = new Image(file, "", p, scaleX, scaleY, dithering);

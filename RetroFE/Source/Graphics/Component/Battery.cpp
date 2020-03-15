@@ -81,8 +81,11 @@ std::string Battery::fileUsbConnected_ = "/sys/class/power_supply/axp20x-usb/pre
 std::string Battery::fileBatConnected_ = "/sys/class/power_supply/axp20x-battery/present";
 std::string Battery::fileBatCapacity_ = "/sys/class/power_supply/axp20x-battery/capacity";
 
+int 	Battery::last_id_ = 0;
 int 	Battery::percentage_ = 0;
 int 	Battery::prevPercentage_ = 0;
+int 	Battery::percentagePixelWidth_ = 0;
+int 	Battery::prevPercentagePixelWidth_ = 0;
 bool 	Battery::charging_ = false;
 bool 	Battery::prevCharging_ = false;
 bool 	Battery::noBat_ = false;
@@ -94,6 +97,7 @@ bool 	Battery::valuesReady_ = false;
 
 Battery::Battery(Page &p, Configuration &config, float reloadPeriod, SDL_Color fontColor, float scaleX, float scaleY)
     : Component(p)
+	, id_(last_id_)
 	, config_(config)
     , texture_(NULL)
     , texture_prescaled_(NULL)
@@ -103,6 +107,8 @@ Battery::Battery(Page &p, Configuration &config, float reloadPeriod, SDL_Color f
     , scaleY_(scaleY)
     , fontColor_(0xff000000 | ((uint32_t)fontColor.b) << 16 | ((uint32_t)fontColor.g) << 8 | ((uint32_t)fontColor.r))
 {
+	last_id_++;
+
     allocateGraphicsMemory();
 
     if( config_.propertyExists( "fileUsbConnected" ) ){
@@ -211,12 +217,19 @@ void Battery::drawBatteryPercent()
 	        uint32_t *currentPixel = texturePixels +
 		  (BATTERY_ICON_WIDTH)*(i+BATTERY_FILL_REGION_OFFSET_Y) +
 		  (j+BATTERY_FILL_REGION_OFFSET_X);
-		*currentPixel = (j <= BATTERY_FILL_REGION_OFFSET_WIDTH*percentage_/100) ? fontColor_ : BATTERY_BACK_COLOR;
+		*currentPixel = (j <= percentagePixelWidth_) ? fontColor_ : BATTERY_BACK_COLOR;
 	    }
         }
 
         /* Force render*/
         mustRender_ = true;
+
+        /* Free pre-scaled textured to force recomputing */
+        if (texture_prescaled_ != NULL)
+        {
+	    SDL_FreeSurface(texture_prescaled_);
+	    texture_prescaled_ = NULL;
+        }
 
         SDL_UnlockMutex(SDL::getMutex());
 
@@ -234,7 +247,7 @@ void Battery::drawNoBattery()
     {
         SDL_LockMutex(SDL::getMutex());
 
-        /* Draw empty battery container */
+        /* Draw no battery icon */
         uint32_t *texturePixels = (uint32_t*)texture_->pixels;
         for(i = 0; i < NOBAT_ICON_HEIGHT; i++){
 	    for(j = 0; j < NOBAT_ICON_WIDTH; j++){
@@ -245,6 +258,13 @@ void Battery::drawNoBattery()
 
         /* Force render*/
         mustRender_ = true;
+
+        /* Free pre-scaled textured to force recomputing */
+        if (texture_prescaled_ != NULL)
+        {
+	    SDL_FreeSurface(texture_prescaled_);
+	    texture_prescaled_ = NULL;
+        }
 
         SDL_UnlockMutex(SDL::getMutex());
 
@@ -262,7 +282,7 @@ void Battery::drawBatteryCharging()
     {
         SDL_LockMutex(SDL::getMutex());
 
-        /* Draw empty battery container */
+        /* Draw battery charging icon */
         uint32_t *texturePixels = (uint32_t*)texture_->pixels;
         for(i = 0; i < FLASH_ICON_HEIGHT; i++){
 	    for(j = 0; j < FLASH_ICON_WIDTH; j++){
@@ -273,6 +293,13 @@ void Battery::drawBatteryCharging()
 
         /* Force render*/
         mustRender_ = true;
+
+        /* Free pre-scaled textured to force recomputing */
+        if (texture_prescaled_ != NULL)
+        {
+	    SDL_FreeSurface(texture_prescaled_);
+	    texture_prescaled_ = NULL;
+        }
 
         SDL_UnlockMutex(SDL::getMutex());
 
@@ -331,44 +358,58 @@ int Battery::getBatPercent(){
 void Battery::update(float dt)
 {
 
-    if (currentWaitTime_ < reloadPeriod_)
-    {
-        currentWaitTime_ += dt;
-    }
-    else
-    {
-        prevPercentage_ = percentage_;
-	prevNoBat_ = noBat_;
-	prevCharging_ = charging_;
-
-	percentage_ = getBatPercent();
-	noBat_ = !isBatConnected();
-	charging_ = isUsbConnected();
-
-	valuesReady_ = true;
-
-	currentWaitTime_ = 0.0f;
-    }
-
-    /* Redraw icon if necessary */
-    bool stateChange = ((prevNoBat_ != noBat_) || (prevCharging_ != charging_));
-
-    if(stateChange || mustUpdate_){
-        if(noBat_){
-	    drawNoBattery();
-	}
-	else if(charging_){
-	    drawBatteryCharging();
-	}
-	else if(prevPercentage_ != percentage_){
-	    float percentagePixelWidth = percentage_ * BATTERY_FILL_REGION_OFFSET_WIDTH / 100;
-	    float prevPercentagePixelWidth = prevPercentage_ * BATTERY_FILL_REGION_OFFSET_WIDTH / 100;
-	    if (prevPercentagePixelWidth != percentagePixelWidth || stateChange)
+	/** Only 1st battery component id really performs update process */
+	if(id_==0){
+	    if (currentWaitTime_ < reloadPeriod_)
 	    {
-	        drawBatteryPercent();
+	        currentWaitTime_ += dt;
+	    }
+	    else
+	    {
+	        prevPercentage_ = percentage_;
+		prevNoBat_ = noBat_;
+		prevCharging_ = charging_;
+
+		percentage_ = getBatPercent();
+		noBat_ = !isBatConnected();
+		charging_ = isUsbConnected();
+
+		/** rescale battery values */
+		percentagePixelWidth_ = percentage_ * BATTERY_FILL_REGION_OFFSET_WIDTH / 100;
+		prevPercentagePixelWidth_ = prevPercentage_ * BATTERY_FILL_REGION_OFFSET_WIDTH / 100;
+
+		valuesReady_ = true;
+		currentWaitTime_ = 0.0f;
 	    }
 	}
-    }
+
+	/* Redraw icon if necessary */
+	bool stateChange = ((prevNoBat_ != noBat_) || (prevCharging_ != charging_) || (percentagePixelWidth_ != prevPercentagePixelWidth_));
+
+	if(stateChange || mustUpdate_){
+	    if(noBat_){
+	        drawNoBattery();
+	    }
+	    else if(charging_){
+	        drawBatteryCharging();
+	    }
+	    else{
+	        drawBatteryPercent();
+	    }
+
+	    /** Reset values*/
+	    /** Only last battery component id really can reset values (once all others are sure to be redrawn) */
+	    if(id_==last_id_-1){
+	        if(prevPercentage_ != percentage_)
+		    {prevPercentage_ = percentage_;}
+		if(prevPercentagePixelWidth_ != percentagePixelWidth_)
+		    {prevPercentagePixelWidth_ = percentagePixelWidth_;}
+		if(prevNoBat_ != noBat_)
+		    {prevNoBat_ = noBat_;}
+		if(prevCharging_ != charging_)
+		    {prevCharging_ = charging_;}
+	    }
+	}
 
     mustUpdate_ = false;
 
