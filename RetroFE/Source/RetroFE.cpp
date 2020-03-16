@@ -1410,7 +1410,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
                     page->letterScroll(Page::ScrollDirectionForward);
                 state = RETROFE_MENUJUMP_REQUEST;
             }
-            if ( input_.newKeyPressed(UserInput::KeyCodeFavPlaylist) )
+            if ( input_.keystate(UserInput::KeyCodeFavPlaylist) )
             {
                 attract_.reset( );
                 page->favPlaylist( );
@@ -1449,13 +1449,13 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
                 page->prevCyclePlaylist( cycleVector );
                 state = RETROFE_PLAYLIST_REQUEST;
             }
-            if ( input_.newKeyPressed(UserInput::KeyCodeRemovePlaylist) )
+            if ( input_.keystate(UserInput::KeyCodeRemovePlaylist) )
             {
                 attract_.reset( );
                 page->removePlaylist( );
                 state = RETROFE_PLAYLIST_REQUEST;
             }
-            if ( input_.newKeyPressed(UserInput::KeyCodeAddPlaylist) )
+            if ( input_.keystate(UserInput::KeyCodeAddPlaylist) )
             {
                 attract_.reset( );
                 page->addPlaylist( );
