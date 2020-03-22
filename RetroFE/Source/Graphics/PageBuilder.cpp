@@ -936,7 +936,11 @@ AnimationEvents *PageBuilder::createTweenInstance(xml_node<> *componentXml)
     buildTweenSet(tweens, componentXml, "onIdle",           "idle");
     buildTweenSet(tweens, componentXml, "onMenuIdle",       "menuIdle");
     buildTweenSet(tweens, componentXml, "onMenuScroll",     "menuScroll");
+    buildTweenSet(tweens, componentXml, "onMenuScrollPrev",     "menuScrollPrev");
+    buildTweenSet(tweens, componentXml, "onMenuScrollNext",     "menuScrollNext");
     buildTweenSet(tweens, componentXml, "onMenuFastScroll", "menuFastScroll");
+    buildTweenSet(tweens, componentXml, "onMenuFastScrollPrev", "menuFastScrollPrev");
+    buildTweenSet(tweens, componentXml, "onMenuFastScrollNext", "menuFastScrollNext");
     buildTweenSet(tweens, componentXml, "onHighlightEnter", "highlightEnter");
     buildTweenSet(tweens, componentXml, "onHighlightExit",  "highlightExit");
     buildTweenSet(tweens, componentXml, "onMenuEnter",      "menuEnter");

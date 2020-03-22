@@ -444,6 +444,8 @@ void Page::menuScroll()
 
     for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
+        (*it)->triggerEvent( scrollDirectionForward_?"menuScrollNext":"menuScrollPrev", menuDepth_ - 1 );
+        (*it)->update(0);
         (*it)->triggerEvent( "menuScroll", menuDepth_ - 1 );
     }
 }
@@ -457,6 +459,8 @@ void Page::menuFastScroll()
 
     for(std::vector<Component *>::iterator it = LayerComponents.begin(); it != LayerComponents.end(); ++it)
     {
+        (*it)->triggerEvent( scrollDirectionForward_?"menuFastScrollNext":"menuFastScrollPrev", menuDepth_ - 1 );
+        (*it)->update(0);
         (*it)->triggerEvent( "menuFastScroll", menuDepth_ - 1 );
     }
 }
@@ -671,6 +675,7 @@ void Page::setScrolling(ScrollDirection direction)
     switch(direction)
     {
     case ScrollDirectionForward:
+        scrollDirectionForward_=true;
         if(!scrollActive_)
         {
             menuScroll();
@@ -679,9 +684,9 @@ void Page::setScrolling(ScrollDirection direction)
 	    menuFastScroll();
         }
         scrollActive_ = true;
-        scrollDirectionForward_=true;
         break;
     case ScrollDirectionBack:
+        scrollDirectionForward_=false;
         if(!scrollActive_)
         {
             menuScroll();
@@ -690,7 +695,6 @@ void Page::setScrolling(ScrollDirection direction)
 	    menuFastScroll();
         }
         scrollActive_ = true;
-        scrollDirectionForward_=false;
         break;
     case ScrollDirectionIdle:
     default:
