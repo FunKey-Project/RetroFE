@@ -129,15 +129,8 @@ bool ImportConfiguration(Configuration *c)
         Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + settingsConfPath + "\"");
         return false;
     }
-
-    /* Read current layout */
-    std::string layoutConfPath = Utils::combinePath(configPath, "layout.conf");
-    if(!c->import("", layoutConfPath))
-    {
-        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + layoutConfPath + "\"");
-    }
     
-    /* Read layouts */
+    /* Read layouts in absolute path */
     std::string layoutDefaultPath =  Utils::combinePath(Configuration::absolutePath, "layouts");
     std::string layoutListDefaultPath = Utils::combinePath(layoutDefaultPath, "layouts.list");
     if(!c->importLayouts(layoutDefaultPath, layoutListDefaultPath))
@@ -151,6 +144,13 @@ bool ImportConfiguration(Configuration *c)
     if(!c->importLayouts(layoutUserPath, layoutListUserPath))
     {
         Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + layoutListUserPath + "\"");
+    }
+
+    /* Read current layout */
+    std::string layoutConfPath = Utils::combinePath(configPath, "layout.conf");
+    if(!c->importCurrentLayout(configPath, layoutConfPath))
+    {
+        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not set layout from file \"" + layoutConfPath + "\"");
     }
 
     /* Open Launchers folder */

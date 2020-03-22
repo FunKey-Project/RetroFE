@@ -370,6 +370,7 @@ void RetroFE::run( )
     std::string firstCollection = "Main";
     bool running = true;
     bool initInBackground = false;
+    int res;
     config_.getProperty( "initInBackground", initInBackground );
 
     RETROFE_STATE state = RETROFE_NEW;
@@ -570,7 +571,7 @@ void RetroFE::run( )
                 config_.getProperty( "collectionInputClear", collectionInputClear );
                 if (  collectionInputClear  )
                 {
-                    // Empty event queue
+                    // Empty event queue
                     SDL_Event e;
                     while ( SDL_PollEvent( &e ) );
                     input_.resetStates( );
@@ -921,16 +922,21 @@ void RetroFE::run( )
             /// Launch menu
             menuMode_ = true;
             printf("Menu launched here\n");
-            MenuMode::launch();
+            res = MenuMode::launch();
             menuMode_ = false;
             forceRender(true);
 
-	    /// Clear events
-	    SDL_Event ev;
-	    while ( SDL_PollEvent( &ev ) );
-	    input_.resetStates( );
-	    state = RETROFE_IDLE;
-	    break;
+            /// Clear events
+            SDL_Event ev;
+            while ( SDL_PollEvent( &ev ) );
+            input_.resetStates( );
+            if(res == MENU_RETURN_EXIT){
+                state = RETROFE_QUIT_REQUEST;
+            }
+            else{
+                state = RETROFE_IDLE;
+            }
+            break;
 
         case RETROFE_MENUMODE_START_LOAD_ART:
             //currentPage_->start();

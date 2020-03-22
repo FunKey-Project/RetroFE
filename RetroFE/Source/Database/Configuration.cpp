@@ -193,6 +193,108 @@ bool Configuration::importLayouts(std::string folder, std::string file, bool mus
 }
 
 
+bool Configuration::importCurrentLayout(std::string folder, std::string file, bool mustExist)
+{
+    bool retVal = false;
+    int lineCount = 0;
+    std::string line;
+	int index = 0;
+
+    Logger::write(Logger::ZONE_INFO, "Configuration", "Importing layouts from \"" + file + "\"");
+
+    std::ifstream ifs(file.c_str());
+
+    if (!ifs.is_open())
+    {
+        if (mustExist)
+        {
+            Logger::write(Logger::ZONE_ERROR, "Configuration", "Could not open " + file + "\"");
+        }
+        else
+        {
+            Logger::write(Logger::ZONE_INFO, "Configuration", "Could not open " + file + "\"");
+        }
+
+        return false;
+    }
+
+    while (std::getline (ifs, line))
+    {
+        lineCount++;
+
+        // strip out any comments
+        line = Utils::filterComments(line);
+
+        // line empty
+        if(line.empty() || (line.find_first_not_of(" \t\r") == std::string::npos))
+        {
+	    retVal = false;
+        }
+        // finding layout in existing list
+        else
+        {
+	    std::string seekedLayoutName = trimEnds(line);
+	    std::string layoutPathFound;
+	    bool layoutFoundInList = false;
+
+	    // check existing layout list */
+	    for(std::vector<std::string>::iterator it = layouts_.begin(); it != layouts_.end(); ++it){
+	        std::string curLayoutName = Utils::getFileName(*it);
+		if(!curLayoutName.compare(seekedLayoutName)){
+		    layoutPathFound = *it;
+		    layoutFoundInList = true;
+		    break;
+		}
+		index++;
+	    }
+
+	    if (layoutFoundInList){
+
+	        /* remove layout properties if they already exist */
+	        if(properties_.find("layout") != properties_.end())
+		{
+		    properties_.erase("layout");
+		}
+
+		/* Set new pair <key, value> for key = layout */
+		properties_.insert(PropertiesPair("layout", seekedLayoutName));
+
+		std::stringstream ss;
+		//printf("Found layout: %s at idx %d\n", layoutPathFound.c_str(), index);
+		ss << "Found layout: "  << "\"" << layoutPathFound << "\" in layouts list at idx " << index;
+		Logger::write(Logger::ZONE_INFO, "Configuration", ss.str());
+		retVal = true;
+
+		break;
+	    }
+	    else{
+	    }
+        }
+    }
+
+    ifs.close();
+
+	currentLayoutIdx_ = index;
+
+    return retVal;
+}
+
+bool Configuration::exportCurrentLayout(std::string layoutFilePath, std::string layoutName)
+{
+    bool retVal = false;
+
+    Logger::write(Logger::ZONE_INFO, "Configuration", "Exporting layout \"" + layoutName +
+		  "\" in file \"" + layoutFilePath +"\"");
+
+    std::ofstream layoutFile;
+    layoutFile.open(layoutFilePath.c_str());
+    layoutFile << layoutName << std::endl;
+    layoutFile.close();
+
+    return retVal;
+}
+
+
 bool Configuration::parseLine(std::string collection, std::string keyPrefix, std::string line, int lineCount)
 {
     bool retVal = false;

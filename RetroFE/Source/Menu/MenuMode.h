@@ -18,6 +18,12 @@ typedef enum{
     NB_MENU_TYPES,
 } ENUM_MENU_TYPE;
 
+typedef enum{
+    MENU_RETURN_OK,
+    MENU_RETURN_EXIT,
+    NB_MENU_RETURN_CODES,
+} ENUM_MENU_RETURN_CODES;
+
 
 ///------ Definition of the different aspect ratios
 #define ASPECT_RATIOS \
@@ -52,7 +58,7 @@ public:
     //MenuMode();
     static void init(Configuration &c);
     static void end();
-    static void launch( );
+    static int launch( );
 
     /*static SDL_Surface * draw_screen;
 
@@ -132,5 +138,6 @@ private:
 
     static int savestate_slot;
 
-    static std::vector<std::string> layouts_;
+    static Configuration *config;
+    static int indexChooseLayout;
 };

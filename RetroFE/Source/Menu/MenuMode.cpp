@@ -2,6 +2,7 @@
 #include "../Utility/Utils.h"
 #include <iostream>
 #include "../SDL.h"
+#include "../Utility/Utils.h"
 
 /// -------------- DEFINES --------------
 #define MIN(a,b) (((a)<(b))?(a):(b))
@@ -70,7 +71,6 @@ int *MenuMode::idx_menus = NULL;
 int MenuMode::nb_menu_zones = 0;
 int MenuMode::menuItem=0;
 int MenuMode::stop_menu_loop = 0;
-std::vector<std::string> MenuMode::layouts_;
 
 SDL_Color MenuMode::text_color = {GRAY_MAIN_R, GRAY_MAIN_G, GRAY_MAIN_B};
 int MenuMode::padding_y_from_center_menu_zone = 18;
@@ -91,7 +91,9 @@ int MenuMode::aspect_ratio = ASPECT_RATIOS_TYPE_STRECHED;
 int MenuMode::aspect_ratio_factor_percent = 50;
 int MenuMode::aspect_ratio_factor_step = 10;
 
+Configuration *MenuMode::config = NULL;
 int MenuMode::savestate_slot = 0;
+int MenuMode::indexChooseLayout = 0;
 
 /// USB stuff
 int usb_data_connected = 0;
@@ -134,13 +136,8 @@ void MenuMode::init(Configuration &c)
 		MENU_ERROR_PRINTF("ERROR IMG_Load: %s\n", IMG_GetError());
 	}
 
-	/// ------ Copy config's layouts ------
-	layouts_ = c.layouts_;
-
-	std::vector<std::string>::iterator it;
-	for (it= layouts_.begin(); it < layouts_.end(); it++){
-		printf("%s\n", (*it).c_str());
-	}
+	/// ------ Save config pointer ------
+	config = &c;
 
 	/// ------ Init menu zones ------
 	init_menu_zones();
@@ -487,10 +484,13 @@ void MenuMode::menu_screen_refresh(int menuItem, int prevItem, int scroll, uint8
 	/// --------- No Scroll ? Blitting menu-specific info
 	else{
 		SDL_Surface * text_surface = NULL;
-		char text_tmp[40];
+		char text_tmp[100];
 		SDL_Rect text_pos;
 		char fname[MAXPATHLEN];
 		memset(fname, 0, MAXPATHLEN);
+		char *curLayoutName;
+		bool dots=false;
+		int max_chars = 15;
 
 		switch(idx_menus[menuItem]){
 		case MENU_TYPE_VOLUME:
@@ -590,6 +590,38 @@ void MenuMode::menu_screen_refresh(int menuItem, int prevItem, int scroll, uint8
 			}
 			break;
 
+		case MENU_TYPE_THEME:
+			/// ---- Write current chosen theme -----
+			curLayoutName = (char*)Utils::getFileName(config->layouts_.at(indexChooseLayout)).c_str();
+
+			// no more than max_chars chars in name to fit screen
+			if(strlen(curLayoutName) > max_chars){
+				curLayoutName[max_chars-2] = 0;
+				dots = true;
+			}
+			sprintf(text_tmp, "< %s%s >", curLayoutName, dots?"...":"" );
+
+			text_surface = TTF_RenderText_Blended(menu_info_font, text_tmp, text_color);
+			text_pos.x = (virtual_hw_screen->w - MENU_ZONE_WIDTH)/2 + (MENU_ZONE_WIDTH - text_surface->w)/2;
+			text_pos.y = virtual_hw_screen->h - MENU_ZONE_HEIGHT/2 - text_surface->h/2;
+			SDL_BlitSurface(text_surface, NULL, virtual_hw_screen, &text_pos);
+
+			if(menu_action){
+				sprintf(text_tmp, "In progress...");
+				text_surface = TTF_RenderText_Blended(menu_info_font, text_tmp, text_color);
+				text_pos.x = (virtual_hw_screen->w - MENU_ZONE_WIDTH)/2 + (MENU_ZONE_WIDTH - text_surface->w)/2;
+				text_pos.y = virtual_hw_screen->h - MENU_ZONE_HEIGHT/2 - text_surface->h/2 + 2*padding_y_from_center_menu_zone;
+				SDL_BlitSurface(text_surface, NULL, virtual_hw_screen, &text_pos);
+			}
+			else if(menu_confirmation){
+				sprintf(text_tmp, "Are you sure ?");
+				text_surface = TTF_RenderText_Blended(menu_info_font, text_tmp, text_color);
+				text_pos.x = (virtual_hw_screen->w - MENU_ZONE_WIDTH)/2 + (MENU_ZONE_WIDTH - text_surface->w)/2;
+				text_pos.y = virtual_hw_screen->h - MENU_ZONE_HEIGHT/2 - text_surface->h/2 + 2*padding_y_from_center_menu_zone;
+				SDL_BlitSurface(text_surface, NULL, virtual_hw_screen, &text_pos);
+			}
+			break;
+
 		case MENU_TYPE_EXIT:
 		case MENU_TYPE_POWERDOWN:
 			if(menu_action){
@@ -640,7 +672,7 @@ void MenuMode::menu_screen_refresh(int menuItem, int prevItem, int scroll, uint8
 }
 
 
-void MenuMode::launch( )
+int MenuMode::launch( )
 {
 	MENU_DEBUG_PRINTF("Launch MenuMode\n");
 
@@ -655,6 +687,8 @@ void MenuMode::launch( )
 	uint8_t menu_confirmation = 0;
 	stop_menu_loop = 0;
 	char fname[MAXPATHLEN];
+	indexChooseLayout = config->currentLayoutIdx_;
+	int returnCode = MENU_RETURN_OK;
 
 	/// ------ Get init values -------
 	init_menu_system_values();
@@ -676,6 +710,7 @@ void MenuMode::launch( )
 				{
 				case SDL_QUIT:
 					stop_menu_loop = 1;
+					returnCode = MENU_RETURN_EXIT;
 					break;
 				case SDL_KEYDOWN:
 					switch (event.key.keysym.sym)
@@ -809,6 +844,12 @@ void MenuMode::launch( )
 							/// ------ Refresh screen ------
 							screen_refresh = 1;
 						}
+						else if(idx_menus[menuItem] == MENU_TYPE_THEME){
+							MENU_DEBUG_PRINTF("Theme previous\n");
+							indexChooseLayout = (!indexChooseLayout)?(config->layouts_.size()-1):(indexChooseLayout-1);
+							/// ------ Refresh screen ------
+							screen_refresh = 1;
+						}
 						break;
 
 					case SDLK_r:
@@ -860,6 +901,12 @@ void MenuMode::launch( )
 						else if(idx_menus[menuItem] == MENU_TYPE_ASPECT_RATIO){
 							MENU_DEBUG_PRINTF("Aspect Ratio UP\n");
 							aspect_ratio = (aspect_ratio+1)%NB_ASPECT_RATIOS_TYPES;
+							/// ------ Refresh screen ------
+							screen_refresh = 1;
+						}
+						else if(idx_menus[menuItem] == MENU_TYPE_THEME){
+							MENU_DEBUG_PRINTF("Theme previous\n");
+							indexChooseLayout = (indexChooseLayout+1)%config->layouts_.size();
 							/// ------ Refresh screen ------
 							screen_refresh = 1;
 						}
@@ -933,6 +980,26 @@ void MenuMode::launch( )
 								screen_refresh = 1;
 							}
 						}
+						else if(idx_menus[menuItem] == MENU_TYPE_THEME){
+							if(menu_confirmation){
+								MENU_DEBUG_PRINTF("Theme change - confirmed\n");
+
+								/// ------ Refresh Screen -------
+								menu_screen_refresh(menuItem, prevItem, scroll, menu_confirmation, 1);
+
+								/// ----- Write new theme and restart RetroFe ----
+								config->exportCurrentLayout(Utils::combinePath(Configuration::absolutePath, "layout.conf"),
+										Utils::getFileName(config->layouts_.at(indexChooseLayout)));
+								stop_menu_loop = 1;
+								returnCode = MENU_RETURN_EXIT;
+							}
+							else{
+								MENU_DEBUG_PRINTF("Theme change - asking confirmation\n");
+								menu_confirmation = 1;
+								/// ------ Refresh screen ------
+								screen_refresh = 1;
+							}
+						}
 						else if(idx_menus[menuItem] == MENU_TYPE_EXIT){
 							MENU_DEBUG_PRINTF("Exit game\n");
 							if(menu_confirmation){
@@ -940,8 +1007,8 @@ void MenuMode::launch( )
 								/// ----- The game should be saved here ----
 
 								/// ----- Exit game and back to launcher ----
-								//quit();
 								stop_menu_loop = 1;
+								returnCode = MENU_RETURN_EXIT;
 							}
 							else{
 								MENU_DEBUG_PRINTF("Exit game - asking confirmation\n");
@@ -963,6 +1030,8 @@ void MenuMode::launch( )
 								if (fp == NULL) {
 									MENU_ERROR_PRINTF("Failed to run command %s\n", shell_cmd);
 								}
+
+								return MENU_RETURN_EXIT;
 							}
 							else{
 								MENU_DEBUG_PRINTF("Powerdown - asking confirmation\n");
@@ -1019,5 +1088,5 @@ void MenuMode::launch( )
 	if(SDL_EnableKeyRepeat(backup_key_repeat_delay, backup_key_repeat_interval)){
 		MENU_ERROR_PRINTF("ERROR with SDL_EnableKeyRepeat: %s\n", SDL_GetError());
 	}
-	return;
+	return returnCode;
 }
