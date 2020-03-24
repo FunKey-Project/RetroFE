@@ -120,6 +120,8 @@ Battery::Battery(Page &p, Configuration &config, float reloadPeriod, SDL_Color f
     if( config_.propertyExists( "fileBatCapacity" ) ){
         config_.getProperty( "fileBatCapacity", fileBatCapacity_ );
     }
+
+    //printf("battery init OK, fileUsbConnected_=%s, id=%d\n", fileUsbConnected_.c_str(), id_);
 }
 
 Battery::~Battery()
@@ -130,6 +132,8 @@ Battery::~Battery()
 void Battery::freeGraphicsMemory()
 {
     Component::freeGraphicsMemory();
+
+    last_id_ = 0;
 
     SDL_LockMutex(SDL::getMutex());
     if (texture_ != NULL)
@@ -357,7 +361,7 @@ int Battery::getBatPercent(){
 
 void Battery::update(float dt)
 {
-
+	//printf("battery update, id=%d\n", id_);
 	/** Only 1st battery component id really performs update process */
 	if(id_==0){
 	    if (currentWaitTime_ < reloadPeriod_)
