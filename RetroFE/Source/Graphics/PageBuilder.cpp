@@ -1492,7 +1492,7 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
                 if(algorithmXml)
                 {
                     algorithm = Tween::getTweenType(algorithmXml->value());
-
+                    //printf(" algorithm=%d\n", algorithm);
                 }
 
                 if(Tween::getTweenProperty(type->value(), property))
@@ -1524,6 +1524,7 @@ void PageBuilder::getAnimationEvents(xml_node<> *node, TweenSet &tweens)
                         toValue = getVerticalAlignment(to, 0);
                         break;
 
+                    case TWEEN_PROPERTY_X_OFFSET_SHIFT_MENU_DIRECTION:
                     case TWEEN_PROPERTY_Y_OFFSET_SHIFT_MENU_DIRECTION:
                         fromValue = getVerticalAlignment(from, 0);
                         toValue = getVerticalAlignment(to, 0);
