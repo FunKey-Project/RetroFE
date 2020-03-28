@@ -268,6 +268,7 @@ bool Configuration::importCurrentLayout(std::string folder, std::string file, bo
 		break;
 	    }
 	    else{
+	        index = 0;
 	    }
         }
     }
