@@ -131,43 +131,62 @@ void Image::draw()
         rect.h = static_cast<int>(baseViewInfo.ScaledHeight());
         rect.w = static_cast<int>(baseViewInfo.ScaledWidth());
 
-		/* Cache scaling */
-		scaling_needed = rect.w!=0 && rect.h!=0 && (texture_->w != rect.w || texture_->h != rect.h);
-		if(scaling_needed){
-			cache_scaling_needed = (texture_prescaled_ == NULL)?true:(texture_prescaled_->w != rect.w || texture_prescaled_->h != rect.h);
-			if(cache_scaling_needed){
-				texture_prescaled_ = SDL::zoomSurface(texture_, NULL, &rect);
-				if(texture_prescaled_ == NULL){
-					printf("ERROR in %s - Could not create texture_prescaled_\n", __func__);
-					use_prescaled = false;
-				}
-				if(imgBitsPerPx_ > 16 && ditheringAuthorized_){
-					needDithering_ = true;
-				}
-			}
+        /* Cropping needed ? */
+        bool cropping_needed = false;
+        SDL_Rect rect_cropping;
+        if ( (baseViewInfo.ContainerWidth > 0 && baseViewInfo.ContainerHeight > 0) &&
+	     (baseViewInfo.ContainerWidth != rect.w || baseViewInfo.ContainerHeight != rect.h)){
+	    cropping_needed = true;
+	    rect_cropping.x = (rect.w - baseViewInfo.ContainerWidth)/2;
+	    rect_cropping.y = (rect.h - baseViewInfo.ContainerHeight)/2;
+	    rect_cropping.w = baseViewInfo.ContainerWidth;
+	    rect_cropping.h = baseViewInfo.ContainerHeight;
+	    /*printf("\nrect = [{%d, %d} %dx%d], rect_cropping = [{%d, %d} %dx%d]\n",
+	      rect.x, rect.y, rect.w, rect.h,
+	      rect_cropping.x, rect_cropping.y, rect_cropping.w, rect_cropping.h);*/
+        }
 
-			if(texture_prescaled_ != NULL){
-				use_prescaled = true;
-			}
+	/* Cache scaling */
+	scaling_needed = (rect.w!=0 && rect.h!=0) && (texture_->w != rect.w || texture_->h != rect.h);
+	if(scaling_needed){
+	    cache_scaling_needed = (texture_prescaled_ == NULL)?true:
+	      ((!cropping_needed && (texture_prescaled_->w != rect.w || texture_prescaled_->h != rect.h)) ||
+	       (cropping_needed && (texture_prescaled_->w != rect_cropping.w || texture_prescaled_->h != rect_cropping.h) ));
+	    if(cache_scaling_needed){
+	        /*printf("\nComputing prescaling and cropping in Image.cpp %s\n", cropping_needed?"and cropping":"");*/
+	        texture_prescaled_ = SDL::zoomSurface(texture_, NULL, &rect, cropping_needed?&rect_cropping:NULL);
+		if(texture_prescaled_ == NULL){
+		    printf("ERROR in %s - Could not create texture_prescaled_\n", __func__);
+		    use_prescaled = false;
 		}
+		if(imgBitsPerPx_ > 16 && ditheringAuthorized_){
+		    needDithering_ = true;
+		}
+	    }
 
-		/* Surface to display */
-		SDL_Surface * surfaceToRender = NULL;
-		if(use_prescaled && texture_prescaled_ != NULL){
-			surfaceToRender = texture_prescaled_;
-		}
-		else{
-			surfaceToRender = texture_;
-		}
+	    if(texture_prescaled_ != NULL){
+	        use_prescaled = true;
+	    }
+	}
 
-		/* Dithering */
-		if(needDithering_){
-			//printf("Dither: %s\n", file_.c_str());
-			SDL::ditherSurface32bppTo16Bpp(surfaceToRender);
-			needDithering_ = false;
-		}
+	/* Surface to display */
+	SDL_Surface * surfaceToRender = NULL;
+	if(use_prescaled && texture_prescaled_ != NULL){
+	    surfaceToRender = texture_prescaled_;
+	}
+	else{
+	    surfaceToRender = texture_;
+	}
 
-		/* Render */
-		SDL::renderCopy(surfaceToRender, baseViewInfo.Alpha, NULL, &rect, baseViewInfo);
+	/* Dithering */
+	if(needDithering_){
+	    //printf("Dither: %s\n", file_.c_str());
+	    SDL::ditherSurface32bppTo16Bpp(surfaceToRender);
+	    needDithering_ = false;
+	}
+
+	/* Render */
+	//printf("image render\n");
+	SDL::renderCopy(surfaceToRender, baseViewInfo.Alpha, NULL, &rect, baseViewInfo);
     }
 }

@@ -549,7 +549,7 @@ SDL_Surface * SDL::flip_surface( SDL_Surface *surface, int flags )
 }
 
 /// Nearest neighboor optimized with possible out of screen coordinates (for cropping)
-SDL_Surface * SDL::zoomSurface(SDL_Surface *src_surface, SDL_Rect *src_rect_origin, SDL_Rect *dst_rect){
+SDL_Surface * SDL::zoomSurface(SDL_Surface *src_surface, SDL_Rect *src_rect_origin, SDL_Rect *dst_rect, SDL_Rect *post_cropping_rect){
 
 	/* Declare vars */
 	int x_ratio;
@@ -564,7 +564,6 @@ SDL_Surface * SDL::zoomSurface(SDL_Surface *src_surface, SDL_Rect *src_rect_orig
 		printf("ERROR in %s, sanity check\n", __func__);
 		return NULL;
 	}
-	/* Sanity checks */
 	if( src_rect_origin == NULL){
 	    srcRect.x = 0;
 	    srcRect.y = 0;
@@ -593,6 +592,14 @@ SDL_Surface * SDL::zoomSurface(SDL_Surface *src_surface, SDL_Rect *src_rect_orig
 		printf("ERROR src_rect->y (%d) > src_rect->h(%d) \n", srcRect.y, srcRect.h);
 		return NULL;
 	}
+	if( post_cropping_rect != NULL ){
+		if( post_cropping_rect->w > dst_rect->w){
+			post_cropping_rect->w = dst_rect->w;
+		}
+		if( post_cropping_rect->h > dst_rect->h){
+			post_cropping_rect->h = dst_rect->h;
+		}
+	}
 
 	/*printf("zoomSurface: src_surface->w = %d, src_surface->h = %d, src_surface->BytesPerPixel = %d, src_rect = {%d, %d, %d, %d}, dst_rect =  {%d, %d, %d, %d}\n",
 			src_surface->w, src_surface->h, src_surface->format->BytesPerPixel, src_rect->x, src_rect->y, src_rect->w, src_rect->h, dst_rect->x, dst_rect->y, dst_rect->w, dst_rect->h);*/
@@ -601,7 +608,7 @@ SDL_Surface * SDL::zoomSurface(SDL_Surface *src_surface, SDL_Rect *src_rect_orig
 	x_ratio = (int)((srcRect.w <<16) / dst_rect->w);
 	y_ratio = (int)((srcRect.h <<16) / dst_rect->h);
 
-	/* Create new output surface */
+	/* Create dst surface */
 	SDL_Surface *dst_surface = SDL_CreateRGBSurface(src_surface->flags,
 			dst_rect->w, dst_rect->h,
 			src_surface->format->BitsPerPixel,
@@ -612,31 +619,62 @@ SDL_Surface * SDL::zoomSurface(SDL_Surface *src_surface, SDL_Rect *src_rect_orig
 	}
 
 	/* Columns iterations */
-		for (i = 0; i < dst_surface->h; i++)
+	for (i = 0; i < dst_surface->h; i++)
+	{
+
+		/* Get current lines in src and dst surfaces */
+		uint8_t* t = ( (uint8_t*) dst_surface->pixels + (i*dst_surface->w)*dst_surface->format->BytesPerPixel );
+		y2 = ((i*y_ratio)>>16);
+		uint8_t* p = ( (uint8_t*) src_surface->pixels + ((y2+srcRect.y)*src_surface->w)*src_surface->format->BytesPerPixel );
+		rat =  srcRect.x << 16;
+
+		/* Lines iterations */
+		for (j = 0; j < dst_surface->w; j++)
 		{
 
-			/* Get current lines in src and dst surfaces */
-			uint8_t* t = ( (uint8_t*) dst_surface->pixels + (i*dst_surface->w)*dst_surface->format->BytesPerPixel );
-			y2 = ((i*y_ratio)>>16);
-			uint8_t* p = ( (uint8_t*) src_surface->pixels + ((y2+srcRect.y)*src_surface->w)*src_surface->format->BytesPerPixel );
-			rat =  srcRect.x << 16;
+			/* Get current pixel in src surface */
+			x2 = (rat>>16);
 
-			/* Lines iterations */
-			for (j = 0; j < dst_surface->w; j++)
-			{
+			/* Copy src pixel in dst surface */
+			//printf("dst_pix_off = %d, x2=%d, y2=%d, p[%d] = %d\n", t-(uint8_t*)dst_surface->pixels, x2, y2, x2, p[x2*src_surface->format->BytesPerPixel]);
+			memcpy(t, p+x2*src_surface->format->BytesPerPixel, dst_surface->format->BytesPerPixel);
+			t += dst_surface->format->BytesPerPixel;
 
-				/* Get current pixel in src surface */
-				x2 = (rat>>16);
-
-				/* Copy src pixel in dst surface */
-				//printf("dst_pix_off = %d, x2=%d, y2=%d, p[%d] = %d\n", t-(uint8_t*)dst_surface->pixels, x2, y2, x2, p[x2*src_surface->format->BytesPerPixel]);
-				memcpy(t, p+x2*src_surface->format->BytesPerPixel, dst_surface->format->BytesPerPixel);
-				t += dst_surface->format->BytesPerPixel;
-
-				/* Update x position in source surface */
-				rat += x_ratio;
-			}
+			/* Update x position in source surface */
+			rat += x_ratio;
 		}
+	}
+
+	/* Post cropping */
+	if(post_cropping_rect != NULL){
+		/* Save prev dst_surface ptr */
+		SDL_Surface *prev_dst_surface = dst_surface;
+
+		/* Create dst surface */
+		dst_surface = SDL_CreateRGBSurface(src_surface->flags,
+				post_cropping_rect->w, post_cropping_rect->h,
+				src_surface->format->BitsPerPixel,
+				src_surface->format->Rmask, src_surface->format->Gmask,
+				src_surface->format->Bmask, src_surface->format->Amask);
+		if(dst_surface == NULL){
+			printf("ERROR in %s, cannot create dst_surface for post cropping: %s\n", __func__, SDL_GetError());
+			dst_surface = prev_dst_surface;
+		}
+		else{
+			/*printf("dst_surface is being cropped. prev_dst_surface(%dx%d) -> dst_surface(%dx%d)!!!!!\n",
+					prev_dst_surface->w, prev_dst_surface->h, dst_surface->w, dst_surface->h);
+			printf("post_cropping_rect [{%d,%d} %dx%d]\n",
+					post_cropping_rect->x, post_cropping_rect->y, post_cropping_rect->w, post_cropping_rect->h);*/
+
+			/* Copy cropped surface  */
+			if(SDL_BlitSurface(prev_dst_surface, post_cropping_rect, dst_surface, NULL)){
+				printf("ERROR in %s, cannot blit previous dst_surface for post cropping: %s\n", __func__, SDL_GetError());
+			}
+
+			/* Free previous surface */
+			SDL_FreeSurface(prev_dst_surface);
+		}
+	}
 
 	/* Return new zoomed surface */
 	return dst_surface;
@@ -705,13 +743,18 @@ bool SDL::renderCopy( SDL_Surface *texture, float alpha, SDL_Rect *src, SDL_Rect
     dstRectCopy.h = dstRect.h;
 
 
-	/*printf("before viewinfo remniement -> srcRectCopy->w = %d, srcRectCopy->h = %d, dstRectCopy->w = %d, dstRectCopy->h = %d, viewInfo->ContainerWidth = %f, viewInfo->ContainerHeight = %f\n",
-			srcRectCopy.w, srcRectCopy.h, dstRectCopy.w, dstRectCopy.h, viewInfo.ContainerWidth, viewInfo.ContainerHeight);*/
+	/*printf("before viewinfo remniement -> srcRect->w = %d, srcRect->h = %d, dstRectCopy->w = %d, dstRectCopy->h = %d, viewInfo->ContainerWidth = %f, viewInfo->ContainerHeight = %f\n",
+			srcRect.w, srcRect.h, dstRectCopy.w, dstRectCopy.h, viewInfo.ContainerWidth, viewInfo.ContainerHeight);*/
 
+#if 0
     // If a container has been defined, limit the display to the container boundaries.
     if ( viewInfo.ContainerWidth > 0 && viewInfo.ContainerHeight > 0 &&
          dstRectCopy.w           > 0 && dstRectCopy.h            > 0 )
     {
+        if(viewInfo.ContainerX <= 0)
+	    viewInfo.ContainerX = dstRectCopy.x;
+	if(viewInfo.ContainerY <= 0)
+	    viewInfo.ContainerY = dstRectCopy.y;
 
         // Correct if the image falls to the left of the container
         if ( dstRect.x < viewInfo.ContainerX )
@@ -745,14 +788,44 @@ bool SDL::renderCopy( SDL_Surface *texture, float alpha, SDL_Rect *src, SDL_Rect
         srcRect.w = static_cast<int>( dstRect.w * scaleX );
         srcRect.h = static_cast<int>( dstRect.h * scaleY );
 
+		/*printf("viewInfo->ContainerWidth = %f, viewInfo->ContainerHeight = %f\n", viewInfo.ContainerWidth, viewInfo.ContainerHeight);
+        printf("before viewinfo remaniement -> srcRectCopy = [{%d, %d} %dx%d] ---> srcRect = [{%d, %d} %dx%d]\n",
+	srcRectCopy.x, srcRectCopy.y, srcRectCopy.w, srcRectCopy.h, srcRect.x, srcRect.y, srcRect.w, srcRect.h);
+	printf("before viewinfo remaniement -> dstRectCopy = [{%d, %d} %dx%d] ---> dstRect = [{%d, %d} %dx%d]\n\n",
+	dstRectCopy.x, dstRectCopy.y, dstRectCopy.w, dstRectCopy.h, dstRect.x, dstRect.y, dstRect.w, dstRect.h);*/
     }
+#endif
+
+    /* Cropping needed ? */
+	bool cropping_needed = false;
+	SDL_Rect rect_cropping;
+	/*if(viewInfo.ContainerWidth > 0 && viewInfo.ContainerHeight > 0)
+			printf("Testing if cropping needed ? dst_rect = [{%d, %d} %dx%d]\n",
+							dstRect.x, dstRect.y, dstRect.w, dstRect.h);*/
+	if ( (viewInfo.ContainerWidth > 0 && viewInfo.ContainerHeight > 0) &&
+			(viewInfo.ContainerWidth != dstRect.w || viewInfo.ContainerHeight != dstRect.h) ){
+		cropping_needed = true;
+		rect_cropping.x = (dstRect.w - viewInfo.ContainerWidth)/2;
+		rect_cropping.y = (dstRect.h - viewInfo.ContainerHeight)/2;
+		rect_cropping.w = viewInfo.ContainerWidth;
+		rect_cropping.h = viewInfo.ContainerHeight;
+		dstRect.x += rect_cropping.x;
+		dstRect.y += rect_cropping.y;
+		/*printf("cropping needed in sdl ?srcRect = [{%d, %d} %dx%d], rect_cropping = [{%d, %d} %dx%d]\n",
+				srcRect.x, srcRect.y, srcRect.w, srcRect.h,
+				rect_cropping.x, rect_cropping.y, rect_cropping.w, rect_cropping.h);*/
+	}
 
     /* Scaling */
-#define WITH_SCALING
-#ifdef WITH_SCALING
-	scaling_needed = !dstRect.w==0 && !dstRect.h==0 && (srcRect.w != dstRect.w || srcRect.h != dstRect.h);
+	scaling_needed = (dstRect.w != 0 && dstRect.h!=0) &&
+					((!cropping_needed && (srcRect.w != dstRect.w || srcRect.h != dstRect.h)) ||
+					(cropping_needed && (srcRect.w != rect_cropping.w || srcRect.h != rect_cropping.h) ));
 	if(scaling_needed){
-		texture_zoomed = zoomSurface(texture, &srcRect, &dstRect);
+		/*printf("Scaling needed in %s\n", __func__);
+		printf("Scaling needed in sdl ?srcRect = [{%d, %d} %dx%d], dst_rect = [{%d, %d} %dx%d]\n",
+						srcRect.x, srcRect.y, srcRect.w, srcRect.h,
+						dstRect.x, dstRect.y, cropping_needed?rect_cropping.w:dstRect.w, cropping_needed?rect_cropping.h:dstRect.h);*/
+		texture_zoomed = zoomSurface(texture, &srcRect, &dstRect, cropping_needed?&rect_cropping:NULL);
 		if(texture_zoomed == NULL){
 			printf("ERROR in %s - Could not create texture_zoomed\n", __func__);
 			return false;
@@ -761,7 +834,6 @@ bool SDL::renderCopy( SDL_Surface *texture, float alpha, SDL_Rect *src, SDL_Rect
 			surface_to_blit = texture_zoomed;
 		}
 	}
-#endif  //WITH_SCALING
 
 
 
@@ -817,9 +889,6 @@ bool SDL::renderCopy( SDL_Surface *texture, float alpha, SDL_Rect *src, SDL_Rect
     if(texture_zoomed)
 	SDL_FreeSurface(texture_zoomed);
 
-    /* Reset viewInfo */
-    viewInfo.ContainerWidth = -1;
-    viewInfo.ContainerHeight = -1;
 
 
 

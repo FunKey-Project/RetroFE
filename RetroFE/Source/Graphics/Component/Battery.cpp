@@ -442,7 +442,7 @@ void Battery::draw()
 		if(scaling_needed){
 			cache_scaling_needed = (texture_prescaled_ == NULL)?true:(texture_prescaled_->w != rect.w || texture_prescaled_->h != rect.h);
 			if(cache_scaling_needed){
-				texture_prescaled_ = SDL::zoomSurface(texture_, NULL, &rect);
+				texture_prescaled_ = SDL::zoomSurface(texture_, NULL, &rect, NULL);
 				if(texture_prescaled_ == NULL){
 					printf("ERROR in %s - Could not create texture_prescaled_\n", __func__);
 					use_prescaled = false;

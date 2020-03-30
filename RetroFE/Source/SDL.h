@@ -24,6 +24,8 @@
 //Flip flags
 #define FLIP_VERTICAL	1
 #define FLIP_HORIZONTAL	2
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#define MAX(a,b) (((a)>(b))?(a):(b))
 
 class Configuration;
 
@@ -36,7 +38,7 @@ public:
     static SDL_mutex *getMutex( );
     static SDL_Surface *getWindow( );
     static void renderAndFlipWindow( );
-    static SDL_Surface * zoomSurface(SDL_Surface *surface_ptr, SDL_Rect *src_rect_origin, SDL_Rect *dst_rect);
+    static SDL_Surface * zoomSurface(SDL_Surface *surface_ptr, SDL_Rect *src_rect_origin, SDL_Rect *dst_rect, SDL_Rect *post_cropping_rect);
     static void ditherSurface32bppTo16Bpp(SDL_Surface *src_surface);
     static bool renderCopy( SDL_Surface *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo );
     static int getWindowWidth( )
