@@ -398,7 +398,8 @@ void SDL::ditherSurface32bppTo16Bpp(SDL_Surface * src_surface){
 			g_old = GET_G_32BIT(cur_px);
 			b_old = GET_B_32BIT(cur_px);
 			r_new = CLOSEST_RB(r_old);
-			g_new = CLOSEST_G(g_old);
+			//g_new = CLOSEST_G(g_old);
+			g_new = CLOSEST_RB(g_old);	//RGB555
 			b_new = CLOSEST_RB(b_old);
 
 			/* Set new pixel value */
