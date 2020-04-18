@@ -57,12 +57,14 @@ bool UserInput::initialize()
     MapKey("playlistDown", KeyCodePlaylistDown, false );
     MapKey("playlistLeft", KeyCodePlaylistLeft, false );
     MapKey("playlistRight", KeyCodePlaylistRight, false );
+    MapKey("collectionUp", KeyCodeCollectionUp, false );
+    MapKey("collectionDown", KeyCodeCollectionDown, false );
+    MapKey("collectionLeft", KeyCodeCollectionLeft, false );
+    MapKey("collectionRight", KeyCodeCollectionRight, false );
     MapKey("pageDown", KeyCodePageDown, false );
     MapKey("pageUp", KeyCodePageUp, false );
     MapKey("letterDown", KeyCodeLetterDown, false);
     MapKey("letterUp", KeyCodeLetterUp, false);
-    MapKey("collectionUp", KeyCodeCollectionUp, false);
-    MapKey("collectionDown", KeyCodeCollectionDown, false);
     MapKey("favPlaylist", KeyCodeFavPlaylist, false);
     MapKey("nextPlaylist", KeyCodeNextPlaylist, false);
     MapKey("prevPlaylist", KeyCodePrevPlaylist, false);
