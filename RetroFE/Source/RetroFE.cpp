@@ -1342,131 +1342,118 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             attract_.reset( );
             state = RETROFE_COLLECTION_UP_REQUEST;
         }
+
         if (input_.keystate( UserInput::KeyCodeCollectionDown ))
         {
             attract_.reset( );
             state = RETROFE_COLLECTION_DOWN_REQUEST;
         }
 
-        if ( menuMode_ || (
-            !input_.keystate(UserInput::KeyCodePageUp) &&
-            !input_.keystate(UserInput::KeyCodePageDown) &&
-            !input_.keystate(UserInput::KeyCodeLetterUp) &&
-            !input_.keystate(UserInput::KeyCodeLetterDown) &&
-            !input_.keystate(UserInput::KeyCodeCollectionUp) &&
-            !input_.keystate(UserInput::KeyCodeCollectionDown) &&
-            !input_.keystate(UserInput::KeyCodeFavPlaylist) &&
-            !input_.keystate(UserInput::KeyCodeNextPlaylist) &&
-            !input_.keystate(UserInput::KeyCodePrevPlaylist) &&
-            !input_.keystate(UserInput::KeyCodeCyclePlaylist) &&
-            !input_.keystate(UserInput::KeyCodeNextCyclePlaylist) &&
-            !input_.keystate(UserInput::KeyCodePrevCyclePlaylist) &&
-            !input_.keystate(UserInput::KeyCodeAddPlaylist) &&
-            !input_.keystate(UserInput::KeyCodeRemovePlaylist) &&
-            !input_.keystate(UserInput::KeyCodeRandom) &&
-            !input_.keystate(UserInput::KeyCodeMenu)) )
+        if (input_.keystate(UserInput::KeyCodePageUp))
         {
-            keyLastTime_ = 0;
-            keyDelayTime_= 0.3f;
+            attract_.reset( );
+            page->pageScroll(Page::ScrollDirectionBack);
+            state = RETROFE_MENUJUMP_REQUEST;
         }
 
-        else if ( (currentTime_ - keyLastTime_) > keyDelayTime_ || keyLastTime_ == 0 )
+        if (input_.keystate(UserInput::KeyCodePageDown))
         {
-            keyLastTime_ = currentTime_;
-            keyDelayTime_-= .05f;
-            if ( keyDelayTime_< 0.1f ) keyDelayTime_= 0.1f;
+            attract_.reset( );
+            page->pageScroll(Page::ScrollDirectionForward);
+            state = RETROFE_MENUJUMP_REQUEST;
+        }
 
-            if (input_.keystate(UserInput::KeyCodePageUp))
-            {
-                attract_.reset( );
-                page->pageScroll(Page::ScrollDirectionBack);
-                state = RETROFE_MENUJUMP_REQUEST;
-            }
-            if (input_.keystate(UserInput::KeyCodePageDown))
-            {
-                attract_.reset( );
-                page->pageScroll(Page::ScrollDirectionForward);
-                state = RETROFE_MENUJUMP_REQUEST;
-            }
-            if (input_.keystate(UserInput::KeyCodeLetterUp))
-            {
-                attract_.reset( );
-                bool cfwLetterSub;
-                config_.getProperty( "cfwLetterSub", cfwLetterSub );
-                if (cfwLetterSub && page->hasSubs())
-                    page->cfwLetterSubScroll(Page::ScrollDirectionBack);
-                else
-                    page->letterScroll(Page::ScrollDirectionBack);
-                state = RETROFE_MENUJUMP_REQUEST;
-            }
-            if (input_.keystate(UserInput::KeyCodeLetterDown))
-            {
-                attract_.reset( );
-                bool cfwLetterSub;
-                config_.getProperty( "cfwLetterSub", cfwLetterSub );
-                if (cfwLetterSub && page->hasSubs())
-                    page->cfwLetterSubScroll(Page::ScrollDirectionForward);
-                else
-                    page->letterScroll(Page::ScrollDirectionForward);
-                state = RETROFE_MENUJUMP_REQUEST;
-            }
-            if ( input_.keystate(UserInput::KeyCodeFavPlaylist) )
-            {
-                attract_.reset( );
-                page->favPlaylist( );
-                state = RETROFE_PLAYLIST_REQUEST;
-            }
-            if ( input_.keystate(UserInput::KeyCodeNextPlaylist) )
-            {
-                attract_.reset( );
-                page->nextPlaylist( );
-                state = RETROFE_PLAYLIST_REQUEST;
-            }
-            if ( input_.keystate(UserInput::KeyCodePrevPlaylist) )
-            {
-                attract_.reset( );
-                page->prevPlaylist( );
-                state = RETROFE_PLAYLIST_REQUEST;
-            }
-            if ( input_.keystate(UserInput::KeyCodeCyclePlaylist) ||
-                 input_.keystate(UserInput::KeyCodeNextCyclePlaylist) )
-            {
-                attract_.reset( );
-                std::string cycleString;
-                config_.getProperty( "cyclePlaylist", cycleString );
-                std::vector<std::string> cycleVector;
-                Utils::listToVector( cycleString, cycleVector, ',' );
-                page->nextCyclePlaylist( cycleVector );
-                state = RETROFE_PLAYLIST_REQUEST;
-            }
-            if ( input_.keystate(UserInput::KeyCodePrevCyclePlaylist) )
-            {
-                attract_.reset( );
-                std::string cycleString;
-                config_.getProperty( "cyclePlaylist", cycleString );
-                std::vector<std::string> cycleVector;
-                Utils::listToVector( cycleString, cycleVector, ',' );
-                page->prevCyclePlaylist( cycleVector );
-                state = RETROFE_PLAYLIST_REQUEST;
-            }
-            if ( input_.keystate(UserInput::KeyCodeRemovePlaylist) )
-            {
-                attract_.reset( );
-                page->removePlaylist( );
-                state = RETROFE_PLAYLIST_REQUEST;
-            }
-            if ( input_.keystate(UserInput::KeyCodeAddPlaylist) )
-            {
-                attract_.reset( );
-                page->addPlaylist( );
-                state = RETROFE_PLAYLIST_REQUEST;
-            }
-            if ( input_.keystate(UserInput::KeyCodeRandom) )
-            {
-                attract_.reset( );
-                page->selectRandom( );
-                state = RETROFE_MENUJUMP_REQUEST;
-            }
+        if (input_.keystate(UserInput::KeyCodeLetterUp))
+        {
+            attract_.reset( );
+            bool cfwLetterSub;
+            config_.getProperty( "cfwLetterSub", cfwLetterSub );
+            if (cfwLetterSub && page->hasSubs())
+                page->cfwLetterSubScroll(Page::ScrollDirectionBack);
+            else
+                page->letterScroll(Page::ScrollDirectionBack);
+            state = RETROFE_MENUJUMP_REQUEST;
+        }
+
+        if (input_.keystate(UserInput::KeyCodeLetterDown))
+        {
+            attract_.reset( );
+            bool cfwLetterSub;
+            config_.getProperty( "cfwLetterSub", cfwLetterSub );
+            if (cfwLetterSub && page->hasSubs())
+                page->cfwLetterSubScroll(Page::ScrollDirectionForward);
+            else
+                page->letterScroll(Page::ScrollDirectionForward);
+            state = RETROFE_MENUJUMP_REQUEST;
+        }
+
+        if ( input_.keystate(UserInput::KeyCodeFavPlaylist) )
+        {
+            attract_.reset( );
+            page->favPlaylist( );
+            state = RETROFE_PLAYLIST_REQUEST;
+        }
+
+        if ( input_.keystate(UserInput::KeyCodeNextPlaylist) ||
+            (input_.keystate(UserInput::KeyCodePlaylistDown)  &&  page->isHorizontalScroll( )) ||
+			(input_.keystate(UserInput::KeyCodePlaylistRight) && !page->isHorizontalScroll( )))
+        {
+            attract_.reset( );
+            page->nextPlaylist( );
+            state = RETROFE_PLAYLIST_REQUEST;
+        }
+
+        if ( input_.keystate(UserInput::KeyCodePrevPlaylist) ||
+            (input_.keystate(UserInput::KeyCodePlaylistUp)   &&  page->isHorizontalScroll( )) ||
+            (input_.keystate(UserInput::KeyCodePlaylistLeft) && !page->isHorizontalScroll( )))
+        {
+            attract_.reset( );
+            page->prevPlaylist( );
+            state = RETROFE_PLAYLIST_REQUEST;
+        }
+
+        if ( input_.keystate(UserInput::KeyCodeCyclePlaylist) ||
+             input_.keystate(UserInput::KeyCodeNextCyclePlaylist) )
+        {
+            attract_.reset( );
+            std::string cycleString;
+            config_.getProperty( "cyclePlaylist", cycleString );
+            std::vector<std::string> cycleVector;
+            Utils::listToVector( cycleString, cycleVector, ',' );
+            page->nextCyclePlaylist( cycleVector );
+            state = RETROFE_PLAYLIST_REQUEST;
+        }
+
+        if ( input_.keystate(UserInput::KeyCodePrevCyclePlaylist) )
+        {
+            attract_.reset( );
+            std::string cycleString;
+            config_.getProperty( "cyclePlaylist", cycleString );
+            std::vector<std::string> cycleVector;
+            Utils::listToVector( cycleString, cycleVector, ',' );
+            page->prevCyclePlaylist( cycleVector );
+            state = RETROFE_PLAYLIST_REQUEST;
+        }
+
+        if ( input_.keystate(UserInput::KeyCodeRemovePlaylist) )
+        {
+            attract_.reset( );
+            page->removePlaylist( );
+            state = RETROFE_PLAYLIST_REQUEST;
+        }
+
+        if ( input_.keystate(UserInput::KeyCodeAddPlaylist) )
+        {
+            attract_.reset( );
+            page->addPlaylist( );
+            state = RETROFE_PLAYLIST_REQUEST;
+        }
+
+        if ( input_.keystate(UserInput::KeyCodeRandom) )
+        {
+            attract_.reset( );
+            page->selectRandom( );
+            state = RETROFE_MENUJUMP_REQUEST;
         }
 
         if (input_.keystate(UserInput::KeyCodeAdminMode))

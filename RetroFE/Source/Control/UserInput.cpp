@@ -53,6 +53,10 @@ bool UserInput::initialize()
 {
 
     // Optional keys
+    MapKey("playlistUp", KeyCodePlaylistUp, false );
+    MapKey("playlistDown", KeyCodePlaylistDown, false );
+    MapKey("playlistLeft", KeyCodePlaylistLeft, false );
+    MapKey("playlistRight", KeyCodePlaylistRight, false );
     MapKey("pageDown", KeyCodePageDown, false );
     MapKey("pageUp", KeyCodePageUp, false );
     MapKey("letterDown", KeyCodeLetterDown, false);
