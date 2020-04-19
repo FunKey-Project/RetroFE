@@ -44,7 +44,7 @@ public:
     RetroFE( Configuration &c );
     virtual ~RetroFE( );
     bool     deInitialize( );
-    void     run( );
+    bool     run( );
     void     freeGraphicsMemory( );
     void     allocateGraphicsMemory( );
     void     launchEnter( );
@@ -134,6 +134,7 @@ private:
     AttractMode        attract_;
     bool               menuMode_;
     bool               attractMode_;
+	bool               reboot_;
 
     std::map<std::string, unsigned int> lastMenuOffsets_;
     std::map<std::string, std::string>  lastMenuPlaylists_;

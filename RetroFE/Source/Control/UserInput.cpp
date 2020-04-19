@@ -75,6 +75,7 @@ bool UserInput::initialize()
     MapKey("removePlaylist", KeyCodeRemovePlaylist, false);
     MapKey("random", KeyCodeRandom, false);
     MapKey("menu", KeyCodeMenu, false);
+	MapKey("reboot", KeyCodeReboot, false);
 
     bool retVal = true;
 

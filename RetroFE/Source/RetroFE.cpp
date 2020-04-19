@@ -69,6 +69,7 @@ RetroFE::RetroFE( Configuration &c )
     , lastLaunchReturnTime_(0)
     , keyLastTime_(0)
     , keyDelayTime_(.3f)
+	, reboot_(false)
 {
     menuMode_    = false;
     attractMode_ = false;
@@ -260,18 +261,21 @@ bool RetroFE::deInitialize( )
 
     initialized = false;
 
-    Logger::write( Logger::ZONE_INFO, "RetroFE", "Exiting" );
+    if ( reboot_ )
+        Logger::write( Logger::ZONE_INFO, "RetroFE", "Rebooting" );
+    else
+        Logger::write( Logger::ZONE_INFO, "RetroFE", "Exiting" );
 
     return retVal;
 }
 
 
 // Run RetroFE
-void RetroFE::run( )
+bool RetroFE::run( )
 {
 
     // Initialize SDL
-    if(! SDL::initialize( config_ ) ) return;
+    if(! SDL::initialize( config_ ) ) return false;
     fontcache_.initialize( );
 
     // Define control configuration
@@ -279,7 +283,7 @@ void RetroFE::run( )
     if ( !config_.import( "controls", controlsConfPath ) )
     {
         Logger::write( Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + controlsConfPath + "\"" );
-        return;
+        return false;
     }
 
     float preloadTime = 0;
@@ -299,7 +303,7 @@ void RetroFE::run( )
     if ( !initializeThread )
     {
         Logger::write( Logger::ZONE_INFO, "RetroFE", "Could not initialize RetroFE" );
-        return;
+        return false;
     }
 
     int attractModeTime           = 0;
@@ -1172,9 +1176,7 @@ void RetroFE::run( )
         // Wait for onExit animation to finish before quitting RetroFE
         case RETROFE_QUIT:
             if ( currentPage_->isGraphicsIdle( ) )
-            {
-              running = false;
-            }
+                running = false;
             break;
         }
 
@@ -1252,6 +1254,7 @@ void RetroFE::run( )
             render( );
         }
     }
+	return reboot_;
 }
 
 
@@ -1514,6 +1517,13 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
         {
             attract_.reset( );
             state = RETROFE_QUIT_REQUEST;
+        }
+
+        else if (input_.keystate(UserInput::KeyCodeReboot))
+        {
+            attract_.reset( );
+			reboot_ = true;
+            state   = RETROFE_QUIT_REQUEST;
         }
     }
 

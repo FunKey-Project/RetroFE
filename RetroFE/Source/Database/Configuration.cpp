@@ -96,6 +96,13 @@ void Configuration::initialize()
     }
 }
 
+
+void Configuration::clearProperties( )
+{
+    properties_.clear( );
+}
+
+
 bool Configuration::import(std::string keyPrefix, std::string file)
 {
     return import("", keyPrefix, file);
