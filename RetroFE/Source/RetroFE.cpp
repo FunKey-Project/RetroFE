@@ -1337,35 +1337,35 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
         }
 
         // Handle Collection Up/Down keys
-        if ((input_.keystate(UserInput::KeyCodeCollectionUp)   && ( page->isHorizontalScroll( ) || !input_.keystate(UserInput::KeyCodeUp))) ||
-            (input_.keystate(UserInput::KeyCodeCollectionLeft) && (!page->isHorizontalScroll( ) || !input_.keystate(UserInput::KeyCodeLeft))))
+        else if ((input_.keystate(UserInput::KeyCodeCollectionUp)   && ( page->isHorizontalScroll( ) || !input_.keystate(UserInput::KeyCodeUp))) ||
+                 (input_.keystate(UserInput::KeyCodeCollectionLeft) && (!page->isHorizontalScroll( ) || !input_.keystate(UserInput::KeyCodeLeft))))
         {
             attract_.reset( );
             state = RETROFE_COLLECTION_UP_REQUEST;
         }
 
-        if ((input_.keystate(UserInput::KeyCodeCollectionDown)  && ( page->isHorizontalScroll( ) || !input_.keystate(UserInput::KeyCodeDown))) ||
-            (input_.keystate(UserInput::KeyCodeCollectionRight) && (!page->isHorizontalScroll( ) || !input_.keystate(UserInput::KeyCodeRight))))
+        else if ((input_.keystate(UserInput::KeyCodeCollectionDown)  && ( page->isHorizontalScroll( ) || !input_.keystate(UserInput::KeyCodeDown))) ||
+                 (input_.keystate(UserInput::KeyCodeCollectionRight) && (!page->isHorizontalScroll( ) || !input_.keystate(UserInput::KeyCodeRight))))
         {
             attract_.reset( );
             state = RETROFE_COLLECTION_DOWN_REQUEST;
         }
 
-        if (input_.keystate(UserInput::KeyCodePageUp))
+        else if (input_.keystate(UserInput::KeyCodePageUp))
         {
             attract_.reset( );
             page->pageScroll(Page::ScrollDirectionBack);
             state = RETROFE_MENUJUMP_REQUEST;
         }
 
-        if (input_.keystate(UserInput::KeyCodePageDown))
+        else if (input_.keystate(UserInput::KeyCodePageDown))
         {
             attract_.reset( );
             page->pageScroll(Page::ScrollDirectionForward);
             state = RETROFE_MENUJUMP_REQUEST;
         }
 
-        if (input_.keystate(UserInput::KeyCodeLetterUp))
+        else if (input_.keystate(UserInput::KeyCodeLetterUp))
         {
             attract_.reset( );
             bool cfwLetterSub;
@@ -1377,7 +1377,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             state = RETROFE_MENUJUMP_REQUEST;
         }
 
-        if (input_.keystate(UserInput::KeyCodeLetterDown))
+        else if (input_.keystate(UserInput::KeyCodeLetterDown))
         {
             attract_.reset( );
             bool cfwLetterSub;
@@ -1389,33 +1389,33 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             state = RETROFE_MENUJUMP_REQUEST;
         }
 
-        if ( input_.keystate(UserInput::KeyCodeFavPlaylist) )
+        else if ( input_.keystate(UserInput::KeyCodeFavPlaylist) )
         {
             attract_.reset( );
             page->favPlaylist( );
             state = RETROFE_PLAYLIST_REQUEST;
         }
 
-        if ( input_.keystate(UserInput::KeyCodeNextPlaylist) ||
-            (input_.keystate(UserInput::KeyCodePlaylistDown)  &&  page->isHorizontalScroll( )) ||
-			(input_.keystate(UserInput::KeyCodePlaylistRight) && !page->isHorizontalScroll( )))
+        else if ( input_.keystate(UserInput::KeyCodeNextPlaylist) ||
+                 (input_.keystate(UserInput::KeyCodePlaylistDown)  &&  page->isHorizontalScroll( )) ||
+		         (input_.keystate(UserInput::KeyCodePlaylistRight) && !page->isHorizontalScroll( )))
         {
             attract_.reset( );
             page->nextPlaylist( );
             state = RETROFE_PLAYLIST_REQUEST;
         }
 
-        if ( input_.keystate(UserInput::KeyCodePrevPlaylist) ||
-            (input_.keystate(UserInput::KeyCodePlaylistUp)   &&  page->isHorizontalScroll( )) ||
-            (input_.keystate(UserInput::KeyCodePlaylistLeft) && !page->isHorizontalScroll( )))
+        else if ( input_.keystate(UserInput::KeyCodePrevPlaylist) ||
+                 (input_.keystate(UserInput::KeyCodePlaylistUp)   &&  page->isHorizontalScroll( )) ||
+                 (input_.keystate(UserInput::KeyCodePlaylistLeft) && !page->isHorizontalScroll( )))
         {
             attract_.reset( );
             page->prevPlaylist( );
             state = RETROFE_PLAYLIST_REQUEST;
         }
 
-        if ( input_.keystate(UserInput::KeyCodeCyclePlaylist) ||
-             input_.keystate(UserInput::KeyCodeNextCyclePlaylist) )
+        else if ( input_.keystate(UserInput::KeyCodeCyclePlaylist) ||
+                  input_.keystate(UserInput::KeyCodeNextCyclePlaylist) )
         {
             attract_.reset( );
             std::string cycleString;
@@ -1426,7 +1426,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             state = RETROFE_PLAYLIST_REQUEST;
         }
 
-        if ( input_.keystate(UserInput::KeyCodePrevCyclePlaylist) )
+        else if ( input_.keystate(UserInput::KeyCodePrevCyclePlaylist) )
         {
             attract_.reset( );
             std::string cycleString;
@@ -1437,33 +1437,33 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             state = RETROFE_PLAYLIST_REQUEST;
         }
 
-        if ( input_.keystate(UserInput::KeyCodeRemovePlaylist) )
+        else if ( input_.keystate(UserInput::KeyCodeRemovePlaylist) )
         {
             attract_.reset( );
             page->removePlaylist( );
             state = RETROFE_PLAYLIST_REQUEST;
         }
 
-        if ( input_.keystate(UserInput::KeyCodeAddPlaylist) )
+        else if ( input_.keystate(UserInput::KeyCodeAddPlaylist) )
         {
             attract_.reset( );
             page->addPlaylist( );
             state = RETROFE_PLAYLIST_REQUEST;
         }
 
-        if ( input_.keystate(UserInput::KeyCodeRandom) )
+        else if ( input_.keystate(UserInput::KeyCodeRandom) )
         {
             attract_.reset( );
             page->selectRandom( );
             state = RETROFE_MENUJUMP_REQUEST;
         }
 
-        if (input_.keystate(UserInput::KeyCodeAdminMode))
+        else if (input_.keystate(UserInput::KeyCodeAdminMode))
         {
             //todo: add admin mode support
         }
 
-        if (input_.keystate(UserInput::KeyCodeSelect))
+        else if (input_.keystate(UserInput::KeyCodeSelect))
         {
             attract_.reset( );
             nextPageItem_ = page->getSelectedItem( );
@@ -1488,7 +1488,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             }
         }
 
-        if (input_.keystate(UserInput::KeyCodeBack))
+        else if (input_.keystate(UserInput::KeyCodeBack))
         {
             attract_.reset( );
             if ( back( exit ) || exit )
@@ -1497,7 +1497,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
             }
         }
 
-        if (input_.keystate(UserInput::KeyCodeQuit))
+        else if (input_.keystate(UserInput::KeyCodeQuit))
         {
             attract_.reset( );
             state = RETROFE_QUIT_REQUEST;
