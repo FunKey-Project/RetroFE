@@ -493,7 +493,7 @@ void CollectionInfoBuilder::addPlaylists(CollectionInfo *info)
 }
 
 
-void CollectionInfoBuilder::updateLastPlayedPlaylist(CollectionInfo *info, Item *item)
+void CollectionInfoBuilder::updateLastPlayedPlaylist(CollectionInfo *info, Item *item, int size)
 {
     std::string path = Utils::combinePath(Configuration::absolutePath, "collections", info->name, "playlists");
     Logger::write(Logger::ZONE_INFO, "RetroFE", "Updating lastplayed playlist");
@@ -507,10 +507,7 @@ void CollectionInfoBuilder::updateLastPlayedPlaylist(CollectionInfo *info, Item 
     else
         info->playlists["lastplayed"]->clear();
 
-    int lastplayedSize = 0;
-    (void)conf_.getProperty("lastplayedSize", lastplayedSize);
-    
-    if (lastplayedSize == 0)
+    if (size == 0)
         return;
 
     // Put the new item at the front of the list.
@@ -519,7 +516,7 @@ void CollectionInfoBuilder::updateLastPlayedPlaylist(CollectionInfo *info, Item 
     // Add the items already in the playlist up to the lastplayedSize.
     for(std::vector<Item *>::iterator it = lastplayedList.begin(); it != lastplayedList.end(); it++)
     {
-        if (info->playlists["lastplayed"]->size() >= static_cast<unsigned int>( lastplayedSize ))
+        if (info->playlists["lastplayed"]->size() >= static_cast<unsigned int>( size ))
             break;
 
         std::string collectionName = info->name;

@@ -1004,11 +1004,13 @@ void RetroFE::run( )
                 CollectionInfoBuilder cib(config_, *metadb_);
                 std::string attractModeSkipPlaylist  = "";
                 std::string lastPlayedSkipCollection = "";
+				int         size = 0;
                 config_.getProperty( "attractModeSkipPlaylist",  attractModeSkipPlaylist );
                 config_.getProperty( "lastPlayedSkipCollection", lastPlayedSkipCollection );
+                config_.getProperty( "lastplayedSize", size );
                 if (currentPage_->getPlaylistName( )    != attractModeSkipPlaylist &&
                     nextPageItem_->collectionInfo->name != lastPlayedSkipCollection)
-                    cib.updateLastPlayedPlaylist( currentPage_->getCollection(), nextPageItem_ ); // Update last played playlist if not currently in the skip playlist (e.g. settings)
+                    cib.updateLastPlayedPlaylist( currentPage_->getCollection(), nextPageItem_, size ); // Update last played playlist if not currently in the skip playlist (e.g. settings)
                 l.run(nextPageItem_->collectionInfo->name, nextPageItem_);
                 launchExit( );
                 currentPage_->exitGame( );
@@ -1483,6 +1485,17 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
                 }
                 else
                 {
+                    CollectionInfoBuilder cib(config_, *metadb_);
+                    std::string attractModeSkipPlaylist  = "";
+                    std::string lastPlayedSkipCollection = "";
+                    int         size = 0;
+                    config_.getProperty( "attractModeSkipPlaylist",  attractModeSkipPlaylist );
+                    config_.getProperty( "lastPlayedSkipCollection", lastPlayedSkipCollection );
+                    config_.getProperty("lastplayedCollectionSize", size);
+    
+                    if (currentPage_->getPlaylistName( )    != attractModeSkipPlaylist &&
+                        nextPageItem_->collectionInfo->name != lastPlayedSkipCollection)
+                        cib.updateLastPlayedPlaylist( currentPage_->getCollection(), nextPageItem_, size ); // Update last played playlist if not currently in the skip playlist (e.g. settings)
                     state = RETROFE_NEXT_PAGE_REQUEST;
                 }
             }
