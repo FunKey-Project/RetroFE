@@ -653,10 +653,10 @@ SDL_Surface * SDL::zoomSurface(SDL_Surface *src_surface, SDL_Rect *src_rect_orig
 
 		/* Create dst surface */
 		dst_surface = SDL_CreateRGBSurface(src_surface->flags,
-				post_cropping_rect->w, post_cropping_rect->h,
-				src_surface->format->BitsPerPixel,
-				src_surface->format->Rmask, src_surface->format->Gmask,
-				src_surface->format->Bmask, src_surface->format->Amask);
+						   post_cropping_rect->w, post_cropping_rect->h,
+						   src_surface->format->BitsPerPixel,
+						   src_surface->format->Rmask, src_surface->format->Gmask,
+						   src_surface->format->Bmask, src_surface->format->Amask);
 		if(dst_surface == NULL){
 			printf("ERROR in %s, cannot create dst_surface for post cropping: %s\n", __func__, SDL_GetError());
 			dst_surface = prev_dst_surface;
@@ -668,8 +668,20 @@ SDL_Surface * SDL::zoomSurface(SDL_Surface *src_surface, SDL_Rect *src_rect_orig
 					post_cropping_rect->x, post_cropping_rect->y, post_cropping_rect->w, post_cropping_rect->h);*/
 
 			/* Copy cropped surface  */
-			if(SDL_BlitSurface(prev_dst_surface, post_cropping_rect, dst_surface, NULL)){
+			/*if(SDL_BlitSurface(prev_dst_surface, post_cropping_rect, dst_surface, NULL)){
 				printf("ERROR in %s, cannot blit previous dst_surface for post cropping: %s\n", __func__, SDL_GetError());
+			}*/
+			for (i = 0; i < dst_surface->h; i++)
+			{
+
+				/* Get current lines in src and dst surfaces */
+				uint8_t* t = ( (uint8_t*) dst_surface->pixels + i*dst_surface->w*dst_surface->format->BytesPerPixel );
+				uint8_t* p = ( (uint8_t*) prev_dst_surface->pixels +
+					       (i+post_cropping_rect->y)*prev_dst_surface->w*prev_dst_surface->format->BytesPerPixel +
+					       post_cropping_rect->x*prev_dst_surface->format->BytesPerPixel);
+
+				/* Copy src pixel in dst surface */
+				memcpy(t, p, dst_surface->w*dst_surface->format->BytesPerPixel);
 			}
 
 			/* Free previous surface */
