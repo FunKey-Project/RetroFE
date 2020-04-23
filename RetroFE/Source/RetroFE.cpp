@@ -630,8 +630,8 @@ bool RetroFE::run( )
                 bool rememberMenu = false;
                 config_.getProperty( "rememberMenu", rememberMenu );
 
-                std::string firstPlaylist = "all";
-                config_.getProperty( "firstPlaylist", firstPlaylist );
+                std::string autoPlaylist = "all";
+                config_.getProperty( "autoPlaylist", autoPlaylist );
 
                 if (rememberMenu && lastMenuPlaylists_.find( nextPageName ) != lastMenuPlaylists_.end( ))
                 {
@@ -639,7 +639,7 @@ bool RetroFE::run( )
                 }
                 else
                 {
-                    currentPage_->selectPlaylist( firstPlaylist );
+                    currentPage_->selectPlaylist( autoPlaylist );
                 }
 
                 if ( rememberMenu && lastMenuOffsets_.find( nextPageName ) != lastMenuOffsets_.end( ) )
@@ -729,8 +729,8 @@ bool RetroFE::run( )
                 bool rememberMenu = false;
                 config_.getProperty( "rememberMenu", rememberMenu );
 
-                std::string firstPlaylist = "all";
-                config_.getProperty( "firstPlaylist", firstPlaylist );
+                std::string autoPlaylist = "all";
+                config_.getProperty( "autoPlaylist", autoPlaylist );
 
                 if (rememberMenu && lastMenuPlaylists_.find( currentPage_->getCollectionName( ) ) != lastMenuPlaylists_.end( ))
                 {
@@ -738,7 +738,7 @@ bool RetroFE::run( )
                 }
                 else
                 {
-                    currentPage_->selectPlaylist( firstPlaylist );
+                    currentPage_->selectPlaylist( autoPlaylist );
                 }
 
                 if ( rememberMenu && lastMenuOffsets_.find( currentPage_->getCollectionName( ) ) != lastMenuOffsets_.end( ) )
@@ -898,8 +898,8 @@ bool RetroFE::run( )
                 bool rememberMenu = false;
                 config_.getProperty( "rememberMenu", rememberMenu );
 
-                std::string firstPlaylist = "all";
-                config_.getProperty( "firstPlaylist", firstPlaylist );
+                std::string autoPlaylist = "all";
+                config_.getProperty( "autoPlaylist", autoPlaylist );
 
                 if (rememberMenu && lastMenuPlaylists_.find( currentPage_->getCollectionName( ) ) != lastMenuPlaylists_.end( ))
                 {
@@ -907,7 +907,7 @@ bool RetroFE::run( )
                 }
                 else
                 {
-                    currentPage_->selectPlaylist( firstPlaylist );
+                    currentPage_->selectPlaylist( autoPlaylist );
                 }
 
                 if ( rememberMenu && lastMenuOffsets_.find( currentPage_->getCollectionName( ) ) != lastMenuOffsets_.end( ) )
@@ -1068,8 +1068,8 @@ bool RetroFE::run( )
                 bool rememberMenu = false;
                 config_.getProperty( "rememberMenu", rememberMenu );
 
-                std::string firstPlaylist = "all";
-                config_.getProperty( "firstPlaylist", firstPlaylist );
+                std::string autoPlaylist = "all";
+                config_.getProperty( "autoPlaylist", autoPlaylist );
 
                 if (rememberMenu && lastMenuPlaylists_.find( currentPage_->getCollectionName( ) ) != lastMenuPlaylists_.end( ))
                 {
@@ -1077,7 +1077,7 @@ bool RetroFE::run( )
                 }
                 else
                 {
-                    currentPage_->selectPlaylist( firstPlaylist );
+                    currentPage_->selectPlaylist( autoPlaylist );
                 }
 
                 if ( rememberMenu && lastMenuOffsets_.find( currentPage_->getCollectionName( ) ) != lastMenuOffsets_.end( ) )
