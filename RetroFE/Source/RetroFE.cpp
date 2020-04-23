@@ -74,6 +74,7 @@ RetroFE::RetroFE( Configuration &c )
     menuMode_                            = false;
     attractMode_                         = false;
 	attractModePlaylistCollectionNumber_ = 0;
+	firstPlaylist_                       = "all";
 }
 
 
@@ -459,9 +460,8 @@ bool RetroFE::run( )
 
                     currentPage_->pushCollection(info);
 
-                    std::string firstPlaylist = "all";
-                    config_.getProperty( "firstPlaylist", firstPlaylist );
-                    currentPage_->selectPlaylist( firstPlaylist );
+                    config_.getProperty( "firstPlaylist", firstPlaylist_ );
+                    currentPage_->selectPlaylist( firstPlaylist_ );
 
                     currentPage_->onNewItemSelected( );
                     currentPage_->reallocateMenuSpritePoints( );
@@ -1556,6 +1556,16 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
 			reboot_ = true;
             state   = RETROFE_QUIT_REQUEST;
         }
+
+        else if (input_.keystate(UserInput::KeyCodeSaveFirstPlaylist))
+        {
+            attract_.reset( );
+			if ( page->getMenuDepth( ) == 1 )
+			{
+                firstPlaylist_ = page->getPlaylistName( );
+                saveRetroFEState( );
+            }
+        }
     }
 
     // Check if we're done scrolling
@@ -1767,4 +1777,22 @@ CollectionInfo *RetroFE::getMenuCollection( std::string collectionName )
     }
     collection->playlists["all"] = &collection->items;
     return collection;
+}
+
+
+void RetroFE::saveRetroFEState( )
+{
+    std::string file = Utils::combinePath(Configuration::absolutePath, "settings_saved.conf");
+    Logger::write(Logger::ZONE_INFO, "RetroFE", "Saving settings_saved.conf");
+    std::ofstream filestream;
+	try
+	{
+        filestream.open(file.c_str());
+        filestream << "firstPlaylist = " << firstPlaylist_ << std::endl;
+        filestream.close();
+    }
+    catch(std::exception &)
+    {
+        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Save failed: " + file);
+    }
 }

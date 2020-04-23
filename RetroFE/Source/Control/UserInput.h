@@ -63,6 +63,7 @@ public:
         KeyCodeHideItem,
         KeyCodeQuit,
 		KeyCodeReboot,
+		KeyCodeSaveFirstPlaylist,
         KeyCodeMax
     };
 

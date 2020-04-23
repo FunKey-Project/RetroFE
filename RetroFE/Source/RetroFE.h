@@ -117,6 +117,7 @@ private:
     void            update( float dt, bool scrollActive );
     CollectionInfo *getCollection( std::string collectionName );
     CollectionInfo *getMenuCollection( std::string collectionName );
+	void            saveRetroFEState( );
 
     Configuration     &config_;
     DB                *db_;
@@ -136,6 +137,7 @@ private:
     bool               attractMode_;
 	int                attractModePlaylistCollectionNumber_;
 	bool               reboot_;
+	std::string        firstPlaylist_;
 
     std::map<std::string, unsigned int> lastMenuOffsets_;
     std::map<std::string, std::string>  lastMenuPlaylists_;
