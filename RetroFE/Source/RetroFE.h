@@ -134,6 +134,7 @@ private:
     AttractMode        attract_;
     bool               menuMode_;
     bool               attractMode_;
+	int                attractModePlaylistCollectionNumber_;
 	bool               reboot_;
 
     std::map<std::string, unsigned int> lastMenuOffsets_;

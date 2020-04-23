@@ -71,8 +71,9 @@ RetroFE::RetroFE( Configuration &c )
     , keyDelayTime_(.3f)
 	, reboot_(false)
 {
-    menuMode_    = false;
-    attractMode_ = false;
+    menuMode_                            = false;
+    attractMode_                         = false;
+	attractModePlaylistCollectionNumber_ = 0;
 }
 
 
@@ -734,20 +735,35 @@ bool RetroFE::run( )
 
                 if (rememberMenu && lastMenuPlaylists_.find( currentPage_->getCollectionName( ) ) != lastMenuPlaylists_.end( ))
                 {
-                  currentPage_->selectPlaylist( lastMenuPlaylists_[currentPage_->getCollectionName( )] ); // Switch to last playlist
+                    currentPage_->selectPlaylist( lastMenuPlaylists_[currentPage_->getCollectionName( )] ); // Switch to last playlist
+                    currentPage_->setScrollOffsetIndex( lastMenuOffsets_[currentPage_->getCollectionName( )] );
                 }
                 else
                 {
                     currentPage_->selectPlaylist( autoPlaylist );
                 }
 
-                if ( rememberMenu && lastMenuOffsets_.find( currentPage_->getCollectionName( ) ) != lastMenuOffsets_.end( ) )
-                {
-                    currentPage_->setScrollOffsetIndex( lastMenuOffsets_[currentPage_->getCollectionName( )] );
-                }
-
-                currentPage_->onNewItemSelected( );
                 state = RETROFE_COLLECTION_DOWN_MENU_ENTER;
+                currentPage_->onNewItemSelected( );
+
+                if ( attractMode_ ) // Check playlist change in attract mode
+				{
+					attractModePlaylistCollectionNumber_   += 1;
+					int attractModePlaylistCollectionNumber = 0;
+					config_.getProperty( "attractModePlaylistCollectionNumber", attractModePlaylistCollectionNumber );
+					// Check if playlist should be changed
+					if ( attractModePlaylistCollectionNumber_ > 0 && attractModePlaylistCollectionNumber_ >= attractModePlaylistCollectionNumber )
+					{
+						attractModePlaylistCollectionNumber_ = 0;
+                        currentPage_->nextPlaylist( );
+                        std::string attractModeSkipPlaylist = "";
+                        config_.getProperty( "attractModeSkipPlaylist", attractModeSkipPlaylist );
+                        if (currentPage_->getPlaylistName( ) == attractModeSkipPlaylist)
+                            currentPage_->nextPlaylist( );
+						state = RETROFE_PLAYLIST_REQUEST;
+					}
+				}
+
             }
             break;
 
@@ -763,9 +779,14 @@ bool RetroFE::run( )
         case RETROFE_COLLECTION_DOWN_ENTER:
             if ( currentPage_->isIdle( ) )
             {
-                currentPage_->setScrolling(Page::ScrollDirectionForward);
-                currentPage_->scroll(true);
-                currentPage_->updateScrollPeriod( );
+                int attractModePlaylistCollectionNumber = 0;
+                config_.getProperty( "attractModePlaylistCollectionNumber", attractModePlaylistCollectionNumber );
+				if (!( attractMode_ && attractModePlaylistCollectionNumber > 0 && attractModePlaylistCollectionNumber_ == 0 ))
+				{
+                    currentPage_->setScrolling(Page::ScrollDirectionForward);
+                    currentPage_->scroll(true);
+                    currentPage_->updateScrollPeriod( );
+				}
                 state = RETROFE_COLLECTION_DOWN_SCROLL;
             }
             break;
@@ -1346,14 +1367,24 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
                  (input_.keystate(UserInput::KeyCodeCollectionLeft) && (!page->isHorizontalScroll( ) || !input_.keystate(UserInput::KeyCodeLeft))))
         {
             attract_.reset( );
-            state = RETROFE_COLLECTION_UP_REQUEST;
+            bool backOnCollection = false;
+            config_.getProperty( "backOnCollection", backOnCollection );
+			if ( page->getMenuDepth( ) == 1 || !backOnCollection )
+                state = RETROFE_COLLECTION_UP_REQUEST;
+            else
+                state = RETROFE_BACK_REQUEST;
         }
 
         else if ((input_.keystate(UserInput::KeyCodeCollectionDown)  && ( page->isHorizontalScroll( ) || !input_.keystate(UserInput::KeyCodeDown))) ||
                  (input_.keystate(UserInput::KeyCodeCollectionRight) && (!page->isHorizontalScroll( ) || !input_.keystate(UserInput::KeyCodeRight))))
         {
             attract_.reset( );
-            state = RETROFE_COLLECTION_DOWN_REQUEST;
+            bool backOnCollection = false;
+            config_.getProperty( "backOnCollection", backOnCollection );
+			if ( page->getMenuDepth( ) == 1 || !backOnCollection )
+                state = RETROFE_COLLECTION_DOWN_REQUEST;
+            else
+                state = RETROFE_BACK_REQUEST;
         }
 
         else if (input_.keystate(UserInput::KeyCodePageUp))
