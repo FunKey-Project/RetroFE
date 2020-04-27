@@ -1036,10 +1036,18 @@ bool RetroFE::run( )
                 if (currentPage_->getPlaylistName( )    != attractModeSkipPlaylist &&
                     nextPageItem_->collectionInfo->name != lastPlayedSkipCollection)
                     cib.updateLastPlayedPlaylist( currentPage_->getCollection(), nextPageItem_, size ); // Update last played playlist if not currently in the skip playlist (e.g. settings)
-                l.run(nextPageItem_->collectionInfo->name, nextPageItem_);
-                launchExit( );
-                currentPage_->exitGame( );
-                state = RETROFE_LAUNCH_EXIT;
+                if (l.run(nextPageItem_->collectionInfo->name, nextPageItem_)) // Run and check if we need to reboot
+				{
+                    attract_.reset( );
+                    reboot_ = true;
+                    state   = RETROFE_QUIT_REQUEST;
+				}
+				else
+				{
+                    launchExit( );
+                    currentPage_->exitGame( );
+                    state = RETROFE_LAUNCH_EXIT;
+				}
             }
             break;
 

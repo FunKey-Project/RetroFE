@@ -122,7 +122,10 @@ bool Launcher::run(std::string collection, Item *collectionItem)
         return false;
     }
 
-    return true;
+    bool reboot = false;
+	config_.getProperty("launchers." + launcherName + ".reboot", reboot);
+
+    return reboot;
 }
 
 std::string Launcher::replaceVariables(std::string str,
