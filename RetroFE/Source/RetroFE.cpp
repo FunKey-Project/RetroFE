@@ -704,6 +704,24 @@ bool RetroFE::run( )
             else // Not in a collection
             {
                 state = RETROFE_COLLECTION_DOWN_ENTER;
+
+                if ( attractMode_ ) // Check playlist change in attract mode
+				{
+					attractModePlaylistCollectionNumber_   += 1;
+					int attractModePlaylistCollectionNumber = 0;
+					config_.getProperty( "attractModePlaylistCollectionNumber", attractModePlaylistCollectionNumber );
+					// Check if playlist should be changed
+					if ( attractModePlaylistCollectionNumber_ > 0 && attractModePlaylistCollectionNumber_ >= attractModePlaylistCollectionNumber )
+					{
+						attractModePlaylistCollectionNumber_ = 0;
+                        currentPage_->nextPlaylist( );
+                        std::string attractModeSkipPlaylist = "";
+                        config_.getProperty( "attractModeSkipPlaylist", attractModeSkipPlaylist );
+                        if (currentPage_->getPlaylistName( ) == attractModeSkipPlaylist)
+                            currentPage_->nextPlaylist( );
+						state = RETROFE_PLAYLIST_REQUEST;
+					}
+				}
             }
             break;
 
