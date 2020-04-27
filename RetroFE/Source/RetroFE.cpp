@@ -387,7 +387,6 @@ bool RetroFE::run( )
             // Not in splash mode
             if ( currentPage_ && !splashMode )
             {
-
                 // account for when returning from a menu and the previous key was still "stuck"
                 if ( lastLaunchReturnTime_ == 0 || (currentTime_ - lastLaunchReturnTime_ > .3) )
                 {
@@ -414,6 +413,7 @@ bool RetroFE::run( )
                 state = RETROFE_SPLASH_EXIT;
 
             }
+
             break;
 
         // Load art on entering RetroFE
@@ -652,6 +652,16 @@ bool RetroFE::run( )
                 currentPage_->reallocateMenuSpritePoints( );
 
                 state = RETROFE_NEXT_PAGE_MENU_LOAD_ART;
+
+                // Check if we've entered an empty collection and need to go back automatically
+	            if (currentPage_->getCollectionSize() == 0)
+                {
+                    bool backOnEmpty = false;
+                    config_.getProperty( "backOnEmpty", backOnEmpty );
+                    if (backOnEmpty)
+                        state = RETROFE_BACK_MENU_EXIT;
+                }
+
 
              }
              break;
