@@ -96,7 +96,7 @@ bool MenuParser::buildTextMenu(CollectionInfo *collection, bool sort)
             }
         }
 
-        closedir(dp);
+        if (dp) closedir(dp);
         std::sort(menuItems.begin(), menuItems.end(), [](Item *a, Item *b) {return Utils::toLower(a->fullTitle) <= Utils::toLower(b->fullTitle);});
 
     }

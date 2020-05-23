@@ -152,7 +152,7 @@ bool MetadataDatabase::importDirectory()
             }
         }
 
-        closedir(dp);
+        if (dp) closedir(dp);
     }
 
     dp = opendir(mameListPath.c_str());
@@ -185,7 +185,7 @@ bool MetadataDatabase::importDirectory()
             }
         }
 
-        closedir(dp);
+        if (dp) closedir(dp);
     }
 
     dp = opendir(emuarcListPath.c_str());
@@ -216,7 +216,7 @@ bool MetadataDatabase::importDirectory()
             }
         }
 
-        closedir(dp);
+        if (dp) closedir(dp);
     }
 
     return true;
@@ -716,10 +716,7 @@ time_t MetadataDatabase::timeDir( std::string path )
         }
     }
 
-    if (dp != NULL)
-    {
-        closedir( dp );
-    }
+    if (dp) closedir( dp );
 
     return lastTime;
 }

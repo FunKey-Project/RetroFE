@@ -174,14 +174,14 @@ bool ImportConfiguration(Configuration *c)
                 if(!c->import(prefix, importFile))
                 {
                     Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + importFile + "\"");
-                    closedir(dp);
+                    if (dp) closedir(dp);
                     return false;
                 }
             }
         }
     }
 
-    closedir(dp);
+    if (dp) closedir(dp);
 
     dp = opendir(collectionsPath.c_str());
 
@@ -212,7 +212,7 @@ bool ImportConfiguration(Configuration *c)
         }
     }
 
-    closedir(dp);
+    if (dp) closedir(dp);
 
     Logger::write(Logger::ZONE_INFO, "RetroFE", "Imported configuration");
 

@@ -477,7 +477,7 @@ void CollectionInfoBuilder::addPlaylists(CollectionInfo *info)
         }
     }
 
-    closedir(dp);
+    if (dp) closedir(dp);
 
     if(info->playlists["favorites"] == NULL)
     {
@@ -688,7 +688,7 @@ void CollectionInfoBuilder::ImportRomDirectory(std::string path, CollectionInfo 
         }
     }
 
-    closedir(dp);
+    if (dp) closedir(dp);
 
     return;
 
