@@ -179,30 +179,18 @@
 
     <!-- Rectangular cropped video -->
     <reloadableVideo imageType="screenshot" alpha="0" x="700" y="220" width="1920" maxHeight="2560" xOrigin="center" yOrigin="center" containerX="128" containerY="80" containerWidth="1000" containerHeight="280" layer="9">
-        <onEnter>                       <set duration=".1"><animate type="alpha"  to="1"/>
-                                                           <animate type="volume" to="1"/></set></onEnter>
-        <onExit>                        <set duration=".1"><animate type="alpha"  to="0"/>
-                                                           <animate type="volume" to="0"/></set></onExit>
-        <onMenuEnter      menuIndex="0"><set duration=".1"><animate type="alpha"  to="1"/>
-                                                           <animate type="volume" to="1"/></set></onMenuEnter>
-        <onMenuExit       menuIndex="0"><set duration=".1"><animate type="alpha"  to="0"/>
-                                                           <animate type="volume" to="0"/></set></onMenuExit>
-        <onMenuJumpEnter  menuIndex="0"><set duration=".1"><animate type="alpha"  to="1"/>
-                                                           <animate type="volume" to="1"/></set></onMenuEnter>
-        <onMenuJumpExit   menuIndex="0"><set duration=".1"><animate type="alpha"  to="0"/>
-                                                           <animate type="volume" to="0"/></set></onMenuExit>
-        <onPlaylistEnter  menuIndex="0"><set duration=".1"><animate type="alpha"  to="1"/>
-                                                           <animate type="volume" to="1"/></set></onMenuEnter>
-        <onPlaylistExit   menuIndex="0"><set duration=".1"><animate type="alpha"  to="0"/>
-                                                           <animate type="volume" to="0"/></set></onMenuExit>
-        <onHighlightEnter menuIndex="0"><set duration=".1"><animate type="alpha"  to="1"/>
-                                                           <animate type="volume" to="1"/></set></onHighlightEnter>
-        <onHighlightExit  menuIndex="0"><set duration=".1"><animate type="alpha"  to="0"/>
-                                                           <animate type="volume" to="0"/></set></onHighlightExit>
-        <onGameExit       menuIndex="0"><set duration=".1"><animate type="alpha"  to="1"/>
-                                                           <animate type="volume" to="1"/></set></oneGameExit>
-        <onGameEnter      menuIndex="0"><set duration=".1"><animate type="alpha"  to="0"/>
-                                                           <animate type="volume" to="0"/></set></oneGameEnter>
+        <onEnter>                       <set duration=".1"><animate type="alpha" to="1"/></set></onEnter>
+        <onExit>                        <set duration=".1"><animate type="alpha" to="0"/></set></onExit>
+        <onMenuEnter      menuIndex="0"><set duration=".1"><animate type="alpha" to="1"/></set></onMenuEnter>
+        <onMenuExit       menuIndex="0"><set duration=".1"><animate type="alpha" to="0"/></set></onMenuExit>
+        <onMenuJumpEnter  menuIndex="0"><set duration=".1"><animate type="alpha" to="1"/></set></onMenuEnter>
+        <onMenuJumpExit   menuIndex="0"><set duration=".1"><animate type="alpha" to="0"/></set></onMenuExit>
+        <onPlaylistEnter  menuIndex="0"><set duration=".1"><animate type="alpha" to="1"/></set></onMenuEnter>
+        <onPlaylistExit   menuIndex="0"><set duration=".1"><animate type="alpha" to="0"/></set></onMenuExit>
+        <onHighlightEnter menuIndex="0"><set duration=".1"><animate type="alpha" to="1"/></set></onHighlightEnter>
+        <onHighlightExit  menuIndex="0"><set duration=".1"><animate type="alpha" to="0"/></set></onHighlightExit>
+        <onGameEnter      menuIndex="0"><set duration=".1"><animate type="alpha" to="0"/></set></oneGameEnter>
+        <onGameExit       menuIndex="0"><set duration=".1"><animate type="alpha" to="1"/></set></oneGameExit>
     </relodableVideo>
 
 
@@ -548,7 +536,7 @@
 
 
     <!-- Logo Menu -->
-    <menu type="custom" imageType="logo" scrollTime=".4" scrollAcceleration=".08" minScrollTime="0.01" orientation="horizontal" x="0" width="center" y="910" algorithm="easeincircular">
+    <menu type="custom" imageType="logo" scrollTime=".2" scrollAcceleration=".02" minScrollTime="0.1" orientation="horizontal" x="0" width="center" y="910">
         <itemDefaults alpha="0.2" x="center" y="center" maxWidth="400" height="90" xOrigin="center" yOrigin="center" yOffset="-5" fontSize="144" loadFontSize="144" layer="12"/>
         <item xOffset="-1500" alpha="0"/>
         <item xOffset="-1000">
@@ -969,7 +957,7 @@
 
 
     <!-- Box Menu -->
-    <menu type="custom" imageType="artwork_front" scrollTime=".4" scrollAcceleration=".08" minScrollTime="0.01" orientation="horizontal" textFallback="true" x="0" font="fonts/Oswald-Regular.ttf" fontSize="20" loadFontSize="20" width="center" y="980" algorithm="easeincircular">
+    <menu type="custom" imageType="artwork_front" scrollTime=".2" scrollAcceleration=".02" minScrollTime="0.1" orientation="horizontal" textFallback="true" x="0" font="fonts/Oswald-Regular.ttf" fontSize="20" loadFontSize="20" width="center" y="980">
         <itemDefaults alpha="1" x="center" y="1030" width="270" maxHeight="340" xOrigin="center" yOrigin="bottom" layer="12" fontSize="50" loadFontSize="50" fontColor="ffffff" reflection="bottom" reflectionDistance="2" reflectionScale="1" reflectionAlpha=".2"/>
         <item xOffset="-1150" alpha="0"/>
         <item xOffset="-875">
@@ -1031,30 +1019,18 @@
 
 
     <reloadableVideo imageType="screenshot" alpha="1" x="1300" y="220" width="360" maxHeight="280" xOrigin="center" yOrigin="center" layer="9">
-        <onEnter>                  <set duration=".1"><animate type="alpha"  to="1"/>
-                                                      <animate type="volume" to="1"/></set></onEnter>
-        <onExit>                   <set duration=".1"><animate type="alpha"  to="0"/>
-                                                      <animate type="volume" to="0"/></set></onExit>
-        <onMenuEnter menuIndex="0"><set duration=".1"><animate type="alpha"  to="1"/>
-                                                      <animate type="volume" to="1"/></set></onMenuEnter>
-        <onMenuExit  menuIndex="0"><set duration=".1"><animate type="alpha"  to="0"/>
-                                                      <animate type="volume" to="0"/></set></onMenuExit>
-        <onMenuJumpEnter>          <set duration=".1"><animate type="alpha"  to="1"/>
-                                                      <animate type="volume" to="1"/></set></onHighlightEnter>
-        <onMenuJumpExit>           <set duration=".1"><animate type="alpha"  to="0"/>
-                                                      <animate type="volume" to="0"/></set></onHighlightExit>
-        <onPlaylistEnter>          <set duration=".1"><animate type="alpha"  to="1"/>
-                                                      <animate type="volume" to="1"/></set></onHighlightEnter>
-        <onPlaylistExit>           <set duration=".1"><animate type="alpha"  to="0"/>
-                                                      <animate type="volume" to="0"/></set></onHighlightExit>
-        <onHighlightEnter>         <set duration=".1"><animate type="alpha"  to="1"/>
-                                                      <animate type="volume" to="1"/></set></onHighlightEnter>
-        <onHighlightExit>          <set duration=".1"><animate type="alpha"  to="0"/>
-                                                      <animate type="volume" to="0"/></set></onHighlightExit>
-        <onGameExit>               <set duration=".1"><animate type="alpha"  to="1"/>
-                                                      <animate type="volume" to="1"/></set></oneGameExit>
-        <onGameEnter>              <set duration=".1"><animate type="alpha"  to="0"/>
-                                                      <animate type="volume" to="0"/></set></oneGameEnter>
+        <onEnter>                  <set duration=".1"><animate type="alpha" to="1"/></set></onEnter>
+        <onExit>                   <set duration=".1"><animate type="alpha" to="0"/></set></onExit>
+        <onMenuEnter menuIndex="0"><set duration=".1"><animate type="alpha" to="1"/></set></onMenuEnter>
+        <onMenuExit  menuIndex="0"><set duration=".1"><animate type="alpha" to="0"/></set></onMenuExit>
+        <onMenuJumpEnter>          <set duration=".1"><animate type="alpha" to="1"/></set></onHighlightEnter>
+        <onMenuJumpExit>           <set duration=".1"><animate type="alpha" to="0"/></set></onHighlightExit>
+        <onPlaylistEnter>          <set duration=".1"><animate type="alpha" to="1"/></set></onHighlightEnter>
+        <onPlaylistExit>           <set duration=".1"><animate type="alpha" to="0"/></set></onHighlightExit>
+        <onHighlightEnter>         <set duration=".1"><animate type="alpha" to="1"/></set></onHighlightEnter>
+        <onHighlightExit>          <set duration=".1"><animate type="alpha" to="0"/></set></onHighlightExit>
+        <onGameExit>               <set duration=".1"><animate type="alpha" to="1"/></set></oneGameExit>
+        <onGameEnter>              <set duration=".1"><animate type="alpha" to="0"/></set></oneGameEnter>
         <!-- Sub Menu Video -->
         <onMenuEnter menuIndex="!0">
             <set duration=".01">
@@ -1064,14 +1040,12 @@
                 <animate type="maxHeight" to="360"/>
             </set>
             <set duration=".14">
-                <animate type="alpha"  to="1"/>
-                <animate type="volume" to="1"/>
+                <animate type="alpha" to="1"/>
             </set>
         </onMenuEnter>
         <onMenuExit menuIndex="!0">
             <set duration=".14">
                 <animate type="alpha" from="1" to="0"/>
-                <animate type="volume"         to="0"/>
             </set>
             <set duration=".01">
                 <animate type="x"         to="1300"/>
