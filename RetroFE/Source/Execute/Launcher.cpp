@@ -55,6 +55,7 @@ bool Launcher::run(std::string collection, Item *collectionItem)
             launcherName = line;
         }
     }
+    launcherName = Utils::toLower(launcherName);
 
     if(!launcherExecutable(executablePath, launcherName))
     {

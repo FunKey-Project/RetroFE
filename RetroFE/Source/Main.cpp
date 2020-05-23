@@ -167,7 +167,7 @@ bool ImportConfiguration(Configuration *c)
 
             if(extension == ".conf")
             {
-                std::string prefix = "launchers." + basename;
+                std::string prefix = "launchers." + Utils::toLower(basename);
 
                 std::string importFile = Utils::combinePath(launchersPath, std::string(dirp->d_name));
 
