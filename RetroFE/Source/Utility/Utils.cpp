@@ -241,7 +241,9 @@ std::string Utils::getParentDirectory(std::string directory)
 std::string Utils::getFileName(std::string filePath)
 {
 
-    std::string filename = filePath;
+    /** Declared static to be kept in memory even after this function's scope */
+    static std::string filename;
+    filename = filePath;
 
     const size_t last_slash_idx = filePath.rfind(pathSeparator);
     if (std::string::npos != last_slash_idx)
