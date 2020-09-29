@@ -414,8 +414,8 @@ void MenuMode::init_menu_system_values(){
 	}
 
 	/// ------- Get USB Value -------
-	usb_data_connected = !Utils::executeRawPath(SHELL_CMD_USB_DATA_CONNECTED);
-	usb_sharing = !Utils::executeRawPath(SHELL_CMD_USB_CHECK_IS_SHARING);
+	usb_data_connected = Utils::executeRawPath(SHELL_CMD_USB_DATA_CONNECTED);
+	usb_sharing = Utils::executeRawPath(SHELL_CMD_USB_CHECK_IS_SHARING);
 
 	if(usb_sharing && !usb_data_connected){
 		MENU_ERROR_PRINTF("WARNING usb_sharing && !usb_data_connected\n");
