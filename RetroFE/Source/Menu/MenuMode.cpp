@@ -680,11 +680,10 @@ int MenuMode::launch( )
 	char fname[MAXPATHLEN];
 	indexChooseLayout = config->currentLayoutIdx_;
 	int returnCode = MENU_RETURN_OK;
-	int prevItem=menuItem;
 
 	/// ------ Get System values -------
 	init_menu_system_values();
-
+	int prevItem=menuItem;
 
 	/// Save prev key repeat params and set new Key repeat
 	SDL_GetKeyRepeat(&backup_key_repeat_delay, &backup_key_repeat_interval);
