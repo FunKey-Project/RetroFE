@@ -43,13 +43,15 @@ typedef enum {ASPECT_RATIOS} ENUM_ASPECT_RATIOS_TYPES;
 #define STEP_CHANGE_BRIGHTNESS      10
 
 ////------ Menu commands -------
-#define SHELL_CMD_VOLUME_GET        "volume_get"
-#define SHELL_CMD_VOLUME_SET        "volume_set"
-#define SHELL_CMD_BRIGHTNESS_GET    "brightness_get"
-#define SHELL_CMD_BRIGHTNESS_SET    "brightness_set"
-#define SHELL_CMD_USB_MOUNT		    "share start"
-#define SHELL_CMD_USB_UNMOUNT	    "share stop"
-#define SHELL_CMD_POWERDOWN         "shutdown_funkey"
+#define SHELL_CMD_VOLUME_GET            "volume_get"
+#define SHELL_CMD_VOLUME_SET            "volume_set"
+#define SHELL_CMD_BRIGHTNESS_GET        "brightness_get"
+#define SHELL_CMD_BRIGHTNESS_SET        "brightness_set"
+#define SHELL_CMD_USB_DATA_CONNECTED	"is_usb_data_connected"
+#define SHELL_CMD_USB_MOUNT             "share start"
+#define SHELL_CMD_USB_UNMOUNT	        "share stop"
+#define SHELL_CMD_USB_CHECK_IS_SHARING  "share is_sharing"
+#define SHELL_CMD_POWERDOWN             "shutdown_funkey"
 
 class MenuMode
 {

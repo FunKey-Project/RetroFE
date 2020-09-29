@@ -97,7 +97,7 @@ int MenuMode::indexChooseLayout = 0;
 
 /// USB stuff
 int usb_data_connected = 0;
-int usb_mounted = 0;
+int usb_sharing = 0;
 
 
 /// -------------- FUNCTIONS IMPLEMENTATION --------------
@@ -414,16 +414,16 @@ void MenuMode::init_menu_system_values(){
 	}
 
 	/// ------- Get USB Value -------
-	//should be getters from retroFe here, instead of setting values
-	usb_data_connected = 1;
-	usb_mounted = 0;
+	usb_data_connected = !Utils::executeRawPath(SHELL_CMD_USB_DATA_CONNECTED);
+	usb_sharing = !Utils::executeRawPath(SHELL_CMD_USB_CHECK_IS_SHARING);
 
-	if(usb_mounted && !usb_data_connected){
-		MENU_ERROR_PRINTF("WARNING usb_mounted && !usb_data_connected\n");
-		usb_mounted = 0;
+	if(usb_sharing && !usb_data_connected){
+		MENU_ERROR_PRINTF("WARNING usb_sharing && !usb_data_connected\n");
+		usb_sharing = 0;
 	}
 
-	if(usb_mounted){
+	if(usb_sharing){
+
 		/// Force USB menu to launch
 		for(int cur_idx=0; cur_idx < nb_menu_zones; cur_idx++){
 			if(idx_menus[cur_idx] == MENU_TYPE_USB){
@@ -433,20 +433,11 @@ void MenuMode::init_menu_system_values(){
 			}
 		}
 	}
-
-	/// ------ Save prev key repeat params and set new Key repeat -------
-	SDL_GetKeyRepeat(&backup_key_repeat_delay, &backup_key_repeat_interval);
-	if(SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL)){
-		MENU_ERROR_PRINTF("ERROR with SDL_EnableKeyRepeat: %s\n", SDL_GetError());
-	}
-
-	/// Get save slot from game
-	savestate_slot = (savestate_slot%MAX_SAVE_SLOTS); // security
 }
 
 void MenuMode::menu_screen_refresh(int menuItem, int prevItem, int scroll, uint8_t menu_confirmation, uint8_t menu_action){
 	/// --------- Vars ---------
-	int print_arrows = (scroll || usb_mounted)?0:1;
+	int print_arrows = (scroll || usb_sharing)?0:1;
 
 	/// --------- Clear HW screen ----------
 	SDL_Surface * virtual_hw_screen = SDL::getWindow();
@@ -565,7 +556,7 @@ void MenuMode::menu_screen_refresh(int menuItem, int prevItem, int scroll, uint8
 
 		case MENU_TYPE_USB:
 			/// ---- Write slot -----
-			sprintf(text_tmp, "%s USB", usb_mounted?"EJECT":"MOUNT");
+			sprintf(text_tmp, "%s USB", usb_sharing?"EJECT":"MOUNT");
 			text_surface = TTF_RenderText_Blended(menu_title_font, text_tmp, text_color);
 			text_pos.x = (virtual_hw_screen->w - MENU_ZONE_WIDTH)/2 + (MENU_ZONE_WIDTH - text_surface->w)/2;
 			text_pos.y = virtual_hw_screen->h - MENU_ZONE_HEIGHT/2 - text_surface->h/2;
@@ -689,10 +680,20 @@ int MenuMode::launch( )
 	char fname[MAXPATHLEN];
 	indexChooseLayout = config->currentLayoutIdx_;
 	int returnCode = MENU_RETURN_OK;
-
-	/// ------ Get init values -------
-	init_menu_system_values();
 	int prevItem=menuItem;
+
+	/// ------ Get System values -------
+	init_menu_system_values();
+
+
+	/// Save prev key repeat params and set new Key repeat
+	SDL_GetKeyRepeat(&backup_key_repeat_delay, &backup_key_repeat_interval);
+	if(SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL)){
+		MENU_ERROR_PRINTF("ERROR with SDL_EnableKeyRepeat: %s\n", SDL_GetError());
+	}
+
+	/// Get save slot from game
+	//savestate_slot = (savestate_slot%MAX_SAVE_SLOTS); // security
 
 	/// ------ Copy currently displayed screen -------
 	SDL_Surface * virtual_hw_screen = SDL::getWindow();
@@ -730,7 +731,7 @@ int MenuMode::launch( )
 					case SDLK_q:
 					case SDLK_ESCAPE:
 						/// ------ Check if no action ------
-						if(usb_mounted){
+						if(usb_sharing){
 							break;
 						}
 
@@ -741,7 +742,7 @@ int MenuMode::launch( )
 					case SDLK_DOWN:
 						MENU_DEBUG_PRINTF("DOWN\n");
 						/// ------ Check if no action ------
-						if(usb_mounted){
+						if(usb_sharing){
 							break;
 						}
 
@@ -768,7 +769,7 @@ int MenuMode::launch( )
 					case SDLK_UP:
 						MENU_DEBUG_PRINTF("UP\n");
 						/// ------ Check if no action ------
-						if(usb_mounted){
+						if(usb_sharing){
 							break;
 						}
 
@@ -947,27 +948,27 @@ int MenuMode::launch( )
 							}
 						}
 						else if(idx_menus[menuItem] == MENU_TYPE_USB){
-							MENU_DEBUG_PRINTF("USB %s\n", usb_mounted?"unmount":"mount");
+							MENU_DEBUG_PRINTF("USB %s\n", usb_sharing?"unmount":"mount");
 							if(menu_confirmation){
-								MENU_DEBUG_PRINTF("%s USB - confirmed\n", usb_mounted?"Unmount":"Mount");
+								MENU_DEBUG_PRINTF("%s USB - confirmed\n", usb_sharing?"Unmount":"Mount");
 								/// ----- Refresh screen ----
 								menu_screen_refresh(menuItem, prevItem, scroll, menu_confirmation, 1);
 
 								/// ----- Shell cmd ----
-								/*fp = popen(usb_mounted?SHELL_CMD_USB_UNMOUNT:SHELL_CMD_USB_MOUNT, "r");
+								/*fp = popen(usb_sharing?SHELL_CMD_USB_UNMOUNT:SHELL_CMD_USB_MOUNT, "r");
 								if (fp == NULL) {
 									MENU_ERROR_PRINTF("Failed to run command %s\n", shell_cmd);
 								}
 								else{
-									usb_mounted = !usb_mounted;
+									usb_sharing = !usb_sharing;
 								}*/
 
-								bool res = Utils::executeRawPath(usb_mounted?SHELL_CMD_USB_UNMOUNT:SHELL_CMD_USB_MOUNT);
+								bool res = Utils::executeRawPath(usb_sharing?SHELL_CMD_USB_UNMOUNT:SHELL_CMD_USB_MOUNT);
 								if (!res) {
 									MENU_ERROR_PRINTF("Failed to run command %s\n", shell_cmd);
 								}
 								else{
-									usb_mounted = !usb_mounted;
+									usb_sharing = !usb_sharing;
 								}
 
 								/// ------ Refresh screen ------
@@ -975,7 +976,7 @@ int MenuMode::launch( )
 								screen_refresh = 1;
 							}
 							else{
-								MENU_DEBUG_PRINTF("%s USB - asking confirmation\n", usb_mounted?"Unmount":"Mount");
+								MENU_DEBUG_PRINTF("%s USB - asking confirmation\n", usb_sharing?"Unmount":"Mount");
 								menu_confirmation = 1;
 								screen_refresh = 1;
 							}
