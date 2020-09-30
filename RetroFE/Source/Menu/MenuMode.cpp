@@ -417,11 +417,16 @@ void MenuMode::init_menu_system_values(){
 	usb_data_connected = Utils::executeRawPath(SHELL_CMD_USB_DATA_CONNECTED);
 	usb_sharing = Utils::executeRawPath(SHELL_CMD_USB_CHECK_IS_SHARING);
 
-	if(usb_sharing && !usb_data_connected){
-		MENU_ERROR_PRINTF("WARNING usb_sharing && !usb_data_connected\n");
+	/** Sanity check if usb not connected */
+	if(!usb_data_connected){
 		usb_sharing = 0;
+
+		if(idx_menus[menuItem] == MENU_TYPE_USB){
+			menuItem = 0;
+		}
 	}
 
+	/** Sanity check if currently in USB sharing (should not happen) */
 	if(usb_sharing){
 
 		/// Force USB menu to launch
