@@ -89,11 +89,13 @@ public:
     void     launchExit( );
 
 private:
-    volatile bool initialized;
-    volatile bool initializeError;
-    volatile bool initMetaDb;
-    SDL_Thread   *initializeThread;
-    static int    initialize( void *context );
+    volatile bool   initialized;
+    volatile bool   initializeError;
+    volatile bool   initMetaDb;
+    SDL_Thread     *initializeThread;
+    static int      initialize( void *context );
+    static void     handle_sigusr1(int sig);
+    static void     quick_poweroff( );
 
     #undef X
     #define X(a, b) a,

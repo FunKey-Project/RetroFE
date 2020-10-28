@@ -177,6 +177,10 @@ void MenuMode::end( )
 	return;
 }
 
+void MenuMode::stop( ){
+	stop_menu_loop = 1;
+}
+
 
 void MenuMode::draw_progress_bar(SDL_Surface * surface, uint16_t x, uint16_t y, uint16_t width,
 		uint16_t height, uint8_t percentage, uint16_t nb_bars){

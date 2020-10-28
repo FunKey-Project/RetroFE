@@ -27,6 +27,7 @@
 #include "Utility/Utils.h"
 #include "Collection/MenuParser.h"
 #include "SDL.h"
+#include <SDL/SDL_ttf.h>
 #include "Control/UserInput.h"
 #include "Graphics/PageBuilder.h"
 #include "Graphics/Page.h"
@@ -41,7 +42,7 @@
 #include <tuple>
 #include <vector>
 #include <time.h>
-#include <SDL/SDL_ttf.h>
+#include <signal.h> 
 
 #if defined(__linux) || defined(__APPLE__)
 #include <sys/stat.h>
@@ -179,6 +180,10 @@ int RetroFE::initialize( void *context )
         }
         Logger::write( Logger::ZONE_INFO, "RetroFE", "Initialized meta database" );
     }
+
+    /* Init Signals */
+    Logger::write( Logger::ZONE_INFO, "RetroFE", "Initializing signal USR1..." );
+    signal(SIGUSR1, instance->handle_sigusr1); 
 
     instance->initialized = true;
     return 0;
@@ -979,7 +984,7 @@ void RetroFE::run( )
         default:
             std::stringstream ss;
             ss << "Wrong state: " << state;
-            Logger::write( Logger::ZONE_ERROR, "RetroFE", "Wrong state: " + ss.str() );
+            Logger::write( Logger::ZONE_ERROR, "RetroFE", ss.str() );
             state = RETROFE_IDLE;
             break;
         }
@@ -1526,4 +1531,50 @@ CollectionInfo *RetroFE::getMenuCollection( std::string collectionName )
     }
     collection->playlists["all"] = &collection->items;
     return collection;
+}
+
+
+
+/* Handler for SIGUSR1, caused by closing the console */
+void RetroFE::handle_sigusr1(int sig)
+{
+    printf("Caught signal USR1 %d\n", sig);
+    std::stringstream ss;
+    ss << "Caught signal USR1: " << sig;
+    Logger::write( Logger::ZONE_ERROR, "RetroFE", ss.str() );
+
+    /* Exit menu if it was launched */
+    MenuMode::stop();
+
+    /** Poweroff */
+    quick_poweroff();
+}
+
+
+/* Quick save and turn off the console */
+void RetroFE::quick_poweroff()
+{
+    /* Vars */
+    char shell_cmd[200];
+    FILE *fp;
+
+    /* Send command to kill any previously scheduled shutdown */
+    sprintf(shell_cmd, "pkill %s", SHELL_CMD_SCHEDULE_POWERDOWN);
+    fp = popen(shell_cmd, "r");
+    if (fp == NULL) {
+        printf("Failed to run command %s\n", shell_cmd);
+        std::stringstream ss;
+        ss << "Failed to run command " << shell_cmd;
+        Logger::write( Logger::ZONE_ERROR, "RetroFE", ss.str() );
+    }
+
+    /* Clean Poweroff */
+    sprintf(shell_cmd, "%s", SHELL_CMD_POWERDOWN);
+    fp = popen(shell_cmd, "r");
+    if (fp == NULL) {
+        printf("Failed to run command %s\n", shell_cmd);
+        std::stringstream ss;
+        ss << "Failed to run command " << shell_cmd;
+        Logger::write( Logger::ZONE_ERROR, "RetroFE", ss.str() );
+    }
 }
