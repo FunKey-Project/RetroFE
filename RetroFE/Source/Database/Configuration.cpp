@@ -287,10 +287,12 @@ bool Configuration::exportCurrentLayout(std::string layoutFilePath, std::string 
     Logger::write(Logger::ZONE_INFO, "Configuration", "Exporting layout \"" + layoutName +
 		  "\" in file \"" + layoutFilePath +"\"");
 
+    Utils::rootfsWritable();
     std::ofstream layoutFile;
     layoutFile.open(layoutFilePath.c_str());
     layoutFile << layoutName << std::endl;
     layoutFile.close();
+    Utils::rootfsReadOnly();
 
     return retVal;
 }

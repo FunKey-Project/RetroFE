@@ -292,6 +292,22 @@ bool Utils::executeRawPath(const char *shellCmd)
     return retVal;
 }
 
+bool Utils::rootfsWritable()
+{
+    bool retVal = false;
+    Logger::write(Logger::ZONE_DEBUG, "Utils", "Making rootfs writable with " + std::string(SHELL_CMD_ROOTFS_RW));
+    retVal = executeRawPath(SHELL_CMD_ROOTFS_RW);
+    return retVal;
+}
+
+bool Utils::rootfsReadOnly()
+{
+    bool retVal = false;
+    Logger::write(Logger::ZONE_DEBUG, "Utils", "Making rootfs read only with " + std::string(SHELL_CMD_ROOTFS_RO));
+    retVal = executeRawPath(SHELL_CMD_ROOTFS_RO);
+    return retVal;
+}
+
 int Utils::termfix(uint32_t ttyId){
     // Init tty file path
     char ttyFilePath[100];

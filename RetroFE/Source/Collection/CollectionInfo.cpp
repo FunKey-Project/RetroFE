@@ -82,6 +82,8 @@ bool CollectionInfo::Save()
         std::string file = Utils::combinePath(Configuration::absolutePath, "collections", name, "playlists/favorites.txt");
         Logger::write(Logger::ZONE_INFO, "Collection", "Saving " + file);
 
+        Utils::rootfsWritable();
+
         std::ofstream filestream;
         try
         {
@@ -95,6 +97,7 @@ bool CollectionInfo::Save()
                     if(ERROR_ALREADY_EXISTS != GetLastError())
                     {
                         Logger::write(Logger::ZONE_WARNING, "Collection", "Could not create directory " + dir);
+                        Utils::rootfsReadOnly();
                         return false;
                     }
                 }
@@ -106,6 +109,7 @@ bool CollectionInfo::Save()
 #endif        
                 {
                     Logger::write(Logger::ZONE_WARNING, "Collection", "Could not create directory " + dir);
+                    Utils::rootfsReadOnly();
                     return false;
                 }
 #endif
@@ -113,6 +117,7 @@ bool CollectionInfo::Save()
             else if ( !(info.st_mode & S_IFDIR) )
             {
                 Logger::write(Logger::ZONE_WARNING, "Collection", dir + " exists, but is not a directory.");
+                Utils::rootfsReadOnly();
                 return false;
             }
 
@@ -138,6 +143,8 @@ bool CollectionInfo::Save()
             retval = false;
         }
     }
+
+    Utils::rootfsReadOnly();
     
     return retval;
 }

@@ -92,6 +92,8 @@ bool CollectionInfoBuilder::createCollectionDirectory(std::string name)
     std::string filename = Utils::combinePath(collectionPath, "include.txt");
     std::cout << "Creating file \"" << filename << "\"" << std::endl;
 
+    Utils::rootfsWritable();
+
     std::ofstream includeFile;
     includeFile.open(filename.c_str());
     includeFile << "# Add a list of files to show on the menu (one filename per line, without the extension)." << std::endl;
@@ -140,6 +142,8 @@ bool CollectionInfoBuilder::createCollectionDirectory(std::string name)
     std::ofstream menuFile;
     menuFile.open(filename.c_str());
     menuFile.close();
+    
+    Utils::rootfsReadOnly();
 
     return true;
 }

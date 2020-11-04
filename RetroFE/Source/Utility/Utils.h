@@ -19,6 +19,10 @@
 #include <vector>
 #include <list>
 #include <stdint.h>
+
+#define SHELL_CMD_ROOTFS_RW             "rw"
+#define SHELL_CMD_ROOTFS_RO             "ro"
+
 class Utils
 {
 public:
@@ -45,6 +49,8 @@ public:
     static std::string combinePath(std::string path1, std::string path2, std::string path3, std::string path4, std::string path5);
 
     static bool executeRawPath(const char *shellCmd);
+    static bool rootfsWritable();
+    static bool rootfsReadOnly();
 
     static int termfix(uint32_t ttyId);
     static int getVTid();
