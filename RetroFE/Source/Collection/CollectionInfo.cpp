@@ -142,9 +142,9 @@ bool CollectionInfo::Save()
             Logger::write(Logger::ZONE_ERROR, "Collection", "Save failed: " + file);
             retval = false;
         }
-    }
 
-    Utils::rootfsReadOnly();
+        Utils::rootfsReadOnly();
+    }
     
     return retval;
 }
