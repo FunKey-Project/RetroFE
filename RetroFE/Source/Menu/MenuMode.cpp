@@ -26,9 +26,9 @@
 #define SCREEN_HORIZONTAL_SIZE      240 //RES_HW_SCREEN_HORIZONTAL
 #define SCREEN_VERTICAL_SIZE        240 //RES_HW_SCREEN_VERTICAL
 
-#define SCROLL_SPEED_PX             30 //This means no animations but also no tearing effect
-#define FPS_MENU                    50
-#define ARROWS_PADDING				8
+#define SCROLL_SPEED_PX             30
+#define FPS_MENU                    60
+#define ARROWS_PADDING              8
 
 #define MENU_ZONE_WIDTH             SCREEN_HORIZONTAL_SIZE
 #define MENU_ZONE_HEIGHT            SCREEN_VERTICAL_SIZE

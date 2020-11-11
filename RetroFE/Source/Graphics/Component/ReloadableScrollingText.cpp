@@ -28,7 +28,14 @@
 #include <algorithm>
 
 
-ReloadableScrollingText::ReloadableScrollingText(Configuration &config, bool systemMode, bool layoutMode, bool menuMode, std::string type, std::string textFormat, std::string singlePrefix, std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, std::string alignment, Page &p, int displayOffset, Font *font, float scaleX, float scaleY, std::string direction, float scrollingSpeed, float startPosition, float startTime, float endTime )
+ReloadableScrollingText::ReloadableScrollingText(Configuration &config, bool systemMode, 
+    bool layoutMode, bool menuMode, 
+    std::string type, std::string textFormat, std::string singlePrefix, 
+    std::string singlePostfix, std::string pluralPrefix, std::string pluralPostfix, 
+    std::string alignment, Page &p, int displayOffset, Font *font, 
+    float scaleX, float scaleY, std::string direction, float scrollingSpeed, 
+    float startPosition, float startTime, float endTime )
+
     : Component(p)
     , config_(config)
     , systemMode_(systemMode)
@@ -504,7 +511,6 @@ void ReloadableScrollingText::loadText( std::string collection, std::string type
 
     while(std::getline(includeStream, line))
     {
-
         // In horizontal scrolling direction, add a space before every line except the first.
         if (direction_ == "horizontal" && !text_.empty( ))
         {

@@ -778,7 +778,7 @@ void PageBuilder::loadReloadableImages(xml_node<> *layout, std::string tagName, 
                 {
                     pluralPostfix = pluralPostfixXml->value();
                 }
-                c = new ReloadableScrollingText(config_, systemMode, layoutMode, menuMode, type->value(), singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, textFormat, alignment, *page, selectedOffset, font, scaleX_, scaleY_, direction, scrollingSpeed, startPosition, startTime, endTime);
+                c = new ReloadableScrollingText(config_, systemMode, layoutMode, menuMode, type->value(), textFormat, singlePrefix, singlePostfix, pluralPrefix, pluralPostfix, alignment, *page, selectedOffset, font, scaleX_, scaleY_, direction, scrollingSpeed, startPosition, startTime, endTime);
                 c->setId( id );
                 xml_attribute<> *menuScrollReload = componentXml->first_attribute("menuScrollReload");
                 if (menuScrollReload &&
