@@ -22,6 +22,7 @@
 #include "Collection/Item.h"
 #include "Execute/Launcher.h"
 #include "Menu/Menu.h"
+#include "Menu/MenuMode.h"
 #include "Utility/Log.h"
 #include "Utility/Utils.h"
 #include "Collection/MenuParser.h"
@@ -225,6 +226,8 @@ void RetroFE::allocateGraphicsMemory( )
     {
         SDL::initialize( config_ );
         currentPage_->initializeFonts( );
+        // Init MenuMode
+        MenuMode::init( );
     }
 
     // Allocate textures
@@ -242,6 +245,9 @@ bool RetroFE::deInitialize( )
 {
 
     bool retVal = true;
+
+    // Deinit menuMode
+    MenuMode::end( );
 
     // Free textures
     freeGraphicsMemory( );
@@ -394,6 +400,9 @@ void RetroFE::run( )
     // Initialize SDL
     if(! SDL::initialize( config_ ) ) return;
     fontcache_.initialize( );
+
+    // Initialize MenuMode
+    MenuMode::init();
 
     // Define control configuration
     std::string controlsConfPath = Utils::combinePath( Configuration::absolutePath, "controls.conf" );
@@ -824,9 +833,17 @@ void RetroFE::run( )
                 nextPageItem_ = currentPage_->getSelectedItem( );
                 launchEnter( );
                 l.run(nextPageItem_->collectionInfo->name, nextPageItem_);
+
+/********************************/
+#warning to remove
+                //bypass
+                state = RETROFE_QUIT_REQUEST;
+                break;
+/********************************/
+
                 launchExit( );
                 currentPage_->exitGame( );
-                state = RETROFE_LAUNCH_EXIT;
+                state = RETROFE_QUIT_REQUEST;
             }
             break;
 
@@ -952,6 +969,12 @@ void RetroFE::run( )
                 state = RETROFE_MENUMODE_START_LOAD_ART;
             }*/
 
+	    /// Launch menu
+	    menuMode_ = true;
+	    printf("Menu launched here\n");
+	    MenuMode::launch();
+	    menuMode_ = false;
+
 	    /// Clear events
 	    SDL_Event ev;
 	    while ( SDL_PollEvent( &ev ) );
@@ -1000,6 +1023,7 @@ void RetroFE::run( )
         // Handle screen updates and attract mode
         if ( running )
         {
+            // Handle FPS
             lastTime = currentTime_;
             currentTime_ = static_cast<float>( SDL_GetTicks( ) ) / 1000;
 
@@ -1009,7 +1033,7 @@ void RetroFE::run( )
             }
 
             deltaTime = currentTime_ - lastTime;
-            double sleepTime = 1000.0/60.0 - deltaTime*1000;
+            double sleepTime = 1000.0/FPS - deltaTime*1000;
             if ( sleepTime > 0 )
             {
                 SDL_Delay( static_cast<unsigned int>( sleepTime ) );
