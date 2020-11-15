@@ -24,8 +24,8 @@
 #include "Graphics/FontCache.h"
 #include "Video/IVideo.h"
 #include "Video/VideoFactory.h"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_ttf.h>
 #include <list>
 #include <stack>
 #include <map>
@@ -103,6 +103,7 @@ private:
     void            update( float dt, bool scrollActive );
     CollectionInfo *getCollection( std::string collectionName );
     CollectionInfo *getMenuCollection( std::string collectionName );
+    void            printState(RETROFE_STATE state);
 
     Configuration     &config_;
     DB                *db_;

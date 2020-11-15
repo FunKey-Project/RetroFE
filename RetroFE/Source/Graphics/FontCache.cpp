@@ -18,7 +18,7 @@
 #include "Font.h"
 #include "../Utility/Log.h"
 #include "../SDL.h"
-#include <SDL2/SDL_ttf.h>
+#include <SDL/SDL_ttf.h>
 #include <sstream>
 
 //todo: memory leak when launching games

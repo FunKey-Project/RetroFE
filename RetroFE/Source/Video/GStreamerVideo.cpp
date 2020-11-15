@@ -24,7 +24,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <cstdio>
-#include <SDL2/SDL.h>
+#include <SDL/SDL.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <gst/app/gstappsink.h>
@@ -48,7 +48,7 @@ GStreamerVideo::GStreamerVideo()
     , videoConvert_(NULL)
     , videoConvertCaps_(NULL)
     , videoBus_(NULL)
-    , texture_(NULL)
+    //, texture_(NULL)
     , height_(0)
     , width_(0)
     , videoBuffer_(NULL)
@@ -68,11 +68,11 @@ GStreamerVideo::~GStreamerVideo()
         videoBuffer_ = NULL;
     }
 
-    if (texture_)
+    /*if (texture_)
     {
         SDL_DestroyTexture(texture_);
         texture_ = NULL;
-    }
+    }*/
 
     freeElements();
 }
@@ -82,10 +82,10 @@ void GStreamerVideo::setNumLoops(int n)
     numLoops_ = n;
 }
 
-SDL_Texture *GStreamerVideo::getTexture() const
+/*SDL_Texture *GStreamerVideo::getTexture() const
 {
     return texture_;
-}
+}*/
 
 void GStreamerVideo::processNewBuffer (GstElement * /* fakesink */, GstBuffer *buf, GstPad *new_pad, gpointer userdata)
 {
@@ -158,11 +158,11 @@ bool GStreamerVideo::stop()
         (void)gst_element_set_state(playbin_, GST_STATE_NULL);
     }
 
-    if(texture_)
+    /*if(texture_)
     {
         SDL_DestroyTexture(texture_);
         texture_ = NULL;
-    }
+    }*/
 
     if(videoBuffer_)
     {
@@ -341,12 +341,12 @@ void GStreamerVideo::draw()
 void GStreamerVideo::update(float /* dt */)
 {
     SDL_LockMutex(SDL::getMutex());
-    if(!texture_ && width_ != 0 && height_ != 0)
+    /*if(!texture_ && width_ != 0 && height_ != 0)
     {
         texture_ = SDL_CreateTexture(SDL::getRenderer(), SDL_PIXELFORMAT_IYUV,
                                     SDL_TEXTUREACCESS_STREAMING, width_, height_);
         SDL_SetTextureBlendMode(texture_, SDL_BLENDMODE_BLEND);
-    }
+    }*/
 
     if(videoBuffer_)
     {
@@ -364,9 +364,9 @@ void GStreamerVideo::update(float /* dt */)
 
             if (bufSize == vbytes)
             {
-                SDL_LockTexture(texture_, NULL, &pixels, &pitch);
+                //SDL_LockTexture(texture_, NULL, &pixels, &pitch);
                 gst_buffer_extract(videoBuffer_, 0, pixels, vbytes);
-                SDL_UnlockTexture(texture_);
+                //SDL_UnlockTexture(texture_);
             }
             else
             {
@@ -382,10 +382,10 @@ void GStreamerVideo::update(float /* dt */)
                 y_plane = bufInfo.data;
                 u_plane = y_plane + (height_ * y_stride);
                 v_plane = u_plane + ((height_ / 2) * u_stride);
-                SDL_UpdateYUVTexture(texture_, NULL,
+                /*SDL_UpdateYUVTexture(texture_, NULL,
                                      (const Uint8*)y_plane, y_stride,
                                      (const Uint8*)u_plane, u_stride,
-                                     (const Uint8*)v_plane, v_stride);
+                                     (const Uint8*)v_plane, v_stride);*/
                 gst_buffer_unmap(videoBuffer_, &bufInfo);
             }
         }
@@ -398,10 +398,10 @@ void GStreamerVideo::update(float /* dt */)
             gst_video_meta_map(meta, 0, &y_info, &y_plane, &y_stride, GST_MAP_READ);
             gst_video_meta_map(meta, 1, &u_info, &u_plane, &u_stride, GST_MAP_READ);
             gst_video_meta_map(meta, 2, &v_info, &v_plane, &v_stride, GST_MAP_READ);
-            SDL_UpdateYUVTexture(texture_, NULL,
+            /*SDL_UpdateYUVTexture(texture_, NULL,
                                  (const Uint8*)y_plane, y_stride,
                                  (const Uint8*)u_plane, u_stride,
-                                 (const Uint8*)v_plane, v_stride);
+                                 (const Uint8*)v_plane, v_stride);*/
             gst_video_meta_unmap(meta, 0, &y_info);
             gst_video_meta_unmap(meta, 1, &u_info);
             gst_video_meta_unmap(meta, 2, &v_info);

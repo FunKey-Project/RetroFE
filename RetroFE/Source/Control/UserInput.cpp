@@ -18,11 +18,103 @@
 #include "../Database/Configuration.h"
 #include "../Utility/Log.h"
 #include "../Utility/Utils.h"
-#include "JoyAxisHandler.h"
-#include "JoyButtonHandler.h"
-#include "JoyHatHandler.h"
+#include <string>
+//#include "JoyAxisHandler.h"
+//#include "JoyButtonHandler.h"
+//#include "JoyHatHandler.h"
 #include "KeyboardHandler.h"
 #include "MouseButtonHandler.h"
+
+const key_names_s key_names[] = {
+/*
+  a subset of
+  sed 's/^#define \([^ \t]\+\)[ \t]*\([^\ \t]\+\)/  { \"\1\",\t\2 },/' /usr/include/linux/input.h
+ */
+  { "KEY_RESERVED",	SDLK_UNKNOWN },
+  { "Escape",	SDLK_ESCAPE },
+  { "1",	SDLK_1 },
+  { "2",	SDLK_2 },
+  { "3",	SDLK_3 },
+  { "4",	SDLK_4 },
+  { "5",	SDLK_5 },
+  { "6",	SDLK_6 },
+  { "7",	SDLK_7 },
+  { "8",	SDLK_8 },
+  { "9",	SDLK_9 },
+  { "0",	SDLK_0 },
+  { "-",	SDLK_MINUS },
+  { "=",	SDLK_EQUALS },
+  { "Backspace",	SDLK_BACKSPACE },
+  { "Tab",	SDLK_TAB },
+  { "Q",	SDLK_q },
+  { "W",	SDLK_w },
+  { "E",	SDLK_e },
+  { "R",	SDLK_r },
+  { "T",	SDLK_t },
+  { "Y",	SDLK_y },
+  { "U",	SDLK_u },
+  { "I",	SDLK_i },
+  { "O",	SDLK_o },
+  { "P",	SDLK_p },
+  { "[",	SDLK_LEFTBRACKET },
+  { "]",	SDLK_RIGHTBRACKET },
+  { "Return",	SDLK_RETURN },
+  { "Left Ctrl",	SDLK_LCTRL },
+  { "A",	SDLK_a },
+  { "S",	SDLK_s },
+  { "D",	SDLK_d },
+  { "F",	SDLK_f },
+  { "G",	SDLK_g },
+  { "H",	SDLK_h },
+  { "J",	SDLK_j },
+  { "K",	SDLK_k },
+  { "L",	SDLK_l },
+  { ";",	SDLK_SEMICOLON },
+  { "'",	SDLK_QUOTE },
+  { "Left Shift",	SDLK_LSHIFT },
+  { "\\",	SDLK_BACKSLASH },
+  { "Z",	SDLK_z },
+  { "X",	SDLK_x },
+  { "C",	SDLK_c },
+  { "V",	SDLK_v },
+  { "B",	SDLK_b },
+  { "N",	SDLK_n },
+  { "M",	SDLK_m },
+  { ",",	SDLK_PERIOD },
+  { ".",	SDLK_COMMA },
+  { "/",	SDLK_SLASH },
+  { "Right Shift",	SDLK_RSHIFT },
+  { "Left Alt",	SDLK_LALT },
+  { "Space",	SDLK_SPACE },
+  { "CapsLock",	SDLK_CAPSLOCK },
+  { "F1",	SDLK_F1 },
+  { "F2",	SDLK_F2 },
+  { "F3",	SDLK_F3 },
+  { "F4",	SDLK_F4 },
+  { "F5",	SDLK_F5 },
+  { "F6",	SDLK_F6 },
+  { "F7",	SDLK_F7 },
+  { "F8",	SDLK_F8 },
+  { "F9",	SDLK_F9 },
+  { "F10",	SDLK_F10 },
+  { "F11",	SDLK_F11 },
+  { "F12",	SDLK_F12 },
+  { "Right Ctrl",	SDLK_RCTRL },
+  { "Right Alt",	SDLK_RALT },
+  { "Up",	SDLK_UP },
+  { "PageUp",	SDLK_PAGEUP },
+  { "Left",	SDLK_LEFT },
+  { "Right",	SDLK_RIGHT },
+  { "End",	SDLK_END },
+  { "Down",	SDLK_DOWN },
+  { "PageDown",	SDLK_PAGEDOWN },
+  { "Insert",	SDLK_INSERT },
+  { "Delete",	SDLK_DELETE },
+
+
+  { "LAST", -1 },
+};
+
 
 UserInput::UserInput(Configuration &c)
     : config_(c)
@@ -93,6 +185,24 @@ bool UserInput::initialize()
     return retVal;
 }
 
+/* Return linux Key code from corresponding str*/
+SDLKey UserInput::SDL_GetScancodeFromName(const char *name)
+{
+	int i=0;
+	SDLKey returnValue = SDLK_UNKNOWN;
+	while(key_names[i].code >= 0){
+		if(!strncmp(key_names[i].name, name, 32)){
+			returnValue = (SDLKey) key_names[i].code;
+			break;
+		}
+		i++;
+	}
+	if(key_names[i].code < 0){
+		returnValue = SDLK_UNKNOWN;
+	}
+	return returnValue;
+}
+
 bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
 {
     return MapKey(keyDescription, key, true);
@@ -100,7 +210,7 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key)
 
 bool UserInput::MapKey(std::string keyDescription, KeyCode_E key, bool required)
 {
-    SDL_Scancode scanCode;
+	SDLKey scanCode;
     std::string description;
 
     std::string configKey = "controls." + keyDescription;
@@ -126,9 +236,9 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key, bool required)
 
         bool found = false;
 
-        if (scanCode != SDL_SCANCODE_UNKNOWN)
+        if (scanCode != SDLK_UNKNOWN)
         {
-            Logger::write(Logger::ZONE_INFO, "Input", "Binding key " + configKey);
+            Logger::write(Logger::ZONE_INFO, "Input", "Binding key " + configKey + ", Key Value: " + std::to_string(scanCode));
             keyHandlers_.push_back(std::pair<InputHandler *, KeyCode_E>(new KeyboardHandler(scanCode), key));
             found = true;
         }

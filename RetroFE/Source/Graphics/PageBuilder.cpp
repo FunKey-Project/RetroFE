@@ -63,7 +63,7 @@ PageBuilder::PageBuilder(std::string layoutKey, std::string layoutPage, Configur
 {
     screenWidth_ = SDL::getWindowWidth();
     screenHeight_ = SDL::getWindowHeight();
-    fontColor_.a = 255;
+    //fontColor_.a = 255;
     fontColor_.r = 0;
     fontColor_.g = 0;
     fontColor_.b = 0;

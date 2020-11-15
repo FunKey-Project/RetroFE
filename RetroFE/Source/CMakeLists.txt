@@ -40,24 +40,35 @@ endif()
 if(WIN32)
 	find_package(Glib2 REQUIRED)
 	find_package(GStreamer REQUIRED)
-	find_package(SDL2 REQUIRED)
-	find_package(SDL2_image REQUIRED)
-	find_package(SDL2_mixer REQUIRED)
-	find_package(SDL2_ttf REQUIRED)
+	#find_package(SDL2 REQUIRED)
+	#find_package(SDL2_image REQUIRED)
+	#find_package(SDL2_mixer REQUIRED)
+	#find_package(SDL2_ttf REQUIRED)
+	find_package(SDL REQUIRED )
+	find_package(SDL_image REQUIRED )
+	find_package(SDL_mixer REQUIRED SDL_mixer)
+	find_package(SDL_ttf REQUIRED )
+	find_package(SDL_gfx REQUIRED )
 	find_package(ZLIB REQUIRED)
 else()
 	include(FindPkgConfig)
-	pkg_search_module(SDL2 REQUIRED sdl2)
-	pkg_search_module(SDL2_IMAGE REQUIRED SDL2_image)
-	pkg_search_module(SDL2_MIXER REQUIRED SDL2_mixer)
-	pkg_search_module(SDL2_TTF REQUIRED SDL2_ttf)
+	#pkg_search_module(SDL2 REQUIRED sdl2)
+	#pkg_search_module(SDL2_IMAGE REQUIRED SDL2_image)
+	#pkg_search_module(SDL2_MIXER REQUIRED SDL2_mixer)
+	#pkg_search_module(SDL2_TTF REQUIRED SDL2_ttf)
+	find_package(SDL REQUIRED )
+	find_package(SDL_image REQUIRED )
+	find_package(SDL_mixer REQUIRED SDL_mixer)
+	find_package(SDL_ttf REQUIRED )
+	find_package(SDL_gfx REQUIRED )
 	pkg_search_module(ZLIB REQUIRED zlib)
 	pkg_check_modules(GSTREAMER REQUIRED gstreamer-1.0 gstreamer-video-1.0)
 	pkg_check_modules(Glib2 REQUIRED glib-2.0 gobject-2.0 gthread-2.0 gmodule-2.0)
 	find_package(Threads REQUIRED)
 
 if(APPLE)
-	find_package(SDL2 REQUIRED)
+	#find_package(SDL2 REQUIRED)
+	find_package(SDL REQUIRED )
 endif()
 endif()
 
@@ -65,10 +76,15 @@ set(RETROFE_INCLUDE_DIRS
 	"/usr/local/opt/gst-plugins-base/include/gstreamer-1.0"
 	"${GLIB2_INCLUDE_DIRS}"
 	"${GSTREAMER_INCLUDE_DIRS}"
-	"${SDL2_INCLUDE_DIRS}"
-	"${SDL2_IMAGE_INCLUDE_DIRS}"
-	"${SDL2_MIXER_INCLUDE_DIRS}"
-	"${SDL2_TTF_INCLUDE_DIRS}"
+	#"${SDL2_INCLUDE_DIRS}"
+	#"${SDL2_IMAGE_INCLUDE_DIRS}"
+	#"${SDL2_MIXER_INCLUDE_DIRS}"
+	#"${SDL2_TTF_INCLUDE_DIRS}"
+	"${SDL_INCLUDE_DIRS}"
+	"${SDL_IMAGE_INCLUDE_DIRS}"
+	"${SDL_MIXER_INCLUDE_DIRS}"
+	"${SDL_TTF_INCLUDE_DIRS}"
+	"${SDL_GFX_INCLUDE_DIRS}"
 	"${ZLIB_INCLUDE_DIRS}"
 	"${SQLITE3_ROOT}"
 	"${RAPIDXML_ROOT}"
@@ -81,10 +97,15 @@ endif()
 set(RETROFE_LIBRARIES
 	${GLIB2_LIBRARIES}
 	${GSTREAMER_LIBRARIES}
-	${SDL2_LIBRARIES}
-	${SDL2_IMAGE_LIBRARIES}
-	${SDL2_MIXER_LIBRARIES}
-	${SDL2_TTF_LIBRARIES}
+	#${SDL2_LIBRARIES}
+	#${SDL2_IMAGE_LIBRARIES}
+	#${SDL2_MIXER_LIBRARIES}
+	#${SDL2_TTF_LIBRARIES}
+	${SDL_LIBRARIES}
+	${SDL_IMAGE_LIBRARIES}
+	${SDL_MIXER_LIBRARIES}
+	${SDL_TTF_LIBRARIES}
+	${SDL_GFX_LIBRARIES}
 	${ZLIB_LIBRARIES}
 )
 
@@ -206,6 +227,7 @@ include_directories(${RETROFE_INCLUDE_DIRS})
 add_executable(retrofe  ${RETROFE_SOURCES} ${RETROFE_HEADERS})
 target_link_libraries(retrofe ${RETROFE_LIBRARIES})
 set_target_properties(retrofe PROPERTIES LINKER_LANGUAGE CXX)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -Wall")
 if(MINGW)
   set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -lmingw32 -mwindows")
 endif()

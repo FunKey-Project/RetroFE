@@ -16,7 +16,7 @@
 #pragma once
 
 #include "Component.h"
-#include <SDL2/SDL.h>
+#include <SDL/SDL.h>
 #include <string>
 
 class Image : public Component
@@ -29,7 +29,8 @@ public:
     void draw();
 
 protected:
-    SDL_Texture *texture_;
+    //SDL_Texture *texture_;
+    SDL_Surface *texture_;
     std::string file_;
     std::string altFile_;
     float scaleX_;

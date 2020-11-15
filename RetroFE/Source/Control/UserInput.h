@@ -14,11 +14,17 @@
  * along with RetroFE.  If not, see <http://www.gnu.org/licenses/>.
  */
 #pragma once
-#include <SDL2/SDL.h>
+#include <SDL/SDL.h>
 #include <SDL2/SDL_joystick.h>
 #include <map>
 #include <string>
 #include <vector>
+//#include "SDL_scancode.h"
+
+typedef struct{
+	char name[32];
+	int code;
+}key_names_s;
 
 const int cMaxJoy = 4;
 
@@ -64,6 +70,8 @@ public:
     void clearJoysticks( );
 
 private:
+    SDLKey SDL_GetScancodeFromName(const char *name);
+    //SDL_Scancode SDL_GetScancodeFromName(const char *name);
     bool MapKey(std::string keyDescription, KeyCode_E key);
     bool MapKey(std::string keyDescription, KeyCode_E key, bool required);
     Configuration &config_;

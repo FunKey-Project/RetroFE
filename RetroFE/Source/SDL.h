@@ -16,10 +16,14 @@
 #pragma once
 
 
-#include <SDL2/SDL.h>
+//#include <SDL/SDL.h>
+#include <SDL/SDL.h>
 #include <string>
 #include "Graphics/ViewInfo.h"
 
+//Flip flags
+#define FLIP_VERTICAL	1
+#define FLIP_HORIZONTAL	2
 
 class Configuration;
 
@@ -29,10 +33,13 @@ class SDL
 public:
     static bool initialize( Configuration &config );
     static bool deInitialize( );
-    static SDL_Renderer *getRenderer( );
+    //static SDL_Renderer *getRenderer( );
     static SDL_mutex *getMutex( );
-    static SDL_Window *getWindow( );
-    static bool renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo );
+    //static SDL_Window *getWindow( );
+    static SDL_Surface *getWindow( );
+    static void renderAndFlipWindow( );
+    //static bool renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo );
+    static bool renderCopy( SDL_Surface *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo );
     static int getWindowWidth( )
     {
         return windowWidth_;
@@ -45,14 +52,23 @@ public:
     {
         return fullscreen_;
     }
+    static void SDL_Rotate_270(SDL_Surface * dst, SDL_Surface * src);
 
 private:
-    static SDL_Window   *window_;
-    static SDL_Renderer *renderer_;
+    //static SDL_Window   *window_;
+    //static SDL_Renderer *renderer_;
+    static Uint32 get_pixel32( SDL_Surface *surface, int x, int y );
+    static void put_pixel32( SDL_Surface *surface, int x, int y, Uint32 pixel );
+    static SDL_Surface * flip_surface( SDL_Surface *surface, int flags );
+    static SDL_Surface  *window_;
+    static SDL_Surface 	*window_virtual_;
+    static SDL_Surface 	*texture_copy_alpha_;
     static SDL_mutex    *mutex_;
     static int           displayWidth_;
     static int           displayHeight_;
     static int           windowWidth_;
     static int           windowHeight_;
     static bool          fullscreen_;
+    static bool          showFrame_;
 };
+

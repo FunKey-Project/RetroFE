@@ -23,6 +23,13 @@
 #include <dirent.h>
 #include <locale>
 #include <list>
+#include <linux/vt.h>
+#include <sys/ioctl.h>
+#include <stdio.h>
+#include <stdint.h>
+#include <fcntl.h>
+#include <linux/kd.h>
+#include <linux/keyboard.h>
 
 
 Utils::Utils()
@@ -253,3 +260,30 @@ std::string Utils::trimEnds(std::string str)
     return str;
 }
 
+int Utils::termfix(uint32_t ttyId){
+    // Init tty file path
+    char ttyFilePath[100];
+    sprintf(ttyFilePath, "/dev/tty%d", ttyId);
+
+    // Open tty
+    int fd = open(ttyFilePath, O_RDWR, 0);
+
+    // Unlock virtual terminal
+    int res = ioctl(fd, VT_UNLOCKSWITCH, 1);
+    if(res != 0)
+    {
+        printf("ioctl VT_UNLOCKSWITCH failed");
+        return res;
+    }
+
+    // Set Virtual terminal mode text (not graphical)
+    ioctl(fd, KDSETMODE, KD_TEXT);
+    if(res != 0)
+    {
+        printf("ioctl KDSETMODE failed");
+        return res;
+    }
+
+    //printf("Success\n");
+    return res;
+}

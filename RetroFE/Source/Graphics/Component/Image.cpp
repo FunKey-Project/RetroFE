@@ -17,7 +17,7 @@
 #include "../ViewInfo.h"
 #include "../../SDL.h"
 #include "../../Utility/Log.h"
-#include <SDL2/SDL_image.h>
+#include <SDL/SDL_image.h>
 
 Image::Image(std::string file, std::string altFile, Page &p, float scaleX, float scaleY)
     : Component(p)
@@ -42,7 +42,8 @@ void Image::freeGraphicsMemory()
     SDL_LockMutex(SDL::getMutex());
     if (texture_ != NULL)
     {
-        SDL_DestroyTexture(texture_);
+        //SDL_DestroyTexture(texture_);
+	SDL_FreeSurface(texture_);
         texture_ = NULL;
     }
     SDL_UnlockMutex(SDL::getMutex());
@@ -56,18 +57,22 @@ void Image::allocateGraphicsMemory()
     if(!texture_)
     {
         SDL_LockMutex(SDL::getMutex());
-        texture_ = IMG_LoadTexture(SDL::getRenderer(), file_.c_str());
+        //texture_ = IMG_LoadTexture(SDL::getRenderer(), file_.c_str());
+        texture_ = IMG_Load(file_.c_str());
         if (!texture_ && altFile_ != "")
         {
-            texture_ = IMG_LoadTexture(SDL::getRenderer(), altFile_.c_str());
+            //texture_ = IMG_LoadTexture(SDL::getRenderer(), altFile_.c_str());
+            texture_ = IMG_Load(altFile_.c_str());
         }
 
         if (texture_ != NULL)
         {
-            SDL_SetTextureBlendMode(texture_, SDL_BLENDMODE_BLEND);
-            SDL_QueryTexture(texture_, NULL, NULL, &width, &height);
+            //SDL_SetTextureBlendMode(texture_, SDL_BLENDMODE_BLEND);
+            /*SDL_QueryTexture(texture_, NULL, NULL, &width, &height);
             baseViewInfo.ImageWidth = width * scaleX_;
-            baseViewInfo.ImageHeight = height * scaleY_;
+            baseViewInfo.ImageHeight = height * scaleY_;*/
+	    baseViewInfo.ImageWidth = texture_->w * scaleX_;
+	    baseViewInfo.ImageHeight = texture_->h * scaleY_;
         }
         SDL_UnlockMutex(SDL::getMutex());
 

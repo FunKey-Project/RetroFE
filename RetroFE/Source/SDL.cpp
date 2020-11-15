@@ -18,17 +18,23 @@
 #include "SDL.h"
 #include "Database/Configuration.h"
 #include "Utility/Log.h"
-#include <SDL2/SDL_mixer.h>
+#include <SDL/SDL_mixer.h>
+//#include <SDL/SDL_rotozoom.h>
+#include <SDL/SDL_gfxBlitFunc.h>
 
 
-SDL_Window   *SDL::window_        = NULL;
-SDL_Renderer *SDL::renderer_      = NULL;
+//SDL_Window   *SDL::window_        = NULL;
+//SDL_Renderer *SDL::renderer_      = NULL;
+SDL_Surface  *SDL::window_		  		= NULL;
+SDL_Surface  *SDL::window_virtual_		= NULL;
+SDL_Surface  *SDL::texture_copy_alpha_	= NULL;
 SDL_mutex    *SDL::mutex_         = NULL;
 int           SDL::displayWidth_  = 0;
 int           SDL::displayHeight_ = 0;
 int           SDL::windowWidth_   = 0;
 int           SDL::windowHeight_  = 0;
 bool          SDL::fullscreen_    = false;
+bool          SDL::showFrame_    		= true;
 
 
 // Initialize SDL
@@ -38,12 +44,13 @@ bool SDL::initialize( Configuration &config )
     bool        retVal        = true;
     std::string hString;
     std::string vString;
-    Uint32      windowFlags   = SDL_WINDOW_OPENGL | SDL_WINDOW_BORDERLESS;
+    Uint32      windowFlags   = SDL_HWSURFACE | SDL_DOUBLEBUF;
     int         audioRate     = MIX_DEFAULT_FREQUENCY;
     Uint16      audioFormat   = MIX_DEFAULT_FORMAT; /* 16-bit stereo */
     int         audioChannels = 1;
     int         audioBuffers  = 4096;
     bool        hideMouse;
+    const SDL_VideoInfo* videoInfo;
 
     Logger::write( Logger::ZONE_INFO, "SDL", "Initializing" );
     if (retVal && SDL_Init( SDL_INIT_EVERYTHING ) != 0)
@@ -68,16 +75,16 @@ bool SDL::initialize( Configuration &config )
     // check for a few other necessary Configurations
     if ( retVal )
     {
-        // Get current display mode of all displays.
-        for(int i = 0; i < SDL_GetNumVideoDisplays( ); ++i)
+        // Get current screen resolution
+        videoInfo = SDL_GetVideoInfo();
+	if (videoInfo == NULL)
         {
-            SDL_DisplayMode mode;
-            if ( SDL_GetCurrentDisplayMode( i, &mode ) == 0 )
-            {
-                displayWidth_  = mode.w;
-                displayHeight_ = mode.h;
-                break;
-            }
+	    Logger::write( Logger::ZONE_ERROR, "SDL", "SDL_GetVideoInfo failed");
+	    retVal = false;
+	}
+	else{
+	    displayWidth_ = videoInfo->current_w;
+	    displayHeight_ = videoInfo->current_h;
         }
 
         if ( !config.getProperty( "horizontal", hString ) )
@@ -87,16 +94,7 @@ bool SDL::initialize( Configuration &config )
         }
         else if ( hString == "stretch" )
         {
-            // Get current display mode of all displays.
-            for(int i = 0; i < SDL_GetNumVideoDisplays( ); ++i)
-            {
-                SDL_DisplayMode mode;
-                if ( SDL_GetCurrentDisplayMode( i, &mode ) == 0 )
-                {
-                    windowWidth_ = mode.w;
-                    break;
-                }
-            }
+	    windowWidth_ = displayWidth_;
         }
         else if ( !config.getProperty( "horizontal", windowWidth_ ) )
         {
@@ -113,16 +111,7 @@ bool SDL::initialize( Configuration &config )
         }
         else if ( vString == "stretch" )
         {
-            // Get current display mode of all displays.
-            for(int i = 0; i < SDL_GetNumVideoDisplays( ); ++i)
-            {
-                SDL_DisplayMode mode;
-                if ( SDL_GetDesktopDisplayMode( i, &mode ) == 0 )
-                {
-                    windowHeight_ = mode.h;
-                    break;
-                }
-            }
+	    windowHeight_ = displayHeight_;
         }
         else if ( !config.getProperty( "vertical", windowHeight_ ) )
         {
@@ -138,11 +127,18 @@ bool SDL::initialize( Configuration &config )
 
     if (retVal && fullscreen_)
     {
-#ifdef WIN32
-        windowFlags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
-#else
-        windowFlags |= SDL_WINDOW_FULLSCREEN;
-#endif
+        windowFlags |= SDL_FULLSCREEN;
+    }
+
+    if ( retVal && !config.getProperty( "showFrame", showFrame_ ) )
+    {
+        Logger::write( Logger::ZONE_ERROR, "Configuration", "Missing property: \"showFrame\"" );
+        retVal = false;
+    }
+
+    if (retVal && !showFrame_)
+    {
+        windowFlags |= SDL_NOFRAME;
     }
 
     if ( retVal )
@@ -153,17 +149,49 @@ bool SDL::initialize( Configuration &config )
 
         Logger::write( Logger::ZONE_INFO, "SDL", ss.str( ));
 
-        window_ = SDL_CreateWindow( "RetroFE", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, windowWidth_, windowHeight_, windowFlags );
-
+        window_ = SDL_SetVideoMode(windowWidth_, windowHeight_, 32, windowFlags);
         if ( window_ == NULL )
         {
             std::string error = SDL_GetError( );
-            Logger::write( Logger::ZONE_ERROR, "SDL", "Create window failed: " + error );
+            Logger::write( Logger::ZONE_ERROR, "SDL", "SDL_SetVideoMode failed: " + error );
             retVal = false;
         }
-    }
 
-    if ( retVal )
+        unsigned int rmask;
+        unsigned int gmask;
+        unsigned int bmask;
+        unsigned int amask;
+#if SDL_BYTEORDER == SDL_BIG_ENDIAN
+        rmask = 0xff000000;
+        gmask = 0x00ff0000;
+        bmask = 0x0000ff00;
+        amask = 0x000000ff;
+#else
+        rmask = 0x000000ff;
+        gmask = 0x0000ff00;
+        bmask = 0x00ff0000;
+        amask = 0xff000000;
+#endif
+        window_virtual_ = SDL_CreateRGBSurface(0, windowWidth_, windowHeight_, 32, 0,0,0,0);
+        //window_virtual_ = SDL_CreateRGBSurface(0, windowWidth_, windowHeight_, 32, rmask, gmask, bmask, amask); // colors are reversed with this !
+        if ( window_virtual_ == NULL )
+        {
+            std::string error = SDL_GetError( );
+            Logger::write( Logger::ZONE_ERROR, "SDL", "SDL_CreateRGBSurface window_virtual_ failed: " + error );
+            retVal = false;
+    }
+        SDL_FillRect(window_virtual_, NULL, SDL_MapRGBA(window_virtual_->format, 0, 0, 0, 0));
+
+        texture_copy_alpha_ = SDL_CreateRGBSurface(0, windowWidth_, windowHeight_, 32, rmask, gmask, bmask, amask);
+        if ( texture_copy_alpha_ == NULL )
+        {
+	    std::string error = SDL_GetError( );
+	    Logger::write( Logger::ZONE_ERROR, "SDL", "SDL_CreateRGBSurface texture_copy_alpha_ failed: " + error );
+	    retVal = false;
+        }
+        SDL_FillRect(texture_copy_alpha_, NULL, SDL_MapRGBA(texture_copy_alpha_->format, 0, 0, 0, 0));
+    }
+    /*if ( retVal )
     {
         renderer_ = SDL_CreateRenderer( window_, -1, SDL_RENDERER_ACCELERATED );
 
@@ -173,14 +201,14 @@ bool SDL::initialize( Configuration &config )
             Logger::write( Logger::ZONE_ERROR, "SDL", "Create renderer failed: " + error );
             retVal = false;
         }
-    }
+    }*/
 
-    if ( SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1") != SDL_TRUE )
+    /*if ( SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1") != SDL_TRUE )
     {
         Logger::write( Logger::ZONE_ERROR, "SDL", "Improve scale quality. Continuing with low-quality settings." );
-    }
+    }*/
 
-    bool minimize_on_focus_loss_;
+    /*bool minimize_on_focus_loss_;
     if ( config.getProperty( "minimize_on_focus_loss", minimize_on_focus_loss_ ) )
     {
         if ( minimize_on_focus_loss_ )
@@ -191,7 +219,7 @@ bool SDL::initialize( Configuration &config )
         {
             SDL_SetHintWithPriority( SDL_HINT_VIDEO_MINIMIZE_ON_FOCUS_LOSS, "0", SDL_HINT_OVERRIDE );
         }
-    }
+    }*/
 
     if ( retVal )
     {
@@ -231,16 +259,22 @@ bool SDL::deInitialize( )
         mutex_ = NULL;
     }
 
-    if ( renderer_ )
+    /*if ( renderer_ )
     {
         SDL_DestroyRenderer(renderer_);
         renderer_ = NULL;
+    }*/
+
+    if ( window_virtual_ )
+    {
+        SDL_FreeSurface(window_virtual_);
+        window_virtual_ = NULL;
     }
 
-    if ( window_ )
+    if ( texture_copy_alpha_ )
     {
-        SDL_DestroyWindow(window_);
-        window_ = NULL;
+        SDL_FreeSurface(texture_copy_alpha_);
+        texture_copy_alpha_ = NULL;
     }
 
     SDL_ShowCursor( SDL_TRUE );
@@ -252,10 +286,10 @@ bool SDL::deInitialize( )
 
 
 // Get the renderer
-SDL_Renderer* SDL::getRenderer( )
+/*SDL_Renderer* SDL::getRenderer( )
 {
     return renderer_;
-}
+}*/
 
 
 // Get the mutex
@@ -266,14 +300,158 @@ SDL_mutex* SDL::getMutex( )
 
 
 // Get the window
-SDL_Window* SDL::getWindow( )
+SDL_Surface* SDL::getWindow( )
+{
+    //return window_;
+	return window_virtual_;
+}
+/*SDL_Window* SDL::getWindow( )
 {
     return window_;
+}*/
+
+
+
+
+
+
+void SDL::SDL_Rotate_270(SDL_Surface * dst, SDL_Surface * src){
+  int i, j;
+    uint32_t *source_pixels = (uint32_t*) src->pixels;
+    uint32_t *dest_pixels = (uint32_t*) dst->pixels;
+
+    /// --- Checking for right pixel format ---
+    //MENU_DEBUG_PRINTF("Source bpb = %d, Dest bpb = %d\n", src->format->BitsPerPixel, dst->format->BitsPerPixel);
+    if(src->format->BitsPerPixel != 32){
+      printf("Error in SDL_Rotate_270, Wrong virtual_hw_surface pixel format: %d bpb, expected: uint32_t bpb\n", src->format->BitsPerPixel);
+      return;
+}
+    if(dst->format->BitsPerPixel != 32){
+      printf("Error in SDL_Rotate_270, Wrong hw_surface pixel format: %d bpb, expected: uint32_t bpb\n", dst->format->BitsPerPixel);
+      return;
+    }
+
+    /// --- Checking if same dimensions ---
+    if(dst->w != src->w || dst->h != src->h){
+      printf("Error in SDL_Rotate_270, hw_surface (%dx%d) and virtual_hw_surface (%dx%d) have different dimensions\n",
+	     dst->w, dst->h, src->w, src->h);
+      return;
+    }
+
+  /// --- Pixel copy and rotation (270) ---
+  uint32_t *cur_p_src, *cur_p_dst;
+  for(i=0; i<src->h; i++){
+    for(j=0; j<src->w; j++){
+      cur_p_src = source_pixels + i*src->w + j;
+      cur_p_dst = dest_pixels + (dst->h-1-j)*dst->w + i;
+      *cur_p_dst = *cur_p_src;
+    }
+  }
 }
 
 
+// Copy virtual window to HW window and Flip display
+void SDL::renderAndFlipWindow( )
+{
+	//SDL_BlitSurface(window_virtual_, NULL, window_, NULL);
+	SDL_Rotate_270(window_, window_virtual_);
+
+	SDL_Flip(window_);
+}
+
+
+
+Uint32 SDL::get_pixel32( SDL_Surface *surface, int x, int y )
+{
+    //Convert the pixels to 32 bit
+    Uint32 *pixels = (Uint32 *)surface->pixels;
+
+    //Get the requested pixel
+    return pixels[ ( y * surface->w ) + x ];
+}
+
+void SDL::put_pixel32( SDL_Surface *surface, int x, int y, Uint32 pixel )
+{
+    //Convert the pixels to 32 bit
+    Uint32 *pixels = (Uint32 *)surface->pixels;
+
+    //Set the pixel
+    pixels[ ( y * surface->w ) + x ] = pixel;
+}
+
+
+// Flip a surface
+SDL_Surface * SDL::flip_surface( SDL_Surface *surface, int flags )
+{
+    //Pointer to the soon to be flipped surface
+    SDL_Surface *flipped = NULL;
+
+    //If the image is color keyed
+    if( surface->flags & SDL_SRCCOLORKEY )
+    {
+        flipped = SDL_CreateRGBSurface( SDL_SWSURFACE, surface->w, surface->h, surface->format->BitsPerPixel, surface->format->Rmask, surface->format->Gmask, surface->format->Bmask, 0 );
+    }
+    //Otherwise
+    else
+    {
+        flipped = SDL_CreateRGBSurface( SDL_SWSURFACE, surface->w, surface->h, surface->format->BitsPerPixel, surface->format->Rmask, surface->format->Gmask, surface->format->Bmask, surface->format->Amask );
+    }
+
+    //If the surface must be locked
+    if( SDL_MUSTLOCK( surface ) )
+    {
+        //Lock the surface
+        SDL_LockSurface( surface );
+    }
+
+    //Go through columns
+    for( int x = 0, rx = flipped->w - 1; x < flipped->w; x++, rx-- )
+    {
+        //Go through rows
+        for( int y = 0, ry = flipped->h - 1; y < flipped->h; y++, ry-- )
+        {
+            //Get pixel
+            Uint32 pixel = get_pixel32( surface, x, y );
+
+            //Copy pixel
+            if( ( flags & FLIP_VERTICAL ) && ( flags & FLIP_HORIZONTAL ) )
+            {
+                put_pixel32( flipped, rx, ry, pixel );
+            }
+            else if( flags & FLIP_HORIZONTAL )
+            {
+                put_pixel32( flipped, rx, y, pixel );
+            }
+            else if( flags & FLIP_VERTICAL )
+            {
+                put_pixel32( flipped, x, ry, pixel );
+            }
+        }
+    }
+
+    //Unlock surface
+    if( SDL_MUSTLOCK( surface ) )
+    {
+        SDL_UnlockSurface( surface );
+    }
+
+    //Copy color key
+    if( surface->flags & SDL_SRCCOLORKEY )
+    {
+        SDL_SetColorKey( flipped, SDL_RLEACCEL | SDL_SRCCOLORKEY, surface->format->colorkey );
+    }
+
+    //Return flipped surface
+    return flipped;
+}
+
+
+
+
+
 // Render a copy of a texture
-bool SDL::renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo )
+/*bool SDL::renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo )*/
+bool SDL::renderCopy( SDL_Surface *texture, float alpha, SDL_Rect *src, SDL_Rect *dest, ViewInfo &viewInfo )
 {
 
     SDL_Rect srcRect;
@@ -309,11 +487,13 @@ bool SDL::renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect
     {
         srcRect.x = 0;
         srcRect.y = 0;
-        int w = 0;
+        /*int w = 0;
         int h = 0;
         SDL_QueryTexture(texture, NULL, NULL, &w, &h);
         srcRect.w = w;
-        srcRect.h = h;
+        srcRect.h = h;*/
+        srcRect.w = texture->w;
+        srcRect.h = texture->h;
     }
 
     // Define the scale
@@ -369,40 +549,111 @@ bool SDL::renderCopy( SDL_Texture *texture, float alpha, SDL_Rect *src, SDL_Rect
 
     }
 
-    SDL_SetTextureAlphaMod( texture, static_cast<char>( alpha * 255 ) );
-    SDL_RenderCopyEx( getRenderer( ), texture, &srcRect, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_NONE );
+    //printf("scaleX : %d, scale Y:%d\n", scaleX, scaleY);
+    //SDL_SetTextureAlphaMod( texture, static_cast<char>( alpha * 255 ) );
+    //SDL_RenderCopyEx( getRenderer( ), texture, &srcRect, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_NONE );
 
-    if ( viewInfo.Reflection == "top" )
+
+    /*if(texture->format->Amask){
+		SDL_SetAlpha( texture, 0, SDL_ALPHA_OPAQUE );
+		SDL_BlitSurface (texture, &srcRect, texture_copy_alpha_, &dstRect);
+		SDL_gfxMultiplyAlpha (texture_copy_alpha_, static_cast<char>( alpha * 255 ));
+		SDL_BlitSurface (texture_copy_alpha_, &dstRect, getWindow(), &dstRect);
+    }
+    else{
+        //SDL_SetAlpha(texture, SDL_SRCALPHA, static_cast<char>( alpha * 255 ));
+	SDL_gfxSetAlpha(texture, static_cast<char>( alpha * 255 ));
+	SDL_BlitSurface (texture, &srcRect, getWindow(), &dstRect);
+    }*/
+
+    /*SDL_SetAlpha(texture, SDL_SRCALPHA, static_cast<char>( alpha * 255 ));
+    SDL_BlitSurface (texture, &srcRect, getWindow(), &dstRect);*/
+
+
+    unsigned int rmask;
+    unsigned int gmask;
+    unsigned int bmask;
+    unsigned int amask;
+#if SDL_BYTEORDER == SDL_BIG_ENDIAN
+        rmask = 0xff000000;
+        gmask = 0x00ff0000;
+        bmask = 0x0000ff00;
+        amask = 0x000000ff;
+#else
+        rmask = 0x000000ff;
+        gmask = 0x0000ff00;
+        bmask = 0x00ff0000;
+        amask = 0xff000000;
+#endif
+    SDL_Surface * texture_tmp = SDL_CreateRGBSurface(0, texture->w, texture->h, 32, rmask, gmask, bmask, amask);
+    //SDL_FillRect(texture_tmp, NULL, SDL_MapRGBA(texture_tmp->format, 0, 0, 0, 0));
+    SDL_SetAlpha( texture, 0, SDL_ALPHA_OPAQUE );
+    SDL_BlitSurface (texture, NULL, texture_tmp, NULL);
+    SDL_gfxMultiplyAlpha (texture_tmp, static_cast<char>( alpha * 255 ));
+    //SDL_gfxBlitRGBA(texture_tmp, &srcRect, getWindow(), &dstRect);
+    SDL_BlitSurface(texture_tmp, &srcRect, getWindow(), &dstRect);
+    SDL_FreeSurface(texture_tmp);
+
+
+    //texture = rotozoomSurfaceXY(texture, viewInfo.Angle, scaleX, scaleY, SMOOTHING_OFF);
+    //texture = rotozoomSurfaceXY(texture, viewInfo.Angle, 0.5, 0.5, SMOOTHING_OFF);
+    //double scale_x = 240/1920;
+    //double scale_y = 240/1080;
+    //texture = rotozoomSurfaceXY(texture, 0, 0.5, 0.6, SMOOTHING_ON);
+
+    /*if ( viewInfo.Reflection == "top" )
     {
         dstRect.h = static_cast<unsigned int>( static_cast<float>(dstRect.h ) * viewInfo.ReflectionScale);
         dstRect.y = dstRect.y - dstRect.h - viewInfo.ReflectionDistance;
-        SDL_SetTextureAlphaMod( texture, static_cast<char>( viewInfo.ReflectionAlpha * alpha * 255 ) );
-        SDL_RenderCopyEx( getRenderer( ), texture, src, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_VERTICAL );
-    }
+        //SDL_SetTextureAlphaMod( texture, static_cast<char>( viewInfo.ReflectionAlpha * alpha * 255 ) );
+        //SDL_RenderCopyEx( getRenderer( ), texture, src, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_VERTICAL );
 
-    if ( viewInfo.Reflection == "bottom" )
+        //texture = rotozoomSurfaceXY(texture, viewInfo.Angle, scaleX, scaleY, SMOOTHING_ON);
+
+
+        SDL_SetAlpha( texture, 0, SDL_ALPHA_OPAQUE );
+        SDL_BlitSurface (texture, &srcRect, texture_copy_alpha_, &dstRect);
+        texture_copy_alpha_ = flip_surface(texture_copy_alpha_, FLIP_VERTICAL);
+        SDL_gfxMultiplyAlpha (texture_copy_alpha_, static_cast<char>( alpha * 255 ));
+        SDL_BlitSurface (texture_copy_alpha_, &dstRect, getWindow(), &dstRect);
+    }*/
+
+    /*if ( viewInfo.Reflection == "bottom" )
     {
         dstRect.y = dstRect.y + dstRect.h + viewInfo.ReflectionDistance;
         dstRect.h = static_cast<unsigned int>( static_cast<float>(dstRect.h ) * viewInfo.ReflectionScale);
-        SDL_SetTextureAlphaMod( texture, static_cast<char>( viewInfo.ReflectionAlpha * alpha * 255 ) );
-        SDL_RenderCopyEx( getRenderer( ), texture, src, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_VERTICAL );
+        //SDL_SetTextureAlphaMod( texture, static_cast<char>( viewInfo.ReflectionAlpha * alpha * 255 ) );
+        //SDL_RenderCopyEx( getRenderer( ), texture, src, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_VERTICAL );
+        SDL_SetAlpha(texture, SDL_SRCALPHA, static_cast<char>( alpha * 255 ));
+        //texture = flip_surface(texture, FLIP_VERTICAL);
+        //texture = rotozoomSurfaceXY(texture, viewInfo.Angle, scaleX, scaleY, SMOOTHING_ON);
+        SDL_BlitSurface(texture, src, getWindow(), &dstRect);
     }
 
     if ( viewInfo.Reflection == "left" )
     {
         dstRect.w = static_cast<unsigned int>( static_cast<float>(dstRect.w ) * viewInfo.ReflectionScale);
         dstRect.x = dstRect.x - dstRect.w - viewInfo.ReflectionDistance;
-        SDL_SetTextureAlphaMod( texture, static_cast<char>( viewInfo.ReflectionAlpha * alpha * 255 ) );
-        SDL_RenderCopyEx( getRenderer( ), texture, src, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_HORIZONTAL );
+        //SDL_SetTextureAlphaMod( texture, static_cast<char>( viewInfo.ReflectionAlpha * alpha * 255 ) );
+        //SDL_RenderCopyEx( getRenderer( ), texture, src, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_HORIZONTAL );
+        SDL_SetAlpha(texture, SDL_SRCALPHA, static_cast<char>( alpha * 255 ));
+        //texture = flip_surface(texture, FLIP_HORIZONTAL);
+        //texture = rotozoomSurfaceXY(texture, viewInfo.Angle, scaleX, scaleY, SMOOTHING_ON);
+        SDL_BlitSurface(texture, src, getWindow(), &dstRect);
     }
 
     if ( viewInfo.Reflection == "right" )
     {
         dstRect.x = dstRect.x + dstRect.w + viewInfo.ReflectionDistance;
         dstRect.w = static_cast<unsigned int>( static_cast<float>(dstRect.w ) * viewInfo.ReflectionScale);
-        SDL_SetTextureAlphaMod( texture, static_cast<char>( viewInfo.ReflectionAlpha * alpha * 255 ) );
-        SDL_RenderCopyEx( getRenderer( ), texture, src, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_HORIZONTAL );
-    }
+        //SDL_SetTextureAlphaMod( texture, static_cast<char>( viewInfo.ReflectionAlpha * alpha * 255 ) );
+        //SDL_RenderCopyEx( getRenderer( ), texture, src, &dstRect, viewInfo.Angle, NULL, SDL_FLIP_HORIZONTAL );
+        SDL_SetAlpha(texture, SDL_SRCALPHA, static_cast<char>( alpha * 255 ));
+        //texture = flip_surface(texture, FLIP_HORIZONTAL);
+        //texture = rotozoomSurfaceXY(texture, viewInfo.Angle, scaleX, scaleY, SMOOTHING_ON);
+        SDL_BlitSurface(texture, src, getWindow(), &dstRect);
+    }*/
 
     return true;
 }
+

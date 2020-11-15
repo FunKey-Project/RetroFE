@@ -15,7 +15,7 @@
  */
 #pragma once
 
-#include <SDL2/SDL.h>
+#include <SDL/SDL.h>
 #include <map>
 #include <string>
 
@@ -36,7 +36,8 @@ public:
     virtual ~Font();
     bool initialize();
     void deInitialize();
-    SDL_Texture *getTexture();
+    //SDL_Texture *getTexture();
+    SDL_Surface *getTexture();
     bool getRect(unsigned int charCode, GlyphInfo &glyph);
     int getHeight();
     int getAscent();
@@ -48,7 +49,8 @@ private:
         SDL_Surface *surface;
     };
 
-    SDL_Texture *texture;
+    //SDL_Texture *texture;
+    SDL_Surface *texture;
     int height;
     int ascent;
     std::map<unsigned int, GlyphInfoBuild *> atlas;

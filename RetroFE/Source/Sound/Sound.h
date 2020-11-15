@@ -16,7 +16,7 @@
 #pragma once
 
 #include <string>
-#include <SDL2/SDL_mixer.h>
+#include <SDL/SDL_mixer.h>
 class Sound
 {
 public:

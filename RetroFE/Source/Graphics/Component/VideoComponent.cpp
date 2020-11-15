@@ -93,12 +93,12 @@ void VideoComponent::draw()
     rect.w = static_cast<int>(baseViewInfo.ScaledWidth());
 
     videoInst_->draw();
-    SDL_Texture *texture = videoInst_->getTexture();
+    /*SDL_Texture *texture = videoInst_->getTexture();
 
     if(texture)
     {
         SDL::renderCopy(texture, baseViewInfo.Alpha, NULL, &rect, baseViewInfo);
-    }
+    }*/
 }
 
 bool VideoComponent::isPlaying()

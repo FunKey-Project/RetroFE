@@ -1,6 +1,6 @@
 #include "KeyboardHandler.h"
 
-KeyboardHandler::KeyboardHandler(SDL_Scancode s)
+KeyboardHandler::KeyboardHandler(SDLKey s)
 : scancode_(s)
 , pressed_(false)
 {
@@ -15,7 +15,7 @@ bool KeyboardHandler::update(SDL_Event &e)
 {
     if(e.type != SDL_KEYUP && e.type != SDL_KEYDOWN) return false;
 
-    if(e.key.keysym.scancode == scancode_) 
+    if(e.key.keysym.sym == scancode_)
     {
         pressed_ = (e.type == SDL_KEYDOWN);
         return true;

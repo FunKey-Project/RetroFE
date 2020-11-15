@@ -15,7 +15,7 @@
  */
 #pragma once
 
-#include <SDL2/SDL.h>
+#include <SDL/SDL.h>
 #include <string>
 
 class IVideo
@@ -26,7 +26,7 @@ public:
     virtual bool play(std::string file) = 0;
     virtual bool stop() = 0;
     virtual bool deInitialize() = 0;
-    virtual SDL_Texture *getTexture() const = 0;
+    //virtual SDL_Texture *getTexture() const = 0;
     virtual void update(float dt) = 0;
     virtual void draw() = 0;
     virtual int getHeight() = 0;

@@ -68,7 +68,8 @@ void Component::freeGraphicsMemory()
     if ( backgroundTexture_ )
     {
         SDL_LockMutex(SDL::getMutex());
-        SDL_DestroyTexture(backgroundTexture_);
+        //SDL_DestroyTexture(backgroundTexture_);
+        SDL_FreeSurface(backgroundTexture_);
         SDL_UnlockMutex(SDL::getMutex());
 
         backgroundTexture_ = NULL;
@@ -80,7 +81,7 @@ void Component::allocateGraphicsMemory()
     {
         // make a 4x4 pixel wide surface to be stretched during rendering, make it a white background so we can use
         // color  later
-        SDL_Surface *surface = SDL_CreateRGBSurface(0, 4, 4, 32, 0, 0, 0, 0);
+        /*SDL_Surface *surface = SDL_CreateRGBSurface(0, 4, 4, 32, 0, 0, 0, 0);
         SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 255, 255, 255));
 
         SDL_LockMutex(SDL::getMutex());
@@ -88,7 +89,12 @@ void Component::allocateGraphicsMemory()
         SDL_UnlockMutex(SDL::getMutex());
 
         SDL_FreeSurface(surface);
-        SDL_SetTextureBlendMode(backgroundTexture_, SDL_BLENDMODE_BLEND);
+        SDL_SetTextureBlendMode(backgroundTexture_, SDL_BLENDMODE_BLEND);*/
+
+        SDL_LockMutex(SDL::getMutex());
+	backgroundTexture_ = SDL_CreateRGBSurface(0, 4, 4, 32, 0, 0, 0, 0);
+	SDL_FillRect(backgroundTexture_, NULL, SDL_MapRGB(backgroundTexture_->format, 255, 255, 255));
+	SDL_UnlockMutex(SDL::getMutex());
     }
 }
 
@@ -217,11 +223,11 @@ void Component::draw()
         rect.x = static_cast<int>(baseViewInfo.XRelativeToOrigin());
         rect.y = static_cast<int>(baseViewInfo.YRelativeToOrigin());
 
-
-        SDL_SetTextureColorMod(backgroundTexture_,
+        // TODO : adapt to sdl1.2
+        /*SDL_SetTextureColorMod(backgroundTexture_,
                                static_cast<char>(baseViewInfo.BackgroundRed*255),
                                static_cast<char>(baseViewInfo.BackgroundGreen*255),
-                               static_cast<char>(baseViewInfo.BackgroundBlue*255));
+                               static_cast<char>(baseViewInfo.BackgroundBlue*255));*/
 
         SDL::renderCopy(backgroundTexture_, baseViewInfo.BackgroundAlpha, NULL, &rect, baseViewInfo);
     }

@@ -22,7 +22,7 @@
 #include "../Page.h"
 #include "../ViewInfo.h"
 #include "../../Database/Configuration.h"
-#include <SDL2/SDL.h>
+#include <SDL/SDL.h>
 
 
 class Configuration;

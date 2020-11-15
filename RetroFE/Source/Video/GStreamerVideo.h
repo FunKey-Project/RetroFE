@@ -33,7 +33,7 @@ public:
     bool play(std::string file);
     bool stop();
     bool deInitialize();
-    SDL_Texture *getTexture() const;
+    //SDL_Texture *getTexture() const;
     void update(float dt);
     void draw();
     void setNumLoops(int n);
@@ -52,7 +52,7 @@ private:
     GstElement *videoConvert_;
     GstCaps *videoConvertCaps_;
     GstBus *videoBus_;
-    SDL_Texture* texture_;
+    //SDL_Texture* texture_;
     gint height_;
     gint width_;
     GstBuffer *videoBuffer_;

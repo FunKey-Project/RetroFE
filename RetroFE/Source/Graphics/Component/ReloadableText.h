@@ -19,7 +19,7 @@
 #include "../Font.h"
 #include "../Page.h"
 #include "../../Collection/Item.h"
-#include <SDL2/SDL.h>
+#include <SDL/SDL.h>
 #include <string>
 
 class ReloadableText : public Component

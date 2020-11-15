@@ -42,8 +42,10 @@ ReloadableScrollingText::ReloadableScrollingText(Configuration &config, bool sys
     , pluralPrefix_(pluralPrefix)
     , pluralPostfix_(pluralPostfix)
     , alignment_(alignment)
-    , scaleX_(scaleX)
-    , scaleY_(scaleY)
+    //, scaleX_(scaleX)
+    //, scaleY_(scaleY)
+	, scaleX_(1.0f)	//TODO
+	, scaleY_(1.0f)	//TODO
     , direction_(direction)
     , scrollingSpeed_(scrollingSpeed)
     , startPosition_(startPosition)
@@ -459,7 +461,8 @@ void ReloadableScrollingText::draw( )
         else                   // If not, use the general font settings
           font = fontInst_;
 
-        SDL_Texture *t = font->getTexture( );
+        //SDL_Texture *t = font->getTexture( );
+        SDL_Surface *t = font->getTexture( );
 
         float imageWidth     = 0;
         float imageMaxWidth  = 0;
@@ -481,7 +484,9 @@ void ReloadableScrollingText::draw( )
             imageMaxHeight = baseViewInfo.MaxHeight;
         }
 
-        float scale = (float)baseViewInfo.FontSize / (float)font->getHeight( ) / scaleY_;
+        //float scale = (float)baseViewInfo.FontSize / (float)font->getHeight( ) / scaleY_;
+        //TODO, modify for scaling - for now, no scaling in effect
+        float scale = 1.0f;
 
         float xOrigin = baseViewInfo.XRelativeToOrigin( );
         float yOrigin = baseViewInfo.YRelativeToOrigin( );
@@ -513,17 +518,19 @@ void ReloadableScrollingText::draw( )
 
                     Font::GlyphInfo glyph;
 
-                    if (font->getRect( text_[l][i], glyph) && glyph.rect.h > 0)
+                    //if (font->getRect( text_[l][i], glyph) && glyph.rect.h > 0)
+                    if (font->getRect( text_[l][i], glyph))
                     {
                         SDL_Rect charRect = glyph.rect;
                         rect.h  = static_cast<int>( charRect.h * scale * scaleY_ );
                         rect.w  = static_cast<int>( charRect.w * scale * scaleX_ );
                         rect.y  = static_cast<int>( yOrigin );
 
-                        if (font->getAscent( ) < glyph.maxY)
+                        /*if (font->getAscent( ) < glyph.maxY)
                         {
                             rect.y += static_cast<int>( (font->getAscent( ) - glyph.maxY) * scale * scaleY_ );
-                        }
+                        }*/
+                        rect.y += static_cast<int>( (font->getAscent( ) - glyph.maxY) * scale * scaleY_ );
 
                         // Check if glyph falls partially outside the box at the back end
                         if ((rect.x + static_cast<int>( glyph.advance * scale * scaleX_ )) >= (static_cast<int>( xOrigin ) + imageMaxWidth))
@@ -707,7 +714,8 @@ void ReloadableScrollingText::draw( )
                     {
                         Font::GlyphInfo glyph;
 
-                        if (font->getRect( word[i], glyph) && glyph.rect.h > 0)
+                        //if (font->getRect( word[i], glyph) && glyph.rect.h > 0)
+                        if (font->getRect( word[i], glyph))
                         {
                             SDL_Rect charRect = glyph.rect;
                             rect.h   = static_cast<int>( charRect.h * scale * scaleY_ );

@@ -73,7 +73,8 @@ void Text::draw( )
     else                     // If not, use the general font settings
       font = fontInst_;
 
-    SDL_Texture *t = font->getTexture( );
+    //SDL_Texture *t = font->getTexture( );
+    SDL_Surface *t = font->getTexture( );
 
     float imageHeight = 0;
     float imageWidth = 0;
@@ -88,8 +89,14 @@ void Text::draw( )
     }
 
     imageHeight = (float)font->getHeight( );
-    float scale = (float)baseViewInfo.FontSize / (float)imageHeight;
+    //float scale = (float)baseViewInfo.FontSize / (float)imageHeight;
 
+    //TODO, modify for scaling - for now, no scaling in effect
+    float scale = 1.0f;
+
+    /*printf("\n");
+    printf("imageMaxWidth=%f, imageHeight=%f, baseViewInfo.FontSize=%f,scale=%f\n", imageMaxWidth, imageHeight, baseViewInfo.FontSize, scale);
+*/
     unsigned int textIndexMax = 0;
 
     // determine image width
@@ -110,6 +117,14 @@ void Text::draw( )
 
             textIndexMax = i;
             imageWidth  += glyph.advance;
+
+            /*printf("textData_[%d]=%c, glyph.advance= %f - %d\n", i, textData_[i], glyph.advance, glyph.advance);
+            printf("imageWidth=%f \n", imageWidth);*/
+        }
+        else{
+	    /*std::stringstream ss;
+	      ss << "Could not find Glyph info for char: " << textData_[i];
+	      Logger::write(Logger::ZONE_WARNING, "Text", ss.str());*/
         }
 
     }
@@ -140,7 +155,8 @@ void Text::draw( )
     {
         Font::GlyphInfo glyph;
 
-        if ( font->getRect(textData_[i], glyph) && glyph.rect.h > 0 )
+        //if ( font->getRect(textData_[i], glyph) && glyph.rect.h > 0 ) 	// Not working in SDL1.2 because glyph.rect.h = 0 for spaces
+        if ( font->getRect(textData_[i], glyph))
         {
             SDL_Rect charRect = glyph.rect;
             float h = static_cast<float>( charRect.h * scale );
@@ -153,11 +169,13 @@ void Text::draw( )
             {
                 rect.x += static_cast<int>( (float)(glyph.minX) * scale );
             }
-            if ( font->getAscent( ) < glyph.maxY )
+            /*if ( font->getAscent( ) < glyph.maxY )
             {
                 rect.y += static_cast<int>( (font->getAscent( ) - glyph.maxY)*scale );
-            }
+            }*/
 
+            /*printf("font->getAscent( ) = %d, glyph.maxY : %d\n", font->getAscent( ), glyph.maxY );*/
+            rect.y += static_cast<int>( (font->getAscent( ) - glyph.maxY)*scale );
 
             SDL::renderCopy( t, baseViewInfo.Alpha, &charRect, &rect, baseViewInfo );
 

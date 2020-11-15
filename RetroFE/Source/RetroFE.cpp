@@ -39,7 +39,7 @@
 #include <string>
 #include <tuple>
 #include <vector>
-#include <SDL2/SDL_ttf.h>
+#include <SDL/SDL_ttf.h>
 
 #if defined(__linux) || defined(__APPLE__)
 #include <sys/stat.h>
@@ -50,9 +50,14 @@
 
 #ifdef WIN32
 #include <Windows.h>
-#include <SDL2/SDL_syswm.h>
-#include <SDL2/SDL_thread.h>
+#include <SDL/SDL_syswm.h>
+#include <SDL/SDL_thread.h>
 #endif
+
+#define REMOVE_TEST_FUNKEY
+#define FUNKEY_ALL_POLLEVENT_DELAY	30 //ms
+
+#define FPS 30 // TODO: set in conf file
 
 
 RetroFE::RetroFE( Configuration &c )
@@ -85,15 +90,19 @@ void RetroFE::render( )
 {
 
     SDL_LockMutex( SDL::getMutex( ) );
-    SDL_SetRenderDrawColor( SDL::getRenderer( ), 0x0, 0x0, 0x00, 0xFF );
-    SDL_RenderClear( SDL::getRenderer( ) );
+    //SDL_SetRenderDrawColor( SDL::getRenderer( ), 0x0, 0x0, 0x00, 0xFF );
+    //SDL_RenderClear( SDL::getRenderer( ) );
+    SDL_FillRect(SDL::getWindow( ), NULL, SDL_MapRGB(SDL::getWindow( )->format, 0, 0, 0));
 
     if ( currentPage_ )
     {
         currentPage_->draw( );
     }
 
-    SDL_RenderPresent( SDL::getRenderer( ) );
+    //SDL_RenderPresent( SDL::getRenderer( ) );
+    //SDL_Flip(SDL::getWindow( ));
+    SDL::renderAndFlipWindow();
+
     SDL_UnlockMutex( SDL::getMutex( ) );
 
 }
@@ -143,7 +152,7 @@ void RetroFE::launchEnter( )
 {
 
     // Disable window focus
-    SDL_SetWindowGrab(SDL::getWindow( ), SDL_FALSE);
+    //SDL_SetWindowGrab(SDL::getWindow( ), SDL_FALSE);
 
     // Free the textures, and optionally take down SDL
     freeGraphicsMemory( );
@@ -159,9 +168,9 @@ void RetroFE::launchExit( )
     allocateGraphicsMemory( );
 
     // Restore the SDL settings
-    SDL_RestoreWindow( SDL::getWindow( ) );
-    SDL_RaiseWindow( SDL::getWindow( ) );
-    SDL_SetWindowGrab( SDL::getWindow( ), SDL_TRUE );
+    //SDL_RestoreWindow( SDL::getWindow( ) );
+    //SDL_RaiseWindow( SDL::getWindow( ) );
+    //SDL_SetWindowGrab( SDL::getWindow( ), SDL_TRUE );
 
     // Empty event queue, but handle joystick add/remove events
     SDL_Event e;
@@ -182,7 +191,7 @@ void RetroFE::launchExit( )
 }
 
 
-// Free the textures, and optionall take down SDL
+// Free the textures, and optionally take down SDL
 void RetroFE::freeGraphicsMemory( )
 {
 
@@ -224,6 +233,7 @@ void RetroFE::allocateGraphicsMemory( )
         currentPage_->allocateGraphicsMemory( );
     }
 
+
 }
 
 
@@ -264,6 +274,118 @@ bool RetroFE::deInitialize( )
     return retVal;
 }
 
+// Print State
+void RetroFE::printState(RETROFE_STATE state){
+	switch(state){
+	case RETROFE_IDLE:
+		printf("RETROFE_IDLE");
+		break;
+	case RETROFE_LOAD_ART:
+		printf("RETROFE_LOAD_ART");
+		break;
+	case RETROFE_ENTER:
+		printf("RETROFE_ENTER");
+		break;
+	case RETROFE_SPLASH_EXIT:
+		printf("RETROFE_SPLASH_EXIT");
+		break;
+	case RETROFE_PLAYLIST_REQUEST:
+		printf("RETROFE_PLAYLIST_REQUEST");
+		break;
+	case RETROFE_PLAYLIST_EXIT:
+		printf("RETROFE_PLAYLIST_EXIT");
+		break;
+	case RETROFE_PLAYLIST_LOAD_ART:
+		printf("RETROFE_PLAYLIST_LOAD_ART");
+		break;
+	case RETROFE_PLAYLIST_ENTER:
+		printf("RETROFE_PLAYLIST_ENTER");
+		break;
+	case RETROFE_MENUJUMP_REQUEST:
+		printf("RETROFE_MENUJUMP_REQUEST");
+		break;
+	case RETROFE_MENUJUMP_EXIT:
+		printf("RETROFE_MENUJUMP_EXIT");
+		break;
+	case RETROFE_MENUJUMP_LOAD_ART:
+		printf("RETROFE_MENUJUMP_LOAD_ART");
+		break;
+	case RETROFE_MENUJUMP_ENTER:
+		printf("RETROFE_MENUJUMP_ENTER");
+		break;
+	case RETROFE_HIGHLIGHT_REQUEST:
+		printf("RETROFE_HIGHLIGHT_REQUEST");
+		break;
+	case RETROFE_HIGHLIGHT_EXIT:
+		printf("RETROFE_HIGHLIGHT_EXIT");
+		break;
+	case RETROFE_HIGHLIGHT_LOAD_ART:
+		printf("RETROFE_HIGHLIGHT_LOAD_ART");
+		break;
+	case RETROFE_HIGHLIGHT_ENTER:
+		printf("RETROFE_HIGHLIGHT_ENTER");
+		break;
+	case RETROFE_NEXT_PAGE_REQUEST:
+		printf("RETROFE_NEXT_PAGE_REQUEST");
+		break;
+	case RETROFE_NEXT_PAGE_MENU_EXIT:
+		printf("RETROFE_NEXT_PAGE_MENU_EXIT");
+		break;
+	case RETROFE_NEXT_PAGE_MENU_LOAD_ART:
+		printf("RETROFE_NEXT_PAGE_MENU_LOAD_ART");
+		break;
+	case RETROFE_NEXT_PAGE_MENU_ENTER:
+		printf("RETROFE_NEXT_PAGE_MENU_ENTER");
+		break;
+	case RETROFE_HANDLE_MENUENTRY:
+		printf("RETROFE_HANDLE_MENUENTRY");
+		break;
+	case RETROFE_LAUNCH_ENTER:
+		printf("RETROFE_LAUNCH_ENTER");
+		break;
+	case RETROFE_LAUNCH_REQUEST:
+		printf("RETROFE_LAUNCH_REQUEST");
+		break;
+	case RETROFE_LAUNCH_EXIT:
+		printf("RETROFE_LAUNCH_EXIT");
+		break;
+	case RETROFE_BACK_REQUEST:
+		printf("RETROFE_BACK_REQUEST");
+		break;
+	case RETROFE_BACK_MENU_EXIT:
+		printf("RETROFE_BACK_MENU_EXIT");
+		break;
+	case RETROFE_BACK_MENU_LOAD_ART:
+		printf("RETROFE_BACK_MENU_LOAD_ART");
+		break;
+	case RETROFE_BACK_MENU_ENTER:
+		printf("RETROFE_BACK_MENU_ENTER");
+		break;
+	case RETROFE_MENUMODE_START_REQUEST:
+		printf("RETROFE_MENUMODE_START_REQUEST");
+		break;
+	case RETROFE_MENUMODE_START_LOAD_ART:
+		printf("RETROFE_MENUMODE_START_LOAD_ART");
+		break;
+	case RETROFE_MENUMODE_START_ENTER:
+		printf("RETROFE_MENUMODE_START_ENTER");
+		break;
+	case RETROFE_NEW:
+		printf("RETROFE_NEW");
+		break;
+	case RETROFE_QUIT_REQUEST:
+		printf("RETROFE_QUIT_REQUEST");
+		break;
+	case RETROFE_QUIT:
+		printf("RETROFE_QUIT");
+		break;
+	default:
+		printf("STATE UNDEFINED:%d", state);
+		break;
+	}
+	printf("\n");
+}
+
 
 // Run RetroFE
 void RetroFE::run( )
@@ -293,7 +415,8 @@ void RetroFE::run( )
     VideoFactory::createVideo( ); // pre-initialize the gstreamer engine
     Video::setEnabled( videoEnable );
 
-    initializeThread = SDL_CreateThread( initialize, "RetroFEInit", (void *)this );
+    //initializeThread = SDL_CreateThread( initialize, "RetroFEInit", (void *)this );
+    initializeThread = SDL_CreateThread( initialize, (void *)this );
 
     if ( !initializeThread )
     {
@@ -338,10 +461,12 @@ void RetroFE::run( )
                 exitSplashMode = true;
                 while ( SDL_PollEvent( &e ) )
                 {
+#ifndef REMOVE_TEST_FUNKEY
                     if ( e.type == SDL_JOYDEVICEADDED || e.type == SDL_JOYDEVICEREMOVED )
                     {
                         input_.update( e );
                     }
+#endif
                 }
                 input_.resetStates( );
                 attract_.reset( );
@@ -354,6 +479,9 @@ void RetroFE::run( )
             running = false;
             break;
         }
+
+        // Uncomment to print State for debug purposes
+        //printState(state);
 
         switch(state)
         {
@@ -800,7 +928,7 @@ void RetroFE::run( )
 
         // Start menu mode
         case RETROFE_MENUMODE_START_REQUEST:
-            if ( currentPage_->isIdle( ) )
+            /*if ( currentPage_->isIdle( ) )
             {
                 lastMenuOffsets_[currentPage_->getCollectionName( )]   = currentPage_->getScrollOffsetIndex( );
                 lastMenuPlaylists_[currentPage_->getCollectionName( )] = currentPage_->getPlaylistName( );
@@ -822,11 +950,17 @@ void RetroFE::run( )
                 currentPage_->onNewItemSelected( );
                 currentPage_->reallocateMenuSpritePoints( );
                 state = RETROFE_MENUMODE_START_LOAD_ART;
-            }
+            }*/
+
+	    /// Clear events
+	    SDL_Event ev;
+	    while ( SDL_PollEvent( &ev ) );
+	    input_.resetStates( );
+	    state = RETROFE_IDLE;
             break;
 
         case RETROFE_MENUMODE_START_LOAD_ART:
-            currentPage_->start();
+            //currentPage_->start();
             state = RETROFE_MENUMODE_START_ENTER;
             break;
 
@@ -881,8 +1015,11 @@ void RetroFE::run( )
                 SDL_Delay( static_cast<unsigned int>( sleepTime ) );
             }
 
+
+            // Handle current pages updates
             if ( currentPage_ )
             {
+#ifndef REMOVE_TEST_FUNKEY
                 if (!splashMode)
                 {
                     attract_.update( deltaTime, *currentPage_ );
@@ -891,6 +1028,7 @@ void RetroFE::run( )
                 {
                     attract_.reset( );
                 }
+#endif
                 currentPage_->update( deltaTime );
             }
 
@@ -932,8 +1070,13 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
     while ( SDL_PollEvent( &e ) )
     {
         input_.update(e);
-        if ( e.type == SDL_KEYDOWN && !e.key.repeat )
+        /*if ( e.type == SDL_KEYDOWN && !e.key.repeat )
         {
+            break;
+        }*/
+        if ( e.type == SDL_KEYDOWN  )
+        {
+	    //printf("e.key.keysym.sym = %d\n", e.key.keysym.sym);
             break;
         }
     }

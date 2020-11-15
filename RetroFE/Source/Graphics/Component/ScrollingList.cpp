@@ -34,7 +34,7 @@
 #include "../../SDL.h"
 #include "../ViewInfo.h"
 #include <math.h>
-#include <SDL2/SDL_image.h>
+#include <SDL/SDL_image.h>
 #include <sstream>
 #include <cctype>
 #include <iomanip>
