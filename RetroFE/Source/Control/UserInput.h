@@ -15,7 +15,7 @@
  */
 #pragma once
 #include <SDL/SDL.h>
-#include <SDL2/SDL_joystick.h>
+//#include <SDL/SDL_joystick.h>
 #include <map>
 #include <string>
 #include <vector>
@@ -75,7 +75,7 @@ private:
     bool MapKey(std::string keyDescription, KeyCode_E key);
     bool MapKey(std::string keyDescription, KeyCode_E key, bool required);
     Configuration &config_;
-    SDL_JoystickID joysticks_[cMaxJoy];
+    //SDL_JoystickID joysticks_[cMaxJoy];
     std::vector<std::pair<InputHandler *, KeyCode_E> > keyHandlers_;
     bool lastKeyState_[KeyCodeMax]; 
     bool currentKeyState_[KeyCodeMax]; 

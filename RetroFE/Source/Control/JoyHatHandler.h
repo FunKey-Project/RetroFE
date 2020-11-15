@@ -1,7 +1,7 @@
 #pragma once
 
 #include "InputHandler.h"
-
+/*
 class JoyHatHandler : public InputHandler
 {
 public:
@@ -17,3 +17,4 @@ private:
     bool pressed_;
 };
 
+*/

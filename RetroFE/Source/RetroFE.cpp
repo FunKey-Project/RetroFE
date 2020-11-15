@@ -176,10 +176,10 @@ void RetroFE::launchExit( )
     SDL_Event e;
     while ( SDL_PollEvent( &e ) )
     {
-        if ( e.type == SDL_JOYDEVICEADDED || e.type == SDL_JOYDEVICEREMOVED )
+        /*if ( e.type == SDL_JOYDEVICEADDED || e.type == SDL_JOYDEVICEREMOVED )
         {
             input_.update( e );
-        }
+        }*/
     }
     input_.resetStates( );
     attract_.reset( );
@@ -208,7 +208,7 @@ void RetroFE::freeGraphicsMemory( )
     {
         currentPage_->deInitializeFonts( );
         SDL::deInitialize( );
-        input_.clearJoysticks( );
+        //input_.clearJoysticks( );
     }
 
 }

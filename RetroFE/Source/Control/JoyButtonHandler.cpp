@@ -1,5 +1,5 @@
 #include "JoyButtonHandler.h"
-
+/*
 JoyButtonHandler::JoyButtonHandler(SDL_JoystickID joynum, Uint8 button)
 : joynum_(joynum)
 , button_(button)
@@ -28,5 +28,5 @@ bool JoyButtonHandler::update(SDL_Event &e)
 bool JoyButtonHandler::pressed()
 {
     return pressed_;
-}
+}*/
 

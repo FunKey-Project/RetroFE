@@ -124,10 +124,10 @@ UserInput::UserInput(Configuration &c)
         currentKeyState_[i] = false;
         lastKeyState_[i] = false;
     }
-    for ( unsigned int i = 0; i < cMaxJoy; i++ )
+    /*for ( unsigned int i = 0; i < cMaxJoy; i++ )
     {
         joysticks_[i] = -1;
-    }
+    }*/
 }
 
 UserInput::~UserInput()
@@ -267,7 +267,7 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key, bool required)
             }
             else if (token.find("joy") == 0)
             {
-                std::string joydesc = Utils::replace(Utils::toLower(token), "joy", "");
+                /*std::string joydesc = Utils::replace(Utils::toLower(token), "joy", "");
                 int joynum;
                 if ( isdigit( joydesc.at( 0 ) ) )
                 {
@@ -352,7 +352,8 @@ bool UserInput::MapKey(std::string keyDescription, KeyCode_E key, bool required)
                     Logger::write(Logger::ZONE_INFO, "Input", "Binding joypad axis " + ss.str());
                     keyHandlers_.push_back(std::pair<InputHandler *, KeyCode_E>(new JoyAxisHandler(joynum, axis, min, max), key));
                     found = true;
-                }
+                }*/
+	        found = true;
             }
 
             if (!found)
@@ -387,7 +388,7 @@ bool UserInput::update( SDL_Event &e )
     memset( currentKeyState_, 0, sizeof( currentKeyState_ ) );
 
     // Handle adding a joystick
-    if ( e.type == SDL_JOYDEVICEADDED )
+    /*if ( e.type == SDL_JOYDEVICEADDED )
     {
         SDL_JoystickID id = SDL_JoystickInstanceID( SDL_JoystickOpen( e.jdevice.which ) );
         for ( unsigned int i = 0; i < cMaxJoy; i++ )
@@ -431,7 +432,7 @@ bool UserInput::update( SDL_Event &e )
                 break;
             }
         }
-    }
+    }*/
 
     for ( unsigned int i = 0; i < keyHandlers_.size( ); ++i )
     {
@@ -443,7 +444,7 @@ bool UserInput::update( SDL_Event &e )
             currentKeyState_[keyHandlers_[i].second] |= h->pressed( );
         }
     }
-    
+
     return updated;
 }
 
@@ -458,11 +459,11 @@ bool UserInput::newKeyPressed(KeyCode_E code)
     return currentKeyState_[code] && !lastKeyState_[code];
 }
 
-
+/*
 void UserInput::clearJoysticks( )
 {
     for ( unsigned int i = 0; i < cMaxJoy; i++ )
     {
         joysticks_[i] = -1;
     }
-}
+}*/

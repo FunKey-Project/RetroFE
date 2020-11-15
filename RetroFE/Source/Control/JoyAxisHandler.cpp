@@ -1,5 +1,6 @@
 #include "JoyAxisHandler.h"
 
+/*
 JoyAxisHandler::JoyAxisHandler(SDL_JoystickID joyid, Uint8 axis, Sint16 min, Sint16 max)
 : joyid_(joyid)
 , axis_(axis)
@@ -26,4 +27,4 @@ bool JoyAxisHandler::pressed()
 {
     return pressed_;
 }
-
+*/

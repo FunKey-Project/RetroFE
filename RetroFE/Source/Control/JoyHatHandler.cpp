@@ -1,5 +1,5 @@
 #include "JoyHatHandler.h"
-
+/*
 JoyHatHandler::JoyHatHandler(SDL_JoystickID joynum, Uint8 hatnum, Uint8 direction)
 : joynum_(joynum)
 , hatnum_(hatnum)
@@ -26,3 +26,4 @@ bool JoyHatHandler::pressed()
     return pressed_;
 }
 
+*/
