@@ -82,7 +82,7 @@ You may need to export the libs with $LIBRARY_PATH and or supply the include fol
 
 Download the source code:
 
-	hg clone https://phulshof@bitbucket.org/phulshof/retrofe
+	git clonehttps://github.com/FunKey-Project/RetroFE.git
 
 Generate your gcc make files:
 
@@ -102,14 +102,14 @@ Copy your live RetroFE system to any folder of your choosing:
 ## Install libraries ##
 Install necessary dependencies:
 	
-	sudo apt-get install tortoisehg g++ cmake dos2unix zlib1g-dev libsdl2-2.0 libsdl2-mixer-2.0 libsdl2-image-2.0 libsdl2-ttf-2.0 \
+	sudo apt-get install tortoisegit g++ cmake dos2unix zlib1g-dev libsdl2-2.0 libsdl2-mixer-2.0 libsdl2-image-2.0 libsdl2-ttf-2.0 \
                 libsdl2-dev libsdl2-mixer-dev libsdl2-image-dev libsdl2-ttf-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
                 libgstreamer-plugins-good1.0-dev gstreamer1.0-libav zlib1g-dev libglib2.0-0 libglib2.0-dev sqlite3
 
 ## Download and compile the source code ##
 Download the source code:
 
-	hg clone https://phulshof@bitbucket.org/phulshof/retrofe
+	git clone https://github.com/FunKey-Project/RetroFE.git
 
 Generate your gcc make files:
 
@@ -135,7 +135,7 @@ Copy your live RetroFE system to any folder of your choosing:
 	Install visual studio 2012
 	Install Microsoft Windows SDK for Windows 7 and .net Framework 4 http://www.microsoft.com/en-us/download/details.aspx?id=8279
 	Install cmake
-	Install tortoisehg
+	Install tortoisegit
 	Install 7zip
 	Install gstreamer and gstreamer-devel to c:/gstreamer(x86, not 64 bit!) from http://gstreamer.freedesktop/org/data/pkg/windows/1.4.0
 
@@ -143,7 +143,7 @@ Copy your live RetroFE system to any folder of your choosing:
 
 Download the source code
 
-	hg clone https://phulshof@bitbucket.org/phulshof/retrofe
+	git clone https://github.com/FunKey-Project/RetroFE.git
 
 
 Setup Environment (to setup necessary variables and paths to compile in visual studio)
