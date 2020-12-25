@@ -265,3 +265,6 @@ else()
   set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 endif()
+
+# Included sqlite3 package does not support -ffast-math implied by -Ofast optimization
+string(REPLACE "-Ofast" "-O3" CMAKE_C_FLAGS ${CMAKE_C_FLAGS})
