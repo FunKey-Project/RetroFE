@@ -22,6 +22,8 @@
 #include "../RetroFE.h"
 #include "../SDL.h"
 #include <cstdlib>
+#include <sys/types.h>
+#include <unistd.h>
 #include <locale>
 #include <sstream>
 #include <fstream>
@@ -44,6 +46,7 @@ bool Launcher::run(std::string collection, Item *collectionItem)
     std::string extensionstr;
     std::string matchedExtension;
     std::string args;
+    bool res = true;
 
     std::string launcherFile = Utils::combinePath( Configuration::absolutePath, "collections", collectionItem->collectionInfo->name, "launchers", collectionItem->name + ".conf" );
     std::ifstream launcherStream( launcherFile.c_str( ) );
@@ -119,23 +122,15 @@ bool Launcher::run(std::string collection, Item *collectionItem)
     if(!execute(executablePath, args, currentDirectory))
     {
         Logger::write(Logger::ZONE_ERROR, "Launcher", "Failed to launch.");
-
-        /// Clean VT
-        int current_VT = Utils::getVTid();
-        if(current_VT >= 0){
-            printf("ERROR Cleaning VT %d\n", current_VT);
-            Utils::termfix(current_VT);
-        }
-        else{
-            for(int i=0; i<=12; i++){
-                Utils::termfix(i);
-            }
-        }
-
-        return false;
+        res = false;
     }
 
-    /// Clean VT
+    /* Restore stored PID */
+    char shellCmd[20];
+    sprintf(shellCmd, "%s %d", SHELL_CMD_RECORD_PID, getpid());
+    Utils::executeRawPath((const char*)shellCmd);
+
+    /* Clean VT */
     int current_VT = Utils::getVTid();
     if(current_VT >= 0){
         printf("Cleaning VT %d\n", current_VT);
@@ -147,7 +142,7 @@ bool Launcher::run(std::string collection, Item *collectionItem)
         }
     }
 
-    return true;
+    return res;
 }
 
 std::string Launcher::replaceVariables(std::string str,

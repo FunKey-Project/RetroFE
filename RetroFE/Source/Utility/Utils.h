@@ -22,6 +22,7 @@
 
 #define SHELL_CMD_ROOTFS_RW             "rw"
 #define SHELL_CMD_ROOTFS_RO             "ro"
+#define SHELL_CMD_RECORD_PID            "record_pid"
 
 class Utils
 {
