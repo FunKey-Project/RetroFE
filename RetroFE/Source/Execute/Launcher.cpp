@@ -119,11 +119,18 @@ bool Launcher::run(std::string collection, Item *collectionItem)
                                         selectedItemsDirectory,
                                         collection);
 
+    /* Restart audio amp */
+    popen(SHELL_CMD_TURN_AMPLI_ON, "r");
+
+    /* Execute game */
     if(!execute(executablePath, args, currentDirectory))
     {
         Logger::write(Logger::ZONE_ERROR, "Launcher", "Failed to launch.");
         res = false;
     }
+
+    /* Stop audio amp */
+    popen(SHELL_CMD_TURN_AMPLI_OFF, "r");
 
     /* Restore stored PID */
     char shellCmd[20];

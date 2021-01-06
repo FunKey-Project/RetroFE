@@ -17,6 +17,7 @@
 
 #include <string>
 #include <SDL/SDL_mixer.h>
+#include "SDL.h"
 class Sound
 {
 public:
@@ -27,6 +28,10 @@ public:
     bool free();
     bool isPlaying();
 private:
+    static void finished(int channel);
+    static uint32_t turnOffAmpli(uint32_t interval, void *param);
+    static int ampliStarted;
+    static SDL_TimerID idTimer;
     std::string file_;
     Mix_Chunk  *chunk_;
     int         channel_;

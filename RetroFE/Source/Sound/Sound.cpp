@@ -17,6 +17,10 @@
 #include "Sound.h"
 
 #include "../Utility/Log.h"
+#include "../Utility/Utils.h"
+
+SDL_TimerID Sound::idTimer = 0;
+int Sound::ampliStarted = 0;
 
 Sound::Sound(std::string file, std::string altfile)
     : file_(file)
@@ -44,14 +48,40 @@ Sound::~Sound()
 
 void Sound::play()
 {
+    //printf("%s\n", __func__);
+    SDL_RemoveTimer(idTimer);
+    if(!ampliStarted){
+        popen(SHELL_CMD_TURN_AMPLI_ON, "r");
+        ampliStarted = 1;
+    }
+    
     if(chunk_)
     {
         channel_ = Mix_PlayChannel(-1, chunk_, 0);
+        Mix_ChannelFinished(finished);
+    }
+}
+
+uint32_t Sound::turnOffAmpli(uint32_t interval, void *param)
+{
+    //printf("%s\n", __func__);
+    popen(SHELL_CMD_TURN_AMPLI_OFF, "r");
+    ampliStarted = 0;
+    return 0;
+}
+
+void Sound::finished(int channel)
+{
+    //printf("%s\n", __func__);
+    if((channel == -1) || !Mix_Playing(channel)){
+        SDL_RemoveTimer(idTimer);
+        idTimer = SDL_AddTimer(500, turnOffAmpli, NULL);
     }
 }
 
 bool Sound::free()
 {
+    //printf("%s\n", __func__);
     if(chunk_)
     {
         Mix_FreeChunk(chunk_);
@@ -64,6 +94,7 @@ bool Sound::free()
 
 bool Sound::allocate()
 {
+    //printf("%s\n", __func__);
     if(!chunk_)
     {
         chunk_ = Mix_LoadWAV(file_.c_str());
@@ -75,5 +106,6 @@ bool Sound::allocate()
 
 bool Sound::isPlaying()
 {
+    //printf("%s\n", __func__);
     return (channel_ != -1) && Mix_Playing(channel_);
 }
