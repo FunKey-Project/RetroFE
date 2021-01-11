@@ -54,6 +54,7 @@ typedef enum {ASPECT_RATIOS} ENUM_ASPECT_RATIOS_TYPES;
 #define SHELL_CMD_USB_CHECK_IS_SHARING      "share is_sharing"
 #define SHELL_CMD_POWERDOWN                 "shutdown_funkey"
 #define SHELL_CMD_SCHEDULE_POWERDOWN        "sched_shutdown"
+#define SHELL_CMD_CANCEL_SCHED_POWERDOWN    "cancel_sched_powerdown"
 #define SHELL_CMD_SET_LAUNCHER_GMENU2X      "set_launcher gmenu2x"
 #define SHELL_CMD_SET_LAUNCHER_RETROFE      "set_launcher retrofe"
 

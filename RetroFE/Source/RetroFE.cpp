@@ -47,6 +47,7 @@
 #if defined(__linux) || defined(__APPLE__)
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <unistd.h>
 #include <errno.h>
 #include <cstring>
 #endif
@@ -576,7 +577,8 @@ void RetroFE::run( )
                 config_.getProperty( "collectionInputClear", collectionInputClear );
                 if (  collectionInputClear  )
                 {
-                    // Empty event queue
+                    // Empty event queue
+
                     SDL_Event e;
                     while ( SDL_PollEvent( &e ) );
                     input_.resetStates( );
@@ -1554,27 +1556,25 @@ void RetroFE::handle_sigusr1(int sig)
 /* Quick save and turn off the console */
 void RetroFE::quick_poweroff()
 {
-    /* Vars */
-    char shell_cmd[200];
-    FILE *fp;
-
-    /* Send command to kill any previously scheduled shutdown */
-    sprintf(shell_cmd, "pkill %s", SHELL_CMD_SCHEDULE_POWERDOWN);
-    fp = popen(shell_cmd, "r");
-    if (fp == NULL) {
-        printf("Failed to run command %s\n", shell_cmd);
+    /* Send command to cancel any previously scheduled powerdown */
+    if (popen(SHELL_CMD_CANCEL_SCHED_POWERDOWN, "r") == NULL)
+    {
+        /* Countdown is still ticking, so better do nothing
+           than start writing and get interrupted!
+        */
+        printf("Failed to cancel scheduled shutdown\n");
         std::stringstream ss;
-        ss << "Failed to run command " << shell_cmd;
+        ss << "Failed to run command " << SHELL_CMD_CANCEL_SCHED_POWERDOWN;
         Logger::write( Logger::ZONE_ERROR, "RetroFE", ss.str() );
+        exit(0);
     }
 
-    /* Clean Poweroff */
-    sprintf(shell_cmd, "%s", SHELL_CMD_POWERDOWN);
-    fp = popen(shell_cmd, "r");
-    if (fp == NULL) {
-        printf("Failed to run command %s\n", shell_cmd);
-        std::stringstream ss;
-        ss << "Failed to run command " << shell_cmd;
-        Logger::write( Logger::ZONE_ERROR, "RetroFE", ss.str() );
-    }
+    /* Perform Instant Play save and shutdown */
+    execlp(SHELL_CMD_POWERDOWN, SHELL_CMD_POWERDOWN);
+
+    /* Should not be reached */
+    printf("Failed to perform shutdown\n");
+
+    /* Exit Emulator */
+    exit(0);
 }
