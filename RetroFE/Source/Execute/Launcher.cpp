@@ -47,6 +47,7 @@ bool Launcher::run(std::string collection, Item *collectionItem)
     std::string matchedExtension;
     std::string args;
     bool res = true;
+    FILE *fp;
 
     std::string launcherFile = Utils::combinePath( Configuration::absolutePath, "collections", collectionItem->collectionInfo->name, "launchers", collectionItem->name + ".conf" );
     std::ifstream launcherStream( launcherFile.c_str( ) );
@@ -120,7 +121,10 @@ bool Launcher::run(std::string collection, Item *collectionItem)
                                         collection);
 
     /* Restart audio amp */
-    popen(SHELL_CMD_TURN_AMPLI_ON, "r");
+    fp = popen(SHELL_CMD_TURN_AMPLI_ON, "r");
+    if (fp != NULL) {
+        pclose(fp);
+    }
 
     /* Execute game */
     if(!execute(executablePath, args, currentDirectory))
@@ -130,7 +134,10 @@ bool Launcher::run(std::string collection, Item *collectionItem)
     }
 
     /* Stop audio amp */
-    popen(SHELL_CMD_TURN_AMPLI_OFF, "r");
+    fp = popen(SHELL_CMD_TURN_AMPLI_OFF, "r");
+    if (fp != NULL) {
+        pclose(fp);
+    }
 
     /* Restore stored PID */
     char shellCmd[20];

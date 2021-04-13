@@ -48,11 +48,16 @@ Sound::~Sound()
 
 void Sound::play()
 {
+    FILE *fp;
+
     //printf("%s\n", __func__);
     SDL_RemoveTimer(idTimer);
     if(!ampliStarted){
-        popen(SHELL_CMD_TURN_AMPLI_ON, "r");
-        ampliStarted = 1;
+        fp = popen(SHELL_CMD_TURN_AMPLI_ON, "r");
+	if (fp != NULL) {
+	    ampliStarted = 1;
+	    pclose(fp);
+	}
     }
     
     if(chunk_)
@@ -64,9 +69,14 @@ void Sound::play()
 
 uint32_t Sound::turnOffAmpli(uint32_t interval, void *param)
 {
+    FILE *fp;
+
     //printf("%s\n", __func__);
-    popen(SHELL_CMD_TURN_AMPLI_OFF, "r");
-    ampliStarted = 0;
+    fp = popen(SHELL_CMD_TURN_AMPLI_OFF, "r");
+    if (fp != NULL) {
+        ampliStarted = 0;
+	pclose(fp);
+    }
     return 0;
 }
 

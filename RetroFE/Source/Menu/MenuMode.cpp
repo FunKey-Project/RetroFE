@@ -399,6 +399,7 @@ void MenuMode::init_menu_system_values(){
 		volume_percentage = 50; ///wrong value: setting default to 50
 	}
 	else{
+		pclose(fp);
 		fgets(res, sizeof(res)-1, fp);
 
 		/// Check if Volume is a number (at least the first char)
@@ -419,6 +420,7 @@ void MenuMode::init_menu_system_values(){
 		brightness_percentage = 50; ///wrong value: setting default to 50
 	}
 	else{
+		pclose(fp);
 		fgets(res, sizeof(res)-1, fp);
 
 		/// Check if brightness is a number (at least the first char)
@@ -846,6 +848,8 @@ int MenuMode::launch( )
 							fp = popen(shell_cmd, "r");
 							if (fp == NULL) {
 								MENU_ERROR_PRINTF("Failed to run command %s\n", shell_cmd);
+							} else {
+								pclose(fp);
 							}
 
 							/// ------ Refresh screen ------
@@ -862,6 +866,8 @@ int MenuMode::launch( )
 							fp = popen(shell_cmd, "r");
 							if (fp == NULL) {
 								MENU_ERROR_PRINTF("Failed to run command %s\n", shell_cmd);
+							} else {
+								pclose(fp);
 							}
 							/// ------ Refresh screen ------
 							screen_refresh = 1;
@@ -907,6 +913,8 @@ int MenuMode::launch( )
 							fp = popen(shell_cmd, "r");
 							if (fp == NULL) {
 								MENU_ERROR_PRINTF("Failed to run command %s\n", shell_cmd);
+							} else {
+								pclose(fp);
 							}
 							/// ------ Refresh screen ------
 							screen_refresh = 1;
@@ -922,6 +930,8 @@ int MenuMode::launch( )
 							fp = popen(shell_cmd, "r");
 							if (fp == NULL) {
 								MENU_ERROR_PRINTF("Failed to run command %s\n", shell_cmd);
+							} else {
+								pclose(fp);
 							}
 							/// ------ Refresh screen ------
 							screen_refresh = 1;
@@ -1001,6 +1011,7 @@ int MenuMode::launch( )
 								}
 								else{
 									usb_sharing = !usb_sharing;
+									pclose(fp);
 								}*/
 
 								bool res = Utils::executeRawPath(usb_sharing?SHELL_CMD_USB_UNMOUNT:SHELL_CMD_USB_MOUNT);
@@ -1091,6 +1102,8 @@ int MenuMode::launch( )
 								fp = popen(shell_cmd, "r");
 								if (fp == NULL) {
 									MENU_ERROR_PRINTF("Failed to run command %s\n", shell_cmd);
+								} else {
+									pclose(fp);
 								}
 
 								return MENU_RETURN_EXIT;
