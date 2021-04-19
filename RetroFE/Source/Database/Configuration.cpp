@@ -228,48 +228,48 @@ bool Configuration::importCurrentLayout(std::string folder, std::string file, bo
         // line empty
         if(line.empty() || (line.find_first_not_of(" \t\r") == std::string::npos))
         {
-	    retVal = false;
+	       retVal = false;
         }
         // finding layout in existing list
         else
         {
-	    std::string seekedLayoutName = trimEnds(line);
-	    std::string layoutPathFound;
-	    bool layoutFoundInList = false;
+    	    std::string seekedLayoutName = trimEnds(line);
+    	    std::string layoutPathFound;
+    	    bool layoutFoundInList = false;
 
-	    // check existing layout list */
-	    for(std::vector<std::string>::iterator it = layouts_.begin(); it != layouts_.end(); ++it){
-	        std::string curLayoutName = Utils::getFileName(*it);
-		if(!curLayoutName.compare(seekedLayoutName)){
-		    layoutPathFound = *it;
-		    layoutFoundInList = true;
-		    break;
-		}
-		index++;
-	    }
+    	    // check existing layout list */
+    	    for(std::vector<std::string>::iterator it = layouts_.begin(); it != layouts_.end(); ++it){
+    	        std::string curLayoutName = Utils::getFileName(*it);
+        		if(!curLayoutName.compare(seekedLayoutName)){
+        		    layoutPathFound = *it;
+        		    layoutFoundInList = true;
+        		    break;
+        		}
+        		index++;
+    	    }
 
-	    if (layoutFoundInList){
+    	    if (layoutFoundInList){
 
-	        /* remove layout properties if they already exist */
-	        if(properties_.find("layout") != properties_.end())
-		{
-		    properties_.erase("layout");
-		}
+    	        /* remove layout properties if they already exist */
+    	        if(properties_.find("layout") != properties_.end())
+        		{
+        		    properties_.erase("layout");
+        		}
 
-		/* Set new pair <key, value> for key = layout */
-		properties_.insert(PropertiesPair("layout", seekedLayoutName));
+        		/* Set new pair <key, value> for key = layout */
+        		properties_.insert(PropertiesPair("layout", seekedLayoutName));
 
-		std::stringstream ss;
-		//printf("Found layout: %s at idx %d\n", layoutPathFound.c_str(), index);
-		ss << "Found layout: "  << "\"" << layoutPathFound << "\" in layouts list at idx " << index;
-		Logger::write(Logger::ZONE_INFO, "Configuration", ss.str());
-		retVal = true;
+        		std::stringstream ss;
+        		//printf("Found layout: %s at idx %d\n", layoutPathFound.c_str(), index);
+        		ss << "Found layout: "  << "\"" << layoutPathFound << "\" in layouts list at idx " << index;
+        		Logger::write(Logger::ZONE_INFO, "Configuration", ss.str());
+        		retVal = true;
 
-		break;
-	    }
-	    else{
-	        index = 0;
-	    }
+        		break;
+    	    }
+    	    else{
+    	        index = 0;
+    	    }
         }
     }
 

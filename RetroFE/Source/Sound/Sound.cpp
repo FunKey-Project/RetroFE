@@ -54,10 +54,10 @@ void Sound::play()
     SDL_RemoveTimer(idTimer);
     if(!ampliStarted){
         fp = popen(SHELL_CMD_TURN_AMPLI_ON, "r");
-	if (fp != NULL) {
-	    ampliStarted = 1;
-	    pclose(fp);
-	}
+    	if (fp != NULL) {
+    	    ampliStarted = 1;
+    	    //pclose(fp);  // --> regression, to investigate 
+    	}
     }
     
     if(chunk_)
@@ -75,7 +75,7 @@ uint32_t Sound::turnOffAmpli(uint32_t interval, void *param)
     fp = popen(SHELL_CMD_TURN_AMPLI_OFF, "r");
     if (fp != NULL) {
         ampliStarted = 0;
-	pclose(fp);
+	   //pclose(fp);  // --> regression, to investigate
     }
     return 0;
 }

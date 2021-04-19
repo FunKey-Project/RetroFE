@@ -255,6 +255,23 @@ std::string Utils::getFileName(std::string filePath)
 }
 
 
+std::string Utils::removeExtension(std::string filePath)
+{
+
+    /** Declared static to be kept in memory even after this function's scope */
+    static std::string filename;
+    filename = filePath;
+
+    const size_t lastPoint = filename.find_last_of("."); 
+    if (std::string::npos != lastPoint)
+    {
+        filename = filePath.substr(0, lastPoint);
+    }
+
+    return filename;
+}
+
+
 std::string Utils::trimEnds(std::string str)
 {
     // strip off any initial tabs or spaces

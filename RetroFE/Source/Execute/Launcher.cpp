@@ -120,6 +120,44 @@ bool Launcher::run(std::string collection, Item *collectionItem)
                                         selectedItemsDirectory,
                                         collection);
 
+    /* Apply key mapping for selected item's directory if found */
+    std::string selectedItemDirnameKeyfile = Utils::getDirectory(selectedItemsPath) + "/default_config.key";
+    if (!access(selectedItemDirnameKeyfile.c_str(), R_OK)) {
+
+        /* Create shell cmd */
+        std::string cmd = SHELL_CMD_MAPPING_SET;
+        cmd += " " + selectedItemDirnameKeyfile;
+
+        /* Log shell cmd */
+        Logger::write(Logger::ZONE_INFO, "Launcher", "Applying keymap file: " + selectedItemDirnameKeyfile);
+        printf("Applying keymap file cmd: \"%s\"\n", cmd.c_str());
+        
+        /* Launch shell cmd */
+        fp = popen(cmd.c_str(), "r");
+        if (fp != NULL) {
+            pclose(fp);
+        }
+    }
+
+    /* Apply specific key mapping for selected item if found */
+    std::string selectedItemBasenameKeyfile = Utils::removeExtension(selectedItemsPath) + ".key";
+    if (!access(selectedItemBasenameKeyfile.c_str(), R_OK)) {
+
+        /* Create shell cmd */
+        std::string cmd = SHELL_CMD_MAPPING_SET;
+        cmd += " " + selectedItemBasenameKeyfile;
+
+        /* Log shell cmd */
+        Logger::write(Logger::ZONE_INFO, "Launcher", "Applying keymap file: " + selectedItemBasenameKeyfile);
+        printf("Applying keymap file cmd: \"%s\"\n", cmd.c_str());
+        
+        /* Launch shell cmd */
+        fp = popen(cmd.c_str(), "r");
+        if (fp != NULL) {
+            pclose(fp);
+        }
+    }
+
     /* Restart audio amp */
     fp = popen(SHELL_CMD_TURN_AMPLI_ON, "r");
     if (fp != NULL) {
@@ -135,6 +173,12 @@ bool Launcher::run(std::string collection, Item *collectionItem)
 
     /* Stop audio amp */
     fp = popen(SHELL_CMD_TURN_AMPLI_OFF, "r");
+    if (fp != NULL) {
+        pclose(fp);
+    }
+
+    /* Reset default key mapping */
+    fp = popen(SHELL_CMD_MAPPING_RESET, "r");
     if (fp != NULL) {
         pclose(fp);
     }
