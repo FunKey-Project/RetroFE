@@ -133,10 +133,7 @@ bool Launcher::run(std::string collection, Item *collectionItem)
         printf("Applying keymap file cmd: \"%s\"\n", cmd.c_str());
         
         /* Launch shell cmd */
-        fp = popen(cmd.c_str(), "r");
-        if (fp != NULL) {
-            pclose(fp);
-        }
+        system(cmd.c_str());
     }
 
     /* Apply specific key mapping for selected item if found */
@@ -152,17 +149,11 @@ bool Launcher::run(std::string collection, Item *collectionItem)
         printf("Applying keymap file cmd: \"%s\"\n", cmd.c_str());
         
         /* Launch shell cmd */
-        fp = popen(cmd.c_str(), "r");
-        if (fp != NULL) {
-            pclose(fp);
-        }
+        system(cmd.c_str());
     }
 
     /* Restart audio amp */
-    fp = popen(SHELL_CMD_TURN_AMPLI_ON, "r");
-    if (fp != NULL) {
-        pclose(fp);
-    }
+    system(SHELL_CMD_TURN_AMPLI_ON);
 
     /* Execute game */
     if(!execute(executablePath, args, currentDirectory))
@@ -172,16 +163,10 @@ bool Launcher::run(std::string collection, Item *collectionItem)
     }
 
     /* Stop audio amp */
-    fp = popen(SHELL_CMD_TURN_AMPLI_OFF, "r");
-    if (fp != NULL) {
-        pclose(fp);
-    }
+    system(SHELL_CMD_TURN_AMPLI_OFF);
 
     /* Reset default key mapping */
-    fp = popen(SHELL_CMD_MAPPING_RESET, "r");
-    if (fp != NULL) {
-        pclose(fp);
-    }
+    system(SHELL_CMD_MAPPING_RESET);
 
     /* Restore stored PID */
     char shellCmd[20];
