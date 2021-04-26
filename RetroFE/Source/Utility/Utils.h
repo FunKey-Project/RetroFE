@@ -25,8 +25,8 @@
 #define SHELL_CMD_RECORD_PID            "record_pid"
 #define SHELL_CMD_TURN_AMPLI_ON         "start_audio_amp 1"
 #define SHELL_CMD_TURN_AMPLI_OFF        "start_audio_amp 0"
-#define SHELL_CMD_MAPPING_SET           "keymap"
-#define SHELL_CMD_MAPPING_RESET         "keymap reset"
+#define SHELL_CMD_MAPPING_ROM           "keymap rom"
+#define SHELL_CMD_MAPPING_DEFAULT       "keymap default"
 
 class Utils
 {

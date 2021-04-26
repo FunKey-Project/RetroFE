@@ -120,37 +120,16 @@ bool Launcher::run(std::string collection, Item *collectionItem)
                                         selectedItemsDirectory,
                                         collection);
 
-    /* Apply key mapping for selected item's directory if found */
-    std::string selectedItemDirnameKeyfile = Utils::getDirectory(selectedItemsPath) + "/default_config.key";
-    if (!access(selectedItemDirnameKeyfile.c_str(), R_OK)) {
+    /* Create shell cmd */
+    std::string cmd = SHELL_CMD_MAPPING_ROM;
+    cmd += " \"" + selectedItemsPath + "\"";
 
-        /* Create shell cmd */
-        std::string cmd = SHELL_CMD_MAPPING_SET;
-        cmd += " " + selectedItemDirnameKeyfile;
-
-        /* Log shell cmd */
-        Logger::write(Logger::ZONE_INFO, "Launcher", "Applying keymap file: " + selectedItemDirnameKeyfile);
-        printf("Applying keymap file cmd: \"%s\"\n", cmd.c_str());
+    /* Log shell cmd */
+    Logger::write(Logger::ZONE_INFO, "Launcher", "Applying keymap rom: " + selectedItemsPath);
+    printf("Applying keymap rom cmd: \"%s\"\n", cmd.c_str());
         
-        /* Launch shell cmd */
-        system(cmd.c_str());
-    }
-
-    /* Apply specific key mapping for selected item if found */
-    std::string selectedItemBasenameKeyfile = Utils::removeExtension(selectedItemsPath) + ".key";
-    if (!access(selectedItemBasenameKeyfile.c_str(), R_OK)) {
-
-        /* Create shell cmd */
-        std::string cmd = SHELL_CMD_MAPPING_SET;
-        cmd += " " + selectedItemBasenameKeyfile;
-
-        /* Log shell cmd */
-        Logger::write(Logger::ZONE_INFO, "Launcher", "Applying keymap file: " + selectedItemBasenameKeyfile);
-        printf("Applying keymap file cmd: \"%s\"\n", cmd.c_str());
-        
-        /* Launch shell cmd */
-        system(cmd.c_str());
-    }
+    /* Launch shell cmd */
+    system(cmd.c_str());
 
     /* Restart audio amp */
     system(SHELL_CMD_TURN_AMPLI_ON);
@@ -165,8 +144,12 @@ bool Launcher::run(std::string collection, Item *collectionItem)
     /* Stop audio amp */
     system(SHELL_CMD_TURN_AMPLI_OFF);
 
-    /* Reset default key mapping */
-    system(SHELL_CMD_MAPPING_RESET);
+    /* Log shell cmd */
+    Logger::write(Logger::ZONE_INFO, "Launcher", "Applying keymap default");
+    printf("Applying keymap default cmd: \"%s\"\n", SHELL_CMD_MAPPING_DEFAULT);
+
+    /* Restore default key mapping */
+    system(SHELL_CMD_MAPPING_DEFAULT);
 
     /* Restore stored PID */
     char shellCmd[20];
