@@ -122,10 +122,10 @@ bool Launcher::run(std::string collection, Item *collectionItem)
 
     /* Create shell cmd */
     std::string cmd = SHELL_CMD_MAPPING_ROM;
-    cmd += " \"" + selectedItemsPath + "\"";
+    cmd += " '" + selectedItemsPath + "'";
 
     /* Log shell cmd */
-    Logger::write(Logger::ZONE_INFO, "Launcher", "Applying keymap rom: " + selectedItemsPath);
+    Logger::write(Logger::ZONE_INFO, "Launcher", "Applying keymap rom: \"" + selectedItemsPath + "\"");
     printf("Applying keymap rom cmd: \"%s\"\n", cmd.c_str());
         
     /* Launch shell cmd */
