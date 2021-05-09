@@ -132,7 +132,7 @@ bool Launcher::run(std::string collection, Item *collectionItem)
     system(cmd.c_str());
 
     /* Restart audio amp */
-    system(SHELL_CMD_TURN_AMPLI_ON);
+    system(SHELL_CMD_AUDIO_AMP_ON);
 
     /* Execute game */
     if(!execute(executablePath, args, currentDirectory))
@@ -142,7 +142,7 @@ bool Launcher::run(std::string collection, Item *collectionItem)
     }
 
     /* Stop audio amp */
-    system(SHELL_CMD_TURN_AMPLI_OFF);
+    system(SHELL_CMD_AUDIO_AMP_OFF);
 
     /* Log shell cmd */
     Logger::write(Logger::ZONE_INFO, "Launcher", "Applying keymap default");

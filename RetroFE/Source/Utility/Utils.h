@@ -23,8 +23,8 @@
 #define SHELL_CMD_ROOTFS_RW             "rw"
 #define SHELL_CMD_ROOTFS_RO             "ro"
 #define SHELL_CMD_RECORD_PID            "record_pid"
-#define SHELL_CMD_TURN_AMPLI_ON         "audio_amp on"
-#define SHELL_CMD_TURN_AMPLI_OFF        "audio_amp off"
+#define SHELL_CMD_AUDIO_AMP_ON          "audio_amp on"
+#define SHELL_CMD_AUDIO_AMP_OFF         "audio_amp off"
 #define SHELL_CMD_MAPPING_ROM           "keymap rom"
 #define SHELL_CMD_MAPPING_DEFAULT       "keymap default"
 
