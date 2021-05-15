@@ -153,7 +153,7 @@ bool Launcher::run(std::string collection, Item *collectionItem)
 
     /* Restore stored PID */
     char shellCmd[20];
-    sprintf(shellCmd, "%s %d", SHELL_CMD_RECORD_PID, getpid());
+    sprintf(shellCmd, "%s %d", SHELL_CMD_PID_RECORD, getpid());
     Utils::executeRawPath((const char*)shellCmd);
 
     /* Clean VT */
