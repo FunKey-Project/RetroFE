@@ -1557,14 +1557,14 @@ void RetroFE::handle_sigusr1(int sig)
 void RetroFE::quick_poweroff()
 {
     /* Send command to cancel any previously scheduled powerdown */
-    if (popen(SHELL_CMD_CANCEL_SCHED_POWERDOWN, "r") == NULL)
+    if (popen(SHELL_CMD_POWERDOWN_HANDLE, "r") == NULL)
     {
         /* Countdown is still ticking, so better do nothing
            than start writing and get interrupted!
         */
         printf("Failed to cancel scheduled shutdown\n");
         std::stringstream ss;
-        ss << "Failed to run command " << SHELL_CMD_CANCEL_SCHED_POWERDOWN;
+        ss << "Failed to run command " << SHELL_CMD_POWERDOWN_HANDLE;
         Logger::write( Logger::ZONE_ERROR, "RetroFE", ss.str() );
         exit(0);
     }
