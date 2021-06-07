@@ -435,8 +435,8 @@ void MenuMode::init_menu_system_values(){
 	}
 
 	/// ------- Get USB Value -------
-	usb_data_connected = Utils::executeRawPath(SHELL_CMD_USB_DATA_CONNECTED);
-	usb_sharing = Utils::executeRawPath(SHELL_CMD_USB_CHECK_IS_SHARING);
+	usb_data_connected = Utils::executeRawPath(SHELL_CMD_SHARE_IS_USB_DATA_CONNECTED);
+	usb_sharing = Utils::executeRawPath(SHELL_CMD_SHARE_IS_SHARING);
 
 	/** Sanity check if usb not connected */
 	if(!usb_data_connected){
@@ -987,9 +987,9 @@ int MenuMode::launch( )
 								menu_screen_refresh(menuItem, prevItem, scroll, menu_confirmation, 1);
 
 								/// ----- Shell cmd ----
-								/*system(usb_sharing?SHELL_CMD_USB_UNMOUNT:SHELL_CMD_USB_MOUNT);*/
+								/*system(usb_sharing?SHELL_CMD_SHARE_STOP:SHELL_CMD_SHARE_START);*/
 
-								bool res = Utils::executeRawPath(usb_sharing?SHELL_CMD_USB_UNMOUNT:SHELL_CMD_USB_MOUNT);
+								bool res = Utils::executeRawPath(usb_sharing?SHELL_CMD_SHARE_STOP:SHELL_CMD_SHARE_START);
 								if (!res) {
 									MENU_ERROR_PRINTF("Failed to run command %s\n", shell_cmd);
 								}
