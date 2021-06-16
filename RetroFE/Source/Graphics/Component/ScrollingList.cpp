@@ -658,9 +658,9 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
         if ( layoutMode_ )
         {
             if ( commonMode_ )
-                imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", "_common");
+                imagePath = Utils::combinePath(Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "layouts", layoutName, "collections", "_common");
             else
-                imagePath = Utils::combinePath( Configuration::absolutePath, "layouts", layoutName, "collections", collectionName );
+                imagePath = Utils::combinePath( Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "layouts", layoutName, "collections", collectionName );
 
             imagePath = Utils::combinePath( imagePath, "medium_artwork", imageType_ );
         }
@@ -668,7 +668,7 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
         {
             if ( commonMode_ )
             {
-                imagePath = Utils::combinePath(Configuration::absolutePath, "collections", "_common" );
+                imagePath = Utils::combinePath(Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "collections", "_common" );
                 imagePath = Utils::combinePath( imagePath, "medium_artwork", imageType_ );
             }
             else
@@ -681,7 +681,7 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
         {
             if ( layoutMode_ )
             {
-                imagePath = Utils::combinePath( Configuration::absolutePath, "layouts", layoutName, "collections", item->collectionInfo->name );
+                imagePath = Utils::combinePath( Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "layouts", layoutName, "collections", item->collectionInfo->name );
                 imagePath = Utils::combinePath( imagePath, "medium_artwork", imageType_ );
             }
             else
@@ -698,10 +698,10 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
         if ( layoutMode_ )
         {
             if ( commonMode_ ){
-                imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", "_common");
+                imagePath = Utils::combinePath(Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "layouts", layoutName, "collections", "_common");
             }
             else{
-                imagePath = Utils::combinePath( Configuration::absolutePath, "layouts", layoutName, "collections", item->name );
+                imagePath = Utils::combinePath( Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "layouts", layoutName, "collections", item->name );
             }
             imagePath = Utils::combinePath( imagePath, "system_artwork" );
         }
@@ -709,7 +709,7 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
         {
             if ( commonMode_ )
             {
-                imagePath = Utils::combinePath(Configuration::absolutePath, "collections", "_common" );
+                imagePath = Utils::combinePath(Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "collections", "_common" );
                 imagePath = Utils::combinePath( imagePath, "system_artwork" );
             }
             else{
@@ -726,7 +726,7 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
 
     // Image fallback
     if ( !t && imageType_.compare(std::string("null"))){
-        imagePath = Utils::combinePath(Configuration::absolutePath, "collections", collectionName );
+        imagePath = Utils::combinePath(Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "collections", collectionName );
         imagePath = Utils::combinePath( imagePath, "system_artwork" );
         t = imageBuild.CreateImage( imagePath, page, std::string("fallback"), scaleX_, scaleY_, ditheringAuthorized_ );
     }

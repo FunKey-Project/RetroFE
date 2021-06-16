@@ -609,7 +609,7 @@ void MenuMode::menu_screen_refresh(int menuItem, int prevItem, int scroll, uint8
 
 		case MENU_TYPE_THEME:
 			/// ---- Write current chosen theme -----
-			curLayoutName = (char*)Utils::getFileName(config->layouts_.at(indexChooseLayout)).c_str();
+			curLayoutName = (char*)Utils::getFileName( (config->layouts_.at(indexChooseLayout)).first ).c_str();
 
 			// no more than max_chars chars in name to fit screen
 			if(strlen(curLayoutName) > max_chars){
@@ -1016,7 +1016,7 @@ int MenuMode::launch( )
 
 								/// ----- Write new theme and restart RetroFe ----
 								config->exportCurrentLayout(Utils::combinePath(Configuration::absolutePath, "layout.conf"),
-										Utils::getFileName(config->layouts_.at(indexChooseLayout)));
+										Utils::getFileName( (config->layouts_.at(indexChooseLayout)).first ));
 								stop_menu_loop = 1;
 								returnCode = MENU_RETURN_EXIT;
 							}

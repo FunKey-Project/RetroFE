@@ -20,6 +20,7 @@
 #include <locale>
 #include <fstream>
 #include <sstream>
+#include <sys/stat.h>
 
 #ifdef WIN32
 #include <windows.h>
@@ -33,6 +34,8 @@
 #endif
 
 std::string Configuration::absolutePath;
+std::string Configuration::userPath;
+bool Configuration::isUserLayout_ = false;
 
 Configuration::Configuration()
 {
@@ -54,13 +57,13 @@ void Configuration::initialize()
     {
         absolutePath = environment;
     }
-#if defined(__linux) || defined(__APPLE__)
+/*#if defined(__linux) || defined(__APPLE__)
     // Or check for home based flat file works on linux/mac
     else if (retrofe_path && std::getline( retrofe_path, absolutePath ))
     {
-	retrofe_path.close();
+	   retrofe_path.close();
     }
-#endif
+#endif*/
     // Or check executable for path
     else
     {
@@ -93,6 +96,13 @@ void Configuration::initialize()
 #endif
 
         absolutePath = sPath;
+    }
+
+    /** Get user path */
+    struct stat info;
+    if(stat(home_load.c_str(), &info) == 0){
+    //if(IsPathExist(home_load)){
+        userPath = home_load;
     }
 }
 
@@ -136,7 +146,7 @@ bool Configuration::import(std::string collection, std::string keyPrefix, std::s
     return retVal;
 }
 
-bool Configuration::importLayouts(std::string folder, std::string file, bool mustExist)
+bool Configuration::importLayouts(std::string folder, std::string file, bool userLayout, bool mustExist)
 {
     bool retVal = true;
     int lineCount = 0;
@@ -169,21 +179,32 @@ bool Configuration::importLayouts(std::string folder, std::string file, bool mus
 
         if(line.empty() || (line.find_first_not_of(" \t\r") == std::string::npos))
         {
-	    retVal = true;
+	       retVal = true;
         }
         else
         {
-	    std::string layoutName = trimEnds(line);
-	    std::string layoutPath = Utils::combinePath(folder, layoutName);
 
-	    /* Set new layoutPath */
-	    layouts_.push_back(layoutPath);
 
-	    std::stringstream ss;
-	    ss << "Dump layouts: "  << "\"" << layoutPath << "\"";
+    	    std::string layoutName = trimEnds(line);
+    	    std::string layoutPath = Utils::combinePath(folder, layoutName);
 
-	    Logger::write(Logger::ZONE_INFO, "Configuration", ss.str());
-	    retVal = true;
+            /** Check if dir exists */
+            struct stat info;
+            if(stat(layoutPath.c_str(), &info) != 0){
+            //if(!IsPathExist(layoutPath)){
+                printf("Layout path: %s does not exist\n", layoutPath.c_str());
+                Logger::write(Logger::ZONE_ERROR, "Configuration", "Layout path: " + layoutPath + " does not exist");
+                continue;
+            }
+
+    	    /* Set new layoutPath */
+    	    layouts_.push_back( LayoutPair(layoutPath, userLayout) );
+
+    	    std::stringstream ss;
+    	    ss << "Dump layouts: "  << "\"" << layoutPath << "\"";
+
+    	    Logger::write(Logger::ZONE_INFO, "Configuration", ss.str());
+    	    retVal = true;
         }
     }
 
@@ -230,46 +251,74 @@ bool Configuration::importCurrentLayout(std::string folder, std::string file, bo
         {
 	       retVal = false;
         }
-        // finding layout in existing list
+        // Check if layout is in existing list
         else
         {
     	    std::string seekedLayoutName = trimEnds(line);
-    	    std::string layoutPathFound;
     	    bool layoutFoundInList = false;
+            bool userLayout = false;
+            std::string layoutPath;
 
-    	    // check existing layout list */
-    	    for(std::vector<std::string>::iterator it = layouts_.begin(); it != layouts_.end(); ++it){
-    	        std::string curLayoutName = Utils::getFileName(*it);
+    	    /** Check existing layout list */
+    	    for(std::vector<LayoutPair>::iterator it = layouts_.begin(); it != layouts_.end(); ++it){
+    	        std::string curLayoutName = Utils::getFileName((*it).first);
+                userLayout = (*it).second;
         		if(!curLayoutName.compare(seekedLayoutName)){
-        		    layoutPathFound = *it;
         		    layoutFoundInList = true;
         		    break;
         		}
         		index++;
     	    }
 
-    	    if (layoutFoundInList){
+            /** Reset default theme if not found in list */
+            if(!layoutFoundInList){
+                Logger::write(Logger::ZONE_ERROR, "Configuration", "Layout \"" + seekedLayoutName + "\" not found in list! Resetting \"Classic\" theme by default");
+                printf("Layout \"%s\" not found in list!\n", seekedLayoutName.c_str());
 
-    	        /* remove layout properties if they already exist */
-    	        if(properties_.find("layout") != properties_.end())
-        		{
-        		    properties_.erase("layout");
-        		}
+                seekedLayoutName = std::string("Classic");
+                userLayout = false;
+                layoutPath = Utils::combinePath(Configuration::absolutePath, "layouts", seekedLayoutName);  
+                index = 0;
+            }
 
-        		/* Set new pair <key, value> for key = layout */
-        		properties_.insert(PropertiesPair("layout", seekedLayoutName));
+            /** Check if Layout path exists */
+            if(userLayout){
+                layoutPath = Utils::combinePath(Configuration::userPath, "layouts", seekedLayoutName);
+            }
+            else{
+                layoutPath = Utils::combinePath(Configuration::absolutePath, "layouts", seekedLayoutName);   
+            }              
+            printf("Layout directory is \"%s\" \n", layoutPath.c_str());
+            struct stat info;
+            if(stat(layoutPath.c_str(), &info) != 0){
+            //if(IsPathExist(layoutPath)){
+                Logger::write(Logger::ZONE_ERROR, "Configuration", "Layout directory\"" + layoutPath + "\" was not found! Resetting \"Classic\" theme by default");
+                printf("Layout directory \"%s\" was not found!\n", layoutPath.c_str());
+            }
 
-        		std::stringstream ss;
-        		//printf("Found layout: %s at idx %d\n", layoutPathFound.c_str(), index);
-        		ss << "Found layout: "  << "\"" << layoutPathFound << "\" in layouts list at idx " << index;
-        		Logger::write(Logger::ZONE_INFO, "Configuration", ss.str());
-        		retVal = true;
+	        /* Remove layout properties if they already exist */
+	        if(properties_.find("layout") != properties_.end())
+    		{
+    		    properties_.erase("layout");
+    		}
+            if(properties_.find("userTheme") != properties_.end())
+            {
+                properties_.erase("userTheme");
+            }
 
-        		break;
-    	    }
-    	    else{
-    	        index = 0;
-    	    }
+    		/* Set new pair <key, value> for key = layout */
+    		properties_.insert(PropertiesPair("layout", seekedLayoutName));
+            properties_.insert(PropertiesPair("userTheme", userLayout?"yes":"no"));
+
+            Configuration::isUserLayout_ = userLayout;
+
+    		std::stringstream ss;
+    		//printf("Found layout: %s at idx %d\n", layoutPathFound.c_str(), index);
+    		ss << "Found layout: "  << "\"" << layoutPath << "\" in layouts list at idx " << index;
+    		Logger::write(Logger::ZONE_INFO, "Configuration", ss.str());
+    		retVal = true;
+
+    		break;
         }
     }
 

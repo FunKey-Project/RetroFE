@@ -419,7 +419,7 @@ void ReloadableMedia::reloadTexture( bool previousItem )
     {
         std::string imagePath;
         ImageBuilder imageBuild;
-        imagePath = Utils::combinePath(Configuration::absolutePath, "collections", collectionName );
+        imagePath = Utils::combinePath(Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "collections", collectionName );
         imagePath = Utils::combinePath( imagePath, "system_artwork" );
         loadedComponent_ = imageBuild.CreateImage( imagePath, page, std::string("fallback"), scaleX_, scaleY_, ditheringAuthorized_ );
     }
@@ -448,11 +448,11 @@ Component *ReloadableMedia::findComponent(std::string collection, std::string ty
         config_.getProperty("layout", layoutName);
         if (commonMode_)
         {
-            imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", "_common");
+            imagePath = Utils::combinePath(Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "layouts", layoutName, "collections", "_common");
         }
         else
         {
-            imagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", collection);
+            imagePath = Utils::combinePath(Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "layouts", layoutName, "collections", collection);
         }
         if (systemMode)
             imagePath = Utils::combinePath(imagePath, "system_artwork");
@@ -463,7 +463,7 @@ Component *ReloadableMedia::findComponent(std::string collection, std::string ty
     {
         if (commonMode_)
         {
-            imagePath = Utils::combinePath(Configuration::absolutePath, "collections", "_common" );
+            imagePath = Utils::combinePath(Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "collections", "_common" );
             if (systemMode)
                 imagePath = Utils::combinePath(imagePath, "system_artwork");
             else

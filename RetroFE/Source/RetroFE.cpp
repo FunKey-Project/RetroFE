@@ -677,8 +677,10 @@ void RetroFE::run( )
                 {
                     // Load new layout if available
                     std::string layoutName;
+                    bool userLayout;
                     config_.getProperty( "layout", layoutName );
-                    PageBuilder pb( layoutName, "layout", config_, &fontcache_ );
+                    config_.getProperty( "userTheme", userLayout );
+                    PageBuilder pb( layoutName, "layout", config_, &fontcache_, false, userLayout);
                     Page *page = pb.buildPage( nextPageItem_->name );
                     if ( page )
                     {
@@ -1360,10 +1362,10 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
 Page *RetroFE::loadPage( )
 {
     std::string layoutName;
-
+    bool userLayout;
     config_.getProperty( "layout", layoutName );
-
-    PageBuilder pb( layoutName, "layout", config_, &fontcache_ );
+    config_.getProperty( "userTheme", userLayout );
+    PageBuilder pb( layoutName, "layout", config_, &fontcache_, false, userLayout);
     Page *page = pb.buildPage( );
 
     if ( !page )
@@ -1379,9 +1381,10 @@ Page *RetroFE::loadPage( )
 Page *RetroFE::loadSplashPage( )
 {
     std::string layoutName;
+    bool userLayout;
     config_.getProperty( "layout", layoutName );
-
-    PageBuilder pb( layoutName, "splash", config_, &fontcache_ );
+    config_.getProperty( "userTheme", userLayout );
+    PageBuilder pb( layoutName, "splash", config_, &fontcache_, false, userLayout);
     Page * page = pb.buildPage( );
     page->start( );
 

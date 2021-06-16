@@ -53,7 +53,8 @@ public:
     static std::string combinePath(std::string path1, std::string path2, std::string path3);
     static std::string combinePath(std::string path1, std::string path2, std::string path3, std::string path4);
     static std::string combinePath(std::string path1, std::string path2, std::string path3, std::string path4, std::string path5);
-
+  
+    static bool IsPathExist(const std::string &s);
     static bool executeRawPath(const char *shellCmd);
     static bool rootfsWritable();
     static bool rootfsReadOnly();

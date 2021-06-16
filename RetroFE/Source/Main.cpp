@@ -139,11 +139,13 @@ bool ImportConfiguration(Configuration *c)
     }
 
     /* Read layouts on user partition */
-    std::string layoutUserPath =  Utils::combinePath(std::string("/mnt"), "themes");
-    std::string layoutListUserPath = Utils::combinePath(layoutUserPath, "themes.list");
-    if(!c->importLayouts(layoutUserPath, layoutListUserPath))
-    {
-        Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + layoutListUserPath + "\"");
+    if(!Configuration::userPath.empty()){
+        std::string layoutUserPath =  Utils::combinePath(Configuration::userPath, "layouts");
+        std::string layoutListUserPath = Utils::combinePath(layoutUserPath, "layouts.list");
+        if(!c->importLayouts(layoutUserPath, layoutListUserPath, true))
+        {
+            Logger::write(Logger::ZONE_ERROR, "RetroFE", "Could not import \"" + layoutListUserPath + "\"");
+        }
     }
 
     /* Read current layout */
@@ -260,6 +262,9 @@ bool StartLogging()
 #endif
 
     Logger::write(Logger::ZONE_INFO, "RetroFE", "Absolute path: " + Configuration::absolutePath);
+    if(!Configuration::userPath.empty()){
+        Logger::write(Logger::ZONE_INFO, "RetroFE", "User path: " + Configuration::userPath);        
+    }
 
     return true;
 }

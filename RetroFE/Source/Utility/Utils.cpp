@@ -26,6 +26,7 @@
 #include <list>
 #include <linux/vt.h>
 #include <sys/ioctl.h>
+#include <sys/stat.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <fcntl.h>
@@ -95,7 +96,6 @@ std::string Utils::combinePath(std::list<std::string> &paths)
         it++;
     }
 
-
     while(it != paths.end())
     {
         path += Utils::pathSeparator;
@@ -149,7 +149,7 @@ bool Utils::findMatchingFile(std::string prefix, std::vector<std::string> &exten
     for(unsigned int i = 0; i < extensions.size(); ++i)
     {
         std::string temp = prefix + "." + extensions[i];
-        temp = Configuration::convertToAbsolutePath(Configuration::absolutePath, temp);
+        temp = Configuration::convertToAbsolutePath(Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, temp);
 
         std::ifstream f(temp.c_str());
 
@@ -158,6 +158,7 @@ bool Utils::findMatchingFile(std::string prefix, std::vector<std::string> &exten
             file = temp;
             return true;
         }
+        //printf("In %s, file %s not found\n", __func__, temp.c_str());
     }
 
     return false;
@@ -285,6 +286,12 @@ std::string Utils::trimEnds(std::string str)
     }
 
     return str;
+}
+ 
+bool Utils::IsPathExist(const std::string &s)
+{
+    struct stat buffer;
+    return (stat (s.c_str(), &buffer) == 0);
 }
 
 bool Utils::executeRawPath(const char *shellCmd)

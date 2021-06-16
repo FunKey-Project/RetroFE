@@ -483,7 +483,7 @@ void ReloadableScrollingText::loadText( std::string collection, std::string type
     {
         std::string layoutName;
         config_.getProperty("layout", layoutName);
-        textPath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", collection);
+        textPath = Utils::combinePath(Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "layouts", layoutName, "collections", collection);
         if (systemMode)
             textPath = Utils::combinePath(textPath, "system_artwork");
         else

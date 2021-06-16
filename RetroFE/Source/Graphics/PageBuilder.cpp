@@ -50,7 +50,7 @@ static const int MENU_END = -2;    // last item transitions here after it scroll
 static const int MENU_CENTER = -4;
 
 //todo: this file is starting to become a god class of building. Consider splitting into sub-builders
-PageBuilder::PageBuilder(std::string layoutKey, std::string layoutPage, Configuration &c, FontCache *fc, bool isMenu)
+PageBuilder::PageBuilder(std::string layoutKey, std::string layoutPage, Configuration &c, FontCache *fc, bool isMenu, bool userLayout)
     : layoutKey(layoutKey)
     , layoutPage(layoutPage)
     , config_(c)
@@ -61,6 +61,7 @@ PageBuilder::PageBuilder(std::string layoutKey, std::string layoutPage, Configur
     , fontSize_(24)
     , fontCache_(fc)
     , isMenu_(isMenu)
+    , userLayout_(userLayout)
 {
     screenWidth_ = SDL::getWindowWidth();
     screenHeight_ = SDL::getWindowHeight();
@@ -82,20 +83,25 @@ Page *PageBuilder::buildPage( std::string collectionName )
     std::string layoutFileAspect;
     std::string layoutName = layoutKey;
 
+    std::string originPath = userLayout_?Configuration::userPath:Configuration::absolutePath;
+
     if ( isMenu_ )
     {
-        layoutPath = Utils::combinePath(Configuration::absolutePath, "menu");
+        layoutPath = Utils::combinePath(originPath, "menu");
     }
     else if ( collectionName == "" )
     {
-        layoutPath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName);
+        layoutPath = Utils::combinePath(originPath, "layouts", layoutName);
     }
     else
     {
-        layoutPath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, "collections", collectionName);
+        layoutPath = Utils::combinePath(originPath, "layouts", layoutName, "collections", collectionName);
         layoutPath = Utils::combinePath(layoutPath, "layout");
     }
     layoutFile = Utils::combinePath(layoutPath, layoutPage + ".xml");
+
+    printf("In %s, layoutFile is %s \n", __func__, layoutFile.c_str());
+
     if ( screenWidth_*3/4 == screenHeight_ )
         layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 4x3.xml");
     else if ( screenWidth_*4/3 == screenHeight_ )
@@ -167,7 +173,7 @@ Page *PageBuilder::buildPage( std::string collectionName )
             if(fontXml)
             {
                 fontName_ = config_.convertToAbsolutePath(
-                           Utils::combinePath(config_.absolutePath, "layouts", layoutKey, ""),
+                           Utils::combinePath(originPath, "layouts", layoutKey, ""),
                            fontXml->value());
             }
 
@@ -221,7 +227,7 @@ Page *PageBuilder::buildPage( std::string collectionName )
                 std::string file      = Configuration::convertToAbsolutePath(layoutPath, src->value());
                 std::string layoutName;
                 config_.getProperty("layout", layoutName);
-                std::string altfile   = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, std::string(src->value()));
+                std::string altfile   = Utils::combinePath(originPath, "layouts", layoutName, std::string(src->value()));
                 if(!type)
                 {
                     Logger::write(Logger::ZONE_ERROR, "Layout", "Sound tag missing type attribute");
@@ -456,7 +462,9 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
             std::string layoutName;
             config_.getProperty("layout", layoutName);
             std::string altImagePath;
-            altImagePath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, std::string(src->value()));
+
+            altImagePath = Utils::combinePath(userLayout_?Configuration::userPath:Configuration::absolutePath, 
+                "layouts", layoutName, std::string(src->value()));
 
             Image *c = new Image(imagePath, altImagePath, *page, scaleX_, scaleY_, dithering);
             c->setId( id );
@@ -497,7 +505,8 @@ bool PageBuilder::buildComponents(xml_node<> *layout, Page *page)
             std::string layoutName;
             config_.getProperty("layout", layoutName);
             std::string altVideoPath;
-            altVideoPath = Utils::combinePath(Configuration::absolutePath, "layouts", layoutName, std::string(srcXml->value()));
+            altVideoPath = Utils::combinePath(userLayout_?Configuration::userPath:Configuration::absolutePath, 
+                "layouts", layoutName, std::string(srcXml->value()));
             int numLoops = numLoopsXml ? Utils::convertInt(numLoopsXml->value()) : 1;
 
             Video *c = new Video(videoPath, altVideoPath, numLoops, *page, scaleX_, scaleY_);
@@ -891,7 +900,7 @@ Font *PageBuilder::addFont(xml_node<> *component, xml_node<> *defaults)
     if(fontXml)
     {
         fontName = config_.convertToAbsolutePath(
-                    Utils::combinePath(config_.absolutePath, "layouts", layoutKey,""),
+                    Utils::combinePath(userLayout_?Configuration::userPath:Configuration::absolutePath, "layouts", layoutKey,""),
                     fontXml->value());
 
         Logger::write(Logger::ZONE_DEBUG, "Layout", "loading font " + fontName );
