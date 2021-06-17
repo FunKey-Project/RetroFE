@@ -44,18 +44,18 @@ typedef enum {ASPECT_RATIOS} ENUM_ASPECT_RATIOS_TYPES;
 #define STEP_CHANGE_BRIGHTNESS      10
 
 ////------ Menu commands -------
-#define SHELL_CMD_VOLUME_GET                "volume get"
-#define SHELL_CMD_VOLUME_SET                "volume set"
-#define SHELL_CMD_BRIGHTNESS_GET            "brightness get"
-#define SHELL_CMD_BRIGHTNESS_SET            "brightness set"
-#define SHELL_CMD_SHARE_IS_USB_DATA_CONNECTED "share is_usb_data_connected"
-#define SHELL_CMD_SHARE_START               "share start"
-#define SHELL_CMD_SHARE_STOP                "share stop"
-#define SHELL_CMD_SHARE_IS_SHARING          "share is_sharing"
-#define SHELL_CMD_POWERDOWN                 "powerdown"
-#define SHELL_CMD_POWERDOWN_HANDLE          "powerdown handle"
-#define SHELL_CMD_FRONTEND_SET_GMENU2X      "frontend set gmenu2x"
-#define SHELL_CMD_FRONTEND_SET_RETROFE      "frontend set retrofe"
+#define SHELL_CMD_VOLUME_GET                    "volume get"
+#define SHELL_CMD_VOLUME_SET                    "volume set"
+#define SHELL_CMD_BRIGHTNESS_GET                "brightness get"
+#define SHELL_CMD_BRIGHTNESS_SET                "brightness set"
+#define SHELL_CMD_SHARE_IS_USB_DATA_CONNECTED   "share is_usb_data_connected"
+#define SHELL_CMD_SHARE_START                   "share start"
+#define SHELL_CMD_SHARE_STOP                    "share stop"
+#define SHELL_CMD_SHARE_IS_SHARING              "share is_sharing"
+#define SHELL_CMD_POWERDOWN                     "powerdown"
+#define SHELL_CMD_POWERDOWN_HANDLE              "powerdown handle"
+#define SHELL_CMD_FRONTEND_SET_GMENU2X          "frontend set gmenu2x"
+#define SHELL_CMD_FRONTEND_SET_RETROFE          "frontend set retrofe"
 
 class MenuMode
 {

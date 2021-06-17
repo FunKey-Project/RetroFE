@@ -805,6 +805,40 @@ void RetroFE::run( )
             }
             break;
 
+        // Launching bibi; start onGameEnter animation
+        case RETROFE_LAUNCH_BIBI_ENTER:
+            currentPage_->enterGame( );  // Start onGameEnter animation
+            currentPage_->playSelect( ); // Play launch sound
+            state = RETROFE_LAUNCH_BIBI_REQUEST;
+            break;
+
+        // Wait for onGameEnter animation to finish; launch ; start onGameExit animation
+        case RETROFE_LAUNCH_BIBI_REQUEST:
+            if ( currentPage_->isIdle( ) && !currentPage_->isSelectPlaying( ) )
+            {
+                launchEnter( );
+                printf("BIBI !!!!\n");
+
+                /* Restart audio amp */
+                system(SHELL_CMD_AUDIO_AMP_ON);
+
+                /* Execute game */
+                if(system(BIBI_CMD) < 0)
+                {
+                    Logger::write(Logger::ZONE_ERROR, "Launcher", "Failed to launch bibi with cmd: \"" + std::string(BIBI_CMD) +"\"");
+                }
+
+                /* Stop audio amp */
+                system(SHELL_CMD_AUDIO_AMP_OFF);
+
+                /* Exit animation */
+                launchExit( );
+                currentPage_->exitGame( );
+
+                state = RETROFE_LAUNCH_EXIT;
+            }
+            break;
+
         // Wait for onGameExit animation to finish
         case RETROFE_LAUNCH_EXIT:
             if ( currentPage_->isIdle( ) )
@@ -1155,7 +1189,17 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
     }
 #endif
 
-
+    //   ,-*  ,-*  ,-*
+    //  (_)  (_)  (_)
+    #define KONAMI_CODE_SIZE    10
+    static const int konami_code_sdl[KONAMI_CODE_SIZE]={SDLK_u,SDLK_u,SDLK_d,SDLK_d,SDLK_l,SDLK_l,SDLK_r,SDLK_r,SDLK_b,SDLK_a};
+    static uint8_t idx_konami_code = 0;
+    if(e.type==SDL_KEYDOWN && e.key.keysym.sym != konami_code_sdl[idx_konami_code]) idx_konami_code=0;   
+    if(e.type==SDL_KEYDOWN && e.key.keysym.sym == konami_code_sdl[idx_konami_code]) idx_konami_code++;
+    if(idx_konami_code >= KONAMI_CODE_SIZE){
+        idx_konami_code = 0;
+        return RETROFE_LAUNCH_BIBI_ENTER;   
+    }
 
     // Handle next/previous game inputs
     if ( page->isHorizontalScroll( ) )
