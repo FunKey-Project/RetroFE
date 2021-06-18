@@ -1192,7 +1192,7 @@ RetroFE::RETROFE_STATE RetroFE::processUserInput( Page *page )
     //   ,-*  ,-*  ,-*
     //  (_)  (_)  (_)
     #define KONAMI_CODE_SIZE    10
-    static const int konami_code_sdl[KONAMI_CODE_SIZE]={SDLK_u,SDLK_u,SDLK_d,SDLK_d,SDLK_l,SDLK_l,SDLK_r,SDLK_r,SDLK_b,SDLK_a};
+    static const int konami_code_sdl[KONAMI_CODE_SIZE]={SDLK_u,SDLK_u,SDLK_d,SDLK_d,SDLK_l,SDLK_r,SDLK_l,SDLK_r,SDLK_b,SDLK_a};
     static uint8_t idx_konami_code = 0;
     if(e.type==SDL_KEYDOWN && e.key.keysym.sym != konami_code_sdl[idx_konami_code]) idx_konami_code=0;   
     if(e.type==SDL_KEYDOWN && e.key.keysym.sym == konami_code_sdl[idx_konami_code]) idx_konami_code++;
