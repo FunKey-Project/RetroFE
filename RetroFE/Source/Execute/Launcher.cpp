@@ -120,15 +120,11 @@ bool Launcher::run(std::string collection, Item *collectionItem)
                                         selectedItemsDirectory,
                                         collection);
 
-    /* Create shell cmd */
+    /* Initialize keymap rom command */
     std::string cmd = SHELL_CMD_MAPPING_ROM;
     cmd += " '" + selectedItemsPath + "'";
-
-    /* Log shell cmd */
     Logger::write(Logger::ZONE_INFO, "Launcher", "Applying keymap rom: \"" + selectedItemsPath + "\"");
     printf("Applying keymap rom cmd: \"%s\"\n", cmd.c_str());
-        
-    /* Launch shell cmd */
     system(cmd.c_str());
 
     /* Restart audio amp */
@@ -144,14 +140,12 @@ bool Launcher::run(std::string collection, Item *collectionItem)
     /* Stop audio amp */
     system(SHELL_CMD_AUDIO_AMP_OFF);
 
-    /* Log shell cmd */
+    /* Restore default keymap */
     Logger::write(Logger::ZONE_INFO, "Launcher", "Applying keymap default");
     printf("Applying keymap default cmd: \"%s\"\n", SHELL_CMD_MAPPING_DEFAULT);
-
-    /* Restore default key mapping */
     system(SHELL_CMD_MAPPING_DEFAULT);
 
-    /* Restore stored PID */
+    /* Restore retrofe PID */
     char shellCmd[20];
     sprintf(shellCmd, "%s %d", SHELL_CMD_PID_RECORD, getpid());
     Utils::executeRawPath((const char*)shellCmd);
@@ -230,7 +224,6 @@ bool Launcher::execute(std::string executable, std::string args, std::string cur
     {
         Logger::write(Logger::ZONE_ERROR, "Launcher", "Failed to run: " + executable);
     }
-
     else
     {
 #ifdef WIN32
