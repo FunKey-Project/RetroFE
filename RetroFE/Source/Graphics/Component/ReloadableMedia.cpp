@@ -414,12 +414,13 @@ void ReloadableMedia::reloadTexture( bool previousItem )
         }
     }
 
-    // if image and artwork was not specified, image fall back
+    // if image and artwork was not specified, image fallback
     if(!loadedComponent_ && imageFallback_)
     {
         std::string imagePath;
         ImageBuilder imageBuild;
-        imagePath = Utils::combinePath(Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "collections", collectionName );
+        //imagePath = Utils::combinePath(Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "collections", collectionName );
+        imagePath = Utils::combinePath(Configuration::absolutePath, "collections", collectionName ); // forcing absolutePath and folder "Collection" for backups
         imagePath = Utils::combinePath( imagePath, "system_artwork" );
         loadedComponent_ = imageBuild.CreateImage( imagePath, page, std::string("fallback"), scaleX_, scaleY_, ditheringAuthorized_ );
     }

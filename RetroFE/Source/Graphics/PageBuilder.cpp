@@ -100,8 +100,6 @@ Page *PageBuilder::buildPage( std::string collectionName )
     }
     layoutFile = Utils::combinePath(layoutPath, layoutPage + ".xml");
 
-    printf("In %s, layoutFile is %s \n", __func__, layoutFile.c_str());
-
     if ( screenWidth_*3/4 == screenHeight_ )
         layoutFileAspect = Utils::combinePath(layoutPath, layoutPage + " 4x3.xml");
     else if ( screenWidth_*4/3 == screenHeight_ )

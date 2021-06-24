@@ -726,7 +726,8 @@ bool ScrollingList::allocateTexture( unsigned int index, Item *item )
 
     // Image fallback
     if ( !t && imageType_.compare(std::string("null"))){
-        imagePath = Utils::combinePath(Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "collections", collectionName );
+        //imagePath = Utils::combinePath(Configuration::isUserLayout_?Configuration::userPath:Configuration::absolutePath, "collections", collectionName );
+        imagePath = Utils::combinePath(Configuration::absolutePath, "collections", collectionName ); // forcing absolutePath and folder "Collection" for backups
         imagePath = Utils::combinePath( imagePath, "system_artwork" );
         t = imageBuild.CreateImage( imagePath, page, std::string("fallback"), scaleX_, scaleY_, ditheringAuthorized_ );
     }
